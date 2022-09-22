@@ -1,0 +1,55 @@
+/* default css */
+.mt-100{
+    margin-top: 100px;
+}
+.mt-70{
+    margin-top: 70px;
+}
+.mb-100{
+    margin-bottom: 100px;
+}
+.mb-30{
+    margin-bottom: 30px;
+}
+.mt-50{
+    margin-top: 50px;
+}
+.mb-50{
+    margin-bottom: 50px;
+}
+.mt-20{
+    margin-top: 50px;
+}
+.f-right{
+    float: right;
+}
+.f-left{
+    float: left;
+}
+.d-flex{
+    display: flex;
+}
+.d-inline-block{
+    display: inline-block;
+}
+.pt-100{
+    padding-top: 100px;
+}
+.pb-100{
+    padding-bottom: 100px;
+}
+.pl-0{
+    padding-left: 0;
+}
+.pr-0{
+    padding-right: 0;
+}
+.mt-30{
+    margin-top: 30px;
+}
+.pt-150{
+    padding-top: 150px;
+}
+.pb-150{
+    padding-bottom: 150px;
+}

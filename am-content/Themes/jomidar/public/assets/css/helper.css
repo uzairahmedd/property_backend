@@ -1,0 +1,202 @@
+/* select payment */
+
+.select-payment-area {
+    margin-bottom: 100px;
+}
+
+.select-payment-area ul li {
+    display: inline-block;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.select-payment-area ul li a {
+    display: block;
+}
+
+.select-payment-area ul {
+    padding-left: 0;
+}
+
+.payment-content {
+    text-align: center;
+}
+
+.select-payment-area ul li.active {
+    border-color: #274abb;
+}
+
+.select-payment-area ul li.active a {
+    color: #274abb;
+}
+
+ul.nav.nav-tabs {
+    border-bottom: none;
+}
+
+img.bang_payment_img {
+    width: 100px;
+}
+
+.bank-payment-section label {
+    border: 2px dashed #333;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 221px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bank-payment-section {
+    margin-top: 30px;
+}
+
+.bank-payment-section button {
+    width: 100%;
+    margin-top: 10px;
+    background: #274ABB;
+}
+
+
+
+.payment-img img {
+    height: 105px;
+    width: 253px;
+    object-fit: cover;
+    padding: 15px 15px;
+}
+.product-payment-info button {
+    border: none;
+    background: #274abb;
+    color: #fff;
+    padding: 15px 0;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-top: 18px;
+}
+
+.select-payment-area h3 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.product-payment-info h3 {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+
+.bank-full-details-area {
+    background: whitesmoke;
+    margin-top: 25px;
+    padding: 30px 30px;
+    border-radius: 5px;
+}
+
+.bank-title {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding-bottom: 0px;
+}
+
+.bank-info {
+    display: flex;
+}
+
+.bank-name {
+    margin-right: auto;
+}
+
+.bank-details span {
+    color: #afafaf;
+    font-weight: 400;
+}
+
+.select-payment-area ul li:last-child {
+    margin-right: 0;
+}
+.StripeElement {
+    box-sizing: border-box;
+    
+    height: 40px;
+    
+    padding: 10px 12px;
+    
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+    
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+    border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+.review-success-msg p {
+    color: #274abb;
+    font-size: 18px;
+}
+
+.review-success-msg span {
+    color: red;
+    font-size: 18px;
+}
+
+.property-review-form-area select {
+    height: 60px;
+}
+
+.property-review-form-area select:focus {
+    outline: 0;
+    box-shadow: none;
+    border-color: #ddd;
+}
+
+.single-features strong i {
+    color: #3657bf;
+}
+.none{
+    display: none
+}
+.show{
+    display: block;
+}
+
+.phone-call {
+    background: #274abb;
+    /* color: #fff; */
+    width: 100%;
+    height: 55px;
+    padding: 17px 34px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.phone-call a {
+    color: #fff;
+    font-size: 17px;
+    display: block;
+}
+.phone-call a:hover{
+    text-decoration: none;
+}
+.properties-additional-icon img{
+    max-height: 25px;
+}

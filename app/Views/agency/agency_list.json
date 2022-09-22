@@ -1,0 +1,28 @@
+[
+    {
+		"name": "Breadcrumb Area",
+		"id": "agency_list_breadcrumb",
+		"icon": "flaticon-header",
+		"settings": [
+			{
+				"type": "bg_image",
+				"id": "bg_breadcrumb_img",
+				"label": "Background Image",
+				"value": null
+            },
+            {
+                "type": "text",
+                "id": "breadcrumb_agency_title",
+                "label": "Title",
+                "value": null
+            },
+            {
+                "type": "text",
+                "id": "breadcrumb_agency_des",
+                "label": "Description",
+                "value": null
+            }
+		],
+		"content": null
+    }
+]

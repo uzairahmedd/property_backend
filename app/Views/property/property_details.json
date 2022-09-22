@@ -1,0 +1,228 @@
+[
+    {
+		"name": "Breadcrumb Area",
+		"id": "property_details_breadcrumb",
+		"icon": "flaticon-header",
+		"settings": [
+			{
+				"type": "bg_image",
+				"id": "bg_breadcrumb_img",
+				"label": "Background Image",
+				"value": null
+            },
+            {
+                "type": "text",
+                "id": "breadcrumb_title",
+                "label": "Title",
+                "value": null
+            },
+            {
+                "type": "text",
+                "id": "breadcrumb_des",
+                "label": "Description",
+                "value": null
+            }
+		],
+		"content": null
+    },
+    {
+		"name": "Mortgage Section",
+		"id": "mortgage",
+		"icon": "flaticon-header",
+		"settings": [
+			{
+				"type": "text",
+				"id": "mortgage_title",
+				"label": "Title",
+				"value": null
+            },
+            {
+                "type": "text",
+                "id": "property_price_title",
+                "label": "Property Price Label",
+                "value": null
+            },
+            {
+                "type": "text",
+                "id": "mortgage_Interestrate_title",
+                "label": "InterestRate Label",
+                "value": null
+            },
+            {
+                "type": "text",
+                "id": "mortgage_years_title",
+                "label": "years Label",
+                "value": null
+            },
+            {
+                "type": "text",
+                "id": "calculate_btn_title",
+                "label": "Calculate Btn Title",
+                "value": null
+            }
+		],
+		"content": null
+    },
+    {
+		"name": "Print Section",
+		"id": "print",
+		"icon": "flaticon-header",
+		"settings": [
+			{
+				"type": "text",
+				"id": "print_title",
+				"label": "Title",
+				"value": null
+            },
+            {
+                "type": "text",
+                "id": "print_btn_title",
+                "label": "Print Btn Title",
+                "value": null
+            }
+		],
+		"content": null
+    },
+    {
+		"name": "Similar Property",
+		"id": "similar_property",
+		"icon": "flaticon-header",
+		"settings": [
+			{
+				"type": "text",
+				"id": "similar_property_title",
+				"label": "Title",
+				"value": null
+            }
+		],
+		"content": null
+    },
+    {
+		"name": "Left Section",
+		"id": "left_section",
+		"icon": "flaticon-header",
+		"settings": [
+			{
+				"type": "text",
+				"id": "des_title",
+				"label": "Description Title",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "details_title",
+				"label": "Detail & Features Title",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "distance_title",
+				"label": "Distance Title",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "video_title",
+				"label": "Video Title",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "floor_plan_title",
+				"label": "Floor Plan Title",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "location_title",
+				"label": "Location Title",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "gallery_title",
+				"label": "Gallery Title",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "street_view_title",
+				"label": "Street View Title",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "virtual_tour_title",
+				"label": "Virtual Tour Title",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "walkscore_title",
+				"label": "Walkscore Title",
+				"value": null
+            }
+
+            
+		],
+		"content": null
+    },
+    {
+		"name": "Contact Form",
+		"id": "contact_form",
+		"icon": "flaticon-header",
+		"settings": [
+			{
+				"type": "text",
+				"id": "contact_form_title",
+				"label": "Title",
+				"value": null
+            }
+		],
+		"content": null
+    },
+    {
+		"name": "Review Section",
+		"id": "review_section",
+		"icon": "flaticon-header",
+		"settings": [
+			{
+				"type": "text",
+				"id": "review_title",
+				"label": "Title",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "review_name_label",
+				"label": "Name Label",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "review_email_label",
+				"label": "Email Label",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "review_rating_label",
+				"label": "Rating Label",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "review_review_label",
+				"label": "Review Label",
+				"value": null
+            },
+            {
+				"type": "text",
+				"id": "review_btn_title",
+				"label": "Btn Title",
+				"value": null
+            }
+		],
+		"content": null
+    }
+]

@@ -1,0 +1,110 @@
+[
+    {
+        "Theme Name": "Jomidar - Laravel Real Estate Agency Portal",
+        "Thumbnail": "thumbnail.png",
+        "Author": "Amcoders",
+        "Version": "1.0",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "jomidar",
+        "status": "active"
+    },
+    {
+        "Theme Name": "Zamindar - Laravel Real Estate Agency Portal",
+        "Thumbnail": "thumbnail.png",
+        "Author": "AMCoders",
+        "Version": "1.0",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "zamindar",
+        "status": "deactive"
+    },
+    {
+        "Theme Name": "Bari - Laravel Real Estate Agency Portal",
+        "Thumbnail": "thumbnail.png",
+        "Author": "AMCoders",
+        "Version": "1.0",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "bari",
+        "status": "deactive"
+    },
+    {
+        "Theme Name": "Hazibar - Laravel Real Estate Agency Portal",
+        "Thumbnail": "thumbnail.png",
+        "Author": "AMCoders",
+        "Version": "1.0",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "hazibari",
+        "status": "deactive"
+    },
+    {
+        "Theme Name": "Thakorbari - Laravel Real Estate Agency Portal",
+        "Thumbnail": "thumbnail.png",
+        "Author": "AMCoders",
+        "Version": "1.0",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "thakorbari",
+        "status": "deactive"
+    },
+    {
+        "Theme Name": "Amarbari - Laravel Real Estate Agency Portal",
+        "Thumbnail": "thumbnail.png",
+        "Author": "AMCoders",
+        "Version": "1.0",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "amarbari",
+        "status": "deactive"
+    },
+    {
+        "Theme Name": "Marufbari - Laravel Real Estate Agency Portal",
+        "Thumbnail": "thumbnail.png",
+        "Author": "AMCoders",
+        "Version": "1.0",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "marufbari",
+        "status": "deactive"
+    },
+    {
+        "Theme Name": "Arafatbari - Laravel Real Estate Agency Portal",
+        "Thumbnail": "thumbnail.png",
+        "Author": "AMCoders",
+        "Version": "1.0",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "arafatbari",
+        "status": "deactive"
+    },
+    {
+        "Theme Name": "HelloBari - Laravel Real Estate Agency Portal",
+        "Thumbnail": "thumbnail.png",
+        "Author": "AMCoders",
+        "Version": "1.0",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "hellobari",
+        "status": "deactive"
+    },
+    {
+        "Theme Name": "MamaBari - Laravel Real Estate Agency Portal",
+        "Thumbnail": "thumbnail.png",
+        "Author": "AMCoders",
+        "Version": "1.0",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "mamabari",
+        "status": "deactive"
+    },
+    {
+        "Theme Name": "Tomarbari - Laravel Real Estate Agency Portal",
+        "Thumbnail": "thumbnail.png",
+        "Author": null,
+        "Version": null,
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "tomarbari",
+        "status": "deactive"
+    },
+    {
+        "Theme Name": "Nanabari - Laravel Real Estate Agency Portal",
+        "Thumbnail": "thumbnail.png",
+        "Author": "AMCoders",
+        "Version": "1.0",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "nanabari",
+        "status": "deactive"
+    }
+]

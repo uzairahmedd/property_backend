@@ -1,0 +1,19 @@
+.header-right-area .single {
+    margin-left: 15px;
+}
+
+.header-right-area .single:last-child {
+    margin-left: 0;
+}
+
+.price-area p {
+    margin-left: 20px;
+}
+
+.f-right{
+    float: left !important;
+}
+
+.single-header-select-form {
+    margin-right: 10px !important;
+}

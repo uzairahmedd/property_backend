@@ -1,0 +1,258 @@
+[
+	{
+		"name": "Header Area",
+		"id": "header",
+		"icon": "flaticon-header",
+		"settings": [
+            {
+                "type": "text",
+                "id": "header_phone_number",
+                "label": "Header Phone Number",
+                "value": null
+            },
+            {
+                "type": "text",
+                "id": "header_email_address",
+                "label": "Header Email Address",
+                "value": null
+            },
+			{
+				"type": "image",
+				"id": "logo",
+				"label": "Header Logo",
+				"value": null
+            },
+            {
+                "type": "text",
+                "id": "header_create_property_title",
+                "label": "Create Property Title",
+                "value": null
+            }
+		],
+		"content": null
+    },
+    {
+        "name": "Hero Area",
+		"id": "hero",
+		"icon": "flaticon-header",
+		"settings": [
+            {
+                "type": "bg_image",
+                "id": "hero_background_img",
+                "label": "Hero Background Image",
+                "value": null
+            },
+			{
+				"type": "text",
+				"id": "hero_big_title",
+				"label": "Title",
+				"value": null
+            },
+            {
+                "type": "textarea",
+                "id": "hero_des",
+                "label": "Description",
+                "value": null
+            },
+            {
+                "type": "text",
+                "id": "hero_first_btn_title",
+                "label": "Button First Title",
+                "value": null
+            },
+            {
+                "type": "link",
+                "id": "hero_first_btn_link",
+                "label": "Button First Link",
+                "value": null
+            }
+		],
+		"content": null
+    },
+    {
+        "name": "Latest Property",
+        "id": "featured_properties",
+        "icon": "flaticon-header",
+        "settings": [
+            {
+                "type": "text",
+                "id": "featured_properties_title",
+                "label": "Title",
+                "value": null
+            },
+            {
+                "type": "textarea",
+                "id": "featured_properties_des",
+                "label": "Description",
+                "value": null
+            },
+            {
+                "type": "text",
+                "id": "featured_properties_btn_title",
+                "label": "Button Title",
+                "value": null
+            }
+        ],
+        "content": null
+    },
+    {
+        "name": "Find City",
+        "id": "find_city",
+        "icon": "flaticon-header",
+        "settings": [
+            {
+                "type": "text",
+                "id": "find_city_title",
+                "label": "Title",
+                "value": null
+            },
+            {
+                "type": "textarea",
+                "id": "find_city_des",
+                "label": "Description",
+                "value": null
+            }
+        ],
+        "content": null
+    },
+    {
+        "name": "Agents Area",
+        "id": "property_agents",
+        "icon": "flaticon-header",
+        "settings": [
+            {
+                "type": "text",
+                "id": "property_agent_title",
+                "label": "Title",
+                "value": null
+            },
+            {
+                "type": "textarea",
+                "id": "property_agent_descrtiption",
+                "label": "Description",
+                "value": null
+
+            },
+            {
+                "type": "text",
+                "id": "property_agent_btn_title",
+                "label": "Button Title",
+                "value": null
+            }
+        ],
+        "content": null
+    },
+    {
+        "name": "Blog List",
+        "id": "blog_list",
+        "icon": "flaticon-header",
+        "settings": [
+            {
+                "type": "text",
+                "id": "blog_list_title",
+                "label": "Title",
+                "value": null
+            },
+            {
+                "type": "textarea",
+                "id": "blog_list_des",
+                "label": "Description",
+                "value": null
+            },
+            {
+                "type": "text",
+                "id": "blog_list_btn_title",
+                "label": "Button Title",
+                "value": null
+            }
+        ],
+        "content": null
+    },
+    {
+        "name": "Footer",
+        "id": "footer",
+        "icon": "flaticon-footer",
+        "settings": [
+            {
+                "type": "image",
+                "id": "footer_image",
+                "label": "Image",
+                "value": null
+            },
+            {
+                "type": "textarea",
+                "id": "footer_des",
+                "label": "Description",
+                "value": null
+            },
+            {
+                "type": "text",
+                "id": "footer_copyright",
+                "label": "Footer Copyright",
+                "value": null
+            }
+        ],
+        "content": [
+            {
+                "name": "Footer Social Links",
+                "id": "social_link",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "social_facebook_link",
+                        "label": "Facebook Link",
+                        "value": null
+                    },
+                    {
+                        "type": "text",
+                        "id": "social_twitter_link",
+                        "label": "Twitter Link",
+                        "value": null
+                    },
+                    {
+                        "type": "text",
+                        "id": "social_google_link",
+                        "label": "Google Link",
+                        "value": null
+                    },
+                    {
+                        "type": "text",
+                        "id": "social_instagram_link",
+                        "label": "Instagram Link",
+                        "value": null
+                    },
+                    {
+                        "type": "text",
+                        "id": "social_pinterest_link",
+                        "label": "Pinterest Link",
+                        "value": null
+                    }
+                ]
+            },
+            {
+                "name": "Footer Right Section",
+                "id": "footer_right",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "footer_right_title",
+                        "label": "Title",
+                        "value": null
+                    },
+                    {
+                        "type": "textarea",
+                        "id": "footer_right_des",
+                        "label": "Description",
+                        "value": null
+                    },
+                    {
+                        "type": "text",
+                        "id": "footer_right_btn_title",
+                        "label": "Button Title",
+                        "value": null
+                    }
+                ]
+            }
+        ]
+    }
+]

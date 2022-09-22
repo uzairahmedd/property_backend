@@ -1,0 +1,61 @@
+[
+    {
+        "Plugin Name": "Contactform",
+        "Version": 1.5,
+        "Description": "Contactform plugin for Lpress cms",
+        "Author": "Amcoders",
+        "Author URI": "https:\/\/codecanyon.net\/user\/amcoders",
+        "Text Domain": "contactform",
+        "status": "active"
+    },
+    {
+        "Plugin Name": "Plan",
+        "Description": "plugin for jomidar theme",
+        "Author": "Amcoders",
+        "Author URI": "https:\/\/codecanyon.net\/user\/amcoders\/portfolio",
+        "Version": "1.0",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "plan",
+        "status": "active"
+    },
+    {
+        "Plugin Name": "post",
+        "Description": "amcoders",
+        "Author": "amcoders",
+        "Author URI": "amcoders",
+        "Version": null,
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "Post",
+        "status": "active"
+    },
+    {
+        "Plugin Name": "Currency",
+        "Description": "Currency plugin for jomidar theme",
+        "Author": "Amcoders",
+        "Author URI": "https:\/\/codecanyon.net\/user\/amcoders\/portfolio",
+        "Version": "1.0",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "currency",
+        "status": "active"
+    },
+    {
+        "Plugin Name": "paymentgetways",
+        "Description": null,
+        "Author": null,
+        "Author URI": null,
+        "Version": null,
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "Paymentgetway",
+        "status": "active"
+    },
+    {
+        "Plugin Name": "Sendmail",
+        "Description": "Plugin for Jomidar Project",
+        "Author": "AMCoders",
+        "Author URI": "https://codecanyon.net/user/amcoders",
+        "Version": "1",
+        "License": "GNU General Public License v2 or later",
+        "Text Domain": "sendmail",
+        "status": "active"
+    }
+]
