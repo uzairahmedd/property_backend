@@ -296,12 +296,12 @@ function RegisterAdminMenuBar()
 	   }
 
 
-		$data[] = array(
-			'name' => 'Plugin',
-			'active' => Request::is('admin/plugin*'),
-			'icon' => 'fas fa-download',
-			'url' => route('admin.plugin.index')
-		);
+		// $data[] = array(
+		// 	'name' => 'Plugin',
+		// 	'active' => Request::is('admin/plugin*'),
+		// 	'icon' => 'fas fa-download',
+		// 	'url' => route('admin.plugin.index')
+		// );
 		
 
 
@@ -328,14 +328,14 @@ function RegisterAdminMenuBar()
 		}
 
 
-		if (Auth()->user()->can('backup')) {
-			$data[] = array(
-				'name' => 'Backup',
-				'active' => Request::is('admin/backup*'),
-				'icon' => 'fas fa-download',
-				'url' => route('admin.backup.index')
-			);
-		}	
+		// if (Auth()->user()->can('backup')) {
+		// 	$data[] = array(
+		// 		'name' => 'Backup',
+		// 		'active' => Request::is('admin/backup*'),
+		// 		'icon' => 'fas fa-download',
+		// 		'url' => route('admin.backup.index')
+		// 	);
+		// }	
 	
 
 		
