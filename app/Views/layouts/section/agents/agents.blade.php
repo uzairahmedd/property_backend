@@ -1,5 +1,5 @@
 <section>
-    <div class="featured-properties-area mb-100 featured-properties-demo-1" id="property_agents">
+    <div id="property_agents">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
