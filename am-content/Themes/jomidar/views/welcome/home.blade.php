@@ -8,13 +8,13 @@
 @include('view::layouts.section.hero.hero')
 <!-- hero area end -->
 
-<!-- find agents area start -->
-@include('view::layouts.section.agents.agents')
-<!-- find agents area end -->
-
 <!-- featured properties area start -->
 @include('view::layouts.section.properties.featured')
 <!-- featured properties area end -->
+
+<!-- find agents area start -->
+@include('view::layouts.section.agents.agents')
+<!-- find agents area end -->
 
 <!-- places area start -->
 @include('view::layouts.section.places.places')

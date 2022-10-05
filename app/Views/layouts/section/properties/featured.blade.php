@@ -1,5 +1,5 @@
 <section>
-    <div class="featured-properties-area mb-100 featured-properties-demo-1" id="featured_properties">
+    <div class="find-agents-area {{ isset($class) ? $class : 'agent-demo-1' }}" id="featured_properties">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
