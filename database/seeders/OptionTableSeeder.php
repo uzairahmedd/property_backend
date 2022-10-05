@@ -44,7 +44,7 @@ class OptionTableSeeder extends Seeder
 
       Options::create([
         'key'=>'default_lat_long',
-        'value'=>'{"latitude":"23.8103","longitude":"90.4125","zoom":"10"}',
+        'value'=>'{"latitude":"24.774265","longitude":"46.738586","zoom":"8"}',
       ]);
 
 
