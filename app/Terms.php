@@ -221,4 +221,24 @@ class Terms extends Model
     {
         return $this->belongsToMany('App\Models\User')->withTimestamps();
 	}
+
+	public function getPriceMinAttribute() {
+		return $this->min_price->price;
+	}
+
+	public function getPriceMaxAttribute() {
+		return $this->max_price->price;
+	}
+
+	public function getLatLongAttribute() {
+		return [
+			'latitude' => $this->latitude->value ?? null,
+			'longitude' => $this->longitude->value ?? null,
+		];
+	}
+
+	public function getFeaturesAttribute() {
+		$feature_ids = $this->postcategory->where('type', 'features')->pluck('category_id');
+		return Category::find($feature_ids)->pluck('slug');
+	}
 }
