@@ -1,0 +1,552 @@
+
+@font-face {
+    font-family: Tajawal;
+    src: url(/assets/newfont/Tajawal-Regular.ttf);
+}
+
+@font-face {
+    font-family: TajawalLight;
+    src: url(/assets/newfont/Tajawal-Light.ttf);
+}
+
+@font-face {
+    font-family: TajawalMedium;
+    src: url(/assets/newfont/Tajawal-Medium.ttf);
+}
+
+@font-face {
+    font-family: TajawalBold;
+    src: url(/assets/newfont/Tajawal-Bold.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Tajawal;
+}
+
+:root {
+    --theme-blue: #292071;
+    --theme-white: #ffffff;
+    --theme-sky: #1DA1F2;
+    --theme-black: #000000;
+    --theme-seondary-black: #0F0F0F;
+    --theme-secondary: #C9009D;
+    --theme-grey:#848484;
+    --theme-grey-light:rgba(201, 201, 201, 0.1);
+}
+/* Margins */
+.mb-4_5{
+    margin-bottom: 38px;
+}
+/* Font Sizes */
+.font-24 {
+    font-size: 24px;
+}
+.font-16 {
+    font-size: 16px;
+}
+.font-14 {
+    font-size: 14px;
+}
+/* Background Colors */
+.theme-bg-blue {
+    background: var(--theme-blue);
+}
+
+.theme-bg-sky {
+    background: var(--theme-sky);
+}
+
+.theme-bg-secondary {
+    background: var(--theme-secondary);
+}
+
+.theme-bg-white {
+    background: var(--theme-white);
+}
+.theme-grey-light {
+    background: var(--theme-grey-light);
+}
+.theme-grey {
+    background: var(--theme-grey);
+}
+
+/* Palette */
+.theme-text-white {
+    color: var(--theme-white) !important;
+}
+
+.theme-text-black {
+    color: var(--theme-black) !important;
+}
+
+.theme-text-blue {
+    color: var(--theme-blue) !important;
+}
+
+.theme-text-secondary {
+    color: var(--theme-secondary) !important;
+}
+
+.theme-text-sky {
+    color: var(--theme-sky) !important;
+}
+
+.theme-text-seondary-black {
+    color: var(--theme-seondary-black) !important;
+}
+
+/* Fonts */
+.font-medium {
+    font-family: TajawalMedium !important;
+}
+
+.font-bold {
+    font-family: TajawalBold !important;
+}
+
+.font-light {
+    font-family: TajawalLight !important;
+}
+
+/* Button */
+.btn-theme {
+    padding: 21px 98px;
+    font-family: TajawalBold;
+    font-size: 16px;
+    color: var(--theme-white);
+    background: var(--theme-sky);
+    border-radius: 8px;
+    border: none;
+}
+/* Card */
+.card {
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border: none;
+}
+/* Typography */
+h1, h2, h3 {
+    margin-bottom: 0px;
+}
+/* Border Radius */
+.b-r-8 {
+border-radius: 8px;
+}
+
+
+
+/* Owl Carosuel Styling starts Here */
+
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel .owl-nav button.owl-prev,
+.owl-carousel button.owl-dot {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--theme-blue);
+}
+
+.owl-carousel .owl-prev,
+.owl-carousel .owl-next {
+    position: absolute;
+    top: 35%;
+}
+
+.owl-carousel .owl-prev {
+    left: -60px;
+}
+
+.owl-carousel .owl-next {
+    right: -60px;
+}
+
+.owl-carousel .owl-item img {
+    width: unset;
+}
+
+/* Owl Carosuel Styling Ends Here */
+/* Container */
+.container {
+    max-width: 1440px;
+    padding: 0 80px;
+}
+
+/* Container */
+.home .navbar {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    padding: 34px 80px 22px 80px;
+}
+
+.navbar-toggler {
+    text-decoration: none;
+    border: 1.5px solid var(--theme-blue);
+}
+
+.navbar-toggler:hover {
+    text-decoration: none;
+    border: 1.5px solid var(--theme-blue);
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+
+.home .nav-item .nav-link {
+    font-size: 18px;
+}
+
+.add-btn {
+    background: radial-gradient(102.59% 309.05% at 11.74% 193.12%, #CF57BB 0.07%, #292071 51.14%, #2894CF 100%);
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-size: 18px;
+    padding: 12px;
+    padding-left: 28px;
+    border: none;
+    margin-left: 40px;
+}
+
+/*Property Banner for Info CSS Start*/
+
+.property-sl-r {
+    height: 381px;
+    background: linear-gradient(180deg, rgba(41, 32, 113, 0.75) 0%, rgba(41, 32, 113, 0.5625) 50%, rgba(41, 32, 113, 0.075) 100%), url('/assets/images/property-r-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    margin-top: 120px;
+}
+
+.property-sl-r h1 {
+    font-size: 46px;
+}
+
+.property-sl-r h3 {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.property-sl-r .btn-add {
+    margin-top: 58px;
+}
+
+/*Property Banner for Info CSS End*/
+
+
+/* Footer Style Starts Here */
+.footer {
+    padding: 50px 0px;
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+}
+
+.footer .footer-logo {
+    margin-left: 60px
+}
+
+.footer ul li {
+    border-left: 1px solid var(--theme-blue);
+}
+
+.footer ul li:first-child {
+    border: none;
+}
+
+.footer ul li a {
+    font-size: 16px;
+    font-family: TajawalMedium;
+    color: var(--theme-blue);
+    padding: 0px 24px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* Footer Style Ends Here */
+/* Mini Footer */
+.mini-footer h3 {
+    font-size: 14px;
+    font-family: TajawalMedium;
+}
+
+.mini-footer .social-links h3 {
+    font-size: 20px;
+    color: var(--theme-seondary-black);
+    margin-bottom: 28px;
+}
+
+.mini-footer .social-links img {
+    margin-right: 34px;
+}
+
+.mini-footer .social-links img:last-child {
+    margin: 0;
+}
+
+.copy-right h3 {
+    font-family: TajawalMedium;
+    font-size: 16px;
+    text-align: center;
+    color: #848484;
+    padding: 24px 0px 16px 0px;
+}
+
+.form-control:focus
+{
+    box-shadow: none;
+}
+
+.arrow-top {
+    background: var(--theme-sky);
+    padding: 14px 22px;
+    top: 10px;
+    left: 80px;
+    cursor: pointer;
+    position: absolute;
+}
+
+
+/*Home page responsiveness Start From Here*/
+@media screen and (max-width:1400px) {
+    .footer .footer-logo {
+        margin-left: 20px;
+    }
+}
+@media screen and (max-width:1050px) {
+    .home .navbar {
+        padding: 34px 24px 22px 24px;
+    }
+    .verified {
+        padding: 25px;
+    }
+    .property-sale {
+        margin-top: 50px;
+    }
+}
+@media screen and (min-width:992px) {
+    .m-logo img
+    {
+        display: none;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .container {
+        padding: 0 24px;
+    }
+
+    .m-logo img
+    {
+        display: block;
+    }
+    .home .navbar-nav{
+        margin-top: 2rem;
+    }
+    .header h1 {
+        padding: 0px 15px;
+    }
+
+    .verified {
+        text-align: center;
+        width: 90%;
+    }
+
+    .verified img {
+        margin-bottom: 8px;
+    }
+}
+
+@media screen and (max-width:768px) {
+
+    /*.dropdown-select.wide {*/
+    /*    width: auto;*/
+    /*}*/
+
+    /*.looking-for input[type='search'] {*/
+    /*    text-align: right;*/
+    /*    width: auto;*/
+    /*}*/
+
+    .dropdown-select.wide {
+        left: 60px;
+    }
+
+    .city-toggle-icon img
+    {
+        margin-left: 30px;
+    }
+    .header h1, .property-sl-r h1, .auction-content h1, .apps h1 {
+        font-size: 28px;
+    }
+
+    .verified li {
+        margin-bottom: 1.5rem;
+    }
+
+    .verified h3, .apps h3 {
+        font-size: 16px;
+    }
+    .property-listing h2 {
+        font-size: 22px;
+    }
+    .listing h3 {
+        font-size: 16px;
+    }
+    .listing p {
+        font-size: 12px;
+    }
+    .property-sl-r {
+        padding: 0 24px;
+        margin-top: 50px;
+    }
+    .btn-theme {
+        padding: 21px 31px;
+    }
+    .auction .card {
+        margin-right: 0px;
+    }
+    .footer ul li{
+        margin-bottom: 1rem;
+        border: none;
+    }
+    .mini-footer .social-links img {
+        margin-right: 22px;
+    }
+}
+
+
+@media screen and (max-width:590px) {
+
+    .dropdown-select.wide {
+        left: 75px;
+    }
+
+    .city-toggle-icon img {
+        margin-left: 40px;
+    }
+    .complete-rent-drop img {
+        position: absolute;
+        left: 15px;
+        width: 15%;
+        max-width: 100%;
+    }
+    .dropdown-select .list {
+        width: 290px;
+    }
+}
+
+@media screen and (min-width:576px) {
+    .looking-for .search-home-btn
+    {
+        display: none;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .dropdown-select .list {
+        width: 215px;
+    }
+    .w-sm-100 {
+        width: 100%;
+    }
+    .auction .card {
+        width:100% ;
+    }
+    .auction .card2 p, .auction .card h1 {
+        font-size: 16px;
+    }
+    .auction .card2 h1 {
+        font-size: 18px;
+    }
+    .mini-footer .social-links h3 {
+        margin-top: 28px;
+    }
+    .arrow-top{
+        position: unset;
+    }
+    .add-btn {
+        margin-left: 0;
+    }
+
+    .looking-for{
+        flex-direction: column-reverse;
+    }
+    .dropdown-select.wide {
+        left: 0px;
+    }
+    .dropdown .rent-btn {
+        width: 100%;
+        text-align: right;
+    }
+    .complete-rent-drop img {
+        width: 11px;
+        margin-left: 24px;
+    }
+    .looking-for input[type='search'] {
+        border-bottom: 1px solid #C9C9C9 !important;
+        padding: 10px 0;
+    }
+
+    .dropdown-select {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid #C9C9C9 !important;
+
+    }
+    .dropdown-select.wide {
+        margin: 10px 0;
+    }
+    .dropdown .rent-btn {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid #C9C9C9 !important;
+    }
+    .city-toggle-icon img {
+        margin-top: 10px;
+    }
+    .dropdown-select .list {
+        width: 100%;
+    }
+    .rent-dropdown {
+        width: 100%;
+    }
+    .looking-for .search-home-img
+    {
+        display: none;
+    }
+
+    .looking-for .search-home-btn
+    {
+        text-align: center;
+        color: white;
+
+    }
+
+    .search-button-div
+    {
+        display: flex;
+        margin-top: 15px;
+        justify-content: center;
+        background: var(--theme-blue);
+        width: 150px;
+        max-width: 100%;
+        border-radius: 8px;
+    }
+}
+
+@media screen and (max-width:375px) {
+    /*.dropdown-select .list {*/
+    /*    width: 215px;*/
+    /*}*/
+    .verified img {
+        margin-bottom: 0px;
+    }
+    .property-listing h2 {
+        font-size: 16px;
+    }
+    .home .navbar {
+        padding: 25px 0px 20px 0px;
+    }
+}

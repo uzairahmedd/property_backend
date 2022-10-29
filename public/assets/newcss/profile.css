@@ -1,0 +1,36 @@
+.side-bar {
+    width: 277px;
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding-top: 75px;
+    height: 100vh;
+}
+
+.side-bar .sideBar-links a {
+    margin-bottom: 12px;
+}
+.main-content{
+    padding-top: 67px;
+}
+
+.main-content .personal-card {
+    padding: 36px 46px;
+}
+.stat-card{
+    padding: 30px 37px;
+}
+.account-setting .form-control{
+    height: 48px;
+    text-align: end;
+}
+.account-setting .accout-id {
+    margin-right: 84px;
+}
+.account-setting .btn {
+    height: 61px;
+    width: 310px;
+    max-width: 100%;
+}
+.account-setting .acct-btn:hover{
+    background: var(--theme-blue);
+}

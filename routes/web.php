@@ -28,6 +28,9 @@ Route::group(['namespace'=>'App\Http\Controllers'],function(){
 });
 
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -215,7 +218,20 @@ Route::group(['namespace'=>'Amcoders\Theme\jomidar\http\controllers','middleware
 	Route::get('change_currency','WelcomeController@change_currency')->name('change_currency');
 	Route::post('user/register','RegisterController@register')->name('user.register');
 	Route::get('contact','ContactController@index')->name('contact.index');
-	Route::post('contact','ContactController@store')->name('contact.store');
+
+//	Route::post('property_lists','ContactController@new_show')->name('property.lists');
+//    Route::post('property_detail','ContactController@property_detail')->name('property.detail');
+//    Route::post('property_auction','ContactController@property_auction')->name('property.auction');
+
+});
+
+//    Latest Khiaratee Theme Routes Start
+
+Route::group(['namespace'=>'Amcoders\Theme\jomidar\http\controllers','middleware'=>'web'],function() {
+    Route::get('property_lists','PropertyController@new_list')->name('list');
+    Route::get('property_detail','PropertyController@property_detail')->name('property_detail');
+    Route::get('property_auction','PropertyController@property_auction')->name('property_auction');
+    Route::get('my_profile','PropertyController@my_profile')->name('my_profile');
 });
 
 /*

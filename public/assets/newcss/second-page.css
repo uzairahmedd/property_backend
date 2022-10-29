@@ -1,0 +1,637 @@
+
+/* Filter Bar CSS Start */
+.filter-bar
+{
+    background: #FFFFFF;
+    opacity: 0.95;
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    height: 114px;
+}
+
+.filter-bar .search-box
+{
+    background: #FFFFFF;
+    opacity: 0.95;
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.search-bar input[type='search'] {
+    text-align: right;
+}
+
+.search-bar input[type='search']:focus-visible {
+    outline: none;
+}
+
+.search-bar input[type="search"]::-webkit-search-decoration,
+.search-bar input[type="search"]::-webkit-search-cancel-button,
+.search-bar input[type="search"]::-webkit-search-results-button,
+.search-bar input[type="search"]::-webkit-search-results-decoration
+{
+    display: none;
+}
+
+.filter-bar .select-filter
+{
+    gap: 8px;
+    padding: 12px;
+}
+
+.filter-bar .map-icon
+{
+    background: #FFFFFF;
+    box-shadow: 1px 1px 18px rgba(41, 32, 113, 0.15);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.filter-bar .row
+{
+    padding-top: 20px;
+}
+
+.all-property-list
+{
+    padding: 42px 0 19px 0;
+}
+
+.all-property-list .sort-by
+{
+    background: #FFFFFF;
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.all-property-list .sort-text
+{
+    padding-left: 8px;
+}
+
+.all-property-list .all-ads
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+/* .all-ads p
+{
+    padding-left: 20px;
+} */
+
+.all-ads .vertical-line
+{
+    border-right: 1.5px solid var(--theme-seondary-black);
+    height: 16px;
+    margin-top: 5px;
+}
+
+/* Property Lists CSS Start */
+
+.all-listing {
+    text-align: end;
+}
+
+.all-listing .property-lists
+{
+    margin: 30px 0;
+}
+
+.documented span
+{
+    font-family: Tajawal;
+    font-size: 14px;
+    margin-top: 4px;
+}
+.carousel-inner img
+{
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    height: 213px;
+    width: 100%;
+}
+
+.list-container
+{
+    padding: 8px;
+}
+
+.property-lists .row .col-lg-3
+{
+    padding: 0px 7px;
+}
+.property-lists .content {
+    padding: 16px;
+    margin-bottom: 85px;
+}
+
+.property-lists .sale {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.property-lists .documented
+{
+    width: 85px;
+    color: white;
+    padding-right: 8px;
+    height: 33px;
+    background: linear-gradient(270deg, #292071 0%, rgba(41, 32, 113, 0) 93.23%);
+    border-radius: 30px 0px 0px 30px;
+}
+
+.property-lists .fav-elipse {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--theme-white);
+    opacity: 0.75;
+    padding-top: 7px;
+    padding-left: 8px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: -8px;
+}
+
+.property-lists .price {
+    background: var(--theme-secondary);
+    box-shadow: 8px -8px 8px rgba(41, 32, 113, 0.15);
+    border-radius: 0px 50px 0px 8px;
+    height: 41px;
+    width: 178px;
+    max-width: 100%;
+}
+
+.property-lists .price span {
+    font-size: 14px;
+}
+
+.property-lists .features
+{
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+}
+
+.property-lists h3 {
+    font-family: TajawalBold;
+    font-size: 14px;
+    letter-spacing: -0.3px;
+}
+
+.property-lists p {
+    font-size: 12px;
+    font-family: Tajawal;
+    color: rgba(15, 15, 15, 0.75);
+}
+
+.amenities p
+{
+    padding-right: 6px;
+    font-family: Tajawal;
+}
+
+.price-section .call
+{
+    width: 52px;
+    height: 48px;
+    background: #292071;
+    border-radius: 8px;
+}
+
+.price-section .whatsapp
+{
+    width: 53px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #4AC958;
+    border-radius: 8px;
+}
+
+.price-section .calender
+{
+    width: 53px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #C9009D;
+    border-radius: 8px;
+}
+
+.price-section .all-price h3
+{
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: -0.3px;
+}
+
+.property-sl-banner
+{
+    margin-bottom: 120px;
+}
+
+.last-property-list
+{
+    margin-bottom: 120px;
+}
+
+
+.carousel-indicators [data-bs-target] {
+    border-radius: 50%;
+    width: 11px;
+    height: 11px;
+    opacity: 1;
+    border: 0px;
+}
+
+.carousel-indicators .active {
+    background: #292071;
+}
+
+/*Third page CSS Start Here*/
+
+.offer-section .add-offer-btn
+{
+    background: #292071;
+    border-radius: 8px;
+    width: 125px;
+    height: 42px;
+}
+
+.offer-section .offer-btn p {
+    font-size: 14px !important;
+}
+
+.offer-section .all-price h2
+{
+    font-size: 16px !important;
+    font-weight: bold !important;
+    font-family: TajawalBold;
+}
+
+/*Filter Dropdown Css Start */
+
+.dropdown-select.wide {
+    width: 100%;
+    width: 121px;
+    max-width: 100%;
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    height: 43px;
+    padding: 10px 16px 12px 8px;
+}
+
+.dropdown-select.wide .list {
+    margin-top: 20px;
+}
+
+.dropdown .rent-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 77px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
+.complete-rent-drop img {
+    position: absolute;
+    top: 19px;
+    left: 10px;
+    width: 10px;
+    max-width: 100%;
+}
+
+.rent-dropdown
+{
+    margin-top: 20px !important;
+}
+
+.s-rent-toggle-icon img
+{
+    position: absolute;
+    display: flex;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+
+element.style {
+    position: absolute;
+    inset: auto auto 0px 0px;
+    margin: 0px;
+    transform: translate3d(0px, -44.6667px, 0px);
+}
+.dropdown-menu.show {
+    display: block;
+}
+.rent-dropdown {
+    margin-top: 20px !important;
+}
+.type-dropdown {
+    width: 343px;
+    background: #FFFFFF;
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    padding: 30px 14px 10px 14px;
+    margin-top: 35px !important;
+}
+
+.type-box {
+    padding: 10px 20px;
+    border: 0.5px solid #292071;
+    border-radius: 8px;
+    letter-spacing: -0.3px;
+    color: #292071;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.type-dropdown .type-dropdown-content {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-content: end;
+}
+.budget-drop-btn .type-dropdown .type-dropdown-content {
+    justify-content: space-between;
+}
+
+.budget-drop-btn .dropdown .rent-btn {
+    width: 97px;
+    height: 43px;
+}
+
+.type-dropdown .type-dropdown-content .type-all {
+    padding: 0px 0px 10px 10px;
+}
+
+.type-dropdown::before
+{
+    background-color: #ffffff;
+    content: "";
+    height: 20px;
+    left: 0;
+    margin: 0 15px;
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    top: -8px;
+    width: 13px;
+    opacity: 0.95;
+    border-radius: 2px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.type-dropdown .show-results-bttn
+{
+    background-color: var(--theme-blue);
+    color: var(--theme-white);
+    border: 0.5px solid #292071;
+    border-radius: 8px;
+}
+
+.no-rooms-drop-btn .dropdown .rent-btn
+{
+    padding: 9px 77px 12px 33px;
+}
+
+.type-select-dropdown {
+    appearance: none;
+    display: none;
+}
+
+.type-rent-dropdowns type-dropdown-content .type-all input[type="radio"]:checked + .type-box {
+    background: var(--theme-sky);
+    border: 1px solid var(--theme-sky);
+    color: #fff;
+}
+
+.type-dropdown h3
+{
+    text-align: right;
+    color: var(--theme-black);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    font-family: Tajawal;
+    padding-bottom: 16px;
+}
+
+
+.floating-Input {
+    padding: 7px 8px;
+    font-size: 12px;
+    background: var(--theme-white);
+    top: -15px;
+    right: 19px;
+    display: block;
+}
+
+.budget-drop-btn .form-control {
+    /*height: 72px;*/
+    border-radius: 8px;
+    width: 152px;
+    border-color: var(--theme-sky);
+    text-align: end;
+}
+
+
+@media screen and (max-width:1400px) {
+
+}
+@media screen and (max-width:1050px) {
+
+}
+
+@media screen and (max-width:992px) {
+
+}
+
+@media screen and (max-width:768px) {
+
+}
+
+@media screen and (max-width:576px) {
+.property-lists .row .col-lg-3 {
+    padding: 10px 7px;
+}
+.all-listing .property-lists {
+    margin: 20px 0 0 0;
+}
+.location-icon{
+    display: none;
+}
+.filter-bar {
+    height: 159px;
+}
+.filter-bar .select-filter {
+    padding: 12px 0;
+}
+.all-property-list .all-ads {
+    padding-top: 10px;
+}
+.last-property-list {
+    margin-bottom: 60px;
+}
+.property-sl-banner {
+    margin-bottom: 50px;
+}
+}
+
+@media screen and (max-width:375px) {
+.price-section .all-price h3 {
+    font-size: 14px;
+    font-weight: bold;
+}
+.carousel-inner img {
+    height: 190px;
+}
+.all-listing .property-lists {
+    margin: 20px 0 0 0;
+}
+}
+
+/*Filter Range Slider CSS Start*/
+
+
+.wrapper {
+    /*position: relative;*/
+    width: 100%;
+    /*background-color: #ffffff;*/
+    /*padding: 50px 40px 20px 40px;*/
+    border-radius: 10px;
+}
+/*.container {*/
+/*    position: relative;*/
+/*    width: 100%;*/
+/*    height: 100px;*/
+/*    margin-top: 30px;*/
+/*}*/
+input[type="range"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    outline: none;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    background-color: transparent;
+    pointer-events: none;
+}
+.slider-track {
+    width: 91%;
+    max-width: 100%;
+    height: 5px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px;
+}
+
+.range-filters
+{
+    margin-top: 100px;
+     margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.auction-status-dropdown .dropdown .rent-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 111px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    height: 5px;
+}
+input[type="range"]::-moz-range-track {
+    -moz-appearance: none;
+    height: 5px;
+}
+input[type="range"]::-ms-track {
+    appearance: none;
+    height: 5px;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    background-color: #3264fe;
+    cursor: pointer;
+    margin-top: -9px;
+    pointer-events: auto;
+    border-radius: 50%;
+}
+input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #3264fe;
+    pointer-events: auto;
+    border: none;
+}
+input[type="range"]::-ms-thumb {
+    appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #3264fe;
+    pointer-events: auto;
+}
+input[type="range"]:active::-webkit-slider-thumb {
+    background-color: #ffffff;
+    border: 1px solid #3264fe;
+}
+/*.values {*/
+/*    background-color: #3264fe;*/
+/*    width: 32%;*/
+/*    position: relative;*/
+/*    margin: auto;*/
+/*    padding: 10px 0;*/
+/*    border-radius: 5px;*/
+/*    text-align: center;*/
+/*    font-weight: 500;*/
+/*    font-size: 25px;*/
+/*    color: #ffffff;*/
+/*}*/
+/*.values:before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    height: 0;*/
+/*    width: 0;*/
+/*    border-top: 15px solid #3264fe;*/
+/*    border-left: 15px solid transparent;*/
+/*    border-right: 15px solid transparent;*/
+/*    margin: auto;*/
+/*    bottom: -14px;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*}*/
