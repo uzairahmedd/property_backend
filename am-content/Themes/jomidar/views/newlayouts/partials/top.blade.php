@@ -16,5 +16,5 @@
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/home.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/view-item.css')}}">
     {{--    Font Awesome Stylesheet--}}
-    <link rel="stylesheet" href="{{theme_asset('assets/newfont/fontawesome/css/all.min.css')}}">
+{{--    <link rel="stylesheet" href="{{theme_asset('assets/newfont/fontawesome/css/all.min.css')}}">--}}
 </head>

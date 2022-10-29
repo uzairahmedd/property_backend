@@ -159,11 +159,11 @@
 .theme-modal .chat-btn {
     border-radius: 8px;
     width: 100%;
-    height: 61px;
+    height: 53px;
 }
 
 .theme-modal .form-control {
-    height: 72px;
+    height: 43px;
     border-radius: 8px;
     border-color: var(--theme-sky);
     text-align: end;
@@ -264,4 +264,14 @@
     .otp-modal .form-control {
         max-width: 40px;
     }
+}
+
+.signup-modal h1
+{
+    margin-bottom: 33px;
+}
+
+.signup-modal .mesg {
+    top: 160px;
+    left: 0;
 }

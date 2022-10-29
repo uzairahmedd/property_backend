@@ -11,4 +11,4 @@
 <!-- Home Jquery -->
 <script src="{{theme_asset('assets/newjs/main.js')}}"></script>
 {{--    Font Awesome Js--}}
-<script src="{{theme_asset('assets/newfont/fontawesome/js/fontawesome.min.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/fontawesome/font.js')}}"></script>

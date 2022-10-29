@@ -4,10 +4,15 @@
     border-radius: 8px;
     padding-top: 75px;
     height: 100vh;
+    background: var(--theme-white);
 }
 
 .side-bar .sideBar-links a {
     margin-bottom: 12px;
+    padding-right: 1.5rem;
+}
+.side-bar .sideBar-links img {
+    margin-left: 1.5rem;
 }
 .main-content{
     padding-top: 67px;
@@ -18,6 +23,7 @@
 }
 .stat-card{
     padding: 30px 37px;
+    height: 100%;
 }
 .account-setting .form-control{
     height: 48px;
@@ -33,4 +39,33 @@
 }
 .account-setting .acct-btn:hover{
     background: var(--theme-blue);
+}
+
+@media screen and (max-width:1200px) {
+    .main-content .personal-card {
+        padding: 30px 12px;
+    }
+}
+
+@media screen and (max-width:991px) {
+    .side-bar{
+        position: fixed;
+        height: unset;
+        bottom: 0;
+        width: 100%;
+        padding-top: 1rem;
+        z-index: 11;
+    }
+    .side-bar .sideBar-links a {
+        width: 50px;
+        height: 50px;
+        padding: 12px;
+        border-radius: 8px;
+    }
+    .side-bar .sideBar-links span {
+        display: none;
+    }
+    .side-bar .sideBar-links img{
+        margin: 0;
+    }
 }

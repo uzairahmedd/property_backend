@@ -2,7 +2,71 @@
 {{--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">--}}
 {{--    Launch demo modal--}}
 {{--</button>--}}
+
 <!--Sign Up Modal -->
+<div class="modal fade theme-modal contact-modal signup-modal" id="signup" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog px-3 px-md-0">
+        <div class="modal-content">
+            <div class="modal-body position-relative">
+                <div class="d-flex flex-wrap justify-content-end">
+                    <div class="col-12 col-sm-8 col-md-7 ps-0 px-sm-3" style="z-index:11 ;">
+                        <h1 class="font-24 font-medium theme-text-seondary-black">يرجى إدخال بياناتك للمحادثة مع
+                            صاحب الإعلان</h1>
+                        <div class="mb-4_5 position-relative">
+                            <input type="email" class="form-control font-medium font-16" id=""
+                                   placeholder="ادخل الاسم كاملا">
+                            <label for="floating-Input"
+                                   class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
+                                كامل</label>
+                        </div>
+                        <div class="position-relative mb-4_5">
+                            <input type="email" class="form-control font-medium font-16" id=""
+                                   placeholder="ادخل الاسم كاملا">
+                            <label for="floating-Input"
+                                   class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
+                                كامل</label>
+                        </div>
+                        <div class="position-relative mb-4_5">
+                            <input type="email" class="form-control font-medium font-16" id=""
+                                   placeholder="ادخل الاسم كاملا">
+                            <label for="floating-Input"
+                                   class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
+                                كامل</label>
+                        </div>
+                        <div class="position-relative mb-4_5">
+                            <input type="email" class="form-control font-medium font-16" id=""
+                                   placeholder="ادخل الاسم كاملا">
+                            <label for="floating-Input"
+                                   class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
+                                كامل</label>
+                        </div>
+                        <button class="chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16">
+                            البدء بالتواصل
+                        </button>
+                        <p href="" class="d-flex justify-content-center mt-2">Already have an account
+                            <a href="#" class="text-decoration-none ms-1"  data-bs-target="#contactModal" data-bs-toggle="modal">Sign in</a>
+                        </p>
+                    </div>
+                    <div class="col-12 mt-4 d-flex align-items-center justify-content-end">
+                        <a href="" class="text-decoration-none theme-text-blue font-16 font-medium">
+                            على سياسة الخصوصية و الشروط والأحكام
+                        </a>
+                        <span class="theme-text-seondary-black font-16 ms-1"> أوافق</span>
+                    </div>
+                </div>
+                <img src="{{theme_asset('assets/images/Messaging.png')}}" alt="" class="position-absolute mesg">
+                <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt=""
+                     class="position-absolute close-modal">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sign Up Modal Ends Here -->
+
+
+
+<!--Sign In Modal -->
 <div class="modal fade theme-modal contact-modal" id="contactModal" tabindex="-1"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog px-3 px-md-0">
@@ -29,6 +93,7 @@
                         <button class="chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16">
                             البدء بالتواصل
                         </button>
+                        <a href="" class="d-flex justify-content-center mt-2" data-bs-target="#signup" data-bs-toggle="modal">create an account</a>
                     </div>
                     <div class="col-12 mt-4 d-flex align-items-center justify-content-end">
                         <a href="" class="text-decoration-none theme-text-blue font-16 font-medium">
