@@ -27,7 +27,7 @@ class PropertyController extends controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$slug)
+    public function show(Request $request, $slug)
     {
         $path= $request->path();
 

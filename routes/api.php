@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/listings', [PropertyController::class, 'listings']);
+Route::get('/listing/{slug}', [PropertyController::class, 'listing']);

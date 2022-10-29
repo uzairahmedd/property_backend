@@ -19,6 +19,7 @@ class PropertyResource extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             "status" => $this->status,
+            "description" => $this->content ? $this->content->content : '',
             "featured" => $this->featured,
             "created_at" => $this->created_at,
             "updated_at" => $this->updated_at,
@@ -32,12 +33,18 @@ class PropertyResource extends JsonResource
             "user" => [
                 "name" => $this->user["name"],
                 "email" => $this->user["email"],
+                "info" => $this->user->usermeta->content,
                 "avatar" => $this->user["avatar"],
             ],
             "coordinates" => $this->lat_long,
             "features" => $this->features,
             "bedrooms" => $this->option_data->where('category.name', 'Bedrooms')->last()->value ?? 0,
             "bathrooms" => $this->option_data->where('category.name', 'Bathrooms')->last()->value ?? 0,
+            "photos" => $this->photos,
+            "facilities" => $this->facilities,
+            "youtube_id" => $this->youtube_url->content,
+            "floor_plans" => $this->floor_plans->pluck('content'),
+            "virtual_tour" => $this->virtual_tour->content
         ];
     }
 }

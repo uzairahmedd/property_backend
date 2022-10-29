@@ -168,6 +168,17 @@ class PropertyController extends controller
         return $data_crtl->get_properties($request, true);
     }
 
+    // listing details
+    public function listing(Request $request, $slug){
+        $property = Terms::where([
+            ['type','property'],
+            ['status',1],
+            ['slug',$slug]
+        ])->with('post_preview','min_price','max_price','post_city','post_state','user','content','multiple_images','option_data','facilities_get','contact_type','latitude','longitude','excerpt')->withCount('reviews')->first();
+
+        return new PropertyResource($property);
+    }
+
     public function list(Request $request) {
         
         $status=$request->status ?? null;
