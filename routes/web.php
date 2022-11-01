@@ -232,6 +232,7 @@ Route::group(['namespace'=>'Amcoders\Theme\jomidar\http\controllers','middleware
     Route::get('property_detail','PropertyController@property_detail')->name('property_detail');
     Route::get('property_auction','PropertyController@property_auction')->name('property_auction');
     Route::get('my_profile','PropertyController@my_profile')->name('my_profile');
+    Route::get('favorite','PropertyController@favorite')->name('favorite');
 });
 
 /*

@@ -9,8 +9,7 @@
                         <img src="assets/images/map-icon.svg" alt="">
                     </div>
                 </div>
-                <div
-                    class="col-lg-6 col-md-10 col-sm-10 col-xs-10 order-lg-2 d-flex justify-content-end flex-md-row select-filter ms-auto">
+                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-10 order-lg-2 d-flex justify-content-end flex-md-row select-filter ms-auto">
                     <div class="budget-drop-btn">
                         <div class="dropdown complete-rent-drop">
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}"
@@ -300,8 +299,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -383,8 +382,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -466,8 +465,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -549,8 +548,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -636,8 +635,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -719,8 +718,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -802,8 +801,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -885,8 +884,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -995,8 +994,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -1078,8 +1077,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -1161,8 +1160,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -1244,8 +1243,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -1331,8 +1330,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -1414,8 +1413,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -1497,8 +1496,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->
@@ -1580,8 +1579,8 @@
                             <!-- Carousel indicators -->
                             <ol class="carousel-indicators">
                                 <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                                <!-- <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li> -->
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for carousel items -->

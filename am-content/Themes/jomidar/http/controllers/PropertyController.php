@@ -329,6 +329,11 @@ class PropertyController extends controller
         return view('theme::newlayouts.user_dashboard.profile');
     }
 
+    public function favorite()
+    {
+        return view('theme::newlayouts.user_dashboard.favorite');
+    }
+
 
 
 

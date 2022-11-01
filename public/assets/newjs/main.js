@@ -27,8 +27,22 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#myCarousel").carousel({
-        interval: false
+        // pause: hover,
+        interval: 1000000000
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 
