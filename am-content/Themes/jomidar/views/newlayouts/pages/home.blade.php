@@ -16,17 +16,17 @@
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                 <div class="dropdown complete-rent-drop">
                     <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                    <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"
+                    <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink" onclick="disableScroll()" data-bs-toggle="dropdown" aria-expanded="false"
                             data-toggle="dropdown">ايجار
                     </button>
                     <ul class="dropdown-menu rent-dropdown" aria-labelledby="dropdownMenuLink">
                         <div class="rent-dropdown-content">
                             <li class="rent-all">
-                                <input class="rent-select-dropdown" type="radio" id="radio02-01" name="radio-btn"/>
+                                <input class="rent-select-dropdown" value="بيع" type="radio" id="radio02-01" name="radio-btn"/>
                                 <label class="rent-box" for="radio02-01">بيع</label>
                             </li>
                             <li class="rent-all">
-                                <input class="rent-select-dropdown drive_percent-box" type="radio" id="radio02-02"
+                                <input class="rent-select-dropdown drive_percent-box"  value="ايجار" type="radio" id="radio02-02"
                                        name="radio-btn" checked/>
                                 <label class="rent-box" for="radio02-02">ايجار</label>
                             </li>

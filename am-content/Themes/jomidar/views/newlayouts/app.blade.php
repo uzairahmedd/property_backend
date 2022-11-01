@@ -2,6 +2,7 @@
 <html>
 @include('theme::newlayouts.partials.top')
 <body>
+<div id="fade" class="overlay"></div>
 <div>
     @include('theme::newlayouts.partials.navbar')
     <main>

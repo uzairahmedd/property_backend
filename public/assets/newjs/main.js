@@ -1,37 +1,35 @@
-$(document).ready(function(){
-  $('.owl-carousel').owlCarousel({
-    responsiveClass:true,
-    margin:20,
-    dots:false,
-    loop:true,
-    responsive:{
-        0:{
-            items:1,
-            loop:true
-            // nav:true
-        },
-        600:{
-            items:2,
-            nav:false
-        },
-        992:{
-            items:3,
-            nav:true,
-            loop:false
+$(document).ready(function () {
+    $('.owl-carousel').owlCarousel({
+        responsiveClass: true,
+        margin: 20,
+        dots: false,
+        loop: true,
+        responsive: {
+            0: {
+                items: 1,
+                loop: true
+                // nav:true
+            },
+            600: {
+                items: 2,
+                nav: false
+            },
+            992: {
+                items: 3,
+                nav: true,
+                loop: false
+            }
         }
-    }
-})
+    })
 });
 
 // Multiimages Crousel
 
-$(document).ready(function(){
+$(document).ready(function () {
     $("#myCarousel").carousel({
         interval: false
     });
 });
-
-
 
 
 // Home page dropdown search start
@@ -57,7 +55,7 @@ function create_custom_dropdowns() {
 
 // Open/close
 $(document).on('click', '.dropdown-select', function (event) {
-    if($(event.target).hasClass('dd-searchbox')){
+    if ($(event.target).hasClass('dd-searchbox')) {
         return;
     }
     $('.dropdown-select').not($(this)).removeClass('open');
@@ -80,12 +78,12 @@ $(document).on('click', function (event) {
     event.stopPropagation();
 });
 
-function filter(){
+function filter() {
     var valThis = $('#txtSearchValue').val();
-    $('.dropdown-select ul > li').each(function(){
-     var text = $(this).text();
+    $('.dropdown-select ul > li').each(function () {
+        var text = $(this).text();
         (text.toLowerCase().indexOf(valThis.toLowerCase()) > -1) ? $(this).show() : $(this).hide();
-   });
+    });
 };
 // Search
 
@@ -142,39 +140,92 @@ $(document).ready(function () {
 
 // Filter Range Slider JS
 
-window.onload = function () {
-    slideOne();
-    slideTwo();
-};
+// window.onload = function () {
+//     slideOne();
+//     slideTwo();
+// };
 
-let sliderOne = document.getElementById("slider-1");
-let sliderTwo = document.getElementById("slider-2");
-let displayValOne = document.getElementById("range1");
-let displayValTwo = document.getElementById("range2");
-let minGap = 0;
-let sliderTrack = document.querySelector(".slider-track");
-let sliderMaxValue = document.getElementById("slider-1").max;
+// let sliderOne = document.getElementById("slider-1");
+// let sliderTwo = document.getElementById("slider-2");
+// let displayValOne = document.getElementById("range1");
+// let displayValTwo = document.getElementById("range2");
+// let minGap = 0;
+// let sliderTrack = document.querySelector(".slider-track");
+// let sliderMaxValue = document.getElementById("slider-1").max;
 
-function slideOne() {
-    if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
-        sliderOne.value = parseInt(sliderTwo.value) - minGap;
-    }
-    displayValOne.textContent = sliderOne.value;
-    fillColor();
-}
-function slideTwo() {
-    if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
-        sliderTwo.value = parseInt(sliderOne.value) + minGap;
-    }
-    displayValTwo.textContent = sliderTwo.value;
-    fillColor();
-}
-function fillColor() {
-    percent1 = (sliderOne.value / sliderMaxValue) * 100;
-    percent2 = (sliderTwo.value / sliderMaxValue) * 100;
-    sliderTrack.style.background = `linear-gradient(to right, #dadae5 ${percent1}% , #3264fe ${percent1}% , #3264fe ${percent2}%, #dadae5 ${percent2}%)`;
-}
+// function slideOne() {
+//     if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
+//         sliderOne.value = parseInt(sliderTwo.value) - minGap;
+//     }
+//     displayValOne.textContent = sliderOne.value;
+//     fillColor();
+// }
+// function slideTwo() {
+//     if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
+//         sliderTwo.value = parseInt(sliderOne.value) + minGap;
+//     }
+//     displayValTwo.textContent = sliderTwo.value;
+//     fillColor();
+// }
+// function fillColor() {
+//     percent1 = (sliderOne.value / sliderMaxValue) * 100;
+//     percent2 = (sliderTwo.value / sliderMaxValue) * 100;
+//     sliderTrack.style.background = `linear-gradient(to right, #dadae5 ${percent1}% , #3264fe ${percent1}% , #3264fe ${percent2}%, #dadae5 ${percent2}%)`;
+// }
 
+    $(document).ready(function () {
+        $('#select-drop-btn').change(function () {
+            $(window).css('opacity', 0.33);
+        });
+    });
+
+    // jquery for dropdown button start
+    $(document).ready(function () {
+    $('.complete-rent-drop').click(function (e) {
+        $('.overlay').css('opacity', 0.8);
+        $('.overlay').css('display', 'block');
+        event.stopPropagation();
+    });
+    });
+    $("input[type='radio']").click(function () {
+        if ($("input[type='radio']").is(":checked")) {
+            var radio_val = $("input[type='radio']:checked").val();
+            $('#dropdownMenuLink').text(radio_val);
+            $('.overlay').css('opacity', 0);
+            $('.overlay').css('display', 'none');
+            $(".rent-dropdown").removeClass("show");
+            event.stopPropagation();
+        }
+    });
+    $(document).ready(function () {
+        $('.overlay').click(function (event) {
+            $('.overlay').css('opacity', 0);
+            $('.overlay').css('display', 'none');
+            $(".rent-dropdown").removeClass("show");
+            event.stopPropagation();
+        });
+    });
+// jquery for dropdown button End
+
+
+    // jquery for selection dropdown start
+    $(document).ready(function () {
+        $('.rent-select').click(function () {
+            $('.overlay').css('opacity', 0.8);
+            $('.overlay').css('display', 'block');
+            $('.overlay').css('z-index', '999');
+        });
+    });
+
+    $(document).ready(function (e) {
+        $('select').on('change', function() {
+            $('.overlay').css('opacity', 0);
+            $('.overlay').css('display', 'none');
+            event.stopPropagation();
+        });
+    });
+
+    // jquery for selection dropdown End
 
 
 
