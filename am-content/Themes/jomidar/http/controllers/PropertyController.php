@@ -324,17 +324,25 @@ class PropertyController extends controller
         return view('theme::newlayouts.pages.property_auction');
     }
 
-    public function my_profile()
+    public function userboard_profile()
     {
         return view('theme::newlayouts.user_dashboard.profile');
     }
 
-    public function favorite()
+    public function userboard_favorite()
     {
         return view('theme::newlayouts.user_dashboard.favorite');
     }
 
+    public function userboard_auction()
+    {
+        return view('theme::newlayouts.user_dashboard.auction');
+    }
 
+    public function userboard_account()
+    {
+        return view('theme::newlayouts.user_dashboard.account');
+    }
 
 
 

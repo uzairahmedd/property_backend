@@ -23,7 +23,7 @@
                             <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">خالد بن عبدالعزيز أل
                                 عثمان</h3>
                         </div>
-                        <div class="dp-elipse d-flex align-items-center justify-content-center">
+                        <div class="dp-elipse d-flex align-items-center  justify-content-center">
                             <img src="{{asset('assets/images/avatar.png')}}" alt="" class="img-fluid">
                             <div class="file-container">
                                 <input type="file">

@@ -1,4 +1,4 @@
-<div class="footer">
+<div class="footer mt-4">
     <div class="container">
         <div class="d-flex flex-column-reverse flex-xl-row justify-content-end align-items-center">
             <ul class="col list-unstyled d-flex flex-column-reverse flex-md-row align-items-center p-0">

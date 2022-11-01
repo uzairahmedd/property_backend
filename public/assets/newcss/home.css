@@ -898,6 +898,9 @@ text-align: right;
 }
 
 @media screen and (max-width:576px) {
+    .font-lg-18 {
+        font-size: 16px;
+    }
     .dropdown-select .list {
         width: 215px;
     }
@@ -993,6 +996,10 @@ text-align: right;
     /*.dropdown-select .list {*/
     /*    width: 215px;*/
     /*}*/
+
+    .font-lg-18 {
+        font-size: 14px;
+    }
     .verified img {
         margin-bottom: 0px;
     }
