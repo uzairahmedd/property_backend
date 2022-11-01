@@ -1,6 +1,5 @@
 @extends('theme::newlayouts.app')
 @section('content')
-    <link rel="stylesheet" href="{{theme_asset('assets/newcss/common.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/profile.css')}}">
     <div class="profile d-flex justify-content-between">
         <div class="col-12 col-lg-9 px-4 px-lg-3 mx-auto">
@@ -10,7 +9,7 @@
                     <div class="d-flex flex-column align-items-end">
                         <span class="font-16 theme-text-sky">رقم الجوال</span>
                         <div class="d-flex align-items-center">
-                            <img src="assets/images/tick-verified.png" alt="">
+                            <img src="{{asset('assets/images/tick-verified.png')}}" alt="">
                             <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">05546106060</h3>
                         </div>
                     </div>
@@ -25,16 +24,16 @@
                                 عثمان</h3>
                         </div>
                         <div class="dp-elipse d-flex align-items-center justify-content-center">
-                            <img src="assets/images/avatar.png" alt="" class="img-fluid">
+                            <img src="{{asset('assets/images/avatar.png')}}" alt="" class="img-fluid">
                             <div class="file-container">
                                 <input type="file">
-                                <img src="assets/images/dp-camera.png" alt="">
+                                <img src="{{asset('assets/images/dp-camera.png')}}" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row gy-3 flex-wrap justify-content-between">
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <div class="col-12 col-sm-6 col-md-4 col-xl-4">
                         <div class="card stat-card align-items-end">
                             <span class="font-16 theme-text-sky mb-2">
                                 عدد المشاهدات
@@ -44,7 +43,7 @@
                             </h2>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <div class="col-12 col-sm-6 col-md-4 col-xl-4">
                         <div class="card stat-card align-items-end">
                             <span class="font-16 theme-text-sky mb-2">
                                 مزادات شاركت بها
@@ -54,7 +53,7 @@
                             </h2>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <div class="col-12 col-sm-6 col-md-4 col-xl-4">
                         <div class="card stat-card align-items-end">
                             <span class="font-16 theme-text-sky mb-2">
                                 عدد الإعلانات </span>

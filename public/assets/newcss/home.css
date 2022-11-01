@@ -344,9 +344,6 @@
     overflow: hidden;
 }
 
-
-
-
 .rent-dropdown
 {
     height: 75px;
@@ -717,6 +714,43 @@ text-align: right;
     text-align: right;
 }
 
+/*Profile Page CSS*/
+
+.fav-elipse {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--theme-white);
+    opacity: 0.75;
+    padding: 10px;
+}
+
+.dp-elipse {
+    width: 97px;
+    height: 97px;
+    border-radius: 50%;
+    border: 1px solid var(--theme-sky);
+    position: relative;
+    margin-left: 24px;
+}
+
+.file-container {
+    position: absolute;
+    width: 26px;
+    overflow: hidden;
+    cursor: pointer;
+    right: -15px;
+    bottom: 0;
+}
+
+.file-container input[type=file] {
+    position: absolute;
+    opacity: 0;
+}
+
+
+
+
 /*Home page responsiveness Start From Here*/
 
 
@@ -771,6 +805,9 @@ text-align: right;
 
     .verified img {
         margin-bottom: 8px;
+    }
+    .font-lg-18 {
+        font-size: 18px;
     }
 }
 
