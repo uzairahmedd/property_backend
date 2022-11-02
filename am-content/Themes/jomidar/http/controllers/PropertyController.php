@@ -344,6 +344,11 @@ class PropertyController extends controller
         return view('theme::newlayouts.user_dashboard.account');
     }
 
+    public function step_one()
+    {
+        return view('theme::newlayouts.property_dashboard.step_one');
+    }
+
 
 
 

@@ -1,0 +1,215 @@
+/* Row Width */
+.row-style .row>* {
+    width: unset;
+}
+.add-property .head {
+    height: 265px;
+    background: url(/assets/images/add-property-header.png);
+}
+
+.add-property .head h1 {
+    font-size: 46px;
+}
+
+.add-property .head p {
+    font-size: 20px;
+}
+
+.add-property .profile {
+    margin-top: -70px;
+}
+
+.add-property .personal-card {
+    padding: 36px 46px;
+}
+/* Radio Button Style Satrts Here */
+.radio-container {
+    position: relative;
+    height: 35px;
+}
+
+.radio-container input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    z-index: 11;
+
+}
+
+.radio-container .checmark {
+    border: 0.5px solid #292071;
+    border-radius: 8px;
+    color: #292071;
+    text-align: center;
+    padding: 8px 40px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    line-height: 1.7;
+}
+
+.radio-container input:checked~.checmark {
+    background: var(--theme-sky);
+    border: 0.5px solid #FFFFFF;
+    color: #fff;
+}
+.yes-no-radio .checmark {
+    padding: 8px 12px;
+}
+/* Radio Button Styles End */
+.description-card {
+    padding: 48px;
+}
+
+.description-card .form-control {
+    text-align: end;
+    margin-top: 10px;
+    height: 48px;
+}
+.form-control::placeholder {
+    font-size: 14px;
+    color: var(--theme-grey);
+}
+.input-icon, .price-unit {
+    left: 12px;
+    top: 26px;
+}
+.input-drop-icon{
+    left: 12px;
+    top: 32px;
+}
+
+.description-btn-group{
+    margin-top: 59px;
+    margin-bottom: 84px;
+}
+
+.property-value{
+    margin-bottom: 42px;
+}
+
+/* File Input */
+.input-container{
+    border: 1px dashed #1DA1F2;
+    width: 100%;
+    padding: 30px 0px 23px 0px;
+}
+.input-container img {
+    margin-bottom: 12px;
+}
+.file-input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+/* File input style end */
+.img-ul{
+    padding-right: 20px;
+    direction: rtl;
+    margin-bottom: 20px;
+}
+.video-link{
+    margin-top: 56px;
+}
+.finished h3 {
+    font-size: 31px;
+    margin-bottom: 40px;
+}
+.ads-p {
+    margin-top: 56px;
+    margin-bottom: 30px;
+}
+.request {
+    border: 1px dashed var(--theme-sky);
+    padding: 12px 16px;
+    margin-bottom: 36px;
+}
+.request p {
+    font-size: 12px;
+}
+.modify-btn {
+    background: var(--theme-blue);
+    padding: 8px 12px;
+    margin-top: 10px;
+}
+.modify-btn:hover {
+    color: var(--theme-blue) !important;
+    border: 1px solid var(--theme-blue);
+}
+.request ~ .btn-theme-secondary {
+    border-color: var(--theme-sky);
+}
+
+/*.profile .welcome*/
+/*{*/
+/*    display: flex;*/
+/*    flex-direction: column;;*/
+/*    align-items: end;*/
+/*}*/
+
+.description-card .property_address
+{
+    padding: 0 16px;
+}
+
+.description-card .add_prop_btn::after
+{
+    display: none;
+}
+.description-card .dropdown-menu li
+{
+    text-align: right;
+}
+
+.description-card .add_prop_btn
+{
+    border: 1px solid #ced4da;
+    width: 100%;
+    text-align: end;
+    margin-top: 10px;
+    height: 48px;
+}
+
+@media screen and (max-width:768px) {
+    .description-card .property_address {
+        padding: 38px 0;
+    }
+    .profile .personal-card
+    {
+        display: flex;
+        justify-content: end;
+    }
+
+    .font-24
+    {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .font-24 {
+        font-size: 16px;
+    }
+}
+@media screen and (max-width:385px) {
+    .radio-container .checmark {
+        padding: 8px 30px;
+    }
+    .font-16 {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width:385px) {
+    .font-24 {
+        font-size: 10px;
+    }
+    .radio-container .checmark {
+        padding: 6px 16px;
+    }
+}
