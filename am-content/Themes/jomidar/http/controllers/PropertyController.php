@@ -374,6 +374,11 @@ class PropertyController extends controller
         return view('theme::newlayouts.property_dashboard.step_six');
     }
 
+    public function step_finish()
+    {
+        return view('theme::newlayouts.property_dashboard.step_finish');
+    }
+
     public function map(Request $request){
 
        $seo=Options::where('key','seo')->first();

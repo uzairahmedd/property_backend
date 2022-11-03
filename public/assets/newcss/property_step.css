@@ -251,6 +251,25 @@
     margin-bottom: 36px;
 }
 
+.description-card .payment
+{
+    width: 363px;
+    max-width: 100%;
+}
+
+.my-ads-btns
+{
+    background: #FFFFFF;
+    border: 1px solid #1DA1F2;
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.description-card .id-number
+{
+    padding-bottom: 10px;
+}
+
 @media screen and (max-width:992px) {
     .regional-drop-btn {
         padding: 1px 16px 2px 39px;
@@ -330,6 +349,9 @@
         width: 300px;
         max-width: 100%;
     }
+    .container {
+        padding: 0 6px;
+    }
 }
 
 @media screen and (max-width:385px) {
@@ -361,7 +383,7 @@
     }
 
     .description-card .form-control {
-        width: 270px;
+        width: 250px;
         max-width: 100%;
     }
 }
@@ -385,5 +407,9 @@
     }
     .checkbox-step5 .checmark {
         padding: 6px 35px;
+    }
+    .description-card .form-control {
+        width: 180px;
+        max-width: 100%;
     }
 }
