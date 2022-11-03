@@ -66,6 +66,8 @@
     padding: 48px;
 }
 
+
+
 .description-card .form-control {
     text-align: end;
     margin-top: 10px;
@@ -244,6 +246,11 @@
     /*margin-bottom: 3rem;*/
 }
 
+.checkbox-step5
+{
+    margin-bottom: 36px;
+}
+
 @media screen and (max-width:992px) {
     .regional-drop-btn {
         padding: 1px 16px 2px 39px;
@@ -375,5 +382,8 @@
     .description-card .form-control {
         width: 160px;
         max-width: 100%;
+    }
+    .checkbox-step5 .checmark {
+        padding: 6px 35px;
     }
 }
