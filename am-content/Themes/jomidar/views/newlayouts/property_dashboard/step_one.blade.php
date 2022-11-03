@@ -89,7 +89,7 @@
             </div>
             <div class="d-flex justify-content-between description-btn-group">
                 <button class="btn btn-theme">التالي</button>
-                <button class="btn btn-theme-secondary">السابق</button>
+                <button class="btn btn-theme-secondary previous_btn">السابق</button>
             </div>
         </div>
         <!-- Property Description Section Ends Here -->

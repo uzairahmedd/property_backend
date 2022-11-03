@@ -169,11 +169,88 @@
 
 .description-card .add_prop_btn
 {
-    border: 1px solid #ced4da;
+    border: 1px solid var(--theme-blue);
     width: 100%;
     text-align: end;
     margin-top: 10px;
     height: 48px;
+}
+
+.previous_btn
+{
+    border: 0.5px solid var(--theme-blue);
+}
+
+/*Step_2 pages content */
+
+.description-card .property_radio
+{
+    padding: 30px 10px;
+}
+
+.property_types
+{
+    margin-top: -25px;
+}
+
+.yesno-btn
+{
+    margin-right: 135px;
+}
+
+.str-addtess-one
+{
+    margin-left: 200px;
+}
+
+.regional-drop
+{
+    position: absolute;
+    z-index: 1;
+}
+
+.regional-drop-btn::after {
+    display: none;
+}
+.regional-drop-btn {
+    border-radius: unset;
+    height: 25px;
+    padding: 2px 16px 2px 80px;
+    border: 0;
+    margin-top: 4px;
+    border-right: 1px solid black;
+}
+
+.street_view
+{
+    font-size: 18px;
+    font-family: Tajawal;
+}
+
+.regional-drop .dropdown-menu{
+    margin-top: 13px;
+}
+
+.region-drop-icon
+{
+    left: 16px;
+    top: 14px;
+}
+
+.regional-street-1
+{
+    margin-left: 3rem;
+    /*margin-bottom: 3rem;*/
+}
+
+@media screen and (max-width:992px) {
+    .regional-drop-btn {
+        padding: 1px 16px 2px 39px;
+    }
+    .add-address
+    {
+        margin-bottom: 3rem;
+    }
 }
 
 @media screen and (max-width:768px) {
@@ -186,15 +263,40 @@
         justify-content: end;
     }
 
+    .add-address
+    {
+        margin-left: 60px;
+        margin-bottom: 3rem;
+    }
+
     .font-24
     {
         font-size: 18px;
+    }
+
+    .regional-street-1
+    {
+        margin-left: 0;
+        margin-bottom: 3rem;
     }
 }
 
 @media screen and (max-width:576px) {
     .font-24 {
         font-size: 16px;
+    }
+    .yesno-btn {
+        margin-right: 70px;
+    }
+    .radio-container .checmark {
+        padding: 8px 28px;
+    }
+    .yes-no-radio .checmark
+    {
+        padding: 6px 8px;
+    }
+    .description-card {
+        padding: 15px;
     }
 }
 @media screen and (max-width:385px) {
@@ -203,6 +305,9 @@
     }
     .font-16 {
         font-size: 12px;
+    }
+    .description-card {
+        padding: 8px;
     }
 }
 @media screen and (max-width:385px) {

@@ -236,6 +236,7 @@ Route::group(['namespace'=>'Amcoders\Theme\jomidar\http\controllers','middleware
     Route::get('auction','PropertyController@userboard_auction')->name('userboard_auction');
     Route::get('account','PropertyController@userboard_account')->name('userboard_account');
     Route::get('step_one','PropertyController@step_one')->name('step_one');
+    Route::get('step_two','PropertyController@step_two')->name('step_two');
 });
 
 /*
