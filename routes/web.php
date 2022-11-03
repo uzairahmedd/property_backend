@@ -237,6 +237,10 @@ Route::group(['namespace'=>'Amcoders\Theme\jomidar\http\controllers','middleware
     Route::get('account','PropertyController@userboard_account')->name('userboard_account');
     Route::get('step_one','PropertyController@step_one')->name('step_one');
     Route::get('step_two','PropertyController@step_two')->name('step_two');
+    Route::get('step_three','PropertyController@step_three')->name('step_three');
+    Route::get('step_four','PropertyController@step_four')->name('step_four');
+    Route::get('step_five','PropertyController@step_five')->name('step_five');
+    Route::get('step_six','PropertyController@step_six')->name('step_six');
 });
 
 /*

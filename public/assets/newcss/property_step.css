@@ -263,6 +263,10 @@
         justify-content: end;
     }
 
+    .radio-container .checkmark-step3 {
+        padding: 8px 23px;
+    }
+
     .add-address
     {
         margin-left: 60px;
@@ -298,6 +302,9 @@
     .description-card {
         padding: 15px;
     }
+    .radio-container .checkmark-step3 {
+        padding: 4px 9px;
+    }
 }
 @media screen and (max-width:385px) {
     .radio-container .checmark {
@@ -309,12 +316,23 @@
     .description-card {
         padding: 8px;
     }
-}
-@media screen and (max-width:385px) {
     .font-24 {
         font-size: 10px;
     }
     .radio-container .checmark {
         padding: 6px 16px;
+    }
+    .radio-container .checkmark-step3 {
+        padding: 4px 8px;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    .radio-container .checkmark-step3 {
+        padding: 2px 5px;
+        font-size: 10px;
+    }
+    .regional-drop-btn {
+        padding: 1px 6px 2px 30px;
     }
 }
