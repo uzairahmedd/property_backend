@@ -42,44 +42,44 @@
                     <li class="mb-3 font-18 theme-text-seondary-black">حجم الصورة الواحدة لا يتجاوز 20 ميجا بت</li>
                     <li class="mb-3 font-18 theme-text-seondary-black">عدد الصور لا يتجاوز 5 صور</li>
                 </ul>
-                <div class="col-12 d-flex justify-content-between">
-                    <div class="col-2">
+                <div class="col-12 row d-flex justify-content-between">
+                    <div class="col-lg-2 col-md-3 col-sm-6">
                         <div
                             class="position-relative d-flex flex-column align-items-center justify-content-center b-r-8 input-container">
                             <input type="file" class="file-input">
-                            <img src="assets/images/bx_image-alt.png" alt="">
+                            <img src="{{asset('assets/images/bx_image-alt.png')}}" alt="">
                             <span class="font-16 theme-text-sky">اضف صورة</span>
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-lg-2 col-md-3 col-sm-6">
                         <div
                             class="position-relative d-flex flex-column align-items-center justify-content-center b-r-8 input-container">
                             <input type="file" class="file-input">
-                            <img src="assets/images/bx_image-alt.png" alt="">
+                            <img src="{{asset('assets/images/bx_image-alt.png')}}" alt="">
                             <span class="font-16 theme-text-sky">اضف صورة</span>
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-lg-2 col-md-3 col-sm-6">
                         <div
                             class="position-relative d-flex flex-column align-items-center justify-content-center b-r-8 input-container">
                             <input type="file" class="file-input">
-                            <img src="assets/images/bx_image-alt.png" alt="">
+                            <img src="{{asset('assets/images/bx_image-alt.png')}}" alt="">
                             <span class="font-16 theme-text-sky">اضف صورة</span>
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-lg-2 col-md-3 col-sm-6">
                         <div
                             class="position-relative d-flex flex-column align-items-center justify-content-center b-r-8 input-container">
                             <input type="file" class="file-input">
-                            <img src="assets/images/bx_image-alt.png" alt="">
+                            <img src="{{asset('assets/images/bx_image-alt.png')}}" alt="">
                             <span class="font-16 theme-text-sky">اضف صورة</span>
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-lg-2 col-md-3 col-sm-6">
                         <div
                             class="position-relative d-flex flex-column align-items-center justify-content-center b-r-8 input-container">
                             <input type="file" class="file-input">
-                            <img src="assets/images/bx_image-alt.png" alt="">
+                            <img src="{{asset('assets/images/bx_image-alt.png')}}" alt="">
                             <span class="font-16 theme-text-sky">اضف صورة</span>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                     <span class="theme-text-sky ">0</span>/
                     <span class="theme-text-seondary-black">5</span>
                 </div>
-                <div class="col-4 d-flex flex-column align-items-end video-link">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column align-items-end video-link">
                     <label for="" class="font-18 theme-text-seondary-black">رابط الفيديو ( اختياري )</label>
                     <input type="text" name="" id="" placeholder="مثال: http://youtube.be/dkdsds"
                            class="form-control theme-border">

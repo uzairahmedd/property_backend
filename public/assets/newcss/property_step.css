@@ -97,7 +97,8 @@
 .input-container{
     border: 1px dashed #1DA1F2;
     width: 100%;
-    padding: 30px 0px 23px 0px;
+    padding: 30px 60px 30px 60px;
+    margin-bottom: 10px;
 }
 .input-container img {
     margin-bottom: 12px;
@@ -305,7 +306,25 @@
     .radio-container .checkmark-step3 {
         padding: 4px 9px;
     }
+    .input-container {
+        padding: 25px 60px 25px 60px;
+        margin-bottom: 10px;
+    }
 }
+
+@media screen and (max-width:480px) {
+
+    .input-container {
+        padding: 15px 30px 15px 30px;
+        /* margin-left: -13px; */
+    }
+
+    .description-card .form-control {
+        width: 300px;
+        max-width: 100%;
+    }
+}
+
 @media screen and (max-width:385px) {
     .radio-container .checmark {
         padding: 8px 30px;
@@ -325,6 +344,19 @@
     .radio-container .checkmark-step3 {
         padding: 4px 8px;
     }
+    /*.input-container{*/
+    /*    margin-right: -27px;*/
+    /*}*/
+
+    .input-container {
+        padding: 10px 20px 10px 20px;
+        margin-left: 25px;
+    }
+
+    .description-card .form-control {
+        width: 270px;
+        max-width: 100%;
+    }
 }
 
 @media screen and (max-width: 280px) {
@@ -334,5 +366,14 @@
     }
     .regional-drop-btn {
         padding: 1px 6px 2px 30px;
+    }
+
+    .input-container {
+        padding: 10px 20px 10px 20px;
+        margin-left: 0px;
+    }
+    .description-card .form-control {
+        width: 160px;
+        max-width: 100%;
     }
 }
