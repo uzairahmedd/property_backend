@@ -25,7 +25,7 @@
                         <h3 class="font-24 font-medium theme-text-blue align-items-end mb-0 ms-2">خالد بن عبدالعزيز أل عثمان</h3>
                     </div>
                     <div class="dp-elipse ms-4 d-flex align-items-center justify-content-center">
-                        <img src="assets/images/avatar.png" alt="">
+                        <img src="{{asset('assets/images/avatar.png')}}" alt="">
                     </div>
                 </div>
             </div>
@@ -185,7 +185,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between description-btn-group">
-                <button class="btn btn-theme">التالي</button>
+                <button class="btn btn-theme"><a href="step_three">التالي</a></button>
                 <button class="btn btn-theme-secondary previous_btn">السابق</button>
             </div>
         </div>

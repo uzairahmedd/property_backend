@@ -5,7 +5,13 @@
     background-image: url("/assets/images/header-bg.png");
     background-size: cover;
     background-repeat: no-repeat;
-    padding-top: 68px;
+    padding-top: 110px;
+    list-style-type: none;
+}
+
+.chat-btn a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .header h1 {

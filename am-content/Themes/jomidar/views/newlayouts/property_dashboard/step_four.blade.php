@@ -95,7 +95,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between description-btn-group">
-                <button class="btn btn-theme">التالي</button>
+                <button class="btn btn-theme"><a href="step_five">التالي</a></button>
                 <button class="btn btn-theme-secondary previous_btn">السابق</button>
             </div>
         </div>

@@ -13,11 +13,12 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-column flex-md-row w-100 align-items-center justify-content-between">
                     <li class="nav-item d-flex flex-column flex-sm-row align-items-center mb-3 mb-sm-0">
-                        <div class="d-flex align-items-center">
-                            <span class="nav-link theme-text-blue font-medium">تسجيل الدخول</span>
+                        <div class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#contactModal">
+                            <span class="nav-link theme-text-blue font-medium"> <a href="#">تسجيل الدخول</a> </span>
                             <img src="{{theme_asset('assets/images/avatar.svg')}}" class="ms-3" />
                         </div>
-                        <button class="btn add-btn font-bold theme-text-white d-flex align-items-center my-3 my-sm-0" data-bs-toggle="modal" data-bs-target="#contactModal">اضف إعلان
+                        <button class="btn add-btn font-bold theme-text-white d-flex align-items-center my-3 my-sm-0">
+                            <a href="step_one">اضف إعلان</a>
                             <img src="{{theme_asset('assets/images/plus.svg')}}" class="ms-3">
                         </button>
                     </li>
@@ -26,7 +27,7 @@
                         <img src="{{theme_asset('assets/images/download.svg')}}" class="ms-3" />
                     </li>
                     <li class="nav-item d-flex align-items-center mb-3 mb-sm-0">
-                        <span class="nav-link theme-text-blue font-medium">المزادات</span>
+                        <span class="nav-link theme-text-blue font-medium"> <a href="property_auction">المزادات</a> </span>
                         <img src="{{theme_asset('assets/images/hammer.svg')}}" class="ms-3" />
                     </li>
                     <li class="logo d-none d-lg-block">

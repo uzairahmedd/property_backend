@@ -135,14 +135,31 @@ h1, h2, h3 {
 border-radius: 8px;
 }
 
+.navbar-nav li a
+{
+    text-decoration: none;
+    color: inherit;
+}
+
+button a
+{
+    text-decoration: none;
+    color: inherit;
+}
+
 .btn-theme, .btn-theme-secondary {
-    width: 310px;
+    width: 316px;
     height: 61px;
     max-width: 100%;
     font-family: TajawalBold;
     font-size: 16px;
     border-radius: 8px;
     border: none;
+}
+
+.header .col-12::marker
+{
+    display: none;
 }
 
 .btn-theme:hover {
@@ -349,9 +366,9 @@ border-radius: 8px;
     margin-top: 120px;
 }
 
-.property-sl-r h1 {
-    font-size: 46px;
-}
+/*.property-sl-r h1 {*/
+/*    font-size: 46px;*/
+/*}*/
 
 .property-sl-r h3 {
     margin-top: 20px;

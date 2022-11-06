@@ -1,4 +1,4 @@
-<div class="footer mt-4">
+<div class="footer">
     <div class="container">
         <div class="d-flex flex-column-reverse flex-xl-row justify-content-end align-items-center">
             <ul class="col list-unstyled d-flex flex-column-reverse flex-md-row align-items-center p-0">
@@ -12,13 +12,13 @@
                     <a href="property_auction">المزادات</a>
                 </li>
                 <li>
-                    <a href="">إعلانات للايجار</a>
+                    <a href="property_lists">إعلانات للايجار</a>
                 </li>
                 <li>
-                    <a href="">إعلانات للبيع</a>
+                    <a href="property_lists">إعلانات للبيع</a>
                 </li>
                 <li>
-                    <a href="">البحث</a>
+                    <a href="search">البحث</a>
                 </li>
             </ul>
             <img src="{{asset('assets/images/footer-logo.png')}}"

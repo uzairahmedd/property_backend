@@ -42,7 +42,7 @@
                                 كامل</label>
                         </div>
                         <button class="chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16">
-                            البدء بالتواصل
+                            <a href="my_profile">البدء بالتواصل</a>
                         </button>
                         <p href="" class="d-flex justify-content-center mt-2">Already have an account
                             <a href="#" class="text-decoration-none ms-1"  data-bs-target="#contactModal" data-bs-toggle="modal">Sign in</a>
@@ -91,7 +91,7 @@
                                 كامل</label>
                         </div>
                         <button class="chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16">
-                            البدء بالتواصل
+                            <a href="my_profile">البدء بالتواصل</a>
                         </button>
                         <a href="" class="d-flex justify-content-center mt-2" data-bs-target="#signup" data-bs-toggle="modal">create an account</a>
                     </div>

@@ -8,7 +8,7 @@
         </li>
         <div class="col-12 row looking-for theme-bg-white d-flex flex-lg-row flex-sm-row align-items-center">
 
-            <div class="col-lg-2 search-button-div col-md-2 col-sm-2 col-xs-12">
+            <div class="col-lg-2 search-button-div col-md-2 col-sm-2 col-xs-12" id="search">
 {{--                <button class="btn search-home-btn text-center" type="button">Button</button>--}}
                 <a href="#" class="btn search-home-btn text-center" role="button">Search</a>
                 <img class="search-home-img" src="{{theme_asset('assets/images/search.svg')}}" alt="">
