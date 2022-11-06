@@ -3,10 +3,10 @@
         <div class="d-flex flex-column-reverse flex-xl-row justify-content-end align-items-center">
             <ul class="col list-unstyled d-flex flex-column-reverse flex-md-row align-items-center p-0">
                 <li>
-                    <a href="">شروط الاستخدام</a>
+                    <a href="terms_of_use">شروط الاستخدام</a>
                 </li>
                 <li>
-                    <a href="">شروط الخصوصية</a>
+                    <a href="policy_terms">شروط الخصوصية</a>
                 </li>
                 <li>
                     <a href="property_auction">المزادات</a>

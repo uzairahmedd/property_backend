@@ -19,10 +19,10 @@
                                 {{ Auth::User()->name}}<img src="{{theme_asset('assets/images/avatar.svg')}}" class="ms-3" />
                             </button>
                             <ul class="dropdown-menu after-sign-drop pt-0 mt-0 pb-0 mb-0" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item text-right" href="step_one">لوحة القيادة<i class="fa-solid fa-house-user"></i></a></li>
-                                <li><a class="dropdown-item text-right" href="#">ممتلكاتي<i class="fa-solid fa-magnifying-glass"></i></a></li>
-                                <li><a class="dropdown-item text-right" href="#">المفضل لدي<i class="fa-solid fa-heart"></i></a></li>
-                                <li><a class="dropdown-item text-right" href="#"> ملفي<i class="fa-solid fa-user"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="my_profile">لوحة التحكم<i class="fa-solid fa-house-user"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="favorite">المفضلة<i class="fa-solid fa-heart"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="auction">إعلاناتي<i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="account"> إعدادات الحساب<i class="fa-solid fa-user"></i></a></li>
                                 <li><a class="dropdown-item text-right" href="{{ route('agent.logout') }}">تسجيل خروج<i class="fa-solid fa-right-from-bracket"></i></a></li>
                             </ul>
                         </div>

@@ -28,7 +28,7 @@
             </a>
         </li>
         <li>
-            <a href="#"
+            <a href="{{ route('agent.logout') }}"
                class="text-decoration-none py-3 justify-content-end d-flex align-items-center theme-grey-light theme-text-blue font-16">
                 <span>تسجيل الخروج</span>
                 <img src="{{asset('assets/images/logout.png')}}" alt="" class="img-fluid">

@@ -407,15 +407,18 @@
 
 .rent-box
 {
-    padding: 12px 55px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    display: block !important;
+    margin: 0 auto;
+    width: 126px;
+    text-align: center;
     border: 0.5px solid #292071;
     border-radius: 8px;
     letter-spacing: -0.3px;
     color: #292071;
     font-weight: 500;
-    font-size: 14px;
     line-height: 17px;
-    display: flex;
     flex-wrap: wrap;
     flex-basis: fit-content;
 }

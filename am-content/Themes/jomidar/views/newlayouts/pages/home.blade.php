@@ -108,7 +108,7 @@
                 </div>
                 <div class="mt-3">
                     <a href="property_detail">
-                        <h3 class="font-medium theme-text-blue">فيلا إطلالة مميزة في حي سكني هادئ</h3>
+                        <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
                     </a>
                     <div class="d-flex align-items-start justify-content-end pt-2">
                         <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
@@ -137,7 +137,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue">فيلا إطلالة مميزة في حي سكني هادئ</h3>
+                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
                     <div class="d-flex align-items-start justify-content-end pt-2">
                         <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
                             الهداي..</p>
@@ -165,7 +165,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue">فيلا إطلالة مميزة في حي سكني هادئ</h3>
+                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
                     <div class="d-flex align-items-start justify-content-end pt-2">
                         <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
                             الهداي..</p>
@@ -193,7 +193,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue">فيلا إطلالة مميزة في حي سكني هادئ</h3>
+                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
                     <div class="d-flex align-items-start justify-content-end pt-2">
                         <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
                             الهداي..</p>
@@ -238,7 +238,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue">فيلا إطلالة مميزة في حي سكني هادئ</h3>
+                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
                     <div class="d-flex align-items-start justify-content-end pt-2">
                         <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
                             الهداي..</p>
@@ -266,7 +266,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue">فيلا إطلالة مميزة في حي سكني هادئ</h3>
+                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
                     <div class="d-flex align-items-start justify-content-end pt-2">
                         <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
                             الهداي..</p>
@@ -294,7 +294,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue">فيلا إطلالة مميزة في حي سكني هادئ</h3>
+                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
                     <div class="d-flex align-items-start justify-content-end pt-2">
                         <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
                             الهداي..</p>
@@ -322,7 +322,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue">فيلا إطلالة مميزة في حي سكني هادئ</h3>
+                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
                     <div class="d-flex align-items-start justify-content-end pt-2">
                         <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
                             الهداي..</p>

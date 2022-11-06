@@ -112,6 +112,9 @@
 .font-light {
     font-family: TajawalLight !important;
 }
+a:hover {
+    color: inherit;
+}
 
 /* Button */
 .btn-theme {
@@ -136,6 +139,12 @@ h1, h2, h3 {
 /* Border Radius */
 .b-r-8 {
 border-radius: 8px;
+}
+
+a
+{
+    text-decoration: none;
+    color: inherit;
 }
 
 .navbar-nav li a
