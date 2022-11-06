@@ -8,7 +8,7 @@
 <!-- <script src="js/select2.min.js"></script> -->
 <!-- Owl Carousel -->
 <script src="{{theme_asset('assets/newjs/owl.carousel.min.js')}}"></script>
-<!-- Home Jquery -->
-<script src="{{theme_asset('assets/newjs/main.js')}}"></script>
 {{--    Font Awesome Js--}}
 <script src="{{theme_asset('assets/newjs/fontawesome/font.js')}}"></script>
+<!-- Home Jquery -->
+<script src="{{theme_asset('assets/newjs/main.js')}}"></script>

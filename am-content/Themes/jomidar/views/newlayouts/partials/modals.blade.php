@@ -1,53 +1,57 @@
-{{--    Modal Launch Button--}}
+{{-- Modal Launch Button--}}
 {{--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">--}}
-{{--    Launch demo modal--}}
+{{-- Launch demo modal--}}
 {{--</button>--}}
 
+@if (Auth::guest())
 <!--Sign Up Modal -->
-<div class="modal fade theme-modal contact-modal signup-modal" id="signup" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade theme-modal contact-modal signup-modal" id="signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog px-3 px-md-0">
         <div class="modal-content">
             <div class="modal-body position-relative">
                 <div class="d-flex flex-wrap justify-content-end">
                     <div class="col-12 col-sm-8 col-md-7 ps-0 px-sm-3" style="z-index:11 ;">
-                        <h1 class="font-24 font-medium theme-text-seondary-black">يرجى إدخال بياناتك للمحادثة مع
+                        <h1 class="font-24 font-medium theme-text-seondary-black" style="margin-bottom:10px ;">يرجى إدخال بياناتك للمحادثة مع
                             صاحب الإعلان</h1>
-                        <div class="mb-4_5 position-relative">
-                            <input type="email" class="form-control font-medium font-16" id=""
-                                   placeholder="ادخل الاسم كاملا">
-                            <label for="floating-Input"
-                                   class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
-                                كامل</label>
-                        </div>
-                        <div class="position-relative mb-4_5">
-                            <input type="email" class="form-control font-medium font-16" id=""
-                                   placeholder="ادخل الاسم كاملا">
-                            <label for="floating-Input"
-                                   class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
-                                كامل</label>
-                        </div>
-                        <div class="position-relative mb-4_5">
-                            <input type="email" class="form-control font-medium font-16" id=""
-                                   placeholder="ادخل الاسم كاملا">
-                            <label for="floating-Input"
-                                   class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
-                                كامل</label>
-                        </div>
-                        <div class="position-relative mb-4_5">
-                            <input type="email" class="form-control font-medium font-16" id=""
-                                   placeholder="ادخل الاسم كاملا">
-                            <label for="floating-Input"
-                                   class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
-                                كامل</label>
-                        </div>
-                        <button class="chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16">
-                            <a href="my_profile">البدء بالتواصل</a>
-                        </button>
+                        <p id="errors_msg" style="color:red ;"></p>
+                        <form action="{{ route('user.register') }}" method="POST" id="register_form">
+                            @csrf
+                            <div class="mb-4_5 position-relative">
+                                <input type="text" value="" class="form-control font-medium font-16" placeholder="ادخل الاسم كاملا" name="name">
+                                <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
+                                    كامل</label>
+                            </div>
+                            <div class="position-relative mb-4_5">
+                                <input type="email" value="" class="form-control font-medium font-16" placeholder="ادخل الاسم كاملا" name="email">
+                                <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
+                                    كامل</label>
+                            </div>
+                            <div class="position-relative mb-4_5">
+                                <input type="password" value="" class="form-control font-medium font-16" placeholder="ادخل الاسم كاملا" name="password">
+                                <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
+                                    كامل</label>
+                            </div>
+                            <div class="position-relative mb-4_5">
+                                <input type="password" value="" class="form-control font-medium font-16" placeholder="ادخل الاسم كاملا" name="password_confirmation">
+                                <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
+                                    كامل</label>
+                            </div>
+                            <div class="position-relative mb-4_5">
+                                <input type="checkbox" id="term_condition" name="term_condition">
+                                <label class="form-check-label" for="term_condition">
+                                    {{ __('agree') }} <a href="#">{{ __('Terms & Conditions') }}</a>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <button class="basicbtn chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16" type="submit"> البدء بالتواصل</button>
+                            </div>
+                        </form>
                         <p href="" class="d-flex justify-content-center mt-2">Already have an account
-                            <a href="#" class="text-decoration-none ms-1"  data-bs-target="#contactModal" data-bs-toggle="modal">Sign in</a>
+                            <a href="#" class="text-decoration-none ms-1" data-bs-target="#contactModal" data-bs-toggle="modal">Sign in</a>
                         </p>
+                        </form>
                     </div>
+
                     <div class="col-12 mt-4 d-flex align-items-center justify-content-end">
                         <a href="" class="text-decoration-none theme-text-blue font-16 font-medium">
                             على سياسة الخصوصية و الشروط والأحكام
@@ -56,43 +60,38 @@
                     </div>
                 </div>
                 <img src="{{theme_asset('assets/images/Messaging.png')}}" alt="" class="position-absolute mesg">
-                <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt=""
-                     class="position-absolute close-modal">
+                <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt="" class="position-absolute close-modal">
             </div>
         </div>
     </div>
 </div>
 <!-- Sign Up Modal Ends Here -->
-
-
-
 <!--Sign In Modal -->
-<div class="modal fade theme-modal contact-modal" id="contactModal" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade theme-modal contact-modal" id="contactModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog px-3 px-md-0">
         <div class="modal-content">
             <div class="modal-body position-relative">
                 <div class="d-flex flex-wrap justify-content-end">
                     <div class="col-12 col-sm-8 col-md-7 ps-0 px-sm-3" style="z-index:11 ;">
-                        <h1 class="font-24 font-medium theme-text-seondary-black">يرجى إدخال بياناتك للمحادثة مع
+                        <h1 class="font-24 font-medium theme-text-seondary-black" style="margin-bottom: 10px;">يرجى إدخال بياناتك للمحادثة مع
                             صاحب الإعلان</h1>
-                        <div class="mb-4_5 position-relative">
-                            <input type="email" class="form-control font-medium font-16" id=""
-                                   placeholder="ادخل الاسم كاملا">
-                            <label for="floating-Input"
-                                   class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
-                                كامل</label>
-                        </div>
-                        <div class="position-relative mb-4_5">
-                            <input type="email" class="form-control font-medium font-16" id=""
-                                   placeholder="ادخل الاسم كاملا">
-                            <label for="floating-Input"
-                                   class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
-                                كامل</label>
-                        </div>
-                        <button class="chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16">
-                            <a href="my_profile">البدء بالتواصل</a>
-                        </button>
+                        <p id="login_error_msg" style="color:red ;"></p>
+                        <form action="{{ route('login') }}" method="POST" id="login_form">
+                            @csrf
+                            <div class="mb-4_5 position-relative">
+                                <input type="email" name="email" value="" class="form-control font-medium font-16" placeholder="ادخل الاسم كاملا">
+                                <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
+                                    كامل</label>
+                            </div>
+                            <div class="position-relative mb-4_5">
+                                <input type="password" name="password" value="" class="form-control font-medium font-16" placeholder="ادخل الاسم كاملا">
+                                <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
+                                    كامل</label>
+                            </div>
+                            <button type="submit" class="basicbtn chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16">
+                                البدء بالتواصل
+                            </button>
+                        </form>
                         <a href="" class="d-flex justify-content-center mt-2" data-bs-target="#signup" data-bs-toggle="modal">create an account</a>
                     </div>
                     <div class="col-12 mt-4 d-flex align-items-center justify-content-end">
@@ -103,16 +102,16 @@
                     </div>
                 </div>
                 <img src="{{theme_asset('assets/images/Messaging.png')}}" alt="" class="position-absolute mesg">
-                <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt=""
-                     class="position-absolute close-modal">
+                <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt="" class="position-absolute close-modal">
             </div>
         </div>
     </div>
 </div>
 <!-- Sign Up Modal Ends Here -->
+@endif
+
 <!-- Sign In Modal Starts Here -->
-<div class="modal fade signIn-modal theme-modal" id="signInModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+<div class="modal fade signIn-modal theme-modal" id="signInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body px-0 position-relative">
@@ -121,10 +120,8 @@
                         <img src="{{theme_asset('assets/images/Sign-in.png')}}" alt="">
                         <h1 class="font-24 font-medium theme-text-seondary-black">تسجيل دخول/ إنشاء حساب</h1>
                         <div class="mb-4_5 position-relative">
-                            <input type="email" class="form-control font-medium font-16" id=""
-                                   placeholder="مثلا 5515151181">
-                            <label for="floating-Input"
-                                   class="floating-Input position-absolute font-medium theme-text-seondary-black">رقم
+                            <input type="email" class="form-control font-medium font-16" placeholder="مثلا 5515151181">
+                            <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black">رقم
                                 الجوال</label>
                         </div>
                         <div class="px-3">
@@ -134,16 +131,14 @@
                         </div>
                     </div>
                 </div>
-                <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt=""
-                     class="position-absolute close-modal">
+                <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt="" class="position-absolute close-modal">
             </div>
         </div>
     </div>
 </div>
 <!-- Sign In Modal Ends Here -->
 <!-- Otp Modal Starts Here -->
-<div class="modal fade otp-modal theme-modal" id="otpModal" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade otp-modal theme-modal" id="otpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body px-0 position-relative">
@@ -157,10 +152,10 @@
                             <span class="theme-text-grey">ادخل كود التفعيل المرسل إلى الرقم</span>
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-4_5" style="gap:24px">
-                            <input type="text" name="" id="" class="form-control">
-                            <input type="text" name="" id="" class="form-control">
-                            <input type="text" name="" id="" class="form-control">
-                            <input type="text" name="" id="" class="form-control">
+                            <input type="text" name="" class="form-control">
+                            <input type="text" name="" class="form-control">
+                            <input type="text" name="" class="form-control">
+                            <input type="text" name="" class="form-control">
                         </div>
                         <div class="col-6 mx-auto mb-4_5">
                             <button class="chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16">
@@ -173,8 +168,7 @@
                         </div>
                     </div>
                 </div>
-                <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt=""
-                     class="position-absolute close-modal">
+                <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt="" class="position-absolute close-modal">
             </div>
         </div>
     </div>

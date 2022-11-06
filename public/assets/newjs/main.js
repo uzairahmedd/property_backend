@@ -241,5 +241,94 @@ $(document).ready(function () {
 
     // jquery for selection dropdown End
 
+    (function ($) {
+        "use strict";
+    
+        /*----------------------------
+                Login Form Submit
+            -------------------------------*/
+        $('#login_form').on('submit',function(e){
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: this.action,
+                data: new FormData(this),
+                dataType: 'json',
+                contentType: false,
+                cache: false,
+                processData:false,
+                beforeSend: function() {
+                    $('.basicbtn').attr('disabled','');
+                    $('.basicbtn').html('Please Wait...');
+                },
+                success: function(response){ 
+                    $('.basicbtn').removeAttr('disabled');
+                    $('.basicbtn').html('Login');
+                    location.reload();
+                },
+                error: function(xhr, status, error) 
+                {
+                    $('.basicbtn').removeAttr('disabled');
+                    $('.basicbtn').html('Login');
+                    $.each(xhr.responseJSON.errors, function (key, item) 
+                    {
+                        $('#login_error_msg').html(item);
+                    });
+                }
+            })
+        });
+    
+        /*----------------------------
+                Register Form Submit
+            -------------------------------*/
+        $('#register_form').on('submit',function(e){
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: this.action,
+                data: new FormData(this),
+                dataType: 'json',
+                contentType: false,
+                cache: false,
+                processData:false,
+                beforeSend: function() {
+                    $('.basicbtn').attr('disabled','');
+                    $('.basicbtn').html('Please Wait...');
+                },
+                success: function(response){ 
+                    if(response.errors)
+                    {
+                        $('#errors_msg').html(response.errors);
+                        $('.basicbtn').removeAttr('disabled');
+                        $('.basicbtn').html('Register');
+                    }else{
+                        $('.basicbtn').removeAttr('disabled');
+                        $('.basicbtn').html('Register');
+                        location.reload();
+                    }
+                },
+                error: function(xhr, status, error) 
+                {
+                    $('.basicbtn').removeAttr('disabled');
+                    $('.basicbtn').html('Register');
+                    $.each(xhr.responseJSON.errors, function (key, item) 
+                    {
+                        $('#errors_msg').html(item);
+                    });
+                }
+            })
+        });
+    
+    })(jQuery);
 
 
