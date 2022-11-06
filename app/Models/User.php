@@ -117,4 +117,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Category')->where('type','agency');
     }
+
+    public function agencyPackage()
+    {
+        return $this->terms->where('type','agency_package');
+    }
 }
