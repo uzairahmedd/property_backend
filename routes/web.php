@@ -242,6 +242,8 @@ Route::group(['namespace'=>'Amcoders\Theme\jomidar\http\controllers','middleware
     Route::get('step_five','PropertyController@step_five')->name('step_five');
     Route::get('step_six','PropertyController@step_six')->name('step_six');
     Route::get('step_finish','PropertyController@step_finish')->name('step_finish');
+    Route::get('policy_terms','PropertyController@policy_terms')->name('policy_terms');
+    Route::get('terms_of_use','PropertyController@terms_of_use')->name('terms_of_use');
 });
 
 /*

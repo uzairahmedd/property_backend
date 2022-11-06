@@ -49,6 +49,9 @@
 .font-14 {
     font-size: 14px;
 }
+.font-12 {
+    font-size: 12px;
+}
 /* Background Colors */
 .theme-bg-blue {
     background: var(--theme-blue);
@@ -147,6 +150,11 @@ button a
     color: inherit;
 }
 
+.after-sign-in button:after
+{
+    display: none;
+}
+
 .btn-theme, .btn-theme-secondary {
     width: 316px;
     height: 61px;
@@ -155,6 +163,32 @@ button a
     font-size: 16px;
     border-radius: 8px;
     border: none;
+}
+
+.after-sign-in .btn.show
+{
+    border: none;
+}
+
+.after-sign-in button:focus-visible
+{
+    border: none;
+}
+
+.after-sign-in button:focus
+{
+    border: none;
+}
+
+.after-sign-drop
+{
+    text-align: right;
+}
+.after-sign-drop .fa-solid
+{
+    font-size: 18px;
+    color: var(--theme-blue);
+    padding-left: 10px;
 }
 
 .header .col-12::marker
@@ -206,8 +240,8 @@ button a
 }
 
 .floating-Input {
-    padding: 7px 28px;
-    font-size: 12px;
+    padding: 3px 28px;
+    font-size: 11px;
     background: var(--theme-white);
     top: -15px;
     right: 19px;
