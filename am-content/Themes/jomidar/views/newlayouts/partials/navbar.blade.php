@@ -12,6 +12,20 @@
             </div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-column flex-md-row w-100 align-items-center justify-content-between">
+                    <li class="nav-item d-flex align-items-center mb-3 mb-sm-0">
+                        <div class="dropdown after-sign-in">
+                            <button class="btn dropdown-toggle theme-text-blue font-medium" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                تحميل التطبيق<img src="{{theme_asset('assets/images/avatar.svg')}}" class="ms-3" />
+                            </button>
+                            <ul class="dropdown-menu after-sign-drop pt-0 mt-0 pb-0 mb-0" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item text-right" href="#">لوحة القيادة<i class="fa-solid fa-house-user"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="#">ممتلكاتي<i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="#">المفضل لدي<i class="fa-solid fa-heart"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="#"> ملفي<i class="fa-solid fa-user"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="#">تسجيل خروج<i class="fa-solid fa-right-from-bracket"></i></a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li class="nav-item d-flex flex-column flex-sm-row align-items-center mb-3 mb-sm-0">
                         <div class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#contactModal">
                             <span class="nav-link theme-text-blue font-medium"> <a href="#">تسجيل الدخول</a> </span>

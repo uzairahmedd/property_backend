@@ -379,6 +379,16 @@ class PropertyController extends controller
         return view('theme::newlayouts.property_dashboard.step_finish');
     }
 
+    public function policy_terms()
+    {
+        return view('theme::newlayouts.pages.policy_terms');
+    }
+
+    public function terms_of_use()
+    {
+        return view('theme::newlayouts.pages.terms_of_use');
+    }
+
     public function map(Request $request){
 
        $seo=Options::where('key','seo')->first();

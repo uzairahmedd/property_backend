@@ -34,25 +34,25 @@
                                    class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
                                 كامل</label>
                         </div>
-                        <div class="position-relative mb-4_5">
+                        <div class="position-relative mb-4">
                             <input type="email" class="form-control font-medium font-16" id=""
                                    placeholder="ادخل الاسم كاملا">
                             <label for="floating-Input"
                                    class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
                                 كامل</label>
                         </div>
+                        <div class="col-12 mb-3 d-flex align-items-center justify-content-end">
+                            <a href="" class="text-decoration-none theme-text-blue font-12 font-medium">
+                                أوافق على سياسة الخصوصية و الشروط والأحكام
+                            </a>
+                            <span class="theme-text-seondary-black font-16 ms-1"> </span>
+                            <input type="checkbox" id="scales" name="scales" checked>
+                        </div>
                         <button class="chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16">
                             <a href="my_profile">البدء بالتواصل</a>
                         </button>
-                        <p href="" class="d-flex justify-content-center mt-2">Already have an account
-                            <a href="#" class="text-decoration-none ms-1"  data-bs-target="#contactModal" data-bs-toggle="modal">Sign in</a>
+                        <p href="" class="d-flex justify-content-center mt-2"><a href="#" class="text-decoration-none ms-1 font-bold"  data-bs-target="#contactModal" data-bs-toggle="modal">تسجيل الدخول</a>&nbsp;هل لديك حساب
                         </p>
-                    </div>
-                    <div class="col-12 mt-4 d-flex align-items-center justify-content-end">
-                        <a href="" class="text-decoration-none theme-text-blue font-16 font-medium">
-                            على سياسة الخصوصية و الشروط والأحكام
-                        </a>
-                        <span class="theme-text-seondary-black font-16 ms-1"> أوافق</span>
                     </div>
                 </div>
                 <img src="{{theme_asset('assets/images/Messaging.png')}}" alt="" class="position-absolute mesg">
@@ -93,13 +93,7 @@
                         <button class="chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16">
                             <a href="my_profile">البدء بالتواصل</a>
                         </button>
-                        <a href="" class="d-flex justify-content-center mt-2" data-bs-target="#signup" data-bs-toggle="modal">create an account</a>
-                    </div>
-                    <div class="col-12 mt-4 d-flex align-items-center justify-content-end">
-                        <a href="" class="text-decoration-none theme-text-blue font-16 font-medium">
-                            على سياسة الخصوصية و الشروط والأحكام
-                        </a>
-                        <span class="theme-text-seondary-black font-16 ms-1"> أوافق</span>
+                        <a href="" class="d-flex justify-content-center theme-text-blue mt-2" data-bs-target="#signup" data-bs-toggle="modal">انشئ حساب</a>
                     </div>
                 </div>
                 <img src="{{theme_asset('assets/images/Messaging.png')}}" alt="" class="position-absolute mesg">
