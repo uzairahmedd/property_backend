@@ -19,20 +19,12 @@
                 </button>
                 <ul class="dropdown-menu rent-dropdown" aria-labelledby="dropdownMenuLink">
                     <div class="rent-dropdown-content">
-                    @foreach($status as $key => $row)
-                    <li class="rent-all">
-                            <input class="rent-select-dropdown" value="بيع" type="radio" id="status{{ $key }}" name="status" value="{{ $row->id }}" @if($key == 0)  checked @endif/>
+                        @foreach($status as $key => $row)
+                        <li class="rent-all">
+                            <input class="rent-select-dropdown" value="بيع" type="radio" id="status{{ $key }}" name="status" value="{{ $row->id }}" @if($key==0) checked @endif />
                             <label class="rent-box" for="status{{ $key }}">{{ $row->name }}</label>
                         </li>
-                    @endforeach
-                        <!-- <li class="rent-all">
-                            <input class="rent-select-dropdown" value="بيع" type="radio" id="radio02-01" name="radio-btn" />
-                            <label class="rent-box" for="radio02-01">بيع</label>
-                        </li>
-                        <li class="rent-all">
-                            <input class="rent-select-dropdown drive_percent-box" value="ايجار" type="radio" id="radio02-02" name="radio-btn" checked />
-                            <label class="rent-box" for="radio02-02">ايجار</label>
-                        </li> -->
+                        @endforeach
                     </div>
                 </ul>
             </div>
@@ -77,6 +69,7 @@
 <!-- Property Listing Sale Section Starts Here -->
 <div class="property-listing property-sale">
     <div class="container position-relative">
+        @if(isset($status_properties['sell_property']) && count($status_properties['sell_property']) > 0)
         <div class="property-listing-content d-flex align-items-center justify-content-between">
             <p class="mb-0 theme-text-sky font-medium"><a href="property_lists">عرض المزيد</a> </p>
             <div class="d-flex align-items-center gap-3">
@@ -87,126 +80,54 @@
             </div>
         </div>
         <div class="owl-carousel">
+            @foreach($status_properties['sell_property'] as $sale_data)
+            @php
+            $image='';
+            if($sale_data->post_preview != null){
+            $image = $sale_data->post_preview->media->url;
+            }else{
+            $image = asset('/') .'uploads/default.png';
+            }
+            @endphp
             <div class="listing">
-                <div class="list">
-                    <div class="content d-flex justify-content-between">
-                        <div class="d-flex flex-column align-items-start theme-text-white">
-                            <div class="sale theme-bg-sky">
-                                <span class="font-medium">للبيع</span>
+                <a href="property/{{$sale_data->slug}}">
+                    <div class="list" style="background: url({{$image}});">
+                        <div class="content d-flex justify-content-between">
+                            <div class="d-flex flex-column align-items-start theme-text-white">
+                                <div class="sale theme-bg-sky">
+                                    <span class="font-medium">للبيع</span>
+                                </div>
+                                <div class="sale theme-bg-blue">
+                                    <span class="font-medium">متاح</span>
+                                </div>
                             </div>
-                            <div class="sale theme-bg-blue">
-                                <span class="font-medium">متاح</span>
+                            <div class="fav-elipse d-flex align-items-center justify-content-center">
+                                <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
                             </div>
                         </div>
-                        <div class="fav-elipse d-flex align-items-center justify-content-center">
-                            <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
+                        <div class="price theme-text-white d-flex align-items-center justify-content-center">
+                            <span class="font-bold">{{$sale_data->max_price->price}}- {{$sale_data->min_price->price}} مليون ر.س</span>
                         </div>
                     </div>
-                    <div class="price theme-text-white d-flex align-items-center justify-content-center">
-                        <span class="font-bold">4.5 مليون ر.س</span>
+                    <div class="mt-3">
+                        <h3 class="font-medium theme-text-blue">{{$sale_data->title}}</h3>
+                        <div class="d-flex align-items-start justify-content-end pt-2">
+                            <p class="mb-0 theme-text-seondary-black me-2">{{$sale_data->post_city->value}}</p>
+                            <img src="{{theme_asset('assets/images/location.png')}}" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="mt-3">
-                    <a href="property_detail">
-                        <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
-                    </a>
-                    <div class="d-flex align-items-start justify-content-end pt-2">
-                        <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
-                            الهداي..</p>
-                        <img src="{{theme_asset('assets/images/location.png')}}" alt="">
-                    </div>
-                </div>
+                </a>
             </div>
-            <div class="listing">
-                <div class="list">
-                    <div class="content d-flex justify-content-between">
-                        <div class="d-flex flex-column align-items-start theme-text-white">
-                            <div class="sale theme-bg-sky">
-                                <span class="font-medium">للبيع</span>
-                            </div>
-                            <div class="sale theme-bg-blue">
-                                <span class="font-medium">متاح</span>
-                            </div>
-                        </div>
-                        <div class="fav-elipse d-flex align-items-center justify-content-center">
-                            <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
-                        </div>
-                    </div>
-                    <div class="price theme-text-white d-flex align-items-center justify-content-center">
-                        <span class="font-bold">4.5 مليون ر.س</span>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
-                    <div class="d-flex align-items-start justify-content-end pt-2">
-                        <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
-                            الهداي..</p>
-                        <img src="{{theme_asset('assets/images/location.png')}}" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="listing">
-                <div class="list">
-                    <div class="content d-flex justify-content-between">
-                        <div class="d-flex flex-column align-items-start theme-text-white">
-                            <div class="sale theme-bg-sky">
-                                <span class="font-medium">للبيع</span>
-                            </div>
-                            <div class="sale theme-bg-blue">
-                                <span class="font-medium">متاح</span>
-                            </div>
-                        </div>
-                        <div class="fav-elipse d-flex align-items-center justify-content-center">
-                            <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
-                        </div>
-                    </div>
-                    <div class="price theme-text-white d-flex align-items-center justify-content-center">
-                        <span class="font-bold">4.5 مليون ر.س</span>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
-                    <div class="d-flex align-items-start justify-content-end pt-2">
-                        <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
-                            الهداي..</p>
-                        <img src="{{theme_asset('assets/images/location.png')}}" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="listing">
-                <div class="list">
-                    <div class="content d-flex justify-content-between">
-                        <div class="d-flex flex-column align-items-start theme-text-white">
-                            <div class="sale theme-bg-sky">
-                                <span class="font-medium">للبيع</span>
-                            </div>
-                            <div class="sale theme-bg-blue">
-                                <span class="font-medium">متاح</span>
-                            </div>
-                        </div>
-                        <div class="fav-elipse d-flex align-items-center justify-content-center">
-                            <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
-                        </div>
-                    </div>
-                    <div class="price theme-text-white d-flex align-items-center justify-content-center">
-                        <span class="font-bold">4.5 مليون ر.س</span>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
-                    <div class="d-flex align-items-start justify-content-end pt-2">
-                        <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
-                            الهداي..</p>
-                        <img src="{{theme_asset('assets/images/location.png')}}" alt="">
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
+        @endif
     </div>
+</div>
 </div>
 <!-- Property Listing Sale Section Ends Here -->
 <!-- Property Listing Rent Section starts Here -->
 <div class="property-listing property-rent">
+    @if(isset($status_properties['rent_property']) && count($status_properties['rent_property']) > 0)
     <div class="container position-relative">
         <div class="property-listing-content d-flex align-items-center justify-content-between">
             <p class="mb-0 theme-text-sky font-medium"><a href="property_lists">عرض المزيد</a></p>
@@ -218,119 +139,47 @@
             </div>
         </div>
         <div class="owl-carousel">
+            @foreach($status_properties['rent_property'] as $rent_data)
+            @php
+            $rent_image='';
+            if($rent_data->post_preview != null){
+            $rent_image = $rent_data->post_preview->media->url;
+            }else{
+            $rent_image = asset('/') .'uploads/default.png';
+            }
+            @endphp
             <div class="listing">
-                <div class="list">
-                    <div class="content d-flex justify-content-between">
-                        <div class="d-flex flex-column align-items-start theme-text-white">
-                            <div class="sale theme-bg-sky">
-                                <span class="font-medium">للبيع</span>
+                <a href="property/{{$rent_data->slug}}">
+                    <div class="list" style="background: url({{$rent_image}});">
+                        <div class="content d-flex justify-content-between">
+                            <div class="d-flex flex-column align-items-start theme-text-white">
+                                <div class="sale theme-bg-sky">
+                                    <span class="font-medium">للبيع</span>
+                                </div>
+                                <div class="sale theme-bg-blue">
+                                    <span class="font-medium">متاح</span>
+                                </div>
                             </div>
-                            <div class="sale theme-bg-blue">
-                                <span class="font-medium">متاح</span>
+                            <div class="fav-elipse d-flex align-items-center justify-content-center">
+                                <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
                             </div>
                         </div>
-                        <div class="fav-elipse d-flex align-items-center justify-content-center">
-                            <a href="property_detail.blade.php"><img src="{{theme_asset('assets/images/heart.svg')}}" alt=""></a>
+                        <div class="price theme-text-white d-flex align-items-center justify-content-center">
+                            <span class="font-bold">{{$rent_data->max_price->price}}- {{$rent_data->min_price->price}} مليون ر.س</span>
                         </div>
                     </div>
-                    <div class="price theme-text-white d-flex align-items-center justify-content-center">
-                        <span class="font-bold">4.5 مليون ر.س</span>
+                    <div class="mt-3">
+                        <h3 class="font-medium theme-text-blue">{{$rent_data->title}}</h3>
+                        <div class="d-flex align-items-start justify-content-end pt-2">
+                            <p class="mb-0 theme-text-seondary-black me-2">{{$rent_data->post_city->value}}</p>
+                            <img src="{{theme_asset('assets/images/location.png')}}" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
-                    <div class="d-flex align-items-start justify-content-end pt-2">
-                        <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
-                            الهداي..</p>
-                        <img src="{{theme_asset('assets/images/location.png')}}" alt="">
-                    </div>
-                </div>
+                </a>
             </div>
-            <div class="listing">
-                <div class="list">
-                    <div class="content d-flex justify-content-between">
-                        <div class="d-flex flex-column align-items-start theme-text-white">
-                            <div class="sale theme-bg-sky">
-                                <span class="font-medium">للبيع</span>
-                            </div>
-                            <div class="sale theme-bg-blue">
-                                <span class="font-medium">متاح</span>
-                            </div>
-                        </div>
-                        <div class="fav-elipse d-flex align-items-center justify-content-center">
-                            <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
-                        </div>
-                    </div>
-                    <div class="price theme-text-white d-flex align-items-center justify-content-center">
-                        <span class="font-bold">4.5 مليون ر.س</span>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
-                    <div class="d-flex align-items-start justify-content-end pt-2">
-                        <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
-                            الهداي..</p>
-                        <img src="{{theme_asset('assets/images/location.png')}}" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="listing">
-                <div class="list">
-                    <div class="content d-flex justify-content-between">
-                        <div class="d-flex flex-column align-items-start theme-text-white">
-                            <div class="sale theme-bg-sky">
-                                <span class="font-medium">للبيع</span>
-                            </div>
-                            <div class="sale theme-bg-blue">
-                                <span class="font-medium">متاح</span>
-                            </div>
-                        </div>
-                        <div class="fav-elipse d-flex align-items-center justify-content-center">
-                            <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
-                        </div>
-                    </div>
-                    <div class="price theme-text-white d-flex align-items-center justify-content-center">
-                        <span class="font-bold">4.5 مليون ر.س</span>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
-                    <div class="d-flex align-items-start justify-content-end pt-2">
-                        <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
-                            الهداي..</p>
-                        <img src="{{theme_asset('assets/images/location.png')}}" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="listing">
-                <div class="list">
-                    <div class="content d-flex justify-content-between">
-                        <div class="d-flex flex-column align-items-start theme-text-white">
-                            <div class="sale theme-bg-sky">
-                                <span class="font-medium">للبيع</span>
-                            </div>
-                            <div class="sale theme-bg-blue">
-                                <span class="font-medium">متاح</span>
-                            </div>
-                        </div>
-                        <div class="fav-elipse d-flex align-items-center justify-content-center">
-                            <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
-                        </div>
-                    </div>
-                    <div class="price theme-text-white d-flex align-items-center justify-content-center">
-                        <span class="font-bold">4.5 مليون ر.س</span>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <h3 class="font-medium theme-text-blue"><a href="property_detail">فيلا إطلالة مميزة في حي سكني هادئ</a> </h3>
-                    <div class="d-flex align-items-start justify-content-end pt-2">
-                        <p class="mb-0 theme-text-seondary-black me-2">جدة - الطريق السريع - بالقرب من مسجد
-                            الهداي..</p>
-                        <img src="{{theme_asset('assets/images/location.png')}}" alt="">
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
+        @endif
     </div>
 </div>
 <!-- Property Listing Rent Section Ends Here -->

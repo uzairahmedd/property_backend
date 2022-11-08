@@ -141,7 +141,7 @@
 }
 
 .list {
-    background: url(/assets/images/list.png);
+    /* background: url(/assets/images/list.png); */
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 8px;

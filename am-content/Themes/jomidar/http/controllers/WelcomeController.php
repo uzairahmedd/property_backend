@@ -105,12 +105,55 @@ class WelcomeController extends controller
             $status = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
             $categories = Category::where('type', 'category')->inRandomOrder()->get();
             $states = Category::where('type', 'states')->with('childrenCategories')->get();
-            return view('theme::newlayouts.pages.home', compact('status', 'categories', 'states'));
+            //for home rent and sell properties
+            $status_properties = $this->status_property($status);
+            return view('theme::newlayouts.pages.home', compact('status', 'categories', 'states', 'status_properties'));
         } catch (\Exception $e) {
             return redirect()->route('install');
         }
     }
 
+   
+    /**
+     * Make data for rent and sales properties
+     *
+     * @return data
+     */
+    public function status_property($status)
+    {
+        $data=[];
+        foreach ($status as $status_data) {
+            if ($status_data->name == 'Rent') {
+                $rent_property = $this->get_status_property($status_data->id);
+                $data['rent_property']= $rent_property ;
+            }
+            if ($status_data->name == 'Sale') {
+                $sale_property = $this->get_status_property($status_data->id);
+                $data['sell_property']= $sale_property ;
+            }
+        }
+        return $data;
+    }
+
+    /**
+     * return status properties
+     *
+     * @return data
+     */
+    public function get_status_property($request)
+    {
+        $this->status = $request;
+
+        $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('min_price')->whereHas('max_price')->whereHas('post_city')->with('post_preview', 'min_price', 'max_price', 'post_city','property_status_type')
+            ->whereHas('property_status_type', function ($q) {
+                if (!empty($this->status)) {
+                    return $q->where('category_id', $this->status);
+                }
+                return $q;
+            });
+        $posts = $posts->latest()->get();
+        return $posts;
+    }
     public function change_currency(Request $request)
     {
         $put_curryncy = Category::where('type', 'currency')->with('position')->findorFail($request->currency);
