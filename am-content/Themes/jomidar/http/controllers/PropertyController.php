@@ -389,6 +389,16 @@ class PropertyController extends controller
         return view('theme::newlayouts.pages.terms_of_use');
     }
 
+    public function otp()
+    {
+        return view('theme::newlayouts.pages.otp');
+    }
+
+    public function phone_no()
+    {
+        return view('theme::newlayouts.pages.phone_no');
+    }
+
     public function map(Request $request){
 
        $seo=Options::where('key','seo')->first();
