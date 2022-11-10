@@ -1403,10 +1403,10 @@ span.directorist-select__selected-list--item:first-letter {
     margin-top: -20px;
 }
 
-
 .resident-pan {
     overflow: hidden;
     padding: 0px 10px;
+    text-align: right !important;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     margin-bottom: 0.6rem;

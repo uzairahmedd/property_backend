@@ -296,13 +296,34 @@ button a
     background-size: 400vh 200vh;
 }
 
+.signIn-modal
+{
+    background: linear-gradient(0deg, rgba(29, 161, 242, 0.75), rgba(29, 161, 242, 0.75)), url(/assets/images/header-bg.png);
+    /*background-image: url('/assets/images/header-bg.png');*/
+    background-repeat: no-repeat;
+    background-size: 400vh 200vh;
+}
 .otp-modal .modal-content
 {
     border-radius: 20px;
     /*background-color: var(--theme-white);*/
 }
 
+.signIn-modal .modal-content
+{
+    border-radius: 20px;
+    /*background-color: var(--theme-white);*/
+}
+
 .bg-otp-clr
+{
+    background-color: var(--theme-white);
+    margin: 60px 35px;
+    padding: 0px 0px 20px 0px;
+    border-radius: 20px;
+}
+
+.bg-number-clr
 {
     background-color: var(--theme-white);
     margin: 60px 35px;
