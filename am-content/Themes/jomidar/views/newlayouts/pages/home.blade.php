@@ -1,12 +1,12 @@
 @extends('theme::newlayouts.app')
 @section('content')
+
 <!-- Header Section Starts Here -->
 <div class="header d-flex flex-column align-items-center">
     <li class="col-12 col-sm-10 col-lg-8 col-xl-5">
         <h1 class="font-medium theme-text-white text-center">المنصة الحصرية للعقارات الموثقة في <span class="font-bold">المملكة</span></h1>
     </li>
     <div class="col-12 row looking-for theme-bg-white d-flex flex-lg-row flex-sm-row align-items-center">
-
         <div class="col-lg-2 search-button-div col-md-2 col-sm-2 col-xs-12" id="search">
             {{-- <button class="btn search-home-btn text-center" type="button">Button</button>--}}
             <a href="#" class="btn search-home-btn text-center" role="button">Search</a>
@@ -15,33 +15,109 @@
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
             <div class="dropdown complete-rent-drop">
                 <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink" onclick="disableScroll()" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">ايجار
+                <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink" onclick="" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">للايجار
                 </button>
                 <ul class="dropdown-menu rent-dropdown" aria-labelledby="dropdownMenuLink">
                     <div class="rent-dropdown-content">
-                        @foreach($status as $key => $row)
-                        <li class="rent-all">
-                            <input class="rent-select-dropdown" value="بيع" type="radio" id="status{{ $key }}" name="status" value="{{ $row->id }}" @if($key==0) checked @endif />
-                            <label class="rent-box" for="status{{ $key }}">{{ $row->name }}</label>
-                        </li>
-                        @endforeach
+                         <li class="rent-all">
+                           <input class="rent-select-dropdown" value="بيع" type="radio" id="radio02-01" name="radio-btn" />
+                           <label class="rent-box" for="radio02-01">بيع</label>
+                       </li>
+                       <li class="rent-all">
+                           <input class="rent-select-dropdown drive_percent-box" value="ايجار" type="radio" id="radio02-02" name="radio-btn" checked />
+                           <label class="rent-box" for="radio02-02">ايجار</label>
+                       </li>
                     </div>
                 </ul>
             </div>
         </div>
+{{--        select dropdown start--}}
+{{--        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">--}}
+{{--            <select name="state" class="rent-select" id="select-drop-btn">--}}
+{{--                @foreach($states as $row)--}}
+{{--                <option value="{{ $row->id }}">{{ $row->name }}</option>--}}
+{{--                @endforeach--}}
+{{--            </select>--}}
+{{--            <div class="city-toggle-icon">--}}
+{{--                <img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt="">--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        select dropdown end--}}
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-            <select name="state" class="rent-select" id="select-drop-btn">
-                @foreach($states as $row)
-                <option value="{{ $row->id }}">{{ $row->name }}</option>
-                @endforeach
-            </select>
-            <div class="city-toggle-icon">
-                <img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt="">
+            <div class="dropdown complete-resident-drop">
+                <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
+                <button class="btn dropdown-toggle resident-dropdown-toggle resident-btn" role="button" id="dropdownMenuLink1" onclick="" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">سكني
+                </button>
+                <ul class="dropdown-menu resident-dropdown" aria-labelledby="dropdownMenuLink1">
+                    <div class="resident-dropdown-content">
+                        <div class="row">
+                            <div class="col-12 p-0">
+                                <!-- Tab -->
+                                <nav>
+                                    <div class="nav nav-tabs mb-4 resident-tabs" id="nav-tab" role="tablist">
+                                        <a class="nav-item nav-link resident-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">تجاري</a>
+                                        <a class="nav-item nav-link resident-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">سكني</a>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                       <div class="d-flex justify-content-between resident-centent">
+                                           <div class="resident-pans">
+                                               <li class="resident-pan" value="فیلا">فیلا<i class="fa-solid fa-house-circle-check"></i></li>
+                                               <li class="resident-pan" value="بنتهاوس">بنتهاوس<i class="fa-solid fa-house-flag"></i></li>
+                                               <li class="resident-pan" value="شقة فندقية">شقة فندقية<i class="fa-solid fa-bed"></i></li>
+                                               <li class="resident-pan" value="طابق سكني">طابق سكني<i class="fa-solid fa-lines-leaning"></i></li>
+                                           </div>
+                                           <div class="resident-pans">
+                                               <li class="resident-pan" value="شقة">شقة<i class="fa-solid fa-building-user"></i></li>
+                                               <li class="resident-pan" value="تاون هاوس">تاون هاوس<i class="fa-solid fa-house-user"></i></li>
+                                               <li class="resident-pan" value="فيلا مجمع سكني">فيلا مجمع سكني<i class="fa-solid fa-house-chimney-window"></i></li>
+                                               <li class="resident-pan" value="ارض سكنية">ارض سكنية<i class="fa-solid fa-house-signal"></i></li>
+                                               <li class="resident-pan" value="مبنى سكني">مبنى سكني<i class="fa-solid fa-building-flag"></i></li>
+                                           </div>
+                                       </div>
+                                        <div class="d-flex justify-content-between mt-2">
+                                            <button class="complete-btn"><a href="">تم</a></button>
+                                            <button class="reset-btn"><a href="">إعادة ضبط</a></button>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                        <div class="d-flex justify-content-between resident-centent">
+                                            <div class="resident-pans">
+                                                <li class="resident-pan" value="محل تجاري" data-val="1">محل تجاري<i class="fa-solid fa-store"></i></li>
+                                                <li class="resident-pan" value="سكن عمال" data-val="2">سكن عمال <i class="fa-solid fa-house-user"></i></li>
+                                                <li class="resident-pan" value="مجمع سكني" data-val="3">مجمع سكني<i class="fa-solid fa-building-user"></i></li>
+                                                <li class="resident-pan" value="طابق تجاري" data-val="4">طابق تجاري<i class="fa-solid fa-house-flood-water"></i></li>
+                                                <li class="resident-pan" value="مصنع" data-val="5">مصنع<i class="fa-solid fa-industry"></i></li>
+{{--                                                <li class="resident-pan" value="ارض استخدام متعدد" data-val="6">ارض استخدام متعدد<i class="fa fa-globe drop-icons" aria-hidden="true"></i></li>--}}
+                                                <li class="resident-pan" value="عقارات تجارية اخرى" data-val="7">عقارات تجارية اخرى<i class="fa-solid fa-sign-hanging"></i></li>
+                                                <li class="resident-pan" value="ارض استخدام متعدد" data-val="7">ارض استخدام متعدد<i class="fa-solid fa-globe"></i></li>
+                                            </div>
+                                            <div class="resident-pans">
+                                                <li class="resident-pan" value="مستودع" data-val="9">مکتب<i class="fa-solid fa-briefcase drop-icons"></i></li>
+                                                <li class="resident-pan" value="مستودع" data-val="9">مستودع<i class="fa-solid fa-dumpster drop-icons"></i></li>
+                                                <li class="resident-pan" value="فيلا تجارية" data-val="10">فيلا تجارية<i class="fa-solid fa-building-user drop-icons"></i></li>
+                                                <li class="resident-pan" value="ارض تجارية" data-val="11">ارض تجارية<i class="fa-solid fa-industry drop-icons"></i></li>
+                                                <li class="resident-pan" value="مبنی تجاري" data-val="12">مبنی تجاري<i class="fa-solid fa-dumpster-fire drop-icons"></i></li>
+                                                <li class="resident-pan" value="ارض صناعية" data-val="13">ارض صناعية<i class="fa-solid fa-land-mine-on drop-icons"></i></li>
+                                                <li class="resident-pan" value="معرض تجاري" data-val="14">معرض تجاري<i class="fa-solid fa-plane drop-icons"></i></li>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between mt-2">
+                                            <button class="complete-btn"><a href="">تم</a></button>
+                                            <button class="reset-btn"><a href="">إعادة ضبط</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End of tab -->
+                            </div>
+                        </div>
+                    </div>
+                </ul>
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 search-input-bar">
             <input type="search" class="theme-text-secondary-black border-0" placeholder="تبحث عن عقار؟">
-
         </div>
     </div>
 </div>

@@ -75,6 +75,19 @@
     background: var(--theme-grey);
 }
 
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus-visible
+{
+    border: none;
+}
+
+.nav-tabs .nav-link
+{
+    border: none;
+    outline: none;
+}
+
+
+
 /* Palette */
 .theme-text-white {
     color: var(--theme-white) !important;
