@@ -17,7 +17,7 @@
                             <!-- <input type="text" value="{{$time}}"> -->
                             <h1 class="font-24 font-medium theme-text-seondary-black mb-3">تفعيل الحساب</h1>
                             <div class="d-flex align-items-end justify-content-center font-16 mb-2">
-                                <a href="" class="theme-text-sky me-2">تعديل</a>
+                                <a href="/Update-phone/{{encrypt($user_data->id)}}" class="theme-text-sky me-2">تعديل</a>
                                 <h3 class="font-medium theme-text-blue">[{{$user_data->phone}}]</h3>
                                 <span class="theme-text-grey">ادخل كود التفعيل المرسل إلى الرقم</span>
                             </div>
@@ -48,7 +48,7 @@
                                 </p>
                             </div>
                             <div class="d-flex justify-content-center font-14">
-                            <button type="submit" id="resend_otp">أرسل مرة أخرى</button>
+                                <button type="submit" id="resend_otp">أرسل مرة أخرى</button>
                                 <span class="theme-text-grey">لم يصلك كود التفعيل؟</span>
                             </div>
                         </div>

@@ -154,7 +154,7 @@ class RegisterController extends controller
         $usermeta->content = json_encode($data);
         $usermeta->save();
         // $user->encrypt_id = encrypt($user->user_id);
-        
+
         $user = $this->otp_processing($user);
 
         return $user;
@@ -165,18 +165,10 @@ class RegisterController extends controller
     {
         //send otp on registration
         if ($user->save()) {
-            if (env("APP_ENV") == 'Test') {
-                $otp_response = $this->send_otp($user->phone);
-                if (is_array($otp_response) && str_contains($otp_response['body'], 'Send Successful')) {
-                    $url = env("APP_URL") . '/Verify_OTP_page/' . encrypt($user->id);
-                    return success_response(['url' => $url, 'Otp send successfully']);
-                }
-            } else {
-                $otp_response = $this->send_otp($user->phone);
-                if (is_array($otp_response) && str_contains($otp_response['body'], 'Send Successful')) {
-                    $url = env("APP_URL") . '/Verify_OTP_page/' . encrypt($user->id);
-                    return success_response(['url' => $url, 'Otp send successfully']);
-                }
+            $otp_response = $this->send_otp($user->phone);
+            if (is_array($otp_response) && str_contains($otp_response['body'], 'Send Successful')) {
+                $url = env("APP_URL") . '/Verify_OTP_page/' . encrypt($user->id);
+                return success_response(['url' => $url, 'Otp send successfully']);
             }
             $user = error_response(['message' => 'OTP not Send', 'Otp error']);
         } else {
@@ -241,7 +233,7 @@ class RegisterController extends controller
     {
         $otp = rand(1000, 9999);
         DB::table('users')->where('phone', $mobile)
-        ->update(['otp' => $otp, 'updated_at' => Carbon::now()]);
+            ->update(['otp' => $otp, 'updated_at' => Carbon::now()]);
         $main_url = config('api_constants.sms_url');
         $sms_username = config('api_constants.sms_username');
         $sms_password = config('api_constants.sms_password');
@@ -252,9 +244,8 @@ class RegisterController extends controller
         $response = '{"header_code":200,"body":"1355541590,966504454685,Send Successful\r\n"}';
         $response = json_decode($response, true);
         if (env("APP_ENV") != 'Test') {
-             //send otp using curl
-        $response = @curl_request($url, '', false, '');
-            
+            //send otp using curl
+            $response = @curl_request($url, '', false, '');
         }
         //time for countdown
         $user_data = DB::table('users')->where('phone', $mobile)
@@ -267,11 +258,11 @@ class RegisterController extends controller
         if ($response['time'] < 0) {
             $response['time'] = 0;
         }
-        $response['otp']=$otp;
+        $response['otp'] = $otp;
         return $response;
     }
 
-     /**
+    /**
      *verify otp which is send to customer monile
      * @return @response.
      */
@@ -289,7 +280,7 @@ class RegisterController extends controller
                 return error_response(['otp' => 'OTP was not correct'], '');
             }
             DB::table('users')->where(['id' => $request->user_id, 'phone' => $request->user_mobile])
-            ->update(['is_verified' => 1, 'updated_at' => Carbon::now()]);
+                ->update(['is_verified' => 1, 'updated_at' => Carbon::now()]);
             //after succefull verification user loggedin    
             $user = User::find($request->user_id);
             Auth::login($user);
@@ -298,4 +289,74 @@ class RegisterController extends controller
         return error_response(['otp' => 'OTP Required'], '');
     }
 
+    /**
+     * updating phone page
+     * @return @view
+     */
+    public function Update_phone($id)
+    {
+        $user_data = DB::table('users')
+            ->where('id', decrypt($id))
+            ->where('is_verified', 0)
+            ->first();
+        return view('theme::newlayouts.pages.phone_no', compact('user_data'));
+    }
+
+   /**
+     * updating phone
+     * @return @response
+     */
+    public function modify_phone(Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            'phone' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return error_response($validator->errors(), 'Validation error');
+        }
+        $otp_response = $this->update_send_otp($request->all());
+        if (is_array($otp_response) && str_contains($otp_response['body'], 'Send Successful')) {
+            $url = env("APP_URL") . '/Verify_OTP_page/' . $request->user_id;
+            return success_response(['url' => $url, 'Otp send successfully']);
+        }
+        return error_response(['phone' => 'OTP not Send', 'Otp error']);
+    }
+
+
+    /**
+     * Send otp using api after updating phone
+     * @return @response
+     */
+    public function update_send_otp($request)
+    {
+        $otp = rand(1000, 9999);
+        DB::table('users')->where('id', decrypt($request['user_id']))
+            ->update(['otp' => $otp, 'phone' => $request['phone'], 'updated_at' => Carbon::now()]);
+        $main_url = config('api_constants.sms_url');
+        $sms_username = config('api_constants.sms_username');
+        $sms_password = config('api_constants.sms_password');
+        $otp = 'رمز تحقق تسجيلك من #حمايه هو: ' . $otp . ' \ Your Otp For Khiaratee registration is: ' . $otp;
+        $otp_message = urlencode($otp);
+        $updated_mobile = ltrim($request['phone'], '0');
+        $url = $main_url . 'user=' . $sms_username . '&' . 'pwd=' . $sms_password . '&' . 'senderid=SMSAlert&mobileno=966' . $updated_mobile . '&msgtext=' . $otp_message . '&priority=High&CountryCode=ALL';
+        $response = '{"header_code":200,"body":"1355541590,966504454685,Send Successful\r\n"}';
+        $response = json_decode($response, true);
+        if (env("APP_ENV") != 'Test') {
+            //send otp using curl
+            $response = @curl_request($url, '', false, '');
+        }
+        //time for countdown
+        $user_data = DB::table('users')->where('id', decrypt($request['user_id']))
+            ->where('is_verified', '0')
+            ->first();
+        //time diff for otp send to page reload
+        $diff = Carbon::parse($user_data->updated_at)->diffInSeconds(\Carbon\Carbon::now());
+        $response['time'] = 60 - $diff;
+        //if time is in negative of greater then otp code
+        if ($response['time'] < 0) {
+            $response['time'] = 0;
+        }
+        $response['otp'] = $otp;
+        return $response;
+    }
 }
