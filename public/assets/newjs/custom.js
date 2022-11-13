@@ -104,7 +104,7 @@
                     $('.basicbtn').attr('disabled','');
                     $('.basicbtn').html('Please Wait...');
                 },
-                success: function(response){ 
+                success: function(response){
                     $('.basicbtn').removeAttr('disabled');
                     $('.basicbtn').html('Login');
                     location.reload();
@@ -143,28 +143,116 @@
                     $('.basicbtn').attr('disabled','');
                     $('.basicbtn').html('Please Wait...');
                 },
-                success: function(response){ 
-                    if(response.errors)
-                    {
-                        $('#errors_msg').html(response.errors);
-                        $('.basicbtn').removeAttr('disabled');
-                        $('.basicbtn').html('Register');
-                    }else{
-                        $('.basicbtn').removeAttr('disabled');
-                        $('.basicbtn').html('Register');
-                        location.reload();
-                    }
-                },
-                error: function(xhr, status, error) 
-                {
+                success: function(data){ 
                     $('.basicbtn').removeAttr('disabled');
                     $('.basicbtn').html('Register');
-                    $.each(xhr.responseJSON.errors, function (key, item) 
-                    {
-                        $('#errors_msg').html(item);
-                    });
+                    console.log(data);
+                        //for success page
+                        if (data.status == 'success') {
+                            window.location.href = data.data['url'];
+                        }
+                        //for error page
+                        else if (data.status == 'error') {
+                            if (data.data['name']) {
+                                $('#reg_name_notification').text(data.data['name'] );
+                            }
+                            if (data.data['phone']) {
+                                $('#reg_mobile_notification').text(data.data['phone']);
+                            }
+                            if (data.data['email']) {
+                                $('#reg_email_notification').text( data.data['email']);
+                            }
+                            if (data.data['password']) {
+                                $('#reg_password_notification').text(data.data['password']);
+                            }
+                            if (data.data['term_condition']) {
+                                $('#reg_terms_notification').text(data.data['term_condition']);
+                            }
+                            if (data.data['message']) {
+                                $('#errors_msg').html('<span class="error">' + data.data['message'] + '</span>');
+                            }
+                            setTimeout(function () {
+                                $('#reg_name_notification').text('');
+                                $('#reg_mobile_notification').text('');
+                                $('#reg_email_notification').text('');
+                                $('#reg_password_notification').text('');
+                                $('#reg_terms_notification').text('');
+                                $('#errors_msg').html('<span class="error"></span>');
+                            }, 5000);
+                        }
                 }
             })
         });
+
+         //otp verified
+    $("#submit_otp").on("click", function (e) {
+        e.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $("#submit_otp").prop('disabled', true);
+        $("#submit_otp i").addClass('fa fa-spinner fa-spin ');
+        var baseurl=$('#base_url').val() ;
+        var url = baseurl + 'verify_otp';
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: $("#verify_otp").serialize(),
+            success: function (response) {
+                $("#submit_otp").prop('disabled', false);
+                $("#submit_otp i").removeClass('fa fa-spinner fa-spin ');
+                if (response.status == 'success') {
+
+                    window.location.href = baseurl+'home';
+                   
+                }
+                if (response.status == 'error') {
+                    if (response.data['otp']) {
+                        $('#otp_error').html('<span class="error">' + response.data['otp'] + '</span>');
+                    }
+                    setTimeout(function () {
+                        $('#otp_error').html('');
+                    }, 20000);
+                }
+            }
+        });
+    });
+
+
+    //sending otp 
+    $("#resend_otp").on("click", function (e) {
+        e.preventDefault();
+        $('#error_msg').addClass('d-none')
+        $("#resend_otp").prop('disabled', true);
+        $("#resend_otp i").addClass('fa fa-spinner fa-spin ');
+        var mobile = $('#user_mbl').val();
+        var baseurl=$('#base_url').val() ;
+        var url = baseurl + 'resend_otp/' + mobile;
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (response) {
+                console.log(response);
+                $("#resend_otp").prop('disabled', false);
+                $("#resend_otp i").removeClass('fa fa-spinner fa-spin ');
+
+                if (response.header_code == 200) {
+                    $("#otp4").focus();
+                    timer.reset(response.time);
+                    timer.mode(0);
+                    timer.start(1000);
+                    $('#otp_notification').text('OTP send successfully!');
+                    $('#otp').val(response.otp);
+
+                }
+                if (response.header_code != 200) {
+                    $('#otp_error').html('Something went wrong!');
+                }
+            }
+        });
+    });
     
     })(jQuery);
+

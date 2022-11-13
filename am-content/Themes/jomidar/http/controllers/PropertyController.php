@@ -70,6 +70,58 @@ class PropertyController extends controller
         }
     }
 
+
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function property_detail(Request $request, $slug)
+    {
+        $path= $request->path();
+
+        $property = Terms::where([
+            ['type','property'],
+            ['status',1],
+            ['slug',$slug]
+        ])->with('post_preview','min_price','max_price','post_city','post_state','user','content','multiple_images','option_data','facilities_get','contact_type','latitude','longitude','excerpt')->withCount('reviews')->first();
+
+
+
+        if($property)
+        {
+            SEOMeta::setTitle($property->title);
+            SEOMeta::setDescription($property->excerpt->content ?? '');
+            SEOMeta::addMeta('article:published_time', $property->updated_at->format('Y-m-d'), 'property');
+
+            OpenGraph::setDescription($property->excerpt->content ?? '');
+            OpenGraph::setTitle($property->title);
+
+
+            foreach($property->multiple_images ?? [] as $row){
+
+              OpenGraph::addImage(asset($row->media->url));
+              JsonLdMulti::addImage(asset($row->media->url));
+              JsonLd::addImage(asset($row->media->url));
+          }
+
+
+          JsonLd::setTitle($property->title);
+          JsonLd::setDescription($property->excerpt->content ?? '');
+          JsonLd::setType('Property');
+
+          JsonLdMulti::setTitle($property->title);
+          JsonLdMulti::setDescription($property->excerpt->content ?? '');
+          JsonLdMulti::setType('Property');
+          dump($property);
+            return view('theme::newlayouts.pages.property_detail',compact('property','path'));
+        }else{
+            return abort(404);
+        }
+    }
+
+
     public function project_view(Request $request,$slug)
     {
 
@@ -314,10 +366,10 @@ class PropertyController extends controller
         return view('theme::newlayouts.pages.property_lists',compact('category','state','min_price','max_price','status','location','statuses','categories','states','badroom','bathroom','floor','block','input_array','src'));
     }
 
-    public function property_detail()
-    {
-        return view('theme::newlayouts.pages.property_detail');
-    }
+    // public function property_detail()
+    // {
+    //     return view('theme::newlayouts.pages.property_detail');
+    // }
 
     public function property_auction()
     {

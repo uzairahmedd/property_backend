@@ -222,13 +222,21 @@ Route::group(['namespace'=>'Amcoders\Theme\jomidar\http\controllers','middleware
 //	Route::post('property_lists','ContactController@new_show')->name('property.lists');
 //    Route::post('property_detail','ContactController@property_detail')->name('property.detail');
 //    Route::post('property_auction','ContactController@property_auction')->name('property.auction');
+//new design routes
+Route::post('user/user_register','RegisterController@user_register')->name('user_register');
+Route::get('Verify_OTP_page/{id}', 'RegisterController@Verify_OTP_page');
+Route::post('verify_otp', 'RegisterController@verify_otp');
+Route::get('resend_otp/{mobile}', 'RegisterController@send_otp');
+
+Route::get('property-details/{slug}','PropertyController@property_detail');
+
 
 });
 
 //    Latest Khiaratee Theme Routes Start
 
 Route::group(['namespace'=>'Amcoders\Theme\jomidar\http\controllers','middleware'=>'web'],function() {
-    Route::get('property_lists','PropertyController@new_list')->name('list');
+    Route::get('property_lists','PropertyController@new_list')->name('property_lists');
     Route::get('property_detail','PropertyController@property_detail')->name('property_detail');
     Route::get('property_auction','PropertyController@property_auction')->name('property_auction');
     Route::get('my_profile','PropertyController@userboard_profile')->name('userboard_profile');

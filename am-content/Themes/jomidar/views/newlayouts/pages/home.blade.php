@@ -166,7 +166,7 @@
             }
             @endphp
             <div class="listing">
-                <a href="property/{{$sale_data->slug}}">
+                <a href="property-details/{{$sale_data->slug}}">
                     <div class="list" style="background: url({{$image}});">
                         <div class="content d-flex justify-content-between">
                             <div class="d-flex flex-column align-items-start theme-text-white">

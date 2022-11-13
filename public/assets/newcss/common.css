@@ -794,3 +794,7 @@ button a
         padding: 25px 0px 20px 0px;
     }
 }
+
+.error{
+    color: red;
+}
