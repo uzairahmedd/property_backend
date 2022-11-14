@@ -448,6 +448,7 @@
     display: block !important;
     margin: 0 auto;
     width: 140px;
+    max-width: 100%;
     text-align: center;
     border: 0.5px solid #292071;
     border-radius: 8px;
@@ -472,15 +473,16 @@
 }
 
 .dropdown .rent-btn {
-    padding: 0px 20px 0 70px;
+    padding: 0px 20px 0 30px;
     border: 0;
+    margin-left: 20px;
     border-radius: unset;
     border-right: 1px solid #C9C9C9;
     background: transparent;
 }
 
 .dropdown .resident-btn {
-    padding: 0px 20px 0 70px;
+    padding: 0px 20px 0 35px;
     border: 0;
     border-radius: unset;
     border-right: 1px solid #C9C9C9;
@@ -981,6 +983,7 @@ input[type=text]::placeholder {
     .complete-rent-drop img {
         position: absolute;
         left: 15px;
+        padding-top: 10px;
         width: 15%;
         max-width: 100%;
     }
@@ -1056,11 +1059,18 @@ input[type=text]::placeholder {
     .complete-rent-drop img {
         width: 11px;
         margin-left: 24px;
+        margin-top: 5px;
+    }
+
+    .looking-for {
+        width: 335px;
+        max-width: 100%;
     }
 
     .complete-resident-drop img {
         width: 11px;
         margin-left: 24px;
+        padding-top: 15px;
     }
 
     .looking-for input[type='search'] {
@@ -1075,6 +1085,11 @@ input[type=text]::placeholder {
 
     }
 
+    .rent-box {
+        width: 120px;
+        max-width: 100%;
+    }
+
     .dropdown-select.wide {
         margin: 10px 0;
     }
@@ -1082,7 +1097,31 @@ input[type=text]::placeholder {
     .dropdown .rent-btn {
         border-right: none;
         padding-right: 0;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-left: 0;
         border-bottom: 1px solid #C9C9C9 !important;
+    }
+
+    .resident-btn.show i 
+    {
+        padding-left: 10px;
+        padding-right: 0;
+        padding-top: 0;
+    }
+    
+    .dropdown .resident-btn {
+        border-right: none;
+        padding-right: 0;
+        padding-top: 15px;
+        margin-left: 0;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #C9C9C9 !important;
+    }
+
+    .dropdown .resident-btn {
+        width: 100%;
+        text-align: right;
     }
 
     .city-toggle-icon img {
@@ -1451,6 +1490,27 @@ span.directorist-select__selected-list--item:first-letter {
     background-color: var(--theme-blue);
     color: var(--theme-white);
 }
+
+@media screen and (max-width: 336px) {
+    .rent-box {
+        width: 94px;
+        max-width: 100%;
+    }
+
+    .verified {
+        margin-top: -27px;
+    }
+
+    .verified h3, .apps h3 {
+        font-size: 14px;
+    }
+
+    .looking-for {
+        width: 300px;
+        max-width: 100%;
+    }
+
+    }
 
 
 

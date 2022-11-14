@@ -182,16 +182,16 @@ $(document).ready(function () {
 });
 
 // jquery for dropdown button start
-$(document).ready(function () {
+$(document).ready(function (event) {
     $('.complete-rent-drop').click(function (e) {
         $('.overlay').css('opacity', 0.2);
         $('.overlay').css('display', 'block');
         event.stopPropagation();
     });
 });
-$("input[type='radio']").click(function () {
+$("input[type='radio']").click(function (event) {
     if ($("input[type='radio']").is(":checked")) {
-        console.log('aldsfasdf');
+        // console.log('aldsfasdf');
         var radio_val = $("input[type='radio']:checked").val();
         $('#dropdownMenuLink').text(radio_val);
         $('.overlay').css('opacity', 0);
@@ -224,7 +224,7 @@ $(document).ready(function (e) {
     $('select').on('change', function () {
         $('.overlay').css('opacity', 0);
         $('.overlay').css('display', 'none');
-        event.stopPropagation();
+        e.stopPropagation();
     });
 });
 
@@ -233,20 +233,21 @@ $(document).ready(function () {
     $('.complete-resident-drop').on('click', function (event) {
         $('.overlay').css('opacity', 0.2);
         $('.overlay').css('display', 'block');
-        $('.overlay').css('z-index', '0');
         event.stopPropagation();
     });
-
-    $('li.resident-pan').click(function (event) {
-        var getId = $(this).data('val');
-        console.log(getId);
-        var selectedQty = $(".resident-pan"+getId).val();
-            $('#dropdownMenuLink1').text(selectedQty);
+    $('.resident-pan').on('click', function (event) {
+                $(".resident-pan").removeClass('selected');
+            $(this).addClass('selected');
+            var drop_text = $( ".resident-pan.selected" ).text();
+            $("#dropdownMenuLink1").html($(this).html());
+            $('#rent-t-icon img').css('margin-top','10px');
+            $('.resident-pan.selected').css({"margin-bottom": "0px", "margin-top":"10px", "border":"none", "padding":"0px 20px 0 35px;"});
             $('.overlay').css('opacity', 0);
             $('.overlay').css('display', 'none');
             $(".resident-dropdown").removeClass("show");
             event.stopPropagation();
-        });
+            });
+
 
     $('.overlay').click(function (event) {
         $('.overlay').css('opacity', 0);
@@ -255,7 +256,14 @@ $(document).ready(function () {
         event.stopPropagation();
     });
 
+    // $('#rent-drop-toggles').click(function()
+    // {
+    //     $('ul.rent-dropdown').addClass('show');
+    // })
+
 });
+
+
 
 
 

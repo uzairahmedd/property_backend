@@ -2,8 +2,8 @@
 @section('content')
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/term.css')}}">
     <div class="container">
-        <div>
-            <h3 class="text-center theme-text-blue pt-5 terms-text">شروط الاستخدام</h3>
+        <div class="terms-top">
+            <h3 class="text-center theme-text-blue pt-5 font-weight-bold terms-text">شروط الاستخدام</h3>
            <p class="text-center pt-4">
                هذا الموقع مملوك لشركة وصلت للخدمات العقارية وهي وسيط عقاري للعقارات السكنية والتجارية في المملكة العربية السعودية والعالم.
            </p>
@@ -35,7 +35,7 @@
         </div>
         <div class="data-collection">
             <p class="text-right font-24 theme-text-sky">جمع المعلومات</p>
-            <p class="text-right pt-4">تشمل التي قد نجمعها عنك ("المعلومات الشخصية")، على سبيل المثال لا الحصر، ما يلي:</p>
+            <p class="text-right">تشمل التي قد نجمعها عنك ("المعلومات الشخصية")، على سبيل المثال لا الحصر، ما يلي:</p>
             <p>
                 معلوماتك الخاصة وتتضمن اسمك ورقم هاتفك وبريدك الإلكتروني وبيانات الدفع الخاصة بك.<br>
                 أي معلومات أو المستندات أو منشورات يتم مشاركتها بواسطتك عبر الموقع.<br>
