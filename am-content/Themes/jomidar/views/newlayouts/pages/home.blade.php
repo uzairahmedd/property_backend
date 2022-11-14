@@ -253,7 +253,7 @@
 <div class="property-sl-r d-flex justify-content-center align-items-center">
     <div class="col-12 col-sm-10 col-lg-8 col-xl-5">
         <h1 class="font-bold theme-text-white mb-0">هل عندك عقار للبيع أو للإيجار</h1>
-        <h3 class="mb-0 theme-text-white">يمكنك تسويق عقارك على موقعنا بكل سهولة، او بإمكانك تفويض فريق وصلت لبيع
+        <h3 class="mb-0 theme-text-white">يمكنك تسويق عقارك على موقعنا بكل سهولة، او بإمكانك تفويض فريق خياراتي لبيع
             وتأجير
             العقار بالنيابة عنك بكل
             سهولة

@@ -21,4 +21,5 @@
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/common.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/home.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/view-item.css')}}">
+    @stack('css')
 </head>

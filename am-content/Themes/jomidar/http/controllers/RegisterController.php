@@ -332,6 +332,12 @@ class RegisterController extends controller
         $otp = rand(1000, 9999);
         DB::table('users')->where('id', decrypt($request['user_id']))
             ->update(['otp' => $otp, 'phone' => $request['phone'], 'updated_at' => Carbon::now()]);
+        //update usermeta content    
+        $user_meta=DB::table('user_meta')->where('id', decrypt($request['user_id']))->first();
+        $get_content=json_decode($user_meta->content);
+        $get_content->phone=$request['phone'];
+        DB::table('user_meta')->where('user_id', decrypt($request['user_id']))->where('type','content')
+            ->update(['content' => json_encode($get_content)]);
         $main_url = config('api_constants.sms_url');
         $sms_username = config('api_constants.sms_username');
         $sms_password = config('api_constants.sms_password');
