@@ -132,12 +132,12 @@
                         </li> -->
                     </ul>
                     @php
-                    $info = json_decode($property->user->usermeta->content);
+                    $info = isset($property->user->usermeta->content) ? json_decode($property->user->usermeta->content) : null ;
                     @endphp
                     <div class="d-flex flex-column flex-sm-row justify-content-between w-100">
                         <button class="contact-btn col-12 col-sm-7 theme-bg-sky border-0 theme-text-white font-medium mb-3 mb-sm-0">
                             <img src="{{theme_asset('assets/images/phone.png')}}" alt="" class="phone position-absolute">
-                            {{ $info->phone }}
+                            {{ isset($info->phone) ? $info->phone : ''  }}
                         </button>
                         <button class="contact-btn col-12 col-sm-4 theme-bg-white border-0 theme-text-blue font-medium">
                             <img src="{{theme_asset('assets/images/booking-calender.png')}}" alt="" class="me-3">
