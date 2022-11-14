@@ -45,7 +45,7 @@
 {{--        select dropdown end--}}
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
             <div class="dropdown complete-resident-drop">
-                <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
+                <span class="rent-toggle-icon" id="rent-t-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
                 <button class="btn dropdown-toggle resident-dropdown-toggle resident-btn" role="button" id="dropdownMenuLink1" onclick="" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">سكني
                 </button>
                 <ul class="dropdown-menu resident-dropdown" aria-labelledby="dropdownMenuLink1">
@@ -63,17 +63,17 @@
                                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                        <div class="d-flex justify-content-between resident-centent">
                                            <div class="resident-pans">
-                                               <li class="resident-pan" value="فیلا">فیلا<i class="fa-solid fa-house-circle-check"></i></li>
-                                               <li class="resident-pan" value="بنتهاوس">بنتهاوس<i class="fa-solid fa-house-flag"></i></li>
-                                               <li class="resident-pan" value="شقة فندقية">شقة فندقية<i class="fa-solid fa-bed"></i></li>
-                                               <li class="resident-pan" value="طابق سكني">طابق سكني<i class="fa-solid fa-lines-leaning"></i></li>
+                                               <li class="resident-pan" value="1">فیلا<i class="fa-solid fa-house-circle-check"></i></li>
+                                               <li class="resident-pan" value="2">بنتهاوس<i class="fa-solid fa-house-flag"></i></li>
+                                               <li class="resident-pan" value="3">شقة فندقية<i class="fa-solid fa-bed"></i></li>
+                                               <li class="resident-pan" value="4">طابق سكني<i class="fa-solid fa-lines-leaning"></i></li>
                                            </div>
                                            <div class="resident-pans">
-                                               <li class="resident-pan" value="شقة">شقة<i class="fa-solid fa-building-user"></i></li>
-                                               <li class="resident-pan" value="تاون هاوس">تاون هاوس<i class="fa-solid fa-house-user"></i></li>
-                                               <li class="resident-pan" value="فيلا مجمع سكني">فيلا مجمع سكني<i class="fa-solid fa-house-chimney-window"></i></li>
-                                               <li class="resident-pan" value="ارض سكنية">ارض سكنية<i class="fa-solid fa-house-signal"></i></li>
-                                               <li class="resident-pan" value="مبنى سكني">مبنى سكني<i class="fa-solid fa-building-flag"></i></li>
+                                               <li class="resident-pan" value="5">شقة<i class="fa-solid fa-building-user"></i></li>
+                                               <li class="resident-pan" value="6">تاون هاوس<i class="fa-solid fa-house-user"></i></li>
+                                               <li class="resident-pan" value="7">فيلا مجمع سكني<i class="fa-solid fa-house-chimney-window"></i></li>
+                                               <li class="resident-pan" value="8">ارض سكنية<i class="fa-solid fa-house-signal"></i></li>
+                                               <li class="resident-pan" value="9">مبنى سكني<i class="fa-solid fa-building-flag"></i></li>
                                            </div>
                                        </div>
                                         <div class="d-flex justify-content-between mt-2">
@@ -84,23 +84,23 @@
                                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                         <div class="d-flex justify-content-between resident-centent">
                                             <div class="resident-pans">
-                                                <li class="resident-pan" value="محل تجاري" data-val="1">محل تجاري<i class="fa-solid fa-store"></i></li>
-                                                <li class="resident-pan" value="سكن عمال" data-val="2">سكن عمال <i class="fa-solid fa-house-user"></i></li>
-                                                <li class="resident-pan" value="مجمع سكني" data-val="3">مجمع سكني<i class="fa-solid fa-building-user"></i></li>
-                                                <li class="resident-pan" value="طابق تجاري" data-val="4">طابق تجاري<i class="fa-solid fa-house-flood-water"></i></li>
-                                                <li class="resident-pan" value="مصنع" data-val="5">مصنع<i class="fa-solid fa-industry"></i></li>
-{{--                                                <li class="resident-pan" value="ارض استخدام متعدد" data-val="6">ارض استخدام متعدد<i class="fa fa-globe drop-icons" aria-hidden="true"></i></li>--}}
-                                                <li class="resident-pan" value="عقارات تجارية اخرى" data-val="7">عقارات تجارية اخرى<i class="fa-solid fa-sign-hanging"></i></li>
-                                                <li class="resident-pan" value="ارض استخدام متعدد" data-val="7">ارض استخدام متعدد<i class="fa-solid fa-globe"></i></li>
+                                                <li class="resident-pan" value="10" data-val="1">محل تجاري<i class="fa-solid fa-store"></i></li>
+                                                <li class="resident-pan" value="11" data-val="2">سكن عمال <i class="fa-solid fa-house-user"></i></li>
+                                                <li class="resident-pan" value="12" data-val="3">مجمع سكني<i class="fa-solid fa-building-user"></i></li>
+                                                <li class="resident-pan" value="13" data-val="4">طابق تجاري<i class="fa-solid fa-house-flood-water"></i></li>
+                                                <li class="resident-pan" value="14" data-val="5">مصنع<i class="fa-solid fa-industry"></i></li>
+{{--                                                <li class="resident-pan" value="15" data-val="6">ارض استخدام متعدد<i class="fa fa-globe drop-icons" aria-hidden="true"></i></li>--}}
+                                                <li class="resident-pan" value="16" data-val="7">عقارات تجارية اخرى<i class="fa-solid fa-sign-hanging"></i></li>
+                                                <li class="resident-pan" value="17" data-val="7">ارض استخدام متعدد<i class="fa-solid fa-globe"></i></li>
                                             </div>
                                             <div class="resident-pans">
-                                                <li class="resident-pan" value="مستودع" data-val="9">مکتب<i class="fa-solid fa-briefcase drop-icons"></i></li>
-                                                <li class="resident-pan" value="مستودع" data-val="9">مستودع<i class="fa-solid fa-dumpster drop-icons"></i></li>
-                                                <li class="resident-pan" value="فيلا تجارية" data-val="10">فيلا تجارية<i class="fa-solid fa-building-user drop-icons"></i></li>
-                                                <li class="resident-pan" value="ارض تجارية" data-val="11">ارض تجارية<i class="fa-solid fa-industry drop-icons"></i></li>
-                                                <li class="resident-pan" value="مبنی تجاري" data-val="12">مبنی تجاري<i class="fa-solid fa-dumpster-fire drop-icons"></i></li>
-                                                <li class="resident-pan" value="ارض صناعية" data-val="13">ارض صناعية<i class="fa-solid fa-land-mine-on drop-icons"></i></li>
-                                                <li class="resident-pan" value="معرض تجاري" data-val="14">معرض تجاري<i class="fa-solid fa-plane drop-icons"></i></li>
+                                                <li class="resident-pan" value="18" data-val="9">مکتب<i class="fa-solid fa-briefcase drop-icons"></i></li>
+                                                <li class="resident-pan" value="19" data-val="9">مستودع<i class="fa-solid fa-dumpster drop-icons"></i></li>
+                                                <li class="resident-pan" value="20" data-val="10">فيلا تجارية<i class="fa-solid fa-building-user drop-icons"></i></li>
+                                                <li class="resident-pan" value="21" data-val="11">ارض تجارية<i class="fa-solid fa-industry drop-icons"></i></li>
+                                                <li class="resident-pan" value="22" data-val="12">مبنی تجاري<i class="fa-solid fa-dumpster-fire drop-icons"></i></li>
+                                                <li class="resident-pan" value="23" data-val="13">ارض صناعية<i class="fa-solid fa-land-mine-on drop-icons"></i></li>
+                                                <li class="resident-pan" value="24" data-val="14">معرض تجاري<i class="fa-solid fa-plane drop-icons"></i></li>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-between mt-2">
@@ -167,7 +167,7 @@
             @endphp
             <div class="listing">
                 <a href="property-details/{{$sale_data->slug}}">
-                    <div class="list" style="background: url({{$image}});">
+                    <div class="list" style="background-image: url({{$image}});">
                         <div class="content d-flex justify-content-between">
                             <div class="d-flex flex-column align-items-start theme-text-white">
                                 <div class="sale theme-bg-sky">
@@ -226,7 +226,7 @@
             @endphp
             <div class="listing">
                 <a href="property/{{$rent_data->slug}}">
-                    <div class="list" style="background: url({{$rent_image}});">
+                    <div class="list" style="background-image: url({{$rent_image}});">
                         <div class="content d-flex justify-content-between">
                             <div class="d-flex flex-column align-items-start theme-text-white">
                                 <div class="sale theme-bg-sky">

@@ -3,7 +3,7 @@
 .filter-bar
 {
     background: #FFFFFF;
-    opacity: 0.95;
+    /*opacity: 0.95;*/
     box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
     height: 114px;
 }
@@ -305,7 +305,7 @@
 .complete-rent-drop img {
     position: absolute;
     top: 19px;
-    left: 10px;
+    left: 25px;
     width: 10px;
     max-width: 100%;
 }
