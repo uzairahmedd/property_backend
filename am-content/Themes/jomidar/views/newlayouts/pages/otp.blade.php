@@ -18,7 +18,7 @@
                             <h1 class="font-24 font-medium theme-text-seondary-black mb-3">تفعيل الحساب</h1>
                             <div class="d-flex align-items-end justify-content-center font-16 mb-2">
                                 <a href="/Update-phone/{{encrypt($user_data->id)}}" class="theme-text-sky me-2">تعديل</a>
-                                <h3 class="font-medium theme-text-blue">[{{$user_data->phone}}]</h3>
+                                <h3 class="font-24 theme-text-blue">[{{$user_data->phone}}]&nbsp;</h3>
                                 <span class="theme-text-grey">ادخل كود التفعيل المرسل إلى الرقم</span>
                             </div>
                             <div id="otp_notification" style="color: green;"></div>
@@ -41,14 +41,13 @@
                             </form>
                             <span id="otp_error"></span>
                             <div class="timer">
-
-                                <p>صلاحية الكود تنتهي خلال <span class="minute" style="color: red;">00</span><span style="font-size: 30px; color:red ">:</span><span class="second" style="color: red;">00</span> ثانية
+                                <p class="text-center">صلاحية الكود تنتهي خلال <span class="minute theme-red font-24">00</span><span class="theme-text-blue font-24">:</span><span class="second theme-red font-24">00</span> ثانية
                                 </p>
-                                <p id="error_msg" class="d-none">انتهت صلاحية الرمز الذي تم إدخالهئ,<span class="otp-time"> الرجاء النقر على رابط اعادة الارسال. </span>
+                                <p id="error_msg" class="text-center d-none mb-0">انتهت صلاحية الرمز الذي تم إدخالهئ,<span class="otp-time theme-text-blue font-weight-600"> الرجاء النقر على رابط اعادة الارسال. </span>
                                 </p>
                             </div>
                             <div class="d-flex justify-content-center font-14">
-                                <button type="submit" id="resend_otp">أرسل مرة أخرى</button>
+                                <button type="submit" class="border-0 theme-red font-weight-bold" id="resend_otp">أرسل مرة أخرى&nbsp;</button>
                                 <span class="theme-text-grey">لم يصلك كود التفعيل؟</span>
                             </div>
                         </div>

@@ -34,6 +34,7 @@
     --theme-secondary: #C9009D;
     --theme-grey:#848484;
     --theme-grey-light:rgba(201, 201, 201, 0.1);
+    --theme-red: #FF0000;
 }
 /* Margins */
 .mb-4_5{
@@ -63,6 +64,11 @@
 
 .theme-bg-secondary {
     background: var(--theme-secondary);
+}
+
+.theme-red {
+    color: var(--theme-red);
+    background: none;
 }
 
 .theme-bg-white {
@@ -290,10 +296,11 @@ button a
 
 .otp-modal
 {
-    background: linear-gradient(0deg, rgba(29, 161, 242, 0.75), rgba(29, 161, 242, 0.75)), url(/assets/images/header-bg.png);
-    /*background-image: url('/assets/images/header-bg.png');*/
-    background-repeat: no-repeat;
-    background-size: 400vh 200vh;
+    background: linear-gradient(0deg, rgba(29, 161, 242, 0.75), rgba(29, 161, 242, 0.75)), url(/assets/images/header-bg.png) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .signIn-modal
