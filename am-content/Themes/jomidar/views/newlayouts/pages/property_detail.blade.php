@@ -180,50 +180,11 @@
                     </div>
                     @endforeach
                     @endif
-                    <!-- <div class="row w-100 mb-3">
-                        <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">شقة</h3>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">نوع العقار</span>
-                        </div>
-                    </div>
-                    <div class="row w-100 mb-3">
-                        <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">لا</h3>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">هل يوجد عداد كهرباء</span>
-                        </div>
-                    </div>
-                    <div class="row w-100 mb-3">
-                        <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">لا</h3>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">هل يوجد عداد ماء</span>
-                        </div>
-                    </div>
-                    <div class="row w-100 mb-3">
-                        <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">1</h3>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">عدد الشوارع</span>
-                        </div>
-                    </div>
-                    <div class="row w-100 mb-3">
-                        <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">شارع 8متر , واجهة شرقية</h3>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">معلومات الشارع</span>
-                        </div>
-                    </div> -->
-                    <hr class="w-100">
-                    <h1 class="font-24 theme-text-blue">{{ __('Distance key between facilities') }}</h1>
                     @if ($property->facilities_get->count() > 0)
                     @foreach ($property->facilities_get as $facility)
+                    <hr class="w-100">
+                    <h1 class="font-24 theme-text-blue">{{ __('Distance key between facilities') }}</h1>
+
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start">
                             <h3 class="font-16 font-medium theme-text-blue">{{ $facility->value }}{{ __('KM') }}</h3>
@@ -234,56 +195,8 @@
                     </div>
                     @endforeach
                     @endif
-                    <!-- <div class="row w-100 mb-3">
-                        <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">1</h3>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">دورات المياه</span>
-                        </div>
-                    </div>
-                    <div class="row w-100 mb-3">
-                        <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">غير متوفر</h3>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">صاللات</span>
-                        </div>
-                    </div>
-                    <div class="row w-100 mb-3">
-                        <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">غير متوفر</h3>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">مجالس</span>
-                        </div>
-                    </div>
-                    <div class="row w-100 mb-3">
-                        <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">1</h3>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">عدد المواقف</span>
-                        </div>
-                    </div>
-                    <div class="row w-100 mb-3">
-                        <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue"> غير متوفر</h3>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">التأثيث</span>
-                        </div>
-                    </div>
-                    <div class="row w-100 mb-3">
-                        <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue"> 5 أدوار , الدور الثالث</h3>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">إجمالي الأدوار/ الدور</span>
-                        </div>
-                    </div> -->
-                    <hr class="w-100">
-                    <h1 class="font-24 theme-text-blue mb-3 mt-2">مميزات العقار</h1>
+                    <!-- <hr class="w-100"> -->
+                    <!-- <h1 class="font-24 theme-text-blue mb-3 mt-2">مميزات العقار</h1>
                     <div class="tags d-flex">
                         @if ($property->facilities_get->count() > 0)
                         @foreach ($property->facilities_get as $facility)
@@ -292,13 +205,7 @@
                         </div>
                         @endforeach
                         @endif
-                        <!-- <div class="tag d-flex justify-content-center align-items-center">
-                            <h3 class="font-16 font-medium theme-text-blue">غرفة أطفال</h3>
-                        </div>
-                        <div class="tag d-flex justify-content-center align-items-center">
-                            <h3 class="font-16 font-medium theme-text-blue">غرف ملابس</h3>
-                        </div> -->
-                    </div>
+                    </div> -->
                 </div>
                 @isset($property->post_city->value)
                 <div class="theme-bg-secondary text-center py-3 position-relative">
