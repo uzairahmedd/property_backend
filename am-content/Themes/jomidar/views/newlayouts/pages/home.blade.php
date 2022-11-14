@@ -166,8 +166,9 @@
             }
             @endphp
             <div class="listing">
-                <a href="property-details/{{$sale_data->slug}}">
+                <a href="property/{{$sale_data->slug}}">
                     <div class="list" style="background-image: url({{$image}});">
+
                         <div class="content d-flex justify-content-between">
                             <div class="d-flex flex-column align-items-start theme-text-white">
                                 <div class="sale theme-bg-sky">
@@ -227,6 +228,7 @@
             <div class="listing">
                 <a href="property/{{$rent_data->slug}}">
                     <div class="list" style="background-image: url({{$rent_image}});">
+
                         <div class="content d-flex justify-content-between">
                             <div class="d-flex flex-column align-items-start theme-text-white">
                                 <div class="sale theme-bg-sky">

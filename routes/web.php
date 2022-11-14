@@ -184,7 +184,7 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::get('blog/data', 'DataController@blog_data')->name('blog.data');
 	Route::get('review/data', 'DataController@review')->name('review.data');
 	Route::post('mailchamp', 'MailchampController@store')->name('mailchamp.store');
-	Route::get('property/{slug}', 'PropertyController@show')->name('property.show');
+	// Route::get('property/{slug}', 'PropertyController@show')->name('property.show');
 	Route::get('project/{slug}', 'PropertyController@project_view');
 	Route::get('list', 'PropertyController@list')->name('list');
 	Route::get('project', 'PropertyController@project');
@@ -229,6 +229,8 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	//update phone page
 	Route::get('Update-phone/{id}', 'RegisterController@Update_phone');
 	Route::post('modify_phone', 'RegisterController@modify_phone');
+	//detail page
+	Route::get('property/{slug}', 'PropertyController@show')->name('property.show');
 });
 
 //    Latest Khiaratee Theme Routes Start

@@ -27,7 +27,7 @@ class PropertyController extends controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $slug)
+    public function old_show(Request $request, $slug)
     {
         $path= $request->path();
 
@@ -77,7 +77,7 @@ class PropertyController extends controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function property_detail(Request $request, $slug)
+    public function show(Request $request, $slug)
     {
         $path= $request->path();
 
@@ -86,8 +86,6 @@ class PropertyController extends controller
             ['status',1],
             ['slug',$slug]
         ])->with('post_preview','min_price','max_price','post_city','post_state','user','content','multiple_images','option_data','facilities_get','contact_type','latitude','longitude','excerpt')->withCount('reviews')->first();
-
-
 
         if($property)
         {
@@ -114,7 +112,6 @@ class PropertyController extends controller
           JsonLdMulti::setTitle($property->title);
           JsonLdMulti::setDescription($property->excerpt->content ?? '');
           JsonLdMulti::setType('Property');
-          dump($property);
             return view('theme::newlayouts.pages.property_detail',compact('property','path'));
         }else{
             return abort(404);
