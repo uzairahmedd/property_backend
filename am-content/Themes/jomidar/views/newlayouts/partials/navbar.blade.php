@@ -59,7 +59,7 @@
                         <img src="{{theme_asset('assets/images/hammer.svg')}}" class="ms-3" />
                     </li>
                     <li class="logo d-none d-lg-block">
-                        <a href="/" class="">
+                        <a href="/home" class="">
                             <img src="{{theme_asset('assets/images/logo.png')}}" alt="">
                         </a>
                     </li>

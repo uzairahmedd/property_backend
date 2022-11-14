@@ -22,7 +22,7 @@
                          <li class="rent-all">
                            <input class="rent-select-dropdown" value="بيع" type="radio" id="radio02-01" name="radio-btn" />
                            <label class="rent-box" for="radio02-01">بيع</label>
-                       </li>
+                       </li>  
                        <li class="rent-all">
                            <input class="rent-select-dropdown drive_percent-box" value="ايجار" type="radio" id="radio02-02" name="radio-btn" checked />
                            <label class="rent-box" for="radio02-02">ايجار</label>
@@ -31,18 +31,6 @@
                 </ul>
             </div>
         </div>
-{{--        select dropdown start--}}
-{{--        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">--}}
-{{--            <select name="state" class="rent-select" id="select-drop-btn">--}}
-{{--                @foreach($states as $row)--}}
-{{--                <option value="{{ $row->id }}">{{ $row->name }}</option>--}}
-{{--                @endforeach--}}
-{{--            </select>--}}
-{{--            <div class="city-toggle-icon">--}}
-{{--                <img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt="">--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        select dropdown end--}}
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
             <div class="dropdown complete-resident-drop">
                 <span class="rent-toggle-icon" id="rent-t-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
