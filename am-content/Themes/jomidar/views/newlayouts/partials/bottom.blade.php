@@ -11,6 +11,8 @@
 <script src="{{theme_asset('assets/newjs/owl.carousel.min.js')}}"></script>
 {{--    Font Awesome Js--}}
 <script src="{{theme_asset('assets/newjs/fontawesome/font.js')}}"></script>
+<script src="{{ theme_asset('assets/js/jquery.selectric.js') }}"></script>
+<script src="{{ theme_asset('assets/js/helper.js') }}"></script>
 <!-- Home Jquery -->
 <script src="{{theme_asset('assets/newjs/main.js')}}"></script>
 @stack('js')

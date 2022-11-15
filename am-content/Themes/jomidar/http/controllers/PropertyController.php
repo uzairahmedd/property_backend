@@ -37,9 +37,18 @@ class PropertyController extends controller
             ['type', 'property'],
             ['status', 1],
             ['slug', $slug]
-        ])->with('post_preview', 'min_price', 'max_price', 'post_city', 'post_state', 'user', 'content', 'multiple_images', 'option_data', 'facilities_get', 'contact_type', 'latitude', 'longitude', 'excerpt', 'property_status_type')->withCount('reviews')->first();
+        ])->with('post_preview', 'min_price', 'max_price', 'post_city', 'post_state', 'user', 'content', 'multiple_images', 'option_data', 'facilities_get', 'contact_type', 'latitude', 'longitude', 'excerpt', 'property_status_type', 'postcategory')->withCount('reviews')->first();
 
+        $features = [];
+        foreach ($property->postcategory as $key => $value) {
 
+            if ($value->type == 'features') {
+                $name = DB::table('categories')->where([
+                    ['id', $value->category_id]
+                ])->first();
+                array_push($features, $name);
+            }
+        }
 
         if ($property) {
             SEOMeta::setTitle($property->title);
@@ -65,8 +74,8 @@ class PropertyController extends controller
             JsonLdMulti::setTitle($property->title);
             JsonLdMulti::setDescription($property->excerpt->content ?? '');
             JsonLdMulti::setType('Property');
-            return view('theme::newlayouts.pages.property_detail', compact('property', 'path'));
-            // return view('view::property.details',compact('property','path'));
+            return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features'));
+            // return view('view::property.details',compact('property','path','features'));
         } else {
             return abort(404);
         }

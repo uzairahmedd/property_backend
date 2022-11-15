@@ -21,12 +21,6 @@
         <div class="d-flex flex-wrap-reverse justify-content-end justify-content-lg-between align-items-center my-3">
             <div class="col-12 col-lg-8 col-xl-7 col-xxl-6">
                 <ul class="detail list-unstyled mb-0 d-flex flex-column flex-sm-row align-items-end justify-content-between align-items-sm-center">
-                    <!-- <li class="d-flex mb-3 mb-sm-0">
-                        <span>ابلاغ عن مخالفة</span>
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <img src="{{theme_asset('assets/images/report.png')}}" alt="">
-                        </div>
-                    </li> -->
                     <li class="d-flex mb-3 mb-sm-0">
                         <span>مشاركة</span>
                         <div class="icon d-flex align-items-center justify-content-center">
@@ -53,14 +47,14 @@
                             <span class="iconify" data-icon="cil:heart" data-inline="false"></span>
                         </a>
                         @else
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#contactModal">
+                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#contactModal">
                             <span class="iconify" data-icon="cil:heart" data-inline="false"></span>
                         </a>
                         @endif
                     </li>
-                    <!-- <li class="d-flex mb-3 mb-sm-0">
-                        <span><span class="theme-text-blue font-bold">750</span> شاهدوا هذا الإعلان</span>
-                    </li> -->
+                    <li class="d-flex mb-3 mb-sm-0">
+                        <span><span class="theme-text-blue font-bold">{{ $property->reviews_count }}</span> {{ __('Reviews') }}</span>
+                    </li>
                 </ul>
             </div>
             <h1 class="title font-medium theme-text-seondary-black mb-3 mb-lg-0">{{ $property->title }}</h1>
@@ -115,7 +109,7 @@
                     <hr>
                     <h3 class="font-medium mb-2">العنوان</h3>
                     <div class="d-flex align-items-start justify-content-end mb-4">
-                        <p class="mb-0 theme-text-seondary-black me-2">{{$property->post_city->value}}
+                        <p class="mb-0 theme-text-seondary-black me-2">{{$property->post_city->value}} - {{$property->post_city->category->name}} - {{$property->post_state->category->name}}
                         </p>
                         <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                     </div>
@@ -179,12 +173,18 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <div class="row w-100 mb-3">
+                        <div class="col-6 text-start">
+                            <h3 class="font-16 font-medium theme-text-blue">No info avaialable</h3>
+                        </div>
+                    </div>
                     @endif
-                    @if ($property->facilities_get->count() > 0)
-                    @foreach ($property->facilities_get as $facility)
+
                     <hr class="w-100">
                     <h1 class="font-24 theme-text-blue">{{ __('Distance key between facilities') }}</h1>
-
+                    @if ($property->facilities_get->count() > 0)
+                    @foreach ($property->facilities_get as $facility)
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start">
                             <h3 class="font-16 font-medium theme-text-blue">{{ $facility->value }}{{ __('KM') }}</h3>
@@ -194,27 +194,47 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <div class="row w-100 mb-3">
+                        <div class="col-6 text-start">
+                            <h3 class="font-16 font-medium theme-text-blue">No facilities avaialable</h3>
+                        </div>
+                    </div>
                     @endif
-                    <!-- <hr class="w-100"> -->
-                    <!-- <h1 class="font-24 theme-text-blue mb-3 mt-2">مميزات العقار</h1>
+                    <hr class="w-100">
+                    <h1 class="font-24 theme-text-blue mb-3 mt-2">مميزات العقار</h1>
                     <div class="tags d-flex">
-                        @if ($property->facilities_get->count() > 0)
-                        @foreach ($property->facilities_get as $facility)
+                        @if (isset($features))
+                        @foreach ($features as $facility)
                         <div class="tag d-flex justify-content-center align-items-center">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ $facility->category->name }} {{ $facility->value }}{{ __('KM') }}</h3>
+                            <h3 class="font-16 font-medium theme-text-blue">{{ $facility->name }}</h3>
                         </div>
                         @endforeach
+                        @else
+                        <div class="tag d-flex justify-content-center align-items-center">
+                            <h3 class="font-16 font-medium theme-text-blue">No feature avaialable</h3>
+                        </div>
                         @endif
-                    </div> -->
+                    </div>
                 </div>
                 @isset($property->post_city->value)
                 <div class="theme-bg-secondary text-center py-3 position-relative">
                     <h3 class="font-medium font-24 theme-text-white">اسم الحي</h3>
                     <iframe id="gmap_canvas" width="100%" height="400" src="https://maps.google.com/maps?q={{ $property->post_city->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                    <!-- <img src="{{theme_asset('assets/images/map-location.png')}}" alt="" class="position-absolute" style="top:18px; right:18px;"> -->
                 </div>
                 @endif
-                <!-- <img src="{{theme_asset('assets/images/map-img.png')}}" alt="" class="img-fluid"> -->
+                <!-- @isset($property->latitude->value)
+                            <div class="property-card-area mt-0">
+                                <div class="property-card-header mb-3">
+                                    <h5>{{ __('Street View') }}</h5>
+                                </div>
+                                <div class="property-card-body">
+                                    <input type="hidden" value="{{ $property->latitude->value }}" id="latitude">
+                                    <input type="hidden" value="{{ $property->longitude->value }}" id="longitude">
+                                    <div id="street-view"></div>
+                                </div>
+                            </div>
+                            @endisset -->
             </div>
         </div>
     </div>
@@ -233,6 +253,6 @@
 <!-- <script src="{{ theme_asset('assets/js/owl.carousel.min.js') }}"></script>
 <script src="{{ theme_asset('assets/js/jQuery.print.js') }}"></script> -->
 <script src="{{ theme_asset('assets/js/property.js') }}"></script>
-<!-- <script src="{{ theme_asset('assets/js/custommap.js') }}"></script> -->
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&callback=initialize&libraries=&v=weekly" defer></script> -->
+<script src="{{ theme_asset('assets/js/custommap.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&callback=initialize&libraries=&v=weekly" defer></script>
 @endpush
