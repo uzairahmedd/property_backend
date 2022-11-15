@@ -267,6 +267,14 @@ button a
     margin-bottom: 70px;
 }
 
+.send-modal .modal-body {
+    padding: 67px 55px 57px;
+}
+
+.send-modal h1 {
+    margin-bottom: 70px;
+}
+
 .floating-Input {
     padding: 3px 28px;
     font-size: 11px;
@@ -277,6 +285,11 @@ button a
 }
 
 .contact-modal .mesg {
+    top: 66px;
+    left: 0;
+}
+
+.send-modal .mesg {
     top: 66px;
     left: 0;
 }
@@ -387,6 +400,25 @@ button a
     }
     .otp-modal .form-control {
         max-width: 40px;
+    }
+}
+
+
+@media screen and (max-width:576px) {
+    .tag h3, .item-header .breadcrumb-item, .send-modal a {
+        font-size: 10px;
+    }
+    .send-modal .modal-body{
+        padding: 16px;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .tag h3, .item-header .breadcrumb-item, .send-modal a {
+        font-size: 10px;
+    }
+    .send-modal .modal-body{
+        padding: 16px;
     }
 }
 

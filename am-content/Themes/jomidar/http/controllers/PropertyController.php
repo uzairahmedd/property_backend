@@ -75,7 +75,7 @@ class PropertyController extends controller
             JsonLdMulti::setDescription($property->excerpt->content ?? '');
             JsonLdMulti::setType('Property');
             return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features'));
-            // return view('view::property.details',compact('property','path','features'));
+//             return view('view::property.details',compact('property','path','features'));
         } else {
             return abort(404);
         }

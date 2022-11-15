@@ -21,12 +21,31 @@
         <div class="d-flex flex-wrap-reverse justify-content-end justify-content-lg-between align-items-center my-3">
             <div class="col-12 col-lg-8 col-xl-7 col-xxl-6">
                 <ul class="detail list-unstyled mb-0 d-flex flex-column flex-sm-row align-items-end justify-content-between align-items-sm-center">
+{{--                    <li class="d-flex mb-3 mb-sm-0">--}}
+{{--                        <span>مشاركة</span>--}}
+{{--                        <div class="icon d-flex align-items-center justify-content-center">--}}
+{{--                            <img src="{{theme_asset('assets/images/share.png')}}" alt="">--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+
                     <li class="d-flex mb-3 mb-sm-0">
                         <span>مشاركة</span>
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <img src="{{theme_asset('assets/images/share.png')}}" alt="">
+                        <div class="btn btn-primary dropdown-toggle icon d-flex align-items-center justify-content-center" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{{theme_asset('assets/images/share.png')}}" class="border-0" alt="">
                         </div>
+                        <ul class="dropdown-menu share-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#"><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-brands fa-twitter"></i> Twitter</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-brands fa-pinterest-p"></i> Pinterest</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-brands fa-whatsapp"></i> Whatsapp</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-regular fa-envelope"></i> Gmail</a></li>
+                        </ul>
                     </li>
+
+
+
+
+
                     <li class="d-flex mb-3 mb-sm-0">
                         <span>حفظ</span>
                         @if (Auth::check())
@@ -113,10 +132,10 @@
                         </p>
                         <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                     </div>
-                    <ul class="list-unstyled d-flex flex-column flex-sm-row align-items-center mb-5">
+                    <ul class="list-unstyled d-flex flex-column flex-sm-row align-items-end mb-5 flex-wrap justify-content-end">
                         @if($property->option_data)
                         @foreach ($property->option_data as $value)
-                        <li class="d-flex align-items-center mb-3 mb-sm-0">
+                        <li class="d-flex align-items-center mb-3 mb-sm-3">
                             <span> {{ $value->value }}</span>
                             @if($value->category->name =='Bathrooms')
 
@@ -132,7 +151,7 @@
                         @php
                         $data = json_decode($floor->content);
                         @endphp
-                        <li class="d-flex align-items-center mb-3 mb-sm-0">
+                        <li class="d-flex align-items-center mb-3 mb-sm-3">
                             <span> {{ $data->name }} {{ $data->square_ft }} {{ __('sq ft') }}</span>
                             <img src="{{theme_asset('assets/images/area.png')}}" alt="">
                         </li>
@@ -146,7 +165,7 @@
                             <img src="{{theme_asset('assets/images/phone.png')}}" alt="" class="phone position-absolute">
                             {{ isset($info->phone) ? $info->phone : ''  }}
                         </button>
-                        <button class="contact-btn col-12 col-sm-4 theme-bg-white border-0 theme-text-blue font-medium">
+                        <button class="contact-btn col-12 col-sm-4 theme-bg-white border-0 theme-text-blue font-medium" data-bs-toggle="modal" data-bs-target="#SendMsgModal">
                             <img src="{{theme_asset('assets/images/booking-calender.png')}}" alt="" class="me-3">
                             حجز موعد
                         </button>
@@ -203,10 +222,10 @@
                     @endif
                     <hr class="w-100">
                     <h1 class="font-24 theme-text-blue mb-3 mt-2">مميزات العقار</h1>
-                    <div class="tags d-flex">
+                    <div class="tags d-flex flex-wrap justify-content-end prop-feature">
                         @if (isset($features))
                         @foreach ($features as $facility)
-                        <div class="tag d-flex justify-content-center align-items-center">
+                        <div class="tag d-flex justify-content-center align-items-center mb-2">
                             <h3 class="font-16 font-medium theme-text-blue">{{ $facility->name }}</h3>
                         </div>
                         @endforeach
@@ -218,8 +237,8 @@
                     </div>
                 </div>
                 @isset($property->post_city->value)
-                <div class="theme-bg-secondary text-center py-3 position-relative">
-                    <h3 class="font-medium font-24 theme-text-white">اسم الحي</h3>
+                <div class="theme-bg-secondary text-center mb-0 pb-0 position-relative">
+                    <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">اسم الحي</h3>
                     <iframe id="gmap_canvas" width="100%" height="400" src="https://maps.google.com/maps?q={{ $property->post_city->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                 </div>
                 @endif

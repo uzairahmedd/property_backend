@@ -44,22 +44,6 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="select-city-dropdowns">
-                        <select name="" class="rent-select" id="select-drop-btn">
-                            <option value="1">الرياض</option>
-                            <option value="2">الخبر</option>
-                            <option value="3">جازان</option>
-                            <option value="1">بربدة</option>
-                            <option value="2">نجران</option>
-                            <option value="3">ابها</option>
-                            <option value="4">تبوك</option>
-                            <option value="5">الطائف</option>
-                            <option value="6">الخرج</option>
-                            <option value="7">عرعر</option>
-                        </select>
-                        <span class="s-rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}"
-                                                              alt=""></span>
-                    </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 order-lg-3 order-first search-box">
                     <div class="search-bar d-flex p-2 mt-1">

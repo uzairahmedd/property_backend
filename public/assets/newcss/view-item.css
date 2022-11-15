@@ -48,10 +48,22 @@
 .item-header .detail .icon {
     width: 26px;
     height: 26px;
+    border: 0;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.75);
     box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
     margin: 0px 4px;
+}
+
+.share-dropdown-menu
+{
+    margin-left: -62px !important;
+    margin-top: 10px !important;
+}
+
+.item-header .detail .icon img
+{
+    margin-left: 12px;
 }
 
 .item-header .item-carousel {
@@ -98,7 +110,7 @@
 }
 
 .contact-btn .phone {
-    left: 24px;
+    left: 80px;
 }
 
 .tag {
