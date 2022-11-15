@@ -1,6 +1,7 @@
 <?php
 
 namespace Amcoders\Theme\jomidar\http\controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Terms;
@@ -19,76 +20,37 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\JsonLdMulti;
 use Artesaos\SEOTools\Facades\SEOTools;
+
 class PropertyController extends controller
 {
-	   protected $property_type;
-	 /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function old_show(Request $request, $slug)
-    {
-        $path= $request->path();
-
-        $property = Terms::where([
-            ['type','property'],
-            ['status',1],
-            ['slug',$slug]
-        ])->with('post_preview','min_price','max_price','post_city','post_state','user','content','multiple_images','option_data','facilities_get','contact_type','latitude','longitude','excerpt')->withCount('reviews')->first();
-
-
-
-        if($property)
-        {
-            SEOMeta::setTitle($property->title);
-            SEOMeta::setDescription($property->excerpt->content ?? '');
-            SEOMeta::addMeta('article:published_time', $property->updated_at->format('Y-m-d'), 'property');
-
-            OpenGraph::setDescription($property->excerpt->content ?? '');
-            OpenGraph::setTitle($property->title);
-
-
-            foreach($property->multiple_images ?? [] as $row){
-
-              OpenGraph::addImage(asset($row->media->url));
-              JsonLdMulti::addImage(asset($row->media->url));
-              JsonLd::addImage(asset($row->media->url));
-          }
-
-
-          JsonLd::setTitle($property->title);
-          JsonLd::setDescription($property->excerpt->content ?? '');
-          JsonLd::setType('Property');
-
-          JsonLdMulti::setTitle($property->title);
-          JsonLdMulti::setDescription($property->excerpt->content ?? '');
-          JsonLdMulti::setType('Property');
-            return view('view::property.details',compact('property','path'));
-        }else{
-            return abort(404);
-        }
-    }
-
-
-
-     /**
+    protected $property_type;
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $slug)
     {
-        $path= $request->path();
+        $path = $request->path();
 
         $property = Terms::where([
-            ['type','property'],
-            ['status',1],
-            ['slug',$slug]
-        ])->with('post_preview','min_price','max_price','post_city','post_state','user','content','multiple_images','option_data','facilities_get','contact_type','latitude','longitude','excerpt')->withCount('reviews')->first();
+            ['type', 'property'],
+            ['status', 1],
+            ['slug', $slug]
+        ])->with('post_preview', 'min_price', 'max_price', 'post_city', 'post_state', 'user', 'content', 'multiple_images', 'option_data', 'facilities_get', 'contact_type', 'latitude', 'longitude', 'excerpt', 'property_status_type', 'postcategory')->withCount('reviews')->first();
 
-        if($property)
-        {
+        $features = [];
+        foreach ($property->postcategory as $key => $value) {
+
+            if ($value->type == 'features') {
+                $name = DB::table('categories')->where([
+                    ['id', $value->category_id]
+                ])->first();
+                array_push($features, $name);
+            }
+        }
+
+        if ($property) {
             SEOMeta::setTitle($property->title);
             SEOMeta::setDescription($property->excerpt->content ?? '');
             SEOMeta::addMeta('article:published_time', $property->updated_at->format('Y-m-d'), 'property');
@@ -97,40 +59,39 @@ class PropertyController extends controller
             OpenGraph::setTitle($property->title);
 
 
-            foreach($property->multiple_images ?? [] as $row){
+            foreach ($property->multiple_images ?? [] as $row) {
 
-              OpenGraph::addImage(asset($row->media->url));
-              JsonLdMulti::addImage(asset($row->media->url));
-              JsonLd::addImage(asset($row->media->url));
-          }
+                OpenGraph::addImage(asset($row->media->url));
+                JsonLdMulti::addImage(asset($row->media->url));
+                JsonLd::addImage(asset($row->media->url));
+            }
 
 
-          JsonLd::setTitle($property->title);
-          JsonLd::setDescription($property->excerpt->content ?? '');
-          JsonLd::setType('Property');
+            JsonLd::setTitle($property->title);
+            JsonLd::setDescription($property->excerpt->content ?? '');
+            JsonLd::setType('Property');
 
-          JsonLdMulti::setTitle($property->title);
-          JsonLdMulti::setDescription($property->excerpt->content ?? '');
-          JsonLdMulti::setType('Property');
-            return view('theme::newlayouts.pages.property_detail',compact('property','path'));
-        }else{
+            JsonLdMulti::setTitle($property->title);
+            JsonLdMulti::setDescription($property->excerpt->content ?? '');
+            JsonLdMulti::setType('Property');
+            return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features'));
+            // return view('view::property.details',compact('property','path','features'));
+        } else {
             return abort(404);
         }
     }
 
-
-    public function project_view(Request $request,$slug)
+    public function project_view(Request $request, $slug)
     {
 
 
         $property = Terms::where([
-            ['type','project'],
-            ['status',1],
-            ['slug',$slug]
-        ])->with('post_preview','min_price','max_price','post_city','post_state','user','content','multiple_images','option_data','facilities_get','contact_type','latitude','longitude','finished_at','open_sell_date','excerpt')->withCount('reviews')->first();
+            ['type', 'project'],
+            ['status', 1],
+            ['slug', $slug]
+        ])->with('post_preview', 'min_price', 'max_price', 'post_city', 'post_state', 'user', 'content', 'multiple_images', 'option_data', 'facilities_get', 'contact_type', 'latitude', 'longitude', 'finished_at', 'open_sell_date', 'excerpt')->withCount('reviews')->first();
 
-        if($property)
-        {
+        if ($property) {
 
             SEOMeta::setTitle($property->title);
             SEOMeta::setDescription($property->excerpt->content ?? '');
@@ -140,11 +101,11 @@ class PropertyController extends controller
             OpenGraph::setTitle($property->title);
 
 
-            foreach($property->multiple_images ?? [] as $row){
+            foreach ($property->multiple_images ?? [] as $row) {
 
-              OpenGraph::addImage(asset($row->media->url));
-              JsonLdMulti::addImage(asset($row->media->url));
-              JsonLd::addImage(asset($row->media->url));
+                OpenGraph::addImage(asset($row->media->url));
+                JsonLdMulti::addImage(asset($row->media->url));
+                JsonLd::addImage(asset($row->media->url));
             }
 
 
@@ -156,23 +117,22 @@ class PropertyController extends controller
             JsonLdMulti::setDescription($property->excerpt->content ?? '');
             JsonLdMulti::setType('Project');
 
-            return view('view::project.show',compact('property'));
-        }else{
+            return view('view::project.show', compact('property'));
+        } else {
             return abort(404);
         }
-
-
     }
 
-    public function city(Request $request, $slug){
-        $state=Category::where('type','states')->where('slug',$slug)->where('status',1)->first();
+    public function city(Request $request, $slug)
+    {
+        $state = Category::where('type', 'states')->where('slug', $slug)->where('status', 1)->first();
 
-        if(empty($state)){
+        if (empty($state)) {
             abort(404);
         }
 
-        $seo=Options::where('key','seo')->first();
-        $seo=json_decode($seo->value);
+        $seo = Options::where('key', 'seo')->first();
+        $seo = json_decode($seo->value);
 
         SEOMeta::setTitle($state->name);
         SEOMeta::setDescription($seo->description);
@@ -199,168 +159,167 @@ class PropertyController extends controller
         SEOTools::jsonLd()->addImage(asset($state->preview->content));
 
 
-        $status=$request->status ?? null;
-        $location=$request->location ?? null;
+        $status = $request->status ?? null;
+        $location = $request->location ?? null;
 
-        $state=$state->id ?? null;
-        $badroom=$request->badroom[16] ?? null;
-        $bathroom=$request->bathroom[17] ?? null;
-        $floor=$request->floor[18] ?? null;
-        $block=$request->block[15] ?? null;
-        $min_price=$request->min_price ?? null;
-        $max_price=$request->max_price ?? null;
-        $src=$request->src ?? null;
+        $state = $state->id ?? null;
+        $badroom = $request->badroom[16] ?? null;
+        $bathroom = $request->bathroom[17] ?? null;
+        $floor = $request->floor[18] ?? null;
+        $block = $request->block[15] ?? null;
+        $min_price = $request->min_price ?? null;
+        $max_price = $request->max_price ?? null;
+        $src = $request->src ?? null;
 
-         $input_array=[];
-        if($request->category){
-           $category=Category::where('type','category')->with('parent')->findorFail($request->category);
-           foreach($category->parent as $row){
-            array_push($input_array,$row->id);
-           }
-        }
-        else{
-             $category=null;
-        }
-
-        $statuses=Category::where('type','status')->where('featured',1)->inRandomOrder()->get();
-
-        $states=Category::where('type','states')->get();
-        $categories=Category::where('type','category')->get();
-
-
-
-        $category= $request->category ?? null;
-        return view('view::property.list',compact('category','state','min_price','max_price','status','location','statuses','categories','states','badroom','bathroom','floor','block','input_array','src'));
-    }
-
-    public function list(Request $request){
-
-        $seo=Options::where('key','seo')->first();
-        $seo=json_decode($seo->value);
-
-        SEOMeta::setTitle('Property list');
-        SEOMeta::setDescription($seo->description);
-
-
-        OpenGraph::setDescription($seo->description);
-        OpenGraph::setTitle('Property list');
-        OpenGraph::addProperty('keywords', $seo->tags);
-
-        TwitterCard::setTitle('Property list');
-        TwitterCard::setSite($seo->twitterTitle);
-
-        JsonLd::setTitle('Property list');
-        JsonLd::setDescription($seo->description);
-        JsonLd::addImage(asset(content('header','logo')));
-
-
-
-        SEOTools::setTitle('Property list');
-        SEOTools::setDescription($seo->description);
-        SEOTools::setCanonical($seo->canonical);
-        SEOTools::opengraph()->addProperty('keywords', $seo->tags);
-        SEOTools::twitter()->setSite($seo->twitterTitle);
-        SEOTools::jsonLd()->addImage(asset(content('header','logo')));
-
-        $status=$request->status ?? null;
-        $location=$request->location ?? null;
-
-        $state=$request->state ?? null;
-        $badroom=$request->badroom[16] ?? null;
-        $bathroom=$request->bathroom[17] ?? null;
-        $floor=$request->floor[18] ?? null;
-        $block=$request->block[15] ?? null;
-        $min_price=$request->min_price ?? null;
-        $max_price=$request->max_price ?? null;
-        $src=$request->src ?? null;
-
-         $input_array=[];
-        if($request->category){
-           $category=Category::where('type','category')->with('parent')->findorFail($request->category);
-           foreach($category->parent as $row){
-            array_push($input_array,$row->id);
-           }
-        }
-        else{
-             $category=null;
-        }
-
-        $statuses=Category::where('type','status')->where('featured',1)->inRandomOrder()->get();
-
-        $states=Category::where('type','states')->get();
-        $categories=Category::where('type','category')->get();
-
-
-
-        $category= $request->category;
-        return view('view::property.list',compact('category','state','min_price','max_price','status','location','statuses','categories','states','badroom','bathroom','floor','block','input_array','src'));
-    }
-
-
-//    Property List of Khiaratee Project
-
-
-    public function new_list(Request $request){
-
-        $seo=Options::where('key','seo')->first();
-        $seo=json_decode($seo->value);
-
-        SEOMeta::setTitle('Property list');
-        SEOMeta::setDescription($seo->description);
-
-
-        OpenGraph::setDescription($seo->description);
-        OpenGraph::setTitle('Property list');
-        OpenGraph::addProperty('keywords', $seo->tags);
-
-        TwitterCard::setTitle('Property list');
-        TwitterCard::setSite($seo->twitterTitle);
-
-        JsonLd::setTitle('Property list');
-        JsonLd::setDescription($seo->description);
-        JsonLd::addImage(asset(content('header','logo')));
-
-
-
-        SEOTools::setTitle('Property list');
-        SEOTools::setDescription($seo->description);
-        SEOTools::setCanonical($seo->canonical);
-        SEOTools::opengraph()->addProperty('keywords', $seo->tags);
-        SEOTools::twitter()->setSite($seo->twitterTitle);
-        SEOTools::jsonLd()->addImage(asset(content('header','logo')));
-
-        $status=$request->status ?? null;
-        $location=$request->location ?? null;
-
-        $state=$request->state ?? null;
-        $badroom=$request->badroom[16] ?? null;
-        $bathroom=$request->bathroom[17] ?? null;
-        $floor=$request->floor[18] ?? null;
-        $block=$request->block[15] ?? null;
-        $min_price=$request->min_price ?? null;
-        $max_price=$request->max_price ?? null;
-        $src=$request->src ?? null;
-
-        $input_array=[];
-        if($request->category){
-            $category=Category::where('type','category')->with('parent')->findorFail($request->category);
-            foreach($category->parent as $row){
-                array_push($input_array,$row->id);
+        $input_array = [];
+        if ($request->category) {
+            $category = Category::where('type', 'category')->with('parent')->findorFail($request->category);
+            foreach ($category->parent as $row) {
+                array_push($input_array, $row->id);
             }
+        } else {
+            $category = null;
         }
-        else{
-            $category=null;
+
+        $statuses = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
+
+        $states = Category::where('type', 'states')->get();
+        $categories = Category::where('type', 'category')->get();
+
+
+
+        $category = $request->category ?? null;
+        return view('view::property.list', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
+    }
+
+    public function list(Request $request)
+    {
+
+        $seo = Options::where('key', 'seo')->first();
+        $seo = json_decode($seo->value);
+
+        SEOMeta::setTitle('Property list');
+        SEOMeta::setDescription($seo->description);
+
+
+        OpenGraph::setDescription($seo->description);
+        OpenGraph::setTitle('Property list');
+        OpenGraph::addProperty('keywords', $seo->tags);
+
+        TwitterCard::setTitle('Property list');
+        TwitterCard::setSite($seo->twitterTitle);
+
+        JsonLd::setTitle('Property list');
+        JsonLd::setDescription($seo->description);
+        JsonLd::addImage(asset(content('header', 'logo')));
+
+
+
+        SEOTools::setTitle('Property list');
+        SEOTools::setDescription($seo->description);
+        SEOTools::setCanonical($seo->canonical);
+        SEOTools::opengraph()->addProperty('keywords', $seo->tags);
+        SEOTools::twitter()->setSite($seo->twitterTitle);
+        SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
+
+        $status = $request->status ?? null;
+        $location = $request->location ?? null;
+
+        $state = $request->state ?? null;
+        $badroom = $request->badroom[16] ?? null;
+        $bathroom = $request->bathroom[17] ?? null;
+        $floor = $request->floor[18] ?? null;
+        $block = $request->block[15] ?? null;
+        $min_price = $request->min_price ?? null;
+        $max_price = $request->max_price ?? null;
+        $src = $request->src ?? null;
+
+        $input_array = [];
+        if ($request->category) {
+            $category = Category::where('type', 'category')->with('parent')->findorFail($request->category);
+            foreach ($category->parent as $row) {
+                array_push($input_array, $row->id);
+            }
+        } else {
+            $category = null;
         }
 
-        $statuses=Category::where('type','status')->where('featured',1)->inRandomOrder()->get();
+        $statuses = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
 
-        $states=Category::where('type','states')->get();
-        $categories=Category::where('type','category')->get();
+        $states = Category::where('type', 'states')->get();
+        $categories = Category::where('type', 'category')->get();
 
 
 
-        $category= $request->category;
-        return view('theme::newlayouts.pages.property_lists',compact('category','state','min_price','max_price','status','location','statuses','categories','states','badroom','bathroom','floor','block','input_array','src'));
+        $category = $request->category;
+        return view('view::property.list', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
+    }
+
+
+    //    Property List of Khiaratee Project
+
+
+    public function new_list(Request $request)
+    {
+
+        $seo = Options::where('key', 'seo')->first();
+        $seo = json_decode($seo->value);
+
+        SEOMeta::setTitle('Property list');
+        SEOMeta::setDescription($seo->description);
+
+
+        OpenGraph::setDescription($seo->description);
+        OpenGraph::setTitle('Property list');
+        OpenGraph::addProperty('keywords', $seo->tags);
+
+        TwitterCard::setTitle('Property list');
+        TwitterCard::setSite($seo->twitterTitle);
+
+        JsonLd::setTitle('Property list');
+        JsonLd::setDescription($seo->description);
+        JsonLd::addImage(asset(content('header', 'logo')));
+
+
+
+        SEOTools::setTitle('Property list');
+        SEOTools::setDescription($seo->description);
+        SEOTools::setCanonical($seo->canonical);
+        SEOTools::opengraph()->addProperty('keywords', $seo->tags);
+        SEOTools::twitter()->setSite($seo->twitterTitle);
+        SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
+
+        $status = $request->status ?? null;
+        $location = $request->location ?? null;
+
+        $state = $request->state ?? null;
+        $badroom = $request->badroom[16] ?? null;
+        $bathroom = $request->bathroom[17] ?? null;
+        $floor = $request->floor[18] ?? null;
+        $block = $request->block[15] ?? null;
+        $min_price = $request->min_price ?? null;
+        $max_price = $request->max_price ?? null;
+        $src = $request->src ?? null;
+
+        $input_array = [];
+        if ($request->category) {
+            $category = Category::where('type', 'category')->with('parent')->findorFail($request->category);
+            foreach ($category->parent as $row) {
+                array_push($input_array, $row->id);
+            }
+        } else {
+            $category = null;
+        }
+
+        $statuses = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
+
+        $states = Category::where('type', 'states')->get();
+        $categories = Category::where('type', 'category')->get();
+
+
+
+        $category = $request->category;
+        return view('theme::newlayouts.pages.property_lists', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
     }
 
     // public function property_detail()
@@ -448,137 +407,133 @@ class PropertyController extends controller
         return view('theme::newlayouts.pages.phone_no');
     }
 
-    public function map(Request $request){
+    public function map(Request $request)
+    {
 
-       $seo=Options::where('key','seo')->first();
-       $seo=json_decode($seo->value);
+        $seo = Options::where('key', 'seo')->first();
+        $seo = json_decode($seo->value);
 
-       SEOMeta::setTitle('Property list');
-       SEOMeta::setDescription($seo->description);
-
-
-       OpenGraph::setDescription($seo->description);
-       OpenGraph::setTitle('Property list');
-       OpenGraph::addProperty('keywords', $seo->tags);
-
-       TwitterCard::setTitle('Property list');
-       TwitterCard::setSite($seo->twitterTitle);
-
-       JsonLd::setTitle('Property list');
-       JsonLd::setDescription($seo->description);
-       JsonLd::addImage(asset(content('header','logo')));
+        SEOMeta::setTitle('Property list');
+        SEOMeta::setDescription($seo->description);
 
 
+        OpenGraph::setDescription($seo->description);
+        OpenGraph::setTitle('Property list');
+        OpenGraph::addProperty('keywords', $seo->tags);
 
-       SEOTools::setTitle('Property list');
-       SEOTools::setDescription($seo->description);
-       SEOTools::setCanonical($seo->canonical);
-       SEOTools::opengraph()->addProperty('keywords', $seo->tags);
-       SEOTools::twitter()->setSite($seo->twitterTitle);
-       SEOTools::jsonLd()->addImage(asset(content('header','logo')));
+        TwitterCard::setTitle('Property list');
+        TwitterCard::setSite($seo->twitterTitle);
 
-        $status=$request->status ?? null;
-        $location=$request->location ?? null;
+        JsonLd::setTitle('Property list');
+        JsonLd::setDescription($seo->description);
+        JsonLd::addImage(asset(content('header', 'logo')));
 
-        $state=$request->state ?? null;
-        $badroom=$request->badroom[16] ?? null;
-        $bathroom=$request->bathroom[17] ?? null;
-        $floor=$request->floor[18] ?? null;
-        $block=$request->block[15] ?? null;
-        $min_price=$request->min_price ?? null;
-        $max_price=$request->max_price ?? null;
-        $src=$request->src ?? null;
 
-         $input_array=[];
-        if($request->category){
-           $category=Category::where('type','category')->with('parent')->findorFail($request->category);
-           foreach($category->parent as $row){
-            array_push($input_array,$row->id);
-           }
-        }
-        else{
-             $category=null;
-        }
 
-        $statuses=Category::where('type','status')->where('featured',1)->inRandomOrder()->get();
+        SEOTools::setTitle('Property list');
+        SEOTools::setDescription($seo->description);
+        SEOTools::setCanonical($seo->canonical);
+        SEOTools::opengraph()->addProperty('keywords', $seo->tags);
+        SEOTools::twitter()->setSite($seo->twitterTitle);
+        SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
 
-        $states=Category::where('type','states')->get();
-        $categories=Category::where('type','category')->get();
+        $status = $request->status ?? null;
+        $location = $request->location ?? null;
 
-        if($request->state){
-            $lat_long= Category::where('type','states')->with('map')->find($request->state);
-            $lat_info= json_decode($lat_long->map->content ?? '');
-            $lat=$lat_info->latitude ?? 00.00;
-            $long=$lat_info->longitude ?? 00.00;
-            $zoom=$lat_info->zoom ?? 00.00;
-        }
-        else{
-            $default_map=Options::where('key','default_lat_long')->first();
-            $lat_info= json_decode($default_map->value ?? '');
-            $lat=$lat_info->latitude ?? 00.00;
-            $long=$lat_info->longitude ?? 00.00;
-            $zoom=$lat_info->zoom ?? 00.00;
+        $state = $request->state ?? null;
+        $badroom = $request->badroom[16] ?? null;
+        $bathroom = $request->bathroom[17] ?? null;
+        $floor = $request->floor[18] ?? null;
+        $block = $request->block[15] ?? null;
+        $min_price = $request->min_price ?? null;
+        $max_price = $request->max_price ?? null;
+        $src = $request->src ?? null;
+
+        $input_array = [];
+        if ($request->category) {
+            $category = Category::where('type', 'category')->with('parent')->findorFail($request->category);
+            foreach ($category->parent as $row) {
+                array_push($input_array, $row->id);
+            }
+        } else {
+            $category = null;
         }
 
+        $statuses = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
 
-        $category= $request->category;
-        return view('view::property.map',compact('category','state','min_price','max_price','status','location','statuses','categories','states','badroom','bathroom','floor','block','input_array','src','lat','long','zoom'));
+        $states = Category::where('type', 'states')->get();
+        $categories = Category::where('type', 'category')->get();
 
+        if ($request->state) {
+            $lat_long = Category::where('type', 'states')->with('map')->find($request->state);
+            $lat_info = json_decode($lat_long->map->content ?? '');
+            $lat = $lat_info->latitude ?? 00.00;
+            $long = $lat_info->longitude ?? 00.00;
+            $zoom = $lat_info->zoom ?? 00.00;
+        } else {
+            $default_map = Options::where('key', 'default_lat_long')->first();
+            $lat_info = json_decode($default_map->value ?? '');
+            $lat = $lat_info->latitude ?? 00.00;
+            $long = $lat_info->longitude ?? 00.00;
+            $zoom = $lat_info->zoom ?? 00.00;
+        }
+
+
+        $category = $request->category;
+        return view('view::property.map', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src', 'lat', 'long', 'zoom'));
     }
 
-    public function project(Request $request){
-       $seo=Options::where('key','seo')->first();
-       $seo=json_decode($seo->value);
+    public function project(Request $request)
+    {
+        $seo = Options::where('key', 'seo')->first();
+        $seo = json_decode($seo->value);
 
-       SEOMeta::setTitle('Project list');
-       SEOMeta::setDescription($seo->description);
-
-
-       OpenGraph::setDescription($seo->description);
-       OpenGraph::setTitle('Project list');
-       OpenGraph::addProperty('keywords', $seo->tags);
-
-       TwitterCard::setTitle('Project list');
-       TwitterCard::setSite($seo->twitterTitle);
-
-       JsonLd::setTitle('Project list');
-       JsonLd::setDescription($seo->description);
-       JsonLd::addImage(asset(content('header','logo')));
+        SEOMeta::setTitle('Project list');
+        SEOMeta::setDescription($seo->description);
 
 
+        OpenGraph::setDescription($seo->description);
+        OpenGraph::setTitle('Project list');
+        OpenGraph::addProperty('keywords', $seo->tags);
 
-       SEOTools::setTitle('Project list');
-       SEOTools::setDescription($seo->description);
-       SEOTools::setCanonical($seo->canonical);
-       SEOTools::opengraph()->addProperty('keywords', $seo->tags);
-       SEOTools::twitter()->setSite($seo->twitterTitle);
-       SEOTools::jsonLd()->addImage(asset(content('header','logo')));
-       $states=Category::where('type','states')->get();
-       $categories=Category::where('type','category')->get();
-       $category= $request->category;
-       $state=$request->state ?? null;
-       $src=$request->src;
-       return view('view::project.list',compact('states','categories','category','state','src'));
+        TwitterCard::setTitle('Project list');
+        TwitterCard::setSite($seo->twitterTitle);
+
+        JsonLd::setTitle('Project list');
+        JsonLd::setDescription($seo->description);
+        JsonLd::addImage(asset(content('header', 'logo')));
+
+
+
+        SEOTools::setTitle('Project list');
+        SEOTools::setDescription($seo->description);
+        SEOTools::setCanonical($seo->canonical);
+        SEOTools::opengraph()->addProperty('keywords', $seo->tags);
+        SEOTools::twitter()->setSite($seo->twitterTitle);
+        SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
+        $states = Category::where('type', 'states')->get();
+        $categories = Category::where('type', 'category')->get();
+        $category = $request->category;
+        $state = $request->state ?? null;
+        $src = $request->src;
+        return view('view::project.list', compact('states', 'categories', 'category', 'state', 'src'));
     }
 
     public function favourite(Request $request)
     {
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             $user = Auth::User();
-            $isFavourite = $user->favourite_properties()->where('terms_id',$request->id)->count();
-            if($isFavourite == 0)
-            {
+            $isFavourite = $user->favourite_properties()->where('terms_id', $request->id)->count();
+            if ($isFavourite == 0) {
                 $user->favourite_properties()->attach($request->id);
-                return response()->json(['status'=>true]);
-            }else{
+                return response()->json(['status' => true]);
+            } else {
                 $user->favourite_properties()->detach($request->id);
-                return response()->json(['status'=>false]);
+                return response()->json(['status' => false]);
             }
-        }else{
-            return response()->json(['error'=>true]);
+        } else {
+            return response()->json(['error' => true]);
         }
-
     }
 
     public function reviews(Request $request)
@@ -587,14 +542,11 @@ class PropertyController extends controller
         $property = Terms::findOrFail($request->id);
         $reviews = $property->reviews()->paginate(20);
 
-        if($reviews->count() > 0)
-        {
+        if ($reviews->count() > 0) {
             return response()->json($reviews);
-        }else{
+        } else {
             return response()->json('error');
         }
-
-
     }
 
     public function review_store(Request $request)
@@ -606,9 +558,8 @@ class PropertyController extends controller
             'rating' => 'required'
         ]);
 
-        if ($validator->fails())
-        {
-            return response()->json(['error'=>$validator->errors()->all()[0]]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->all()[0]]);
         }
 
         $review = new Review();
@@ -631,8 +582,8 @@ class PropertyController extends controller
             'message' => 'required'
         ]);
 
-        if(env('NOCAPTCHA_SITEKEY') != null){
-           $messages = [
+        if (env('NOCAPTCHA_SITEKEY') != null) {
+            $messages = [
                 'g-recaptcha-response.required' => 'You must check the reCAPTCHA.',
                 'g-recaptcha-response.captcha' => 'Captcha error! try again later or contact site admin.',
             ];
@@ -643,64 +594,57 @@ class PropertyController extends controller
         }
 
 
-        if ($validator->fails())
-        {
-            return response()->json(['error'=>$validator->errors()->all()[0]]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->all()[0]]);
         }
 
-        Propertymailsend::send($request->name,$request->email,$request->message,$request->agent_email);
+        Propertymailsend::send($request->name, $request->email, $request->message, $request->agent_email);
 
         return response()->json(['success']);
     }
 
     public function calculator(Request $request)
     {
-        if($request->price == 0)
-        {
-            return response()->json(['error'=>'Incorrect Information']);
+        if ($request->price == 0) {
+            return response()->json(['error' => 'Incorrect Information']);
         }
-        if($request->interest == 0)
-        {
-            return response()->json(['error'=>'Incorrect Information']);
+        if ($request->interest == 0) {
+            return response()->json(['error' => 'Incorrect Information']);
         }
-        if($request->year == 0)
-        {
-            return response()->json(['error'=>'Incorrect Information']);
+        if ($request->year == 0) {
+            return response()->json(['error' => 'Incorrect Information']);
         }
         $calculator = new Calculator();
-        $calculator->setAmountBorrowed( $request->price );
-        $calculator->setInterestRate( $request->interest );
-        $calculator->setYears( $request->year );
-        return response()->json(['repement_cost'=>$calculator->calculateRepayment(). PHP_EOL,'interest_cost'=> $calculator->calculateInterestOnlyPayment(). PHP_EOL]);
+        $calculator->setAmountBorrowed($request->price);
+        $calculator->setInterestRate($request->interest);
+        $calculator->setYears($request->year);
+        return response()->json(['repement_cost' => $calculator->calculateRepayment() . PHP_EOL, 'interest_cost' => $calculator->calculateInterestOnlyPayment() . PHP_EOL]);
     }
 
     public function similar_property(Request $request)
     {
         $user = User::findOrFail($request->agent_id);
 
-        $properties = $user->property()->where('status',1)->take(3)->get();
+        $properties = $user->property()->where('status', 1)->take(3)->get();
 
         return response()->json($properties);
     }
 
     public function favourite_check(Request $request)
     {
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             $data = DB::table('terms_user')->where([
-                ['terms_id',$request->id],
-                ['user_id',Auth::User()->id]
+                ['terms_id', $request->id],
+                ['user_id', Auth::User()->id]
             ])->first();
 
-            if($data)
-            {
+            if ($data) {
                 return "ok";
-            }else{
+            } else {
                 return "no";
             }
-        }else{
+        } else {
             return "no";
         }
     }
-
 }
