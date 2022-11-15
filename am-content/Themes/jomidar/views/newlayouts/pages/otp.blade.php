@@ -21,7 +21,6 @@
                                 <h3 class="font-24 theme-text-blue">[{{$user_data->phone}}]&nbsp;</h3>
                                 <span class="theme-text-grey">ادخل كود التفعيل المرسل إلى الرقم</span>
                             </div>
-                            <div id="otp_notification" style="color: green;"></div>
                             <form id="verify_otp">
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{$user_data->id}}">
@@ -32,8 +31,10 @@
                                     <input type="text" name="otp[]" id="otp3" maxlength="1" value="" class="form-control">
                                     <input type="text" name="otp[]" id="otp4" maxlength="1" value="" class="form-control">
                                 </div>
-                                <span id="otp_error"></span>
+
                                 <div class="col-6 mx-auto mb-4_5">
+                                    <span id="otp_error"></span>
+                                    <div id="otp_notification"></div>
                                     <button type="submit" id="submit_otp" class="chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16">
                                         التالي
                                         <i class=""></i> </button>

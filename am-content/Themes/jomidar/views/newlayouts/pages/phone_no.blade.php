@@ -14,7 +14,7 @@
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{encrypt($user_data->id)}}">
                                 <div class="mb-4_5 position-relative">
-                                    <input type="text" class="form-control font-medium font-16" name="phone" value="{{$user_data->phone}}" placeholder="مثلا 5515151181">
+                                    <input type="phone" class="form-control font-medium font-16" name="phone" value="{{$user_data->phone}}" placeholder="مثلا 5515151181">
                                     <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black">رقم
                                         الجوال</label>
                                 </div>

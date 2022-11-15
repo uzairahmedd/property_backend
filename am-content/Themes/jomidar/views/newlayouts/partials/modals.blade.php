@@ -29,7 +29,7 @@
                                 <span id="reg_email_notification" class="error"></span>
                             </div>
                             <div class="position-relative mb-4_5">
-                                <input type="text" value="" class="form-control font-medium font-16" placeholder='رقم الجوال' name="phone">
+                                <input type="phone" value="" class="form-control font-medium font-16" placeholder='رقم الجوال' name="phone">
                                 <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">رقم الجوال
                                 </label>
                                 <span id="reg_mobile_notification" class="error"></span>

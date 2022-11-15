@@ -1,6 +1,6 @@
 @extends('theme::newlayouts.app')
 @section('content')
-
+    <link rel="stylesheet" href="{{theme_asset('assets/newcss/select-style.css')}}">
 <!-- Header Section Starts Here -->
 <div class="header d-flex flex-column align-items-center">
     <li class="col-12 col-sm-10 col-lg-8 col-xl-5">
@@ -22,7 +22,7 @@
                          <li class="rent-all">
                            <input class="rent-select-dropdown" value="بيع" type="radio" id="radio02-01" name="radio-btn" />
                            <label class="rent-box" for="radio02-01">بيع</label>
-                       </li>  
+                       </li>
                        <li class="rent-all">
                            <input class="rent-select-dropdown drive_percent-box" value="ايجار" type="radio" id="radio02-02" name="radio-btn" checked />
                            <label class="rent-box" for="radio02-02">ايجار</label>
@@ -105,7 +105,18 @@
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 search-input-bar">
-            <input type="search" class="theme-text-secondary-black border-0" placeholder="تبحث عن عقار؟">
+{{--            <input type="search" class="theme-text-secondary-black border-0" placeholder="تبحث عن عقار؟">--}}
+            <select class="theme-text-secondary-black border-0" theme="google" width="400" style="appearance: none;" placeholder=" تبحث عن عقار؟" data-search="true">
+                <option class="d-none" style="" value=""></option>
+                <option value="AX">الرياض<span class="property_num">(1)</span></option>
+                <option value="AX">جدة<span class="property_num">(132)</span></option>
+                <option value="AX">مكة المكرمة<span class="property_num">(1234)</span></option>
+                <option value="AX">المدينة المنورة<span class="property_num">(143)</span></option>
+                <option value="AX">جميع المدن<span class="property_num">(1234)</span></option>
+                <option value="AX">الدمام<span class="property_num">(164)</span></option>
+                <option value="AX">حائل<span class="property_num">(1454)</span></option>
+                <option value="AX">الخبر<span class="property_num">(1765)</span></option>
+            </select>
         </div>
     </div>
 </div>
@@ -345,4 +356,5 @@
     </div>
 </div>
 <!-- Apps Section Ends Here -->
+
 @endsection

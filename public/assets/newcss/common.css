@@ -303,12 +303,28 @@ button a
     background-size: cover;
 }
 
+#otp_error
+{
+    margin-top: -14px;
+    display: block;
+    padding-bottom: 4px;
+}
+
+#otp_notification
+{
+    display: block;
+    padding-bottom: 4px;
+    color: green;
+    font-weight: bold;
+}
+
 .signIn-modal
 {
-    background: linear-gradient(0deg, rgba(29, 161, 242, 0.75), rgba(29, 161, 242, 0.75)), url(/assets/images/header-bg.png);
-    /*background-image: url('/assets/images/header-bg.png');*/
-    background-repeat: no-repeat;
-    background-size: 400vh 200vh;
+    background: linear-gradient(0deg, rgba(29, 161, 242, 0.75), rgba(29, 161, 242, 0.75)), url(/assets/images/header-bg.png) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 .otp-modal .modal-content
 {
