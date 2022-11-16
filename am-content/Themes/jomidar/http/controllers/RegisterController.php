@@ -333,7 +333,7 @@ class RegisterController extends controller
         DB::table('users')->where('id', decrypt($request['user_id']))
             ->update(['otp' => $otp, 'phone' => $request['phone'], 'updated_at' => Carbon::now()]);
         //update usermeta content    
-        $user_meta=DB::table('user_meta')->where('id', decrypt($request['user_id']))->where('type','content')->first();
+        $user_meta=DB::table('user_meta')->where('user_id', decrypt($request['user_id']))->where('type','content')->first();
         $get_content=json_decode($user_meta->content);
         $get_content->phone=$request['phone'];
         DB::table('user_meta')->where('user_id', decrypt($request['user_id']))->where('type','content')
