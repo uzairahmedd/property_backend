@@ -16,6 +16,7 @@
         @include('theme::newlayouts.partials.modals')
         @include ('theme::newlayouts.partials.footer')
         @include ('theme::newlayouts.partials.bottom')
+        @yield('dropdown-select');
         @yield('OTPScript')
     </div>
     {{ google_analytics() }}

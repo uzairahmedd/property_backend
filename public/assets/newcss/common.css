@@ -547,7 +547,8 @@ button a
 }
 
 .footer ul li {
-    border-left: 1px solid var(--theme-blue);
+    border-right: 1px solid var(--theme-blue);
+    margin-bottom: 20px;
 }
 
 .footer ul li:first-child {
@@ -604,6 +605,19 @@ button a
     left: 80px;
     cursor: pointer;
     position: absolute;
+}
+/*Heart Favorite CSS Start */
+
+.fa-heart.fa-regular {
+    font-size: 18px;
+    padding-top: 2px;
+    color: var(--theme-grey);
+}
+
+.fa-heart.fa-solid {
+    font-size: 19px;
+    padding-top: 2px;
+    color: red;
 }
 
 

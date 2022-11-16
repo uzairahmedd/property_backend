@@ -179,11 +179,11 @@
                         </div>
                         @if (Auth::check()) {
                         <div class="fav-elipse d-flex align-items-center justify-content-center" onclick="favourite_property('{{$sale_data->id}}')">
-                            <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
+                            <i class="fa-regular fa-heart" id="heart"></i>
                         </div>
                         @else
                         <div class="fav-elipse d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#contactModal">
-                            <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
+                            <i class="fa-regular fa-heart" id="heart"></i>
                         </div>
                         @endif
                     </div>
@@ -246,11 +246,11 @@
                         </div>
                         @if (Auth::check()) {
                         <div class="fav-elipse d-flex align-items-center justify-content-center" onclick="favourite_property('{{$rent_data->id}}')">
-                            <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
+                            <i class="fa-regular fa-heart" id="heart"></i>
                         </div>
                         @else
                         <div class="fav-elipse d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#contactModal">
-                            <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
+                            <i class="fa-regular fa-heart" id="heart"></i>
                         </div>
                         @endif
                     </div>
@@ -371,4 +371,19 @@
 </div>
 <!-- Apps Section Ends Here -->
 @endsection
+
+@section('dropdown-select')
+    <script src="{{theme_asset('assets/newjs/select-style.js')}}"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            $('select').selectstyle({
+                width  : 400,
+                height : 300,
+                theme  : 'light',
+                onchange : function(val){}
+            });
+        });
+    </script>
+@endsection
+
 

@@ -1,24 +1,30 @@
 <div class="footer">
     <div class="container">
-        <div class="d-flex flex-column-reverse flex-xl-row justify-content-end align-items-center">
-            <ul class="col list-unstyled d-flex flex-column-reverse flex-md-row align-items-center p-0">
+        <div class="d-flex flex-column flex-xl-row justify-content-end align-items-center">
+            <ul class="list-unstyled d-flex flex-column-reverse flex-wrap flex-md-row-reverse justify-content-center align-items-center p-0 mt-4">
                 <li>
-                    <a href="terms_of_use">شروط الاستخدام</a>
-                </li>
-                <li>
-                    <a href="policy_terms">شروط الخصوصية</a>
-                </li>
-                <li>
-                    <a href="property_auction">المزادات</a>
-                </li>
-                <li>
-                    <a href="property_lists">إعلانات للايجار</a>
+                    <a href="search">البحث</a>
                 </li>
                 <li>
                     <a href="property_lists">إعلانات للبيع</a>
                 </li>
                 <li>
-                    <a href="search">البحث</a>
+                    <a href="property_lists">إعلانات للايجار</a>
+                </li>
+                <li>
+                    <a href="property_auction">المزادات</a>
+                </li>
+                <li>
+                    <a href="policy_terms">شروط الخصوصية</a>
+                </li>
+                <li>
+                    <a href="terms_of_use">شروط الاستخدام</a>
+                </li>
+                <li>
+                    <a href="terms_of_use">شروط الإعلان عبر الموقع</a>
+                </li>
+                <li>
+                    <a href="search">للشكوى</a>
                 </li>
             </ul>
             <img src="{{asset('assets/images/footer-logo.png')}}"

@@ -63,11 +63,13 @@
                         }
                         @endphp
                         <a href="javascript:void(0)" onclick="favourite_property('{{ $property->id }}')" id="favourite_btn" class="{{ $property_id == $property->id ? 'active' : '' }}">
-                            <span class="iconify" data-icon="cil:heart" data-inline="false"></span>
+{{--                            <span class="iconify" data-icon="cil:heart" data-inline="false"></span>--}}
+                            <i class="fa-regular fa-heart" id="heart"></i>
                         </a>
                         @else
                         <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#contactModal">
-                            <span class="iconify" data-icon="cil:heart" data-inline="false"></span>
+{{--                            <span class="iconify" data-icon="cil:heart" data-inline="false"></span>--}}
+                            <i class="fa-regular fa-heart" id="heart"></i>
                         </a>
                         @endif
                     </li>
@@ -161,8 +163,8 @@
                     $info = isset($property->user->usermeta->content) ? json_decode($property->user->usermeta->content) : null ;
                     @endphp
                     <div class="d-flex flex-column flex-sm-row justify-content-between w-100">
-                        <button class="contact-btn col-12 col-sm-7 theme-bg-sky border-0 theme-text-white font-medium mb-3 mb-sm-0">
-                            <img src="{{theme_asset('assets/images/phone.png')}}" alt="" class="phone position-absolute">
+                        <button class="contact-btn col-12 col-sm-7 theme-bg-sky border-0 theme-text-white font-medium mb-sm-0">
+                            <img src="{{theme_asset('assets/images/phone.png')}}" alt="" class="phone me-2">
                             {{ isset($info->phone) ? $info->phone : ''  }}
                         </button>
                         <button class="contact-btn col-12 col-sm-4 theme-bg-white border-0 theme-text-blue font-medium" data-bs-toggle="modal" data-bs-target="#SendMsgModal">
@@ -216,7 +218,7 @@
                     @else
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">No facilities avaialable</h3>
+                            <h3 class="font-16 font-medium text-right theme-text-blue">No facilities avaialable</h3>
                         </div>
                     </div>
                     @endif

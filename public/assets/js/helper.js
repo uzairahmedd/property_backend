@@ -208,6 +208,17 @@ function favourite_property(id)
            }
         },
         success: function(response){
+            if(response.status == true)
+            {
+                $('#heart').removeClass('fa-regular');
+                $('#heart').addClass('fa-solid');
+            }
+            else if(response.status == false)
+            {
+                console.log('dsfsf');
+                $('#heart').removeClass('fa-solid');
+                $('#heart').addClass('fa-regular');
+            }
 			if(response.error)
 			{
 				$('#favourite_btn'+id).removeClass('active');

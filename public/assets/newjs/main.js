@@ -109,6 +109,7 @@ $(document).ready(function () {
             });
 
 
+
     $('.overlay').click(function (event) {
         $('.overlay').css('opacity', 0);
         $('.overlay').css('display', 'none');
@@ -122,6 +123,15 @@ $(document).ready(function () {
     // })
 
 });
+
+
+// heart icon js start
+
+
+    // $("#heart").click(function() {
+    //     // $(this).toggleClass('fa-regular');
+    //     // $(this).toggleClass('fa-solid');
+    // });
 
 
 

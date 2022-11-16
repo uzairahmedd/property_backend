@@ -14,8 +14,9 @@
     margin: 0;
     direction: rtl;
     width: 100% !important;
+    border-radius: 10px !important;
     padding-left: 0;
-    margin-top: -40px;
+    margin-top: -52px;
     position: absolute;
     background: #fff;
     margin-left: 32px;
@@ -32,7 +33,7 @@
 }
 .ss_ulsearch .ss_ul{display:block;position:relative;margin-top:0; max-height: 200px !important; width: 100% !important;border:none;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none; border-radius:0px;-moz-border-radius:0px;-webkit-border-radius:0px;}
 .ss_ulsearch .search{padding:0;}
-.ss_ulsearch .search input{background:inherit;border:none;height:100%;padding:10px 15px 10px 0px;outline:none;font-size:14px;width:calc(100% - 30px);width:-webkit-calc(100% - 30px);width:-moz-calc(100% - 30px);width:-o-calc(100% - 30px);background:url('../images/ful_grid_img.png') no-repeat;background-position: top 8px right 6px;}
+.ss_ulsearch .search input{background:inherit;border:none;height:100%;padding: 18px 17px 10px 0px;outline:none;font-size:16px;width:calc(100% - 30px);width:-webkit-calc(100% - 30px);width:-moz-calc(100% - 30px);width:-o-calc(100% - 30px);background:url('../images/ful_grid_img.png') no-repeat;background-position: top 8px right 6px;}
 .ss_ulsearch .search input:focus{outline:none;}
 .ss_ulsearch .nosearch{text-align:center;font-size:12px;padding-bottom:10px;background:#fff;}
 .ss_ul li{padding:10px 15px;cursor:pointer;border:none;text-align:left;color:#595959;transition-duration:.3s;-moz-transition-duration:.3s;-webkit-transition-duration:.3s;-o-transition-duration:.3s;font-size:14px;}
