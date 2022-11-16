@@ -107,7 +107,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 search-input-bar">
 {{--            <input type="search" class="theme-text-secondary-black border-0" placeholder="تبحث عن عقار؟">--}}
             <select class="theme-text-secondary-black border-0" theme="google" width="400" style="appearance: none;" placeholder=" تبحث عن عقار؟" data-search="true">
-                <option class="d-none" style="" value=""></option>
+                <option class="d-none"></option>
                 <option value="AX">الرياض<span class="property_num">(1)</span></option>
                 <option value="AX">جدة<span class="property_num">(132)</span></option>
                 <option value="AX">مكة المكرمة<span class="property_num">(1234)</span></option>
@@ -177,7 +177,7 @@
                                     <span class="font-medium">متاح</span>
                                 </div> -->
                         </div>
-                        @if (Auth::check()) {
+                        @if (Auth::check()) 
                         <div class="fav-elipse d-flex align-items-center justify-content-center" onclick="favourite_property('{{$sale_data->id}}')">
                             <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
                         </div>
@@ -244,7 +244,7 @@
                                     <span class="font-medium">متاح</span>
                                 </div> -->
                         </div>
-                        @if (Auth::check()) {
+                        @if (Auth::check())
                         <div class="fav-elipse d-flex align-items-center justify-content-center" onclick="favourite_property('{{$rent_data->id}}')">
                             <img src="{{theme_asset('assets/images/heart.svg')}}" alt="">
                         </div>
