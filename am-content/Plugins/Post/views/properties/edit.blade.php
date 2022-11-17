@@ -168,7 +168,24 @@
                       </td>
                     </tr>
                     @else
-                   
+                    @foreach($info->facilities as $facility)
+                     <tr id="table_row{{ !empty($rand.$facility->id) ? $rand.$facility->id : null }}">
+                      <td>
+                        <select name="facilities[]" class="form-control">
+                          <option value="">{{ __('Select facility') }}</option>
+                          @foreach($facilities as $rows)
+                          <option value="{{ $rows->id }}" @if($facility->category_id == $rows->id) selected="" @endif>{{ $rows->name }}</option>
+                          @endforeach
+                        </select>
+                      </td>
+                      <td>
+                        <input value="{{ $facility->value }}" type="number" step="any" name="facilities_input[]" placeholder="Distance (Km)" class="form-control col-12" >
+                      </td>
+                      <td>
+                        <button type="button" onclick="remove_row({{ $rand.$facility->id }})" class="btn btn-danger mt-1 float-left delete_btn"><i class="fa fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    @endforeach
                     @endif
                   </table>
                 </div>

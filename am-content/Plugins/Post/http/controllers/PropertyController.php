@@ -232,9 +232,9 @@ class PropertyController extends controller
         }
         
        
-        // foreach ($info->facilities as $key => $row) {
-        //     array_push($array, $row->category_id);
-        // }
+        foreach ($info->facilities as $key => $row) {
+            array_push($array, $row->category_id);
+        }
 
         $input_options=\App\Category::where('type','option')->whereHas('child',function($q){
             return $q->where('id',$this->property_type);
