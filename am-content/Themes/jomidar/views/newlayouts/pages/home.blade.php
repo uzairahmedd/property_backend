@@ -177,7 +177,7 @@
                                     <span class="font-medium">متاح</span>
                                 </div> -->
                         </div>
-                        @if (Auth::check()) 
+                        @if (Auth::check())
                         <div class="fav-elipse d-flex align-items-center justify-content-center" onclick="favourite_property('{{$sale_data->id}}')">
                             <i class="fa-regular fa-heart" id="heart"></i>
                         </div>
@@ -213,7 +213,7 @@
     @if(isset($status_properties['rent_property']) && count($status_properties['rent_property']) > 0)
     <div class="container position-relative">
         <div class="property-listing-content d-flex align-items-center justify-content-between">
-            <p class="mb-0 theme-text-sky font-medium"><a href="property_lists">عرض المزيد</a></p>
+            <p class="mb-0 theme-text-sky font-medium"><a href="http://127.0.0.1:8000/list?status=26">عرض المزيد</a></p>
             <div class="d-flex align-items-center gap-3">
                 <h2 class="mb-0 font-medium theme-text-blue">أضيفت مؤخرا</h2>
                 <div class="chip font-medium theme-text-secondary">

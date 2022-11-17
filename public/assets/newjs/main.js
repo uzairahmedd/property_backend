@@ -51,8 +51,9 @@ $(document).ready(function (event) {
 });
 $("input[type='radio']").click(function (event) {
     if ($("input[type='radio']").is(":checked")) {
-        // console.log('aldsfasdf');
+
         var radio_val = $("input[type='radio']:checked").val();
+        // console.log(radio_val);
         $('#dropdownMenuLink').text(radio_val);
         $('.overlay').css('opacity', 0);
         $('.overlay').css('display', 'none');
@@ -133,9 +134,82 @@ $(document).ready(function () {
     //     // $(this).toggleClass('fa-solid');
     // });
 
+// jquery for dropdown button start
+$(document).ready(function (event) {
+    $('.complete-rent-drop').click(function (e) {
+        $('.overlay').css('opacity', 0.2);
+        $('.overlay').css('display', 'block');
+        event.stopPropagation();
+    });
+});
+$("#rent-propertylist-drop").click(function (event) {
+    if ($("input[type='radio']").is(":checked")) {
+        var radio_val = $("input[type='radio']:checked").val();
+        $('#dropdownMenuLink3').text(radio_val);
+        console.log(radio_val);
+        $('.overlay').css('opacity', 0);
+        $('.overlay').css('display', 'none');
+        $(".rent-dropdown").removeClass("show");
+        event.stopPropagation();
+    }
+});
+$(document).ready(function (event) {
+    $('.overlay').click(function (event) {
+        $('.overlay').css('opacity', 0);
+        $('.overlay').css('display', 'none');
+        $(".rent-dropdown").removeClass("show");
+        event.stopPropagation();
+    });
+});
+// jquery for dropdown button End
 
 
 
+// jquery for dropdown button start
+$(document).ready(function (event) {
+    $('.complete-rent-drop').click(function (e) {
+        $('.overlay').css('opacity', 0.2);
+        $('.overlay').css('display', 'block');
+        event.stopPropagation();
+    });
+});
+$("input[type='radio']").click(function (event) {
+    if ($("input[type='radio']").is(":checked")) {
+        var radio_val = $("input[type='radio']:checked").val();
+        $('#dropdownMenuLink-buy').text(radio_val);
+        console.log(radio_val);
+        $('.overlay').css('opacity', 0);
+        $('.overlay').css('display', 'none');
+        $(".rent-dropdown").removeClass("show");
+        event.stopPropagation();
+    }
+});
+$(document).ready(function (event) {
+    $('.overlay').click(function (event) {
+        $('.overlay').css('opacity', 0);
+        $('.overlay').css('display', 'none');
+        $(".rent-dropdown").removeClass("show");
+        event.stopPropagation();
+    });
+});
+// jquery for dropdown button End
+
+
+// $(".prop-checkbox").click(function() {
+//     $(this).toggleClass('addbg-color-typeprop-icon');
+//     $(this).toggleClass('removebg-color-typeprop-icon');
+// });
+
+$(".prop-checkbox").click(function(){
+    console.log('fdassfdfd');
+    if(clicked){
+        $(this).css('background-color', 'red');
+        clicked  = false;
+    } else {
+        $(this).css('background-color', 'blue');
+        clicked  = true;
+    }
+});
 
 
 

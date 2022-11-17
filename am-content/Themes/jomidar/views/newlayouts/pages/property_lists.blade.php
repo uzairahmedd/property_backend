@@ -1,6 +1,7 @@
 @extends('theme::newlayouts.app')
 @section('content')
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/second-page.css')}}">
+    <link rel="stylesheet" href="{{theme_asset('assets/newcss/propertylist-search.css')}}">
     <div class="filter-bar">
         <div class="container">
             <div class="row">
@@ -9,118 +10,87 @@
                         <img src="assets/images/map-icon.svg" alt="">
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-10 order-lg-2 d-flex justify-content-end flex-md-row select-filter ms-auto">
-                    <div class="budget-drop-btn">
-                        <div class="dropdown complete-rent-drop">
-                            <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}"
-                                                                alt=""></span>
-                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button"
-                                    id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-expanded="false"
-                                    data-toggle="dropdown">الميزانية
-                            </button>
-                            <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink1">
-                                <h3>عدد الغرف</h3>
-                                <div class="d-flex justify-content-evenly align-items-center">
-                                    <div class="type-dropdown-content">
-                                        <div class="mb-4_5 position-relative">
-                                            <input type="email" class="form-control font-medium font-16" id=""
-                                                   placeholder="ادخل الاسم كاملا">
-                                            <label for="floating-Input"
-                                                   class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
-                                                كامل</label>
-                                        </div>
-                                        <div class="position-relative mb-4_5">
-                                            <input type="email" class="form-control font-medium font-16" id=""
-                                                   placeholder="ادخل الاسم كاملا">
-                                            <label for="floating-Input"
-                                                   class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">الاسم
-                                                كامل</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="range-filters">
-                                    <div class="values d-none">
-                                        <span id="range1"> 0 </span>
-                                        <span> &dash; </span>
-                                        <span id="range2">100</span>
-                                    </div>
-                                    <div class="">
-                                        <div class="slider-track"></div>
-                                        <input type="range" min="0" max="100" value="30" id="slider-1" oninput="slideOne()">
-                                        <input type="range" min="0" max="100" value="70" id="slider-2" oninput="slideTwo()">
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <li class="type-all">
-                                        <button class="btn type-box show-results-bttn">اظهار النتائج</button>
-                                    </li>
-                                    <li class="type-all">
-                                        <button class="btn type-box">مسح</button>
-                                    </li>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
+                <div
+                    class="col-lg-6 col-md-10 col-sm-10 col-xs-10 order-lg-2 d-flex justify-content-end flex-md-row select-filter ms-auto">
+                    {{--                    <div class="budget-drop-btn">--}}
+                    {{--                        <div class="dropdown complete-rent-drop">--}}
+                    {{--                            <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>--}}
+                    {{--                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink" onclick="" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">للايجار--}}
+                    {{--                            </button>--}}
+                    {{--                            <ul class="dropdown-menu rent-dropdown" aria-labelledby="dropdownMenuLink">--}}
+                    {{--                                <div class="rent-dropdown-content">--}}
+                    {{--                                    <li class="rent-all">--}}
+                    {{--                                        <input class="rent-select-dropdown" value="بيع" type="radio" id="radio100-01" name="radio-btn" />--}}
+                    {{--                                        <label class="rent-box" for="radio100-01">بيع</label>--}}
+                    {{--                                    </li>--}}
+                    {{--                                    <li class="rent-all">--}}
+                    {{--                                        <input class="rent-select-dropdown drive_percent-box" value="ايجار" type="radio" id="radio100-02" name="radio-btn" checked />--}}
+                    {{--                                        <label class="rent-box" for="radio100-02">ايجار</label>--}}
+                    {{--                                    </li>--}}
+                    {{--                                </div>--}}
+                    {{--                            </ul>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                     <div class="no-rooms-drop-btn">
                         <div class="dropdown complete-rent-drop">
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}"
                                                                 alt=""></span>
                             <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button"
-                                    id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-expanded="false"
+                                    id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false"
                                     data-toggle="dropdown">عدد الغرف
                             </button>
-                            <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink1">
+                            <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-rooms">
                                 <h3>عدد الغرف</h3>
                                 <div class="type-dropdown-content">
                                     <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-10"
+                                        <input class="type-select-dropdown" type="radio" id="radio013-10"
                                                name="radio-btn"/>
-                                        <label class="type-box" for="radio03-10">1</label>
+                                        <label class="type-box" for="radio013-10">1</label>
                                     </li>
                                     <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-09"
+                                        <input class="type-select-dropdown" type="radio" id="radio012-09"
                                                name="radio-btn"/>
-                                        <label class="type-box" for="radio03-09">2</label>
+                                        <label class="type-box" for="radio012-09">2</label>
                                     </li>
                                     <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-08"
+                                        <input class="type-select-dropdown" type="radio" id="radio011-08"
                                                name="radio-btn"/>
-                                        <label class="type-box" for="radio03-08">3</label>
+                                        <label class="type-box" for="radio011-08">3</label>
                                     </li>
                                     <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-07"
+                                        <input class="type-select-dropdown" type="radio" id="radio010-07"
                                                name="radio-btn"/>
-                                        <label class="type-box" for="radio03-07">4</label>
+                                        <label class="type-box" for="radio010-07">4</label>
                                     </li>
                                     <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-06"
+                                        <input class="type-select-dropdown" type="radio" id="radio09-06"
                                                name="radio-btn"/>
-                                        <label class="type-box" for="radio03-06">5</label>
+                                        <label class="type-box" for="radio09-06">5</label>
                                     </li>
                                     <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-05"
+                                        <input class="type-select-dropdown" type="radio" id="radio08-05"
                                                name="radio-btn"/>
-                                        <label class="type-box" for="radio03-05">6</label>
+                                        <label class="type-box" for="radio08-05">6</label>
                                     </li>
                                     <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-04"
+                                        <input class="type-select-dropdown" type="radio" id="radio07-04"
                                                name="radio-btn"/>
-                                        <label class="type-box" for="radio03-04">7</label>
+                                        <label class="type-box" for="radio07-04">7</label>
                                     </li>
                                     <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-03"
+                                        <input class="type-select-dropdown" type="radio" id="radio06-03"
                                                name="radio-btn"/>
-                                        <label class="type-box" for="radio03-03">8</label>
+                                        <label class="type-box" for="radio06-03">8</label>
                                     </li>
                                     <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-01"
+                                        <input class="type-select-dropdown" type="radio" id="radio05-01"
                                                name="radio-btn"/>
-                                        <label class="type-box" for="radio03-01">9</label>
+                                        <label class="type-box" for="radio05-01">9</label>
                                     </li>
                                     <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-02"
+                                        <input class="type-select-dropdown" type="radio" id="radio04-02"
                                                name="radio-btn" checked/>
-                                        <label class="type-box" for="radio03-02">10+</label>
+                                        <label class="type-box" for="radio04-02">10+</label>
                                     </li>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
@@ -139,57 +109,93 @@
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}"
                                                                 alt=""></span>
                             <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button"
-                                    id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-expanded="false"
+                                    id="dropdownMenuLink-property-type" data-bs-toggle="dropdown" aria-expanded="false"
                                     data-toggle="dropdown">النوع
                             </button>
-                            <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink1">
+                            <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-property-type">
                                 <h3>نوع العقار</h3>
-                                <div class="type-dropdown-content">
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-09"
-                                               name="radio-btn"/>
-                                        <label class="type-box" for="radio03-09">شاليه</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-08"
-                                               name="radio-btn"/>
-                                        <label class="type-box" for="radio03-08">استراحة</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-07"
-                                               name="radio-btn"/>
-                                        <label class="type-box" for="radio03-07">مزرعة</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-06"
-                                               name="radio-btn"/>
-                                        <label class="type-box" for="radio03-06">أرض</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-05"
-                                               name="radio-btn"/>
-                                        <label class="type-box" for="radio03-05">عمارة</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-04"
-                                               name="radio-btn"/>
-                                        <label class="type-box" for="radio03-04">قصر</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-03"
-                                               name="radio-btn"/>
-                                        <label class="type-box" for="radio03-03">دوبلكس</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-01"
-                                               name="radio-btn"/>
-                                        <label class="type-box" for="radio03-01">فيلا</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio03-02"
-                                               name="radio-btn" checked/>
-                                        <label class="type-box" for="radio03-02">شقة</label>
-                                    </li>
+                                <div class="type-dropdown-content d-flex justify-content-around align-items-center">
+                                    <div class="radio-container prop-checkbox" value="0" id="1">
+                                        <div>
+                                            <i class="fa-regular fa-building"></i>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium">عمارة</span>
+                                        </div>
+                                    </div>
+                                    <div class="radio-container prop-checkbox" value="0" id="2">
+                                        <div>
+                                            <i class="fa-regular fa-chess-rook"></i>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium">قصر</span>
+                                        </div>
+                                    </div>
+                                    <div class="radio-container prop-checkbox" value="0" id="3">
+                                        <div>
+                                            <i class="fa-regular fa-chess-queen"></i>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium">فيلا</span>
+                                        </div>
+                                    </div>
+                                    <div class="radio-container prop-checkbox" value="0" id="4">
+                                        <div>
+                                            <i class="fa-regular fa-building"></i>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium">شقة</span>
+                                        </div>
+                                    </div>
+                                    <div class="radio-container prop-checkbox" value="0" id="5">
+                                        <div>
+                                            <i class="fa-solid fa-house"></i>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium">شاليه</span>
+                                        </div>
+                                    </div>
+                                    <div class="radio-container prop-checkbox" value="0" id="6">
+                                        <div>
+                                            <i class="fa-solid fa-spa"></i>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium">استراحة</span>
+                                        </div>
+                                    </div>
+                                    <div class="radio-container prop-checkbox" value="0" id="7">
+                                        <div>
+                                            <i class="fa-solid fa-wheat-awn"></i>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium">مزرعة</span>
+                                        </div>
+                                    </div>
+                                    <div class="radio-container prop-checkbox" value="0" id="8">
+                                        <div>
+                                            <i class="fa-solid fa-landmark-flag"></i>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium">أرض</span>
+                                        </div>
+                                    </div>
+                                    <div class="radio-container prop-checkbox" value="0" id="9">
+                                        <div>
+                                            <i class="fa-solid fa-house-medical-flag"></i>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium">دوبلكس</span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
                                     <li class="type-all">
@@ -207,21 +213,21 @@
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}"
                                                                 alt=""></span>
                             <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button"
-                                    id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"
+                                    id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false"
                                     data-toggle="dropdown">ايجار
                             </button>
-                            <ul class="dropdown-menu rent-dropdown" aria-labelledby="dropdownMenuLink">
-                                <div class="rent-dropdown-content">
+                            <ul class="dropdown-menu rent-dropdown" aria-labelledby="dropdownMenuLink-buy">
+                                <div class="rent-dropdown-content" id="rent-propertylist-drop">
                                     <li class="rent-all">
-                                        <input class="rent-select-dropdown" type="radio" id="radio02-01"
-                                               name="radio-btn"/>
-                                        <label class="rent-box" for="radio02-01">بيع</label>
+                                        <input class="rent-select-dropdown" type="radio" id="radio020-01"
+                                               name="radio-btn" value="بيع"/>
+                                        <label class="rent-box" for="radio020-01">بيع</label>
                                     </li>
                                     <li class="rent-all">
                                         <input class="rent-select-dropdown drive_percent-box" type="radio"
-                                               id="radio02-02"
-                                               name="radio-btn" checked/>
-                                        <label class="rent-box" for="radio02-02">ايجار</label>
+                                               id="radio020-02"
+                                               name="radio-btn" value="ايجار" checked/>
+                                        <label class="rent-box" for="radio020-02">ايجار</label>
                                     </li>
                                 </div>
                             </ul>
@@ -229,11 +235,24 @@
                     </div>
 
                 </div>
-                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 order-lg-3 order-first search-box">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 order-lg-3 order-first search-box search-input-bar">
                     <div class="search-bar d-flex p-2 mt-1">
                         <img src="assets/images/search.svg" alt="">
-                        <input type="search" class="theme-text-secondary-black w-100 border-0"
-                               placeholder="تبحث عن عقار؟">
+                        {{--                        <input type="search" class="theme-text-secondary-black w-100 border-0"--}}
+                        {{--                               placeholder="تبحث عن عقار؟">--}}
+
+                        <select class="theme-text-secondary-black border-0" theme="google" width="400"
+                                style="appearance: none;" placeholder=" تبحث عن عقار؟" data-search="true">
+                            <option class="d-none"></option>
+                            <option value="AX">الرياض<span class="property_num">(1)</span></option>
+                            <option value="AX">جدة<span class="property_num">(132)</span></option>
+                            <option value="AX">مكة المكرمة<span class="property_num">(1234)</span></option>
+                            <option value="AX">المدينة المنورة<span class="property_num">(143)</span></option>
+                            <option value="AX">جميع المدن<span class="property_num">(1234)</span></option>
+                            <option value="AX">الدمام<span class="property_num">(164)</span></option>
+                            <option value="AX">حائل<span class="property_num">(1454)</span></option>
+                            <option value="AX">الخبر<span class="property_num">(1765)</span></option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -1627,4 +1646,19 @@
         </div>
     </div>
     <!-- Property listing End -->
+@endsection
+
+@section('property_list_select')
+    <script src="{{theme_asset('assets/newjs/propertylist-search.js')}}"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $('select').selectstyle({
+                width: 400,
+                height: 300,
+                theme: 'light',
+                onchange: function (val) {
+                }
+            });
+        });
+    </script>
 @endsection

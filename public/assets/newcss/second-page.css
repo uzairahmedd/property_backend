@@ -337,12 +337,24 @@ element.style {
     margin-top: 20px !important;
 }
 .type-dropdown {
-    width: 343px;
+    width: 470px;
     background: #FFFFFF;
     box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
     border-radius: 8px;
-    padding: 30px 14px 10px 14px;
+    padding: 30px 25px 10px 25px;
     margin-top: 35px !important;
+}
+
+.active-bg-color
+{
+    background: #f9f5fe;
+    border-color: #6f10a2;
+}
+
+.remove-bg-color
+{
+    background: transparent;
+    border-color: none;
 }
 
 .type-box {
@@ -359,7 +371,7 @@ element.style {
 .type-dropdown .type-dropdown-content {
     width: 100%;
     display: inline-flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
@@ -636,3 +648,59 @@ input[type="range"]:active::-webkit-slider-thumb {
 /*    left: 0;*/
 /*    right: 0;*/
 /*}*/
+
+
+/* Radio Button Style Satrts Here */
+.radio-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid #292071;
+    border-radius: 8px;
+    color: #292071;
+    text-align: center;
+    width: 100%;
+    height: 80px;
+    padding: 10px 0;
+    max-width: 120px;
+    min-width: 80px;
+    margin-bottom: 10px;
+}
+
+.radio-container i
+{
+    font-size: 20px;
+}
+
+.radio-container input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    z-index: 11;
+
+}
+
+/*.radio-container {*/
+/*    */
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    line-height: 1.7;*/
+/*}*/
+
+.radio-container input:checked~.checmark {
+    background: var(--theme-sky);
+    border: 0.5px solid #FFFFFF;
+    color: #fff;
+}
+.yes-no-radio .checmark {
+    padding: 8px 12px;
+}
+/* Radio Button Styles End */
