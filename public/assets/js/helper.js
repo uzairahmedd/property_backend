@@ -200,6 +200,14 @@ function favourite_property(id)
         data: {id: id},
         dataType: 'json',
         beforeSend: function() {
+			//new hearts
+			// if($('.heart'+id).hasClass('fa-solid'))
+			// {
+			// 	 $('.heart'+id).removeClass('fa-solid');
+			// }else{
+			// 	 $('.heart'+id).addClass('fa-solid');
+			// }
+
            if($('#favourite_btn'+id).hasClass('active'))
            {
                 $('#favourite_btn'+id).removeClass('active');
@@ -208,21 +216,25 @@ function favourite_property(id)
            }
         },
         success: function(response){
+			// console.log('dsfsf');
             if(response.status == true)
             {
-                $('#heart').removeClass('fa-regular');
-                $('#heart').addClass('fa-solid');
+                $('.heart'+id).removeClass('fa-regular');
+                $('.heart'+id).addClass('fa-solid');
             }
             else if(response.status == false)
             {
-                console.log('dsfsf');
-                $('#heart').removeClass('fa-solid');
-                $('#heart').addClass('fa-regular');
+               
+                $('.heart'+id).removeClass('fa-solid');
+                $('.heart'+id).addClass('fa-regular');
             }
 			if(response.error)
 			{
 				$('#favourite_btn'+id).removeClass('active');
 				$('#login').modal('show');
+				$('.heart'+id).removeClass('fa-solid');
+                $('.heart'+id).addClass('fa-regular');
+				$('#contactModal').modal('show');
 			}
         },
         error: function(xhr, status, error)

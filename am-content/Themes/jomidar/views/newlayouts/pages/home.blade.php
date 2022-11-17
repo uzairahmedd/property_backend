@@ -177,15 +177,9 @@
                                     <span class="font-medium">متاح</span>
                                 </div> -->
                         </div>
-                        @if (Auth::check())
                         <div class="fav-elipse d-flex align-items-center justify-content-center" onclick="favourite_property('{{$sale_data->id}}')">
-                            <i class="fa-regular fa-heart" id="heart"></i>
+                            <i class="fa-regular fa-heart heart{{$sale_data->id}}" ></i>
                         </div>
-                        @else
-                        <div class="fav-elipse d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#contactModal">
-                            <i class="fa-regular fa-heart" id="heart"></i>
-                        </div>
-                        @endif
                     </div>
                     <div class="price theme-text-white d-flex align-items-center justify-content-center">
                         <span class="font-bold">{{$sale_data->max_price->price}}- {{$sale_data->min_price->price}} مليون ر.س</span>
@@ -244,15 +238,11 @@
                                     <span class="font-medium">متاح</span>
                                 </div> -->
                         </div>
-                        @if (Auth::check())
+
                         <div class="fav-elipse d-flex align-items-center justify-content-center" onclick="favourite_property('{{$rent_data->id}}')">
-                            <i class="fa-regular fa-heart" id="heart"></i>
+                            <i class="fa-regular fa-heart heart{{$rent_data->id}}"></i>
                         </div>
-                        @else
-                        <div class="fav-elipse d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#contactModal">
-                            <i class="fa-regular fa-heart" id="heart"></i>
-                        </div>
-                        @endif
+
                     </div>
                     <div class="price theme-text-white d-flex align-items-center justify-content-center">
                         <span class="font-bold">{{$rent_data->max_price->price}}- {{$rent_data->min_price->price}} مليون ر.س</span>

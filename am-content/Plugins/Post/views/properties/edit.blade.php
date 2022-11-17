@@ -169,7 +169,7 @@
                     </tr>
                     @else
                     @foreach($info->facilities as $facility)
-                     <tr id="table_row{{ $rand.$facility->id }}">
+                     <tr id="table_row{{ !empty($rand.$facility->id) ? $rand.$facility->id : null }}">
                       <td>
                         <select name="facilities[]" class="form-control">
                           <option value="">{{ __('Select facility') }}</option>
