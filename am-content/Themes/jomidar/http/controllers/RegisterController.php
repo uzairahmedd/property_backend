@@ -243,7 +243,7 @@ class RegisterController extends controller
         $url = $main_url . 'user=' . $sms_username . '&' . 'pwd=' . $sms_password . '&' . 'senderid=SMSAlert&mobileno=966' . $updated_mobile . '&msgtext=' . $otp_message . '&priority=High&CountryCode=ALL';
         $response = '{"header_code":200,"body":"1355541590,966504454685,Send Successful\r\n"}';
         $response = json_decode($response, true);
-        if (env("APP_ENV") != "Production") {
+        if (env("APP_ENV") == "Production") {
             //send otp using curl
             $response = @curl_request($url, '', false, '');
         }
@@ -302,7 +302,7 @@ class RegisterController extends controller
         return view('theme::newlayouts.pages.phone_no', compact('user_data'));
     }
 
-   /**
+    /**
      * updating phone
      * @return @response
      */
@@ -333,10 +333,10 @@ class RegisterController extends controller
         DB::table('users')->where('id', decrypt($request['user_id']))
             ->update(['otp' => $otp, 'phone' => $request['phone'], 'updated_at' => Carbon::now()]);
         //update usermeta content    
-        $user_meta=DB::table('user_meta')->where('user_id', decrypt($request['user_id']))->where('type','content')->first();
-        $get_content=json_decode($user_meta->content);
-        $get_content->phone=$request['phone'];
-        DB::table('user_meta')->where('user_id', decrypt($request['user_id']))->where('type','content')
+        $user_meta = DB::table('user_meta')->where('user_id', decrypt($request['user_id']))->where('type', 'content')->first();
+        $get_content = json_decode($user_meta->content);
+        $get_content->phone = $request['phone'];
+        DB::table('user_meta')->where('user_id', decrypt($request['user_id']))->where('type', 'content')
             ->update(['content' => json_encode($get_content)]);
         $main_url = config('api_constants.sms_url');
         $sms_username = config('api_constants.sms_username');
@@ -347,7 +347,7 @@ class RegisterController extends controller
         $url = $main_url . 'user=' . $sms_username . '&' . 'pwd=' . $sms_password . '&' . 'senderid=SMSAlert&mobileno=966' . $updated_mobile . '&msgtext=' . $otp_message . '&priority=High&CountryCode=ALL';
         $response = '{"header_code":200,"body":"1355541590,966504454685,Send Successful\r\n"}';
         $response = json_decode($response, true);
-        if (env("APP_ENV") != 'Production') {
+        if (env("APP_ENV") == 'Production') {
             //send otp using curl
             $response = @curl_request($url, '', false, '');
         }

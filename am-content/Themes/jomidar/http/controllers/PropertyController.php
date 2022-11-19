@@ -75,7 +75,7 @@ class PropertyController extends controller
             JsonLdMulti::setDescription($property->excerpt->content ?? '');
             JsonLdMulti::setType('Property');
             return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features'));
-//             return view('view::property.details',compact('property','path','features'));
+            //             return view('view::property.details',compact('property','path','features'));
         } else {
             return abort(404);
         }
@@ -194,72 +194,6 @@ class PropertyController extends controller
 
     public function list(Request $request)
     {
-        $seo = Options::where('key', 'seo')->first();
-        $seo = json_decode($seo->value);
-
-        SEOMeta::setTitle('Property list');
-        SEOMeta::setDescription($seo->description);
-
-
-        OpenGraph::setDescription($seo->description);
-        OpenGraph::setTitle('Property list');
-        OpenGraph::addProperty('keywords', $seo->tags);
-
-        TwitterCard::setTitle('Property list');
-        TwitterCard::setSite($seo->twitterTitle);
-
-        JsonLd::setTitle('Property list');
-        JsonLd::setDescription($seo->description);
-        JsonLd::addImage(asset(content('header', 'logo')));
-
-
-
-        SEOTools::setTitle('Property list');
-        SEOTools::setDescription($seo->description);
-        SEOTools::setCanonical($seo->canonical);
-        SEOTools::opengraph()->addProperty('keywords', $seo->tags);
-        SEOTools::twitter()->setSite($seo->twitterTitle);
-        SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
-
-        $status = $request->status ?? null;
-        $location = $request->location ?? null;
-
-        $state = $request->state ?? null;
-        $badroom = $request->badroom[16] ?? null;
-        $bathroom = $request->bathroom[17] ?? null;
-        $floor = $request->floor[18] ?? null;
-        $block = $request->block[15] ?? null;
-        $min_price = $request->min_price ?? null;
-        $max_price = $request->max_price ?? null;
-        $src = $request->src ?? null;
-
-        $input_array = [];
-        if ($request->category) {
-            $category = Category::where('type', 'category')->with('parent')->findorFail($request->category);
-            foreach ($category->parent as $row) {
-                array_push($input_array, $row->id);
-            }
-        } else {
-            $category = null;
-        }
-
-        $statuses = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
-
-        $states = Category::where('type', 'states')->get();
-        $categories = Category::where('type', 'category')->get();
-
-
-
-        $category = $request->category;
-        return view('view::property.list', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
-    }
-
-
-    //    Property List of Khiaratee Project
-
-
-    public function new_list(Request $request)
-    {
 
         $seo = Options::where('key', 'seo')->first();
         $seo = json_decode($seo->value);
@@ -319,7 +253,75 @@ class PropertyController extends controller
 
         $category = $request->category;
         return view('theme::newlayouts.pages.property_lists', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
+        // return view('view::property.list', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
     }
+
+
+    //    Property List of Khiaratee Project
+
+
+    // public function new_list(Request $request)
+    // {
+
+    //     $seo = Options::where('key', 'seo')->first();
+    //     $seo = json_decode($seo->value);
+
+    //     SEOMeta::setTitle('Property list');
+    //     SEOMeta::setDescription($seo->description);
+
+
+    //     OpenGraph::setDescription($seo->description);
+    //     OpenGraph::setTitle('Property list');
+    //     OpenGraph::addProperty('keywords', $seo->tags);
+
+    //     TwitterCard::setTitle('Property list');
+    //     TwitterCard::setSite($seo->twitterTitle);
+
+    //     JsonLd::setTitle('Property list');
+    //     JsonLd::setDescription($seo->description);
+    //     JsonLd::addImage(asset(content('header', 'logo')));
+
+
+
+    //     SEOTools::setTitle('Property list');
+    //     SEOTools::setDescription($seo->description);
+    //     SEOTools::setCanonical($seo->canonical);
+    //     SEOTools::opengraph()->addProperty('keywords', $seo->tags);
+    //     SEOTools::twitter()->setSite($seo->twitterTitle);
+    //     SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
+
+    //     $status = $request->status ?? null;
+    //     $location = $request->location ?? null;
+
+    //     $state = $request->state ?? null;
+    //     $badroom = $request->badroom[16] ?? null;
+    //     $bathroom = $request->bathroom[17] ?? null;
+    //     $floor = $request->floor[18] ?? null;
+    //     $block = $request->block[15] ?? null;
+    //     $min_price = $request->min_price ?? null;
+    //     $max_price = $request->max_price ?? null;
+    //     $src = $request->src ?? null;
+
+    //     $input_array = [];
+    //     if ($request->category) {
+    //         $category = Category::where('type', 'category')->with('parent')->findorFail($request->category);
+    //         foreach ($category->parent as $row) {
+    //             array_push($input_array, $row->id);
+    //         }
+    //     } else {
+    //         $category = null;
+    //     }
+
+    //     $statuses = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
+
+    //     $states = Category::where('type', 'states')->get();
+    //     $categories = Category::where('type', 'category')->get();
+
+
+
+    //     $category = $request->category;
+    //     return view('theme::newlayouts.pages.property_lists', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
+    // }
 
     // public function property_detail()
     // {

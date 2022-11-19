@@ -21,12 +21,12 @@
         <div class="d-flex flex-wrap-reverse justify-content-end justify-content-lg-between align-items-center my-3">
             <div class="col-12 col-lg-8 col-xl-7 col-xxl-6">
                 <ul class="detail list-unstyled mb-0 d-flex flex-column flex-sm-row align-items-end justify-content-between align-items-sm-center">
-{{--                    <li class="d-flex mb-3 mb-sm-0">--}}
-{{--                        <span>مشاركة</span>--}}
-{{--                        <div class="icon d-flex align-items-center justify-content-center">--}}
-{{--                            <img src="{{theme_asset('assets/images/share.png')}}" alt="">--}}
-{{--                        </div>--}}
-{{--                    </li>--}}
+                    {{-- <li class="d-flex mb-3 mb-sm-0">--}}
+                    {{-- <span>مشاركة</span>--}}
+                    {{-- <div class="icon d-flex align-items-center justify-content-center">--}}
+                    {{-- <img src="{{theme_asset('assets/images/share.png')}}" alt="">--}}
+                    {{-- </div>--}}
+                    {{-- </li>--}}
 
                     <li class="d-flex mb-3 mb-sm-0">
                         <span>مشاركة</span>
@@ -63,12 +63,12 @@
                         }
                         @endphp
                         <a href="javascript:void(0)" onclick="favourite_property('{{ $property->id }}')" id="favourite_btn" class="{{ $property_id == $property->id ? 'active' : '' }}">
-{{--                            <span class="iconify" data-icon="cil:heart" data-inline="false"></span>--}}
+                            {{-- <span class="iconify" data-icon="cil:heart" data-inline="false"></span>--}}
                             <i class="fa-regular fa-heart" id="heart"></i>
                         </a>
                         @else
                         <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#contactModal">
-{{--                            <span class="iconify" data-icon="cil:heart" data-inline="false"></span>--}}
+                            {{-- <span class="iconify" data-icon="cil:heart" data-inline="false"></span>--}}
                             <i class="fa-regular fa-heart" id="heart"></i>
                         </a>
                         @endif
@@ -141,9 +141,9 @@
                             <span> {{ $value->value }}</span>
                             @if($value->category->name =='Bathrooms')
 
-                            <img src="{{theme_asset('assets/images/shower.png')}}" alt="">
+                            <img src="{{theme_asset('assets/images/shower.png')}}" title="{{ $value->category->name }}" data-toggle="tooltip" alt="">
                             @elseif($value->category->name =='Bedrooms')
-                            <img src="{{theme_asset('assets/images/room.png')}}" alt="">
+                            <img src="{{theme_asset('assets/images/room.png')}}" title="{{ $value->category->name }}" data-toggle="tooltip" alt="">
                             @endif
                         </li>
 
@@ -165,7 +165,7 @@
                     <div class="d-flex flex-column flex-sm-row justify-content-between w-100">
                         <button class="contact-btn col-12 col-sm-7 theme-bg-sky border-0 theme-text-white font-medium mb-sm-0">
                             <img src="{{theme_asset('assets/images/phone.png')}}" alt="" class="phone me-2">
-                            {{ isset($info->phone) ? $info->phone : ''  }}
+                            {{ isset($info->phone) ? $info->phone : 'N/A'  }}
                         </button>
                         <button class="contact-btn col-12 col-sm-4 theme-bg-white border-0 theme-text-blue font-medium" data-bs-toggle="modal" data-bs-target="#SendMsgModal">
                             <img src="{{theme_asset('assets/images/booking-calender.png')}}" alt="" class="me-3">

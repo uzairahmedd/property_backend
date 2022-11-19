@@ -216,10 +216,6 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::get('change_currency', 'WelcomeController@change_currency')->name('change_currency');
 	Route::post('user/register', 'RegisterController@register')->name('user.register');
 	Route::get('contact', 'ContactController@index')->name('contact.index');
-
-	//	Route::post('property_lists','ContactController@new_show')->name('property.lists');
-	//    Route::post('property_detail','ContactController@property_detail')->name('property.detail');
-	//    Route::post('property_auction','ContactController@property_auction')->name('property.auction');
 	//new register 
 	Route::post('user/user_register', 'RegisterController@user_register')->name('user_register');
 	Route::get('Verify_OTP_page/{id}', 'RegisterController@Verify_OTP_page');
@@ -229,14 +225,13 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	//update phone page
 	Route::get('Update-phone/{id}', 'RegisterController@Update_phone');
 	Route::post('modify_phone', 'RegisterController@modify_phone');
-	
 });
 
 //    Latest Khiaratee Theme Routes Start
 
 Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middleware' => 'web'], function () {
-	Route::get('property_lists', 'PropertyController@new_list')->name('property_lists');
-	Route::get('property_detail', 'PropertyController@property_detail')->name('property_detail');
+	// Route::get('property_lists', 'PropertyController@new_list')->name('property_lists');
+	// Route::get('property_detail', 'PropertyController@property_detail')->name('property_detail');
 	Route::get('property_auction', 'PropertyController@property_auction')->name('property_auction');
 	Route::get('my_profile', 'PropertyController@userboard_profile')->name('userboard_profile');
 	Route::get('favorite', 'PropertyController@userboard_favorite')->name('userboard_favorite');

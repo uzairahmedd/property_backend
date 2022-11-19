@@ -184,7 +184,7 @@
                     <div class="col-12 col-sm-12 col-md-12 ps-0 px-sm-3" style="z-index:11 ;">
                         <h1 class="font-24 font-medium theme-text-seondary-black mb-4" style="margin-bottom: 10px;">اتصل بنا</h1>
                         <p id="login_error_msg" style="color:red ;"></p>
-                        <form action="{{ route('login') }}" method="POST" id="login_form">
+                        <form>
                             @csrf
                             <div class="mb-4_5 position-relative">
                                 <input type="text" name="text" value="" class="form-control font-medium font-16" placeholder="اسمك">
@@ -202,7 +202,7 @@
                                 إرسال رسالة
                             </button>
                         </form>
-{{--                        <a href="" class="d-flex justify-content-center mt-2 theme-text-blue" data-bs-target="#signup" data-bs-toggle="modal">انشئ حساب </a>--}}
+                        {{-- <a href="" class="d-flex justify-content-center mt-2 theme-text-blue" data-bs-target="#signup" data-bs-toggle="modal">انشئ حساب </a>--}}
                     </div>
                 </div>
                 <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt="" class="position-absolute close-modal">

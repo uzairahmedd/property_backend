@@ -222,6 +222,7 @@
     //sending otp 
     $("#resend_otp").on("click", function (e) {
         e.preventDefault();
+        $('input[name="otp[]"]').val('');
         $('#error_msg').addClass('d-none')
         $("#resend_otp").prop('disabled', true);
         $("#resend_otp i").addClass('fa fa-spinner fa-spin ');
