@@ -230,7 +230,7 @@
             <p class="sort-text m-0 gap-8 theme-text-secondary-black">ترتيب حسب</p>
         </div>
         <div class="all-ads d-flex">
-            <p class="all-results pe-2 theme-text-secondary-black"><span class="r-num font-bold pe-1">512</span>عدد
+            <p class="all-results pe-2 theme-text-secondary-black"><span class="r-num font-bold pe-1 results"></span>عدد
                 النتائج</p>
             <div class="vertical-line"></div>
             <p class="ads theme-text-secondary-black ps-2">جميع الإعلانات</p>

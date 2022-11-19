@@ -8,6 +8,11 @@
     <input type="hidden" id="asset_url" value="{{ asset('/') }}">
     <input type="hidden" value="{{ route('property.favourite') }}" id="favourite_property_url">
     <input type="hidden" id="favourite_check_url" value="{{ route('favourite.check') }}">
+
+    <input type="hidden" class="currency_name" value="USD">
+    <input type="hidden" class="currency_icon" value="$">
+    <input type="hidden" class="currency_rate" value="1">
+    <input type="hidden" class="currency_position" value="left">
     <div>
         @include('theme::newlayouts.partials.navbar')
         <main>

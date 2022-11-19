@@ -7,7 +7,6 @@ var base_url = $('#base_url').val();
 var url = base_url + 'get_properties';
 get_properties(url)
 function get_properties(url) {
-    alert('dsa');
     $.ajax({
         type: 'get',
         url: url,
