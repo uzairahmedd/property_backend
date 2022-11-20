@@ -200,10 +200,8 @@
                     </div>
                     @endforeach
                     @else
-                    <div class="row w-100 mb-3">
-                        <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">No info avaialable</h3>
-                        </div>
+                    <div class="col-6 text-start">
+                        <h3 class="font-16 font-medium theme-text-blue">No data avaialable</h3>
                     </div>
                     @endif
 
@@ -221,10 +219,8 @@
                     </div>
                     @endforeach
                     @else
-                    <div class="row w-100 mb-3">
-                        <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium text-right theme-text-blue">No facilities avaialable</h3>
-                        </div>
+                    <div class="col-6 text-start">
+                        <h3 class="font-16 font-medium text-right theme-text-blue">No data avaialable</h3>
                     </div>
                     @endif
                     <hr class="w-100">
@@ -236,12 +232,13 @@
                             <h3 class="font-16 font-medium theme-text-blue">{{ $facility->name }}</h3>
                         </div>
                         @endforeach
-                        @else
-                        <div class="tag d-flex justify-content-center align-items-center">
-                            <h3 class="font-16 font-medium theme-text-blue">No feature avaialable</h3>
-                        </div>
-                        @endif
                     </div>
+                    @else
+                    <div class="col-6 text-start">
+                        <h3 class="font-16 font-medium text-right theme-text-blue">No data avaialable</h3>
+                    </div>
+                    @endif
+
                 </div>
                 @isset($property->post_city->value)
                 <div class="theme-bg-secondary text-center mb-0 pb-0 position-relative">
