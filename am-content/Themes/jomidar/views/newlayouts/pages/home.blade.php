@@ -9,8 +9,8 @@
         <form action="{{ url(list_page()) }}">
             <div class="col-12 row looking-for theme-bg-white d-flex flex-lg-row flex-sm-row align-items-center">
                 <div class="col-lg-2 search-button-div col-md-2 col-sm-2 col-xs-12" id="search">
-                    <button type="submit" id="hero_search_btn">
-                        <img type="submit" id="hero_search_btn" class="search-home-img" src="{{theme_asset('assets/images/search.svg')}}" alt=""></button>
+                    <button type="submit" id="hero_search_btn" title="Search property" data-toggle="tooltip">
+                        <img type="submit" id="hero_search_btn" class="search-home-img" src="{{theme_asset('assets/images/search.svg')}}" alt="" ></button>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                     <div class="dropdown complete-rent-drop">
@@ -29,6 +29,11 @@
                                         <li class="rent-all">
                                             <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" type="radio" id="radio02-02" name="status" checked />
                                             <label class="rent-box rent_label" for="radio02-02">ايجار</label>
+                                        </li>
+                                    @elseif($status_data->name =='Projects')
+                                        <li class="rent-all">
+                                            <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" type="radio" id="radio03-03" name="status" />
+                                            <label class="rent-box project_label" for="radio03-03">المشاريع</label>
                                         </li>
                                     @endif
                                 @endforeach
@@ -200,7 +205,7 @@
                                 <div class="mt-3">
                                     <h3 class="font-medium theme-text-blue">{{$sale_data->title}}</h3>
                                     <div class="d-flex align-items-start justify-content-end pt-2">
-                                        <p class="mb-0 theme-text-seondary-black me-2">{{$sale_data->post_city->value}}</p>
+                                        <p class="mb-0 theme-text-seondary-black me-2">{{$sale_data->post_city->value}} - {{$sale_data->post_city->category->name}} - {{$sale_data->post_state->category->name}}</p>
                                         <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                                     </div>
                                 </div>
@@ -267,7 +272,7 @@
                                 <div class="mt-3">
                                     <h3 class="font-medium theme-text-blue">{{$rent_data->title}}</h3>
                                     <div class="d-flex align-items-start justify-content-end pt-2">
-                                        <p class="mb-0 theme-text-seondary-black me-2">{{$rent_data->post_city->value}}</p>
+                                        <p class="mb-0 theme-text-seondary-black me-2">{{$rent_data->post_city->value}} - {{$rent_data->post_city->category->name}} - {{$rent_data->post_state->category->name}}</p>
                                         <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                                     </div>
                                 </div>
