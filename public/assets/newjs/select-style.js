@@ -93,13 +93,12 @@
             $('.overlay').css('opacity', 0);
             var txt = $(this).data('title'),
                 vl = $(this).attr('value');
-                // sid = $(this).parent('ul').attr('sid');
             $(this).parents('ul#select_style_ul').hide();
             $('#state_dropdown option[value='+vl+']').attr('selected','selected');
             $(this).parents('ul#select_style_ul').parent('div').find('div#select_style_text').html(txt);
-            $('#' + sid).children('option').filter(function () {
-                return $(this).val() == vl
-            }).prop('selected', true).change();
+            // $('#' + sid).children('option').filter(function () {
+            //     return $(this).val() == vl
+            // }).prop('selected', true).change();
 
         });
         // $(document).delegate("body", "click", function(e) {

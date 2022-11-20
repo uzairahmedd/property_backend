@@ -190,11 +190,11 @@
                                             </div> -->
                                     </div>
                                     <div class="fav-elipse d-flex align-items-center justify-content-center" onclick="favourite_property('{{$sale_data->id}}')">
-                                        <i class="fa-regular fa-heart heart{{$sale_data->id}}"></i>
+                                        <i class="fa-regular fa-heart heart{{$sale_data->id}}" title="Favorite property" data-toggle="tooltip"></i>
                                     </div>
                                 </div>
                                 <div class="price theme-text-white d-flex align-items-center justify-content-center">
-                                    <span class="font-bold">{{$sale_data->max_price->price}}- {{$sale_data->min_price->price}} مليون ر.س</span>
+                                    <span class="font-bold">{{ amount_format($sale_data->min_price->price ?? 0) }} - {{ amount_format($sale_data->max_price->price ?? 0) }}</span>
                                 </div>
                             </div>
                             <a href="property/{{$sale_data->slug}}">
@@ -256,12 +256,12 @@
                                     </div>
 
                                     <div class="fav-elipse d-flex align-items-center justify-content-center" onclick="favourite_property('{{$rent_data->id}}')">
-                                        <i class="fa-regular fa-heart heart{{$rent_data->id}}"></i>
+                                        <i class="fa-regular fa-heart heart{{$rent_data->id}}" title="Favorite property" data-toggle="tooltip"></i>
                                     </div>
 
                                 </div>
                                 <div class="price theme-text-white d-flex align-items-center justify-content-center">
-                                    <span class="font-bold">{{$rent_data->max_price->price}}- {{$rent_data->min_price->price}} مليون ر.س</span>
+                                    <span class="font-bold">{{ amount_format($rent_data->min_price->price ?? 0) }} - {{ amount_format($rent_data->max_price->price ?? 0) }}</span>
                                 </div>
                             </div>
                             <a href="property/{{$rent_data->slug}}">

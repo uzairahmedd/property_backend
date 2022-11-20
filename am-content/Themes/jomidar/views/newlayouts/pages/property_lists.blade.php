@@ -1,41 +1,38 @@
 @extends('theme::newlayouts.app')
 @section('content')
-    <script>
-        var state_id='<?php echo $state; ?>';
-    </script>
+<script>
+    var state_id = '<?php echo $state; ?>';
+</script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/second-page.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/propertylist-search.css')}}">
 <div class="filter-bar">
     <div class="container">
         <form class="search_form">
             <input type="hidden" name="status" value="{{$status}}">
-{{--            <input type="text" name="state" value="{{$state}}">--}}
+            {{-- <input type="text" name="state" value="{{$state}}">--}}
             <div class="row">
                 <div class="filter-drop location-icon col-lg-1 col-md-2 col-sm-2 col-xs-2 order-lg-1" id="filter-map">
                     <div class="map-icon align-items-center d-flex justify-content-center">
                         <img src="assets/images/map-icon.svg" alt="">
                     </div>
                 </div>
-                <div
-                     class="col-lg-7 filter-drop col-md-10 col-sm-10 col-xs-10 order-lg-2 d-flex justify-content-end flex-md-row select-filter ms-auto flex-wrap" id="filter-drop">
+                <div class="col-lg-7 filter-drop col-md-10 col-sm-10 col-xs-10 order-lg-2 d-flex justify-content-end flex-md-row select-filter ms-auto flex-wrap" id="filter-drop">
                     <div class="no-rooms-drop-btn">
                         <div class="dropdown room-type-drop">
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button"
-                                    id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false"
-                                    data-toggle="dropdown">الميزانية
+                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">الميزانية
                             </button>
                             <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-rooms">
                                 <h3>الميزانية ( ريال سعودي )</h3>
                                 <div class="type-dropdown-content price-input d-flex justify-content-between align-items-center mb-4">
                                     <div class="mb-3 field col-6 p-1 position-relative">
                                         <input type="number" class="input-min" value="" class="form-control font-medium font-16 text-end font-14" placeholder=" 0 ر.س   ">
-{{--                                        <input type="email" name="email" value="" class="form-control font-medium font-16 text-end font-14" placeholder="أعلى سعر">--}}
+                                        {{-- <input type="email" name="email" value="" class="form-control font-medium font-16 text-end font-14" placeholder="أعلى سعر">--}}
                                         <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">أقل سعر</label>
                                     </div>
                                     <div class="mb-3 field col-6 p-1 position-relative">
                                         <input type="number" class="input-max" value="" class="form-control font-medium font-16 text-end font-14" placeholder="10,000.0000+ ر.س   ">
-                                        {{--                                        <input type="email" name="email" value="" class="form-control font-medium font-16 text-end font-14" placeholder="0 ر.س">--}}
+                                        {{-- <input type="email" name="email" value="" class="form-control font-medium font-16 text-end font-14" placeholder="0 ر.س">--}}
                                         <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">أعلى سعر</label>
                                     </div>
                                 </div>
@@ -63,11 +60,8 @@
                     </div>
                     <div class="no-rooms-drop-btn">
                         <div class="dropdown room-type-drop">
-                            <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}"
-                                                                alt=""></span>
-                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button"
-                                    id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false"
-                                    data-toggle="dropdown"> عدد الفرف
+                            <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
+                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown"> عدد الفرف
                             </button>
                             <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-rooms">
                                 <h3>عدد الغرف</h3>
@@ -81,27 +75,27 @@
                                         <span class="checmark font-16 font-medium">1</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" >
+                                        <input type="radio">
                                         <span class="checmark font-16 font-medium">2</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" >
+                                        <input type="radio">
                                         <span class="checmark font-16 font-medium">3</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" >
+                                        <input type="radio">
                                         <span class="checmark font-16 font-medium">4</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" >
+                                        <input type="radio">
                                         <span class="checmark font-16 font-medium">5</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" >
+                                        <input type="radio">
                                         <span class="checmark font-16 font-medium">6</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio"  checked="">
+                                        <input type="radio" checked="">
                                         <span class="checmark font-16 font-medium">7</span>
                                     </div>
                                     <div class="room-container property_radio">
@@ -109,7 +103,7 @@
                                         <span class="checmark font-16 font-medium">8</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio"  checked="">
+                                        <input type="radio" checked="">
                                         <span class="checmark font-16 font-medium">9+</span>
                                     </div>
                                 </div>
@@ -127,50 +121,47 @@
                     <div class="type-rent-dropdowns">
 
                         <div class="dropdown property-type-drop">
-                            <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}"
-                                                                alt=""></span>
-                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button"
-                                    id="dropdownMenuLink-property-type" data-bs-toggle="dropdown" aria-expanded="false"
-                                    data-toggle="dropdown">النوع
+                            <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
+                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-property-type" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">النوع
                             </button>
                             <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-property-type">
                                 <h3>نوع العقار</h3>
                                 <div class="type-dropdown-content d-flex justify-content-around align-items-center">
                                     <div class="radio-container prop-checkbox" value="0" id="1">
-                                            <input type="checkbox" id="">
-                                            <span class="checmark step font-14 font-medium" value="عمارة"><i class="fa-regular fa-building"></i>عمارة</span>
+                                        <input type="checkbox">
+                                        <span class="checmark step font-14 font-medium" value="عمارة"><i class="fa-regular fa-building"></i>عمارة</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="2">
-                                            <input type="checkbox" id="">
-                                            <span class="checmark step font-14 font-medium" value="قصر"><i class="fa-regular fa-chess-rook"></i>قصر</span>
+                                        <input type="checkbox">
+                                        <span class="checmark step font-14 font-medium" value="قصر"><i class="fa-regular fa-chess-rook"></i>قصر</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="3">
-                                            <input type="checkbox" id="">
-                                            <span class="checmark step font-14 font-medium" value="فيلا"><i class="fa-regular fa-chess-queen"></i>فيلا</span>
+                                        <input type="checkbox">
+                                        <span class="checmark step font-14 font-medium" value="فيلا"><i class="fa-regular fa-chess-queen"></i>فيلا</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="4">
-                                            <input type="checkbox" id="">
-                                            <span class="checmark step font-14 font-medium" value="شقة"><i class="fa-regular fa-building"></i>شقة</span>
+                                        <input type="checkbox">
+                                        <span class="checmark step font-14 font-medium" value="شقة"><i class="fa-regular fa-building"></i>شقة</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="5">
-                                            <input type="checkbox" id="">
-                                            <span class="checmark step font-14 font-medium" value="شاليه"><i class="fa-solid fa-house"></i>شاليه</span>
+                                        <input type="checkbox">
+                                        <span class="checmark step font-14 font-medium" value="شاليه"><i class="fa-solid fa-house"></i>شاليه</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="6">
-                                            <input type="checkbox" id="">
-                                            <span class="checmark step font-14 font-medium" value="استراحة"> <i class="fa-solid fa-spa"></i>استراحة</span>
+                                        <input type="checkbox">
+                                        <span class="checmark step font-14 font-medium" value="استراحة"> <i class="fa-solid fa-spa"></i>استراحة</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="7">
-                                            <input type="checkbox" id="">
-                                            <span class="checmark step font-14 font-medium" value="مزرعة"><i class="fa-solid fa-wheat-awn"></i>مزرعة</span>
+                                        <input type="checkbox">
+                                        <span class="checmark step font-14 font-medium" value="مزرعة"><i class="fa-solid fa-wheat-awn"></i>مزرعة</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="8">
-                                            <input type="checkbox" id="">
-                                            <span class="checmark step font-14 font-medium" value="أرض"><i class="fa-solid fa-landmark-flag"></i>أرض</span>
+                                        <input type="checkbox">
+                                        <span class="checmark step font-14 font-medium" value="أرض"><i class="fa-solid fa-landmark-flag"></i>أرض</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="9">
-                                            <input type="checkbox" id="">
-                                            <span class="checmark step font-14 font-medium" value="دوبلكس"><i class="fa-solid fa-house-medical-flag"></i>دوبلكس</span>
+                                        <input type="checkbox">
+                                        <span class="checmark step font-14 font-medium" value="دوبلكس"><i class="fa-solid fa-house-medical-flag"></i>دوبلكس</span>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
@@ -1347,5 +1338,12 @@
             onchange: function(val) {}
         });
     });
+
+    setTimeout(function() {
+        if (state_id != null && state_id != '') {
+            var text = $('li[value=' + state_id + ']').attr("data-title");
+            $('#select_style_text').text(text);
+        }
+    }, 2000);
 </script>
 @endsection
