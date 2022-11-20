@@ -168,7 +168,7 @@ function get_properties(url) {
             $('.property_placeholder').remove();
             if (response.data.length == 0) {
                 //    $('.show-pagination-info').hide();
-                //    $('#item_lists').html('<div class="col-12 no-more"><h3 class="text-center">No more listing avaiable</h3></div>');
+                   $('#item_list').html('<div class="col-12 no-more"><h3 class="text-center">No more listing avaiable</h3></div>');
 
             }
             else {

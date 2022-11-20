@@ -1351,6 +1351,6 @@
     setTimeout(function(){
     var text= $('li[value='+state_id+']').attr("data-title");
     $('#select_style_text').text(text);
-}, 1000);
+}, 2000);
 </script>
 @endsection
