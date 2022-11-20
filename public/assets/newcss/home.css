@@ -284,6 +284,14 @@
     margin-top: 36px;
 }
 
+/*Search Images Icon Border CSS Start*/
+
+#hero_search_btn {
+    background-color: white;
+    border-color: transparent;
+}
+
+
 /* Apps Style Starts */
 .apps {
     background: var(--theme-sky);

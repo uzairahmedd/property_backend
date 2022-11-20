@@ -1,4 +1,8 @@
 "use strict";
+setTimeout(function(){
+    var text= $('li[value='+state_id+']').attr("data-title");
+    $('#select_style_text').text(text);
+}, 1000);
 
 /****************************************************************
  * Selector plug that made select tag in to custome select style *
@@ -135,7 +139,7 @@ $(document).ready(function (event) {
     $('.search-input-bar').click(function () {
         $('.overlay').css('opacity', 0.2);
         $('.overlay').css('display', 'block');
-        $('.search-input-bar').css('z-index', '999');
+        $('.search-input-bar').css('z-index', '101');
     });
 
     $('.overlay').click(function (event) {

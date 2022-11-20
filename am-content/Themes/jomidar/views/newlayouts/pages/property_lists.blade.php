@@ -1,73 +1,123 @@
 @extends('theme::newlayouts.app')
 @section('content')
+    <script>
+        var state_id='<?php echo $state; ?>';
+    </script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/second-page.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/propertylist-search.css')}}">
 <div class="filter-bar">
     <div class="container">
         <form class="search_form">
-            <input type="text" name="status" value="{{$status}}">
-            <input type="text" name="state" value="{{$state}}">
+            <input type="hidden" name="status" value="{{$status}}">
+{{--            <input type="text" name="state" value="{{$state}}">--}}
             <div class="row">
-                <div class="location-icon col-lg-2 col-md-2 col-sm-2 col-xs-2 order-lg-1">
+                <div class="filter-drop location-icon col-lg-1 col-md-2 col-sm-2 col-xs-2 order-lg-1" id="filter-map">
                     <div class="map-icon align-items-center d-flex justify-content-center">
                         <img src="assets/images/map-icon.svg" alt="">
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-10 order-lg-2 d-flex justify-content-end flex-md-row select-filter ms-auto">
+                <div
+                     class="col-lg-7 filter-drop col-md-10 col-sm-10 col-xs-10 order-lg-2 d-flex justify-content-end flex-md-row select-filter ms-auto flex-wrap" id="filter-drop">
                     <div class="no-rooms-drop-btn">
-                        <div class="dropdown complete-rent-drop">
+                        <div class="dropdown room-type-drop">
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">عدد الغرف
+                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button"
+                                    id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false"
+                                    data-toggle="dropdown">الميزانية
+                            </button>
+                            <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-rooms">
+                                <h3>الميزانية ( ريال سعودي )</h3>
+                                <div class="type-dropdown-content price-input d-flex justify-content-between align-items-center mb-4">
+                                    <div class="mb-3 field col-6 p-1 position-relative">
+                                        <input type="number" class="input-min" value="" class="form-control font-medium font-16 text-end font-14" placeholder=" 0 ر.س   ">
+{{--                                        <input type="email" name="email" value="" class="form-control font-medium font-16 text-end font-14" placeholder="أعلى سعر">--}}
+                                        <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">أقل سعر</label>
+                                    </div>
+                                    <div class="mb-3 field col-6 p-1 position-relative">
+                                        <input type="number" class="input-max" value="" class="form-control font-medium font-16 text-end font-14" placeholder="10,000.0000+ ر.س   ">
+                                        {{--                                        <input type="email" name="email" value="" class="form-control font-medium font-16 text-end font-14" placeholder="0 ر.س">--}}
+                                        <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">أعلى سعر</label>
+                                    </div>
+                                </div>
+
+                                <div class="slider">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="range-input">
+                                    <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
+                                    <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
+                                </div>
+
+
+
+                                <div class="d-flex justify-content-between mt-4">
+                                    <li class="room-no-drop">
+                                        <button class="btn type-box show-results-bttn">اظهار النتائج</button>
+                                    </li>
+                                    <li class="room-no-drop">
+                                        <button class="btn type-box">مسح</button>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="no-rooms-drop-btn">
+                        <div class="dropdown room-type-drop">
+                            <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}"
+                                                                alt=""></span>
+                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button"
+                                    id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false"
+                                    data-toggle="dropdown"> عدد الفرف
                             </button>
                             <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-rooms">
                                 <h3>عدد الغرف</h3>
-                                <div class="type-dropdown-content">
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio013-10" />
-                                        <label class="type-box" for="radio013-10">1</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio012-09" />
-                                        <label class="type-box" for="radio012-09">2</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio011-08" />
-                                        <label class="type-box" for="radio011-08">3</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio010-07" />
-                                        <label class="type-box" for="radio010-07">4</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio09-06" />
-                                        <label class="type-box" for="radio09-06">5</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio08-05" />
-                                        <label class="type-box" for="radio08-05">6</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio07-04" />
-                                        <label class="type-box" for="radio07-04">7</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio06-03" />
-                                        <label class="type-box" for="radio06-03">8</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio05-01" />
-                                        <label class="type-box" for="radio05-01">9</label>
-                                    </li>
-                                    <li class="type-all">
-                                        <input class="type-select-dropdown" type="radio" id="radio04-02" checked />
-                                        <label class="type-box" for="radio04-02">10+</label>
-                                    </li>
+                                <div class="type-dropdown-content d-flex justify-content-right align-items-center">
+                                    <div class="room-container property_radio">
+                                        <input type="radio" checked="">
+                                        <span class="checmark font-16 font-medium">Studio</span>
+                                    </div>
+                                    <div class="room-container property_radio">
+                                        <input type="radio">
+                                        <span class="checmark font-16 font-medium">1</span>
+                                    </div>
+                                    <div class="room-container property_radio">
+                                        <input type="radio" >
+                                        <span class="checmark font-16 font-medium">2</span>
+                                    </div>
+                                    <div class="room-container property_radio">
+                                        <input type="radio" >
+                                        <span class="checmark font-16 font-medium">3</span>
+                                    </div>
+                                    <div class="room-container property_radio">
+                                        <input type="radio" >
+                                        <span class="checmark font-16 font-medium">4</span>
+                                    </div>
+                                    <div class="room-container property_radio">
+                                        <input type="radio" >
+                                        <span class="checmark font-16 font-medium">5</span>
+                                    </div>
+                                    <div class="room-container property_radio">
+                                        <input type="radio" >
+                                        <span class="checmark font-16 font-medium">6</span>
+                                    </div>
+                                    <div class="room-container property_radio">
+                                        <input type="radio"  checked="">
+                                        <span class="checmark font-16 font-medium">7</span>
+                                    </div>
+                                    <div class="room-container property_radio">
+                                        <input type="radio" checked="">
+                                        <span class="checmark font-16 font-medium">8</span>
+                                    </div>
+                                    <div class="room-container property_radio">
+                                        <input type="radio"  checked="">
+                                        <span class="checmark font-16 font-medium">9+</span>
+                                    </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
-                                    <li class="type-all">
+                                    <li class="room-no-drop">
                                         <button class="btn type-box show-results-bttn">اظهار النتائج</button>
                                     </li>
-                                    <li class="type-all">
+                                    <li class="room-no-drop">
                                         <button class="btn type-box">مسح</button>
                                     </li>
                                 </div>
@@ -75,93 +125,52 @@
                         </div>
                     </div>
                     <div class="type-rent-dropdowns">
-                        <div class="dropdown complete-rent-drop">
-                            <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-property-type" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">النوع
+
+                        <div class="dropdown property-type-drop">
+                            <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}"
+                                                                alt=""></span>
+                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button"
+                                    id="dropdownMenuLink-property-type" data-bs-toggle="dropdown" aria-expanded="false"
+                                    data-toggle="dropdown">النوع
                             </button>
                             <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-property-type">
                                 <h3>نوع العقار</h3>
                                 <div class="type-dropdown-content d-flex justify-content-around align-items-center">
                                     <div class="radio-container prop-checkbox" value="0" id="1">
-                                        <div>
-                                            <i class="fa-regular fa-building"></i>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox">
-                                            <span class="checmark step font-14 font-medium">عمارة</span>
-                                        </div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium" value="عمارة"><i class="fa-regular fa-building"></i>عمارة</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="2">
-                                        <div>
-                                            <i class="fa-regular fa-chess-rook"></i>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox">
-                                            <span class="checmark step font-14 font-medium">قصر</span>
-                                        </div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium" value="قصر"><i class="fa-regular fa-chess-rook"></i>قصر</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="3">
-                                        <div>
-                                            <i class="fa-regular fa-chess-queen"></i>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox">
-                                            <span class="checmark step font-14 font-medium">فيلا</span>
-                                        </div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium" value="فيلا"><i class="fa-regular fa-chess-queen"></i>فيلا</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="4">
-                                        <div>
-                                            <i class="fa-regular fa-building"></i>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox">
-                                            <span class="checmark step font-14 font-medium">شقة</span>
-                                        </div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium" value="شقة"><i class="fa-regular fa-building"></i>شقة</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="5">
-                                        <div>
-                                            <i class="fa-solid fa-house"></i>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox">
-                                            <span class="checmark step font-14 font-medium">شاليه</span>
-                                        </div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium" value="شاليه"><i class="fa-solid fa-house"></i>شاليه</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="6">
-                                        <div>
-                                            <i class="fa-solid fa-spa"></i>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox">
-                                            <span class="checmark step font-14 font-medium">استراحة</span>
-                                        </div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium" value="استراحة"> <i class="fa-solid fa-spa"></i>استراحة</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="7">
-                                        <div>
-                                            <i class="fa-solid fa-wheat-awn"></i>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox">
-                                            <span class="checmark step font-14 font-medium">مزرعة</span>
-                                        </div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium" value="مزرعة"><i class="fa-solid fa-wheat-awn"></i>مزرعة</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="8">
-                                        <div>
-                                            <i class="fa-solid fa-landmark-flag"></i>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox">
-                                            <span class="checmark step font-14 font-medium">أرض</span>
-                                        </div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium" value="أرض"><i class="fa-solid fa-landmark-flag"></i>أرض</span>
                                     </div>
                                     <div class="radio-container prop-checkbox" value="0" id="9">
-                                        <div>
-                                            <i class="fa-solid fa-house-medical-flag"></i>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox">
-                                            <span class="checmark step font-14 font-medium">دوبلكس</span>
-                                        </div>
+                                            <input type="checkbox" id="">
+                                            <span class="checmark step font-14 font-medium" value="دوبلكس"><i class="fa-solid fa-house-medical-flag"></i>دوبلكس</span>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
@@ -202,7 +211,7 @@
                         {{-- <input type="search" class="theme-text-secondary-black w-100 border-0"--}}
                         {{-- placeholder="تبحث عن عقار؟">--}}
 
-                        <select class="theme-text-secondary-black border-0" theme="google" width="400" style="appearance: none;" placeholder=" تبحث عن عقار؟" data-search="true">
+                        <select name="state" class="theme-text-secondary-black border-0" theme="google" width="400" style="appearance: none;" placeholder=" تبحث عن عقار؟" data-search="true" id="property_states_dropdown">
                             <!-- <option ></option> -->
                             @foreach ($states as $row)
                             <option value="{{ $row->id }}" @if($state==$row->id) selected="selected" @endif>{{ $row->name }}</option>
