@@ -1340,7 +1340,7 @@
     });
 
     setTimeout(function() {
-        if (state_id != null) {
+        if (state_id != null && state_id != '') {
             var text = $('li[value=' + state_id + ']').attr("data-title");
             $('#select_style_text').text(text);
         }
