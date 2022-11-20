@@ -211,6 +211,8 @@ function get_properties(url) {
     -------------------------*/
 function properties_list(target, data) {
     $(target).html('');
+    $('.results').text();
+    $('.results').text(data.length);
     // $('.list_renderd').remove();
     var base_url = $('#base_url').val();
     var asset_url = base_url;
@@ -237,7 +239,7 @@ function properties_list(target, data) {
         // var asset_url = $('#base_url').val();
         var title = str_limit(value.title, 20, true);
         var location = value.post_city.value + '-' + value.post_city.category.name + '-' + value.post_state.category.name;
-        $(target).append('<div class="col-lg-3 col-md-4 col-sm-12"> <div id="myCarousel' + value.id + '" class="carousel slide" data-bs-ride="carousel"><div class="features"><div class="d-flex justify-content-between"><div class="content d-flex flex-column align-items-start theme-text-white"><div class="fav-elipse justify-content-center align-items-center theme-bg-blue"><span class="font-medium" onclick="favourite_property(' + value.id + ')"> <i class="fa-regular fa-heart heart' + value.id + '"></i></span></div><div class="sale theme-bg-sky"><span class="font-medium">' + status + '</span> </div></div> <div class="d-flex justify-content-center pt-3">  </div></div> </div><ol class="carousel-indicators"><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="0" class="active"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a href="' + asset_url + 'property/' + value.slug + '"><h3 class="resident-text">' + title + '</h3><div class="d-flex align-items-start justify-content-end mt-2"><p class="me-2">' + location + '</p><img src="assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex justify-content-between facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex"><div class="call d-flex justify-content-center align-items-center me-3"> <img src="assets/images/mobile-icon.png" alt="" data-toggle="tooltip" title="' + phone + '"></div><div class="whatsapp d-flex justify-content-center align-items-center"><a href="https://api.whatsapp.com/send?text=' + asset_url + 'property/' + value.slug + '" target="_blank"> <img  src="assets/images/whatsapp-icon.png" alt=""></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span>' + value.max_price.price + ' </span><span>-</span>' + value.min_price.price + '</h3></div> </div></div></div></div>');
+        $(target).append('<div class="col-lg-3 col-md-4 col-sm-12"> <div id="myCarousel' + value.id + '" class="carousel slide" data-bs-ride="carousel"><div class="features"><div class="d-flex justify-content-between"><div class="content d-flex flex-column align-items-start theme-text-white"><div class="fav-elipse justify-content-center align-items-center theme-bg-blue"><span class="font-medium" onclick="favourite_property(' + value.id + ')"> <i title="favorite property" data-toggle="tooltip" class="fa-regular fa-heart heart' + value.id + '"></i></span></div><div class="sale theme-bg-sky"><span class="font-medium">' + status + '</span> </div></div> <div class="d-flex justify-content-center pt-3">  </div></div> </div><ol class="carousel-indicators"><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="0" class="active"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a href="' + asset_url + 'property/' + value.slug + '"><h3 class="resident-text">' + title + '</h3><div class="d-flex align-items-start justify-content-end mt-2"><p class="me-2">' + location + '</p><img src="assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex justify-content-between facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex"><div class="call d-flex justify-content-center align-items-center me-3"> <img src="assets/images/mobile-icon.png" alt="" data-toggle="tooltip" title="' + phone + '"></div><div class="whatsapp d-flex justify-content-center align-items-center"><a href="https://api.whatsapp.com/send?text=' + asset_url + 'property/' + value.slug + '" target="_blank"> <img  src="assets/images/whatsapp-icon.png" alt=""></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span>' + amount_format(value.min_price.price) + ' - ' + amount_format(value.max_price.price) + ' </span></h3></div> </div></div></div></div>');
         // $(target).append('<div class="col-lg-6 list_renderd '+aditional_class+'"><div class="single-properties"><div class="single-property-img"> <a href="'+asset_url+'property/'+value.slug+'"><img src="'+image+'" alt=""></a></div><div class="property-title"> <a href="'+asset_url+'property/'+value.slug+'"><h3>'+title+'</h3></a></div><div class="property-location"> <span class="iconify" data-icon="ion:location-sharp" data-inline="false"></span> <span>'+location+'</span></div><div class="property-prices"> <span>'+amount_format(value.min_price.price)+'</span> <span>-</span> <span>'+amount_format(value.max_price.price)+'</span> </div><div class="properties-options icon_area'+index+'"></div><div class="properties-bottom-area"><div class="user-info"> <a href="'+asset_url+'agent/'+value.user.slug+'/show'+'"> <img src="'+avatar+'" alt=""> <span> '+value.user.name+'</span> </a></div><div class="properties-wishlist-com-price-section"><div class="wishlish-area" onclick="favourite_property('+value.id+')" id="favourite_btn'+value.id+'"> <a href="javascript:void(0)"><span class="iconify" data-icon="ri:heart-3-line" data-inline="false"></span></a></div><div class="compare-area"> <a href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="iconify" data-icon="eva:share-fill" data-inline="false"></span></a><div class="share-dropdown"><div class="dropdown-menu dropdown-menu-right"> <a class="dropdown-item" href="https://www.facebook.com/sharer.php?u='+asset_url+'property/'+value.slug+'" target="_blank"><span class="iconify" data-icon="entypo-social:facebook-with-circle" data-inline="false"></span> <span>Facebook</span></a> <a class="dropdown-item" href="https://twitter.com/intent/tweet?text='+asset_url+'property/'+value.slug+'" target="_blank"><span class="iconify" data-icon="ant-design:twitter-outlined" data-inline="false"></span>Twitter</span></a> <a class="dropdown-item" href="https://pinterest.com/pin/create/button/?url='+asset_url+'property/'+value.slug+'&description='+value.title+'" target="_blank"><span class="iconify" data-icon="cib:pinterest-p" data-inline="false"></span> Pinterest</span></a> <a class="dropdown-item" href="https://api.whatsapp.com/send?text='+asset_url+'property/'+value.slug+'" target="_blank"><span class="iconify" data-icon="bx:bxl-whatsapp" data-inline="false"></span> Whatsapp</span></a> <a class="dropdown-item" href="mailto:email@email.com?subject='+value.title+'&body='+asset_url+'property/'+value.slug+'"><span class="iconify" data-icon="fa-regular:envelope" data-inline="false"></span> Gmail</span></a></div></div></div></div></div></div></div>');
         //for facilities
         $.each(value.featured_option, function (i, v) {
@@ -273,26 +275,6 @@ function properties_list(target, data) {
         });
 
     });
-}
-
-
-/*----------------------
-    Amount Format
---------------------------*/
-function amount_format(amount) {
-    var currency_name = $('.currency_name').val();
-    var currency_icon = $('.currency_icon').val();
-    var currency_rate = $('.currency_rate').val();
-    var currency_rate = parseFloat(currency_rate);
-    var currency_position = $('.currency_position').val();
-
-    var total = amount * currency_rate;
-    var total = total.toLocaleString();
-
-    if (currency_position == 'right') {
-        return total + currency_icon;
-    }
-    return currency_icon + total;
 }
 
 
