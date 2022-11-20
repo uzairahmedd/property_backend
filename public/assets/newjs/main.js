@@ -217,7 +217,7 @@ $(document).ready(function (event) {
     $('.property-type-drop').click(function (e) {
         $('.overlay').css('opacity', 0.2);
         $('.overlay').css('display', 'block');
-        event.stopPropagation();
+        // event.stopPropagation();
     });
 
     $('.overlay').click(function (event) {
@@ -235,7 +235,7 @@ $(document).ready(function (event) {
     $('.room-type-drop').click(function (e) {
         $('.overlay').css('opacity', 0.2);
         $('.overlay').css('display', 'block');
-        event.stopPropagation();
+        // event.stopPropagation();
     });
 
     $('.overlay').click(function (event) {
