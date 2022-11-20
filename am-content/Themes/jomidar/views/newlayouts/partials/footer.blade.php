@@ -3,7 +3,7 @@
         <div class="d-flex flex-sm-column-reverse flex-xl-row justify-content-end align-items-center">
             <ul class="list-unstyled d-flex flex-sm-column flex-column-reverse flex-wrap flex-md-row-reverse justify-content-right align-items-center p-0 mt-4 me-lg-5 col-lg-9">
                 <li>
-                    <a href="search">البحث</a>
+                    <a href="/search">البحث</a>
                 </li>
                 <!-- <li>
                     <a href="property_lists">إعلانات للبيع</a>
