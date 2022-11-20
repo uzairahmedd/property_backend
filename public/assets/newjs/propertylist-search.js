@@ -132,6 +132,11 @@
 })(jQuery);
 
 $(document).ready(function (event) {
+    //for rent sale and project filter
+    if (status_id != null && status_id != '') {
+        var text = $('.rent-all input[value=' + status_id + ']').attr("data-title");
+        $('#dropdownMenuLink-buy').text(text);
+    }
 
     $('.search-input-bar').click(function () {
         $('.overlay').css('opacity', 0.2);
@@ -301,6 +306,16 @@ $(document).ready(function (event) {
         }
     });
 
+    $("#radio020-03").click(function (event) {
+        if ($("#radio020-03").is(":checked")) {
+            var radio_val = $(".project_list").text();
+            var txt = $('#dropdownMenuLink-buy').text(radio_val);
+            $('.overlay').css({'opacity': 0, 'display': 'none'});
+            $(".rent-dropdown").removeClass("show");
+            event.stopPropagation();
+        }
+    });
+
     $('.overlay').click(function (event) {
         $('.overlay').css({'opacity': 0, 'display': 'none'});
         $(".list-rent-dropdown").removeClass("show");
@@ -323,16 +338,6 @@ $(document).ready(function (event) {
     });
 
 
-
-    $("#radio020-01").click(function (event) {
-        if ($("#radio020-01").is(":checked")) {
-            var radio_val = $(".sale_list").text();
-            var txt = $('#dropdownMenuLink-buy').text(radio_val);
-            $('.overlay').css({'opacity': 0, 'display': 'none'});
-            $(".rent-dropdown").removeClass("show");
-            event.stopPropagation();
-        }
-    });
 
     $("#radio020-02").click(function (event) {
         if ($("#radio020-02").is(":checked")) {
