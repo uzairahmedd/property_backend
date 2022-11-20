@@ -28,7 +28,7 @@
                                     @elseif($status_data->name =='Rent')
                                         <li class="rent-all">
                                             <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" type="radio" id="radio02-02" name="status" checked />
-                                            <label class="rent-box rent_list" for="radio02-02">ايجار</label>
+                                            <label class="rent-box rent_label_list" for="radio02-02">ايجار</label>
                                         </li>
                                     @elseif($status_data->name =='Projects')
                                         <li class="rent-all">

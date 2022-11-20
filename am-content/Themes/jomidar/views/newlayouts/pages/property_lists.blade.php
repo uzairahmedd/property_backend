@@ -62,9 +62,9 @@
                     <div class="no-rooms-drop-btn">
                         <div class="dropdown room-type-drop">
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown"> عدد الفرف
+                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-roomss" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown"> عدد الفرف
                             </button>
-                            <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-rooms">
+                            <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-roomss">
                                 <h3>عدد الغرف</h3>
                                 <div class="type-dropdown-content d-flex justify-content-right align-items-center">
                                     <div class="room-container property_radio">
@@ -186,18 +186,18 @@
                             @foreach($statuses as $status_data)
                                     @if( $status_data->name =='Sale')
                                         <li class="rent-all">
-                                            <input class="rent-select-dropdown" value="{{ $status_data->id}}" type="radio" data-title="بيع" id="radio020-01" name="status" {{$status == $status_data->id ? 'checked' : ''}} />
-                                            <label class="rent-box sale_list" for="radio020-01">بيع</label>
+                                            <input class="rent-select-dropdown" value="{{ $status_data->id}}" type="radio" data-title="بيع" id="sale_rent" name="status" {{$status == $status_data->id ? 'checked' : ''}} />
+                                            <label class="rent-box sale_list" for="sale_rent">بيع</label>
                                         </li>
                                     @elseif($status_data->name =='Rent')
                                         <li class="rent-all">
-                                            <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" data-title="ايجار" type="radio" id="radio020-02" name="status"  {{$status == $status_data->id ? 'checked' : ''}} />
-                                            <label class="rent-box rent_label" for="radio020-02">ايجار</label>
+                                            <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" data-title="ايجار" type="radio" id="radio_rent" name="status"  {{$status == $status_data->id ? 'checked' : ''}} />
+                                            <label class="rent-box rent_list_label" for="radio_rent">ايجار</label>
                                         </li>
                                     @elseif($status_data->name =='Projects')
                                         <li class="rent-all">
-                                            <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" data-title="المشاريع" type="radio" id="radio020-03" name="status" {{$status == $status_data->id ? 'checked' : ''}} />
-                                            <label class="rent-box project_list" for="radio020-03">المشاريع</label>
+                                            <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" data-title="المشاريع" type="radio" id="project_rent" name="status" {{$status == $status_data->id ? 'checked' : ''}} />
+                                            <label class="rent-box project_list" for="project_rent">المشاريع</label>
                                         </li>
                                     @endif
                                 @endforeach
