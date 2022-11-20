@@ -5,26 +5,26 @@
                 <li>
                     <a href="search">البحث</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="property_lists">إعلانات للبيع</a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="property_lists">إعلانات للايجار</a>
+                </li> -->
+                <li>
+                    <a href="/property_auction">المزادات</a>
                 </li>
                 <li>
-                    <a href="property_auction">المزادات</a>
+                    <a href="/privacy_policy">شروط الخصوصية</a>
                 </li>
                 <li>
-                    <a href="policy_terms">شروط الخصوصية</a>
+                    <a href="/terms_and_conditions">شروط الاستخدام</a>
                 </li>
                 <li>
-                    <a href="terms_of_use">شروط الاستخدام</a>
+                    <a href="/terms_for_advertisement">شروط الإعلان عبر الموقع</a>
                 </li>
                 <li>
-                    <a href="terms_of_use">شروط الإعلان عبر الموقع</a>
-                </li>
-                <li>
-                    <a href="search">للشكوى</a>
+                    <a href="/complaints">للشكوى</a>
                 </li>
             </ul>
             <img src="{{asset('assets/images/footer-logo.png')}}"
