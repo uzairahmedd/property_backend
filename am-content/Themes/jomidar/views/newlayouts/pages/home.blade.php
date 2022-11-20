@@ -10,8 +10,8 @@
             <div class="col-12 row looking-for theme-bg-white d-flex flex-lg-row flex-sm-row align-items-center">
 
                 <div class="col-lg-2 search-button-div col-md-2 col-sm-2 col-xs-12" id="search">
-                    <button type="submit" id="hero_search_btn">
-                        <img type="submit" id="hero_search_btn" class="search-home-img" src="{{theme_asset('assets/images/search.svg')}}" alt=""></button>
+                    <button type="submit" id="hero_search_btn" title="Search property" data-toggle="tooltip">
+                        <img type="submit" id="hero_search_btn" class="search-home-img" src="{{theme_asset('assets/images/search.svg')}}" alt="" ></button>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                     <div class="dropdown complete-rent-drop">

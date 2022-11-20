@@ -206,7 +206,7 @@
                     @endif
 
                     <hr class="w-100">
-                    <h1 class="font-24 theme-text-blue">{{ __('Distance key between facilities') }}</h1>
+                    <h1 class="font-24 theme-text-blue">{{ __('Distance between facilities') }}</h1>
                     @if ($property->facilities_get->count() > 0)
                     @foreach ($property->facilities_get as $facility)
                     <div class="row w-100 mb-3">
