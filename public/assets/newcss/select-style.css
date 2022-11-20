@@ -52,7 +52,6 @@
 .ss_ul::-webkit-scrollbar-thumb {background: var(--theme-blue);}
 .ss_ul li:first-child
 {
-    padding: 0;
     border-top: 1px solid rgba(130,123,138,.251);
 }
 

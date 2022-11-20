@@ -34,7 +34,6 @@ $(document).ready(function () {
 });
 
 
-
 $(document).ready(function () {
     $('#select-drop-btn').change(function () {
         $(window).css('opacity', 0.2);
@@ -74,7 +73,6 @@ $("#radio02-02").click(function (event) {
 
 
 $("#list_radio_01").click(function (event) {
-    alert('das');
     if ($("#list_radio_01").is(":checked")) {
         var radio_val = $(".sale_list").text();
         $('#dropdownMenuLink-buy').text(radio_val);
@@ -139,8 +137,6 @@ $(document).ready(function () {
         event.stopPropagation();
     });
 
-
-
     $('.overlay').click(function (event) {
         $('.overlay').css('opacity', 0);
         $('.overlay').css('display', 'none');
@@ -182,7 +178,6 @@ $(document).ready(function (event) {
 // jquery for dropdown button End
 
 
-
 // jquery for dropdown button start
 $(document).ready(function (event) {
     $('.complete-rent-drop').click(function (e) {
@@ -204,15 +199,96 @@ $(document).ready(function (event) {
 
 
 
-$(".prop-checkbox").click(function () {
-    console.log('fdassfdfd');
-    if (clicked) {
-        $(this).css('background-color', 'red');
-        clicked = false;
-    } else {
-        $(this).css('background-color', 'blue');
-        clicked = true;
-    }
+
+
+// $(document).ready(function (event) {
+//
+//     $(".prop-checkbox").click(function (event) {
+//         if($("input[type='checkbox'].checked"))
+//         {
+//            $('.prop-checkbox').addClass('active-bg-color');
+//         }
+//     });
+// });
+
+
+// Property Type Dropdown Selection Start
+$(document).ready(function (event) {
+    $('.property-type-drop').click(function (e) {
+        $('.overlay').css('opacity', 0.2);
+        $('.overlay').css('display', 'block');
+        event.stopPropagation();
+    });
+
+    $('.overlay').click(function (event) {
+        $('.overlay').css('opacity', 0);
+        $('.overlay').css('display', 'none');
+        $(".type-dropdown").removeClass("show");
+        event.stopPropagation();
+    });
+
+});
+// Property Type Dropdown End
+
+// Room Dropdown Selection Start
+$(document).ready(function (event) {
+    $('.room-type-drop').click(function (e) {
+        $('.overlay').css('opacity', 0.2);
+        $('.overlay').css('display', 'block');
+        event.stopPropagation();
+    });
+
+    $('.overlay').click(function (event) {
+        $('.overlay').css('opacity', 0);
+        $('.overlay').css('display', 'none');
+        $(".room-type-drop").removeClass("show");
+        event.stopPropagation();
+    });
+
+});
+// Room Dropdown End
+
+// Range Dropdown Js
+const rangeInput = document.querySelectorAll(".range-input input"),
+    priceInput = document.querySelectorAll(".price-input input"),
+    range = document.querySelector(".slider .progress");
+let priceGap = 1000;
+
+priceInput.forEach((input) => {
+    input.addEventListener("input", (e) => {
+        let minPrice = parseInt(priceInput[0].value),
+            maxPrice = parseInt(priceInput[1].value);
+
+        if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
+            if (e.target.className === "input-min") {
+                rangeInput[0].value = minPrice;
+                range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
+            } else {
+                rangeInput[1].value = maxPrice;
+                range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+            }
+        }
+    });
+});
+
+rangeInput.forEach((input) => {
+    input.addEventListener("input", (e) => {
+        let minVal = parseInt(rangeInput[0].value),
+            maxVal = parseInt(rangeInput[1].value);
+
+        if (maxVal - minVal < priceGap) {
+            if (e.target.className === "range-min") {
+                rangeInput[0].value = maxVal - priceGap;
+            } else {
+                rangeInput[1].value = minVal + priceGap;
+            }
+        } else {
+            priceInput[0].value = minVal;
+            priceInput[1].value = maxVal;
+            range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+            range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+        }
+    });
 });
 
 
