@@ -31,6 +31,11 @@
                                             <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" type="radio" id="radio02-02" name="status" checked />
                                             <label class="rent-box rent_label" for="radio02-02">ايجار</label>
                                         </li>
+                                    @elseif($status_data->name =='Projects')
+                                        <li class="rent-all">
+                                            <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" type="radio" id="radio03-03" name="status" />
+                                            <label class="rent-box project_label" for="radio03-03">المشاريع</label>
+                                        </li>
                                     @endif
                                 @endforeach
                             </div>
@@ -201,7 +206,7 @@
                                 <div class="mt-3">
                                     <h3 class="font-medium theme-text-blue">{{$sale_data->title}}</h3>
                                     <div class="d-flex align-items-start justify-content-end pt-2">
-                                        <p class="mb-0 theme-text-seondary-black me-2">{{$sale_data->post_city->value}}</p>
+                                        <p class="mb-0 theme-text-seondary-black me-2">{{$sale_data->post_city->value}} - {{$sale_data->post_city->category->name}} - {{$sale_data->post_state->category->name}}</p>
                                         <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                                     </div>
                                 </div>
@@ -268,7 +273,7 @@
                                 <div class="mt-3">
                                     <h3 class="font-medium theme-text-blue">{{$rent_data->title}}</h3>
                                     <div class="d-flex align-items-start justify-content-end pt-2">
-                                        <p class="mb-0 theme-text-seondary-black me-2">{{$rent_data->post_city->value}}</p>
+                                        <p class="mb-0 theme-text-seondary-black me-2">{{$rent_data->post_city->value}} - {{$rent_data->post_city->category->name}} - {{$rent_data->post_state->category->name}}</p>
                                         <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                                     </div>
                                 </div>

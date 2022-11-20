@@ -71,6 +71,17 @@ $("#radio02-02").click(function (event) {
     }
 });
 
+$("#radio03-03").click(function (event) {
+    if ($("#radio03-03").is(":checked")) {
+        var radio_val = $(".project_label").text();
+        $('#dropdownMenuLink').text(radio_val);
+        $('.overlay').css('opacity', 0);
+        $('.overlay').css('display', 'none');
+        $(".rent-dropdown").removeClass("show");
+        event.stopPropagation();
+    }
+});
+
 
 $("#list_radio_01").click(function (event) {
     if ($("#list_radio_01").is(":checked")) {

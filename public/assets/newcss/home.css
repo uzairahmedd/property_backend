@@ -358,7 +358,7 @@
 .rent-dropdown {
     /*height: 75px;*/
     /*overflow-y: auto;*/
-    width: 327px;
+    width: 325px;
     background: #FFFFFF;
     box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -477,7 +477,7 @@
     padding-bottom: 12px;
     display: block !important;
     margin: 0 auto;
-    width: 140px;
+    width: 90px;
     max-width: 100%;
     text-align: center;
     border: 0.5px solid #292071;
@@ -503,7 +503,7 @@
 }
 
 .dropdown .rent-btn {
-    padding: 0px 20px 0 30px;
+    padding: 0px 10px 0 30px;
     border: 0;
     margin-left: 20px;
     border-radius: unset;
