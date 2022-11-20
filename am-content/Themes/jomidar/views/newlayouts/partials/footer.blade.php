@@ -1,7 +1,7 @@
 <div class="footer">
     <div class="container">
-        <div class="d-flex flex-sm-column-reverse flex-xl-row justify-content-end align-items-center">
-            <ul class="list-unstyled d-flex flex-sm-column flex-column-reverse flex-wrap flex-md-row-reverse justify-content-right align-items-center p-0 mt-4 me-lg-5 col-lg-9">
+        <div class="d-flex flex-column-reverse flex-xl-row align-items-center justify-content-center">
+            <ul class="list-unstyled d-flex flex-sm-column-reverse flex-column flex-wrap flex-md-row-reverse justify-content-right align-items-center p-0 mt-4 me-lg-5 col-lg-9">
                 <li>
                     <a href="/search">البحث</a>
                 </li>

@@ -978,3 +978,19 @@ input[type="range"]::-moz-range-thumb {
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
 }
 
+.list-rent-all {
+    padding-top: 15px;
+    overflow-x: auto;
+}
+
+/*.list-rent-all input[type="radio"]:checked + .rent-box {*/
+/*    background: var(--theme-sky);*/
+/*    border: 1px solid var(--theme-sky);*/
+/*    color: #fff;*/
+/*}*/
+
+.rent-all input[type="radio"]:checked + .rent-box {
+    background: var(--theme-sky);
+    border: 1px solid var(--theme-sky);
+    color: #fff;
+}

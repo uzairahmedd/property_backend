@@ -7,10 +7,10 @@
 (function ($) {
     $.fn.selectstyle = function (option) {
         var defaults = {
-            width: 250,
-            height: 300,
-            theme: 'light'
-        },
+                width: 250,
+                height: 300,
+                theme: 'light'
+            },
             setting = $.extend({}, defaults, option);
         this.each(function () {
             var $this = $(this),
@@ -156,6 +156,7 @@ $(document).ready(function (event) {
 var base_url = $('#base_url').val();
 var url = base_url + 'get_properties';
 get_properties(url)
+
 function get_properties(url) {
     $.ajax({
         type: 'get',
@@ -169,10 +170,9 @@ function get_properties(url) {
             $('.property_placeholder').remove();
             if (response.data.length == 0) {
                 //    $('.show-pagination-info').hide();
-                   $('#item_list').html('<div class="col-12 no-more"><h3 class="text-center">No more listing avaiable</h3></div>');
+                $('#item_list').html('<div class="col-12 no-more"><h3 class="text-center">No more listing avaiable</h3></div>');
 
-            }
-            else {
+            } else {
                 // $('.show-pagination-info').show();
                 // $('.no-more').remove();
                 properties_list('#item_list', response.data);
@@ -229,8 +229,7 @@ function properties_list(target, data) {
         if (value.user.usermeta != null) {
             var user_data = JSON.parse(value.user.usermeta.content);
             var phone = user_data.phone;
-        }
-        else {
+        } else {
             var phone = 'N/A';
         }
 
@@ -245,8 +244,7 @@ function properties_list(target, data) {
                 var imgg = 'assets/images/bath-icon.png';
                 var name = v.featured_category.name;
                 var quantity = v.value;
-            }
-            else if (v.featured_category != null && v.featured_category.name == 'Bedrooms') {
+            } else if (v.featured_category != null && v.featured_category.name == 'Bedrooms') {
                 var imgg = 'assets/images/bed-icon.png';
                 var name = v.featured_category.name;
                 var quantity = v.value;
@@ -263,7 +261,6 @@ function properties_list(target, data) {
             if (v.content != null) {
                 var floor_content = JSON.parse(v.content);
                 var floor_name = floor_content.name;
-
                 var sq_feet = floor_content.square_ft;
             }
 
@@ -275,5 +272,81 @@ function properties_list(target, data) {
     });
 }
 
+// Rent Dropdown Js Start
+$(document).ready(function (event) {
+    $('.list-complete-rent-drop').click(function (e) {
+        $('.overlay').css({'opacity': 0.2, 'display': 'block'});
+        $("ul.list-rent-dropdown").removeAttr('style');
+        // event.stopPropagation();
+    });
+
+    $("#radio020-01").click(function (event) {
+        if ($("#radio020-01").is(":checked")) {
+            var radio_val = $(".sale_list").text();
+            var txt = $('#dropdownMenuLink-buy').text(radio_val);
+            $('.overlay').css({'opacity': 0, 'display': 'none'});
+            $(".rent-dropdown").removeClass("show");
+            event.stopPropagation();
+        }
+    });
+
+    $("#radio020-02").click(function (event) {
+        if ($("#radio020-02").is(":checked")) {
+            var radio_val = $(".rent_list").text();
+            var txt = $('#dropdownMenuLink-buy').text(radio_val);
+            $('.overlay').css({'opacity': 0, 'display': 'none'});
+            $(".rent-dropdown").removeClass("show");
+            event.stopPropagation();
+        }
+    });
+
+    $('.overlay').click(function (event) {
+        $('.overlay').css({'opacity': 0, 'display': 'none'});
+        $(".list-rent-dropdown").removeClass("show");
+        // event.stopPropagation();
+    });
+});
+// Rent Dropdown Js End
+
+$('.prop-checkbox').on('change', function() {
+    var radio_val = $("span.checmark").text();
+    console.log(radio_val);
+
+});
+// Type Dropdown Js Start
+$(document).ready(function (event) {
+    $('.list-complete-rent-drop').click(function (e) {
+        $('.overlay').css({'opacity': 0.2, 'display': 'block'});
+        $("ul.list-rent-dropdown").removeAttr('style');
+        // event.stopPropagation();
+    });
 
 
+
+    $("#radio020-01").click(function (event) {
+        if ($("#radio020-01").is(":checked")) {
+            var radio_val = $(".sale_list").text();
+            var txt = $('#dropdownMenuLink-buy').text(radio_val);
+            $('.overlay').css({'opacity': 0, 'display': 'none'});
+            $(".rent-dropdown").removeClass("show");
+            event.stopPropagation();
+        }
+    });
+
+    $("#radio020-02").click(function (event) {
+        if ($("#radio020-02").is(":checked")) {
+            var radio_val = $(".rent_list").text();
+            var txt = $('#dropdownMenuLink-buy').text(radio_val);
+            $('.overlay').css({'opacity': 0, 'display': 'none'});
+            $(".rent-dropdown").removeClass("show");
+            event.stopPropagation();
+        }
+    });
+
+    $('.overlay').click(function (event) {
+        $('.overlay').css({'opacity': 0, 'display': 'none'});
+        $(".list-rent-dropdown").removeClass("show");
+        // event.stopPropagation();
+    });
+});
+// Type Dropdown Js End

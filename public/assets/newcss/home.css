@@ -367,6 +367,18 @@
     z-index: 1000;
 }
 
+.list-rent-dropdown {
+    /*height: 75px;*/
+    /*overflow-y: auto;*/
+    width: 327px;
+    background: #FFFFFF;
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 0px 14px 15px 14px;
+    margin-top: 35px !important;
+    z-index: 1000;
+}
+
 .resident-dropdown {
     /*height: 75px;*/
     /*overflow-y: auto;*/
@@ -419,6 +431,26 @@
     transform: rotate(45deg);
 }
 
+.list-rent-dropdown::before {
+    background-color: #ffffff;
+    content: "";
+    height: 20px;
+    left: 0;
+    margin: 0 15px;
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    top: -8px;
+    width: 13px;
+    opacity: 0.95;
+    border-radius: 2px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
 .resident-dropdown::before {
     background-color: #ffffff;
     content: "";
@@ -448,6 +480,15 @@
     align-items: center;
 }
 
+.list-rent-dropdown .rent-dropdown-content {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .resident-dropdown .resident-dropdown-content {
     width: 100%;
     flex-direction: row;
@@ -457,6 +498,11 @@
 }
 
 .rent-select-dropdown {
+    appearance: none;
+    display: none;
+}
+
+.list-rent-select-dropdown {
     appearance: none;
     display: none;
 }
@@ -511,6 +557,15 @@
     background: transparent;
 }
 
+.dropdown .list-rent-btn {
+    padding: 0px 20px 0 30px;
+    border: 0;
+    margin-left: 20px;
+    border-radius: unset;
+    border-right: 1px solid #C9C9C9;
+    background: transparent;
+}
+
 .dropdown .resident-btn {
     padding: 0px 20px 0 35px;
     border: 0;
@@ -523,6 +578,15 @@
     position: absolute;
     top: 10px;
     width: 10px;
+    max-width: 100%;
+}
+
+.list-complete-rent-drop img {
+    position: absolute;
+    width: 10px;
+    max-width: 100%;
+    top: 19px;
+    left: 25px;
     max-width: 100%;
 }
 
@@ -550,11 +614,18 @@
     outline: none;
 }
 
+.list-complete-rent-drop:focus-visible {
+    outline: none;
+}
+
 .complete-resident-drop:focus-visible {
     outline: none;
 }
 
 .rent-dropdown-toggle.rent-btn:focus-visible {
+    outline: none;
+}
+.rent-dropdown-toggle.list-rent-btn:focus-visible {
     outline: none;
 }
 
@@ -574,6 +645,9 @@
     outline: none;
 }
 
+.resident-dropdown-toggle.list-rent-btn:focus-visible {
+    outline: none;
+}
 /* Dropdown Rent Button CSS End */
 
 
@@ -727,6 +801,14 @@
         max-width: 100%;
     }
 
+    .list-complete-rent-drop img {
+        position: absolute;
+        left: 15px;
+        padding-top: 10px;
+        width: 15%;
+        max-width: 100%;
+    }
+
     .complete-resident-drop img {
         position: absolute;
         left: 15px;
@@ -795,7 +877,18 @@
         text-align: right;
     }
 
+    .dropdown .list-rent-btn {
+        width: 100%;
+        text-align: right;
+    }
+
     .complete-rent-drop img {
+        width: 11px;
+        margin-left: 24px;
+        margin-top: 5px;
+    }
+
+    .list-complete-rent-drop img {
         width: 11px;
         margin-left: 24px;
         margin-top: 5px;
@@ -842,6 +935,15 @@
         border-bottom: 1px solid #C9C9C9 !important;
     }
 
+    .dropdown .list-rent-btn {
+        border-right: none;
+        padding-right: 0;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-left: 0;
+        border-bottom: 1px solid #C9C9C9 !important;
+    }
+
     .resident-btn.show i
     {
         padding-left: 10px;
@@ -872,6 +974,10 @@
     }
 
     .rent-dropdown {
+        width: 100%;
+    }
+
+    .list-rent-dropdown {
         width: 100%;
     }
     .resident-dropdown {

@@ -8,7 +8,6 @@
         </li>
         <form action="{{ url(list_page()) }}">
             <div class="col-12 row looking-for theme-bg-white d-flex flex-lg-row flex-sm-row align-items-center">
-
                 <div class="col-lg-2 search-button-div col-md-2 col-sm-2 col-xs-12" id="search">
                     <button type="submit" id="hero_search_btn">
                         <img type="submit" id="hero_search_btn" class="search-home-img" src="{{theme_asset('assets/images/search.svg')}}" alt=""></button>
@@ -16,9 +15,9 @@
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                     <div class="dropdown complete-rent-drop">
                         <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                        <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink" onclick="" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">للايجار
+                        <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-home" onclick="" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">للايجار
                         </button>
-                        <ul class="dropdown-menu rent-dropdown" aria-labelledby="dropdownMenuLink">
+                        <ul class="dropdown-menu rent-dropdown" aria-labelledby="dropdownMenuLink-list">
                             <div class="rent-dropdown-content">
                                 @foreach($status as $status_data)
                                     @if( $status_data->name =='Sale')

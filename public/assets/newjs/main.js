@@ -51,7 +51,7 @@ $(document).ready(function (event) {
 $("#radio02-01").click(function (event) {
     if ($("#radio02-01").is(":checked")) {
         var radio_val = $(".sale_label").text();
-        $('#dropdownMenuLink').text(radio_val);
+        $('#dropdownMenuLink-home').text(radio_val);
         $('.overlay').css('opacity', 0);
         $('.overlay').css('display', 'none');
         $(".rent-dropdown").removeClass("show");
@@ -63,7 +63,7 @@ $("#radio02-01").click(function (event) {
 $("#radio02-02").click(function (event) {
     if ($("#radio02-02").is(":checked")) {
         var radio_val = $(".rent_label").text();
-        $('#dropdownMenuLink').text(radio_val);
+        $('#dropdownMenuLink-home').text(radio_val);
         $('.overlay').css('opacity', 0);
         $('.overlay').css('display', 'none');
         $(".rent-dropdown").removeClass("show");
@@ -164,11 +164,11 @@ $(document).ready(function (event) {
 });
 $("#rent-propertylist-drop").click(function (event) {
     if ($("#rent-propertylist-drop input[type='radio']").is(":checked")) {
-        var radio_val = $("#rent-propertylist-drop input[type='radio']:checked").val();
-        $('#dropdownMenuLink3').text(radio_val);
-        $('.overlay').css('opacity', 0);
-        $('.overlay').css('display', 'none');
-        $(".rent-dropdown").removeClass("show");
+        // var radio_val = $("#rent-propertylist-drop input[type='radio']:checked").val();
+        // $('#dropdownMenuLink3').text(radio_val);
+        // $('.overlay').css('opacity', 0);
+        // $('.overlay').css('display', 'none');
+        // $(".rent-dropdown").removeClass("show");
         event.stopPropagation();
     }
 });
@@ -186,6 +186,7 @@ $(document).ready(function (event) {
 // jquery for dropdown button start
 $(document).ready(function (event) {
     $('.complete-rent-drop').click(function (e) {
+        $("ul.rent-dropdown").removeAttr('style');
         $('.overlay').css('opacity', 0.2);
         $('.overlay').css('display', 'block');
         // event.stopPropagation();
@@ -295,6 +296,7 @@ rangeInput.forEach((input) => {
         }
     });
 });
+
 
 
 
