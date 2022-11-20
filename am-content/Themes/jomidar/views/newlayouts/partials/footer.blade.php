@@ -5,12 +5,12 @@
                 <li>
                     <a href="/search">البحث</a>
                 </li>
-                <!-- <li>
-                    <a href="property_lists">إعلانات للبيع</a>
-                </li> -->
-                <!-- <li>
-                    <a href="property_lists">إعلانات للايجار</a>
-                </li> -->
+                <li>
+                    <a href="#">إعلانات للبيع</a>
+                </li>
+                <li>
+                    <a href="#">إعلانات للايجار</a>
+                </li>
                 <li>
                     <a href="/property_auction">المزادات</a>
                 </li>
