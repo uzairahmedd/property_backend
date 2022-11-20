@@ -56,7 +56,7 @@ setTimeout(function(){
                 '<div class="ss_dib ss_image"></div>' +
                 '</div>';
             if (search == "true") {
-                html += '<ul id="select_style_ul" sid="' + id + '" class="ss_ulsearch" style="max-height:' + setting.height + 'px;width:' + (parseInt(setting.width) + 20) + 'px; overflow-x: hidden;"><div class="search" id="ss_search"><input type="text" placeholder="يبحث"></div><ul style="max-height:' + (parseInt(setting.height) - 53) + 'px;width:' + (parseInt(setting.width) + 20) + 'px; overflow-y: auto;" class="ss_ul">' + html_op + '</ul></ul>';
+                html += '<ul id="select_style_ul" sid="' + id + '" class="ss_ulsearch" style="max-height:' + setting.height + 'px;width:' + (parseInt(setting.width) + 20) + 'px; overflow-x: hidden; z-index: 3;"><div class="search" id="ss_search"><input type="text" placeholder="يبحث"></div><ul style="max-height:' + (parseInt(setting.height) - 53) + 'px;width:' + (parseInt(setting.width) + 20) + 'px; overflow-y: auto;" class="ss_ul">' + html_op + '</ul></ul>';
             } else {
 
                 html += '<ul id="select_style_ul" sid="' + id + '" style="max-height:' + setting.height + 'px;width:' + (parseInt(setting.width) + 20) + 'px; " class="ss_ul">' + html_op + '</ul>';
@@ -139,7 +139,8 @@ $(document).ready(function (event) {
     $('.search-input-bar').click(function () {
         $('.overlay').css('opacity', 0.2);
         $('.overlay').css('display', 'block');
-        $('.search-input-bar').css('z-index', '101');
+        $('.overlay').css('z-index', '1');
+        $('.search-input-bar').css('z-index', '1');
     });
 
     $('.overlay').click(function (event) {
