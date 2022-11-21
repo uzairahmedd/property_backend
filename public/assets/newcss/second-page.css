@@ -276,6 +276,17 @@
     text-align: right;
 }
 
+.dropdown .room-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 100px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
 .complete-rent-drop img {
     position: absolute;
     top: 19px;
@@ -311,6 +322,12 @@
     margin-left: 15px;
 }
 
+.room-toggle-icon img {
+    position: absolute;
+    display: flex;
+    margin-left: 15px;
+}
+
 
 element.style {
     position: absolute;
@@ -328,6 +345,15 @@ element.style {
 }
 
 .type-dropdown {
+    width: 470px;
+    background: #FFFFFF;
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    padding: 30px 25px 10px 25px;
+    margin-top: 35px !important;
+}
+
+.room-dropdown {
     width: 470px;
     background: #FFFFFF;
     box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
@@ -373,9 +399,21 @@ element.style {
     justify-content: end;
 }
 
+.room-dropdown .room-dropdown-content {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-content: end;
+}
+
 .budget-drop-btn .type-dropdown .type-dropdown-content {
     justify-content: space-between;
 }
+
+
 
 .budget-drop-btn .dropdown .rent-btn {
     width: 97px;
@@ -413,7 +451,42 @@ element.style {
     border-radius: 8px;
 }
 
+.room-dropdown .room-dropdown-content .room-no-drop {
+    padding: 0px 0px 10px 10px;
+}
+
+.room-dropdown::before {
+    background-color: #ffffff;
+    content: "";
+    height: 20px;
+    left: 0;
+    margin: 0 15px;
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    top: -8px;
+    width: 13px;
+    opacity: 0.95;
+    border-radius: 2px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.room-dropdown .show-results-bttn {
+    background-color: var(--theme-blue);
+    color: var(--theme-white);
+    border: 0.5px solid #292071;
+    border-radius: 8px;
+}
+
 .no-rooms-drop-btn .dropdown .rent-btn {
+    padding: 9px 77px 12px 33px;
+}
+
+.no-rooms-drop-btn .dropdown .room-btn {
     padding: 9px 77px 12px 33px;
 }
 
@@ -428,7 +501,23 @@ element.style {
     color: #fff;
 }
 
-.type-dropdown h3 {
+.room-dropdown h3 {
+    text-align: right;
+    color: var(--theme-black);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    font-family: Tajawal;
+    padding-bottom: 16px;
+}
+
+.room-rent-dropdowns room-dropdown-content .room-no-drop input[type="radio"]:checked + .type-box {
+    background: var(--theme-sky);
+    border: 1px solid var(--theme-sky);
+    color: #fff;
+}
+
+.room-dropdown h3 {
     text-align: right;
     color: var(--theme-black);
     font-weight: 500;
@@ -532,6 +621,24 @@ element.style {
         padding: 9px 5px 12px 20px;
     }
 
+    .no-rooms-drop-btn .dropdown .room-btn {
+        padding: 9px 70px 12px 24px;
+    }
+
+    .dropdown .room-btn {
+        width: 60px;
+    }
+
+    .no-rooms-drop-btn .dropdown .room-btn {
+        padding: 9px 80px 12px 57px;
+    }
+
+    .dropdown .room-btn {
+        width: 123px;
+        padding: 9px 5px 12px 20px;
+    }
+
+
     .complete-rent-drop img {
         top: 4px;
         left: -1px;
@@ -567,6 +674,10 @@ element.style {
         width: 90px;
     }
 
+    .dropdown .room-btn {
+        width: 90px;
+    }
+
     .rent-dropdown {
          left: -80px !important;
     }
@@ -599,6 +710,12 @@ element.style {
     }
 
     .type-dropdown {
+        width: 285px;
+        padding: 12px 15px 10px 13px;
+        margin-top: 0 !important;
+    }
+
+    .room-dropdown {
         width: 285px;
         padding: 12px 15px 10px 13px;
         margin-top: 0 !important;
@@ -822,6 +939,23 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 
 .yes-no-radio .checmark {
+    padding: 8px 12px;
+}
+
+
+.radio-container input:checked ~ .roommark {
+    background: #f9f5fe;
+    border-radius: 8px;
+    color: #292071;
+    text-align: center;
+    width: 100%;
+    height: 80px;
+    padding: 15px 0;
+    max-width: 120px;
+    min-width: 80px;
+}
+
+.yes-no-radio .roommark {
     padding: 8px 12px;
 }
 

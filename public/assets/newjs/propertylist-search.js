@@ -176,7 +176,7 @@ function get_properties(url) {
             if (response.data.length == 0) {
                 //    $('.show-pagination-info').hide();
 
-                   $('#item_list').html('<div class="col-12 no-more"><h3 class="text-center">No data avaiable</h3></div>');
+                $('#item_list').html('<div class="col-12 no-more"><h3 class="text-center">No data avaiable</h3></div>');
 
             } else {
                 // $('.show-pagination-info').show();
@@ -324,30 +324,27 @@ $(document).ready(function (event) {
 });
 // Rent Dropdown Js End
 
-$('.prop-checkbox').on('change', function() {
-    var radio_val = $("span.checmark").text();
-    console.log(radio_val);
 
-});
-// Type Dropdown Js Start
+
+// Room Dropdown Js Start
 $(document).ready(function (event) {
-    $('.list-complete-rent-drop').click(function (e) {
+    $('.room-type-drop').click(function (e) {
         $('.overlay').css({'opacity': 0.2, 'display': 'block'});
         $("ul.list-rent-dropdown").removeAttr('style');
         // event.stopPropagation();
     });
 
-
-
-    $("#radio020-02").click(function (event) {
-        if ($("#radio020-02").is(":checked")) {
-            var radio_val = $(".rent_list").text();
-            var txt = $('#dropdownMenuLink-buy').text(radio_val);
+    $("#room_studio").click(function (event) {
+        if ($("#room_studio").is(":checked")) {
+            var radio_val = $(".room_studio").text();
+            var txt = $('#').text(radio_val);
             $('.overlay').css({'opacity': 0, 'display': 'none'});
             $(".rent-dropdown").removeClass("show");
             event.stopPropagation();
         }
     });
+
+
 
     $('.overlay').click(function (event) {
         $('.overlay').css({'opacity': 0, 'display': 'none'});
@@ -355,4 +352,71 @@ $(document).ready(function (event) {
         // event.stopPropagation();
     });
 });
+// Rent Dropdown Js End
+
+
+// Type Dropdown Js Start
+// $('.prop-checkbox').on('change', function() {
+//     var radio_val = $("span.checmark").text();
+//     console.log(radio_val);
+//
+// });
+
+// function customCheckbox(checkboxName){
+//     var checkBox = $('input[name="'+ checkboxName +'"]');
+//     $(checkBox).each(function(){
+//         $(this).wrap( "<span class='custom-checkbox'></span>" );
+//         if($(this).is(':checked')){
+//             $(this).parent().addClass("selected");
+//         }
+//     });
+//     $(checkBox).click(function(){
+//         $(this).parent().toggleClass("selected");
+//     });
+// }
+
+
+$(document).ready(function () {
+    $('.prop-checkbox').on('click', function () {
+        if ($(".prop-checkbox input[type='checkbox']").is(":checked")) {
+            $('this').addClass("selected");
+            var n = $('this').text();
+            console.log(n);
+        }
+        else
+        {
+            $('.checmark').removeClass("selected");
+        }
+    });
+    // $('.prop-checkbox').on('click', function () {
+    //     $(".prop-checkbox input[type='checkbox']").each(function () {
+    //         if ($(this).is(":checked")) {
+    //             var key = $(this).attr("id");
+    //             console.log(key);
+    //             var value = $(this).text();
+    //             $("#dropdownMenuLink-property-type").data(key, value);
+    //
+    //         }
+    //     });
+    // });
+});
+
+$(".prop-checkbox input[type='checkbox']:checked").each(function() {
+    console.log(this.value);
+});
+
+
+
+
+
+
+
+
+
+// if ($(".prop-checkbox").is(":selected")) {
+//     var drop_text = $(".prop-checkbox.selected").text();
+//     console.log(drop_text);
+//     $("#dropdownMenuLink1").html(drop_text);
+// }
+
 // Type Dropdown Js End

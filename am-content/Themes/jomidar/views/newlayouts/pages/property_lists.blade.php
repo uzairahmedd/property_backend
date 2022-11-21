@@ -21,7 +21,7 @@
                     <div class="no-rooms-drop-btn">
                         <div class="dropdown room-type-drop">
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                            <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">الميزانية
+                            <button class="btn dropdown-toggle list-rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">الميزانية
                             </button>
                             <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-rooms">
                                 <h3>الميزانية ( ريال سعودي )</h3>
@@ -68,44 +68,44 @@
                                 <h3>عدد الغرف</h3>
                                 <div class="type-dropdown-content d-flex justify-content-right align-items-center">
                                     <div class="room-container property_radio">
-                                        <input type="radio" checked="">
-                                        <span class="checmark font-16 font-medium">Studio</span>
+                                        <input type="radio" id="room_studio">
+                                        <span class="roommark room_studio font-16 font-medium" for="room_studio">Studio</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio">
-                                        <span class="checmark font-16 font-medium">1</span>
+                                        <input type="radio" id="room_1">
+                                        <span class="roommark room1 font-16 font-medium" for="room_1">1</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio">
-                                        <span class="checmark font-16 font-medium">2</span>
+                                        <input type="radio" id="room_2">
+                                        <span class="roommark room2 font-16 font-medium" for="room_2">2</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio">
-                                        <span class="checmark font-16 font-medium">3</span>
+                                        <input type="radio" id="room_3">
+                                        <span class="roommark room3 font-16 font-medium" for="room_3">3</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio">
-                                        <span class="checmark font-16 font-medium">4</span>
+                                        <input type="radio" id="room_4">
+                                        <span class="roommark room4 font-16 font-medium" for="room_4">4</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio">
-                                        <span class="checmark font-16 font-medium">5</span>
+                                        <input type="radio" id="room_5">
+                                        <span class="roommark room5 font-16 font-medium" for="room_5">5</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio">
-                                        <span class="checmark font-16 font-medium">6</span>
+                                        <input type="radio" id="room_6">
+                                        <span class="roommark room6 font-16 font-medium" for="room_6">6</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" checked="">
-                                        <span class="checmark font-16 font-medium">7</span>
+                                        <input type="radio" id="room_7">
+                                        <span class="roommark room7 font-16 font-medium" for="room_7">7</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" checked="">
-                                        <span class="checmark font-16 font-medium">8</span>
+                                        <input type="radio" id="room_8">
+                                        <span class="roommark room8 font-16 font-medium" for="room_8">8</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" checked="">
-                                        <span class="checmark font-16 font-medium">9+</span>
+                                        <input type="radio" id="room_9">
+                                        <span class="roommark room9 font-16 font-medium" for="room_9">9+</span>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
@@ -121,8 +121,8 @@
                     </div>
                     <div class="type-rent-dropdowns">
 
-                        <div class="dropdown property-type-drop">
-                            <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
+                        <div class="dropdown room-type-drop">
+                            <span class="room-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
                             <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-property-type" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">النوع
                             </button>
                             <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-property-type">
