@@ -22,8 +22,8 @@
     max-width: 100%;
     box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    padding: 6px 20px 6px 10px;
-    margin-top: 36px;
+    padding: 6px 10px 6px 10px;
+    margin: 36px 0 0 0;
 }
 
 .looking-for h4 {
@@ -488,7 +488,7 @@
     display: inline-flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -761,6 +761,13 @@ room-dropdown-toggle::after
 }
 
 @media screen and (max-width: 992px) {
+
+    .looking-for
+    {
+        width: 720px;
+        max-width: 100%;
+    }
+
     .container {
         padding: 0 24px;
     }
@@ -800,6 +807,21 @@ room-dropdown-toggle::after
     /*    text-align: right;*/
     /*    width: auto;*/
     /*}*/
+
+    .looking-for {
+        width: 580px;
+        max-width: 100%;
+    }
+
+    .dropdown .resident-btn {
+        padding: 0px 20px 0 56px;
+    }
+
+    .complete-resident-drop img {
+        left: 17px;
+    }
+
+
     .dropdown-select.wide {
         left: 60px;
     }
@@ -898,11 +920,22 @@ room-dropdown-toggle::after
     .looking-for .search-home-btn {
         display: none;
     }
+    .looking-for span.search-txt
+    {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 576px) {
     .font-lg-18 {
         font-size: 16px;
+    }
+
+    #hero_search_btn {
+        background-color: var(--theme-blue);
+    }
+    #hero_search_btn {
+        color: white;
     }
 
     .dropdown-select .list {
@@ -996,7 +1029,7 @@ room-dropdown-toggle::after
     }
 
     .rent-box {
-        width: 120px;
+        width: 100px;
         max-width: 100%;
     }
 
@@ -1077,11 +1110,7 @@ room-dropdown-toggle::after
         width: 100%;
     }
     .resident-dropdown {
-        width: 100%;
-    }
-
-    .looking-for .search-home-img {
-        display: none;
+        width: 310px;
     }
 
     .looking-for .search-home-btn {
@@ -1108,7 +1137,9 @@ room-dropdown-toggle::after
     .font-lg-18 {
         font-size: 14px;
     }
-
+    .resident-dropdown {
+        width: 290px;
+    }
     .verified img {
         margin-bottom: 0px;
     }
@@ -1445,6 +1476,10 @@ span.directorist-select__selected-list--item:first-letter {
 
     .verified {
         margin-top: -27px;
+    }
+
+    .resident-dropdown {
+        width: 100%;
     }
 
     .verified h3, .apps h3 {
