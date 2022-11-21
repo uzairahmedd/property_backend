@@ -62,7 +62,7 @@ $("#radio02-01").click(function (event) {
 
 $("#radio02-02").click(function (event) {
     if ($("#radio02-02").is(":checked")) {
-        var radio_val = $(".rent_label").text();
+        var radio_val = $(".rent_label_list").text();
         $('#dropdownMenuLink-home').text(radio_val);
         $('.overlay').css('opacity', 0);
         $('.overlay').css('display', 'none');

@@ -19,10 +19,10 @@
                                 {{ Auth::User()->name}}<img src="{{theme_asset('assets/images/avatar.svg')}}" class="ms-3" />
                             </button>
                             <ul class="dropdown-menu after-sign-drop pt-0 mt-0 pb-0 mb-0" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item text-right" href="my_profile">لوحة التحكم<i class="fa-solid fa-house-user"></i></a></li>
-                                <li><a class="dropdown-item text-right" href="favorite">المفضلة<i class="fa-regular fa-heart"></i></a></li>
-                                <li><a class="dropdown-item text-right" href="auction">إعلاناتي<i class="fa-solid fa-magnifying-glass"></i></a></li>
-                                <li><a class="dropdown-item text-right" href="account"> إعدادات الحساب<i class="fa-solid fa-user"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="/my_profile">لوحة التحكم<i class="fa-solid fa-house-user"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="/favorite">المفضلة<i class="fa-regular fa-heart"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="/auction">إعلاناتي<i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="/account"> إعدادات الحساب<i class="fa-solid fa-user"></i></a></li>
                                 <li><a class="dropdown-item text-right" href="{{ route('agent.logout') }}">تسجيل خروج<i class="fa-solid fa-right-from-bracket"></i></a></li>
                             </ul>
                         </div>
@@ -39,7 +39,7 @@
                         @endif
                         @if (Auth::User())
                         <button class="btn add-btn font-bold theme-text-white d-flex align-items-center my-3 my-sm-0">
-                            <a href="step_one">اضف إعلان</a>
+                            <a href="/step_one">اضف إعلان</a>
                             <img src="{{theme_asset('assets/images/plus.svg')}}" class="ms-3">
                         </button>
                         @else
@@ -55,7 +55,7 @@
                         <img src="{{theme_asset('assets/images/download.svg')}}" class="ms-3" />
                     </li>
                     <li class="nav-item d-flex align-items-center mb-3 mb-sm-0">
-                        <span class="nav-link theme-text-blue font-medium"> <a href="property_auction">المزادات</a> </span>
+                        <span class="nav-link theme-text-blue font-medium"> <a href="/property_auction">المزادات</a> </span>
                         <img src="{{theme_asset('assets/images/hammer.svg')}}" class="ms-3" />
                     </li>
                     <li class="logo d-none d-lg-block">
