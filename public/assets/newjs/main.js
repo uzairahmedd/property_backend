@@ -309,5 +309,37 @@ rangeInput.forEach((input) => {
 });
 
 
+// $("#myButton").each(function(){
+//     var id= $(this).data('value');
+//     console.log(id);
+//     home_favourite_property_check(id);
+// });
+
+
+/*---------------------------
+        Favourite Check
+    ------------------------------*/
+    function home_favourite_property_check(id)
+    {
+        var url = $("#favourite_check_url").val();
+        $.ajax({
+            url: url,
+            data: { id: id },
+            type: "GET",
+            dataType: "HTML",
+            success: function(response) {
+                console.log(response);
+                if(response == 'ok')
+                {
+                    $('.heart'+id).removeClass('fa-regular');
+                    $('.heart'+id).addClass('fa-solid');
+                }else{
+                    $('.heart'+id).removeClass('fa-solid');
+                    $('.heart'+id).addClass('fa-regular');
+                   
+                }
+            }
+        });
+    }
 
 

@@ -120,14 +120,7 @@
                         @foreach($states as $row)
                             <option value="{{ $row->id }}">{{ $row->name }}</option>
                         @endforeach
-                        <!-- <option value="AX">الرياض<span class="property_num">(1)</span></option>
-                <option value="AX">جدة<span class="property_num">(132)</span></option>
-                <option value="AX">مكة المكرمة<span class="property_num">(1234)</span></option>
-                <option value="AX">المدينة المنورة<span class="property_num">(143)</span></option>
-                <option value="AX">جميع المدن<span class="property_num">(1234)</span></option>
-                <option value="AX">الدمام<span class="property_num">(164)</span></option>
-                <option value="AX">حائل<span class="property_num">(1454)</span></option>
-                <option value="AX">الخبر<span class="property_num">(1765)</span></option> -->
+                        <!-- <option value="AX">الرياض<span class="property_num">(1)</span></option>-->
                     </select>
                 </div>
             </div>
@@ -194,8 +187,8 @@
                                                 <span class="font-medium">متاح</span>
                                             </div> -->
                                     </div>
-                                    <div class="fav-elipse d-flex align-items-center justify-content-center" onclick="favourite_property('{{$sale_data->id}}')">
-                                        <i class="fa-regular fa-heart heart{{$sale_data->id}}" title="Favorite property" data-toggle="tooltip"></i>
+                                    <div class="fav-elipse d-flex align-items-center justify-content-center"  onclick="favourite_property('{{$sale_data->id}}')">
+                                        <i class="fa-regular fa-heart heart{{$sale_data->id}}"  title="Favorite property" data-toggle="tooltip"></i>
                                     </div>
                                 </div>
                                 <div class="price theme-text-white d-flex align-items-center justify-content-center">

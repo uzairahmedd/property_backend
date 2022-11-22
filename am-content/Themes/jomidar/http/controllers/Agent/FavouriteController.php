@@ -12,6 +12,7 @@ class FavouriteController extends controller
     public function index()
     {
         $properties = Auth::User()->favourite_properties()->paginate(20);
+        // return view('theme::newlayouts.user_dashboard.favorite');
         return view('view::agent.favourite',compact('properties'));
     }
 }

@@ -233,7 +233,7 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	// Route::get('property_lists', 'PropertyController@new_list')->name('property_lists');
 	// Route::get('property_detail', 'PropertyController@property_detail')->name('property_detail');
 	Route::get('property_auction', 'PropertyController@property_auction')->name('property_auction');
-	Route::get('my_profile', 'PropertyController@userboard_profile')->name('userboard_profile');
+	// Route::get('my_profile', 'PropertyController@userboard_profile')->name('userboard_profile');
 	Route::get('favorite', 'PropertyController@userboard_favorite')->name('userboard_favorite');
 	Route::get('auction', 'PropertyController@userboard_auction')->name('userboard_auction');
 	Route::get('account', 'PropertyController@userboard_account')->name('userboard_account');

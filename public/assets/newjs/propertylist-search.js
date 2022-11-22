@@ -156,6 +156,8 @@ $(document).ready(function (event) {
 get_properties()
 
 function get_properties() {
+    console.log('sa');
+    $('.propertly-list-banner').addClass('hide');
     var base_url = $('#base_url').val();
     var url = base_url + 'get_properties';
     $.ajax({
@@ -164,7 +166,8 @@ function get_properties() {
         data: $('.search_form').serialize(),
         dataType: 'json',
         beforeSend: function () {
-            $('#item_list').html();
+            $('#item_list').html('');
+            $('#second_item_list').html('');
             $('.loaderInner').fadeIn(); 
             $('#load_cover').fadeIn('slow');
             $('body').css({'overflow':'invisible'});
@@ -239,7 +242,7 @@ function properties_list(target, data) {
     var base_url = $('#base_url').val();
     var asset_url = base_url;
     $.each(data, function (index, value) {
-        favourite_check(value.id);
+        favourite_property_check(value.id);
         if (value.post_preview != null) {
             var image = value.post_preview.media.url;
         } else {
@@ -259,7 +262,7 @@ function properties_list(target, data) {
 
         
         if(index == '8'){
-            $('.propertly-list-banner').css('display','block');
+            $('.propertly-list-banner').removeClass('hide');
             $('.second_container').addClass('last-property-list');
             target ='#second_item_list';
         }
@@ -303,12 +306,38 @@ function properties_list(target, data) {
     });
 }
 
+
+
+/*---------------------------
+        Favourite Check
+    ------------------------------*/
+    function favourite_property_check(id)
+    {
+        var url = $("#favourite_check_url").val();
+        $.ajax({
+            url: url,
+            data: { id: id },
+            type: "GET",
+            dataType: "HTML",
+            success: function(response) {
+                if(response == 'ok')
+                {
+                    $('.heart'+id).removeClass('fa-regular');
+                    $('.heart'+id).addClass('fa-solid');
+                }else{
+                    $('.heart'+id).removeClass('fa-solid');
+                    $('.heart'+id).addClass('fa-regular');
+                   
+                }
+            }
+        });
+    }
+
+
 // Rent Dropdown Js Start
 $(document).ready(function (event) {
     $('.list-complete-rent-drop').click(function (e) {
         $('.overlay').css({'opacity': 0.2, 'display': 'block'});
-        // $("ul.list-rent-dropdown").removeAttr('style');
-        // event.stopPropagation();
     });
 
     $("#sale_rent").click(function (event) {

@@ -15,7 +15,8 @@ class ProfileController extends controller
 {
     public function index()
     {
-        return view('view::agent.settings');
+        return view('theme::newlayouts.user_dashboard.profile');
+        // return view('view::agent.settings');
     }
 
     public function update(Request $request)
