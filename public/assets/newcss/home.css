@@ -372,6 +372,7 @@
     /*overflow-y: auto;*/
     width: 223px;
     background: #FFFFFF;
+    margin-left: -254px !important;
     box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 0px 14px 15px 14px;
@@ -447,7 +448,7 @@
     background-color: #ffffff;
     content: "";
     height: 20px;
-    left: 0;
+    left: 1;
     margin: 0 15px;
     z-index: -1;
     position: absolute;
@@ -497,7 +498,7 @@
     display: inline-flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -579,6 +580,12 @@
     color: #fff;
 }
 
+/*.rent-all input[type="radio"]:checked + .rent-box {*/
+/*    background: var(--theme-sky);*/
+/*    border: 1px solid var(--theme-sky);*/
+/*    color: #fff;*/
+/*}*/
+
 .resident-all input[type="radio"]:checked + .rent-box {
     background: var(--theme-sky);
     border: 1px solid var(--theme-sky);
@@ -586,6 +593,15 @@
 }
 
 .dropdown .rent-btn {
+    padding: 0px 10px 0 30px;
+    border: 0;
+    margin-left: 20px;
+    border-radius: unset;
+    border-right: 1px solid #C9C9C9;
+    background: transparent;
+}
+
+.dropdown .type-btn {
     padding: 0px 10px 0 30px;
     border: 0;
     margin-left: 20px;
@@ -646,6 +662,15 @@
 .rent-dropdown-toggle::after {
     display: none;
 }
+
+.list-rent-dropdown-toggle::after {
+    display: none;
+}
+
+.type-dropdown-toggle::after {
+    display: none;
+}
+
 .room-dropdown-toggle::after {
     display: none;
 }
@@ -672,6 +697,16 @@
     display: none;
 }
 
+.budget-dropdown-toggle::after
+{
+    display: none;
+}
+
+.type-dropdown-toggle::after
+{
+    display: none;
+}
+
 room-dropdown-toggle::after
 {
     display: none;
@@ -691,9 +726,19 @@ room-dropdown-toggle::after
 .rent-dropdown-toggle.rent-btn:focus-visible {
     outline: none;
 }
+
+.list-rent-dropdown-toggle.list-rent-btn:focus-visible {
+    outline: none;
+}
+
 .rent-dropdown-toggle.list-rent-btn:focus-visible {
     outline: none;
 }
+
+.type-dropdown-toggle.type-btn:focus-visible {
+    outline: none;
+}
+
 
 .room-dropdown-toggle.room-btn:focus-visible {
     outline: none;
@@ -721,6 +766,12 @@ room-dropdown-toggle::after
 .room-dropdown-toggle.room-btn:focus-visible {
     outline: none;
 }
+
+.type-dropdown-toggle.type-btn:focus-visible {
+    outline: none;
+}
+
+
 /* Dropdown Rent Button CSS End */
 
 
@@ -898,9 +949,9 @@ room-dropdown-toggle::after
 
     .list-complete-rent-drop img {
         position: absolute;
-        left: 15px;
-        padding-top: 10px;
-        width: 15%;
+        /*left: 15px;*/
+        /*padding-top: 10px;*/
+        width: 9%;
         max-width: 100%;
     }
 
@@ -983,6 +1034,11 @@ room-dropdown-toggle::after
         text-align: right;
     }
 
+    .dropdown .type-btn {
+        width: 100%;
+        text-align: right;
+    }
+
     .dropdown .list-rent-btn {
         width: 100%;
         text-align: right;
@@ -1043,6 +1099,24 @@ room-dropdown-toggle::after
     }
 
     .dropdown .rent-btn {
+        border-right: none;
+        padding-right: 0;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-left: 0;
+        border-bottom: 1px solid #C9C9C9 !important;
+    }
+
+    .dropdown .list-rent-btn {
+        border-right: none;
+        padding-right: 0;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-left: 0;
+        border-bottom: 1px solid #C9C9C9 !important;
+    }
+
+    .dropdown .type-btn {
         border-right: none;
         padding-right: 0;
         padding-top: 15px;

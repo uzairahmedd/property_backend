@@ -76,7 +76,7 @@ option .property_num
 .ss_button
 {
     padding: 10px 0px 10px 0px;
-    border-bottom: 1px solid #C9C9C9 !important;
+    /*border-bottom: 1px solid #C9C9C9 !important;*/
 }
 .ss_dib
 {

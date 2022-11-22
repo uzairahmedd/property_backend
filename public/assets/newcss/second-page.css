@@ -276,6 +276,28 @@
     text-align: right;
 }
 
+.dropdown .budget-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 100px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
+.dropdown .type-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 100px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
 .dropdown .room-btn {
     border: 1px solid #C9C9C9;
     border-radius: 8px;
@@ -304,6 +326,49 @@
 }
 
 .room-type-drop img {
+    position: absolute;
+    top: 19px;
+    left: 25px;
+    width: 10px;
+    max-width: 100%;
+}
+
+.budget-drop img {
+    position: absolute;
+    top: 19px;
+    left: 8px;
+    width: 10px;
+    max-width: 100%;
+}
+
+.list-rent-toggle-icon img {
+    position: absolute;
+    display: flex;
+    margin-left: 15px;
+}
+
+.dropdown .list-rent-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 100px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
+.budget-dropdown h3 {
+    text-align: right;
+    color: var(--theme-black);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    font-family: Tajawal;
+    padding-bottom: 38px;
+}
+
+.type-drop img {
     position: absolute;
     top: 19px;
     left: 25px;
@@ -345,6 +410,16 @@ element.style {
 }
 
 .type-dropdown {
+    width: 470px;
+    background: #FFFFFF;
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    margin-left: -390px !important;
+    padding: 30px 25px 10px 25px;
+    margin-top: 35px !important;
+}
+
+.budget-dropdown {
     width: 470px;
     background: #FFFFFF;
     box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
@@ -399,6 +474,16 @@ element.style {
     justify-content: end;
 }
 
+.budget-dropdown .budget-dropdown-content {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-content: end;
+}
+
 .room-dropdown .room-dropdown-content {
     width: 100%;
     display: inline-flex;
@@ -413,9 +498,18 @@ element.style {
     justify-content: space-between;
 }
 
+.budget-drop-btn .budget-dropdown .budget-dropdown-content {
+    justify-content: space-between;
+}
 
 
-.budget-drop-btn .dropdown .rent-btn {
+
+.budget-drop-btn .dropdown .budget-btn {
+    width: 97px;
+    height: 43px;
+}
+
+.budget-drop-btn .dropdown .type-btn {
     width: 97px;
     height: 43px;
 }
@@ -425,6 +519,38 @@ element.style {
 }
 
 .type-dropdown::before {
+    background-color: #ffffff;
+    content: "";
+    height: 20px;
+    left: 1;
+    margin: 0 15px;
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    top: -8px;
+    width: 13px;
+    opacity: 0.95;
+    border-radius: 2px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.type-dropdown .show-results-bttn {
+    background-color: var(--theme-blue);
+    color: var(--theme-white);
+    border: 0.5px solid #292071;
+    border-radius: 8px;
+}
+
+
+.budget-dropdown .budget-dropdown-content .room-no-drop {
+    padding: 0px 0px 10px 10px;
+}
+
+.budget-dropdown::before {
     background-color: #ffffff;
     content: "";
     height: 20px;
@@ -444,7 +570,7 @@ element.style {
     transform: rotate(45deg);
 }
 
-.type-dropdown .show-results-bttn {
+.budget-dropdown .show-results-bttn {
     background-color: var(--theme-blue);
     color: var(--theme-white);
     border: 0.5px solid #292071;
@@ -482,7 +608,15 @@ element.style {
     border-radius: 8px;
 }
 
-.no-rooms-drop-btn .dropdown .rent-btn {
+.no-rooms-drop-btn .dropdown .budget-btn {
+    padding: 9px 77px 12px 33px;
+}
+
+.no-rooms-drop-btn .dropdown .budget-btn {
+    padding: 9px 77px 12px 33px;
+}
+
+.type-drop-btn .dropdown .type-btn {
     padding: 9px 77px 12px 33px;
 }
 
@@ -545,6 +679,13 @@ element.style {
     text-align: end;
 }
 
+@media screen and (min-width: 1400px)
+{
+    .ss_ulsearch
+    {
+        width: 436px !important;
+    }
+}
 
 @media screen and (max-width: 1400px) {
     .rent-dropdown {
@@ -552,6 +693,38 @@ element.style {
     }
     .rent-dropdown::before {
         left: 260px;
+    }
+}
+
+@media screen and (max-width: 1391px)
+{
+    .ss_ulsearch
+    {
+        width: 397px !important;
+    }
+}
+
+@media screen and (max-width: 1391px)
+{
+    .ss_ulsearch
+    {
+        width: 399px !important;
+    }
+}
+
+@media screen and (max-width: 1240px)
+{
+    .ss_ulsearch
+    {
+        width: 372px !important;
+    }
+}
+
+@media screen and (max-width: 1240px)
+{
+    .ss_ulsearch
+    {
+        width: 314px !important;
     }
 }
 
@@ -564,6 +737,9 @@ element.style {
     .container {
         padding: 0 35px;
     }
+    .ss_ulsearch {
+        width: 337px !important;
+    }
 }
 
 @media screen and (max-width: 992px) {
@@ -571,6 +747,31 @@ element.style {
         height: 200px;
     }
 
+    .room-dropdown {
+        width: 380px;
+        padding: 21px 12px 10px 25px;
+    }
+
+    .type-dropdown {
+        width: 421px;
+        background: #FFFFFF;
+        box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+        border-radius: 8px;
+        margin-left: -171px !important;
+        padding: 15px 12px 10px 12px;
+        margin-top: 35px !important;
+    }
+
+    .radio-container
+    {
+        max-width: 112px !important;
+        min-width: 80px !important;
+    }
+
+    .ss_ulsearch {
+        width: 111% !important;
+    }
+
     #filter-drop {
         padding-top: 42px;
     }
@@ -580,9 +781,29 @@ element.style {
     }
 }
 
+@media screen and (max-width: 815px) {
+    .ss_ulsearch {
+        width: 113% !important;
+    }
+
+}
+
 @media screen and (max-width: 768px) {
+
+    .ss_ulsearch {
+        width: 116% !important;
+    }
     .filter-bar {
         height: 200px;
+    }
+
+    .room-dropdown
+    {
+        width: 320px;
+        padding: 21px 31px 10px 15px;
+    }
+    .budget-dropdown {
+        width: 421px;
     }
 
     #filter-drop {
@@ -591,6 +812,21 @@ element.style {
 
     #filter-map {
         padding-top: 25px;
+    }
+
+}
+
+@media screen and (max-width: 630px) {
+
+    .ss_ulsearch {
+        width: 118% !important;
+    }
+}
+
+@media screen and (max-width: 660px) {
+
+    .filter-bar {
+        height: 244px;
     }
 
 }
@@ -598,6 +834,20 @@ element.style {
 @media screen and (max-width: 579px) {
     .property-lists .row .col-lg-3 {
         padding: 10px 7px;
+    }
+
+    .list-complete-rent-drop img {
+        margin-left: 0px;
+        margin-top: 0;
+    }
+
+    .ss_ulsearch {
+        width: 130% !important;
+        /* width: 466px !important; */
+    }
+
+    .room-toggle-icon img {
+         margin-left: -5px;
     }
 
     .all-listing .property-lists {
@@ -620,6 +870,56 @@ element.style {
         width: 123px;
         padding: 9px 5px 12px 20px;
     }
+
+
+
+
+    .no-rooms-drop-btn .dropdown .budget-btn {
+        padding: 9px 70px 12px 24px;
+    }
+
+    .dropdown .budget-btn {
+        width: 60px;
+    }
+
+    .no-rooms-drop-btn .dropdown .budget-btn {
+        padding: 9px 80px 12px 57px;
+    }
+
+    .dropdown .budget-btn {
+        width: 123px;
+        padding: 9px 5px 12px 20px;
+    }
+
+
+
+
+
+
+
+
+    .type-drop-btn .dropdown .type-btn {
+        padding: 9px 70px 12px 24px;
+    }
+
+    .dropdown .type-btn {
+        width: 60px;
+    }
+
+    .type-drop-btn .dropdown .type-btn {
+        padding: 9px 80px 12px 57px;
+    }
+
+    .dropdown .type-btn {
+        width: 123px;
+        padding: 9px 5px 12px 20px;
+    }
+
+
+
+
+
+
 
     .no-rooms-drop-btn .dropdown .room-btn {
         padding: 9px 70px 12px 24px;
@@ -649,7 +949,7 @@ element.style {
     }
 
     .filter-bar {
-        height: 194px;
+        height: 240px;
     }
 
     .filter-bar .select-filter {
@@ -668,9 +968,40 @@ element.style {
         margin-bottom: 50px;
     }
 }
-
+@media screen and (max-width: 579px) {
+    .ss_ulsearch {
+        width: 120% !important;
+        /* width: 466px !important; */
+    }
+}
 @media screen and (max-width:576px) {
     .dropdown .rent-btn {
+        width: 90px;
+    }
+    .budget-dropdown {
+        width: 320px;
+    }
+
+    .prop-checkbox {
+        max-width: 71px !important;
+        min-width: 75px !important;
+        height: 65px !important;
+    }
+    .list-rent-dropdown
+    {
+        margin-left: -94px !important;
+    }
+    .type-dropdown {
+        width: 292px;
+        /*max-width: 100%;*/
+        margin-left: -140px !important;
+    }
+
+    .dropdown .budget-btn {
+        width: 90px;
+    }
+
+    .dropdown .type-btn {
         width: 90px;
     }
 
@@ -694,31 +1025,104 @@ element.style {
 }
 
 @media screen and (max-width: 480px) {
+.filter-all-bar
+{
+    margin-bottom: -20px;
+}
+    .all-ads p
+    {
+        font-size: 12px;
+    }
+
+    .all-ads .vertical-line {
+        height: 12px;
+    }
+
+    .sort-by p
+    {
+        font-size: 12px;
+    }
+
+
     .filter-bar {
         height: 237px;
     }
-}
+    .type-dropdown {
+        width: 292px;
+        /* max-width: 100%; */
+        margin-left: -49px !important;
+    }
 
+    .filter-bar {
+        height: 243px !important;
+    }
+    .ss_ulsearch {
+        width: 133% !important;
+        /* width: 466px !important; */
+    }
+}
+@media screen and (max-width: 375px) {
+    .ss_ulsearch {
+        width: 141% !important;
+        /* width: 466px !important; */
+    }
+}
 @media screen and (max-width: 375px) {
     .price-section .all-price h3 {
         font-size: 14px;
         font-weight: bold;
     }
 
+    .ss_ulsearch {
+        width: 140% !important;
+        /* width: 466px !important; */
+    }
+
     .filter-bar {
         height: 304px;
     }
+    .room-dropdown .show-results-bttn {
+
+        font-size: 10px;
+    }
+
+    .room-no-drop
+    {
+        margin-left: -7px;
+    }
+
+
 
     .type-dropdown {
         width: 285px;
+        max-width: 100%;
+        padding: 12px 15px 10px 13px;
+        margin-top: 0 !important;
+    }
+
+    .budget-dropdown {
+        width: 250px;
+        max-width: 100%;
         padding: 12px 15px 10px 13px;
         margin-top: 0 !important;
     }
 
     .room-dropdown {
-        width: 285px;
+        width: 234px;
+        max-width: 100%;
         padding: 12px 15px 10px 13px;
         margin-top: 0 !important;
+    }
+    .room-dropdown::before {
+        left: 1;
+    }
+    .font-16 {
+        font-size: 10px;
+    }
+
+    .room-container
+    {
+        max-width: 54px;
     }
 
     .room-container
@@ -732,6 +1136,42 @@ element.style {
 
     .all-listing .property-lists {
         margin: 20px 0 0 0;
+    }
+}
+
+
+
+@media screen and (max-width: 290px) {
+
+    .all-ads
+    {
+        display: flex;
+        flex-direction: column !important;
+        justify-content: end;
+        align-items: end;
+    }
+
+    .all-property-list .sort-by
+    {
+        border: none;
+    }
+
+    .all-results
+    {
+        margin-bottom: 0;
+    }
+    .all-ads .vertical-line
+    {
+        border: none;
+    }
+
+    .ss_ulsearch {
+        width: 160% !important;
+        /* width: 466px !important; */
+    }
+
+    .filter-bar {
+        height: 294px !important;
     }
 }
 
@@ -784,6 +1224,17 @@ input[type="range"] {
 }
 
 .auction-status-dropdown .dropdown .rent-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 111px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
+.auction-status-dropdown .dropdown .budget-btn {
     border: 1px solid #C9C9C9;
     border-radius: 8px;
     width: 111px;
@@ -943,21 +1394,6 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 
 
-.radio-container input:checked ~ .roommark {
-    background: #f9f5fe;
-    border-radius: 8px;
-    color: #292071;
-    text-align: center;
-    width: 100%;
-    height: 80px;
-    padding: 15px 0;
-    max-width: 120px;
-    min-width: 80px;
-}
-
-.yes-no-radio .roommark {
-    padding: 8px 12px;
-}
 
 /* Radio Button Styles End */
 
@@ -977,7 +1413,6 @@ input[type="range"]:active::-webkit-slider-thumb {
     height: 45px;
     padding: 10px 0;
     max-width: 54px;
-    min-width: 58px;
     margin-bottom: 10px;
     margin-left: 10px;
 }
@@ -1124,6 +1559,13 @@ input[type="range"]::-moz-range-thumb {
 /*}*/
 
 .rent-all input[type="radio"]:checked + .rent-box {
+    background: var(--theme-sky);
+    border: 1px solid var(--theme-sky);
+    color: #fff;
+}
+
+
+.property_radio input[type="radio"]:checked + .roommark {
     background: var(--theme-sky);
     border: 1px solid var(--theme-sky);
     color: #fff;

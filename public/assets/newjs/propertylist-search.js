@@ -282,7 +282,7 @@ function properties_list(target, data) {
 $(document).ready(function (event) {
     $('.list-complete-rent-drop').click(function (e) {
         $('.overlay').css({'opacity': 0.2, 'display': 'block'});
-        $("ul.list-rent-dropdown").removeAttr('style');
+        // $("ul.list-rent-dropdown").removeAttr('style');
         // event.stopPropagation();
     });
 
@@ -325,33 +325,32 @@ $(document).ready(function (event) {
 // Rent Dropdown Js End
 
 
-
 // Room Dropdown Js Start
-$(document).ready(function (event) {
-    $('.room-type-drop').click(function (e) {
-        $('.overlay').css({'opacity': 0.2, 'display': 'block'});
-        $("ul.list-rent-dropdown").removeAttr('style');
-        // event.stopPropagation();
-    });
-
-    $("#room_studio").click(function (event) {
-        if ($("#room_studio").is(":checked")) {
-            var radio_val = $(".room_studio").text();
-            var txt = $('#').text(radio_val);
-            $('.overlay').css({'opacity': 0, 'display': 'none'});
-            $(".rent-dropdown").removeClass("show");
-            event.stopPropagation();
-        }
-    });
-
-
-
-    $('.overlay').click(function (event) {
-        $('.overlay').css({'opacity': 0, 'display': 'none'});
-        $(".list-rent-dropdown").removeClass("show");
-        // event.stopPropagation();
-    });
-});
+// $(document).ready(function (event) {
+//     $('.room-type-drop').click(function (e) {
+//         $('.overlay').css({'opacity': 0.2, 'display': 'block'});
+//         $("ul.list-rent-dropdown").removeAttr('style');
+//         // event.stopPropagation();
+//     });
+//
+//     $("#room_studio").click(function (event) {
+//         if ($("#room_studio").is(":checked")) {
+//             var radio_val = $(".room_studio").text();
+//             var txt = $('#').text(radio_val);
+//             $('.overlay').css({'opacity': 0, 'display': 'none'});
+//             $(".rent-dropdown").removeClass("show");
+//             event.stopPropagation();
+//         }
+//     });
+//
+//
+//
+//     $('.overlay').click(function (event) {
+//         $('.overlay').css({'opacity': 0, 'display': 'none'});
+//         $(".list-rent-dropdown").removeClass("show");
+//         // event.stopPropagation();
+//     });
+// });
 // Rent Dropdown Js End
 
 
@@ -382,9 +381,7 @@ $(document).ready(function () {
             $('this').addClass("selected");
             var n = $('this').text();
             console.log(n);
-        }
-        else
-        {
+        } else {
             $('.checmark').removeClass("selected");
         }
     });
@@ -401,16 +398,9 @@ $(document).ready(function () {
     // });
 });
 
-$(".prop-checkbox input[type='checkbox']:checked").each(function() {
+$(".prop-checkbox input[type='checkbox']:checked").each(function () {
     console.log(this.value);
 });
-
-
-
-
-
-
-
 
 
 // if ($(".prop-checkbox").is(":selected")) {
@@ -420,3 +410,19 @@ $(".prop-checkbox input[type='checkbox']:checked").each(function() {
 // }
 
 // Type Dropdown Js End
+
+
+// $(document).ready(function () {
+//     $('.list-complete-rent-drop').click(function () {
+//         $("ul.list-rent-dropdown").removeAttr('style');
+//     });
+//     $('.room-type-drop').click(function () {
+//         $("ul.room-dropdown").removeAttr('style');
+//     });
+//     $('.type-drop').click(function () {
+//         $("ul.type-dropdown").removeAttr('style');
+//     });
+//     $('#budgetdropdown').click(function () {
+//         $('ul').removeAttr('style');
+//     });
+// });
