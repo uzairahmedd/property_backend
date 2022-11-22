@@ -289,6 +289,7 @@
 #hero_search_btn {
     background-color: white;
     border-color: transparent;
+    cursor: pointer;
 }
 
 
@@ -985,9 +986,11 @@ room-dropdown-toggle::after
 
     #hero_search_btn {
         background-color: var(--theme-blue);
+        cursor: pointer;
     }
     #hero_search_btn {
         color: white;
+        cursor: pointer;
     }
 
     .dropdown-select .list {

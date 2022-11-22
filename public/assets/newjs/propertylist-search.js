@@ -165,13 +165,15 @@ function get_properties() {
         dataType: 'json',
         beforeSend: function () {
             $('#item_list').html();
-            // var base_url = $('#base_url').val();
-            // var img = base_url + 'uploads/Spin-Preloader.gif';
-            // $('#preloader').css('background', 'url(' + img + ') no-repeat');
+            $('.loaderInner').fadeIn(); 
+            $('#load_cover').fadeIn('slow');
+            $('body').css({'overflow':'invisible'});
         },
-        // complete: function () {
-        //     $('#logo').css('background', 'none');
-        // },
+        complete: function () {
+            $('.loaderInner').fadeOut(); 
+            $('#load_cover').fadeOut('slow');
+            $('body').css({'overflow':'visible'});
+        },
         success: function (response) {
             $('.property_placeholder').remove();
             if (response.data.length == 0) {
@@ -234,10 +236,8 @@ function properties_list(target, data) {
     $(target).html('');
     $('.results').text();
     $('.results').text(data.length);
-    // $('.list_renderd').remove();
     var base_url = $('#base_url').val();
     var asset_url = base_url;
-    // $('.preloader').remove();
     $.each(data, function (index, value) {
         favourite_check(value.id);
         if (value.post_preview != null) {
@@ -255,6 +255,15 @@ function properties_list(target, data) {
         } else {
             var phone = 'N/A';
         }
+
+
+        
+        if(index == '8'){
+            $('.propertly-list-banner').css('display','block');
+            $('.second_container').addClass('last-property-list');
+            target ='#second_item_list';
+        }
+
 
         var title = str_limit(value.title, 20, true);
         var location = value.post_city.value + '-' + value.post_city.category.name + '-' + value.post_state.category.name;
@@ -290,7 +299,7 @@ function properties_list(target, data) {
             $('.facilities_area' + index).append(html);
 
         });
-
+       
     });
 }
 
@@ -343,41 +352,6 @@ $(document).ready(function (event) {
 });
 // Rent Dropdown Js End
 
-// Preloader Js Start
-$(window).on('load', function() { // makes sure the whole site is loaded
-    $('.loaderInner').fadeOut(); // will first fade out the loading animation
-    $('#load_cover').delay(400).fadeOut('slow');
-    $('body').delay(400).css({'overflow':'visible'});
-});
-// Preloader Js End
-
-
-// Room Dropdown Js Start
-// $(document).ready(function (event) {
-//     $('.room-type-drop').click(function (e) {
-//         $('.overlay').css({'opacity': 0.2, 'display': 'block'});
-//         $("ul.list-rent-dropdown").removeAttr('style');
-//         // event.stopPropagation();
-//     });
-//
-//     $("#room_studio").click(function (event) {
-//         if ($("#room_studio").is(":checked")) {
-//             var radio_val = $(".room_studio").text();
-//             var txt = $('#').text(radio_val);
-//             $('.overlay').css({'opacity': 0, 'display': 'none'});
-//             $(".rent-dropdown").removeClass("show");
-//             event.stopPropagation();
-//         }
-//     });
-//
-//
-//
-//     $('.overlay').click(function (event) {
-//         $('.overlay').css({'opacity': 0, 'display': 'none'});
-//         $(".list-rent-dropdown").removeClass("show");
-//         // event.stopPropagation();
-//     });
-// });
 $(document).ready(function (event) {
     $('.room-type-drop').click(function (e) {
         $('.overlay').css({ 'opacity': 0.2, 'display': 'block' });
@@ -423,28 +397,3 @@ $(document).ready(function () {
 $(".prop-checkbox input[type='checkbox']:checked").each(function () {
     console.log(this.value);
 });
-
-
-// if ($(".prop-checkbox").is(":selected")) {
-//     var drop_text = $(".prop-checkbox.selected").text();
-//     console.log(drop_text);
-//     $("#dropdownMenuLink1").html(drop_text);
-// }
-
-// Type Dropdown Js End
-
-
-// $(document).ready(function () {
-//     $('.list-complete-rent-drop').click(function () {
-//         $("ul.list-rent-dropdown").removeAttr('style');
-//     });
-//     $('.room-type-drop').click(function () {
-//         $("ul.room-dropdown").removeAttr('style');
-//     });
-//     $('.type-drop').click(function () {
-//         $("ul.type-dropdown").removeAttr('style');
-//     });
-//     $('#budgetdropdown').click(function () {
-//         $('ul').removeAttr('style');
-//     });
-// });
