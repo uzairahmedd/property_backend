@@ -100,20 +100,18 @@
             </button>
 
             <div class="carousel-inner item-carousel b-r-8">
-                @if($property->multiple_images)
+                @if(isset($property->multiple_images))
                 @foreach ($property->multiple_images as $key=>$media)
                 <div class="carousel-item  {{  $key == 0 ? 'active' : '' }}">
                     <img src="{{ $media->media->url }}" class="d-block w-100 b-r-8" alt="...">
                 </div>
 
                 @endforeach
-                @endif
-
+                @else
                 <div class="carousel-item active">
                     <img src="{{ $property->post_preview->media->url ?? asset('uploads/default.png') }}" class="d-block w-100 b-r-8" alt="...">
                 </div>
-
-
+                @endif
             </div>
 
             <button class="carousel-control-next ms-2 me-4" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
