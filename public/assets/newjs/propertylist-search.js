@@ -7,10 +7,10 @@
 (function ($) {
     $.fn.selectstyle = function (option) {
         var defaults = {
-                width: 250,
-                height: 300,
-                theme: 'light'
-            },
+            width: 250,
+            height: 300,
+            theme: 'light'
+        },
             setting = $.extend({}, defaults, option);
         this.each(function () {
             var $this = $(this),
@@ -92,40 +92,34 @@
                 });
             }
         });
-        $("body").delegate("ul#select_style_ul li", "click", function (e) {
-            var txt = $(this).data('title'),
-                vl = $(this).attr('value'),
-                sid = $(this).parent('ul').attr('sid');
-            $(this).parents('ul#select_style_ul').hide();
-            $(this).parents('ul#select_style_ul').parent('div').find('div#select_style_text').html(txt);
-            $('#' + sid).children('option').filter(function () {
-                return $(this).val() == vl
-            }).prop('selected', true).change();
-            $('.overlay').css('opacity', 0);
-        });
-        // $(document).delegate("body", "click", function(e) {
-        //     // var clickedOn=$(e.target);
-        //     // if(!clickedOn.parents().andSelf().is('ul#select_style_ul, div#select_style')){
-        //     //     $('ul#select_style_ul').fadeOut(400);
-        //     //     $('div#ss_search').children('input').val('').trigger('keyup');
-        //     // }
-        //     e.stopPropagation();
-        // });
-        // $("body").delegate("body", "click", function(e) {
-        //
-        //     e.stopPropagation();
+        // $("body").delegate("ul#select_style_ul li", "click", function (e) {
+        //     var txt = $(this).data('title'),
+        //         vl = $(this).attr('value'),
+        //         sid = $(this).parent('ul').attr('sid');
+        //     $(this).parents('ul#select_style_ul').hide();
+        //     $(this).parents('ul#select_style_ul').parent('div').find('div#select_style_text').html(txt);
+        //     $('#' + sid).children('option').filter(function () {
+        //         return $(this).val() == vl
+        //     }).prop('selected', true).change();
+        //     $('.overlay').css('opacity', 0);
         // });
 
-        // $('.header img').click(function (event) {
-        //     $("#select_style_ul").css("display","none");
-        //     event.stopPropagation();
-        // });
-        //
-        // $('.search-input-bar').click(function (event) {
-        //     $('.overlay').css('opacity', 0.2);
-        //     // $("#select_style_ul").css("display","block");
-        //     // event.stopPropagation();
-        // });
+        $("body").delegate("ul#select_style_ul li", "click", function (e) {
+            $('.overlay').css('opacity', 0);
+            var txt = $(this).data('title'),
+                vl = $(this).attr('value');
+            $(this).parents('ul#select_style_ul').hide();
+            //for property list page
+            $('#property_states_dropdown option').removeAttr('selected','selected');
+            $('#property_states_dropdown option[value='+vl+']').attr('selected','selected');
+            $(this).parents('ul#select_style_ul').parent('div').find('div#select_style_text').html(txt);
+
+            //call get_properties
+            get_properties();
+
+        });
+
+
 
 
     }
@@ -154,15 +148,16 @@ $(document).ready(function (event) {
 });
 
 
+
 // Rend or Sale Dropdown Js Start
 /*----------------------------
         Properties Data Get
     -------------------------------*/
-var base_url = $('#base_url').val();
-var url = base_url + 'get_properties';
-get_properties(url)
+get_properties()
 
-function get_properties(url) {
+function get_properties() {
+    var base_url = $('#base_url').val();
+    var url = base_url + 'get_properties';
     $.ajax({
         type: 'get',
         url: url,
@@ -170,7 +165,13 @@ function get_properties(url) {
         dataType: 'json',
         beforeSend: function () {
             $('#item_list').html();
+            // var base_url = $('#base_url').val();
+            // var img = base_url + 'uploads/Spin-Preloader.gif';
+            // $('#preloader').css('background', 'url(' + img + ') no-repeat');
         },
+        // complete: function () {
+        //     $('#logo').css('background', 'none');
+        // },
         success: function (response) {
             $('.property_placeholder').remove();
             if (response.data.length == 0) {
@@ -210,6 +211,22 @@ function get_properties(url) {
 }
 
 
+
+/*-----------------------------------------------
+        Placeholder Active Before Data Append
+    --------------------------------------------------*/
+function property_before_render_list(target, data) {
+    var data = data - 1;
+    var base_url = $('#base_url').val();
+    var img = base_url + 'uploads/default.png'
+    for (var i = data; i >= 0; i--) {
+        $(target).append('<div class="col-lg-6 mb-30 property_placeholder"><div class="col-lg-3 col-md-4 col-sm-12"> <div class="carousel slide" data-bs-ride="carousel"><div class="features"><div class="d-flex justify-content-between"><div class="content d-flex flex-column align-items-start theme-text-white"><div class="fav-elipse justify-content-center align-items-center theme-bg-blue"><span class="font-medium"> </span></div><div class="sale theme-bg-sky"><span class="font-medium"></span> </div></div> <div class="d-flex justify-content-center pt-3">  </div></div> </div><ol class="carousel-indicators"><li data-bs-slide-to="0" class="active"></li><li  data-bs-slide-to="1"></li><li data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img href="' + img + '"  class="" alt="Slide 1"></div><div class="carousel-item"></div><div class="carousel-item"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a ><h3 class="resident-text"</h3><div class="d-flex align-items-start justify-content-end mt-2"><p class="me-2"></p><img src="assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex justify-content-between"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex"><div class="call d-flex justify-content-center align-items-center me-3"> <img src="assets/images/mobile-icon.png" alt=""></div><div class="whatsapp d-flex justify-content-center align-items-center"><a> <img  src="assets/images/whatsapp-icon.png" alt=""></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span></span></h3></div> </div></div></div></div></div>');
+
+    }
+}
+
+
+
 /*---------------------
         Data Render
     -------------------------*/
@@ -239,7 +256,6 @@ function properties_list(target, data) {
             var phone = 'N/A';
         }
 
-        // var asset_url = $('#base_url').val();
         var title = str_limit(value.title, 20, true);
         var location = value.post_city.value + '-' + value.post_city.category.name + '-' + value.post_state.category.name;
         $(target).append('<div class="col-lg-3 col-md-4 col-sm-12"> <div id="myCarousel' + value.id + '" class="carousel slide" data-bs-ride="carousel"><div class="features"><div class="d-flex justify-content-between"><div class="content d-flex flex-column align-items-start theme-text-white"><div class="fav-elipse justify-content-center align-items-center theme-bg-blue"><span class="font-medium" onclick="favourite_property(' + value.id + ')"> <i title="favorite property" data-toggle="tooltip" class="fa-regular fa-heart heart' + value.id + '"></i></span></div><div class="sale theme-bg-sky"><span class="font-medium">' + status + '</span> </div></div> <div class="d-flex justify-content-center pt-3">  </div></div> </div><ol class="carousel-indicators"><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="0" class="active"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a href="' + asset_url + 'property/' + value.slug + '"><h3 class="resident-text">' + title + '</h3><div class="d-flex align-items-start justify-content-end mt-2"><p class="me-2">' + location + '</p><img src="assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex justify-content-between facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex"><div class="call d-flex justify-content-center align-items-center me-3"> <img src="assets/images/mobile-icon.png" alt="" data-toggle="tooltip" title="' + phone + '"></div><div class="whatsapp d-flex justify-content-center align-items-center"><a href="https://api.whatsapp.com/send?text=' + asset_url + 'property/' + value.slug + '" target="_blank"> <img  src="assets/images/whatsapp-icon.png" alt=""></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span>' + amount_format(value.min_price.price) + ' - ' + amount_format(value.max_price.price) + ' </span></h3></div> </div></div></div></div>');
@@ -290,9 +306,10 @@ $(document).ready(function (event) {
         if ($("#sale_rent").is(":checked")) {
             var radio_val = $(".sale_list").text();
             var txt = $('#dropdownMenuLink-buy').text(radio_val);
-            $('.overlay').css({'opacity': 0, 'display': 'none'});
+            $('.overlay').css({ 'opacity': 0, 'display': 'none' });
             $(".rent-dropdown").removeClass("show");
             event.stopPropagation();
+            get_properties();
         }
     });
 
@@ -300,9 +317,10 @@ $(document).ready(function (event) {
         if ($("#radio_rent").is(":checked")) {
             var radio_vals = $(".rent_list_label").text();
             var txt = $('#dropdownMenuLink-buy').text(radio_vals);
-            $('.overlay').css({'opacity': 0, 'display': 'none'});
+            $('.overlay').css({ 'opacity': 0, 'display': 'none' });
             $(".rent-dropdown").removeClass("show");
             event.stopPropagation();
+            get_properties();
         }
     });
 
@@ -310,14 +328,15 @@ $(document).ready(function (event) {
         if ($("#project_rent").is(":checked")) {
             var radio_val = $(".project_list").text();
             var txt = $('#dropdownMenuLink-buy').text(radio_val);
-            $('.overlay').css({'opacity': 0, 'display': 'none'});
+            $('.overlay').css({ 'opacity': 0, 'display': 'none' });
             $(".rent-dropdown").removeClass("show");
             event.stopPropagation();
+            get_properties();
         }
     });
 
     $('.overlay').click(function (event) {
-        $('.overlay').css({'opacity': 0, 'display': 'none'});
+        $('.overlay').css({ 'opacity': 0, 'display': 'none' });
         $(".list-rent-dropdown").removeClass("show");
         // event.stopPropagation();
     });
@@ -359,28 +378,33 @@ $(window).on('load', function() { // makes sure the whole site is loaded
 //         // event.stopPropagation();
 //     });
 // });
+$(document).ready(function (event) {
+    $('.room-type-drop').click(function (e) {
+        $('.overlay').css({ 'opacity': 0.2, 'display': 'block' });
+        $("ul.list-rent-dropdown").removeAttr('style');
+        // event.stopPropagation();
+    });
+
+    $("#room_studio").click(function (event) {
+        if ($("#room_studio").is(":checked")) {
+            var radio_val = $(".room_studio").text();
+            var txt = $('#').text(radio_val);
+            $('.overlay').css({ 'opacity': 0, 'display': 'none' });
+            $(".rent-dropdown").removeClass("show");
+            event.stopPropagation();
+        }
+    });
+
+
+
+    $('.overlay').click(function (event) {
+        $('.overlay').css({ 'opacity': 0, 'display': 'none' });
+        $(".list-rent-dropdown").removeClass("show");
+        // event.stopPropagation();
+    });
+});
 // Rent Dropdown Js End
 
-
-// Type Dropdown Js Start
-// $('.prop-checkbox').on('change', function() {
-//     var radio_val = $("span.checmark").text();
-//     console.log(radio_val);
-//
-// });
-
-// function customCheckbox(checkboxName){
-//     var checkBox = $('input[name="'+ checkboxName +'"]');
-//     $(checkBox).each(function(){
-//         $(this).wrap( "<span class='custom-checkbox'></span>" );
-//         if($(this).is(':checked')){
-//             $(this).parent().addClass("selected");
-//         }
-//     });
-//     $(checkBox).click(function(){
-//         $(this).parent().toggleClass("selected");
-//     });
-// }
 
 
 $(document).ready(function () {
@@ -389,21 +413,11 @@ $(document).ready(function () {
             $('this').addClass("selected");
             var n = $('this').text();
             console.log(n);
-        } else {
+        }
+        else {
             $('.checmark').removeClass("selected");
         }
     });
-    // $('.prop-checkbox').on('click', function () {
-    //     $(".prop-checkbox input[type='checkbox']").each(function () {
-    //         if ($(this).is(":checked")) {
-    //             var key = $(this).attr("id");
-    //             console.log(key);
-    //             var value = $(this).text();
-    //             $("#dropdownMenuLink-property-type").data(key, value);
-    //
-    //         }
-    //     });
-    // });
 });
 
 $(".prop-checkbox input[type='checkbox']:checked").each(function () {
