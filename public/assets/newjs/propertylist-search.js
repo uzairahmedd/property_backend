@@ -113,7 +113,7 @@
             $('#property_states_dropdown option').removeAttr('selected','selected');
             $('#property_states_dropdown option[value='+vl+']').attr('selected','selected');
             $(this).parents('ul#select_style_ul').parent('div').find('div#select_style_text').html(txt);
-
+            $('#state').val(vl);
             //call get_properties
             get_properties();
 
