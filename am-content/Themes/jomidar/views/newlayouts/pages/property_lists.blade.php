@@ -8,6 +8,11 @@
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/propertylist-search.css')}}">
 <div class="filter-bar">
     <div class="container">
+        <div id="load_cover">
+            <div class="loaderInner">
+                <div class="loader-logo"></div>
+            </div>
+        </div>
         <form class="search_form">
             <input type="hidden" name="status" value="{{$status}}">
             {{-- <input type="text" name="state" value="{{$state}}">--}}

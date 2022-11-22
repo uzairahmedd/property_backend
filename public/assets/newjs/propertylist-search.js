@@ -324,6 +324,14 @@ $(document).ready(function (event) {
 });
 // Rent Dropdown Js End
 
+// Preloader Js Start
+$(window).on('load', function() { // makes sure the whole site is loaded
+    $('.loaderInner').fadeOut(); // will first fade out the loading animation
+    $('#load_cover').delay(400).fadeOut('slow');
+    $('body').delay(400).css({'overflow':'visible'});
+});
+// Preloader Js End
+
 
 // Room Dropdown Js Start
 // $(document).ready(function (event) {
