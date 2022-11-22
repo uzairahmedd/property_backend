@@ -1343,7 +1343,7 @@ input[type="range"]:active::-webkit-slider-thumb {
 .loaderInner {
     position: absolute;
     top: calc(50% - 50px);
-    left: calc(54% - 50px);
+    left: calc(50% - 50px);
 }
 
 .loader-logo{
