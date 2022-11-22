@@ -775,6 +775,41 @@ room-dropdown-toggle::after
 
 /* Dropdown Rent Button CSS End */
 
+/*My Profile Dashboard Css Start*/
+
+.dp-elipse {
+    width: 97px;
+    height: 97px;
+    border-radius: 50%;
+    border: 1px solid var(--theme-sky);
+    position: relative;
+    margin-left: 24px;
+}
+
+.file-container input[type=file] {
+    position: absolute;
+    opacity: 0;
+}
+
+.file-container {
+    position: absolute;
+    width: 26px;
+    overflow: hidden;
+    cursor: pointer;
+    right: -15px;
+    bottom: 0;
+}
+
+.dp-elipse {
+    width: 97px;
+    height: 97px;
+    border-radius: 50%;
+    border: 1px solid var(--theme-sky);
+    position: relative;
+    margin-left: 24px;
+}
+
+
 
 
 

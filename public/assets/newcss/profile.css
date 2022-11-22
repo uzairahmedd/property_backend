@@ -3,7 +3,7 @@
     box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding-top: 75px;
-    height: auto;
+    height: 100vh;
     background: var(--theme-white);
 }
 
@@ -15,7 +15,7 @@
     margin-left: 1.5rem;
 }
 .main-content{
-    padding-top: 50px;
+    padding-top: 67px;
 }
 
 .main-content .personal-card {
@@ -37,51 +37,13 @@
     width: 310px;
     max-width: 100%;
 }
-
-/*Favirote User Dashboard Screen*/
-.favorite-container
-{
-    padding: 0 20px;
-    width: 100%;
-}
-.price-section .all-price h3 {
-    font-size: 15px;
-}
-
 .account-setting .acct-btn:hover{
     background: var(--theme-blue);
 }
 
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active
-{
-    border-color: transparent;
-    border-bottom: 2px solid var(--theme-blue);
-    font-size: 18px;
-}
-.nav-tabs .nav-link:focus
-{
-    isolation: auto;
-}
-
-.price-section .delete {
-    width: 53px;
-    height: 48px;
-    background: #FFFFFF;
-    border: 1px solid #E21717;
-    border-radius: 8px;
-}
-
-
-
-
-/*.nav-tabs .nav-link:hover*/
-/*{*/
-/*    border-color: transparent;*/
-/*}*/
-
 @media screen and (max-width:1200px) {
     .main-content .personal-card {
-        padding: 30px 25px;
+        padding: 30px 12px;
     }
 }
 
@@ -94,11 +56,6 @@
         padding-top: 1rem;
         z-index: 11;
     }
-
-    .account-setting .accout-id {
-        margin-right: 0;
-    }
-
     .side-bar .sideBar-links a {
         width: 50px;
         height: 50px;

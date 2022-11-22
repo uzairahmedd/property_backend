@@ -1350,7 +1350,7 @@ input[type="range"]:active::-webkit-slider-thumb {
     width: 150px;
     top: calc(50% - 38px);
     position: absolute;
-    left: calc(50% - 70px);
+    left: calc(50% - 0px);
     height: 150px;
     background-image: url('/assets/images/preloader.gif');
     background-repeat: no-repeat;

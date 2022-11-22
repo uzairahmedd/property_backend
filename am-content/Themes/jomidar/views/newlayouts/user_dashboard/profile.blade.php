@@ -4,8 +4,7 @@
     <div class="profile d-flex justify-content-between">
         <div class="col-12 col-lg-9 px-4 px-lg-3 mx-auto">
             <div class="main-content">
-                <div
-                    class="mb-4_5 d-flex flex-column-reverse flex-lg-row align-items-end  card personal-card justify-content-between align-items-lg-center">
+                <div class="mb-4_5 d-flex flex-column-reverse flex-lg-row align-items-end  card personal-card justify-content-between align-items-lg-center">
                     <div class="d-flex flex-column align-items-end">
                         <span class="font-16 theme-text-sky">رقم الجوال</span>
                         <div class="d-flex align-items-center">
@@ -17,13 +16,14 @@
                         <span class="font-16 theme-text-sky">مسجل منذ</span>
                         <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">12-10-2022</h3>
                     </div>
+
                     <div class="d-flex align-items-center mb-3 mb-lg-0">
                         <div class="col d-flex flex-column align-items-end">
                             <span class="font-16 theme-text-sky">أهلا بك,</span>
                             <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">خالد بن عبدالعزيز أل
                                 عثمان</h3>
                         </div>
-                        <div class="dp-elipse d-flex align-items-center  justify-content-center">
+                        <div class="dp-elipse d-flex align-items-center justify-content-center">
                             <img src="{{asset('assets/images/avatar.png')}}" alt="" class="img-fluid">
                             <div class="file-container">
                                 <input type="file">
