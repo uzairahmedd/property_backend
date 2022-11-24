@@ -282,15 +282,15 @@ class PropertyController extends controller
         return view('theme::newlayouts.user_dashboard.account');
     }
 
-    public function step_one()
-    {
-        return view('theme::newlayouts.property_dashboard.step_one');
-    }
+    // public function step_one()
+    // {
+    //     return view('theme::newlayouts.property_dashboard.step_one');
+    // }
 
-    public function step_two()
-    {
-        return view('theme::newlayouts.property_dashboard.step_two');
-    }
+    // public function step_two()
+    // {
+    //     return view('theme::newlayouts.property_dashboard.step_two');
+    // }
 
     public function step_three()
     {

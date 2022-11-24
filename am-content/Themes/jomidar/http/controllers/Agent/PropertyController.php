@@ -40,7 +40,10 @@ class PropertyController extends controller
     {
         $currency = default_currency();
         $categories = Category::where('type', 'category')->get();
-        return view('view::agent.property.create', compact('categories', 'currency'));
+        //new design khiaratee
+        $status_category = Category::where('type', 'status')->where('featured', 1)->get();
+        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'currency', 'status_category'));
+        //    return view('view::agent.property.create',compact('categories','currency'));
     }
 
     /**
@@ -191,6 +194,7 @@ class PropertyController extends controller
         $facilities = Category::where('type', 'facilities')->get();
 
         $child = $info->child->child_id ?? null;
+
         return view('view::agent.property.edit', compact('info', 'input_options', 'array', 'facilities', 'child', 'contact_type'));
     }
 
@@ -591,5 +595,128 @@ class PropertyController extends controller
         $pattern .= '(?:.+)?$#x';         # Optional other ending URL parameters.
         preg_match($pattern, $url, $matches);
         return (isset($matches[1])) ? $matches[1] : false;
+    }
+
+
+    /**
+     * Store a newly created property in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function add_property(Request $request)
+    {
+        // $check_credit=Auth::user()->credits;
+        // $post_credit=Category::where('type','category')->with('creditcharge')->findorFail($request->category);
+        // $post_credit = (int)$post_credit->creditcharge->content;
+
+        // if($post_credit > $check_credit){
+        //    Session::flash('error','credit limit exceeded please recharge your credit');
+        //    return redirect()->route('agent.package.index');
+        // }
+        // $new_credit=$check_credit-$post_credit;
+
+        $validator = $this->property_create_validations($request);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        $slug = Str::slug($request->title);
+        $count = Terms::where('type', 'property')->where('slug', $slug)->count();
+        if ($count > 0) {
+            $slug = $slug . '-' . rand(40, 60) . $count;
+        }
+        //store title and slug
+        $term = new Terms;
+        $term->title = $request->title;
+        $term->slug = $slug;
+        $term->user_id = Auth::id();
+        $term->status = 3;
+        $term->type = 'property';
+        $term->save();
+        //store description
+        $meta = new Meta;
+        $meta->term_id = $term->id;
+        $meta->type = 'description';
+        $meta->content = $request->description;
+        $meta->save();
+        //store contact type 
+        $json['contact_type'] = "mail";
+        $json['email'] = Auth::user()->email;
+        $meta = new Meta;
+        $meta->term_id = $term->id;
+        $meta->type = 'contact_type';
+        $meta->content = json_encode($json);
+        $meta->save();
+        //store property area
+        $meta = new Meta;
+        $meta->term_id = $term->id;
+        $meta->type = 'area';
+        $meta->content = $request->area;
+        $meta->save();
+
+        //store property city and location
+        $city = new Postcategoryoption;
+        $city->category_id = $request->city;
+        $city->term_id = $term->id;
+        $city->type = 'city';
+        $city->value = $request->location;
+        $city->save();
+
+        //store status of property
+        $post_cat['term_id'] = $term->id;
+        $post_cat['category_id'] = $request->status;
+        $post_cat['type'] = 'status';
+        Postcategory::insert($post_cat);
+
+        Session::flash("flash_notification", [
+            "level"     => "success",
+            "message"   => "Property Created Successfully"
+        ]);
+
+        // $user = User::find(Auth::id());
+        // $user->credits = $new_credit;
+        // $user->save();
+
+        return redirect()->route('agent.property.second_edit_property', $term->id);
+    }
+
+
+    /**
+     * Property validations.
+     * @return @array
+     */
+    public function property_create_validations($request)
+    {
+        return  \Validator::make($request->all(), [
+            'status' => 'required',
+            'title' => 'required|max:100',
+            'description' => 'required|max:1000',
+            'area' => 'required|numeric',
+            'location' => 'required',
+            'city' => 'required'
+        ], [
+            'status.required' => 'Please select property type',
+            'title.required' => 'Please provide title of property',
+            'description.required' => 'Please provide property description',
+            'description.max' => 'Property description must be 1000 words',
+            'area.required' => 'Please provide area',
+            'area.numeric' => 'Area must be number',
+            'location.required' => 'Please provide address',
+            'city.required' => 'Please provide Region',
+
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit_two_property($id)
+    {
+        $parent = '';
+
+        return view('theme::newlayouts.property_dashboard.property_create_two');
     }
 }

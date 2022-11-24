@@ -39,7 +39,7 @@
                         @endif
                         @if (Auth::User())
                         <button class="btn add-btn font-bold theme-text-white d-flex align-items-center my-3 my-sm-0">
-                            <a href="/step_one">اضف إعلان</a>
+                            <a href="{{ route('agent.property.create') }}">اضف إعلان</a>
                             <img src="{{theme_asset('assets/images/plus.svg')}}" class="ms-3">
                         </button>
                         @else
