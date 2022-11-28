@@ -27,7 +27,7 @@
                     <a href="/complaints">للشكوى</a>
                 </li>
             </ul>
-            <img src="{{asset('assets/images/footer-logo.png')}}"
+            <img src="{{theme_asset('assets/images/logo.png')}}"
                  class="col-7 col-lg footer-logo img-fluid mb-3 mb-xl-0" alt="">
         </div>
     </div>

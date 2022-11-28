@@ -6,7 +6,7 @@
         </button>
         <div class="m-logo">
             <a href="#" class="">
-                <img src="assets/images/logo.png" alt="">
+                <img src="{{theme_asset('assets/images/logo.png')}}" alt="">
             </a>
         </div>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -30,7 +30,7 @@
                 </li>
                 <li class="logo d-none d-lg-block">
                     <a href="#" class="">
-                        <img src="assets/images/logo.png" alt="">
+                        <img src="{{theme_asset('assets/images/logo.png')}}" alt="">
                     </a>
                 </li>
             </ul>

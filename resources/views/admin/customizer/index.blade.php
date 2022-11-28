@@ -42,7 +42,7 @@
                         </div>
                         <div class="header-top-info d-flex">
                             <div class="logo">
-                              <a href="https://codecanyon.net/user/amcoders/portfolio" target="_blank">  <img src="{{ asset('customizer/img/logo/logo.png') }}" alt=""></a>
+                              <a href="https://codecanyon.net/user/amcoders/portfolio" target="_blank">  <img src="{{theme_asset('assets/images/logo.png')}}" alt=""></a>
                             </div>
                            <span>{{ __('LPress') }}</span>
                         </div>

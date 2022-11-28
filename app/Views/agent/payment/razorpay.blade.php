@@ -75,7 +75,7 @@
     var email = "{{ $response['email'] }}";
     var contactNumber = "{{ $response['contactNumber'] }}";
     var address = "{{ $response['address'] }}";
-    var logo = "{{ asset('uploads/logo.png') }}";
+    var logo = "{{theme_asset('assets/images/logo.png')}}";
 </script>
 <script src="{{ asset('admin/js/razorpay.js') }}"></script>
 @endpush
