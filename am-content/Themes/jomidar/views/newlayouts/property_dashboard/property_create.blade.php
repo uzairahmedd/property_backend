@@ -21,8 +21,9 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                         <span class="theme-text-sky ">1</span>/
                         <span class="theme-text-seondary-black">6</span>
                     </div>
-                    <p class="theme-text-black font-18">وصف العقار</p>
-                    <div class="row theme-gx-3 mb-4_5">
+                    <p class="theme-text-black font-18 ">وصف العقار</p>
+                    <div class="theme-gx-3 mb-4_5">
+                        <div class="row">
                         @foreach($status_category as $status)
                         @if( $status->name =='Sale')
                         <div class="radio-container">
@@ -36,18 +37,22 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                         </div>
                         @endif
                         @endforeach
+                        </div>
+                        <div>
+                        @if($errors->has('status'))
+                            <div class="error d-flex justify-content-end pt-1">{{ $errors->first('status') }}</div>
+                        @endif
+                        </div>
                     </div>
-                    @if($errors->has('status'))
-                    <div class="error">{{ $errors->first('status') }}</div>
-                    @endif
 
-                    <div class="col-lg-4 col-md-4 col-sm-12 d-flex flex-column align-items-end property_address">
+
+                    <div class="col-lg-4 col-md-4 col-sm-12 d-flex flex-column align-items-end">
                         <label for="title" class="font-14 theme-text-seondary-black">عنوان الملكية</label>
                         <div class="position-relative d-flex align-items-center w-100">
                             <input type="text" value="{{old('title')}}" name="title" id="title" placeholder="عنوان الملكية" class="form-control theme-border">
                         </div>
                         @if($errors->has('title'))
-                        <div class="error">{{ $errors->first('title') }}</div>
+                        <div class="error pt-1">{{ $errors->first('title') }}</div>
                         @endif
                     </div>
 
@@ -61,7 +66,7 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                             <textarea name="description" cols="30" rows="3" placeholder="ادخل هنا.." id="description" class="form-control b-r-8 theme-border">{{old('description')}}</textarea>
                         </div>
                         @if($errors->has('excerpt'))
-                        <div class="error">{{ $errors->first('excerpt') }}</div>
+                        <div class="error pt-1">{{ $errors->first('excerpt') }}</div>
                         @endif
                     </div>
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
@@ -79,7 +84,7 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                                 </select>
                             </div>
                             @if($errors->has('city'))
-                            <div class="error">{{ $errors->first('city') }}</div>
+                            <div class="error pt-1">{{ $errors->first('city') }}</div>
                             @endif
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-12 d-flex flex-column align-items-end property_address">
@@ -89,14 +94,14 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                                 <img src="{{asset('assets/images/location.png')}}" alt="" class="position-absolute input-icon">
                             </div>
                             @if($errors->has('location'))
-                            <div class="error">{{ $errors->first('location') }}</div>
+                            <div class="error pt-1">{{ $errors->first('location') }}</div>
                             @endif
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-12 d-flex flex-column align-items-end">
                             <label for="area" class="font-14 theme-text-seondary-black">مساحة العقار</label>
                             <input type="number" step="any" id="area" value="{{old('area')}}" name="area" placeholder="المساحة بالمتر المربع" class="form-control theme-border">
                             @if($errors->has('area'))
-                            <div class="error">{{ $errors->first('area') }}</div>
+                            <div class="error pt-1">{{ $errors->first('area') }}</div>
                             @endif
                         </div>
                     </div>

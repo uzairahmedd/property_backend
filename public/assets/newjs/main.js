@@ -353,6 +353,30 @@ $(document).ready(function (event) {
 });
 // Room Dropdown End
 
+// Room Dropdown Selection Start
+$(document).ready(function (event) {
+    $('.inter_val').click(function (e) {
+        $(".inter_val").removeClass('selected');
+        $(this).addClass('selected');
+        var drop_text = $(".inter_val.selected").text();
+        // var input_value = $("#interface_name").val();
+        $("#interface_name").val(function() {
+            return this.value + drop_text;
+        });
+
+
+    });
+
+
+
+});
+// Room Dropdown End
+
+
+
+
+
+
 // Range Dropdown Js
 const rangeInput = document.querySelectorAll(".range-input input"),
     priceInput = document.querySelectorAll(".price-input input"),

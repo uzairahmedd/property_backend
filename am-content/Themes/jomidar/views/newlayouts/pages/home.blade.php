@@ -50,8 +50,13 @@
                                         <nav>
                                             <p class="rent-buy-txt">نوع العرض</p>
                                             <div class="nav nav-tabs mb-4 rent-tabs d-flex justify-content-center align-items-center" id="nav-tab" role="tablist">
-                                                <a class="nav-item nav-link rent-link nav-sale active" id="nav-rent-tab" data-bs-toggle="tab" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">للبيع</a>
-                                                <a class="nav-item nav-link rent-link nav-rent" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" role="tab" aria-controls="nav-buy" aria-selected="false">للايجار</a>
+                                                @foreach($status as $status_data)
+                                                    @if( $status_data->name =='Sale')
+                                                <a class="nav-item nav-link rent-link nav-sale active" id="nav-rent-tab" data-bs-toggle="tab" value="{{$status_data->id}}" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">للبيع</a>
+                                                    @elseif( $status_data->name =='Rent')
+                                                <a class="nav-item nav-link rent-link nav-rent" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" value="{{$status_data->id}}" role="tab" aria-controls="nav-buy" aria-selected="false">للايجار</a>
+                                                    @endif
+                                                @endforeach
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">

@@ -184,20 +184,71 @@
                             </button>
                             <ul class="dropdown-menu list-rent-dropdown" aria-labelledby="dropdownMenuLink-buy">
                                 <div class="rent-dropdown-content">
-                                    @foreach($statuses as $status_data)
-                                    @if( $status_data->name =='Sale')
-                                    <li class="rent-all">
-                                        <input class="rent-select-dropdown" value="{{ $status_data->id}}" type="radio" data-title="بيع" id="sale_rent" name="status" {{$status == $status_data->id ? 'checked' : ''}} />
-                                        <label class="rent-box sale_list" for="sale_rent">بيع</label>
-                                    </li>
-                                    @elseif($status_data->name =='Rent')
-                                    <li class="rent-all">
-                                        <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" data-title="ايجار" type="radio" id="radio_rent" name="status" {{$status == $status_data->id ? 'checked' : ''}} />
-                                        <label class="rent-box rent_list_label" for="radio_rent">ايجار</label>
-                                    </li>
-                                 
-                                    @endif
-                                    @endforeach
+                                    <div class="row">
+                                        <div class="col-12 p-0">
+                                            <!-- Tab -->
+                                            <nav>
+                                                <p class="rent-buy-txt">نوع العرض</p>
+                                                <div class="nav nav-tabs mb-4 rent-tabs d-flex justify-content-center align-items-center" id="nav-tab" role="tablist">
+                                                    @foreach($statuses as $status_data)
+                                                        @if( $status_data->name =='Sale')
+                                                            <a class="nav-item nav-link rent-link nav-sale active" id="nav-rent-tab" data-bs-toggle="tab" value="{{$status_data->id}}" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">للبيع</a>
+                                                        @elseif( $status_data->name =='Rent')
+                                                            <a class="nav-item nav-link rent-link nav-rent" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" value="{{$status_data->id}}" role="tab" aria-controls="nav-buy" aria-selected="false">للايجار</a>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </nav>
+                                            <div class="tab-content" id="nav-tabContent">
+                                                <div class="tab-pane fade show active" id="nav-rent" role="tabpanel" aria-labelledby="nav-rent-tab">
+                                                    {{--                                                <p class="rent-buy-txt">حالة العقار</p>--}}
+                                                    {{--                                                    <div class="rent-buy-pans d-flex justify-content-center align-items-center">--}}
+                                                    {{--                                                        <li class="buy-rent-pan" name="category" value="1">قيد الإنشاء</li>--}}
+                                                    {{--                                                        <li class="buy-rent-pan" name="category" value="2">جاهز</li>--}}
+                                                    {{--                                                        <li class="buy-rent-pan" name="category" value="3">الجميع</li>--}}
+                                                    {{--                                                </div>--}}
+                                                    <div class="d-flex justify-content-between mt-2">
+                                                        <button class="complete-btn"><a href="">تم</a></button>
+                                                        <button class="reset-btn"><a href="">إعادة ضبط</a></button>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="nav-buy" role="tabpanel" aria-labelledby="nav-buy-tab">
+                                                    <p class="rent-buy-txt">مدة الايجار</p>
+                                                    <div class="rent-buy-pans d-flex flex-row-reverse justify-content-center align-items-center">
+                                                        <li class="rent-all">
+                                                            <input class="rent-select-dropdown" value="" type="radio" id="radio02-01" name="status" checked />
+                                                            <label class="rent-box any" for="radio02-01">الجميع</label>
+                                                        </li>
+
+                                                        <li class="rent-all">
+                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio02-02" name="status" />
+                                                            <label class="rent-box rent_label_list" for="radio02-02">يومياً</label>
+                                                        </li>
+
+                                                        <li class="rent-all">
+                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio03-03" name="status" />
+                                                            <label class="rent-box project_label" for="radio03-03">أسبوعياً</label>
+                                                        </li>
+
+                                                        <li class="rent-all">
+                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio04-04" name="status" />
+                                                            <label class="rent-box project_label" for="radio04-04">شهرياً</label>
+                                                        </li>
+
+                                                        <li class="rent-all">
+                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio05-05" name="status" />
+                                                            <label class="rent-box project_label" for="radio05-05">سنوياً</label>
+                                                        </li>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between mt-2">
+                                                        <button class="complete-btn"><a href="">تم</a></button>
+                                                        <button class="reset-btn"><a href="">إعادة ضبط</a></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End of tab -->
+                                        </div>
+                                    </div>
                                 </div>
                             </ul>
                         </div>

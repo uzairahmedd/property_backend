@@ -47,7 +47,7 @@
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row property-value">
                         <div class="col-lg-6 col-md-12 flex-column">
                             <div class="d-flex justify-content-end mb-2">
-                                <div class="row d-flex yesno-btn gx-2">
+                                <div class="row d-flex yesno-btn gx-2 other-meter">
                                     <div class="radio-container yes-no-radio">
                                         <input type="radio" name="electricity_facility" value="1" checked>
                                         <span class="checmark font-16 font-medium">لا</span>
@@ -60,7 +60,7 @@
                                 <p class="mb-0 font-18 theme-text-seondary-black meter_txt">هل يوجد عداد كهرباء</p>
                             </div>
                             <div class="d-flex justify-content-end mb-2">
-                                <div class="row d-flex yesno-btn justify-content-start gx-2">
+                                <div class="row d-flex yesno-btn gx-2 water-meter">
                                     <div class="radio-container yes-no-radio">
                                         <input type="radio" name="water_facility" value="1" checked>
                                         <span class="checmark font-16 font-medium">لا</span>
@@ -114,20 +114,20 @@
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row flex-md-row justify-content-end mt-5">
                         <div class="col-lg-5 col-md-4 col-sm-12 d-flex align-items-end">
                             <div class="dropdown regional-drop d-flex">
-                                <button class="btn dropdown-toggle regional-drop-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn dropdown-toggle regional-drop-btn interface" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                     الواجهة
                                 </button>
                                 <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
                                 <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
-                                    <li><a class="dropdown-item" href="#">Option 1</a></li>
-                                    <li><a class="dropdown-item" href="#">Option 2</a></li>
-                                    <li><a class="dropdown-item" href="#">Option 3</a></li>
+                                    <li><a class="dropdown-item inter_val" href="#">200m</a></li>
+                                    <li><a class="dropdown-item inter_val" href="#">300m</a></li>
+                                    <li><a class="dropdown-item inter_val" href="#">400m</a></li>
                                 </ul>
                                 <p class="ps-3">متر</p>
                             </div>
                             <div class="position-relative d-flex flex-column align-items-end w-100">
                                 <label for="" class="font-14 theme-text-seondary-black"> معلومات الشارع 2</label>
-                                <input type="text" name="street_info_one" id="" placeholder="عرض الشارع" class="form-control street_view theme-border">
+                                <input type="text" name="street_info_one" id="interface_name" placeholder="عرض الشارع" class="form-control street_view theme-border">
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-4 col-sm-12 regional-street-1 d-flex align-items-end">
