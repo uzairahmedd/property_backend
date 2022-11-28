@@ -69,22 +69,17 @@ class OptionTableSeeder extends Seeder
       Options::insert($options);
       
       $categories = array(
-        array('id' => '1','name' => 'Commercial','slug' => 'commercial','type' => 'parent_category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:07:41','updated_at' => '2020-12-31 08:10:27'),
-        array('id' => '1','name' => 'Residential','slug' => 'residential','type' => 'parent_category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:07:41','updated_at' => '2020-12-31 08:10:27'),
         array('id' => '1','name' => 'Apartment','slug' => 'apartment','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:07:41','updated_at' => '2020-12-31 08:10:27'),
         array('id' => '2','name' => 'Villa','slug' => 'villa','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:00','updated_at' => '2020-12-31 08:10:18'),
         array('id' => '3','name' => 'Duplex','slug' => 'duplex','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:14','updated_at' => '2020-12-31 08:10:07'),
         array('id' => '4','name' => 'Residential land','slug' => 'residential-land','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:30','updated_at' => '2020-12-31 08:09:58'),
         array('id' => '5','name' => 'Chalet','slug' => 'land','chalet' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:49','updated_at' => '2020-12-31 08:09:49'),
         array('id' => '6','name' => 'Building','slug' => 'building','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:09:13','updated_at' => '2020-12-31 08:09:32'),
-        array('id' => '4','name' => 'Rest House','slug' => 'rest-house','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:30','updated_at' => '2020-12-31 08:09:58'),
         array('id' => '14','name' => 'USD','slug' => '$','type' => 'currency','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:16:50','updated_at' => '2020-12-31 08:16:50'),
         array('id' => '15','name' => 'Number of Blocks','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '0','created_at' => '2020-12-31 08:17:53','updated_at' => '2021-01-11 04:44:10'),
         array('id' => '16','name' => 'Bedrooms','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '0','created_at' => '2020-12-31 08:19:37','updated_at' => '2020-12-31 08:19:37'),
         array('id' => '17','name' => 'Bathrooms','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '0','created_at' => '2020-12-31 08:20:11','updated_at' => '2020-12-31 08:20:11'),
         array('id' => '18','name' => 'lounges','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:21:03','updated_at' => '2021-01-10 18:23:13'),
-        array('id' => '18','name' => 'Parking','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:21:03','updated_at' => '2021-01-10 18:23:13'),
-        array('id' => '18','name' => 'Board','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:21:03','updated_at' => '2021-01-10 18:23:13'),
         array('id' => '19','name' => 'Riyadh','slug' => 'riyadh','type' => 'states','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:24:25','updated_at' => '2020-12-31 08:24:25'),
         array('id' => '20','name' => 'Madina','slug' => 'madina','type' => 'states','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:25:23','updated_at' => '2020-12-31 08:25:23'),
         array('id' => '21','name' => 'Dhaka','slug' => 'dhaka','type' => 'cities','p_id' => '19','featured' => '0','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:27:36','updated_at' => '2020-12-31 08:27:36'),
@@ -122,6 +117,12 @@ class OptionTableSeeder extends Seeder
         array('id' => '61','name' => 'jomidar','slug' => 'en','type' => 'lang','p_id' => NULL,'featured' => NULL,'user_id' => '1','status' => '1','created_at' => '2021-01-18 09:22:05','updated_at' => '2021-01-18 09:22:32'),
         array('id' => '62','name' => 'jomidar','slug' => 'ar','type' => 'lang','p_id' => NULL,'featured' => NULL,'user_id' => '1','status' => '1','created_at' => '2021-01-18 09:22:14','updated_at' => '2021-01-18 09:22:32'),
         array('id' => '63','name' => 'BDT','slug' => 'TK','type' => 'currency','p_id' => NULL,'featured' => '84','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:16:50','updated_at' => '2020-12-31 08:16:50'),
+        array('id' => '64','name' => 'Commercial','slug' => 'commercial','type' => 'parent_category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:07:41','updated_at' => '2020-12-31 08:10:27'),
+        array('id' => '65','name' => 'Residential','slug' => 'residential','type' => 'parent_category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:07:41','updated_at' => '2020-12-31 08:10:27'),
+        array('id' => '66','name' => 'Rest House','slug' => 'rest-house','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:30','updated_at' => '2020-12-31 08:09:58'),
+        array('id' => '67','name' => 'Parking','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:21:03','updated_at' => '2021-01-10 18:23:13'),
+        array('id' => '68','name' => 'Board','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:21:03','updated_at' => '2021-01-10 18:23:13'),
+
       );      
 
       Category::insert($categories);
