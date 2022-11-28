@@ -127,7 +127,7 @@
                             </div>
                             <div class="position-relative d-flex flex-column align-items-end w-100">
                                 <label for="" class="font-14 theme-text-seondary-black"> معلومات الشارع 2</label>
-                                <input type="text" name="street_info_one" id="interface_name" placeholder="عرض الشارع" class="form-control street_view theme-border">
+                                <input type="text" name="street_info_one" id="interface_val" placeholder="عرض الشارع" class="form-control street_view theme-border">
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-4 col-sm-12 regional-street-1 d-flex align-items-end">
@@ -137,15 +137,15 @@
                                 </button>
                                 <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
                                 <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
-                                    <li><a class="dropdown-item" href="#">Option 1</a></li>
-                                    <li><a class="dropdown-item" href="#">Option 2</a></li>
-                                    <li><a class="dropdown-item" href="#">Option 3</a></li>
+                                    <li><a class="dropdown-item inter_val2" href="#">300m</a></li>
+                                    <li><a class="dropdown-item inter_val2" href="#">500m</a></li>
+                                    <li><a class="dropdown-item inter_val2" href="#">600m</a></li>
                                 </ul>
                                 <p class="ps-3">متر</p>
                             </div>
                             <div class="position-relative d-flex flex-column align-items-end w-100">
                                 <label for="" class="font-14 theme-text-seondary-black"> معلومات الشارع 1</label>
-                                <input type="text" name="street_info_two" id="" placeholder="عرض الشارع" class="form-control street_view theme-border">
+                                <input type="text" name="street_info_two" id="interface_val2" placeholder="عرض الشارع" class="form-control street_view theme-border">
                             </div>
                         </div>
                     </div>

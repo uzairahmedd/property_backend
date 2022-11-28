@@ -26,7 +26,7 @@
                     <li class="mb-3 font-18 theme-text-seondary-black">عدد الصور لا يتجاوز 5 صور</li>
                 </ul>
 
-                <div class="col-12 d-flex justify-content-between">
+                <div class="col-12 d-flex justify-content-between flex-wrap">
                     <div class="col-lg-2 col-md-3 col-sm-6">
                         <div class="position-relative d-flex flex-column align-items-center justify-content-center b-r-8 input-container">
                             <!-- <form action="{{ route('agent.media.store') }}" enctype="multipart/form-data" class="dropzone"  style="border: 0px; padding:0px; width:100px; min-height:100px;">
