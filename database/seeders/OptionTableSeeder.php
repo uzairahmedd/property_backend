@@ -26,7 +26,7 @@ class OptionTableSeeder extends Seeder
      */
     public function run()
     {
-      
+
       Options::create([
         'key'=>'theme_data',
         'value'=>'{"theme_color":"#9cc25d","socials":[{"icon":"fa fa-pinterest-p","url":"#"},{"icon":"fa fa-pinterest-p","url":"#"},{"icon":"fa fa-instagram","url":"#"},{"icon":"fa fa-twitter","url":"#"}],"back_to_top":"enable"}'
@@ -52,7 +52,7 @@ class OptionTableSeeder extends Seeder
         'key'=>'lp_filesystem',
         'value'=>'{"compress":5,"system_type":"local","system_url":null}',
       ]);
-      
+
       Options::create([
         'key'=>'payment_settings',
         'value'=>'{"currency_name":"USD","currency_icon":"$","currency_position":"left"}',
@@ -65,15 +65,15 @@ class OptionTableSeeder extends Seeder
         array('id' => '8','key' => 'theme_color','value' => '#414cdc','created_at' => '2021-01-21 23:30:07','updated_at' => '2021-01-21 23:51:15'),
         array('id' => '9','key' => 'listing_page','value' => 'without_map','created_at' => '2021-01-23 10:46:37','updated_at' => '2021-01-23 10:51:44')
       );
-      
+
       Options::insert($options);
-      
+
       $categories = array(
         array('id' => '1','name' => 'Apartment','slug' => 'apartment','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:07:41','updated_at' => '2020-12-31 08:10:27'),
         array('id' => '2','name' => 'Villa','slug' => 'villa','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:00','updated_at' => '2020-12-31 08:10:18'),
         array('id' => '3','name' => 'Duplex','slug' => 'duplex','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:14','updated_at' => '2020-12-31 08:10:07'),
         array('id' => '4','name' => 'Residential land','slug' => 'residential-land','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:30','updated_at' => '2020-12-31 08:09:58'),
-        array('id' => '5','name' => 'Chalet','slug' => 'land','chalet' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:49','updated_at' => '2020-12-31 08:09:49'),
+        array('id' => '5','name' => 'Chalet','slug' => 'chalet','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:49','updated_at' => '2020-12-31 08:09:49'),
         array('id' => '6','name' => 'Building','slug' => 'building','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:09:13','updated_at' => '2020-12-31 08:09:32'),
         array('id' => '14','name' => 'USD','slug' => '$','type' => 'currency','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:16:50','updated_at' => '2020-12-31 08:16:50'),
         array('id' => '15','name' => 'Number of Blocks','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '0','created_at' => '2020-12-31 08:17:53','updated_at' => '2021-01-11 04:44:10'),
@@ -117,13 +117,13 @@ class OptionTableSeeder extends Seeder
         array('id' => '61','name' => 'jomidar','slug' => 'en','type' => 'lang','p_id' => NULL,'featured' => NULL,'user_id' => '1','status' => '1','created_at' => '2021-01-18 09:22:05','updated_at' => '2021-01-18 09:22:32'),
         array('id' => '62','name' => 'jomidar','slug' => 'ar','type' => 'lang','p_id' => NULL,'featured' => NULL,'user_id' => '1','status' => '1','created_at' => '2021-01-18 09:22:14','updated_at' => '2021-01-18 09:22:32'),
         array('id' => '63','name' => 'BDT','slug' => 'TK','type' => 'currency','p_id' => NULL,'featured' => '84','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:16:50','updated_at' => '2020-12-31 08:16:50'),
-        array('id' => '64','name' => 'Commercial','slug' => 'commercial','type' => 'parent_category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:07:41','updated_at' => '2020-12-31 08:10:27'),
-        array('id' => '65','name' => 'Residential','slug' => 'residential','type' => 'parent_category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:07:41','updated_at' => '2020-12-31 08:10:27'),
-        array('id' => '66','name' => 'Rest House','slug' => 'rest-house','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:30','updated_at' => '2020-12-31 08:09:58'),
-        array('id' => '67','name' => 'Parking','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:21:03','updated_at' => '2021-01-10 18:23:13'),
-        array('id' => '68','name' => 'Board','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:21:03','updated_at' => '2021-01-10 18:23:13'),
+        array('id' => '64','name' => 'Commercial','slug' => 'commercial','type' => 'parent_category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:41','updated_at' => '2020-12-31 08:10:26'),
+        array('id' => '65','name' => 'Residential','slug' => 'residential','type' => 'parent_category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:01:41','updated_at' => '2020-12-31 08:10:17'),
+        array('id' => '66','name' => 'Rest House','slug' => 'rest-house','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:20','updated_at' => '2020-12-31 08:09:18'),
+        array('id' => '67','name' => 'Parking','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 09:21:03','updated_at' => '2021-01-10 18:24:13'),
+        array('id' => '68','name' => 'Board','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:26:03','updated_at' => '2021-01-10 18:22:13'),
 
-      );      
+      );
 
       Category::insert($categories);
 
@@ -195,7 +195,7 @@ class OptionTableSeeder extends Seeder
         array('id' => '71','category_id' => '63','type' => 'position','content' => 'right','created_at' => '2020-12-31 08:16:50','updated_at' => '2020-12-31 08:16:50'),
       );
 
-     Categorymeta::insert($categorymetas); 
+     Categorymeta::insert($categorymetas);
 
      $categoryusers = array(
       array('category_id' => '52','user_id' => '2'),
@@ -227,8 +227,8 @@ class OptionTableSeeder extends Seeder
       array('parent_id' => '16','child_id' => '6'),
       array('parent_id' => '15','child_id' => '6')
     );
-    
-    
+
+
 
      Categoryrelation::insert($categoryrelations);
 
@@ -317,8 +317,8 @@ class OptionTableSeeder extends Seeder
       array('id' => '81','key' => 'header','theme_name' => 'tomarbari','value' => '{"settings":{"header_phone_number":{"old_value":null,"new_value":"+880-258-5874"},"header_email_address":{"old_value":null,"new_value":"support@amcoders.com"},"logo":{"old_value":null,"new_value":"uploads\\/2021-02-28-603ba542585db.png"},"header_signin_title":{"old_value":null,"new_value":"Sign In"},"header_create_property_title":{"old_value":null,"new_value":"Create Property"}}}','status' => '1','created_at' => '2021-02-28 20:13:59','updated_at' => '2021-02-28 20:14:59'),
       array('id' => '82','key' => 'footer','theme_name' => 'tomarbari','value' => '{"settings":{"footer_image":{"old_value":null,"new_value":"uploads\\/2021-02-28-603ba56bb156d.png"},"footer_des":{"old_value":null,"new_value":"Lorem ipsum dolor sit amet, consect etur adi pisicing elit sed do eiusmod tempor incididunt ut labore."},"footer_copyright":{"old_value":null,"new_value":"Copyright \\u00a9 Website - 2021. Design By Amcoders"}},"content":{"footer_right":{"footer_right_title":{"old_value":null,"new_value":"Newsletter"},"footer_right_des":{"old_value":null,"new_value":"88 Broklyn Golden Street, New York. USA needhelp@ziston.com"},"footer_right_btn_title":{"old_value":null,"new_value":"Subscribe"}}}}','status' => '1','created_at' => '2021-02-28 20:15:07','updated_at' => '2021-02-28 20:16:06')
     );
-        
-    
+
+
     Customizer::insert($customizers);
 
     $medias = array(
@@ -343,7 +343,7 @@ class OptionTableSeeder extends Seeder
 
     Media::insert($medias);
 
-    
+
 
     $terms = array(
       array('id' => '1','title' => 'Basic','slug' => 'basic','user_id' => '1','status' => '1','type' => 'package','count' => '5','featured' => '23','created_at' => '2021-01-10 17:35:03','updated_at' => '2021-01-10 17:35:03'),
@@ -357,7 +357,7 @@ class OptionTableSeeder extends Seeder
       array('id' => '9','title' => 'The Most Inspiring Interior Design Of 2021','slug' => 'the-most-inspiring-interior-design-of-2021','user_id' => '1','status' => '1','type' => 'blog','count' => '0','featured' => '0','created_at' => '2021-01-11 11:00:21','updated_at' => '2021-01-11 11:00:21'),
       array('id' => '10','title' => '7 Instagram accounts for interior design enthusiasts','slug' => '7-instagram-accounts-for-interior-design-enthusiasts','user_id' => '1','status' => '1','type' => 'blog','count' => '0','featured' => '0','created_at' => '2021-01-11 11:01:25','updated_at' => '2021-01-11 11:01:25')
     );
-    
+
 
     Terms::insert($terms);
 
@@ -377,13 +377,13 @@ class OptionTableSeeder extends Seeder
       array('term_id' => '7','media_id' => '16'),
       array('term_id' => '7','media_id' => '17')
     );
-    
+
     Mediapost::insert($mediaposts);
 
     $meta = array(
       array('id' => '1','term_id' => '5','type' => 'excerpt','content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
       array('id' => '2','term_id' => '5','type' => 'content','content' => '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        
+
         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>'),
       array('id' => '3','term_id' => '5','type' => 'contact_type','content' => '{"contact_type":"mail","email":"mahi@mailinator.com"}'),
       array('id' => '4','term_id' => '5','type' => 'youtube_url','content' => 'wv7_0DtIQps'),
@@ -393,7 +393,7 @@ class OptionTableSeeder extends Seeder
       array('id' => '8','term_id' => '5','type' => 'floor_plan','content' => '{"file_name":"uploads\\/21\\/01\\/16103009011610300901.jpg","name":"Third Floor","square_ft":"87"}'),
       array('id' => '9','term_id' => '6','type' => 'excerpt','content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
       array('id' => '10','term_id' => '6','type' => 'content','content' => '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        
+
         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>'),
       array('id' => '11','term_id' => '6','type' => 'contact_type','content' => '{"contact_type":"mail","email":"gaqoq@mailinator.com"}'),
       array('id' => '12','term_id' => '6','type' => 'youtube_url','content' => 'wv7_0DtIQps'),
@@ -402,7 +402,7 @@ class OptionTableSeeder extends Seeder
       array('id' => '15','term_id' => '6','type' => 'floor_plan','content' => '{"file_name":"uploads\\/21\\/01\\/16103578471610357847.jpg","name":"Second Floor","square_ft":"54"}'),
       array('id' => '16','term_id' => '7','type' => 'excerpt','content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
       array('id' => '17','term_id' => '7','type' => 'content','content' => '<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        
+
         <p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>'),
       array('id' => '18','term_id' => '7','type' => 'contact_type','content' => '{"contact_type":"mail","email":"sicequb@mailinator.com"}'),
       array('id' => '19','term_id' => '7','type' => 'youtube_url','content' => 'wv7_0DtIQps'),
@@ -412,21 +412,21 @@ class OptionTableSeeder extends Seeder
       array('id' => '23','term_id' => '8','type' => 'excerpt','content' => 'Real estate festival is one of the famous feval for explain to you how all this mistaolt deand praising pain wasnad I will give complete'),
       array('id' => '24','term_id' => '8','type' => 'preview','content' => $base_url.'/21/01/11012116103624465ffc2e4ed8262.webp'),
       array('id' => '25','term_id' => '8','type' => 'content','content' => '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-    
+
     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>'),
       array('id' => '26','term_id' => '9','type' => 'excerpt','content' => 'Real estate festival is one of the famous feval for explain to you how all this mistaolt deand praising pain wasnad I will give complete'),
       array('id' => '27','term_id' => '9','type' => 'preview','content' => $base_url.'/21/01/11012116103624555ffc2e5734666.webp'),
       array('id' => '28','term_id' => '9','type' => 'content','content' => '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-    
+
     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>'),
       array('id' => '29','term_id' => '10','type' => 'excerpt','content' => 'Real estate festival is one of the famous feval for explain to you how all this mistaolt deand praising pain wasnad I will give complete'),
       array('id' => '30','term_id' => '10','type' => 'preview','content' => $base_url.'/21/01/11012116103624545ffc2e56c0aa5.webp'),
       array('id' => '31','term_id' => '10','type' => 'content','content' => '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-    
+
     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>')
     );
-    
-  
+
+
     Meta::insert($meta);
 
     $postcategoryoptions = array(
@@ -512,7 +512,7 @@ class OptionTableSeeder extends Seeder
       array('term_id' => '5','category_id' => '26','type' => 'status'),
       array('term_id' => '5','category_id' => '19','type' => 'state')
     );
-    
+
     PostCategory::insert($post_category);
 
     $prices = array(
@@ -532,7 +532,7 @@ class OptionTableSeeder extends Seeder
 
     DB::table('terms_user')->insert($terms_user);
 
-   
+
 
 
     $getway=new Category();
