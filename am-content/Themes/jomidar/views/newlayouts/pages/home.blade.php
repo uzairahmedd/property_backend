@@ -50,8 +50,8 @@
                                         <nav>
                                             <p class="rent-buy-txt">نوع العرض</p>
                                             <div class="nav nav-tabs mb-4 rent-tabs d-flex justify-content-center align-items-center" id="nav-tab" role="tablist">
-                                                <a class="nav-item nav-link rent-link active" id="nav-rent-tab" data-bs-toggle="tab" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">للبيع</a>
-                                                <a class="nav-item nav-link rent-link" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" role="tab" aria-controls="nav-buy" aria-selected="false">للايجار</a>
+                                                <a class="nav-item nav-link rent-link nav-sale active" id="nav-rent-tab" data-bs-toggle="tab" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">للبيع</a>
+                                                <a class="nav-item nav-link rent-link nav-rent" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" role="tab" aria-controls="nav-buy" aria-selected="false">للايجار</a>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
@@ -69,12 +69,31 @@
                                             </div>
                                             <div class="tab-pane fade" id="nav-buy" role="tabpanel" aria-labelledby="nav-buy-tab">
                                                 <p class="rent-buy-txt">مدة الايجار</p>
-                                                <div class="rent-buy-pans d-flex justify-content-center align-items-center">
-                                                    <li class="buy-rent-pan" name="category" value="1">الجميع</li>
-                                                    <li class="buy-rent-pan" name="category" value="2">يومياً</li>
-                                                    <li class="buy-rent-pan" name="category" value="3">أسبوعياً</li>
-                                                    <li class="buy-rent-pan" name="category" value="4">شهرياً</li>
-                                                    <li class="buy-rent-pan" name="category" value="5">سنوياً</li>
+                                                <div class="rent-buy-pans d-flex flex-row-reverse justify-content-center align-items-center">
+                                                    <li class="rent-all">
+                                                        <input class="rent-select-dropdown" value="" type="radio" id="radio02-01" name="status" checked />
+                                                        <label class="rent-box any" for="radio02-01">الجميع</label>
+                                                    </li>
+
+                                                    <li class="rent-all">
+                                                        <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio02-02" name="status" />
+                                                        <label class="rent-box rent_label_list" for="radio02-02">يومياً</label>
+                                                    </li>
+
+                                                    <li class="rent-all">
+                                                        <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio03-03" name="status" />
+                                                        <label class="rent-box project_label" for="radio03-03">أسبوعياً</label>
+                                                    </li>
+
+                                                    <li class="rent-all">
+                                                        <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio04-04" name="status" />
+                                                        <label class="rent-box project_label" for="radio04-04">شهرياً</label>
+                                                    </li>
+
+                                                    <li class="rent-all">
+                                                        <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio05-05" name="status" />
+                                                        <label class="rent-box project_label" for="radio05-05">سنوياً</label>
+                                                    </li>
                                                 </div>
                                                 <div class="d-flex justify-content-between mt-2">
                                                     <button class="complete-btn"><a href="">تم</a></button>
