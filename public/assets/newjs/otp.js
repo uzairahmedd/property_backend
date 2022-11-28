@@ -3,31 +3,31 @@
     $("#otp1").focus();
 })(jQuery);
 
-var a = document.getElementById("otp4"),
-    b = document.getElementById("otp3"),
-    c = document.getElementById("otp2");
-d = document.getElementById("otp1");
+var a = document.getElementById("otp1"),
+    b = document.getElementById("otp2"),
+    c = document.getElementById("otp3");
+d = document.getElementById("otp4");
 
 
-d.onkeyup = function () {
-    if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
-        c.focus();
-    }
-}
-c.onkeyup = function () {
+a.onkeyup = function () {
     if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
         b.focus();
     }
 }
 b.onkeyup = function () {
     if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
-        a.focus();
+        c.focus();
+    }
+}
+c.onkeyup = function () {
+    if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
+        d.focus();
     }
 }
 
-a.onkeyup = function () {
+d.onkeyup = function () {
     if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
-        a.focus();
+        d.focus();
     }
 }
 

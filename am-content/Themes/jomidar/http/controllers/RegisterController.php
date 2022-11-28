@@ -271,17 +271,16 @@ class RegisterController extends controller
         $otp = implode("", $request->otp);
         if (!empty($otp)) {
             $user_data = DB::table('users')
-                ->where(['id' => $request->user_id, 'phone' => $request->user_mobile, 'otp' => strrev($otp)])
+                ->where(['id' => $request->user_id, 'phone' => $request->user_mobile, 'otp' => $otp])
                 ->where('is_verified', 0)
                 ->where('updated_at', '>', Carbon::now()->subMinute(1.01))
                 ->first();
-
             if (!$user_data) {
                 return error_response(['otp' => 'OTP was not correct'], '');
             }
             DB::table('users')->where(['id' => $request->user_id, 'phone' => $request->user_mobile])
                 ->update(['is_verified' => 1, 'updated_at' => Carbon::now()]);
-            //after succefull verification user loggedin    
+            //after succefull verification user loggedin
             $user = User::find($request->user_id);
             Auth::login($user);
             return success_response('Mobile number Verifed successfully');
@@ -332,7 +331,7 @@ class RegisterController extends controller
         $otp = rand(1000, 9999);
         DB::table('users')->where('id', decrypt($request['user_id']))
             ->update(['otp' => $otp, 'phone' => $request['phone'], 'updated_at' => Carbon::now()]);
-        //update usermeta content    
+        //update usermeta content
         $user_meta = DB::table('user_meta')->where('user_id', decrypt($request['user_id']))->where('type', 'content')->first();
         $get_content = json_decode($user_meta->content);
         $get_content->phone = $request['phone'];
