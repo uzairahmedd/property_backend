@@ -70,7 +70,6 @@ class PropertyController extends controller
             JsonLd::setTitle($property->title);
             JsonLd::setDescription($property->excerpt->content ?? '');
             JsonLd::setType('Property');
-
             JsonLdMulti::setTitle($property->title);
             JsonLdMulti::setDescription($property->excerpt->content ?? '');
             JsonLdMulti::setType('Property');
@@ -253,7 +252,7 @@ class PropertyController extends controller
 
         $category = $request->category;
         return view('theme::newlayouts.pages.property_lists', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
-        // return view('view::property.list', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
+//         return view('view::property.list', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
     }
 
 

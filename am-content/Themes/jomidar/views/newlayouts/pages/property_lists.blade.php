@@ -206,7 +206,6 @@
                             </ul>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 order-lg-3 order-first search-box search-input-bar">
                     <div class="search-bar d-flex p-2 mt-1">
@@ -272,6 +271,22 @@
         </div>
     </div>
 </div>
+<div class="row align-items-center">
+    <div class="col-lg-12">
+        <div class="pagination-area f-right">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="col-lg-12 ">
+        <div class="show-pagination-info text-center">
+            <p class="show-info">{{ __('Showing') }} <span><span id="from"></span> - <span id="to"></span> {{ __('of') }} <span id="total"></span></span> {{ __('List') }}</p>
+        </div>
+    </div>
+</div>
+
 
 <!-- Property listing End -->
 @endsection

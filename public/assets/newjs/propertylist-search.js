@@ -153,13 +153,14 @@ $(document).ready(function (event) {
 /*----------------------------
         Properties Data Get
     -------------------------------*/
-get_properties()
-
-function get_properties() {
-    console.log('sa');
+// get_properties()
+var base_url = $('#base_url').val();
+var url=base_url+'get_properties';
+get_properties(url)
+function get_properties(url) {
     $('.propertly-list-banner').addClass('hide');
-    var base_url = $('#base_url').val();
-    var url = base_url + 'get_properties';
+    // var base_url = $('#base_url').val();
+    // var url = base_url + 'get_properties';
     $.ajax({
         type: 'get',
         url: url,
@@ -168,49 +169,51 @@ function get_properties() {
         beforeSend: function () {
             $('#item_list').html('');
             $('#second_item_list').html('');
-            $('.loaderInner').fadeIn(); 
+            $('.loaderInner').fadeIn();
             $('#load_cover').fadeIn('slow');
             $('body').css({'overflow':'invisible'});
+            before_render_list('#item_list', 12);
         },
         complete: function () {
-            $('.loaderInner').fadeOut(); 
+            $('.loaderInner').fadeOut();
             $('#load_cover').fadeOut('slow');
             $('body').css({'overflow':'visible'});
         },
         success: function (response) {
             $('.property_placeholder').remove();
             if (response.data.length == 0) {
-                //    $('.show-pagination-info').hide();
+                   $('.show-pagination-info').hide();
 
                 $('#item_list').html('<div class="col-12 no-more"><h3 class="text-center">No data avaiable</h3></div>');
 
             } else {
-                // $('.show-pagination-info').show();
-                // $('.no-more').remove();
+                $('.show-pagination-info').show();
+                $('.no-more').remove();
                 properties_list('#item_list', response.data);
             }
 
 
-            //    if(response.from == null){
-            //       var from=0;
-            //    }
-            //   else{
-            //       var from=response.from;
-            //    }
+               if(response.from == null){
+                  var from=0;
+               }
+              else{
+                  var from=response.from;
+               }
 
-            //   if(response.total == null){
-            //       var total=0;
-            //    }
-            //   else{
-            //       var total=response.total;
-            //    }
+              if(response.total == null){
+                  var total=0;
+               }
+              else{
+                  var total=response.total;
+               }
 
-            //   $('#from').html(from);
-            //   $('#to').html(response.to);
-            //   $('#total').html(total);
-            //   if(response.links.length > 3) {
-            //     render_pagination('.pagination',response.links);
-            //    }
+              $('#from').html(from);
+              $('#to').html(response.to);
+              $('#total').html(total);
+              if(response.links.length > 3) {
+                  console.log(response.links);
+                render_pagination('.pagination',response.links);
+               }
         }
     })
 }
@@ -260,7 +263,7 @@ function properties_list(target, data) {
         }
 
 
-        
+
         if(index == '8'){
             $('.propertly-list-banner').removeClass('hide');
             $('.second_container').addClass('last-property-list');
@@ -302,7 +305,7 @@ function properties_list(target, data) {
             $('.facilities_area' + index).append(html);
 
         });
-       
+
     });
 }
 
@@ -316,7 +319,11 @@ function properties_list(target, data) {
         var url = $("#favourite_check_url").val();
         $.ajax({
             url: url,
-            data: { id: id },
+            data: {
+                id: id,
+                page: 1,
+                pagelimit: 10
+            },
             type: "GET",
             dataType: "HTML",
             success: function(response) {
@@ -327,7 +334,7 @@ function properties_list(target, data) {
                 }else{
                     $('.heart'+id).removeClass('fa-solid');
                     $('.heart'+id).addClass('fa-regular');
-                   
+
                 }
             }
         });
@@ -426,3 +433,60 @@ $(document).ready(function () {
 $(".prop-checkbox input[type='checkbox']:checked").each(function () {
     console.log(this.value);
 });
+
+/*-------------------------------------
+        Properties Pagination Render
+    -----------------------------------------*/
+function render_pagination(target,data){
+    $('.page-item').remove();
+    $.each(data, function(key,value){
+        if(value.label === '&laquo; Previous'){
+            if(value.url === null){
+                var is_disabled="disabled";
+                var is_active=null;
+            }
+            else{
+                var is_active='page-link-no'+key;
+                var is_disabled='onClick="PaginationClicked('+key+')"';
+            }
+            var html='<li  class="page-item"><a '+is_disabled+' class="page-link pagination-link '+is_active+'" href="javascript:void(0)" data-url="'+value.url+'"><i class="fas fa-long-arrow-alt-left"></i></a></li>';
+        }
+        else if(value.label === 'Next &raquo;'){
+            if(value.url === null){
+                var is_disabled="disabled";
+                var is_active=null;
+            }
+            else{
+                var is_active='page-link-no'+key;
+                var is_disabled='onClick="PaginationClicked('+key+')"';
+            }
+            var html='<li class="page-item"><a '+is_disabled+'  class="page-link pagination-link '+is_active+'" href="javascript:void(0)" data-url="'+value.url+'"><i class="fas fa-long-arrow-alt-right paginate-arrow"></i></a></li>';
+        }
+        else{
+            if(value.active==true){
+                var is_active="active";
+                var is_disabled="disabled";
+                var url=null;
+
+            }
+            else{
+                var is_active='page-link-no'+key;
+                var is_disabled='onClick="PaginationClicked('+key+')"';
+                var url=value.url;
+            }
+            console.log(value.label);
+            var html='<li class="page-item"><a class="page-link pagination-link '+is_active+'" '+is_disabled+' href="javascript:void(0)" data-url="'+url+'">'+value.label+'</a></li>';
+        }
+        if(value.url !== null){
+            $(target).append(html);
+        }
+    });
+}
+
+/*-------------------------------------
+        Pagination Clicked Function
+    -----------------------------------------*/
+function PaginationClicked(key){
+    var url =$('.page-link-no'+key).data('url');
+    get_properties(url);
+}
