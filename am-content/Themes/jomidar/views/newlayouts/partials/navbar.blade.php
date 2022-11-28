@@ -11,7 +11,7 @@
             </div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-column flex-md-row w-100 align-items-center justify-content-between">
-                    <div class="header-top-right-section f-right">
+                    <!-- <div class="header-top-right-section f-right">
                         @php
                             $langs = App\Category::where([
                                 ['type','lang'],
@@ -30,7 +30,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> -->
                     @if (Auth::check())
                     <li class="nav-item d-flex align-items-center mb-3 mb-sm-0">
 

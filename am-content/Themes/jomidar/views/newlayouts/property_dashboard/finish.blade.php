@@ -32,7 +32,7 @@
                         </div>
                         <span id="phone_errors"></span>
                     </div>
-                    <!-- <button class="btn btn-theme-secondary my-ads-btns w-100 theme-text-sky">إعلاناتي</button> -->
+                    <button class="btn btn-theme-secondary my-ads-btns w-100 theme-text-sky">إعلاناتي</button>
                 </div>
             </div>
         </form>   
