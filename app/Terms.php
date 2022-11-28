@@ -107,6 +107,16 @@ class Terms extends Model
 	{
 		return $this->hasOne('App\Meta','term_id')->where('type','content')->select('term_id','type','content');
 	}
+    //new description
+	public function description()
+	{
+		return $this->hasOne('App\Meta','term_id')->where('type','description')->select('term_id','type','content');
+	}
+
+	public function area()
+	{
+		return $this->hasOne('App\Meta','term_id')->where('type','area')->select('term_id','type','content');
+	}
 
 	public function finished_at()
 	{
@@ -164,6 +174,13 @@ class Terms extends Model
 	{
 		return $this->belongsTo('App\Models\Price','id','term_id')->where('type','max_price');
 	}
+    
+	//new price 
+	public function price()
+	{
+		return $this->belongsTo('App\Models\Price','id','term_id')->where('type','price');
+	}
+
 
 	public function post_state()
 	{
@@ -255,5 +272,39 @@ class Terms extends Model
 			];
 			
 		});
+	}
+
+	public function streets()
+	{
+		return $this->belongsTo('App\Meta','id','term_id')->where('type','streets');
+	}
+	public function street_info_one()
+	{
+		return $this->belongsTo('App\Meta','id','term_id')->where('type','street_info_one');
+	}
+	public function street_info_two()
+	{
+		return $this->belongsTo('App\Meta','id','term_id')->where('type','street_info_two');
+	}
+	public function electricity_facility()
+	{
+		return $this->belongsTo('App\Meta','id','term_id')->where('type','electricity_facility');
+	}
+	public function water_facility()
+	{
+		return $this->belongsTo('App\Meta','id','term_id')->where('type','water_facility');
+	}
+	public function property_condition()
+	{
+		return $this->belongsTo('App\Meta','id','term_id')->where('type','property_condition');
+	}
+	public function parent_category()
+	{
+		return $this->belongsTo('App\Meta','id','term_id')->where('type','parent_category');
+	}
+
+	public function role()
+	{
+		return $this->belongsTo('App\Meta','id','term_id')->where('type','role');
 	}
 }

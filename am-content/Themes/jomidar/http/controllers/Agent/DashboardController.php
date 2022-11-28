@@ -20,6 +20,6 @@ class DashboardController extends controller
     {
         Auth::logout();
 
-        return back();
+        return redirect()->route('new.home');
     }
 }

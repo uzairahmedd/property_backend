@@ -191,6 +191,8 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::get('map', 'PropertyController@map')->name('map');
 	Route::get('state/{slug}', 'PropertyController@city');
 	Route::get('get_properties', 'DataController@get_properties');
+	//new properties data
+	Route::get('get_properties_data', 'DataController@get_properties_data');
 	Route::get('get_projects', 'DataController@get_projects');
 	Route::get('reviews', 'PropertyController@reviews')->name('reviews.data');
 	Route::post('review/store', 'PropertyController@review_store')->name('review.store');
@@ -225,6 +227,8 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	//update phone page
 	Route::get('Update-phone/{id}', 'RegisterController@Update_phone');
 	Route::post('modify_phone', 'RegisterController@modify_phone');
+	//detail page
+	Route::get('property-detail/{slug}', 'PropertyController@detail')->name('property.detail');
 });
 
 //    Latest Khiaratee Theme Routes Start
@@ -271,6 +275,16 @@ Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Th
 	//new property design routes
 	Route::post('create_property', 'PropertyController@add_property')->name('property.store_property');
 	Route::get('edit-two/property/{id}', 'PropertyController@edit_two_property')->name('property.second_edit_property');
+	Route::put('update-second/property/{id}', 'PropertyController@update_two_property')->name('property.second_update_property');
+	Route::get('edit-third/property/{id}', 'PropertyController@edit_third_property')->name('property.third_edit_property');
+	Route::put('update-third/property/{id}', 'PropertyController@update_third_property')->name('property.third_update_property');
+	Route::get('edit-forth/property/{id}', 'PropertyController@edit_forth_property')->name('property.forth_edit_property');
+	Route::put('update-forth/property/{id}', 'PropertyController@update_forth_property')->name('property.forth_update_property');
+	Route::get('edit-five/property/{id}', 'PropertyController@edit_five_property')->name('property.five_edit_property');
+	Route::put('update-five/property/{id}', 'PropertyController@update_five_property')->name('property.five_update_property');
+	Route::get('edit-six/property/{id}', 'PropertyController@edit_six_property')->name('property.six_edit_property');
+	Route::put('update-six/property/{id}', 'PropertyController@update_six_property')->name('property.six_update_property');
+	Route::get('finish/property/{id}', 'PropertyController@finish_property')->name('property.finish_property');
 
 	Route::post('contact_type/{id}', 'PropertyController@contact_type')->name('contact_type');
 	Route::post('floor-plan/{id}', 'PropertyController@floor_plan_store')->name('floor.store');

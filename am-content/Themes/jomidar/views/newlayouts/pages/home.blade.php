@@ -192,14 +192,14 @@
                                     </div>
                                 </div>
                                 <div class="price theme-text-white d-flex align-items-center justify-content-center">
-                                    <span class="font-bold">{{ amount_format($sale_data->min_price->price ?? 0) }} - {{ amount_format($sale_data->max_price->price ?? 0) }}</span>
+                                    <span class="font-bold">{{ amount_format($sale_data->price->price ?? 0) }}</span>
                                 </div>
                             </div>
-                            <a href="property/{{$sale_data->slug}}">
+                            <a href="property-detail/{{$sale_data->slug}}">
                                 <div class="mt-3">
                                     <h3 class="font-medium theme-text-blue">{{$sale_data->title}}</h3>
                                     <div class="d-flex align-items-start justify-content-end pt-2">
-                                        <p class="mb-0 theme-text-seondary-black me-2">{{$sale_data->post_city->value}} - {{$sale_data->post_city->category->name}} - {{$sale_data->post_state->category->name}}</p>
+                                        <p class="mb-0 theme-text-seondary-black me-2">{{$sale_data->post_city->value}} - {{$sale_data->post_city->category->name}} </p>
                                         <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                                     </div>
                                 </div>
@@ -259,14 +259,14 @@
 
                                 </div>
                                 <div class="price theme-text-white d-flex align-items-center justify-content-center">
-                                    <span class="font-bold">{{ amount_format($rent_data->min_price->price ?? 0) }} - {{ amount_format($rent_data->max_price->price ?? 0) }}</span>
+                                    <span class="font-bold">{{ amount_format($rent_data->price->price ?? 0) }}</span>
                                 </div>
                             </div>
-                            <a href="property/{{$rent_data->slug}}">
+                            <a href="property-detail/{{$rent_data->slug}}">
                                 <div class="mt-3">
                                     <h3 class="font-medium theme-text-blue">{{$rent_data->title}}</h3>
                                     <div class="d-flex align-items-start justify-content-end pt-2">
-                                        <p class="mb-0 theme-text-seondary-black me-2">{{$rent_data->post_city->value}} - {{$rent_data->post_city->category->name}} - {{$rent_data->post_state->category->name}}</p>
+                                        <p class="mb-0 theme-text-seondary-black me-2">{{$rent_data->post_city->value}} - {{$rent_data->post_city->category->name}}</p>
                                         <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                                     </div>
                                 </div>

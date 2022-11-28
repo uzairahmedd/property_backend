@@ -46,11 +46,6 @@
                             <li><a class="dropdown-item" href="mailto:{{ $property->user->email }}?subject={{ $property->title }}&body={{ URL::current() }}"><i class="fa-regular fa-envelope"></i> Gmail</a></li>
                         </ul>
                     </li>
-
-
-
-
-
                     <li class="d-flex mb-3 mb-sm-0">
                         <span>Favorite property</span>
                         @if (Auth::check())
@@ -129,11 +124,11 @@
         <div class="row">
             <div class="col-12 col-lg-6 col-xxl-5">
                 <div class="card text-end theme-bg-white align-items-end">
-                    <h1 class="theme-text-blue font-medium">{{ amount_format($property->min_price->price ?? 0) }} - {{ amount_format($property->max_price->price ?? 0) }}</h1>
+                    <h1 class="theme-text-blue font-medium">{{ amount_format($property->price->price ?? 0) }}</h1>
                     <hr>
                     <h3 class="font-medium mb-2">Address</h3>
                     <div class="d-flex align-items-start justify-content-end mb-4">
-                        <p class="mb-0 theme-text-seondary-black me-2">{{$property->post_city->value}} - {{$property->post_city->category->name}} - {{$property->post_state->category->name}}
+                        <p class="mb-0 theme-text-seondary-black me-2">{{$property->post_city->value}} - {{$property->post_city->category->name}}
                         </p>
                         <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                     </div>
@@ -147,20 +142,24 @@
                             <img src="{{theme_asset('assets/images/shower.png')}}" title="{{ $value->category->name }}" data-toggle="tooltip" alt="">
                             @elseif($value->category->name =='Bedrooms')
                             <img src="{{theme_asset('assets/images/room.png')}}" title="{{ $value->category->name }}" data-toggle="tooltip" alt="">
+
+                            @elseif($value->category->name =='Parking')
+                            <img src="{{theme_asset('assets/images/parking.png')}}" title="{{ $value->category->name }}" data-toggle="tooltip" alt="">
+
+                            @elseif($value->category->name =='lounges')
+                            <img src="{{theme_asset('assets/images/lunch.png')}}" title="{{ $value->category->name }}" data-toggle="tooltip" alt="">
+
+                            @elseif($value->category->name =='Boards')
+                            <img src="{{theme_asset('assets/images/board-room.png')}}" title="{{ $value->category->name }}" data-toggle="tooltip" alt="">
                             @endif
                         </li>
 
                         @endforeach
                         @endif
-                        @foreach ($property->floor_plans as $key=>$floor)
-                        @php
-                        $data = json_decode($floor->content);
-                        @endphp
                         <li class="d-flex align-items-center mb-3 mb-sm-3">
-                            <span> {{ $data->name }} {{ $data->square_ft }} {{ __('sq ft') }}</span>
-                            <img src="{{theme_asset('assets/images/area.png')}}" alt="">
+                            <span> {{ $property->area->content }}</span>
+                            <img src="{{theme_asset('assets/images/area.png')}}" title="{{ $property->area->type }}" data-toggle="tooltip">
                         </li>
-                        @endforeach
                     </ul>
                     @php
                     $info = isset($property->user->usermeta->content) ? json_decode($property->user->usermeta->content) : null ;
@@ -183,46 +182,104 @@
                         <h1 class="font-24 theme-text-blue font-medium">{{$property->property_status_type->category->name}}</h1>
                         <h1 class="font-24 theme-text-blue">{{ __('Description') }}</h1>
                     </div>
-                    <p class="theme-text-seondary-black font-16 text-end mb-2">{{ content_format($property->content->content ?? '') }}</p>
+                    <p class="theme-text-seondary-black font-16 text-end mb-2">{{ content_format($property->description->content ?? '') }}</p>
                     <hr class="w-100">
-                    <h1 class="font-24 theme-text-blue">{{ __('Detail & Information') }}</h1>
-                    @if($property->option_data)
-                    @foreach ($property->option_data as $value)
+                    <h1 class="font-24 theme-text-blue">المعلومات الأساسية</h1>
+                    @foreach ($property_type_nature as $value)
+                    @if( $value->type == 'parent_category')
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ $value->value }}</h3>
+                            <h3 class="font-16 font-medium theme-text-blue">{{ $value->name }}</h3>
                         </div>
                         <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">{{ $value->category->name }}</span>
+                            <span class="font-16 theme-text-seondary-black">طبيعة العقار</span>
                         </div>
                     </div>
+                    @elseif( $value->type == 'category')
+                    <div class="row w-100 mb-3">
+                        <div class="col-6 text-start">
+                            <h3 class="font-16 font-medium theme-text-blue">{{ $value->name }}</h3>
+                        </div>
+                        <div class="col-6 text-end">
+                            <span class="font-16 theme-text-seondary-black">نوع العقار</span>
+                        </div>
+                    </div>
+                    @endif
                     @endforeach
-                    @else
-                    <div class="col-6 text-start">
-                        <h3 class="font-16 font-medium theme-text-blue">No data avaialable</h3>
+
+                    <div class="row w-100 mb-3">
+                        <div class="col-6 text-start">
+                            <h3 class="font-16 font-medium theme-text-blue">{{ $property->electricity_facility->content == 0 ? 'نعم' : 'لا' }}</h3>
+                        </div>
+                        <div class="col-6 text-end">
+                            <span class="font-16 theme-text-seondary-black">هل يوجد عداد كهرباء</span>
+                        </div>
+                    </div>
+
+                    <div class="row w-100 mb-3">
+                        <div class="col-6 text-start">
+                            <h3 class="font-16 font-medium theme-text-blue">{{ $property->water_facility->content == 0 ? 'نعم' : 'لا' }}</h3>
+                        </div>
+                        <div class="col-6 text-end">
+                            <span class="font-16 theme-text-seondary-black">هل يوجد عداد ماء</span>
+                        </div>
+                    </div>
+
+                    <div class="row w-100 mb-3">
+                        <div class="col-6 text-start">
+                            <h3 class="font-16 font-medium theme-text-blue">{{ $property->streets->content }}</h3>
+                        </div>
+                        <div class="col-6 text-end">
+                            <span class="font-16 theme-text-seondary-black">عدد الشوارع</span>
+                        </div>
+                    </div>
+                    @if(isset($property->street_info_one->content) || isset($property->street_info_two->content))
+                    <div class="row w-100 mb-3">
+                        <div class="col-6 text-start">
+                            <h3 class="font-16 font-medium theme-text-blue">{{ isset($property->street_info_one->content) ? $property->street_info_one->content : '' }} , {{ isset($property->street_info_two->content) ? $property->street_info_two->content : ''}}</h3>
+                        </div>
+                        <div class="col-6 text-end">
+                            <span class="font-16 theme-text-seondary-black">معلومات الشارع</span>
+                        </div>
                     </div>
                     @endif
 
                     <hr class="w-100">
-                    <h1 class="font-24 theme-text-blue">{{ __('Distance between facilities') }}</h1>
-                    @if ($property->facilities_get->count() > 0)
-                    @foreach ($property->facilities_get as $facility)
+                    <h1 class="font-24 theme-text-blue">المعلومات الإضافية</h1>
+                    @foreach ($property->option_data as $options_data)
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ $facility->value }}{{ __('KM') }}</h3>
+                            <h3 class="font-16 font-medium theme-text-blue">{{ $options_data->value == 0 ? 'غير متوفر' : $options_data->value}}</h3>
                         </div>
                         <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">{{ $facility->category->name }}</span>
+                            <span class="font-16 theme-text-seondary-black">{{ $options_data->category->name }}</span>
                         </div>
                     </div>
                     @endforeach
-                    @else
-                    <div class="col-6 text-start">
-                        <h3 class="font-16 font-medium text-right theme-text-blue">No data avaialable</h3>
+
+                    <div class="row w-100 mb-3">
+                        <div class="col-6 text-start">
+                            <h3 class="font-16 font-medium theme-text-blue">{{ $property->property_condition->content == 1 ? 'غير مفروشة' : ($property->property_condition->content == 2 ? 'مفروشة' : 'نص مفروشة' )}}</h3>
+                        </div>
+                        <div class="col-6 text-end">
+                            <span class="font-16 theme-text-seondary-black">التأثيث</span>
+                        </div>
+                    </div>
+                    @if(isset($property->role->content))
+                    <div class="row w-100 mb-3">
+                        <div class="col-6 text-start">
+                            <h3 class="font-16 font-medium theme-text-blue">{{ $property->role->content }}</h3>
+                        </div>
+                        <div class="col-6 text-end">
+                            <span class="font-16 theme-text-seondary-black">إجمالي الأدوار/ الدور</span>
+                        </div>
                     </div>
                     @endif
+
+
+
                     <hr class="w-100">
-                    <h1 class="font-24 theme-text-blue mb-3 mt-2">{{ __('Property features') }}</h1>
+                    <h1 class="font-24 theme-text-blue mb-3 mt-2">مميزات العقار</h1>
                     <div class="tags d-flex flex-wrap justify-content-end prop-feature">
                         @if (isset($features))
                         @foreach ($features as $facility)
@@ -244,18 +301,14 @@
                     <iframe id="gmap_canvas" width="100%" height="400" src="https://maps.google.com/maps?q={{ $property->post_city->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                 </div>
                 @endif
-                <!-- @isset($property->latitude->value)
-                            <div class="property-card-area mt-0">
-                                <div class="property-card-header mb-3">
-                                    <h5>{{ __('Street View') }}</h5>
-                                </div>
-                                <div class="property-card-body">
-                                    <input type="hidden" value="{{ $property->latitude->value }}" id="latitude">
-                                    <input type="hidden" value="{{ $property->longitude->value }}" id="longitude">
-                                    <div id="street-view"></div>
-                                </div>
-                            </div>
-                            @endisset -->
+
+                @if(!empty($property->virtual_tour->content))
+                <div class="text-center mb-0 pb-0 position-relative">
+                    <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">Virtual Tour</h3>
+                    <iframe src="{{ $property->virtual_tour->content ?? null }}" frameborder="0" allowfullscreen width="100%" height="480"></iframe>
+                </div>
+
+                @endif
             </div>
         </div>
     </div>

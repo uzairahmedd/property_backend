@@ -185,15 +185,18 @@ class RegisterController extends controller
     public function register_validations($request)
     {
         return  \Validator::make($request->all(), [
-            'name' => 'required',
-            'phone' => 'required',
+            'name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'phone' => 'required|numeric',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed',
             'term_condition' => 'required'
         ], [
             'name.required' => 'Name is required',
+            'name.regex' => 'Please provide correct name',
+            'name.max' => 'Name is too long must be within 255 words',
             'phone.required' => 'Phone number is required',
-            'phone.unique' => 'Phone number must be unique',
+            'phone.numeric' => 'Phone number must be numeric',
+            'phone.phone' => 'Phone number is not corrects',
             'email.required' => 'Email is required',
             'email.email' => 'PLease enter valid email address',
             'email.unique' => 'Email must be unique',
@@ -309,7 +312,7 @@ class RegisterController extends controller
     public function modify_phone(Request $request)
     {
         $validator = \Validator::make($request->all(), [
-            'phone' => 'required',
+            'phone' => 'required|numeric',
         ]);
         if ($validator->fails()) {
             return error_response($validator->errors(), 'Validation error');

@@ -188,7 +188,7 @@
 
 .description-card .property_radio
 {
-    padding: 30px 10px;
+    padding: 30px 5px;
 }
 
 .property_types
@@ -413,3 +413,6 @@
         max-width: 100%;
     }
 }
+
+#first_image, #five_image,#second_image,#third_image,#forth_image{
+    max-width: 50px;}

@@ -74,8 +74,84 @@ class PropertyController extends controller
             JsonLdMulti::setTitle($property->title);
             JsonLdMulti::setDescription($property->excerpt->content ?? '');
             JsonLdMulti::setType('Property');
-            return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features'));
-            //             return view('view::property.details',compact('property','path','features'));
+
+            return view('view::property.details', compact('property', 'path', 'features'));
+        } else {
+            return abort(404);
+        }
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function detail(Request $request, $slug)
+    {
+        $path = $request->path();
+
+        $property = Terms::where([
+            ['type', 'property'],
+            ['status', 1],
+            ['slug', $slug]
+        ])->with('virtual_tour', 'post_preview', 'streets', 'street_info_one', 'street_info_two', 'role', 'price', 'area', 'electricity_facility', 'water_facility', 'post_city', 'user', 'description', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->withCount('reviews')->first();
+
+        $features = [];
+        foreach ($property->postcategory as $key => $value) {
+
+            if ($value->type == 'features') {
+                $name = DB::table('categories')->where([
+                    ['id', $value->category_id]
+                ])->first();
+                array_push($features, $name);
+            }
+        }
+
+        $property_type_nature = [];
+        foreach ($property->postcategory as $key => $value) {
+
+            if ($value->type == 'category') {
+                $type = DB::table('categories')->where([
+                    ['id', $value->category_id]
+                ])->first();
+
+                array_push($property_type_nature, $type);
+            }
+            if ($value->type == 'parent_category') {
+                $type = DB::table('categories')->where([
+                    ['id', $value->category_id]
+                ])->first();
+
+                array_push($property_type_nature, $type);
+            }
+        }
+
+        if ($property) {
+            SEOMeta::setTitle($property->title);
+            SEOMeta::setDescription($property->description->content ?? '');
+            SEOMeta::addMeta('article:published_time', $property->updated_at->format('Y-m-d'), 'property');
+
+            OpenGraph::setDescription($property->description->content ?? '');
+            OpenGraph::setTitle($property->title);
+
+
+            foreach ($property->multiple_images ?? [] as $row) {
+
+                OpenGraph::addImage(asset($row->media->url));
+                JsonLdMulti::addImage(asset($row->media->url));
+                JsonLd::addImage(asset($row->media->url));
+            }
+
+
+            JsonLd::setTitle($property->title);
+            JsonLd::setDescription($property->description->content ?? '');
+            JsonLd::setType('Property');
+
+            JsonLdMulti::setTitle($property->title);
+            JsonLdMulti::setDescription($property->description->content ?? '');
+            JsonLdMulti::setType('Property');
+            return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features', 'property_type_nature'));
         } else {
             return abort(404);
         }
