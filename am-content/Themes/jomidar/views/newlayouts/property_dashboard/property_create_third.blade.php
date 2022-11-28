@@ -31,7 +31,7 @@
                             @else
                             <span class="checmark checkmark-step3 font-16 font-medium" style="margin-left: 8px;">{{$i}}</span>
                             @endif
-                           
+
                         </div>
                         @endfor -->
                         <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
@@ -231,15 +231,15 @@
                             </button>
                             <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
                             <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
-                                <li><a class="dropdown-item" href="#">Option 1</a></li>
-                                <li><a class="dropdown-item" href="#">Option 2</a></li>
-                                <li><a class="dropdown-item" href="#">Option 3</a></li>
+                                <li><a class="dropdown-item inter_val3" href="#">Option 1</a></li>
+                                <li><a class="dropdown-item inter_val3" href="#">Option 2</a></li>
+                                <li><a class="dropdown-item inter_val3" href="#">Option 3</a></li>
                             </ul>
                             <p class="ps-3">دور</p>
                         </div>
                         <div class="position-relative d-flex flex-column align-items-end w-100">
                             <label for="" class="font-14 theme-text-seondary-black"> أدوار العقار</label>
-                            <input type="text" name="role" placeholder="إجمالي الأدوار" class="form-control street_view theme-border">
+                            <input type="text" name="role" placeholder="إجمالي الأدوار" id="interface_val3" class="form-control street_view theme-border">
                         </div>
                     </div>
                 </div>

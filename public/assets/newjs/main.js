@@ -68,9 +68,6 @@ $('.rent-link').click(function()
     }
 });
 
-
-
-
 //
 //
 // $("#radio02-02").click(function (event) {
@@ -244,14 +241,6 @@ $(document).ready(function (event) {
     });
 });
 
-$(document).ready(function (event) {
-    $('.overlay').click(function (event) {
-        $('.overlay').css('opacity', 0);
-        $('.overlay').css('display', 'none');
-        $(".new-rent-dropdown").removeClass("show");
-        event.stopPropagation();
-    });
-});
 
 // jquery for dropdown button End
 
@@ -279,24 +268,38 @@ $(document).ready(function (event) {
 
 // jquery for dropdown button start
 $(document).ready(function (event) {
-    $('.complete-rent-drop').click(function (e) {
+    $('.complete-rent-drop').click(function (e1) {
         $("ul.new-rent-dropdown").removeAttr('style');
         $('.overlay').css('opacity', 0.2);
         $('.overlay').css('display', 'block');
-        // event.stopPropagation();
+        e1.preventDefault();
     });
-});
 
-$(document).ready(function (event) {
-    $('.overlay').click(function (event) {
+        $('.overlay').click(function (event) {
+            $('.overlay').css('opacity', 0);
+            $('.overlay').css('display', 'none');
+            $(".new-rent-dropdown").removeClass("show");
+            event.stopPropagation();
+        });
+
+    $('.overlay').click(function (e) {
         $('.overlay').css('opacity', 0);
         $('.overlay').css('display', 'none');
         $(".new-rent-dropdown").removeClass("show");
-        event.stopPropagation();
+
     });
 
     $('.rent-all').click(function(e){
         e.stopPropagation();
+    });
+
+    $('.complete-btn').click(function (e1) {
+        console.log('asdffd');
+        e1.preventDefault();
+        $('#fade').css('opacity', 0);
+        $('#fade').css('display', 'none');
+        $(".new-rent-dropdown").removeClass("show");
+
     });
 
 });
@@ -352,30 +355,6 @@ $(document).ready(function (event) {
 
 });
 // Room Dropdown End
-
-// Room Dropdown Selection Start
-$(document).ready(function (event) {
-    $('.inter_val').click(function (e) {
-        $(".inter_val").removeClass('selected');
-        $(this).addClass('selected');
-        var drop_text = $(".inter_val.selected").text();
-        // var input_value = $("#interface_name").val();
-        $("#interface_name").val(function() {
-            return this.value + drop_text;
-        });
-
-
-    });
-
-
-
-});
-// Room Dropdown End
-
-
-
-
-
 
 // Range Dropdown Js
 const rangeInput = document.querySelectorAll(".range-input input"),
