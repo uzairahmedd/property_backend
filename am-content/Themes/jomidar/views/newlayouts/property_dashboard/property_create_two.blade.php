@@ -153,7 +153,7 @@
             </div>
             <div class="d-flex justify-content-between description-btn-group">
                 <button type="submit" class="btn btn-theme">التالي</button>
-                <button class="btn btn-theme-secondary previous_btn">السابق</button>
+                <!-- <button class="btn btn-theme-secondary previous_btn">السابق</button> -->
             </div>
         </form>
     </div>

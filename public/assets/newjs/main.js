@@ -63,9 +63,18 @@ $('.rent-link').click(function()
 {
     if($(this).hasClass('active'))
     {
-        let radio_val = $(this). text();
-        $('#dropdownMenuLink-home').text(radio_val);
+        let radio_text= $(this).text();
+        $('#dropdownMenuLink-home').text(radio_text);
+        let radio_val = $(this).data('value');
+        $('#status').val(radio_val);
     }
+});
+
+
+$('.complete-btn').click(function(e)
+{
+
+    e.preventDefault();
 });
 
 
@@ -220,6 +229,7 @@ $(document).ready(function () {
 // jquery for dropdown button start
 $(document).ready(function (event) {
     $('.complete-rent-drop').click(function (e) {
+        // $('.overlay').addClass('add_overlay');
         $('.overlay').css('opacity', 0.2);
         $('.overlay').css('display', 'block');
         // event.stopPropagation();

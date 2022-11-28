@@ -661,7 +661,7 @@ class PropertyController extends controller
         $meta->save();
 
         //store property city and location
-        Postcategoryoption::where('type', 'city')->where('category_id', $request->city)->where('term_id',$term->id)->delete();
+        Postcategoryoption::where('type', 'city')->where('term_id',$term->id)->delete();
         $city = new Postcategoryoption;
         $city->category_id = $request->city;
         $city->term_id = $term->id;
@@ -673,7 +673,7 @@ class PropertyController extends controller
         $post_cat['term_id'] = $term->id;
         $post_cat['category_id'] = $request->status;
         $post_cat['type'] = 'status';
-        Postcategory::where('type', 'status')->where('category_id', $request->status)->where('term_id', $term->id)->delete();
+        Postcategory::where('type', 'status')->where('term_id', $term->id)->delete();
         Postcategory::insert($post_cat);
 
         // Session::flash("flash_notification", [
@@ -723,6 +723,7 @@ class PropertyController extends controller
      */
     public function edit_two_property($id)
     {
+       
         $parent_category = Category::where('type', 'parent_category')->get();
         $child_category =  Category::where('type', 'category')->get();
 
@@ -738,11 +739,12 @@ class PropertyController extends controller
         return  \Validator::make($request->all(), [
             'parent_category' => 'required',
             'category' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric',
         ], [
             'parent_category.required' => 'Please select property nature',
             'category.required' => 'Please select property type',
             'price.required' => 'Property price is required',
+            'price.numeric' => 'Property price is only in digits',
 
         ]);
     }
@@ -786,8 +788,8 @@ class PropertyController extends controller
             $post_cat['type'] = 'category';
             array_push($category, $post_cat);
         }
-        Postcategory::where('type', 'parent_category')->where('category_id',  $request->parent_category)->where('term_id', $term_id)->delete();
-        Postcategory::where('type', 'category')->where('category_id', $request->category)->where('term_id', $term_id)->delete();
+        Postcategory::where('type', 'parent_category')->where('term_id', $term_id)->delete();
+        Postcategory::where('type', 'category')->where('term_id', $term_id)->delete();
         Postcategory::insert($category);
         
 
@@ -998,7 +1000,7 @@ class PropertyController extends controller
 
     public function upload_images($request)
     {
-
+       
         request()->validate([
             'media.*' => 'required'
 
@@ -1138,14 +1140,15 @@ class PropertyController extends controller
                     $media->save();
                     $data = $media;
                 }
+                if ($request->term_id) {
+                    $mediapost = new Mediapost;
+                    $mediapost->term_id = $request->term_id;
+                    $mediapost->media_id = $data->id;
+                    $mediapost->save();
+                }
             }
 
-            if ($request->term_id) {
-                $mediapost = new Mediapost;
-                $mediapost->term_id = $request->term_id;
-                $mediapost->media_id = $data->id;
-                $mediapost->save();
-            }
+          
             return response($data);
         }
     }

@@ -15,33 +15,9 @@
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                     <div class="dropdown complete-rent-drop">
                         <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                        <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-home" onclick="" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">للايجار
+                        <input type="hidden" value="" name="status" id=status>
+                        <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-home"  data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">للايجار
                         </button>
-{{--                        <ul class="dropdown-menu rent-dropdown" aria-labelledby="dropdownMenuLink-list">--}}
-{{--                            <div class="rent-dropdown-content">--}}
-{{--                                @foreach($status as $status_data)--}}
-{{--                                    @if( $status_data->name =='Sale')--}}
-{{--                                        <li class="rent-all">--}}
-{{--                                            <input class="rent-select-dropdown" value="{{ $status_data->id}}" type="radio" id="radio02-01" name="status" />--}}
-{{--                                            <label class="rent-box sale_label" for="radio02-01">بيع</label>--}}
-{{--                                        </li>--}}
-{{--                                    @elseif($status_data->name =='Rent')--}}
-{{--                                        <li class="rent-all">--}}
-{{--                                            <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" type="radio" id="radio02-02" name="status" checked />--}}
-{{--                                            <label class="rent-box rent_label_list" for="radio02-02">ايجار</label>--}}
-{{--                                        </li>--}}
-{{--                                    @elseif($status_data->name =='Projects')--}}
-{{--                                        <li class="rent-all">--}}
-{{--                                            <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" type="radio" id="radio03-03" name="status" />--}}
-{{--                                            <label class="rent-box project_label" for="radio03-03">المشاريع</label>--}}
-{{--                                        </li>--}}
-{{--                                    @endif--}}
-{{--                                @endforeach--}}
-{{--                            </div>--}}
-
-{{--                        </ul>--}}
-
-{{--                        <ul class="dropdown-menu rent-dropdown" aria-labelledby="dropdownMenuLink-list">--}}
                         <ul class="dropdown-menu new-rent-dropdown" aria-labelledby="dropdownMenuLink-list">
                             <div class="resident-dropdown-content">
                                 <div class="row">
@@ -52,9 +28,9 @@
                                             <div class="nav nav-tabs mb-4 rent-tabs d-flex justify-content-center align-items-center" id="nav-tab" role="tablist">
                                                 @foreach($status as $status_data)
                                                     @if( $status_data->name =='Sale')
-                                                <a class="nav-item nav-link rent-link nav-sale active" id="nav-rent-tab" data-bs-toggle="tab" value="{{$status_data->id}}" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">للبيع</a>
+                                                <a class="nav-item nav-link rent-link nav-sale active" id="nav-rent-tab" data-bs-toggle="tab" data-value="{{$status_data->id}}" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">للبيع</a>
                                                     @elseif( $status_data->name =='Rent')
-                                                <a class="nav-item nav-link rent-link nav-rent" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" value="{{$status_data->id}}" role="tab" aria-controls="nav-buy" aria-selected="false">للايجار</a>
+                                                <a class="nav-item nav-link rent-link nav-rent" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" data-value="{{$status_data->id}}" role="tab" aria-controls="nav-buy" aria-selected="false">للايجار</a>
                                                     @endif
                                                 @endforeach
                                             </div>
@@ -68,7 +44,7 @@
 {{--                                                        <li class="buy-rent-pan" name="category" value="3">الجميع</li>--}}
 {{--                                                </div>--}}
                                                 <div class="d-flex justify-content-between mt-2">
-                                                    <button class="complete-btn"><a href="">تم</a></button>
+                                                    <button class="complete-btn"><a href="" class="complete-btn">تم</a></button>
                                                     <button class="reset-btn"><a href="">إعادة ضبط</a></button>
                                                 </div>
                                             </div>
@@ -76,27 +52,27 @@
                                                 <p class="rent-buy-txt">مدة الايجار</p>
                                                 <div class="rent-buy-pans d-flex flex-row-reverse justify-content-center align-items-center">
                                                     <li class="rent-all">
-                                                        <input class="rent-select-dropdown" value="" type="radio" id="radio02-01" name="status" checked />
+                                                        <input class="rent-select-dropdown" value="" type="radio" id="radio02-01" checked />
                                                         <label class="rent-box any" for="radio02-01">الجميع</label>
                                                     </li>
 
                                                     <li class="rent-all">
-                                                        <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio02-02" name="status" />
+                                                        <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio02-02"  />
                                                         <label class="rent-box rent_label_list" for="radio02-02">يومياً</label>
                                                     </li>
 
                                                     <li class="rent-all">
-                                                        <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio03-03" name="status" />
+                                                        <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio03-03"/>
                                                         <label class="rent-box project_label" for="radio03-03">أسبوعياً</label>
                                                     </li>
 
                                                     <li class="rent-all">
-                                                        <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio04-04" name="status" />
+                                                        <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio04-04"  />
                                                         <label class="rent-box project_label" for="radio04-04">شهرياً</label>
                                                     </li>
 
                                                     <li class="rent-all">
-                                                        <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio05-05" name="status" />
+                                                        <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio05-05"  />
                                                         <label class="rent-box project_label" for="radio05-05">سنوياً</label>
                                                     </li>
                                                 </div>

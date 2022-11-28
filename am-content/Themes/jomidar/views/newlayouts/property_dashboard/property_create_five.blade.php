@@ -94,7 +94,7 @@
             </div>
             <div class="d-flex justify-content-between description-btn-group">
                 <button class="btn btn-theme">التالي</button>
-                <button class="btn btn-theme-secondary previous_btn">السابق</button>
+                <a href="{{ route('agent.property.forth_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">السابق</a>
             </div>
         </form>
     </div>

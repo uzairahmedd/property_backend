@@ -1736,6 +1736,11 @@ span.directorist-select__selected-list--item:first-letter {
     }
 }
 
+.add_overlay{
+    opacity: 0.2;
+    display:block;
+}
+
 
 
 

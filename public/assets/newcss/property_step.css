@@ -183,6 +183,10 @@
 {
     border: 0.5px solid var(--theme-blue);
 }
+.previous_btn:hover
+{
+    border-color: unset;
+}
 
 /*Step_2 pages content */
 
@@ -428,3 +432,10 @@
 
 #first_image, #five_image,#second_image,#third_image,#forth_image{
     max-width: 50px;}
+
+
+.center_property{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}    
