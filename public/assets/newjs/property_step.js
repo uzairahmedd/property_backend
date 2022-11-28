@@ -6,7 +6,7 @@ $(document).ready(function (event) {
         var drop_text = $(".inter_val.selected").text();
         // var input_value = $("#interface_name").val();
         $("#interface_val").val(function() {
-            return this.value + drop_text;
+            return this.value +' ' + drop_text;
         });
         e.preventDefault();
     });
@@ -20,7 +20,7 @@ $(document).ready(function (event) {
         var drop_text = $(".inter_val2.selected").text();
         // var input_value = $("#interface_name").val();
         $("#interface_val2").val(function() {
-            return this.value + drop_text;
+            return this.value +' ' +drop_text;
         });
         e.preventDefault();
     });
@@ -33,7 +33,7 @@ $(document).ready(function (event) {
         var drop_text = $(".inter_val3.selected").text();
         // var input_value = $("#interface_name").val();
         $("#interface_val3").val(function() {
-            return this.value + drop_text;
+            return this.value +' ' + drop_text;
         });
         e.preventDefault();
     });

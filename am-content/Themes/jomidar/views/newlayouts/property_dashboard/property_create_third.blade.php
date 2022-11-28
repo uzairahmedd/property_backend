@@ -231,9 +231,11 @@
                             </button>
                             <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
                             <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
-                                <li><a class="dropdown-item inter_val3" href="#">Option 1</a></li>
-                                <li><a class="dropdown-item inter_val3" href="#">Option 2</a></li>
-                                <li><a class="dropdown-item inter_val3" href="#">Option 3</a></li>
+                                <li><a class="dropdown-item inter_val3" href="#">1</a></li>
+                                <li><a class="dropdown-item inter_val3" href="#">2</a></li>
+                                <li><a class="dropdown-item inter_val3" href="#">3</a></li>
+                                <li><a class="dropdown-item inter_val3" href="#">4</a></li>
+                                <li><a class="dropdown-item inter_val3" href="#">5</a></li>
                             </ul>
                             <p class="ps-3">دور</p>
                         </div>

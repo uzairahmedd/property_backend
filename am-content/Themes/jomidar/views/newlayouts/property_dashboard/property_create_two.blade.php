@@ -119,9 +119,10 @@
                                 </button>
                                 <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
                                 <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
-                                    <li><a class="dropdown-item inter_val" href="#">10m</a></li>
-                                    <li><a class="dropdown-item inter_val" href="#">20m</a></li>
-                                    <li><a class="dropdown-item inter_val" href="#">30m</a></li>
+                                    <li><a class="dropdown-item inter_val" href="#">East</a></li>
+                                    <li><a class="dropdown-item inter_val" href="#">West</a></li>
+                                    <li><a class="dropdown-item inter_val" href="#">North</a></li>
+                                    <li><a class="dropdown-item inter_val" href="#">South</a></li>
                                 </ul>
                                 <p class="ps-3">متر</p>
                             </div>
@@ -137,10 +138,9 @@
                                 </button>
                                 <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
                                 <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
-                                    <li><a class="dropdown-item inter_val2" href="#">East</a></li>
-                                    <li><a class="dropdown-item inter_val2" href="#">West</a></li>
-                                    <li><a class="dropdown-item inter_val2" href="#">North</a></li>
-                                    <li><a class="dropdown-item inter_val2" href="#">South</a></li>
+                                    <li><a class="dropdown-item inter_val2" href="#">10m</a></li>
+                                    <li><a class="dropdown-item inter_val2" href="#">20m</a></li>
+                                    <li><a class="dropdown-item inter_val2" href="#">30m</a></li>
                                 </ul>
                                 <p class="ps-3">متر</p>
                             </div>
