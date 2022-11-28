@@ -195,18 +195,13 @@
                                         <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" data-title="ايجار" type="radio" id="radio_rent" name="status" {{$status == $status_data->id ? 'checked' : ''}} />
                                         <label class="rent-box rent_list_label" for="radio_rent">ايجار</label>
                                     </li>
-                                    @elseif($status_data->name =='Projects')
-                                    <li class="rent-all">
-                                        <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" data-title="المشاريع" type="radio" id="project_rent" name="status" {{$status == $status_data->id ? 'checked' : ''}} />
-                                        <label class="rent-box project_list" for="project_rent">المشاريع</label>
-                                    </li>
+                                 
                                     @endif
                                     @endforeach
                                 </div>
                             </ul>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 order-lg-3 order-first search-box search-input-bar">
                     <div class="search-bar d-flex p-2 mt-1">
@@ -272,6 +267,22 @@
         </div>
     </div>
 </div>
+<div class="row align-items-center">
+    <div class="col-lg-12">
+        <div class="pagination-area f-right">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="col-lg-12 ">
+        <div class="show-pagination-info text-center">
+            <p class="show-info">{{ __('Showing') }} <span><span id="from"></span> - <span id="to"></span> {{ __('of') }} <span id="total"></span></span> {{ __('List') }}</p>
+        </div>
+    </div>
+</div>
+
 
 <!-- Property listing End -->
 @endsection

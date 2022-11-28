@@ -1576,6 +1576,128 @@ span.directorist-select__selected-list--item:first-letter {
     color: var(--theme-white);
 }
 
+.rent-tabs {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    width: calc(100% - 1rem);
+    max-height: 4rem;
+    margin: 0 0.5rem;
+    border: 0.1rem solid #dbdbdb;
+    border-radius: 0.4rem;
+}
+
+.rent-link {
+    font-weight: 400;
+    line-height: .5rem;
+    border-radius: 0.4rem;
+    /* flex-basis: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 50%;
+    font-size: 16px;
+    padding: 16px 30px;
+}
+
+.rent-link.active {
+    color: var(--theme-blue) !important;
+    background-color: #EAE9F1 !important;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.active>.page-link, .page-link.active
+{
+    background-color: var(--theme-blue);
+    border-color: var(--theme-blue);
+}
+
+.paginate-arrow
+{
+    color: var(--theme-blue);
+}
+
+.pagination-link
+{
+    color: var(--theme-blue);
+}
+
+.pagination-link:focus
+{
+    box-shadow: unset;
+}
+
+.rent-buy-txt
+{
+    margin-top: 12px;
+    margin-right: 10px;
+    margin-bottom: 7px;
+    font-weight: 600;
+    text-align: right;
+}
+
+.rent-buy-pans {
+    display: inline-block;
+    margin-top: 1.2rem;
+    vertical-align: top;
+    flex-wrap: wrap;
+    margin-right: 1rem;
+}
+
+.rent-link
+{
+    color: black;
+}
+
+.new-rent-dropdown::before {
+    background-color: #ffffff;
+    content: "";
+    height: 20px;
+    left: 0;
+    margin: 0 15px;
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    top: -8px;
+    width: 13px;
+    opacity: 0.95;
+    border-radius: 2px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.new-rent-dropdown {
+    /* height: 75px; */
+    /* overflow-y: auto; */
+    width: 300px;
+    background: #FFFFFF;
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    padding: 0px 14px 15px 14px;
+    margin-top: 35px !important;
+    z-index: 1000;
+}
+
+.buy-rent-pan {
+    padding: 0px 14px;
+    text-align: center;
+    margin: 0 3px;
+    flex-wrap: wrap;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 0.6rem;
+    color: var(--theme-blue);
+    cursor: pointer;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border: 1px solid #dedede;
+    border-radius: 25px;
+}
+
 @media screen and (max-width: 336px) {
     .rent-box {
         width: 94px;

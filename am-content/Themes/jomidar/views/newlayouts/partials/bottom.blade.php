@@ -11,6 +11,8 @@
 <!-- <script src="js/select2.min.js"></script> -->
 <!-- Owl Carousel -->
 <script src="{{theme_asset('assets/newjs/owl.carousel.min.js')}}"></script>
+{{-- Selectric Js--}}
+<link rel="stylesheet" href="{{ asset('admin/assets/css/selectric.css') }}">
 {{--    Font Awesome Js--}}
 <script src="{{theme_asset('assets/newjs/fontawesome/font.js')}}"></script>
 <script src="{{ theme_asset('assets/js/jquery.selectric.js') }}"></script>

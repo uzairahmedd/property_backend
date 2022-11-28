@@ -115,7 +115,9 @@
             $(this).parents('ul#select_style_ul').parent('div').find('div#select_style_text').html(txt);
             $('#state').val(vl);
             //call get_properties
-            get_properties();
+            var base_url = $('#base_url').val();
+            var url = base_url + 'get_properties_data';
+            get_properties(url);
 
         });
 
@@ -153,13 +155,12 @@ $(document).ready(function (event) {
 /*----------------------------
         Properties Data Get
     -------------------------------*/
-get_properties()
-
-function get_properties() {
-    console.log('sa');
+// get_properties()
+var base_url = $('#base_url').val();
+var url = base_url + 'get_properties_data';
+get_properties(url)
+function get_properties(url) {
     $('.propertly-list-banner').addClass('hide');
-    var base_url = $('#base_url').val();
-    var url = base_url + 'get_properties_data';
     $.ajax({
         type: 'get',
         url: url,
@@ -171,6 +172,7 @@ function get_properties() {
             $('.loaderInner').fadeIn();
             $('#load_cover').fadeIn('slow');
             $('body').css({ 'overflow': 'invisible' });
+            before_render_list('#item_list', 12);
         },
         complete: function () {
             $('.loaderInner').fadeOut();
@@ -180,37 +182,38 @@ function get_properties() {
         success: function (response) {
             $('.property_placeholder').remove();
             if (response.data.length == 0) {
-                //    $('.show-pagination-info').hide();
+                $('.show-pagination-info').hide();
 
                 $('#item_list').html('<div class="col-12 no-more"><h3 class="text-center">No data avaiable</h3></div>');
 
             } else {
-                // $('.show-pagination-info').show();
-                // $('.no-more').remove();
+                $('.show-pagination-info').show();
+                $('.no-more').remove();
                 properties_list('#item_list', response.data);
             }
 
 
-            //    if(response.from == null){
-            //       var from=0;
-            //    }
-            //   else{
-            //       var from=response.from;
-            //    }
+            if (response.from == null) {
+                var from = 0;
+            }
+            else {
+                var from = response.from;
+            }
 
-            //   if(response.total == null){
-            //       var total=0;
-            //    }
-            //   else{
-            //       var total=response.total;
-            //    }
+            if (response.total == null) {
+                var total = 0;
+            }
+            else {
+                var total = response.total;
+            }
 
-            //   $('#from').html(from);
-            //   $('#to').html(response.to);
-            //   $('#total').html(total);
-            //   if(response.links.length > 3) {
-            //     render_pagination('.pagination',response.links);
-            //    }
+            $('#from').html(from);
+            $('#to').html(response.to);
+            $('#total').html(total);
+            if (response.links.length > 3) {
+                console.log(response.links);
+                render_pagination('.pagination', response.links);
+            }
         }
     })
 }
@@ -241,18 +244,18 @@ function properties_list(target, data) {
     $('.results').text(data.length);
     var base_url = $('#base_url').val();
     var asset_url = base_url;
-   
+    var image = '';
+    var html = '';
+    var status = '';
+    var user_data = '';
+    var phone = '';
+    var title = '';
+    var location = '';
+    var floor_name = '';
+    var htmls = '';
+    var sq_feet = '';
     $.each(data, function (index, value) {
-        var image='';
-        var html='';
-        var status='';
-        var user_data='';
-        var phone='';
-        var title='';
-        var location='';
-        var floor_name='';
-        var htmls='';
-        var sq_feet='';
+
         favourite_property_check(value.id);
         if (value.post_preview != null) {
             image = value.post_preview.media.url;
@@ -270,8 +273,6 @@ function properties_list(target, data) {
             phone = 'N/A';
         }
 
-
-
         if (index == '8') {
             $('.propertly-list-banner').removeClass('hide');
             $('.second_container').addClass('last-property-list');
@@ -285,9 +286,9 @@ function properties_list(target, data) {
 
         //for facilities
         $.each(value.featured_option, function (i, v) {
-            var imgg='';
-            var name='';
-            var quantity='';
+            var imgg = '';
+            var name = '';
+            var quantity = '';
             if (v.featured_category != null && v.featured_category.name == 'Bathrooms') {
                 imgg = 'assets/images/bath-icon.png';
                 name = v.featured_category.name;
@@ -349,6 +350,7 @@ function favourite_property_check(id) {
                 $('.heart' + id).removeClass('fa-solid');
                 $('.heart' + id).addClass('fa-regular');
 
+
             }
         }
     });
@@ -368,7 +370,9 @@ $(document).ready(function (event) {
             $('.overlay').css({ 'opacity': 0, 'display': 'none' });
             $(".rent-dropdown").removeClass("show");
             event.stopPropagation();
-            get_properties();
+            var base_url = $('#base_url').val();
+            var url = base_url + 'get_properties_data';
+            get_properties(url);
         }
     });
 
@@ -379,7 +383,9 @@ $(document).ready(function (event) {
             $('.overlay').css({ 'opacity': 0, 'display': 'none' });
             $(".rent-dropdown").removeClass("show");
             event.stopPropagation();
-            get_properties();
+            var base_url = $('#base_url').val();
+            var url = base_url + 'get_properties_data';
+            get_properties(url);
         }
     });
 
@@ -390,7 +396,9 @@ $(document).ready(function (event) {
             $('.overlay').css({ 'opacity': 0, 'display': 'none' });
             $(".rent-dropdown").removeClass("show");
             event.stopPropagation();
-            get_properties();
+            var base_url = $('#base_url').val();
+            var url = base_url + 'get_properties_data';
+            get_properties(url);
         }
     });
 
@@ -444,4 +452,61 @@ $(document).ready(function () {
     });
 });
 
+
+/*-------------------------------------
+        Properties Pagination Render
+    -----------------------------------------*/
+function render_pagination(target, data) {
+    $('.page-item').remove();
+    $.each(data, function (key, value) {
+        if (value.label === '&laquo; Previous') {
+            if (value.url === null) {
+                var is_disabled = "disabled";
+                var is_active = null;
+            }
+            else {
+                var is_active = 'page-link-no' + key;
+                var is_disabled = 'onClick="PaginationClicked(' + key + ')"';
+            }
+            var html = '<li  class="page-item"><a ' + is_disabled + ' class="page-link pagination-link ' + is_active + '" href="javascript:void(0)" data-url="' + value.url + '"><i class="fas fa-long-arrow-alt-left"></i></a></li>';
+        }
+        else if (value.label === 'Next &raquo;') {
+            if (value.url === null) {
+                var is_disabled = "disabled";
+                var is_active = null;
+            }
+            else {
+                var is_active = 'page-link-no' + key;
+                var is_disabled = 'onClick="PaginationClicked(' + key + ')"';
+            }
+            var html = '<li class="page-item"><a ' + is_disabled + '  class="page-link pagination-link ' + is_active + '" href="javascript:void(0)" data-url="' + value.url + '"><i class="fas fa-long-arrow-alt-right paginate-arrow"></i></a></li>';
+        }
+        else {
+            if (value.active == true) {
+                var is_active = "active";
+                var is_disabled = "disabled";
+                var url = null;
+
+            }
+            else {
+                var is_active = 'page-link-no' + key;
+                var is_disabled = 'onClick="PaginationClicked(' + key + ')"';
+                var url = value.url;
+            }
+            console.log(value.label);
+            var html = '<li class="page-item"><a class="page-link pagination-link ' + is_active + '" ' + is_disabled + ' href="javascript:void(0)" data-url="' + url + '">' + value.label + '</a></li>';
+        }
+        if (value.url !== null) {
+            $(target).append(html);
+        }
+    });
+}
+
+/*-------------------------------------
+        Pagination Clicked Function
+    -----------------------------------------*/
+function PaginationClicked(key) {
+    var url = $('.page-link-no' + key).data('url');
+    get_properties(url);
+}
 

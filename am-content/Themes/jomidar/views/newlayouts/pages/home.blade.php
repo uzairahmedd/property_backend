@@ -17,28 +17,75 @@
                         <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
                         <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-home" onclick="" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">للايجار
                         </button>
-                        <ul class="dropdown-menu rent-dropdown" aria-labelledby="dropdownMenuLink-list">
-                            <div class="rent-dropdown-content">
-                                @foreach($status as $status_data)
-                                    @if( $status_data->name =='Sale')
-                                        <li class="rent-all">
-                                            <input class="rent-select-dropdown" value="{{ $status_data->id}}" type="radio" id="radio02-01" name="status" />
-                                            <label class="rent-box sale_label" for="radio02-01">بيع</label>
-                                        </li>
-                                    @elseif($status_data->name =='Rent')
-                                        <li class="rent-all">
-                                            <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" type="radio" id="radio02-02" name="status" checked />
-                                            <label class="rent-box rent_label_list" for="radio02-02">ايجار</label>
-                                        </li>
-                                    @elseif($status_data->name =='Projects')
-                                        <li class="rent-all">
-                                            <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" type="radio" id="radio03-03" name="status" />
-                                            <label class="rent-box project_label" for="radio03-03">المشاريع</label>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </div>
+{{--                        <ul class="dropdown-menu rent-dropdown" aria-labelledby="dropdownMenuLink-list">--}}
+{{--                            <div class="rent-dropdown-content">--}}
+{{--                                @foreach($status as $status_data)--}}
+{{--                                    @if( $status_data->name =='Sale')--}}
+{{--                                        <li class="rent-all">--}}
+{{--                                            <input class="rent-select-dropdown" value="{{ $status_data->id}}" type="radio" id="radio02-01" name="status" />--}}
+{{--                                            <label class="rent-box sale_label" for="radio02-01">بيع</label>--}}
+{{--                                        </li>--}}
+{{--                                    @elseif($status_data->name =='Rent')--}}
+{{--                                        <li class="rent-all">--}}
+{{--                                            <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" type="radio" id="radio02-02" name="status" checked />--}}
+{{--                                            <label class="rent-box rent_label_list" for="radio02-02">ايجار</label>--}}
+{{--                                        </li>--}}
+{{--                                    @elseif($status_data->name =='Projects')--}}
+{{--                                        <li class="rent-all">--}}
+{{--                                            <input class="rent-select-dropdown drive_percent-box" value="{{ $status_data->id}}" type="radio" id="radio03-03" name="status" />--}}
+{{--                                            <label class="rent-box project_label" for="radio03-03">المشاريع</label>--}}
+{{--                                        </li>--}}
+{{--                                    @endif--}}
+{{--                                @endforeach--}}
+{{--                            </div>--}}
 
+{{--                        </ul>--}}
+
+{{--                        <ul class="dropdown-menu rent-dropdown" aria-labelledby="dropdownMenuLink-list">--}}
+                        <ul class="dropdown-menu new-rent-dropdown" aria-labelledby="dropdownMenuLink-list">
+                            <div class="resident-dropdown-content">
+                                <div class="row">
+                                    <div class="col-12 p-0">
+                                        <!-- Tab -->
+                                        <nav>
+                                            <p class="rent-buy-txt">نوع العرض</p>
+                                            <div class="nav nav-tabs mb-4 rent-tabs d-flex justify-content-center align-items-center" id="nav-tab" role="tablist">
+                                                <a class="nav-item nav-link rent-link active" id="nav-rent-tab" data-bs-toggle="tab" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">للبيع</a>
+                                                <a class="nav-item nav-link rent-link" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" role="tab" aria-controls="nav-buy" aria-selected="false">للايجار</a>
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="nav-rent" role="tabpanel" aria-labelledby="nav-rent-tab">
+{{--                                                <p class="rent-buy-txt">حالة العقار</p>--}}
+{{--                                                    <div class="rent-buy-pans d-flex justify-content-center align-items-center">--}}
+{{--                                                        <li class="buy-rent-pan" name="category" value="1">قيد الإنشاء</li>--}}
+{{--                                                        <li class="buy-rent-pan" name="category" value="2">جاهز</li>--}}
+{{--                                                        <li class="buy-rent-pan" name="category" value="3">الجميع</li>--}}
+{{--                                                </div>--}}
+                                                <div class="d-flex justify-content-between mt-2">
+                                                    <button class="complete-btn"><a href="">تم</a></button>
+                                                    <button class="reset-btn"><a href="">إعادة ضبط</a></button>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-buy" role="tabpanel" aria-labelledby="nav-buy-tab">
+                                                <p class="rent-buy-txt">مدة الايجار</p>
+                                                <div class="rent-buy-pans d-flex justify-content-center align-items-center">
+                                                    <li class="buy-rent-pan" name="category" value="1">الجميع</li>
+                                                    <li class="buy-rent-pan" name="category" value="2">يومياً</li>
+                                                    <li class="buy-rent-pan" name="category" value="3">أسبوعياً</li>
+                                                    <li class="buy-rent-pan" name="category" value="4">شهرياً</li>
+                                                    <li class="buy-rent-pan" name="category" value="5">سنوياً</li>
+                                                </div>
+                                                <div class="d-flex justify-content-between mt-2">
+                                                    <button class="complete-btn"><a href="">تم</a></button>
+                                                    <button class="reset-btn"><a href="">إعادة ضبط</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End of tab -->
+                                    </div>
+                                </div>
+                            </div>
                         </ul>
                     </div>
                 </div>

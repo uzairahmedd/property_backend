@@ -11,6 +11,26 @@
             </div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-column flex-md-row w-100 align-items-center justify-content-between">
+                    <div class="header-top-right-section f-right">
+                        @php
+                            $langs = App\Category::where([
+                                ['type','lang'],
+                                ['status',1],
+                                ['name','jomidar']
+                            ])->get();
+                        @endphp
+                        <div class="single-header-select-form">
+                            <input type="hidden" value="{{ route('language.set') }}" id="lang_select_url">
+                            <select class="form-control selectric" id="lang_select">
+                                @foreach ($langs as $lang)
+                                    @php
+                                        $info = json_decode($lang->langmeta->content);
+                                    @endphp
+                                    <option {{ Session::get('locale') == $lang->slug ? 'selected' : '' }} value="{{ $lang->slug }}">{{ $info->lang_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     @if (Auth::check())
                     <li class="nav-item d-flex align-items-center mb-3 mb-sm-0">
 

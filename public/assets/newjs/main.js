@@ -140,7 +140,24 @@ $(document).ready(function () {
         e.stopPropagation();
     });
 
+    $('.rent-tabs .rent-link').click(function(e){
+        e.stopPropagation();
+    });
+
     $('.resident-pan').on('click', function (event) {
+        $(".resident-pan").removeClass('selected');
+        $(this).addClass('selected');
+        var drop_text = $(".resident-pan.selected").text();
+        $("#dropdownMenuLink1").html(drop_text);
+        // $('#rent-t-icon img').css('margin-top','10px');
+        $('.resident-pan.selected').css({ "margin-bottom": "0px", "margin-top": "10px", "border": "none", "padding": "0px 20px 0 35px;" });
+        $('.overlay').css('opacity', 0);
+        $('.overlay').css('display', 'none');
+        $(".resident-dropdown").removeClass("show");
+        event.stopPropagation();
+    });
+
+    $('.rent-pan').on('click', function (event) {
         $(".resident-pan").removeClass('selected');
         $(this).addClass('selected');
         var drop_text = $(".resident-pan.selected").text();
@@ -191,6 +208,16 @@ $(document).ready(function (event) {
         event.stopPropagation();
     });
 });
+
+$(document).ready(function (event) {
+    $('.overlay').click(function (event) {
+        $('.overlay').css('opacity', 0);
+        $('.overlay').css('display', 'none');
+        $(".new-rent-dropdown").removeClass("show");
+        event.stopPropagation();
+    });
+});
+
 // jquery for dropdown button End
 
 
@@ -209,6 +236,27 @@ $(document).ready(function (event) {
         $('.overlay').css('opacity', 0);
         $('.overlay').css('display', 'none');
         $(".rent-dropdown").removeClass("show");
+        event.stopPropagation();
+    });
+});
+// jquery for dropdown button End
+
+
+// jquery for dropdown button start
+$(document).ready(function (event) {
+    $('.complete-rent-drop').click(function (e) {
+        $("ul.new-rent-dropdown").removeAttr('style');
+        $('.overlay').css('opacity', 0.2);
+        $('.overlay').css('display', 'block');
+        // event.stopPropagation();
+    });
+});
+
+$(document).ready(function (event) {
+    $('.overlay').click(function (event) {
+        $('.overlay').css('opacity', 0);
+        $('.overlay').css('display', 'none');
+        $(".new-rent-dropdown").removeClass("show");
         event.stopPropagation();
     });
 });
@@ -336,7 +384,7 @@ rangeInput.forEach((input) => {
                 }else{
                     $('.heart'+id).removeClass('fa-solid');
                     $('.heart'+id).addClass('fa-regular');
-                   
+
                 }
             }
         });

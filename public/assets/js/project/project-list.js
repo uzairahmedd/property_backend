@@ -13,9 +13,9 @@ function get_properties(url){
         data: $('.search_form').serialize(),
         dataType: 'json',
         beforeSend: function(){
-            before_render_list('#item_lists',12)
+            before_render_list('#item_list',12)
         },
-        success: function(response){ 
+        success: function(response){
             $('.property_placeholder').remove();
             if(response.data.length == 0){
                $('.show-pagination-info').hide();
@@ -46,7 +46,7 @@ function get_properties(url){
           if(response.links.length > 3) {
             render_pagination('.pagination',response.links);
          }
-          
+
         }
     })
 }
@@ -59,7 +59,7 @@ function render_pagination(target,data){
        $.each(data, function(key,value){
             if(value.label === '&laquo; Previous'){
                 if(value.url === null){
-                    var is_disabled="disabled"; 
+                    var is_disabled="disabled";
                     var is_active=null;
                 }
                 else{
@@ -70,7 +70,7 @@ function render_pagination(target,data){
             }
             else if(value.label === 'Next &raquo;'){
                 if(value.url === null){
-                    var is_disabled="disabled"; 
+                    var is_disabled="disabled";
                     var is_active=null;
                 }
                 else{
@@ -95,7 +95,7 @@ function render_pagination(target,data){
             }
             if(value.url !== null){
               $(target).append(html);
-            }   
+            }
     });
 }
 

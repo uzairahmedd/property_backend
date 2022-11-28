@@ -48,8 +48,8 @@ class PropertyController extends controller
         $categories = Category::where('type', 'category')->get();
         //new design khiaratee
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
-        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'currency', 'status_category'));
-        //    return view('view::agent.property.create',compact('categories','currency'));
+//        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'currency', 'status_category'));
+            return view('view::agent.property.create',compact('categories','currency'));
     }
 
     /**
@@ -392,7 +392,7 @@ class PropertyController extends controller
             $contents->term_id = $id;
             $contents->type = 'content';
         }
-        $contents->content = $request->content;
+        $contents->content = $request->contents;
         $contents->save();
 
 
@@ -593,7 +593,7 @@ class PropertyController extends controller
         $pattern .=   '(?:';              #    Group path alternatives:
         $pattern .=     '/embed/';        #      Either /embed/,
         $pattern .=     '|/v/';           #      or /v/,
-        $pattern .=     '|/watch\?v=';    #      or /watch?v=,    
+        $pattern .=     '|/watch\?v=';    #      or /watch?v=,
         $pattern .=     '|/watch\?.+&v='; #      or /watch?other_param&v=
         $pattern .=   ')';                #    End path alternatives.
         $pattern .= ')';                  #  End host alternatives.
@@ -645,7 +645,7 @@ class PropertyController extends controller
         $meta->type = 'description';
         $meta->content = $request->description;
         $meta->save();
-        //store contact type 
+        //store contact type
         $json['contact_type'] = "mail";
         $json['email'] = Auth::user()->email;
         $meta = new Meta;

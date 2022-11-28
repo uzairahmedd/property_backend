@@ -219,7 +219,7 @@
     });
 
 
-    //sending otp 
+    //sending otp
     $("#resend_otp").on("click", function (e) {
         e.preventDefault();
         $('input[name="otp[]"]').val('');
@@ -238,7 +238,7 @@
                 $("#resend_otp i").removeClass('fa fa-spinner fa-spin ');
 
                 if (response.header_code == 200) {
-                    $("#otp4").focus();
+                    $("#otp1").focus();
                     timer.reset(response.time);
                     timer.mode(0);
                     timer.start(1000);
@@ -255,7 +255,7 @@
 
 
 
-    //update phone 
+    //update phone
     $("#update_phone_btn").on("click", function (e) {
         e.preventDefault();
         $.ajaxSetup({

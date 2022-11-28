@@ -157,7 +157,6 @@
                             <div class="pagination-area f-right">
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination justify-content-center">
-
                                     </ul>
                                 </nav>
 

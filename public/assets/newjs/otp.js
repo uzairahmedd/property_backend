@@ -1,6 +1,6 @@
 
 (function ($) {
-    $("#otp4").focus();
+    $("#otp1").focus();
 })(jQuery);
 
 var a = document.getElementById("otp1"),
@@ -9,27 +9,25 @@ var a = document.getElementById("otp1"),
 d = document.getElementById("otp4");
 
 
-d.onkeyup = function () {
-    if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
-        c.focus();
-    }
-}
-c.onkeyup = function () {
+a.onkeyup = function () {
     if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
         b.focus();
     }
 }
 b.onkeyup = function () {
     if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
-        a.focus();
+        c.focus();
+    }
+}
+c.onkeyup = function () {
+    if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
+        d.focus();
     }
 }
 
-
-
-a.onkeyup = function () {
+d.onkeyup = function () {
     if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
-        a.focus();
+        d.focus();
     }
 }
 
@@ -42,7 +40,7 @@ function _timer(callback) {
     var status = 0;    //    Status: timer is running or stoped
     var timer_id;    //    This is used by setInterval function
 
-    // this will start the timer ex. start the timer with 1 second interval timer.start(1000) 
+    // this will start the timer ex. start the timer with 1 second interval timer.start(1000)
     this.start = function (interval) {
         interval = (typeof (interval) !== 'undefined') ? interval : 1000;
 
