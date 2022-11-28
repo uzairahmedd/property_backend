@@ -3,7 +3,7 @@
 @include('theme::newlayouts.partials.top')
 
 <body>
-    <div id="fade" class="overlay"></div>
+  
     <input type="hidden" id="base_url" value="{{ asset('/') }}">
     <input type="hidden" id="asset_url" value="{{ asset('/') }}">
     <input type="hidden" value="{{ route('property.favourite') }}" id="favourite_property_url">

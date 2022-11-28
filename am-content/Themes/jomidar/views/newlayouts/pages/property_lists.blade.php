@@ -6,6 +6,7 @@
 </script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/second-page.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/propertylist-search.css')}}">
+<div id="fade" class="overlay"></div>
 <div class="filter-bar">
     <div class="container">
         <div id="load_cover">
@@ -15,6 +16,7 @@
         </div>
         <form class="search_form">
             <input type="hidden" id="state" name="state" value="{{$state}}">
+            <input type="hidden" id="status_lis" name="status" value="{{$status}}">
             <div class="row">
                 <div class="filter-drop location-icon col-lg-1 col-md-2 col-sm-2 col-xs-2 order-lg-1" id="filter-map">
                     <div class="map-icon align-items-center d-flex justify-content-center">
@@ -180,8 +182,15 @@
                     <div class="select-rent-dropdowns">
                         <div class="dropdown list-complete-rent-drop">
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                            <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">ايجار
+                            @foreach($statuses as $status_data)
+                            @if( $status_data->id == $status && $status_data->name =='Sale')
+                            <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">للبيع
                             </button>
+                            @elseif($status_data->id == $status && $status_data->name =='Rent')
+                            <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">للايجار
+                            </button>
+                             @endif
+                            @endforeach
                             <ul class="dropdown-menu list-rent-dropdown" aria-labelledby="dropdownMenuLink-buy">
                                 <div class="rent-dropdown-content">
                                     <div class="row">
@@ -191,24 +200,24 @@
                                                 <p class="rent-buy-txt">نوع العرض</p>
                                                 <div class="nav nav-tabs mb-4 rent-tabs d-flex justify-content-center align-items-center" id="nav-tab" role="tablist">
                                                     @foreach($statuses as $status_data)
-                                                        @if( $status_data->name =='Sale')
-                                                            <a class="nav-item nav-link rent-link nav-sale active" id="nav-rent-tab" data-bs-toggle="tab" value="{{$status_data->id}}" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">للبيع</a>
-                                                        @elseif( $status_data->name =='Rent')
-                                                            <a class="nav-item nav-link rent-link nav-rent" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" value="{{$status_data->id}}" role="tab" aria-controls="nav-buy" aria-selected="false">للايجار</a>
-                                                        @endif
+                                                    @if( $status_data->name =='Sale')
+                                                    <a class="nav-item nav-link rent-link nav-sale active" id="nav-rent-tab" data-bs-toggle="tab" data-value="{{$status_data->id}}" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">للبيع</a>
+                                                    @elseif( $status_data->name =='Rent')
+                                                    <a class="nav-item nav-link rent-link nav-sale" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" data-value="{{$status_data->id}}" role="tab" aria-controls="nav-buy" aria-selected="false">للايجار</a>
+                                                    @endif
                                                     @endforeach
                                                 </div>
                                             </nav>
                                             <div class="tab-content" id="nav-tabContent">
                                                 <div class="tab-pane fade show active" id="nav-rent" role="tabpanel" aria-labelledby="nav-rent-tab">
-                                                    {{--                                                <p class="rent-buy-txt">حالة العقار</p>--}}
-                                                    {{--                                                    <div class="rent-buy-pans d-flex justify-content-center align-items-center">--}}
-                                                    {{--                                                        <li class="buy-rent-pan" name="category" value="1">قيد الإنشاء</li>--}}
-                                                    {{--                                                        <li class="buy-rent-pan" name="category" value="2">جاهز</li>--}}
-                                                    {{--                                                        <li class="buy-rent-pan" name="category" value="3">الجميع</li>--}}
-                                                    {{--                                                </div>--}}
+                                                    {{-- <p class="rent-buy-txt">حالة العقار</p>--}}
+                                                    {{-- <div class="rent-buy-pans d-flex justify-content-center align-items-center">--}}
+                                                    {{-- <li class="buy-rent-pan" name="category" value="1">قيد الإنشاء</li>--}}
+                                                    {{-- <li class="buy-rent-pan" name="category" value="2">جاهز</li>--}}
+                                                    {{-- <li class="buy-rent-pan" name="category" value="3">الجميع</li>--}}
+                                                    {{-- </div>--}}
                                                     <div class="d-flex justify-content-between mt-2">
-                                                        <button class="complete-btn"><a href="">تم</a></button>
+                                                        <button class="complete-btn list-complete-btn"><a href="">تم</a></button>
                                                         <button class="reset-btn"><a href="">إعادة ضبط</a></button>
                                                     </div>
                                                 </div>
@@ -216,32 +225,32 @@
                                                     <p class="rent-buy-txt">مدة الايجار</p>
                                                     <div class="rent-buy-pans d-flex flex-row-reverse justify-content-center align-items-center">
                                                         <li class="rent-all">
-                                                            <input class="rent-select-dropdown" value="" type="radio" id="radio02-01" name="status" checked />
+                                                            <input class="rent-select-dropdown" value="" type="radio" id="radio02-01" checked />
                                                             <label class="rent-box any" for="radio02-01">الجميع</label>
                                                         </li>
 
                                                         <li class="rent-all">
-                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio02-02" name="status" />
+                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio02-02" />
                                                             <label class="rent-box rent_label_list" for="radio02-02">يومياً</label>
                                                         </li>
 
                                                         <li class="rent-all">
-                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio03-03" name="status" />
+                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio03-03" />
                                                             <label class="rent-box project_label" for="radio03-03">أسبوعياً</label>
                                                         </li>
 
                                                         <li class="rent-all">
-                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio04-04" name="status" />
+                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio04-04" />
                                                             <label class="rent-box project_label" for="radio04-04">شهرياً</label>
                                                         </li>
 
                                                         <li class="rent-all">
-                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio05-05" name="status" />
+                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio05-05" />
                                                             <label class="rent-box project_label" for="radio05-05">سنوياً</label>
                                                         </li>
                                                     </div>
                                                     <div class="d-flex justify-content-between mt-2">
-                                                        <button class="complete-btn"><a href="">تم</a></button>
+                                                        <button class="complete-btn list-complete-btn"><a href="">تم</a></button>
                                                         <button class="reset-btn"><a href="">إعادة ضبط</a></button>
                                                     </div>
                                                 </div>

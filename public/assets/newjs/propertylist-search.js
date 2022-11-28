@@ -224,6 +224,10 @@ function get_properties(url) {
             $('body').css({ 'overflow': 'visible' });
         },
         success: function (response) {
+            $('body').css({ 'overflow': 'visible' });
+            $('.overlay').css('opacity', 0);
+            $('.overlay').css('display', 'none');
+            
             $('.property_placeholder').remove();
             if (response.data.length == 0) {
                 $('.show-pagination-info').hide();

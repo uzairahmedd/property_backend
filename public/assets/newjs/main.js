@@ -36,15 +36,16 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#select-drop-btn').change(function () {
-        $(window).css('opacity', 0.2);
+        // $('.home_fade').addClass('add_overlay');
     });
 });
 
 // jquery for dropdown button start
 $(document).ready(function (event) {
-    $('.complete-rent-drop').click(function (e) {
-        $('.overlay').css('opacity', 0.2);
-        $('.overlay').css('display', 'block');
+    $('#dropdownMenuLink-home').click(function (e) {
+        $('.home_fade').addClass('add_overlay');
+        // $('.overlay').css('opacity', 0.2);
+        // $('.overlay').css('display', 'block');
         // event.stopPropagation();
     });
 });
@@ -59,20 +60,37 @@ $(document).ready(function (event) {
 //     }
 // });
 
-$('.rent-link').click(function()
-{
-    if($(this).hasClass('active'))
-    {
-        let radio_text= $(this).text();
+$('.rent-link').click(function () {
+    if ($(this).hasClass('active')) {
+        let radio_text = $(this).text();
         $('#dropdownMenuLink-home').text(radio_text);
         let radio_val = $(this).data('value');
         $('#status').val(radio_val);
     }
 });
 
-$('.complete-btn').click(function(e)
-{
 
+$('.nav-sale').click(function () {
+    if ($(this).hasClass('active')) {
+        let radio_text = $(this).text();
+        $('#dropdownMenuLink-buy').text(radio_text);
+        let radio_val = $(this).data('value');
+        $('#status_list').val(radio_val);
+
+    }
+});
+
+$('.list-complete-btn').click(function (e) {
+
+    e.preventDefault();
+    var base_url = $('#base_url').val();
+    var url = base_url + 'get_properties_data';
+    get_properties(url);
+});
+
+$('.home-complete-btn').click(function (e) {
+    $('.home_fade').removeClass('add_overlay');
+    
     e.preventDefault();
 });
 
@@ -161,8 +179,7 @@ $(document).ready(function () {
 // jquery for selection dropdown start
 $(document).ready(function () {
     $('.rent-select').click(function () {
-        $('.overlay').css('opacity', 0.2);
-        $('.overlay').css('display', 'block');
+        // $('.home_fade').addClass('add_overlay');
         $('.overlay').css('z-index', '999');
     });
 });
@@ -171,16 +188,16 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('.complete-resident-drop').on('click', function (event) {
-        $('.overlay').css('opacity', 0.2);
-        $('.overlay').css('display', 'block');
+        // $('.overlay').css('opacity', 0.2);
+        // $('.overlay').css('display', 'block');
         // event.stopPropagation();
     });
 
-    $('.resident-tabs .resident-link').click(function(e){
+    $('.resident-tabs .resident-link').click(function (e) {
         e.stopPropagation();
     });
 
-    $('.rent-tabs .rent-link').click(function(e){
+    $('.rent-tabs .rent-link').click(function (e) {
         e.stopPropagation();
     });
 
@@ -223,14 +240,15 @@ $(document).ready(function () {
 
 
 // jquery for dropdown button start
-$(document).ready(function (event) {
-    $('.complete-rent-drop').click(function (e) {
-        // $('.overlay').addClass('add_overlay');
-        $('.overlay').css('opacity', 0.2);
-        $('.overlay').css('display', 'block');
-        // event.stopPropagation();
-    });
-});
+// $(document).ready(function (event) {
+//     $('.complete-rent-drop').click(function (e) {
+//         // $('.overlay').addClass('add_overlay');
+//         $('.overlay').css('opacity', 0.2);
+//         $('.overlay').css('display', 'block');
+//         // event.stopPropagation();
+//     });
+// });
+
 $("#rent-propertylist-drop").click(function (event) {
     if ($("#rent-propertylist-drop input[type='radio']").is(":checked")) {
         // var radio_val = $("#rent-propertylist-drop input[type='radio']:checked").val();
@@ -258,8 +276,8 @@ $(document).ready(function (event) {
 $(document).ready(function (event) {
     $('.complete-rent-drop').click(function (e) {
         $("ul.rent-dropdown").removeAttr('style');
-        $('.overlay').css('opacity', 0.2);
-        $('.overlay').css('display', 'block');
+        // $('.overlay').css('opacity', 0.2);
+        // $('.overlay').css('display', 'block');
         // event.stopPropagation();
     });
 });
@@ -277,19 +295,19 @@ $(document).ready(function (event) {
 
 // jquery for dropdown button start
 $(document).ready(function (event) {
-    $('.complete-rent-drop').click(function (e1) {
-        $("ul.new-rent-dropdown").removeAttr('style');
-        $('.overlay').css('opacity', 0.2);
-        $('.overlay').css('display', 'block');
-        e1.preventDefault();
-    });
+    // $('.complete-rent-drop').click(function (e1) {
+    //     $("ul.new-rent-dropdown").removeAttr('style');
+    //     $('.overlay').css('opacity', 0.2);
+    //     $('.overlay').css('display', 'block');
+    //     e1.preventDefault();
+    // });
 
-        $('.overlay').click(function (event) {
-            $('.overlay').css('opacity', 0);
-            $('.overlay').css('display', 'none');
-            $(".new-rent-dropdown").removeClass("show");
-            event.stopPropagation();
-        });
+    $('.overlay').click(function (event) {
+        $('.overlay').css('opacity', 0);
+        $('.overlay').css('display', 'none');
+        $(".new-rent-dropdown").removeClass("show");
+        event.stopPropagation();
+    });
 
     $('.overlay').click(function (e) {
         $('.overlay').css('opacity', 0);
@@ -298,12 +316,11 @@ $(document).ready(function (event) {
 
     });
 
-    $('.rent-all').click(function(e){
+    $('.rent-all').click(function (e) {
         e.stopPropagation();
     });
 
     $('.complete-btn').click(function (e1) {
-        console.log('asdffd');
         e1.preventDefault();
         $('#fade').css('opacity', 0);
         $('#fade').css('display', 'none');
@@ -332,8 +349,7 @@ $(document).ready(function (event) {
 // Property Type Dropdown Selection Start
 $(document).ready(function (event) {
     $('.property-type-drop').click(function (e) {
-        $('.overlay').css('opacity', 0.2);
-        $('.overlay').css('display', 'block');
+        // $('.home_fade').addClass('add_overlay');
         // event.stopPropagation();
     });
 
@@ -350,8 +366,7 @@ $(document).ready(function (event) {
 // Room Dropdown Selection Start
 $(document).ready(function (event) {
     $('.room-type-drop').click(function (e) {
-        $('.overlay').css('opacity', 0.2);
-        $('.overlay').css('display', 'block');
+        // $('.home_fade').addClass('add_overlay');
         // event.stopPropagation();
     });
 
@@ -419,27 +434,25 @@ rangeInput.forEach((input) => {
 /*---------------------------
         Favourite Check
     ------------------------------*/
-    function home_favourite_property_check(id)
-    {
-        var url = $("#favourite_check_url").val();
-        $.ajax({
-            url: url,
-            data: { id: id },
-            type: "GET",
-            dataType: "HTML",
-            success: function(response) {
-                console.log(response);
-                if(response == 'ok')
-                {
-                    $('.heart'+id).removeClass('fa-regular');
-                    $('.heart'+id).addClass('fa-solid');
-                }else{
-                    $('.heart'+id).removeClass('fa-solid');
-                    $('.heart'+id).addClass('fa-regular');
+function home_favourite_property_check(id) {
+    var url = $("#favourite_check_url").val();
+    $.ajax({
+        url: url,
+        data: { id: id },
+        type: "GET",
+        dataType: "HTML",
+        success: function (response) {
+            console.log(response);
+            if (response == 'ok') {
+                $('.heart' + id).removeClass('fa-regular');
+                $('.heart' + id).addClass('fa-solid');
+            } else {
+                $('.heart' + id).removeClass('fa-solid');
+                $('.heart' + id).addClass('fa-regular');
 
-                }
             }
-        });
-    }
+        }
+    });
+}
 
 

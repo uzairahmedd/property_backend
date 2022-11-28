@@ -2,6 +2,7 @@
 @section('content')
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/select-style.css')}}">
     <!-- Header Section Starts Here -->
+    <div  class="overlay home_fade"></div>
     <div class="header d-flex flex-column align-items-center">
         <li class="col-12 col-sm-10 col-lg-8 col-xl-5">
             <h1 class="font-medium theme-text-white text-center">المنصة الحصرية للعقارات الموثقة في <span class="font-bold">المملكة</span></h1>
@@ -15,7 +16,7 @@
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                     <div class="dropdown complete-rent-drop">
                         <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                        <input type="hidden" value="" name="status" id=status>
+                        <input type="hidden" value="27" name="status" id=status>
                         <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-home"  data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">للايجار
                         </button>
                         <ul class="dropdown-menu new-rent-dropdown" aria-labelledby="dropdownMenuLink-list">
@@ -44,7 +45,7 @@
 {{--                                                        <li class="buy-rent-pan" name="category" value="3">الجميع</li>--}}
 {{--                                                </div>--}}
                                                 <div class="d-flex justify-content-between mt-2">
-                                                    <button class="complete-btn"><a href="" class="complete-btn">تم</a></button>
+                                                    <button class="complete-btn home-complete-btn"><a href="">تم</a></button>
                                                     <button class="reset-btn"><a href="">إعادة ضبط</a></button>
                                                 </div>
                                             </div>
@@ -77,7 +78,7 @@
                                                     </li>
                                                 </div>
                                                 <div class="d-flex justify-content-between mt-2">
-                                                    <button class="complete-btn"><a href="">تم</a></button>
+                                                    <button class="complete-btn home-complete-btn"><a href="">تم</a></button>
                                                     <button class="reset-btn"><a href="">إعادة ضبط</a></button>
                                                 </div>
                                             </div>
