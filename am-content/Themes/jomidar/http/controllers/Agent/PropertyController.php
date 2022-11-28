@@ -48,8 +48,8 @@ class PropertyController extends controller
         $categories = Category::where('type', 'category')->get();
         //new design khiaratee
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
-//        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'currency', 'status_category'));
-            return view('view::agent.property.create',compact('categories','currency'));
+       return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'currency', 'status_category'));
+            // return view('view::agent.property.create',compact('categories','currency'));
     }
 
     /**

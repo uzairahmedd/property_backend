@@ -218,6 +218,9 @@ class RegisterController extends controller
             ->where('id', decrypt($id))
             ->where('is_verified', 0)
             ->first();
+        if(!$user_data){
+           abort(404); 
+        }    
         //time diff for otp send to page reload
         $diff = Carbon::parse($user_data->updated_at)->diffInSeconds(\Carbon\Carbon::now());
         $time = 60 - $diff;
@@ -355,7 +358,7 @@ class RegisterController extends controller
         }
         //time for countdown
         $user_data = DB::table('users')->where('id', decrypt($request['user_id']))
-            ->where('is_verified', '0')
+            // ->where('is_verified', '0')
             ->first();
         //time diff for otp send to page reload
         $diff = Carbon::parse($user_data->updated_at)->diffInSeconds(\Carbon\Carbon::now());
