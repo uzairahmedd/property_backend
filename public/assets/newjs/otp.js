@@ -1,12 +1,12 @@
 
 (function ($) {
-    $("#otp4").focus();
+    $("#otp1").focus();
 })(jQuery);
 
-var a = document.getElementById("otp1"),
-    b = document.getElementById("otp2"),
-    c = document.getElementById("otp3");
-d = document.getElementById("otp4");
+var a = document.getElementById("otp4"),
+    b = document.getElementById("otp3"),
+    c = document.getElementById("otp2");
+d = document.getElementById("otp1");
 
 
 d.onkeyup = function () {
@@ -25,8 +25,6 @@ b.onkeyup = function () {
     }
 }
 
-
-
 a.onkeyup = function () {
     if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
         a.focus();
@@ -42,7 +40,7 @@ function _timer(callback) {
     var status = 0;    //    Status: timer is running or stoped
     var timer_id;    //    This is used by setInterval function
 
-    // this will start the timer ex. start the timer with 1 second interval timer.start(1000) 
+    // this will start the timer ex. start the timer with 1 second interval timer.start(1000)
     this.start = function (interval) {
         interval = (typeof (interval) !== 'undefined') ? interval : 1000;
 

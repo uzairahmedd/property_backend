@@ -208,6 +208,16 @@ $(document).ready(function (event) {
         event.stopPropagation();
     });
 });
+
+$(document).ready(function (event) {
+    $('.overlay').click(function (event) {
+        $('.overlay').css('opacity', 0);
+        $('.overlay').css('display', 'none');
+        $(".new-rent-dropdown").removeClass("show");
+        event.stopPropagation();
+    });
+});
+
 // jquery for dropdown button End
 
 
@@ -226,6 +236,27 @@ $(document).ready(function (event) {
         $('.overlay').css('opacity', 0);
         $('.overlay').css('display', 'none');
         $(".rent-dropdown").removeClass("show");
+        event.stopPropagation();
+    });
+});
+// jquery for dropdown button End
+
+
+// jquery for dropdown button start
+$(document).ready(function (event) {
+    $('.complete-rent-drop').click(function (e) {
+        $("ul.new-rent-dropdown").removeAttr('style');
+        $('.overlay').css('opacity', 0.2);
+        $('.overlay').css('display', 'block');
+        // event.stopPropagation();
+    });
+});
+
+$(document).ready(function (event) {
+    $('.overlay').click(function (event) {
+        $('.overlay').css('opacity', 0);
+        $('.overlay').css('display', 'none');
+        $(".new-rent-dropdown").removeClass("show");
         event.stopPropagation();
     });
 });

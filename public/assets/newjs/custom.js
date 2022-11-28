@@ -219,7 +219,7 @@
     });
 
 
-    //sending otp 
+    //sending otp
     $("#resend_otp").on("click", function (e) {
         e.preventDefault();
         $('input[name="otp[]"]').val('');
@@ -255,7 +255,7 @@
 
 
 
-    //update phone 
+    //update phone
     $("#update_phone_btn").on("click", function (e) {
         e.preventDefault();
         $.ajaxSetup({
