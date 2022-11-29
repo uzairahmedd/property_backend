@@ -4,7 +4,7 @@
             <span class="font-16 theme-text-sky">رقم الجوال</span>
             <div class="d-flex align-items-center">
                 <img src="assets/images/tick-verified.png" alt="">
-                <h3 class="font-24 font-medium theme-text-blue mb-0 ms-2">{{ $info->phone ?? 'N/A' }}</h3>
+                <h3 class="font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->phone ?? 'N/A' }}</h3>
             </div>
         </div>
         <div class="col-lg-4 col-md-4 d-flex flex-column align-items-end">

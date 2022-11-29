@@ -16,7 +16,7 @@
         </div>
         <form class="search_form">
             <input type="hidden" id="state" name="state" value="{{$state}}">
-            <input type="hidden" id="status_lis" name="status" value="{{$status}}">
+            <input type="hidden" id="status_list" name="status" value="{{$status}}">
             <div class="row">
                 <div class="filter-drop location-icon col-lg-1 col-md-2 col-sm-2 col-xs-2 order-lg-1" id="filter-map">
                     <div class="map-icon align-items-center d-flex justify-content-center">

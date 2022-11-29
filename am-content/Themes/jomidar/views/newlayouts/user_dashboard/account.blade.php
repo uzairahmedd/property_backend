@@ -10,17 +10,17 @@
                             <span class="font-16 theme-text-sky">رقم الجوال</span>
                             <div class="d-flex align-items-center">
                                 <img src="http://127.0.0.1:8000/assets/images/tick-verified.png" alt="">
-                                <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">05546106060</h3>
+                                <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->phone ?? 'N/A' }}</h3>
                             </div>
                         </div>
                         <div class="d-flex flex-column align-items-end mb-3 mb-lg-0">
                             <span class="font-16 theme-text-sky">مسجل منذ</span>
-                            <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">12-10-2022</h3>
+                            <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->created_at->format('m/d/Y') }}</h3>
                         </div>
                         <div class="d-flex align-items-center mb-3 mb-lg-0">
                             <div class="col d-flex flex-column align-items-end">
                                 <span class="font-16 theme-text-sky">أهلا بك,</span>
-                                <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">خالد بن عبدالعزيز أل
+                                <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->name }}
                                     عثمان</h3>
                             </div>
                             <div class="dp-elipse d-flex align-items-center justify-content-center">
