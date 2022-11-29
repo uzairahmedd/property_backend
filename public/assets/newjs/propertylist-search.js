@@ -333,12 +333,11 @@ function properties_list(target, data) {
         location = value.post_city.value + '-' + value.post_city.category.name;
         $(target).append('<div class="col-lg-3 col-md-4 col-sm-12 single-property-list"> <div class="slide single-img-carousel"> <div id="myCarousel' + value.id + '" class="carousel" data-bs-ride="carousel"><div class="features"><div class="d-flex justify-content-between"><div class="content d-flex flex-column align-items-start theme-text-white"><div class="fav-elipse justify-content-center align-items-center theme-bg-blue"><span class="font-medium" onclick="favourite_property(' + value.id + ')"> <i title="favorite property" data-toggle="tooltip" class="fa-regular fa-heart heart' + value.id + '"></i></span></div><div class="sale theme-bg-sky"><span class="font-medium">' + status + '</span> </div></div> <div class="d-flex justify-content-center pt-3">  </div></div> </div><ol class="carousel-indicators"><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="0" class="active"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a href="' + asset_url + 'property-detail/' + value.slug + '"><h3 class="resident-text">' + title + '</h3><div class="d-flex align-items-start justify-content-end mt-2"><p class="me-2">' + location + '</p><img src="assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex flex-wrap flex-row-reverse justify-content-right align-items-center facilicites-area facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex"><div class="call d-flex justify-content-center align-items-center me-3"> <img src="assets/images/mobile-icon.png" alt="" data-toggle="tooltip" title="' + phone + '"></div><div class="whatsapp d-flex justify-content-center align-items-center"><a href="https://api.whatsapp.com/send?text=' + asset_url + 'property-detail/' + value.slug + '" target="_blank"> <img  src="assets/images/whatsapp-icon.png" alt=""></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span>' + amount_format(value.price.price) + ' </span></h3></div> </div></div></div></div></div>');
 
-        floor_name = value.area.type+" in sqm";
-        sq_feet = value.area.content +" sqm";
+        floor_name = value.area.type + " in sqm";
+        sq_feet = value.area.content + " sqm";
 
         htmls = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + sq_feet + '</span></p><img src="assets/images/area-icon.png" alt="" data-toggle="tooltip"  title="' + floor_name + '"></div>';
         $('.facilities_area' + index).append(htmls);
-        
         //for facilities
         $.each(value.featured_option, function (i, v) {
             var imgg = '';
@@ -348,31 +347,41 @@ function properties_list(target, data) {
                 imgg = 'assets/images/bath-icon.png';
                 name = v.featured_category.name;
                 quantity = v.value;
+                html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
+                $('.facilities_area' + index).append(html);
             } else if (v.featured_category != null && v.featured_category.name == 'Bedrooms') {
                 imgg = 'assets/images/bed-icon.png';
                 name = v.featured_category.name;
                 quantity = v.value;
+                html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
+                $('.facilities_area' + index).append(html);
             }
             else if (v.featured_category != null && v.featured_category.name == 'Parking') {
                 imgg = 'assets/images/parking.png';
                 name = v.featured_category.name;
                 quantity = v.value;
+                html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
+                $('.facilities_area' + index).append(html);
             }
             else if (v.featured_category != null && v.featured_category.name == 'lounges') {
                 imgg = 'assets/images/lunch.png';
                 name = v.featured_category.name;
                 quantity = v.value;
+                html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
+                $('.facilities_area' + index).append(html);
             }
             else if (v.featured_category != null && v.featured_category.name == 'Boards') {
                 imgg = 'assets/images/board-room.png';
                 name = v.featured_category.name;
                 quantity = v.value;
+                html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
+                $('.facilities_area' + index).append(html);
             }
 
 
 
-            html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
-            $('.facilities_area' + index).append(html);
+            // html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
+            // $('.facilities_area' + index).append(html);
 
         });
 
