@@ -1218,13 +1218,13 @@ room-dropdown-toggle::after
         width: 100%;
     }
 
-    .list-rent-dropdown {
-        width: 100%;
-    }
+    /*.list-rent-dropdown {*/
+    /*    width: 100%;*/
+    /*}*/
 
-    .list-rent-dropdown {
-        width: 100%;
-    }
+    /*.list-rent-dropdown {*/
+    /*    width: 100%;*/
+    /*}*/
     .resident-dropdown {
         width: 310px;
     }
@@ -1732,6 +1732,18 @@ span.directorist-select__selected-list--item:first-letter {
 
 @media screen and (max-width: 336px) {
     .new-rent-dropdown
+    {
+        width: 240px;
+    }
+
+    ..list-rent-dropdown
+    {
+        width: 270px;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    ..list-rent-dropdown
     {
         width: 240px;
     }

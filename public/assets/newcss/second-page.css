@@ -1030,6 +1030,14 @@ element.style {
 }
 
 @media screen and (max-width: 480px) {
+    .regional-drop-btn
+    {
+        font-size: 10px;
+    }
+    .description-card .form-control::placeholder
+    {
+        font-size: 10px;
+    }
 .filter-all-bar
 {
     margin-bottom: -20px;
@@ -1099,8 +1107,8 @@ element.style {
 
 
     .type-dropdown {
-        width: 285px;
-        max-width: 100%;
+        width: 240px;
+        /*max-width: 100%;*/
         padding: 12px 15px 10px 13px;
         margin-top: 0 !important;
     }
@@ -1177,6 +1185,10 @@ element.style {
 
     .filter-bar {
         height: 294px !important;
+    }
+    .type-dropdown
+    {
+        width: 218px;
     }
 }
 
@@ -1625,17 +1637,4 @@ display: none !important;
 .facilicites-area
 {
    gap: 0px 10%;
-}
-
-.single-property-list
-{
-    padding: 20px 10px 20px 10px !important;
-}
-
-.single-img-carousel
-{
-    border-radius: 8px;
-    border: 1px solid #e5e5e6;
-    overflow: hidden;
-    background: #fff;
 }

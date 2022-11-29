@@ -17,7 +17,7 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
             @csrf
             <div class="description-card card">
                 <div class="d-flex flex-column align-items-end">
-                    <div class="col-12 d-flex mt-n3 font-medium">
+                    <div class="col-12 d-flex justify-content-end mt-n3 font-medium">
                         <span class="theme-text-sky ">1</span>/
                         <span class="theme-text-seondary-black">6</span>
                     </div>
@@ -48,7 +48,7 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
 
                     <div class="col-lg-4 col-md-4 col-sm-12 d-flex flex-column align-items-end">
                         <label for="title" class="font-14 theme-text-seondary-black">عنوان الملكية</label>
-                        <div class="position-relative d-flex align-items-center w-100">
+                        <div class="position-relative d-flex justify-content-end align-items-center w-100">
                             <input type="text" value="{{old('title')}}" name="title" id="title" placeholder="عنوان الملكية" class="form-control theme-border">
                         </div>
                         @if($errors->has('title'))
@@ -62,7 +62,7 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                             <span class="font-16 theme-text-sky">( مثال: شقة سكنية هادئة في مكان مميز )</span>
                             <span class="theme-text-seondary-black">وصف العقار</span>
                         </label>
-                        <div class="col-12">
+                        <div class="col-12 d-flex flex-wrap justify-content-end">
                             <textarea name="description" cols="30" rows="3" placeholder="ادخل هنا.." id="description" class="form-control b-r-8 theme-border">{{old('description')}}</textarea>
                         </div>
                         @if($errors->has('excerpt'))
@@ -73,7 +73,7 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
 
                         <div class="col-lg-4 col-md-4 col-sm-12 d-flex flex-column align-items-end property_address">
                             <label class="font-14 theme-text-seondary-black">المنطقة</label>
-                            <div class="position-relative d-flex align-items-center w-100">
+                            <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
                                 <select class="form-control add_prop_btn" name="city">
                                     <option value="" disabled selected>الرجاء تحديد المنطقة</option>
@@ -89,7 +89,7 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-12 d-flex flex-column align-items-end property_address">
                             <label for="location" class="font-14 theme-text-seondary-black">عنوان العقار</label>
-                            <div class="position-relative d-flex align-items-center w-100">
+                            <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <input type="text" name="location" value="{{old('location')}}" id="location" placeholder="المدينة" class="form-control theme-border">
                                 <img src="{{asset('assets/images/location.png')}}" alt="" class="position-absolute input-icon">
                             </div>

@@ -219,8 +219,8 @@ class RegisterController extends controller
             ->where('is_verified', 0)
             ->first();
         if(!$user_data){
-           abort(404); 
-        }    
+           abort(404);
+        }
         //time diff for otp send to page reload
         $diff = Carbon::parse($user_data->updated_at)->diffInSeconds(\Carbon\Carbon::now());
         $time = 60 - $diff;
@@ -278,7 +278,7 @@ class RegisterController extends controller
         if (!empty($otp)) {
             $user_data = DB::table('users')
                 ->where(['id' => $request->user_id, 'phone' => $request->user_mobile, 'otp' => $otp])
-                ->where('is_verified', 0)
+//                ->where('is_verified', 0)
                 ->where('updated_at', '>', Carbon::now()->subMinute(1.01))
                 ->first();
             if (!$user_data) {

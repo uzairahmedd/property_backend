@@ -5,7 +5,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="m-logo">
-                <a href="#" class="">
+                <a href="/" class="">
                     <img src="{{theme_asset('assets/images/logo.png')}}" alt="">
                 </a>
             </div>

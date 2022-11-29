@@ -653,6 +653,20 @@ button a
     color: red;
 }
 
+/*Property Crousel Css*/
+.single-property-list
+{
+    padding: 20px 10px 20px 10px !important;
+}
+
+.single-img-carousel
+{
+    border-radius: 8px;
+    border: 1px solid #e5e5e6;
+    overflow: hidden;
+    background: #fff;
+}
+
 
 /*Home page responsiveness Start From Here*/
 @media screen and (max-width:1400px) {

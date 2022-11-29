@@ -9,7 +9,7 @@
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here -->
     <div class="container">
-        <form id="modify_phoness">
+        <form id="modify_phone">
             @csrf
             <input type="hidden" name="user_id" value="{{encrypt(Auth::User()->id)}}">
             <div class="description-card card finished align-items-center">
@@ -28,14 +28,14 @@
                         <p class="font-medium theme-text-seondary-black">سيتم ارسال الطلبات على هذا الإعلان إلى</p>
                         <input type="phone" name="phone" placeholder="رقم الجوال" class="form-control theme-border">
                         <div class="d-flex">
-                            <button id="update_phoness" type="submit" class="btn modify-btn font-medium font-14 theme-text-white b-r-8">تعديل <i class=""></i> </button>
+                            <button id="update_phone" type="submit" class="btn modify-btn font-medium font-14 theme-text-white b-r-8">تعديل <i class=""></i> </button>
                         </div>
                         <span id="phone_errors"></span>
                     </div>
                     <button class="btn btn-theme-secondary my-ads-btns w-100 theme-text-sky">إعلاناتي</button>
                 </div>
             </div>
-        </form>   
+        </form>
     </div>
     <!-- Property Description Section Ends Here -->
 </div>
