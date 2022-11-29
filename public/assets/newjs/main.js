@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     $('.owl-carousel').owlCarousel({
         responsiveClass: true,
         margin: 20,
@@ -22,6 +21,32 @@ $(document).ready(function () {
             }
         }
     })
+});
+
+
+$(document).ready(function() {
+
+    $("#single-item-carousel").owlCarousel({
+        loop: true,
+        margin: 0,
+        responsiveClass: true,
+        autoWidth:true,
+        responsive: {
+            0: {
+                items: 1,
+                nav: true
+            },
+            600: {
+                items: 1,
+                nav: false
+            },
+            1000: {
+                items: 1,
+                nav: true,
+                loop: true,
+                margin: 0
+    });
+
 });
 
 // Multiimages Crousel
@@ -90,7 +115,7 @@ $('.list-complete-btn').click(function (e) {
 
 $('.home-complete-btn').click(function (e) {
     $('.home_fade').removeClass('add_overlay');
-    
+
     e.preventDefault();
 });
 
@@ -454,5 +479,24 @@ function home_favourite_property_check(id) {
         }
     });
 }
+
+$(document).ready(function() {
+
+    // $(".sideBar-links li a").click(function(event) {
+    //
+    //     event.preventDefault();
+    //     var clickedItem = $(this);
+    //     $(".sideBar-links li a").removeClass("theme-bg-sky");
+    //     clickedItem.addClass("theme-bg-sky");
+    // });
+
+    // $('.sideBar-links li').on('click', function(ev) {
+    //     ev.preventDefault();
+    //     $(this).parent().find('li.active').removeClass('active');
+    //     $(this).addClass('active');
+    // });
+
+
+});
 
 

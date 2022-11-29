@@ -34,6 +34,7 @@ $(document).ready(function (event) {
         // var input_value = $("#interface_name").val();
         $("#interface_val3").val(function() {
             return this.value +' ' + drop_text;
+
         });
         e.preventDefault();
     });

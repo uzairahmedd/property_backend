@@ -128,6 +128,7 @@
 })(jQuery);
 
 $(document).ready(function (event) {
+    $('body').css('overflow-x','hidden');
     //for rent sale and project filter
     if (status_id != null && status_id != '') {
         var text = $('.rent-all input[value=' + status_id + ']').attr("data-title");
@@ -216,16 +217,16 @@ function get_properties(url) {
             $('#second_item_list').html('');
             $('.loaderInner').fadeIn();
             $('#load_cover').fadeIn('slow');
-            $('body').css({ 'overflow': 'invisible' });
+            // $('body').css({ 'overflow': 'invisible' });
             before_render_list('#item_list', 12);
         },
         complete: function () {
             $('.loaderInner').fadeOut();
             $('#load_cover').fadeOut('slow');
-            $('body').css({ 'overflow': 'visible' });
+            // $('body').css({ 'overflow': 'visible' });
         },
         success: function (response) {
-            $('body').css({ 'overflow': 'visible' });
+            // $('body').css({ 'overflow': 'visible' });
             $('.overlay').css('opacity', 0);
             $('.overlay').css('display', 'none');
             $('.results').text(response.data.length);

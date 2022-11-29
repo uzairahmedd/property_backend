@@ -66,10 +66,30 @@
     margin-left: 12px;
 }
 
-.item-header .item-carousel {
-    max-height: 603px;
-    object-fit: cover;
+.carousel-single-item
+{
+    height: 600px;
+    background: black;
+    border-radius: 8px;
 }
+
+.sin-carousel-items
+{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.sin-carousel-items img
+{
+    object-fit: contain;
+    height: 100%;
+}
+
+/*.item-header .item-carousel {*/
+/*    max-height: 603px;*/
+/*    object-fit: cover;*/
+/*}*/
 
 /* Property Detail */
 .property-detail .card {
@@ -127,15 +147,18 @@
     position: unset;
     width: unset;
     width: 48px;
+    background-color: white;
     height: 48px;
+    opacity: 1;
     margin: auto;
-    border: 1px solid black;
+    border: 2px solid var(--theme-blue);
     border-radius: 50%;
 }
 
 .carousel-control-prev-icon {
     background-image: url(/assets/images/arrow-left.png);
-    width: 7px;
+    width: 10px;
+    font-width: bold;
     height: 13px;
 }
 

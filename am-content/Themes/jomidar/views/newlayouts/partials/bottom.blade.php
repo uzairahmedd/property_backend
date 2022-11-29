@@ -22,4 +22,5 @@
 @stack('js')
 <script src="{{theme_asset('assets/newjs/custom.js')}}"></script>
 <script src="{{theme_asset('assets/newjs/property_step.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
