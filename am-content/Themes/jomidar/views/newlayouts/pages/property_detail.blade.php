@@ -157,8 +157,8 @@
                         @endforeach
                         @endif
                         <li class="d-flex align-items-center mb-3 mb-sm-3">
-                            <span> {{ $property->area->content }}</span>
-                            <img src="{{theme_asset('assets/images/area.png')}}" title="{{ $property->area->type }}" data-toggle="tooltip">
+                            <span> {{ $property->area->content }} sqm</span>
+                            <img src="{{theme_asset('assets/images/area.png')}}" title="{{ $property->area->type }} in sqm" data-toggle="tooltip">
                         </li>
                     </ul>
                     @php

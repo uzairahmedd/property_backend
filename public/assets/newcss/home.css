@@ -139,7 +139,8 @@
 
 .list {
     /* background: url(/assets/images/list.png); */
-    background-size: cover;
+    /* background-size: cover; */
+    background-size: 100% 213px;
     background-repeat: no-repeat;
     border-radius: 8px;
 }

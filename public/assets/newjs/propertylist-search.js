@@ -211,6 +211,7 @@ function get_properties(url) {
         data: $('.search_form').serialize(),
         dataType: 'json',
         beforeSend: function () {
+            $('.results').text('');
             $('#item_list').html('');
             $('#second_item_list').html('');
             $('.loaderInner').fadeIn();
@@ -369,8 +370,8 @@ function properties_list(target, data) {
 
         });
 
-        floor_name = value.area.type;
-        sq_feet = value.area.content;
+        floor_name = value.area.type+" in sqm";
+        sq_feet = value.area.content +" sqm";
 
         htmls = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + sq_feet + '</span></p><img src="assets/images/area-icon.png" alt="" data-toggle="tooltip"  title="' + floor_name + '"></div>';
         $('.facilities_area' + index).append(htmls);
