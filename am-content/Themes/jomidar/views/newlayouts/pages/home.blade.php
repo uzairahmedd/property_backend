@@ -231,7 +231,7 @@
                                         <div class="sale theme-bg-sky">
                                             <span class="font-medium">للبيع</span>
                                         </div>
-                                        <!-- <div class="sale theme-bg-blue">
+                                        <!--<div class="sale theme-bg-blue">
                                                 <span class="font-medium">متاح</span>
                                             </div> -->
                                     </div>
