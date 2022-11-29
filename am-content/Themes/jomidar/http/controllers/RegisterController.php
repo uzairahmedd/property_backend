@@ -216,7 +216,7 @@ class RegisterController extends controller
     {
         $user_data = DB::table('users')
             ->where('id', decrypt($id))
-            ->where('is_verified', 0)
+            // ->where('is_verified', 0)
             ->first();
         if(!$user_data){
            abort(404);
@@ -243,7 +243,7 @@ class RegisterController extends controller
         $main_url = config('api_constants.sms_url');
         $sms_username = config('api_constants.sms_username');
         $sms_password = config('api_constants.sms_password');
-        $otp = 'رمز تحقق تسجيلك من #حمايه هو: ' . $otp . ' \ Your Otp For Khiaratee registration is: ' . $otp;
+        // $otp =  $otp; 
         $otp_message = urlencode($otp);
         $updated_mobile = ltrim($mobile, '0');
         $url = $main_url . 'user=' . $sms_username . '&' . 'pwd=' . $sms_password . '&' . 'senderid=SMSAlert&mobileno=966' . $updated_mobile . '&msgtext=' . $otp_message . '&priority=High&CountryCode=ALL';
@@ -275,10 +275,11 @@ class RegisterController extends controller
     public function verify_otp(Request $request)
     {
         $otp = implode("", $request->otp);
+        
         if (!empty($otp)) {
             $user_data = DB::table('users')
                 ->where(['id' => $request->user_id, 'phone' => $request->user_mobile, 'otp' => $otp])
-//                ->where('is_verified', 0)
+            //    ->where('is_verified', 0)
                 ->where('updated_at', '>', Carbon::now()->subMinute(1.01))
                 ->first();
             if (!$user_data) {
