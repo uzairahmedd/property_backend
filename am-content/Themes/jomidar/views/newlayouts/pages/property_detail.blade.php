@@ -214,7 +214,7 @@
                     <div class="d-flex flex-column align-items-end py-4">
                         <div class="d-flex justify-content-between w-100 mb-2">
                             <h1 class="font-24 theme-text-blue font-medium">{{$property->property_status_type->category->name}}</h1>
-                            <h1 class="font-24 theme-text-blue">{{ __('Description') }}</h1>
+                            <h1 class="font-24 theme-text-blue">وصف العقار</h1>
                         </div>
                         <p class="theme-text-seondary-black font-16 text-end mb-2">{{ content_format($property->description->content ?? '') }}</p>
                         <hr class="w-100">
