@@ -6,12 +6,12 @@
         }
     </style>
     <link rel="stylesheet" href="{{ theme_asset('assets/css/fontawesome-all.min.css') }}">
-    <link rel="stylesheet" href="{{ theme_asset('assets/css/owl.carousel.min.css') }}">
+    <!-- <link rel="stylesheet" href="{{ theme_asset('assets/css/owl.carousel.min.css') }}"> -->
     <link rel="stylesheet" href="{{ theme_asset('assets/css/magnific-popup.css') }}">
 @endpush
 @section('content')
     {{-- User profile CSS--}}
-    <link rel="stylesheet" href="{{theme_asset('assets/newcss/profile.css')}}">
+    <!-- <link rel="stylesheet" href="{{theme_asset('assets/newcss/profile.css')}}"> -->
     <!-- Heder Sections Start Here -->
     <div class="item-header pt-5">
         <div class="container">
@@ -295,7 +295,7 @@
 
                         <div class="row w-100 mb-3">
                             <div class="col-6 text-start">
-                                <h3 class="font-16 font-medium theme-text-blue">{{ $property->property_condition->content == 1 ? 'غير مفروشة' : ($property->property_condition->content == 2 ? 'مفروشة' : 'نص مفروشة' )}}</h3>
+                                <h3 class="font-16 font-medium theme-text-blue">{{ isset($property->property_condition->content) && $property->property_condition->content == 1 ? 'غير مفروشة' : ( isset($property->property_condition->content) && $property->property_condition->content == 2 ? 'مفروشة' : 'نص مفروشة' )}}</h3>
                             </div>
                             <div class="col-6 text-end">
                                 <span class="font-16 theme-text-seondary-black">التأثيث</span>
