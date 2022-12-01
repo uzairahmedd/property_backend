@@ -1,9 +1,6 @@
 @extends('theme::newlayouts.app')
 @section('content')
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
-@php
-$info = json_decode(Auth::User()->usermeta->content ?? '');
-@endphp
 <div class="add-property row-style">
     <div class="head text-center">
         <h1 class="font-bold theme-text-white pt-5">أدرج عقارك معنا</h1>
@@ -15,7 +12,15 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
     <div class="container">
         <form method="post" action="{{ route('agent.property.store_property') }}">
             @csrf
+            @php
+            $form_check=microtime();
+            Session::put('form_check', $form_check);
+            @endphp
+            <!-- <input type="hidden" name="form_check" value="{{$form_check}}"> -->
             <div class="description-card card">
+                @if($errors->has('message'))
+                <div class="error d-flex justify-content-end pt-1">{{ $errors->first('message') }}</div>
+                @endif
                 <div class="d-flex flex-column align-items-end">
                     <div class="col-12 d-flex justify-content-end mt-n3 font-medium">
                         <span class="theme-text-sky ">1</span>/
@@ -24,24 +29,24 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                     <p class="theme-text-black font-18 ">وصف العقار</p>
                     <div class="theme-gx-3 mb-4_5">
                         <div class="row">
-                        @foreach($status_category as $status)
-                        @if( $status->name =='Sale')
-                        <div class="radio-container">
-                            <input type="radio" name="status" id="create_status1" value="{{ $status->id }}" {{ (old("status") == $status->id ? "checked":"") }}>
-                            <span class="checmark font-16 font-medium">بيع</span>
-                        </div>
-                        @elseif($status->name =='Rent')
-                        <div class="radio-container">
-                            <input type="radio" name="status" id="create_status2" value="{{ $status->id }}" {{ (old("status") == $status->id ? "checked":"") }}>
-                            <span class="checmark font-16 font-medium">ايجار</span>
-                        </div>
-                        @endif
-                        @endforeach
+                            @foreach($status_category as $status)
+                            @if( $status->name =='Sale')
+                            <div class="radio-container">
+                                <input type="radio" name="status" id="create_status1" value="{{ $status->id }}" {{ (old("status") == $status->id ? "checked":"") }}>
+                                <span class="checmark font-16 font-medium">بيع</span>
+                            </div>
+                            @elseif($status->name =='Rent')
+                            <div class="radio-container">
+                                <input type="radio" name="status" id="create_status2" value="{{ $status->id }}" {{ (old("status") == $status->id ? "checked":"") }}>
+                                <span class="checmark font-16 font-medium">ايجار</span>
+                            </div>
+                            @endif
+                            @endforeach
                         </div>
                         <div>
-                        @if($errors->has('status'))
+                            @if($errors->has('status'))
                             <div class="error d-flex justify-content-end pt-1">{{ $errors->first('status') }}</div>
-                        @endif
+                            @endif
                         </div>
                     </div>
 

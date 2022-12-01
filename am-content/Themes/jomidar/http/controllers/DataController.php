@@ -297,11 +297,6 @@ class DataController extends controller
                 return $q->where('price', '=', $this->price);
             });
         }
-        // if (!empty($request->max_price)) {
-        //     $posts = $posts->whereHas('max_price', function ($q) {
-        //         return $q->where('price', '<=', $this->max_price);
-        //     });
-        // }
 
         if (!empty($request->src)) {
             $posts = $posts->where('title', 'LIKE', '%' . $request->src . '%');
@@ -436,10 +431,6 @@ class DataController extends controller
         if (!empty($request->src)) {
             $posts = $posts->where('title', 'LIKE', '%' . $request->src . '%');
         }
-
-
-
-
         $posts = $posts->latest()->paginate(30);
         return response()->json($posts);
     }

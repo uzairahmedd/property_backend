@@ -200,6 +200,16 @@
     border-radius: 8px;
 }
 
+.price-section .del {
+    width: 53px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid red;
+    border-radius: 8px;
+}
+
+
+
 .price-section .calender {
     width: 53px;
     height: 48px;

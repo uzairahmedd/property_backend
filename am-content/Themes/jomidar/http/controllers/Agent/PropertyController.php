@@ -48,8 +48,8 @@ class PropertyController extends controller
         $categories = Category::where('type', 'category')->get();
         //new design khiaratee
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
-       return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'currency', 'status_category'));
-            // return view('view::agent.property.create',compact('categories','currency'));
+        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'currency', 'status_category'));
+        // return view('view::agent.property.create',compact('categories','currency'));
     }
 
     /**
@@ -200,7 +200,7 @@ class PropertyController extends controller
         $facilities = Category::where('type', 'facilities')->get();
 
         $child = $info->child->child_id ?? null;
-       
+
         return view('view::agent.property.edit', compact('info', 'input_options', 'array', 'facilities', 'child', 'contact_type'));
     }
 
@@ -621,7 +621,10 @@ class PropertyController extends controller
         //    return redirect()->route('agent.package.index');
         // }
         // $new_credit=$check_credit-$post_credit;
-
+        // $form_check = Session::get('form_check');
+        // if (isset($form_check) && $form_check == $request->form_check) {
+        //     return back()->withErrors(['message' => 'You already add this property'])->withInput();
+        // }
         $validator = $this->property_create_validations($request);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -638,6 +641,7 @@ class PropertyController extends controller
         $term->user_id = Auth::id();
         $term->status = 3;
         $term->type = 'property';
+        $term->create_status = '1';
         $term->save();
         //store description
         $meta = new Meta;
@@ -661,7 +665,7 @@ class PropertyController extends controller
         $meta->save();
 
         //store property city and location
-        Postcategoryoption::where('type', 'city')->where('term_id',$term->id)->delete();
+        Postcategoryoption::where('type', 'city')->where('term_id', $term->id)->delete();
         $city = new Postcategoryoption;
         $city->category_id = $request->city;
         $city->term_id = $term->id;
@@ -723,7 +727,7 @@ class PropertyController extends controller
      */
     public function edit_two_property($id)
     {
-       
+
         $parent_category = Category::where('type', 'parent_category')->get();
         $child_category =  Category::where('type', 'category')->get();
 
@@ -766,9 +770,12 @@ class PropertyController extends controller
         }
 
         //price store
-        $price = new Price;
-        $price->type = "price";
-        $price->term_id = $term_id;
+        $price = Price::where('term_id', $term_id)->where('type', 'price')->first();
+        if (empty( $price)) {
+            $price = new Price;
+            $price->type = "price";
+            $price->term_id = $term_id;
+        }
         $price->price = $request->price;
         $price->save();
 
@@ -791,7 +798,7 @@ class PropertyController extends controller
         Postcategory::where('type', 'parent_category')->where('term_id', $term_id)->delete();
         Postcategory::where('type', 'category')->where('term_id', $term_id)->delete();
         Postcategory::insert($category);
-        
+
 
 
         //street info ,slectricity and water flag
@@ -845,7 +852,7 @@ class PropertyController extends controller
      */
     public function update_third_property(Request $request, $id)
     {
-        
+
         $term_id = decrypt($id);
         //store number of features
         $options = [];
@@ -858,7 +865,7 @@ class PropertyController extends controller
                 array_push($options, $data);
             }
         }
-        Postcategoryoption::where('type', 'options')->where('term_id',$term_id)->delete();
+        Postcategoryoption::where('type', 'options')->where('term_id', $term_id)->delete();
         Postcategoryoption::insert($options);
 
 
@@ -935,7 +942,7 @@ class PropertyController extends controller
      */
     public function update_five_property(Request $request, $id)
     {
-        $term_id=decrypt($id);
+        $term_id = decrypt($id);
         $category = [];
         foreach ($request->features ?? [] as $key => $value) {
             if (!empty($value)) {
@@ -951,7 +958,7 @@ class PropertyController extends controller
     }
 
 
-      /**
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -963,7 +970,7 @@ class PropertyController extends controller
         return view('theme::newlayouts.property_dashboard.property_create_six', compact('id'));
     }
 
- /**
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -972,8 +979,8 @@ class PropertyController extends controller
      */
     public function update_six_property(Request $request, $id)
     {
-       
-        $term_id=decrypt($id);
+
+        $term_id = decrypt($id);
         $data = $request->all();
         unset($data['_token'], $data['_method']);
         foreach ($data as $key => $value) {
@@ -986,7 +993,7 @@ class PropertyController extends controller
         return redirect()->route('agent.property.finish_property', encrypt($term_id));
     }
 
-      /**
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -1000,7 +1007,7 @@ class PropertyController extends controller
 
     public function upload_images($request)
     {
-       
+
         request()->validate([
             'media.*' => 'required'
 
@@ -1148,7 +1155,7 @@ class PropertyController extends controller
                 }
             }
 
-          
+
             return response($data);
         }
     }
@@ -1241,4 +1248,146 @@ class PropertyController extends controller
         );
         return $info;
     }
+
+    public function property_list(){
+
+        return view('theme::newlayouts.user_dashboard.property_list');
+    }
+
+    public function get_user_properties(Request $request)
+    {
+       
+        $this->state = $request->state;
+        $this->status = $request->status;
+        $this->category = $request->category;
+        $this->price = $request->price;
+        // $this->max_price = $request->max_price;
+
+        $this->badroom = $request->badroom[16] ?? null;
+        $this->bathroom = $request->bathroom[17] ?? null;
+        $this->floor = $request->floor[18] ?? null;
+        $this->block = $request->block[15] ?? null;
+
+        $posts = Terms::where('type', 'property')->where('status', 1)->where('user_id', Auth::id())->whereHas('price')->whereHas('post_city')->with('area', 'post_preview', 'price', 'post_city', 'user', 'featured_option', 'property_status_type')->whereHas('post_city', function ($q) {
+            if (!empty($this->state)) {
+                return $q->where('category_id', $this->state);
+            }
+            return $q;
+        })->whereHas('property_status_type', function ($q) {
+            if (!empty($this->status)) {
+                return $q->where('category_id', $this->status);
+            }
+            return $q;
+        });
+
+        if (!empty($request->category)) {
+            $posts = $posts->whereHas('category', function ($q) {
+                return $q->where('category_id', $this->category);
+            });
+        }
+
+        if (!empty($request->price)) {
+            $posts = $posts->whereHas('price', function ($q) {
+                return $q->where('price', '=', $this->price);
+            });
+        }
+
+        if (!empty($request->src)) {
+            $posts = $posts->where('title', 'LIKE', '%' . $request->src . '%');
+        }
+
+
+        if (!empty($this->block) && !empty($this->badroom) && !empty($this->bathroom) && !empty($this->floor)) {
+
+            $data = $posts->whereHas('option_data', function ($q) {
+                $data = $q->where('category_id', 16);
+                return $data->where('value', '>=', $this->badroom);
+            })
+                ->whereHas('option_data', function ($q) {
+                    $data = $q->where('category_id', 17);
+                    return $data->where('value', '>=', $this->bathroom);
+                })
+                ->whereHas('option_data', function ($q) {
+                    $data = $q->where('category_id', 18);
+                    return $data->where('value', '>=', $this->floor);
+                })
+                ->whereHas('option_data', function ($q) {
+                    $data = $q->where('category_id', 15);
+                    return $data->where('value', '>=', $this->block);
+                })
+
+                ->latest()->paginate(30);
+
+            return response()->json($data);
+        }
+        if (!empty($this->badroom) && !empty($this->bathroom) && !empty($this->floor)) {
+
+            $data = $posts->whereHas('option_data', function ($q) {
+                $data = $q->where('category_id', 16);
+                return $data->where('value', '>=', $this->badroom);
+            })
+                ->whereHas('option_data', function ($q) {
+                    $data = $q->where('category_id', 17);
+                    return $data->where('value', '>=', $this->bathroom);
+                })
+                ->whereHas('option_data', function ($q) {
+                    $data = $q->where('category_id', 18);
+                    return $data->where('value', '>=', $this->floor);
+                })
+
+                ->latest()->paginate(30);
+
+
+            return response()->json($data);
+        }
+        if (!empty($this->bathroom) && !empty($this->floor)) {
+
+            $data = $posts->whereHas('option_data', function ($q) {
+                $data = $q->where('category_id', 17);
+                return $data->where('value', '>=', $this->bathroom);
+            })
+                ->whereHas('option_data', function ($q) {
+                    $data = $q->where('category_id', 18);
+                    return $data->where('value', '>=', $this->floor);
+                })
+                ->latest()->paginate(30);
+            return response()->json($data);
+        }
+        if (!empty($bathroom)) {
+
+            $data = $posts->whereHas('option_data', function ($q) {
+                $data = $q->where('category_id', 17);
+                return $data->where('value', '>=', $this->bathroom);
+            })
+                ->latest()->paginate(30);
+
+
+            return response()->json($data);
+        }
+
+        if (!empty($this->floor)) {
+
+            $data = $posts->whereHas('option_data', function ($q) {
+                $data = $q->where('category_id', 18);
+                return $data->where('value', '>=', $this->floor);
+            })
+                ->latest()->paginate(30);
+
+            return response()->json($data);
+        }
+
+        if (!empty($this->block)) {
+            $data = $posts->whereHas('option_data', function ($q) {
+                $data = $q->where('category_id', 15);
+                return $data->where('value', '>=', $this->block);
+            })
+                ->latest()->paginate(30);
+
+            return response()->json($data);
+        }
+
+        $posts = $posts->latest()->paginate(30);
+        return response()->json($posts);
+    }
+
 }

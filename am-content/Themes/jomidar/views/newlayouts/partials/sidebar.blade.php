@@ -1,4 +1,4 @@
-<div class="side-bar">
+<div class="col-lg-2 side-bar">
     <ul class="list-unstyled sideBar-links d-flex d-lg-block justify-content-around">
         <li>
             <a href="{{ route('agent.profile.settings') }}" class="text-decoration-none py-3 justify-content-end d-flex align-items-center theme-bg-sky theme-text-white font-16 font-bold">
@@ -14,7 +14,7 @@
             </a>
         </li>
         <li>
-            <a href="/auction"
+            <a href="{{ route('agent.property.property_list') }}"
                class="text-decoration-none py-3 justify-content-end d-flex align-items-center theme-grey-light theme-text-blue font-16">
                 <span>إعلاناتي</span>
                 <img src="{{asset('assets/images/side-home.png')}}" alt="" class="img-fluid">

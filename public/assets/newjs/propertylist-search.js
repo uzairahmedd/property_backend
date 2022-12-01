@@ -196,11 +196,10 @@ $(document).ready(function (event) {
 
 
 
-// Rend or Sale Dropdown Js Start
+
 /*----------------------------
         Properties Data Get
     -------------------------------*/
-// get_properties()
 var base_url = $('#base_url').val();
 var url = base_url + 'get_properties_data';
 get_properties(url)
@@ -217,16 +216,12 @@ function get_properties(url) {
             $('#second_item_list').html('');
             $('.loaderInner').fadeIn();
             $('#load_cover').fadeIn('slow');
-            // $('body').css({ 'overflow': 'invisible' });
-            before_render_list('#item_list', 12);
         },
         complete: function () {
             $('.loaderInner').fadeOut();
             $('#load_cover').fadeOut('slow');
-            // $('body').css({ 'overflow': 'visible' });
         },
         success: function (response) {
-            // $('body').css({ 'overflow': 'visible' });
             $('.overlay').css('opacity', 0);
             $('.overlay').css('display', 'none');
             $('.results').text(response.data.length);
@@ -261,27 +256,12 @@ function get_properties(url) {
             $('#to').html(response.to);
             $('#total').html(total);
             if (response.links.length > 3) {
-                console.log(response.links);
                 render_pagination('.pagination', response.links);
             }
         }
     })
 }
 
-
-
-/*-----------------------------------------------
-        Placeholder Active Before Data Append
-    --------------------------------------------------*/
-function property_before_render_list(target, data) {
-    var data = data - 1;
-    var base_url = $('#base_url').val();
-    var img = base_url + 'uploads/default.png'
-    for (var i = data; i >= 0; i--) {
-        $(target).append('<div class="col-lg-6 mb-30 property_placeholder"><div class="col-lg-3 col-md-4 col-sm-12"> <div class="carousel slide" data-bs-ride="carousel"><div class="features"><div class="d-flex justify-content-between"><div class="content d-flex flex-column align-items-start theme-text-white"><div class="fav-elipse justify-content-center align-items-center theme-bg-blue"><span class="font-medium"> </span></div><div class="sale theme-bg-sky"><span class="font-medium"></span> </div></div> <div class="d-flex justify-content-center pt-3">  </div></div> </div><ol class="carousel-indicators"><li data-bs-slide-to="0" class="active"></li><li  data-bs-slide-to="1"></li><li data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img href="' + img + '"  class="" alt="Slide 1"></div><div class="carousel-item"></div><div class="carousel-item"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a ><h3 class="resident-text"</h3><div class="d-flex align-items-start justify-content-end mt-2"><p class="me-2"></p><img src="assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex justify-content-between"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex"><div class="call d-flex justify-content-center align-items-center me-3"> <img src="assets/images/mobile-icon.png" alt=""></div><div class="whatsapp d-flex justify-content-center align-items-center"><a> <img  src="assets/images/whatsapp-icon.png" alt=""></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span></span></h3></div> </div></div></div></div></div>');
-
-    }
-}
 
 
 
@@ -378,11 +358,6 @@ function properties_list(target, data) {
                 html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
                 $('.facilities_area' + index).append(html);
             }
-
-
-
-            // html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
-            // $('.facilities_area' + index).append(html);
 
         });
 
