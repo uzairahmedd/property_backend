@@ -32,7 +32,7 @@
                         </div>
                         <span id="phone_errors"></span>
                     </div>
-                    <button class="btn btn-theme-secondary my-ads-btns w-100 theme-text-sky">إعلاناتي</button>
+                    <a href="{{ route('agent.property.property_list') }}" class="btn btn-theme-secondary my-ads-btns w-100 theme-text-sky center_property">إعلاناتي</a>
                 </div>
             </div>
         </form>

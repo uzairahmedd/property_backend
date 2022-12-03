@@ -664,9 +664,9 @@ class PropertyController extends controller
             $term->status = 3;
             $term->type = 'property';
             $term->create_status = '1';
+            $term->slug = $slug;
         }
         $term->title = $request->title;
-        $term->slug = $slug;
         $term->save();
 
         //store and update description
