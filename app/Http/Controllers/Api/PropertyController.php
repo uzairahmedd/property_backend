@@ -179,6 +179,73 @@ class PropertyController extends controller
         return new PropertyResource($property);
     }
 
+    public function create_listing(Request $request){
+        $validatedData = $request->validate([
+            'name' => 'required|max:100',
+            'city' => 'required',
+            'min_price' => 'required|max:100',
+            'max_price' => 'required|max:100',
+            'location' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'description' => 'max:500',
+           
+        ]);
+
+        $slug=Str::slug($request->title);
+        $count=Terms::where('type','property')->where('slug',$slug)->count();
+        if ($count > 0) {
+            $slug=$slug.'-'.rand(40,60).$count;
+        }
+
+        $term=new Terms;
+        $term->title=$request->title;
+        $term->slug=$slug;
+        $term->user_id =Auth::id();
+        $term->status = 3;
+        $term->type = 'property';
+        $term->save();
+
+        $meta=new Meta;
+        $meta->term_id=$term->id;
+        $meta->type='excerpt';
+        $meta->content='';
+        $meta->save();
+
+        $meta=new Meta;
+        $meta->term_id=$term->id;
+        $meta->type='content';
+        $meta->content='';
+        $meta->save();
+
+        $json['contact_type']="mail";
+        $json['email']=Auth::user()->email;
+
+        $meta=new Meta;
+        $meta->term_id=$term->id;
+        $meta->type='contact_type';
+        $meta->content=json_encode($json);
+        $meta->save();
+
+        $min_price= new Price;
+        $min_price->type="min_price";
+        $min_price->term_id=$term->id;
+        $min_price->price=$request->min_price;
+        $min_price->save();
+
+        $max_price= new Price;
+        $max_price->type= "max_price";
+        $max_price->term_id=$term->id;
+        $max_price->price=$request->max_price;
+        $max_price->save();
+
+
+        $cat=PostCategory::insert(['term_id'=>$term->id,'category_id'=>$request->category]);
+        
+        
+        return new PropertyResource($property);
+    }
+
     public function list(Request $request) {
         
         $status=$request->status ?? null;
