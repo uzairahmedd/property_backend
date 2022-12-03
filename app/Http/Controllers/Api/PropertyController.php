@@ -1,6 +1,6 @@
 <?php 
 
-namespace Amcoders\Theme\jomidar\http\controllers;
+namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Terms;
@@ -11,6 +11,8 @@ use CentralApps\MortgageCalculator\Calculator;
 use Auth;
 use Cart;
 use Amcoders\Plugin\sendmail\Helper\Propertymailsend;
+use Amcoders\Theme\jomidar\http\controllers\DataController;
+use App\Http\Resources\PropertyResource;
 use App\Models\User;
 use DB;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -29,7 +31,7 @@ class PropertyController extends controller
      */
     public function show(Request $request, $slug)
     {
-        $path= $request->path();
+        // $path= $request->path();
 
         $property = Terms::where([
             ['type','property'],
@@ -39,33 +41,9 @@ class PropertyController extends controller
         
 
 
-        if($property)
-        {
-            SEOMeta::setTitle($property->title);
-            SEOMeta::setDescription($property->excerpt->content ?? '');
-            SEOMeta::addMeta('article:published_time', $property->updated_at->format('Y-m-d'), 'property');
-           
-            OpenGraph::setDescription($property->excerpt->content ?? '');
-            OpenGraph::setTitle($property->title);
-           
-
-            foreach($property->multiple_images ?? [] as $row){
-               
-              OpenGraph::addImage(asset($row->media->url));
-              JsonLdMulti::addImage(asset($row->media->url));
-              JsonLd::addImage(asset($row->media->url));
-          }  
-
-
-          JsonLd::setTitle($property->title);
-          JsonLd::setDescription($property->excerpt->content ?? '');
-          JsonLd::setType('Property');
-
-          JsonLdMulti::setTitle($property->title);
-          JsonLdMulti::setDescription($property->excerpt->content ?? '');
-          JsonLdMulti::setType('Property');
-            return view('view::property.details',compact('property','path'));
-        }else{
+        if($property){
+            return response()->json($property, 200);
+        } else {
             return abort(404);
         }
     }
@@ -184,35 +162,25 @@ class PropertyController extends controller
         return view('view::property.list',compact('category','state','min_price','max_price','status','location','statuses','categories','states','badroom','bathroom','floor','block','input_array','src'));
     }
 
-    public function list(Request $request){
+    // listings
+    public function listings(Request $request){
+        $data_crtl = new DataController();
+        return $data_crtl->get_properties($request, true);
+    }
+
+    // listing details
+    public function listing(Request $request, $slug){
+        $property = Terms::where([
+            ['type','property'],
+            ['status',1],
+            ['slug',$slug]
+        ])->with('post_preview','min_price','max_price','post_city','post_state','user','content','multiple_images','option_data','facilities_get','contact_type','latitude','longitude','excerpt')->withCount('reviews')->first();
+
+        return new PropertyResource($property);
+    }
+
+    public function list(Request $request) {
         
-        $seo=Options::where('key','seo')->first();
-        $seo=json_decode($seo->value);
-
-        SEOMeta::setTitle('Property list');
-        SEOMeta::setDescription($seo->description);
-       
-
-        OpenGraph::setDescription($seo->description);
-        OpenGraph::setTitle('Property list');
-        OpenGraph::addProperty('keywords', $seo->tags);
-
-        TwitterCard::setTitle('Property list');
-        TwitterCard::setSite($seo->twitterTitle);
-
-        JsonLd::setTitle('Property list');
-        JsonLd::setDescription($seo->description);
-        JsonLd::addImage(asset(content('header','logo')));
-
-       
-
-        SEOTools::setTitle('Property list');
-        SEOTools::setDescription($seo->description);
-        SEOTools::setCanonical($seo->canonical);
-        SEOTools::opengraph()->addProperty('keywords', $seo->tags);
-        SEOTools::twitter()->setSite($seo->twitterTitle);
-        SEOTools::jsonLd()->addImage(asset(content('header','logo')));
-
         $status=$request->status ?? null;
         $location=$request->location ?? null;
         
@@ -244,7 +212,8 @@ class PropertyController extends controller
        
         
         $category= $request->category;
-        return view('view::property.list',compact('category','state','min_price','max_price','status','location','statuses','categories','states','badroom','bathroom','floor','block','input_array','src'));
+        $data = compact('category','state','min_price','max_price','status','location','statuses','categories','states','badroom','bathroom','floor','block','input_array','src');
+        return response()->json($data, 200);
     }
 
     public function map(Request $request){

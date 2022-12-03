@@ -3,6 +3,7 @@
 namespace Amcoders\Theme\jomidar\http\controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PropertyResource;
 use App\Models\User;
 use App\Terms;
 use App\Category;
@@ -113,7 +114,7 @@ class DataController extends controller
     }
     
 
-    public function get_properties(Request $request)
+    public function get_properties(Request $request, $collection = false)
     {
 
         $this->state=$request->state;
@@ -251,7 +252,9 @@ class DataController extends controller
         return response()->json($data);
        }
 
-
+       if($collection){
+           return PropertyResource::collection($posts->get());
+       }
        $posts= $posts->latest()->paginate(30);
        return response()->json($posts);
     }
