@@ -33,7 +33,7 @@ class PropertyResource extends JsonResource
             "user" => [
                 "name" => $this->user["name"],
                 "email" => $this->user["email"],
-                "info" => $this->user->usermeta->content,
+                "info" => isset($this->user->usermeta) && isset($this->user->usermeta->content) ? $this->user->usermeta->content : '',
                 "avatar" => $this->user["avatar"],
             ],
             "coordinates" => $this->lat_long,
@@ -42,9 +42,9 @@ class PropertyResource extends JsonResource
             "bathrooms" => $this->option_data->where('category.name', 'Bathrooms')->last()->value ?? 0,
             "photos" => $this->photos,
             "facilities" => $this->facilities,
-            "youtube_id" => $this->youtube_url->content,
-            "floor_plans" => $this->floor_plans->pluck('content'),
-            "virtual_tour" => $this->virtual_tour->content
+            "youtube_id" => isset($this->youtube_url) ? $this->youtube_url->content : '',
+            "floor_plans" => isset($this->floor_plans) ? $this->floor_plans->pluck('content') : '',
+            "virtual_tour" => isset($this->virtual_tour) ? $this->virtual_tour->content : ''
         ];
     }
 }
