@@ -33,7 +33,7 @@ class PropertyResource extends JsonResource
             "user" => [
                 "name" => $this->user["name"],
                 "email" => $this->user["email"],
-                "info" => $this->user->usermeta->content,
+                "info" => $this->user->usermeta ? $this->user->usermeta->content : '',
                 "avatar" => $this->user["avatar"],
             ],
             "coordinates" => $this->lat_long,
