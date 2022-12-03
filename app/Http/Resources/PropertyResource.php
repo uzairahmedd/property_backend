@@ -42,9 +42,9 @@ class PropertyResource extends JsonResource
             "bathrooms" => $this->option_data->where('category.name', 'Bathrooms')->last()->value ?? 0,
             "photos" => $this->photos,
             "facilities" => $this->facilities,
-            "youtube_id" => $this->youtube_url->content,
-            "floor_plans" => $this->floor_plans->pluck('content'),
-            "virtual_tour" => $this->virtual_tour->content
+            "youtube_id" => isset($this->youtube_url) ? $this->youtube_url->content : '',
+            "floor_plans" => isset($this->floor_plans) ? $this->floor_plans->pluck('content') : '',
+            "virtual_tour" => isset($this->virtual_tour) ? $this->virtual_tour->content : ''
         ];
     }
 }
