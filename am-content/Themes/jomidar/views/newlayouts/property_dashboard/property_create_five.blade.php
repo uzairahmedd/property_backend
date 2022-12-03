@@ -22,74 +22,10 @@
                 <div class="row theme-gx-2 theme-gy-36 justify-content-end">
                     @foreach(App\Category::where('type','feature')->get() as $row)
                     <div class="radio-container checkbox-step5">
-                        <input name="features[]" type="checkbox" value="{{ $row->id }}">
+                        <input name="features[]" type="checkbox" value="{{ $row->id }}" @if(in_array($row->id, $features_array)) checked @endif >
                         <span class="checmark step font-14 font-medium">{{ $row->name }}</span>
                     </div>
                     @endforeach
-                    <!-- <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div>
-                    <div class="radio-container checkbox-step5">
-                        <input type="checkbox" id="">
-                        <span class="checmark font-14 font-medium">غرف ملابس</span>
-                    </div> -->
                 </div>
             </div>
             <div class="d-flex justify-content-between description-btn-group">

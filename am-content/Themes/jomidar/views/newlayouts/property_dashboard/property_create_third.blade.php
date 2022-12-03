@@ -23,45 +23,34 @@
                     @if($row->name == 'Bedrooms')
                     <p class="theme-text-black font-18">غرف النوم</p>
                     <div class="row gx-2 mb-4_5">
-                        <!-- @for($i=6; $i>=1; $i--)
-                        <div class="radio-container">
-                           <input type="radio" class="feature_btn" name="input_option[]"  value="1" {{ ($i == 1 ? "checked":"")}}>
-                            @if(($row->name == 'lounges' || $row->name == 'boards' || $row->name == 'Bedrooms') && $i == 1)
-                            <span class="checmark checkmark-step3 font-16 font-medium" style="margin-left: 8px;">غير متوفر</span>
-                            @else
-                            <span class="checmark checkmark-step3 font-16 font-medium" style="margin-left: 8px;">{{$i}}</span>
-                            @endif
-
-                        </div>
-                        @endfor -->
                         <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="6">
+                            <input type="radio" name="{{ $row->name }}" value="6" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 6  ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">6</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="5">
+                            <input type="radio" name="{{ $row->name }}" value="5" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 5  ? "checked"  :  "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">5</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="4">
+                            <input type="radio" name="{{ $row->name }}" value="4" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 4   ? "checked"  : ""  }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">4</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="3">
+                            <input type="radio" name="{{ $row->name }}" value="3" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 3   ? "checked"  :  ""  }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">3</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="2">
+                            <input type="radio" name="{{ $row->name }}" value="2" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 2  ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">2</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="1">
+                            <input type="radio" name="{{ $row->name }}" value="1" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 1  ? "checked"  : ""  }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">1</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="0" checked>
-                            <span class="checmark checkmark-step3 font-16 font-medium">استوديو</span>
+                            <input type="radio" name="{{ $row->name }}" value="0" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 0  ? ""  : "checked" }}>
+                            <span class="checmark checkmark-step3 font-16 font-medium">غير متوفر</span>
                         </div>
                     </div>
                     @endif
@@ -73,27 +62,27 @@
                     <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
                     <div class="row gx-2 mb-4_5">
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="6">
+                            <input type="radio" name="{{ $row->name }}" value="6" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 6 ? "checked"  :  "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">6</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="5">
+                            <input type="radio" name="{{ $row->name }}" value="5" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 5 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">5</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="4">
+                            <input type="radio" name="{{ $row->name }}" value="4" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 4 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">4</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="3">
+                            <input type="radio" name="{{ $row->name }}" value="3" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 3 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">3</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="2">
+                            <input type="radio" name="{{ $row->name }}" value="2" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 2 ? "checked"  : ""}}>
                             <span class="checmark checkmark-step3 font-16 font-medium">2</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="1" checked>
+                            <input type="radio" name="{{ $row->name }}" value="1" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 1 ?  ""  :  "checked" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">1</span>
                         </div>
                     </div>
@@ -105,31 +94,31 @@
                     <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
                     <div class="row gx-2 mb-4_5">
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="6">
+                            <input type="radio" name="{{ $row->name }}" value="6" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 6 ? "checked"  :  "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">6</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="5">
+                            <input type="radio" name="{{ $row->name }}" value="5" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 5 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">5</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="4">
+                            <input type="radio" name="{{ $row->name }}" value="4" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 4 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">4</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="3">
+                            <input type="radio" name="{{ $row->name }}" value="3" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 3 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">3</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="2">
+                            <input type="radio" name="{{ $row->name }}" value="2" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 2 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">2</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="1">
+                            <input type="radio" name="{{ $row->name }}" value="1" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 1 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">1</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="0" checked>
+                            <input type="radio" name="{{ $row->name }}" value="0" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 0 ? ""  : "checked"  }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">غير متوفر</span>
                         </div>
                     </div>
@@ -141,31 +130,31 @@
                     <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
                     <div class="row gx-2 mb-4_5">
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="6">
+                            <input type="radio" name="{{ $row->name }}" value="6" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 6 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">6</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="5">
+                            <input type="radio" name="{{ $row->name }}" value="5" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 5 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">5</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="4">
+                            <input type="radio" name="{{ $row->name }}" value="4" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 4 ? "checked"  : ""}}>
                             <span class="checmark checkmark-step3 font-16 font-medium">4</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="3">
+                            <input type="radio" name="{{ $row->name }}" value="3" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 3 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">3</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="2">
+                            <input type="radio" name="{{ $row->name }}" value="2" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 2 ? "checked"  :  "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">2</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="2">
+                            <input type="radio" name="{{ $row->name }}" value="1" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 1 ? "checked"  :  "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">1</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="0" checked>
+                            <input type="radio" name="{{ $row->name }}" value="0" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 0 ? ""  : "checked" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">غير متوفر</span>
                         </div>
                     </div>
@@ -177,27 +166,27 @@
                     <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
                     <div class="row gx-2 mb-4_5">
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="6">
+                            <input type="radio" name="{{ $row->name }}" value="6" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 6 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">6</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="5">
+                            <input type="radio" name="{{ $row->name }}" value="5" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 5 ? "checked"  :  "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">5</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="4">
+                            <input type="radio" name="{{ $row->name }}" value="4" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 4 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">4</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="3">
+                            <input type="radio" name="{{ $row->name }}" value="3" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 3 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">3</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="2">
+                            <input type="radio" name="{{ $row->name }}" value="2" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 2 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">2</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="1" checked>
+                            <input type="radio" name="{{ $row->name }}" value="1" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 1 ? ""  : "checked"  }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">1</span>
                         </div>
                     </div>
@@ -208,15 +197,15 @@
                     <p class="theme-text-black font-18">التأثيث</p>
                     <div class="row gx-2 mb-4_5">
                         <div class="radio-container">
-                            <input type="radio" name="furnishing" value="1">
+                            <input type="radio" name="furnishing" value="1" {{ !empty($post_data->property_condition)  && $post_data->property_condition->content == 1 ? "checked"  : (old("furnishing") == 1 ? "checked" : "") }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">غير مفروشة</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="furnishing" value="2">
+                            <input type="radio" name="furnishing" value="2" {{ !empty($post_data->property_condition)  && $post_data->property_condition->content == 2 ? "checked"  : (old("furnishing") == 2 ? "checked" : "") }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">نص مفروشة</span>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="furnishing" value="3" checked>
+                            <input type="radio" name="furnishing" value="3" {{ !empty($post_data->property_condition)  && $post_data->property_condition->content == 3 ? "checked"  :  "checked"  }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">مفروشة</span>
                         </div>
                     </div>
@@ -241,7 +230,7 @@
                         </div>
                         <div class="position-relative d-flex flex-column align-items-end w-100">
                             <label for="" class="font-14 theme-text-seondary-black"> أدوار العقار</label>
-                            <input type="text" name="role" placeholder="إجمالي الأدوار" id="interface_val3" class="form-control street_view theme-border">
+                            <input type="text" name="role" value="{{ !empty( $post_data->role) ? $post_data->role->content  : old("role") }}" placeholder="إجمالي الأدوار" id="interface_val3" class="form-control street_view theme-border">
                         </div>
                     </div>
                 </div>

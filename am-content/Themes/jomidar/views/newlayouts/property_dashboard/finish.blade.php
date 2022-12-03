@@ -26,7 +26,7 @@
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="request text-center b-r-8">
                         <p class="font-medium theme-text-seondary-black">سيتم ارسال الطلبات على هذا الإعلان إلى</p>
-                        <input type="phone" name="phone" placeholder="رقم الجوال" class="form-control theme-border">
+                        <input type="phone" name="phone" value="{{ Auth::User()->phone ?? '' }}" placeholder="رقم الجوال" class="form-control theme-border">
                         <div class="d-flex">
                             <button id="update_phone" type="submit" class="btn modify-btn font-medium font-14 theme-text-white b-r-8">تعديل <i class=""></i> </button>
                         </div>

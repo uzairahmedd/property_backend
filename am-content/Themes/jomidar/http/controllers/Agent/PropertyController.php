@@ -46,11 +46,10 @@ class PropertyController extends controller
     {
         $currency = default_currency();
         $categories = Category::where('type', 'category')->get();
-        //new design khiaratee
-        $status_category = Category::where('type', 'status')->where('featured', 1)->get();
-        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'currency', 'status_category'));
-        // return view('view::agent.property.create',compact('categories','currency'));
+
+        return view('view::agent.property.create', compact('categories', 'currency'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -604,6 +603,26 @@ class PropertyController extends controller
     }
 
 
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create_property($id = null)
+    {
+        $currency = default_currency();
+        $categories = Category::where('type', 'category')->get();
+        //new design khiaratee
+        $status_category = Category::where('type', 'status')->where('featured', 1)->get();
+        //for edit
+        $post_data = '';
+        if (isset($id)) {
+            $post_data = Terms::with('description', 'area', 'city', 'property_status_type')->where('user_id', Auth::id())->findorFail($id);
+        }
+        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'currency', 'status_category', 'id', 'post_data'));
+    }
+
     /**
      * Store a newly created property in storage.
      *
@@ -625,6 +644,8 @@ class PropertyController extends controller
         // if (isset($form_check) && $form_check == $request->form_check) {
         //     return back()->withErrors(['message' => 'You already add this property'])->withInput();
         // }
+        // dd($request->all());
+        // dump(Auth::id());
         $validator = $this->property_create_validations($request);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -634,46 +655,63 @@ class PropertyController extends controller
         if ($count > 0) {
             $slug = $slug . '-' . rand(40, 60) . $count;
         }
-        //store title and slug
-        $term = new Terms;
+
+        //store & update title and slug
+        $term = Terms::where('user_id', Auth::id())->where('id', $request->term_id)->first();
+        if (empty($term)) {
+            $term = new Terms;
+            $term->user_id = Auth::id();
+            $term->status = 3;
+            $term->type = 'property';
+            $term->create_status = '1';
+        }
         $term->title = $request->title;
         $term->slug = $slug;
-        $term->user_id = Auth::id();
-        $term->status = 3;
-        $term->type = 'property';
-        $term->create_status = '1';
         $term->save();
-        //store description
-        $meta = new Meta;
-        $meta->term_id = $term->id;
-        $meta->type = 'description';
-        $meta->content = $request->description;
-        $meta->save();
-        //store contact type
+
+        //store and update description
+        $description = Meta::where('term_id', $term->id)->where('type', 'description')->first();
+        if (empty($description)) {
+            $description = new Meta;
+            $description->term_id = $term->id;
+            $description->type = 'description';
+        }
+        $description->content = $request->description;
+        $description->save();
+
+        //store & update contact type
         $json['contact_type'] = "mail";
         $json['email'] = Auth::user()->email;
-        $meta = new Meta;
-        $meta->term_id = $term->id;
-        $meta->type = 'contact_type';
-        $meta->content = json_encode($json);
-        $meta->save();
-        //store property area
-        $meta = new Meta;
-        $meta->term_id = $term->id;
-        $meta->type = 'area';
-        $meta->content = $request->area;
-        $meta->save();
+        $contact = Meta::where('term_id', $term->id)->where('type', 'contact_type')->first();
+        if (empty($contact)) {
+            $contact = new Meta;
+            $contact->term_id = $term->id;
+            $contact->type = 'contact_type';
+        }
+        $contact->content = json_encode($json);
+        $contact->save();
 
-        //store property city and location
-        Postcategoryoption::where('type', 'city')->where('term_id', $term->id)->delete();
-        $city = new Postcategoryoption;
+        //store & update property area
+        $area = Meta::where('term_id', $term->id)->where('type', 'area')->first();
+        if (empty($area)) {
+            $area = new Meta;
+            $area->term_id = $term->id;
+            $area->type = 'area';
+        }
+        $area->content = $request->area;
+        $area->save();
+
+        //store & updateproperty city and location
+        $city = Postcategoryoption::where('term_id', $term->id)->where('type', 'city')->first();
+        if (empty($city)) {
+            $city = new Postcategoryoption;
+            $city->term_id = $term->id;
+            $city->type = 'city';
+        }
         $city->category_id = $request->city;
-        $city->term_id = $term->id;
-        $city->type = 'city';
         $city->value = $request->location;
         $city->save();
-
-        //store status of property
+        //property status create and update
         $post_cat['term_id'] = $term->id;
         $post_cat['category_id'] = $request->status;
         $post_cat['type'] = 'status';
@@ -730,8 +768,18 @@ class PropertyController extends controller
 
         $parent_category = Category::where('type', 'parent_category')->get();
         $child_category =  Category::where('type', 'category')->get();
-
-        return view('theme::newlayouts.property_dashboard.property_create_two', compact('id', 'parent_category', 'child_category'));
+        //for edit
+        $post_data = Terms::with('price', 'electricity_facility', 'water_facility', 'streets', 'street_info_one', 'street_info_two', 'postcategory')->where('user_id', Auth::id())->where('id', decrypt($id))->first();
+        $array = [];
+        foreach ($post_data->postcategory as $key => $value) {
+            if ($value->type == 'parent_category') {
+                $array[$value->type] = $value->category_id;
+            }
+            if ($value->type == 'category') {
+                $array[$value->type] = $value->category_id;
+            }
+        }
+        return view('theme::newlayouts.property_dashboard.property_create_two', compact('id', 'parent_category', 'child_category', 'post_data', 'array'));
     }
 
     /**
@@ -744,11 +792,13 @@ class PropertyController extends controller
             'parent_category' => 'required',
             'category' => 'required',
             'price' => 'required|numeric',
+            'streets' => 'required',
         ], [
             'parent_category.required' => 'Please select property nature',
             'category.required' => 'Please select property type',
             'price.required' => 'Property price is required',
             'price.numeric' => 'Property price is only in digits',
+            'streets.required' => 'Number of streets are required',
 
         ]);
     }
@@ -762,16 +812,16 @@ class PropertyController extends controller
      */
     public function update_two_property(Request $request, $id)
     {
-        //   dd($request->all());
+
         $term_id = decrypt($id);
         $validator = $this->property_two_validations($request);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
-        //price store
+        //price store & update
         $price = Price::where('term_id', $term_id)->where('type', 'price')->first();
-        if (empty( $price)) {
+        if (empty($price)) {
             $price = new Price;
             $price->type = "price";
             $price->term_id = $term_id;
@@ -779,7 +829,7 @@ class PropertyController extends controller
         $price->price = $request->price;
         $price->save();
 
-        //parent and child category
+        //parent and child category of property nature and type store and update
         $category = [];
         if (!empty($request->parent_category)) {
             $post_cat['term_id'] = $term_id;
@@ -801,15 +851,19 @@ class PropertyController extends controller
 
 
 
-        //street info ,slectricity and water flag
+        //street info ,slectricity and water flag store and update
         $data = $request->all();
         unset($data['_token'], $data['_method'], $data['parent_category'], $data['category'], $data['price']);
         foreach ($data as $key => $value) {
-            $meta = new Meta;
-            $meta->term_id = $term_id;
-            $meta->type =  $key;
-            $meta->content = $value;
-            $meta->save();
+            $keys_table = '';
+            $keys_table = Meta::where('term_id', $term_id)->where('type', $key)->first();
+            if (empty($keys_table)) {
+                $keys_table = new Meta;
+                $keys_table->term_id = $term_id;
+                $keys_table->type = $key;
+            }
+            $keys_table->content = $value;
+            $keys_table->save();
         }
 
         return redirect()->route('agent.property.third_edit_property', encrypt($term_id));
@@ -839,7 +893,10 @@ class PropertyController extends controller
         })->with(['post_category_option' => function ($q) {
             return $q->where('term_id', $this->term_id);
         }])->get();
-        return view('theme::newlayouts.property_dashboard.property_create_third', compact('id', 'input_options'));
+
+        //edit data
+        $post_data = Terms::with('role', 'property_condition')->where('user_id', Auth::id())->where('id',  $this->term_id)->first();
+        return view('theme::newlayouts.property_dashboard.property_create_third', compact('id', 'input_options', 'post_data'));
     }
 
 
@@ -869,17 +926,25 @@ class PropertyController extends controller
         Postcategoryoption::insert($options);
 
 
-        $meta = new Meta;
-        $meta->term_id = $term_id;
-        $meta->type =  'property_condition';
+        //property condition store & update
+        $meta = Meta::where('term_id', $term_id)->where('type', 'property_condition')->first();
+        if (empty($meta)) {
+            $meta = new Meta;
+            $meta->term_id = $term_id;
+            $meta->type =  'property_condition';
+        }
         $meta->content = $request['furnishing'];
         $meta->save();
 
-        $meta = new Meta;
-        $meta->term_id = $term_id;
-        $meta->type =  'role';
-        $meta->content = $request['role'];
-        $meta->save();
+        //property condition store & update
+        $meta_role = Meta::where('term_id', $term_id)->where('type', 'role')->first();
+        if (empty($meta_role)) {
+            $meta_role = new Meta;
+            $meta_role->term_id = $term_id;
+            $meta_role->type =  'role';
+        }
+        $meta_role->content = $request['role'];
+        $meta_role->save();
 
 
         return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
@@ -894,21 +959,9 @@ class PropertyController extends controller
      */
     public function edit_forth_property($id)
     {
-        $info = Terms::with('medias')->where('user_id', Auth::id())->findorFail(decrypt($id));
+        $info = Terms::with('medias', 'virtual_tour')->where('user_id', Auth::id())->findorFail(decrypt($id));
         return view('theme::newlayouts.property_dashboard.property_create_forth', compact('id', 'info'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit_five_property($id)
-    {
-        return view('theme::newlayouts.property_dashboard.property_create_five', compact('id'));
-    }
-
 
     /**
      * Update the specified resource in storage.
@@ -921,17 +974,39 @@ class PropertyController extends controller
     {
 
         $term_id = decrypt($id);
-        $virtual_tour = new Meta;
-        $virtual_tour->term_id = $term_id;
-        $virtual_tour->type = 'virtual_tour';
+        //store and update virtual rour video
+        $virtual_tour = Meta::where('term_id', $term_id)->where('type', 'virtual_tour')->first();
+        if (empty($virtual_tour)) {
+            $virtual_tour = new Meta;
+            $virtual_tour->term_id = $term_id;
+            $virtual_tour->type = 'virtual_tour';
+        }
         $virtual_tour->content = $request->virtual_tour;
         $virtual_tour->save();
+
+
         unset($request['_token'], $request['virtual_tour']);
         //store images
-        $return_data = $this->upload_images($request);
+        $this->upload_images($request);
         return redirect()->route('agent.property.five_edit_property', encrypt($term_id));
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit_five_property($id)
+    {
+        $term_id = decrypt($id);
+        $info = Terms::with('postcategory')->where('user_id', Auth::id())->findorFail($term_id);
+        $features_array = [];
+        foreach ($info->postcategory as $key => $value) {
+            array_push($features_array, $value->category_id);
+        }
+        return view('theme::newlayouts.property_dashboard.property_create_five', compact('id', 'features_array'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -966,8 +1041,9 @@ class PropertyController extends controller
      */
     public function edit_six_property($id)
     {
-
-        return view('theme::newlayouts.property_dashboard.property_create_six', compact('id'));
+        $term_id = decrypt($id);
+        $post_data = Terms::with('id_number', 'instrument_number')->where('user_id', Auth::id())->findorFail($term_id);
+        return view('theme::newlayouts.property_dashboard.property_create_six', compact('id', 'post_data'));
     }
 
     /**
@@ -984,11 +1060,15 @@ class PropertyController extends controller
         $data = $request->all();
         unset($data['_token'], $data['_method']);
         foreach ($data as $key => $value) {
-            $meta = new Meta;
-            $meta->term_id = $term_id;
-            $meta->type =  $key;
-            $meta->content = $value;
-            $meta->save();
+            $keys_table = '';
+            $keys_table = Meta::where('term_id', $term_id)->where('type', $key)->first();
+            if (empty($keys_table)) {
+                $keys_table = new Meta;
+                $keys_table->term_id = $term_id;
+                $keys_table->type = $key;
+            }
+            $keys_table->content = $value;
+            $keys_table->save();
         }
         return redirect()->route('agent.property.finish_property', encrypt($term_id));
     }
@@ -1249,14 +1329,15 @@ class PropertyController extends controller
         return $info;
     }
 
-    public function property_list(){
+    public function property_list()
+    {
 
         return view('theme::newlayouts.user_dashboard.property_list');
     }
 
     public function get_user_properties(Request $request)
     {
-       
+
         $this->state = $request->state;
         $this->status = $request->status;
         $this->category = $request->category;
@@ -1389,5 +1470,4 @@ class PropertyController extends controller
         $posts = $posts->latest()->paginate(30);
         return response()->json($posts);
     }
-
 }

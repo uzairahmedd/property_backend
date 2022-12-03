@@ -273,7 +273,8 @@ Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Th
 	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 	Route::resource('property', 'PropertyController');
 	//new property design routes for create
-	Route::post('create_property', 'PropertyController@add_property')->name('property.store_property');
+	Route::get('create_property/{id?}', 'PropertyController@create_property')->name('property.create_property');
+	Route::post('add_property', 'PropertyController@add_property')->name('property.store_property');
 	Route::get('edit-two/property/{id}', 'PropertyController@edit_two_property')->name('property.second_edit_property');
 	Route::put('update-second/property/{id}', 'PropertyController@update_two_property')->name('property.second_update_property');
 	Route::get('edit-third/property/{id}', 'PropertyController@edit_third_property')->name('property.third_edit_property');
