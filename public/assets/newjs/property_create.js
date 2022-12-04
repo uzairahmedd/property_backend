@@ -15,95 +15,95 @@ $("#create_status2").click(function (event) {
 /*---------------------
        	Image Remove
     --------------------------*/
-// var m_id='';
-// function remove_image(param,key) {
-//     m_id=key;
-//     Swal.fire({
-//         title: 'Are you sure?',
-//         text: "You won't be able to revert this!",
-//         icon: 'warning',
-//         showCancelButton: true,
-//         confirmButtonColor: '#3085d6',
-//         cancelButtonColor: '#d33',
-//         confirmButtonText: 'Yes, Do It!'
-//     }).then((result) => {
-//         if (result.value == true) {
-//             $('#m_area'+m_id).remove();
-//             $('#media_id').val(param);
-//             $('#basicform').submit();
-//         }
-//     })
-// }
+var m_id='';
+function remove_image(param,key) {
+    m_id=key;
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to remove this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Do It!'
+    }).then((result) => {
+        if (result.value == true) {
+            $('#m_area'+m_id).remove();
+            $('#media_id').val(param);
+            $('#basicform').submit();
+        }
+    })
+}
 
-// $("#basicform").on('submit', function(e){
-//     e.preventDefault();
+$("#basicform").on('submit', function(e){
+    e.preventDefault();
     
-//     $.ajaxSetup({
-//         headers: {
-//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//         }
-//     });
-//     $.ajax({
-//         type: 'POST',
-//         url: this.action,
-//         data: new FormData(this),
-//         dataType: 'json',
-//         contentType: false,
-//         cache: false,
-//         processData:false,
-//         beforeSend: function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        url: this.action,
+        data: new FormData(this),
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        processData:false,
+        beforeSend: function() {
                
-//                $('.basicbtn').attr('disabled','');
+               $('.basicbtn').attr('disabled','');
                
               
 
-//         },
+        },
         
-//         success: function(response){ 
-//             $('.basicbtn').removeAttr('disabled')
-//             Sweet('success',response)
+        success: function(response){ 
+            $('.basicbtn').removeAttr('disabled')
+            Sweet('success',response)
             
-//             // success(response)
-//         },
-//         error: function(xhr, status, error) 
-//         {
-//             $('.basicbtn').removeAttr('disabled')
-//             $('.errorarea').show();
-//             $.each(xhr.responseJSON.errors, function (key, item) 
-//             {
-//                 Sweet('error',item)
-//                 $("#errors").html("<li class='text-danger'>"+item+"</li>")
-//             });
-//             errosresponse(xhr, status, error);
-//         }
-//     })
+            // success(response)
+        },
+        error: function(xhr, status, error) 
+        {
+            $('.basicbtn').removeAttr('disabled')
+            $('.errorarea').show();
+            $.each(xhr.responseJSON.errors, function (key, item) 
+            {
+                Sweet('error',item)
+                $("#errors").html("<li class='text-danger'>"+item+"</li>")
+            });
+            errosresponse(xhr, status, error);
+        }
+    })
 
 
-// });
+});
 
 
 
-// /*-------------------------------
-//         Sweetalert Message Show
-//     -----------------------------------*/
-//     function Sweet(icon,title,time=3000){
+/*-------------------------------
+        Sweetalert Message Show
+    -----------------------------------*/
+    function Sweet(icon,title,time=3000){
   
-//         const Toast = Swal.mixin({
-//             toast: true,
-//             position: 'top-end',
-//             showConfirmButton: false,
-//             timer: time,
-//             timerProgressBar: true,
-//             onOpen: (toast) => {
-//                 toast.addEventListener('mouseenter', Swal.stopTimer)
-//                 toast.addEventListener('mouseleave', Swal.resumeTimer)
-//             }
-//         })
-//         Toast.fire({
-//             icon: icon,
-//             title: title,
-//         })
-//     }
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: time,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: icon,
+            title: title,
+        })
+    }
 
 
 var loadFile = function(event) {

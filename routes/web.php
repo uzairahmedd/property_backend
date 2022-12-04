@@ -272,7 +272,8 @@ Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Th
 	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 	Route::resource('property', 'PropertyController');
 	//new property design routes for create
-	Route::post('create_property', 'PropertyController@add_property')->name('property.store_property');
+	Route::get('create_property/{id?}', 'PropertyController@create_property')->name('property.create_property');
+	Route::post('add_property', 'PropertyController@add_property')->name('property.store_property');
 	Route::get('edit-two/property/{id}', 'PropertyController@edit_two_property')->name('property.second_edit_property');
 	Route::put('update-second/property/{id}', 'PropertyController@update_two_property')->name('property.second_update_property');
 	Route::get('edit-third/property/{id}', 'PropertyController@edit_third_property')->name('property.third_edit_property');
@@ -284,12 +285,13 @@ Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Th
 	Route::get('edit-six/property/{id}', 'PropertyController@edit_six_property')->name('property.six_edit_property');
 	Route::put('update-six/property/{id}', 'PropertyController@update_six_property')->name('property.six_update_property');
 	Route::get('finish/property/{id}', 'PropertyController@finish_property')->name('property.finish_property');
-    //property list
+	//property list
 	Route::get('property-list', 'PropertyController@property_list')->name('property.property_list');
 	Route::get('get_user_properties', 'PropertyController@get_user_properties');
-
     Route::get('favorite-property-list', 'FavouriteController@user_favorites')->name('property.userboard_favorite');
     Route::get('user_favorite_properties', 'FavouriteController@get_favorite_properties');
+	//delete property
+	Route::get('delete_property/{id}', 'PropertyController@delete_property');
 	Route::post('contact_type/{id}', 'PropertyController@contact_type')->name('contact_type');
 	Route::post('floor-plan/{id}', 'PropertyController@floor_plan_store')->name('floor.store');
 	Route::get('floor-plan/delete/{id}', 'PropertyController@floor_plan_delete')->name('floor.delete');
