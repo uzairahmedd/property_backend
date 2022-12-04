@@ -3,19 +3,18 @@
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/second-page.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/profile.css')}}">
     <div class="profile d-flex justify-content-end">
-        {{--        <div class="overlay"></div>--}}
-        {{--        <div id="load_cover">--}}
-        {{--            <div class="loaderInner">--}}
-        {{--                <div class="loader-logo"></div>--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
-
+    <div class="overlay"></div>
+    <div id="load_cover">
+        <div class="loaderInner">
+            <div class="loader-logo"></div>
+        </div>
+    </div>
         <div class="favorite-container col-lg-10 col-md-12" style="padding: 0px 20px 0px 70px;">
             <div class="nav-tab">
                 <nav>
                     <div class="nav nav-tabs d-flex align-items-end justify-content-end" id="nav-tab" role="tablist">
                         <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab"
-                           aria-controls="nav-home" aria-selected="true">إعلانات</a>
+                           aria-controls="nav-home" aria-selected="true"><span>(<span class="theme-text-sky results">0</span>)</span>&nbsp;إعلانات</a>
                     </div>
                 </nav>
                 <!-- <div class="tab-content" id="nav-tabContent">

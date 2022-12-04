@@ -7,7 +7,7 @@
             </a>
         </li>
         <li>
-            <a href="/favorite"
+            <a href="{{ route('agent.property.userboard_favorite') }}"
                class="text-decoration-none py-3 justify-content-end d-flex align-items-center theme-grey-light theme-text-blue font-16">
                 <span>المفضلة</span>
                 <img src="{{asset('assets/images/fav-dash.png')}}" alt="" class="img-fluid">

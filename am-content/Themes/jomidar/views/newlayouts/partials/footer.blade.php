@@ -6,10 +6,10 @@
                     <a href="/search">البحث</a>
                 </li>
                 <li>
-                    <a href="#">إعلانات للبيع</a>
+                    <a href="{{ route('list', ['status' => '26']) }}">إعلانات للبيع</a>
                 </li>
                 <li>
-                    <a href="#">إعلانات للايجار</a>
+                    <a href="{{ route('list', ['status' => '27']) }}">إعلانات للايجار</a>
                 </li>
                 <li>
                     <a href="/property_auction">المزادات</a>
