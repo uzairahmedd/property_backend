@@ -40,7 +40,7 @@
                             </button>
                             <ul class="dropdown-menu after-sign-drop pt-0 mt-0 pb-0 mb-0" aria-labelledby="dropdownMenuButton">
                                 <li><a class="dropdown-item text-right" href="{{ route('agent.profile.settings') }}">لوحة التحكم<i class="fa-solid fa-house-user"></i></a></li>
-                                <li><a class="dropdown-item text-right" href="/favorite">المفضلة<i class="fa-regular fa-heart"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="{{ route('agent.property.userboard_favorite') }}">المفضلة<i class="fa-regular fa-heart"></i></a></li>
                                 <li><a class="dropdown-item text-right" href="{{ route('agent.property.property_list') }}">إعلاناتي<i class="fa-solid fa-magnifying-glass"></i></a></li>
                                 <li><a class="dropdown-item text-right" href="/account"> إعدادات الحساب<i class="fa-solid fa-user"></i></a></li>
                                 <li><a class="dropdown-item text-right" href="{{ route('agent.logout') }}">تسجيل خروج<i class="fa-solid fa-right-from-bracket"></i></a></li>

@@ -3,7 +3,7 @@
 @include('theme::newlayouts.partials.top')
 
 <body>
-  
+
     <input type="hidden" id="base_url" value="{{ asset('/') }}">
     <input type="hidden" id="asset_url" value="{{ asset('/') }}">
     <input type="hidden" value="{{ route('property.favourite') }}" id="favourite_property_url">
@@ -23,8 +23,10 @@
         @include ('theme::newlayouts.partials.bottom')
         @yield('dropdown-select');
         @yield('property_list_select');
+        @yield('favorite_properties');
         @yield('property_create');
         @yield('OTPScript')
+        @yield('home_properties')
     </div>
     {{ google_analytics() }}
 </body>

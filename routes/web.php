@@ -218,7 +218,7 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::get('change_currency', 'WelcomeController@change_currency')->name('change_currency');
 	Route::post('user/register', 'RegisterController@register')->name('user.register');
 	Route::get('contact', 'ContactController@index')->name('contact.index');
-	//new register 
+	//new register
 	Route::post('user/user_register', 'RegisterController@user_register')->name('user_register');
 	Route::get('Verify_OTP_page/{id}', 'RegisterController@Verify_OTP_page');
 	Route::post('verify_otp', 'RegisterController@verify_otp');
@@ -238,7 +238,6 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	// Route::get('property_detail', 'PropertyController@property_detail')->name('property_detail');
 	Route::get('property_auction', 'PropertyController@property_auction')->name('property_auction');
 	// Route::get('my_profile', 'PropertyController@userboard_profile')->name('userboard_profile');
-	Route::get('favorite', 'PropertyController@userboard_favorite')->name('userboard_favorite');
 	Route::get('auction', 'PropertyController@userboard_auction')->name('userboard_auction');
 	Route::get('account', 'PropertyController@userboard_account')->name('userboard_account');
 	Route::get('step_one', 'PropertyController@step_one')->name('step_one');
@@ -289,7 +288,8 @@ Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Th
 	Route::get('property-list', 'PropertyController@property_list')->name('property.property_list');
 	Route::get('get_user_properties', 'PropertyController@get_user_properties');
 
-
+    Route::get('favorite-property-list', 'FavouriteController@user_favorites')->name('property.userboard_favorite');
+    Route::get('user_favorite_properties', 'FavouriteController@get_favorite_properties');
 	Route::post('contact_type/{id}', 'PropertyController@contact_type')->name('contact_type');
 	Route::post('floor-plan/{id}', 'PropertyController@floor_plan_store')->name('floor.store');
 	Route::get('floor-plan/delete/{id}', 'PropertyController@floor_plan_delete')->name('floor.delete');
@@ -341,3 +341,5 @@ Route::group(['namespace' => 'App\Http\Controllers\Auth', 'middleware' => 'web']
 	Route::get('login/{provider}', 'LoginController@redirectToProvider');
 	Route::get('login/{provider}/callback', 'LoginController@handleProviderCallback');
 });
+
+//Route::post('property/favourite_property', 'PropertyController@favourite_property')->name('favourite_property');
