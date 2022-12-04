@@ -558,6 +558,7 @@ class PropertyController extends controller
      */
     public function destroy($id)
     {
+
         $term = Terms::where('user_id', Auth::id())->with('medias', 'floor_plans')->findorFail($id);
 
         $ids = [];
@@ -663,7 +664,6 @@ class PropertyController extends controller
             $term->user_id = Auth::id();
             $term->status = 3;
             $term->type = 'property';
-            $term->create_status = '1';
             $term->slug = $slug;
         }
         $term->title = $request->title;
@@ -1469,5 +1469,23 @@ class PropertyController extends controller
 
         $posts = $posts->latest()->paginate(30);
         return response()->json($posts);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete_property($id)
+    {
+        $data = ['messages' => 'Property not found', 'status' => 'error'];
+        $term = Terms::where('user_id', Auth::id())->findorFail($id);
+        if (!empty($term)) {
+            $term = Terms::where('user_id', Auth::id())->where('id', $id)->update(['status' => 0]);
+            $data = ['messages' => 'Property deleted successfully', 'status' => 'success'];
+        }
+
+        return response()->json($data);
     }
 }

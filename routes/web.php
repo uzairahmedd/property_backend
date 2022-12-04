@@ -286,10 +286,11 @@ Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Th
 	Route::get('edit-six/property/{id}', 'PropertyController@edit_six_property')->name('property.six_edit_property');
 	Route::put('update-six/property/{id}', 'PropertyController@update_six_property')->name('property.six_update_property');
 	Route::get('finish/property/{id}', 'PropertyController@finish_property')->name('property.finish_property');
-    //property list
+	//property list
 	Route::get('property-list', 'PropertyController@property_list')->name('property.property_list');
 	Route::get('get_user_properties', 'PropertyController@get_user_properties');
-
+	//delete property
+	Route::get('delete_property/{id}', 'PropertyController@delete_property');
 
 	Route::post('contact_type/{id}', 'PropertyController@contact_type')->name('contact_type');
 	Route::post('floor-plan/{id}', 'PropertyController@floor_plan_store')->name('floor.store');
