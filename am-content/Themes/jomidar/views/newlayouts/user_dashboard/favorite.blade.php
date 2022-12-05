@@ -14,7 +14,7 @@
                 <nav>
                     <div class="nav nav-tabs d-flex align-items-end justify-content-end" id="nav-tab" role="tablist">
                         <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab"
-                           aria-controls="nav-home" aria-selected="true"><span>(<span class="theme-text-sky results">0</span>)</span>&nbsp;إعلانات</a>
+                           aria-controls="nav-home" aria-selected="true"><span>(<span class="theme-text-sky results">0</span>)</span>&nbsp;المفضلة</a>
                     </div>
                 </nav>
                 <!-- <div class="tab-content" id="nav-tabContent">
@@ -41,8 +41,8 @@
             </div>
             <div class="col-lg-12 ">
                 <div class="show-pagination-info text-center">
-                    <p class="show-info">{{ __('Showing') }} <span><span id="user_from">
-                                    </span> - <span id="user_to"></span> {{ __('of') }} <span id="user_total"></span></span> {{ __('List') }}</p>
+                    <p class="show-info">{{ __('Showing') }} <span><span id="user_favorite_from">
+                                    </span> - <span id="user_favorite_to"></span> {{ __('of') }} <span id="user_favorite_total"></span></span> {{ __('List') }}</p>
                 </div>
             </div>
         </div>

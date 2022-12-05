@@ -11,7 +11,7 @@ function get_favorite_properties(url) {
         dataType: 'json',
         beforeSend: function () {
             $('.results').text('');
-            $('#user_property_list').html('');
+            $('#favorite_properties_list').html('');
             $('.loaderInner').fadeIn();
             $('#load_cover').fadeIn('slow');
         },
@@ -26,7 +26,7 @@ function get_favorite_properties(url) {
             if (response.data.length == 0) {
                 $('.show-pagination-info').hide();
 
-                $('#user_property_list').html('<div class="col-12 no-more"><h3 class="text-center">No data avaiable</h3></div>');
+                $('#favorite_properties_list').html('<div class="col-12 no-more"><h3 class="text-center">No data avaiable</h3></div>');
 
             } else {
                 $('.show-pagination-info').show();
@@ -49,9 +49,9 @@ function get_favorite_properties(url) {
                 var total = response.total;
             }
 
-            $('#user_from').html(from);
-            $('#user_to').html(response.to);
-            $('#user_total').html(total);
+            $('#user_favorite_from').html(from);
+            $('#user_favorite_to').html(response.to);
+            $('#user_favorite_total').html(total);
             if (response.links.length > 3) {
                 user_render_pagination('.pagination', response.links);
             }
