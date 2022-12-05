@@ -353,3 +353,20 @@ function amount_format(amount){
 	return  currency_icon+total;
 }
 
+/*----------------------
+        Amount Format
+    --------------------------*/
+	function new_amount_format(amount){
+		var lang_name=$('.locale').val();
+		var total='';	
+		total=amount.toLocaleString();
+		var name='ر.س';
+		total= name +" " + total;
+		if(lang_name == 'en'){
+			 total=amount.toLocaleString();
+			 total="SAR "+total;
+		}
+		
+		return total; 
+	}
+

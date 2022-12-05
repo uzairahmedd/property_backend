@@ -1494,4 +1494,10 @@ class PropertyController extends controller
 
         return response()->json($data);
     }
+
+
+    public function userboard_account()
+    {
+        return view('theme::newlayouts.user_dashboard.account');
+    }
 }

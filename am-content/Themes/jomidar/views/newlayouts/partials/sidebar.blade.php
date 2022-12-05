@@ -21,7 +21,7 @@
             </a>
         </li>
         <li>
-            <a href="/account"
+            <a href="{{ route('agent.profile.account') }}"
                class="text-decoration-none py-3 justify-content-end d-flex align-items-center theme-grey-light theme-text-blue font-16">
                 <span>إعدادات الحساب</span>
                 <img src="{{asset('assets/images/setting-icon.png')}}" alt="" class="img-fluid">

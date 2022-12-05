@@ -60,7 +60,7 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                         <span class="font-16 theme-text-sky mb-2">
                             عدد الإعلانات </span>
                         <h2 class="theme-text-blue font-medium">
-                        N/A
+                        {{ isset($property_count) ? $property_count : 'N/A'}}
                         </h2>
                     </div>
                 </div>

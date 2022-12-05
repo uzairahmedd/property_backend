@@ -100,7 +100,7 @@ function user_properties_list(target, data) {
         }
 
         if (value.price != null) {
-            price = amount_format(value.price.price);
+            price = new_amount_format(value.price.price);
         } else {
             price = 'N/A';
         }

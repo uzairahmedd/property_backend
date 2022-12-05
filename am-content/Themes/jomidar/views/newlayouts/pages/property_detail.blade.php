@@ -6,12 +6,10 @@
     }
 </style>
 <link rel="stylesheet" href="{{ theme_asset('assets/css/fontawesome-all.min.css') }}">
-<!-- <link rel="stylesheet" href="{{ theme_asset('assets/css/owl.carousel.min.css') }}"> -->
 <link rel="stylesheet" href="{{ theme_asset('assets/css/magnific-popup.css') }}">
 @endpush
 @section('content')
-{{-- User profile CSS--}}
-<!-- <link rel="stylesheet" href="{{theme_asset('assets/newcss/profile.css')}}"> -->
+
 <!-- Heder Sections Start Here -->
 <div class="item-header pt-5">
     <div class="container">
@@ -27,12 +25,6 @@
         <div class="d-flex flex-wrap-reverse justify-content-end justify-content-lg-between align-items-center my-3">
             <div class="col-12 col-lg-8 col-xl-7 col-xxl-6">
                 <ul class="detail list-unstyled mb-0 d-flex flex-column flex-sm-row align-items-end justify-content-between align-items-sm-center">
-                    {{-- <li class="d-flex mb-3 mb-sm-0">--}}
-                    {{-- <span>مشاركة</span>--}}
-                    {{-- <div class="icon d-flex align-items-center justify-content-center">--}}
-                    {{-- <img src="{{theme_asset('assets/images/share.png')}}" alt="">--}}
-                    {{-- </div>--}}
-                    {{-- </li>--}}
 
                     <li class="d-flex mb-3 mb-sm-0">
                         <span>Share</span>
@@ -50,12 +42,11 @@
                     <li class="d-flex mb-3 mb-sm-0">
                         <span>Favorite property</span>
                         @if (Auth::check())
-                        <input type="hidden" value="{{ route('property.favourite') }}" id="favourite_property_url">
                         @php
                         $data = DB::table('terms_user')->where([
                         ['terms_id',$property->id],
                         ['user_id',Auth::User()->id]
-                        ])->first(); Auth::User()->favourite_properties()->first();
+                        ])->first();
                         if($data)
                         {
                         $property_id = $data->terms_id;
@@ -64,12 +55,10 @@
                         }
                         @endphp
                         <a href="javascript:void(0)" onclick="favourite_property('{{ $property->id }}')" id="favourite_btn" class="{{ $property_id == $property->id ? 'active' : '' }}">
-                            {{-- <span class="iconify" data-icon="cil:heart" data-inline="false"></span>--}}
-                            <i class="fa-regular fa-heart ps-1" id="heart"></i>
+                            <i class="{{isset($property_id) ? 'fa-solid' : 'fa-regular'}} fa-heart ps-1" id="heart"></i>
                         </a>
                         @else
                         <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#contactModal">
-                            {{-- <span class="iconify" data-icon="cil:heart" data-inline="false"></span>--}}
                             <i class="fa-regular fa-heart ps-1" id="heart"></i>
                         </a>
                         @endif
@@ -125,7 +114,7 @@
         <div class="row">
             <div class="col-12 col-lg-6 col-xxl-5">
                 <div class="card text-end theme-bg-white align-items-end">
-                    <h1 class="theme-text-blue font-medium">{{ amount_format($property->price->price ?? 0) }}</h1>
+                    <h1 class="theme-text-blue font-medium">{{ new_amount_format($property->price->price ?? 0) }}</h1>
                     <hr>
                     <h3 class="font-medium mb-2">Address</h3>
                     <div class="d-flex align-items-start justify-content-end mb-4">
@@ -369,7 +358,6 @@
 
                     </div>
                     </form>
-                    {{-- <a href="" class="d-flex justify-content-center mt-2 theme-text-blue" data-bs-target="#signup" data-bs-toggle="modal">انشئ حساب </a>--}}
                 </div>
             </div>
             <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt="" class="position-absolute close-modal">
@@ -382,10 +370,7 @@
 
 @push('js')
 <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
-<!-- <script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script> -->
 <script src="{{ theme_asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-<!-- <script src="{{ theme_asset('assets/js/owl.carousel.min.js') }}"></script>
-<script src="{{ theme_asset('assets/js/jQuery.print.js') }}"></script> -->
 <script src="{{ theme_asset('assets/js/property.js') }}"></script>
 <script src="{{ theme_asset('assets/js/custommap.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&callback=initialize&libraries=&v=weekly" defer></script>

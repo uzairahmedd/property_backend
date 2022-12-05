@@ -20,8 +20,7 @@
                         <div class="d-flex align-items-center mb-3 mb-lg-0">
                             <div class="col d-flex flex-column align-items-end">
                                 <span class="font-16 theme-text-sky">أهلا بك,</span>
-                                <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->name }}
-                                    عثمان</h3>
+                                <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->name }}</h3>
                             </div>
                             <div class="dp-elipse d-flex align-items-center justify-content-center">
                                 <img src="http://127.0.0.1:8000/assets/images/avatar.png" alt="" class="img-fluid">
@@ -38,7 +37,7 @@
                                 <div class="d-flex flex-column align-items-end">
                                     <label for="" class="font-16 theme-text-seondary-black mb-2">البريد الإلكتروني
                                         (اختياري)</label>
-                                    <input type="text" name="" id="" placeholder="البريد الإلكتروني" class="form-control">
+                                    <input type="email" value="{{ Auth::User()->email }}" name="email" placeholder="البريد الإلكتروني" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-8 col-sm-12">
