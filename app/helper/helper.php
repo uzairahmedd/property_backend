@@ -121,6 +121,17 @@ function amount_format($amount, $array = false)
 	}
 }
 
+
+function new_amount_format($amount)
+{
+     
+	$format ="ر.س ".number_format($amount, 2);
+	if(Session::has('locale') && Session::get('locale') == 'en'){
+		$format ="SAR ".number_format($amount, 2);
+	}
+	
+	return $format;
+}
 function amount_calculation($amount)
 {
 	$default_currency = default_currency();

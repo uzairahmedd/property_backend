@@ -255,7 +255,7 @@ class RegisterController extends controller
         }
         //time for countdown
         $user_data = DB::table('users')->where('phone', $mobile)
-            ->where('is_verified', '0')
+            // ->where('is_verified', '0')
             ->first();
         //time diff for otp send to page reload
         $diff = Carbon::parse($user_data->updated_at)->diffInSeconds(\Carbon\Carbon::now());
@@ -303,7 +303,7 @@ class RegisterController extends controller
     {
         $user_data = DB::table('users')
             ->where('id', decrypt($id))
-            ->where('is_verified', 0)
+            // ->where('is_verified', 0)
             ->first();
         return view('theme::newlayouts.pages.phone_no', compact('user_data'));
     }

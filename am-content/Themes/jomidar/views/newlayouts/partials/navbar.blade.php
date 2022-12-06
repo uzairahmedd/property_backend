@@ -24,10 +24,10 @@
                                 {{ Auth::User()->name}}<img src="{{theme_asset('assets/images/avatar.svg')}}" class="ms-3" />
                             </button>
                             <ul class="dropdown-menu after-sign-drop pt-0 mt-0 pb-0 mb-0" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item text-right" href="{{ route('agent.profile.settings') }}">{{__('labels.dashboard')}} <i class="fa-solid fa-house-user"></i></a></li>
-                                <li><a class="dropdown-item text-right" href="{{ route('agent.property.userboard_favorite') }}">{{__('labels.favorite')}} &nbsp;&nbsp; <i class="fa-regular fa-heart"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="{{ route('agent.profile.settings') }}">{{__('labels.dashboard')}}<i class="fa-solid fa-house-user"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="{{ route('agent.property.userboard_favorite') }}">{{__('labels.favorite')}} <i class="fa-regular fa-heart"></i></a></li>
                                 <li><a class="dropdown-item text-right" href="{{ route('agent.property.property_list') }}">{{__('labels.my_properties')}} <i class="fa-solid fa-magnifying-glass"></i></a></li>
-                                <li><a class="dropdown-item text-right" href="/account">{{__('labels.account_setting')}} <i class="fa-solid fa-user"></i></a></li>
+                                <li><a class="dropdown-item text-right" href="{{ route('agent.profile.account') }}">{{__('labels.account_setting')}} <i class="fa-solid fa-user"></i></a></li>
                                 <li><a class="dropdown-item text-right" href="{{ route('agent.logout') }}">{{__('labels.log_out')}} <i class="fa-solid fa-right-from-bracket"></i></a></li>
                             </ul>
                         </div>

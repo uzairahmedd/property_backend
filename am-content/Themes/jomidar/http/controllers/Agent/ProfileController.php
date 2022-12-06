@@ -4,6 +4,7 @@ namespace Amcoders\Theme\jomidar\http\controllers\Agent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use App\Terms;
 use Hash;
 use App\Usermeta;
 use App\Models\User;
@@ -15,7 +16,8 @@ class ProfileController extends controller
 {
     public function index()
     {
-        return view('theme::newlayouts.user_dashboard.profile');
+        $property_count=Terms::where('type', 'property')->where('status', 1)->where('user_id', Auth::id())->count();
+        return view('theme::newlayouts.user_dashboard.profile',compact('property_count'));
         // return view('view::agent.settings');
     }
 

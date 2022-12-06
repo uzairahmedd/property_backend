@@ -1,14 +1,10 @@
 <!-- Jquery -->
 <script src="{{theme_asset('assets/newjs/jquery.min.js')}}"></script>
-
-
 <!--    Bootstrap Js-->
-<!-- <script src="bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <script src="{{theme_asset('assets/bootstrap/js/popper.min.js')}}"></script>
 <script src="{{theme_asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{theme_asset('assets/js/iconify.min.js') }}"></script>
 <!--    Select All Js-->
-<!-- <script src="js/select2.min.js"></script> -->
 <!-- Owl Carousel -->
 <script src="{{theme_asset('assets/newjs/owl.carousel.min.js')}}"></script>
 {{-- Selectric Js--}}
@@ -22,5 +18,4 @@
 @stack('js')
 <script src="{{theme_asset('assets/newjs/custom.js')}}"></script>
 <script src="{{theme_asset('assets/newjs/property_step.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 

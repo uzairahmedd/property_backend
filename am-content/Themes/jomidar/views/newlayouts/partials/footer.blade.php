@@ -6,10 +6,10 @@
                     <a href="/search">{{__('labels.search')}}</a>
                 </li>
                 <li>
-                    <a href="#">{{__('labels.ads_sale')}}</a>
+                    <a href="{{ route('list', ['status' => '26']) }}">{{__('labels.ads_sale')}}</a>
                 </li>
                 <li>
-                    <a href="#">{{__('labels.ads_rent')}}</a>
+                    <a href="{{ route('list', ['status' => '27']) }}">{{__('labels.ads_rent')}}</a>
                 </li>
                 <li>
                     <a href="/property_auction">{{__('labels.auction')}}</a>

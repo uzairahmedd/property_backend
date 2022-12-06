@@ -31,7 +31,7 @@
 				</div>
 			</form>
 		</div>
-		<form method="post" action="{{ route('admin.projects.destroy') }}" class="basicform">
+		<form method="post" action="{{ route('admin.features.destroy') }}" class="basicform">
 			@csrf
 			<div class="float-left">
 				@can('input.delete')

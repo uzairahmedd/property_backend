@@ -972,6 +972,12 @@ class PropertyController extends controller
      */
     public function update_forth_property(Request $request, $id)
     {
+        $validator = \Validator::make($request->all(), [
+            'media.*' => 'mimes:jpeg,jpg,png|max:20480',
+        ]);      
+            if ($validator->fails()) {
+                return back()->withErrors($validator->errors())->withInput();
+            }
 
         $term_id = decrypt($id);
         //store and update virtual rour video
@@ -1487,5 +1493,11 @@ class PropertyController extends controller
         }
 
         return response()->json($data);
+    }
+
+
+    public function userboard_account()
+    {
+        return view('theme::newlayouts.user_dashboard.account');
     }
 }

@@ -352,10 +352,10 @@ class PropertyController extends controller
         return view('theme::newlayouts.user_dashboard.auction');
     }
 
-    public function userboard_account()
-    {
-        return view('theme::newlayouts.user_dashboard.account');
-    }
+    // public function userboard_account()
+    // {
+    //     return view('theme::newlayouts.user_dashboard.account');
+    // }
 
     // public function step_one()
     // {

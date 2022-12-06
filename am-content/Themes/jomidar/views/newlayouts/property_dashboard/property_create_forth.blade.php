@@ -14,10 +14,18 @@
                     <span class="theme-text-sky ">4</span>/
                     <span class="theme-text-seondary-black">6</span>
                 </div>
+                @if($errors->has('media.*'))
+                @foreach($errors->get('media.*') as $errors)
+                @foreach($errors as $error)
+                <div class="error col-12 d-flex mt-n3 font-medium">{{ $error }}</div>
+                @endforeach
+                @endforeach
+                @endif
+
                 <ul class="img-ul">
-                    <li class="mb-3 font-18 theme-text-seondary-black">{{__('labels.photo_horizontally')}}</li>
-                    <li class="mb-3 font-18 theme-text-seondary-black">{{__('labels.img_size_20MB')}}</li>
-                    <li class="mb-3 font-18 theme-text-seondary-black">{{__('labels.photos_exceed')}}</li>
+                    <li class="mb-6 font-18 theme-text-seondary-black">{{__('labels.photo_horizontally')}}</li>
+                    <li class="mb-6 font-18 theme-text-seondary-black">{{__('labels.img_size_20MB')}}</li>
+                    <li class="mb-6 font-18 theme-text-seondary-black">{{__('labels.photos_exceed')}}</li>
                 </ul>
 
                 <div class="col-12 d-flex justify-content-between flex-wrap">
@@ -34,6 +42,7 @@
                             <img id="second_image" src="{{asset('assets/images/bx_image-alt.png')}}" alt="">
                             <span class="font-16 theme-text-sky">{{__('labels.add_photo')}}</span>
                         </div>
+
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-6">
                         <div class="position-relative d-flex flex-column align-items-center justify-content-center b-r-8 input-container">

@@ -11,7 +11,7 @@ function get_favorite_properties(url) {
         dataType: 'json',
         beforeSend: function () {
             $('.results').text('');
-            $('#user_property_list').html('');
+            $('#favorite_properties_list').html('');
             $('.loaderInner').fadeIn();
             $('#load_cover').fadeIn('slow');
         },
@@ -26,7 +26,7 @@ function get_favorite_properties(url) {
             if (response.data.length == 0) {
                 $('.show-pagination-info').hide();
 
-                $('#user_property_list').html('<div class="col-12 no-more"><h3 class="text-center">No data avaiable</h3></div>');
+                $('#favorite_properties_list').html('<div class="col-12 no-more"><h3 class="text-center">No data avaiable</h3></div>');
 
             } else {
                 $('.show-pagination-info').show();
@@ -49,9 +49,9 @@ function get_favorite_properties(url) {
                 var total = response.total;
             }
 
-            $('#user_from').html(from);
-            $('#user_to').html(response.to);
-            $('#user_total').html(total);
+            $('#user_favorite_from').html(from);
+            $('#user_favorite_to').html(response.to);
+            $('#user_favorite_total').html(total);
             if (response.links.length > 3) {
                 user_render_pagination('.pagination', response.links);
             }
@@ -70,20 +70,19 @@ function user_properties_list(target, data) {
     $('.results').text();
     $('.results').text(data.length);
     var base_url = $('#base_url').val();
-    var asset_url = base_url;
     var image = '';
     var html = '';
     var status = '';
     var user_data = '';
-    var phone = '';
     var title = '';
     var location = '';
     var floor_name = '';
     var htmls = '';
     var sq_feet = '';
+    var price='';
     $.each(data, function (index, value) {
 
-        // user_favourite_property_check(value.id);
+        user_favourite_property_check(value.id);
         if (value.post_preview != null) {
             image = value.post_preview.media.url;
         } else {
@@ -100,17 +99,28 @@ function user_properties_list(target, data) {
             phone = 'N/A';
         }
 
+        if (value.price != null) {
+            price = new_amount_format(value.price.price);
+        } else {
+            price = 'N/A';
+        }
+
 
 
         title = str_limit(value.title, 20, true);
         location = value.post_city.value + '-' + value.post_city.category.name;
         $(target).append('<div class="col-lg-4 col-md-4 col-sm-6 single-property-list"> <div class="slide single-img-carousel"> <div id="myCarousel' + value.id + '" class="carousel" data-bs-ride="carousel"><div class="features"><div class="d-flex justify-content-between"><div class="content d-flex flex-column align-items-start theme-text-white"><div class="fav-elipse justify-content-center align-items-center theme-bg-blue"><span class="font-medium" onclick="favourite_property(' + value.id + ')"> <i title="favorite property" data-toggle="tooltip" class="fa-regular fa-heart heart' + value.id + '"></i></span></div><div class="sale theme-bg-sky"><span class="font-medium">' + status + '</span> </div></div> <div class="d-flex justify-content-center pt-3">  </div></div> </div>' +
             '<ol class="carousel-indicators"><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="0" class="active"></li>' +
-            '<li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a href="#"><h3 class="resident-text">' + title + '</h3><div class="d-flex align-items-start justify-content-end mt-2"><p class="me-2">' + location + '</p><img src="/assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex flex-wrap flex-row-reverse justify-content-right align-items-center facilicites-area facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex">' +
-            '<div class="call d-flex justify-content-center align-items-center me-3"> <img src="/assets/images/mobile-icon.png" alt="" data-toggle="tooltip" title="edit"></div><div class="whatsapp d-flex justify-content-center align-items-center"><a href=""> <img  src="/assets/images/whatsapp-icon.png" alt=""></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span>' + amount_format(value.price.price) + ' </span></h3></div> </div></div></div></div></div>');
+            '<li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a href="' + base_url + 'property-detail/' + value.slug + '"><h3 class="resident-text">' + title + '</h3><div class="d-flex align-items-start justify-content-end mt-2"><p class="me-2">' + location + '</p><img src="/assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex flex-wrap flex-row-reverse justify-content-right align-items-center facilicites-area facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex">' +
+            '<div class="call d-flex justify-content-center align-items-center me-3"> <img src="/assets/images/mobile-icon.png" alt="" data-toggle="tooltip" title="edit"></div><div class="whatsapp d-flex justify-content-center align-items-center"><a href=""> <img  src="/assets/images/whatsapp-icon.png" alt=""></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span>' + price + ' </span></h3></div> </div></div></div></div></div>');
 
+        if(value.area != null){    
         floor_name = value.area.type + " in sqm";
         sq_feet = value.area.content + " sqm";
+        }else{
+            floor_name='area in sqm';
+            sq_feet='N/A';
+        }
 
         htmls = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + sq_feet + '</span></p><img src="/assets/images/area-icon.png" alt="" data-toggle="tooltip"  title="' + floor_name + '"></div>';
         $('.facilities_area' + index).append(htmls);

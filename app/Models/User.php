@@ -115,7 +115,7 @@ class User extends Authenticatable
 
     public function user_favourite_properties()
     {
-        return $this->belongsToMany('App\Terms')->withTimestamps()->with('area', 'post_preview', 'price', 'post_city', 'user', 'featured_option', 'property_status_type');
+        return $this->belongsToMany('App\Terms')->where('status', 1)->withTimestamps()->with('area', 'post_preview', 'price', 'post_city', 'user', 'featured_option', 'property_status_type');
     }
 
     public function agency()

@@ -59,6 +59,7 @@ return [
     'ahmed_hisham' => 'Ahmed Hisham',
     'minutes_ago_35' => '35 Minutes Ago',
     '1_million_sar' => 'Million SAR',
+    'millions_riyal' => '1.8 Million SAR',
     'minimum_more' => 'Minimum for more',
     'random_auction_end_date' => 'The auction ends on 10-20-2022',
     'download_app' => 'Download the App Now',

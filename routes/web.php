@@ -239,7 +239,7 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::get('property_auction', 'PropertyController@property_auction')->name('property_auction');
 	// Route::get('my_profile', 'PropertyController@userboard_profile')->name('userboard_profile');
 	Route::get('auction', 'PropertyController@userboard_auction')->name('userboard_auction');
-	Route::get('account', 'PropertyController@userboard_account')->name('userboard_account');
+	// Route::get('account', 'PropertyController@userboard_account')->name('userboard_account');
 	Route::get('step_one', 'PropertyController@step_one')->name('step_one');
 	Route::get('step_two', 'PropertyController@step_two')->name('step_two');
 	Route::get('step_three', 'PropertyController@step_three')->name('step_three');
@@ -292,6 +292,8 @@ Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Th
     Route::get('user_favorite_properties', 'FavouriteController@get_favorite_properties');
 	//delete property
 	Route::get('delete_property/{id}', 'PropertyController@delete_property');
+	//agent accounts
+	Route::get('account', 'PropertyController@userboard_account')->name('profile.account');
 	Route::post('contact_type/{id}', 'PropertyController@contact_type')->name('contact_type');
 	Route::post('floor-plan/{id}', 'PropertyController@floor_plan_store')->name('floor.store');
 	Route::get('floor-plan/delete/{id}', 'PropertyController@floor_plan_delete')->name('floor.delete');

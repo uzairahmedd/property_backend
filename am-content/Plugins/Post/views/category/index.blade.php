@@ -45,7 +45,7 @@
 								</div>
 							</th>
 							<th class="am-title">{{ __('Title') }}</th>
-							<th class="am-title">{{ __('Credit Charge') }}</th>
+							<!-- <th class="am-title">{{ __('Credit Charge') }}</th> -->
 							<th class="am-title">{{ __('Featured') }}</th>
 							<th class="am-date">{{ __('Date') }}</th>
 						</tr>
@@ -65,7 +65,7 @@
 									<a href="{{ route('admin.category.edit',$post->id) }}">{{ __('Edit') }}</a>
 								</div>
 							</td>
-							<td>{{ $post->creditcharge->content ?? '' }}</td>
+							<!-- <td>{{ $post->creditcharge->content ?? '' }}</td> -->
 
 							@if($post->featured==1)
 							<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
@@ -90,7 +90,7 @@
 							</div>
 						</th>
 						<th class="am-title">{{ __('Title') }}</th>
-						<th class="am-title">{{ __('Credit Charge') }}</th>
+						<!-- <th class="am-title">{{ __('Credit Charge') }}</th> -->
 						<th class="am-title">{{ __('Featured') }}</th>
 						<th class="am-date">{{ __('Date') }}</th>
 					</tr>

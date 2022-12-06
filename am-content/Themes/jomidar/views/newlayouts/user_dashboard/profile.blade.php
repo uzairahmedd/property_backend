@@ -59,7 +59,7 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                     <div class="card stat-card align-items-end">
                         <span class="font-16 theme-text-sky mb-2">{{__('labels.no_of_property')}}</span>
                         <h2 class="theme-text-blue font-medium">
-                        N/A
+                        {{ isset($property_count) ? $property_count : 'N/A'}}
                         </h2>
                     </div>
                 </div>

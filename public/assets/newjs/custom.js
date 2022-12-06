@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*-----------------------------
     Properties Data Get for rent properties
 --------------------------------*/
@@ -76,6 +77,8 @@
 //      }
 
 
+=======
+>>>>>>> 6d4e4c6e319013ee828ad30bdc1b22cfde38a73c
 // jquery for selection dropdown End
 
 (function ($) {

@@ -7,7 +7,7 @@
             </a>
         </li>
         <li>
-            <a href="/favorite"
+            <a href="{{ route('agent.property.userboard_favorite') }}"
                class="text-decoration-none py-3 justify-content-end d-flex align-items-center theme-grey-light theme-text-blue font-16">
                 <span>{{__('labels.favorite')}}</span>
                 <img src="{{asset('assets/images/fav-dash.png')}}" alt="" class="img-fluid">
@@ -21,7 +21,7 @@
             </a>
         </li>
         <li>
-            <a href="/account"
+            <a href="{{ route('agent.profile.account') }}"
                class="text-decoration-none py-3 justify-content-end d-flex align-items-center theme-grey-light theme-text-blue font-16">
                 <span>{{__('labels.account_setting')}}</span>
                 <img src="{{asset('assets/images/setting-icon.png')}}" alt="" class="img-fluid">
