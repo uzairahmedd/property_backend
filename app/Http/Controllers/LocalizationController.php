@@ -13,7 +13,6 @@ class LocalizationController extends Controller
     {
       $theme_file = file_get_contents(base_path().'/am-content/Themes/theme.json');
       $themes = json_decode($theme_file,true);
-
       foreach($themes as $theme)
       {
         if($theme['status'] == 'active')
@@ -21,18 +20,17 @@ class LocalizationController extends Controller
           $theme_name = $theme['Text Domain'];
         }
       }
-      
+
       $locale = $request->locale;
       $languages = Category::with('langmeta')->where([
         ['slug',$locale],
         ['name',$theme_name],
         ['type','lang']
       ])->first();
-      
+
       $info = json_decode($languages->langmeta->content);
 
       \Session::put('lang_position',$info->lang_position);
-
     	$locale = $request->locale;
     	\Session::put('locale',$locale);
 		  return "ok";

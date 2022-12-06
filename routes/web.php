@@ -344,4 +344,6 @@ Route::group(['namespace' => 'App\Http\Controllers\Auth', 'middleware' => 'web']
 	Route::get('login/{provider}/callback', 'LoginController@handleProviderCallback');
 });
 
+
+
 //Route::post('property/favourite_property', 'PropertyController@favourite_property')->name('favourite_property');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Terms;
 use App\Category;
+use App;
 use Session;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
@@ -113,7 +114,7 @@ class WelcomeController extends controller
         }
     }
 
-   
+
     /**
      * Make data for rent and sales properties
      *
@@ -175,7 +176,7 @@ class WelcomeController extends controller
         return $posts;
     }
 
-    
+
     public function change_currency(Request $request)
     {
         $put_curryncy = Category::where('type', 'currency')->with('position')->findorFail($request->currency);
@@ -187,5 +188,18 @@ class WelcomeController extends controller
         $info['position'] = $put_curryncy->position->content;
         Session::put('currency_info', $info);
         return back();
+    }
+
+    /**
+     *Change language of pages
+     * @return response.
+     */
+    public function change(Request $request)
+    {
+//        dump($request->all());
+        App::setLocale($request->lang);
+        session()->put('locale', $request->lang);
+//        dd(session()->get('locale'));
+            return $respons = ['status' => 'success'];
     }
 }

@@ -15,7 +15,7 @@
                 <nav>
                     <div class="nav nav-tabs d-flex align-items-end justify-content-end" id="nav-tab" role="tablist">
                         <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab"
-                           aria-controls="nav-home" aria-selected="true">إعلانات</a>
+                           aria-controls="nav-home" aria-selected="true">{{__('labels.property')}}</a>
                     </div>
                 </nav>
                 <!-- <div class="tab-content" id="nav-tabContent">

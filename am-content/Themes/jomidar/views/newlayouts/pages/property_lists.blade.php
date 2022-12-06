@@ -27,7 +27,7 @@
                     <div class="budget-drop-btn" id="budget-drop">
                         <div class="dropdown budget-drop">
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                            <button class="btn dropdown-toggle budget-dropdown-toggle budget-btn" role="button" id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">الميزانية
+                            <button class="btn dropdown-toggle budget-dropdown-toggle budget-btn" role="button" id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.budget')}}
                             </button>
                             <ul class="dropdown-menu budget-dropdown" id="budgetdropdown" aria-labelledby="dropdownMenuLink-rooms">
                                 <h3>الميزانية ( ريال سعودي )</h3>
@@ -66,7 +66,7 @@
                     <div class="no-rooms-drop-btn">
                         <div class="dropdown room-type-drop">
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                            <button class="btn dropdown-toggle room-dropdown-toggle room-btn" role="button" id="dropdownMenuLink-roomss" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown"> عدد الفرف
+                            <button class="btn dropdown-toggle room-dropdown-toggle room-btn" role="button" id="dropdownMenuLink-roomss" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.bedroom')}}
                             </button>
                             <ul class="dropdown-menu room-dropdown" aria-labelledby="dropdownMenuLink-roomss">
                                 <h3>عدد الغرف</h3>
@@ -126,7 +126,7 @@
                     <div class="type-rent-dropdowns">
                         <div class="dropdown type-drop">
                             <span class="room-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                            <button class="btn dropdown-toggle type-dropdown-toggle type-btn" role="button" id="dropdownMenuLink-property-type" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">النوع
+                            <button class="btn dropdown-toggle type-dropdown-toggle type-btn" role="button" id="dropdownMenuLink-property-type" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.type')}}
                             </button>
                             <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-property-type">
                                 <h3>نوع العقار</h3>
@@ -184,7 +184,7 @@
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
                             @foreach($statuses as $status_data)
                             @if( $status_data->id == $status && $status_data->name =='Sale')
-                            <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">للبيع
+                            <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.for_sale')}}
                             </button>
                             @elseif($status_data->id == $status && $status_data->name =='Rent')
                             <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">للايجار
@@ -266,7 +266,7 @@
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 order-lg-3 order-first search-box search-input-bar">
                     <div class="search-bar d-flex p-2 mt-1">
                         <img src="assets/images/search.svg" alt="">
-                        <select class="theme-text-secondary-black border-0" theme="google" width="400" style="appearance: none;" placeholder=" تبحث عن عقار؟" data-search="true" id="property_states_dropdown">
+                        <select class="theme-text-secondary-black border-0" theme="google" width="400" style="appearance: none;" placeholder="{{__('labels.looking_property')}}" data-search="true" id="property_states_dropdown">
                             @foreach ($states as $row)
                             <option value="{{ $row->id }}" @if($state==$row->id) selected="selected" @endif>{{ $row->name }}</option>
                             @endforeach
@@ -283,13 +283,12 @@
     <div class="filter-all-bar container position-relative d-flex justify-content-between">
         <div class="sort-by d-flex align-items-center">
             <img src="assets/images/sort-icon.svg" alt="">
-            <p class="sort-text m-0 gap-8 theme-text-secondary-black">ترتيب حسب</p>
+            <p class="sort-text m-0 gap-8 theme-text-secondary-black">{{__('labels.sort_by')}}</p>
         </div>
         <div class="all-ads d-flex">
-            <p class="all-results pe-2 theme-text-secondary-black"><span class="r-num font-bold pe-1 results"></span>عدد
-                النتائج</p>
+            <p class="all-results pe-2 theme-text-secondary-black"><span class="r-num font-bold pe-1 results"></span>{{__('labels.results')}}</p>
             <div class="vertical-line"></div>
-            <p class="ads theme-text-secondary-black ps-2">جميع الإعلانات</p>
+            <p class="ads theme-text-secondary-black ps-2">{{__('labels.all_properties')}}</p>
         </div>
     </div>
 </div>

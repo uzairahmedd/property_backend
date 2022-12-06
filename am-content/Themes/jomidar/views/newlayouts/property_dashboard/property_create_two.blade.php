@@ -2,10 +2,6 @@
 @section('content')
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
 <div class="add-property row-style">
-    <div class="head text-center">
-        <h1 class="font-bold theme-text-white pt-5">أدرج عقارك معنا</h1>
-        <p class="theme-text-white font-medium mb-0 mt-2">يمكنك بسهولة تسويق عقارك على موقعنا</p>
-    </div>
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here -->
     <div class="container">
@@ -18,7 +14,7 @@
                         <span class="theme-text-sky ">2</span>/
                         <span class="theme-text-seondary-black">6</span>
                     </div>
-                    <p class="theme-text-black font-18">طبيعة العقار</p>
+                    <p class="theme-text-black font-18">{{__('labels.property_nature')}}</p>
                     <div class="col-12 justify-content-end row theme-gx-3 mb-4">
                         @foreach($parent_category as $row)
                         <div class="radio-container">
@@ -30,7 +26,7 @@
                     @if($errors->has('parent_category'))
                     <div class="error">{{ $errors->first('parent_category') }}</div>
                     @endif
-                    <p class="theme-text-black font-18">نوع العقار</p>
+                    <p class="theme-text-black font-18">{{__('labels.type_property')}}</p>
                     <div class="col-12 justify-content-end property_types row theme-gx-3 mb-4_5">
                         @foreach($child_category as $row)
                         <div class="radio-container property_radio">
@@ -50,36 +46,36 @@
                                 <div class="row d-flex yesno-btn gx-2 other-meter">
                                     <div class="radio-container yes-no-radio">
                                         <input type="radio" name="electricity_facility" value="1" {{ !empty($post_data->electricity_facility)  && $post_data->electricity_facility->content == 1 ? "checked"  : (old("electricity_facility") == 1 ? "checked" : "") }}>
-                                        <span class="checmark font-16 font-medium">لا</span>
+                                        <span class="checmark font-16 font-medium">{{__('labels.no')}}</span>
                                     </div>
                                     <div class="radio-container yes-no-radio">
                                         <input type="radio" name="electricity_facility" value="0" {{ !empty($post_data->electricity_facility) && $post_data->electricity_facility->content == 0 ? "checked"  : (old("electricity_facility") == 0 ? "checked" : "") }}>
-                                        <span class="checmark font-16 font-medium">نعم</span>
+                                        <span class="checmark font-16 font-medium">{{__('labels.yes')}}</span>
                                     </div>
                                 </div>
-                                <p class="mb-0 font-18 theme-text-seondary-black meter_txt">هل يوجد عداد كهرباء</p>
+                                <p class="mb-0 font-18 theme-text-seondary-black meter_txt">{{__('labels.electricity_meter_is_there')}}</p>
                             </div>
                             <div class="d-flex justify-content-end mb-2">
                                 <div class="row d-flex yesno-btn gx-2 water-meter">
                                     <div class="radio-container yes-no-radio">
                                         <input type="radio" name="water_facility" value="1" {{ !empty($post_data->water_facility) && $post_data->water_facility->content == 1 ? "checked"  : (old("water_facility") == 1 ? "checked" : "") }}>
-                                        <span class="checmark font-16 font-medium">لا</span>
+                                        <span class="checmark font-16 font-medium">{{__('labels.no')}}</span>
                                     </div>
                                     <div class="radio-container yes-no-radio">
                                         <input type="radio" name="water_facility" value="0" {{ !empty($post_data->water_facility) && $post_data->water_facility->content == 0 ? "checked"  : (old("water_facility") == 0 ? "checked" : "") }}>
-                                        <span class="checmark font-16 font-medium">نعم</span>
+                                        <span class="checmark font-16 font-medium">{{__('labels.yes')}}</span>
                                     </div>
                                 </div>
-                                <p class="mb-0 font-18 theme-text-seondary-black meter_txt">هل يوجد عداد ماء</p>
+                                <p class="mb-0 font-18 theme-text-seondary-black meter_txt">{{__('labels.water_meter_is_there')}}</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 d-flex add-address justify-content-end">
                             <div class="col-lg-8 col-md-10 col-sm-12 d-flex flex-column align-items-end">
-                                <label for="" class="font-14 theme-text-seondary-black">قيمة العقار</label>
+                                <label for="" class="font-14 theme-text-seondary-black">{{__('labels.property_value')}}</label>
                                 <div class="position-relative d-flex align-items-center w-100">
 
-                                    <input type="text" value="{{ !empty($post_data->price) ? $post_data->price->price  : old("price") }}" name="price" placeholder="قيمة الإيجار ( السنة )" class="form-control theme-border">
-                                    <span class="font-14 font-medium position-absolute theme-text-blue price-unit">ر.س</span>
+                                    <input type="text" value="{{ !empty($post_data->price) ? $post_data->price->price  : old("price") }}" name="price" placeholder="{{__('labels.rental_value')}}" class="form-control theme-border">
+                                    <span class="font-14 font-medium position-absolute theme-text-blue price-unit">{{__('labels.sar')}}</span>
 
                                 </div>
                                 @if($errors->has('price'))
@@ -90,7 +86,7 @@
                     </div>
                     <!-- property value Section Ends Here -->
                     <!-- Street Section Starts Here -->
-                    <p class="theme-text-black font-18">عدد الشوارع</p>
+                    <p class="theme-text-black font-18">{{__('labels.no_street')}}</p>
                     <div class="row row d-flex flex-row-reverse justify-content-end flex-lg-row gx-2">
                         @for($i=4; $i>=1; $i--)
                         <div class="radio-container">
@@ -108,7 +104,7 @@
                         <div class="col-lg-5 col-md-4 col-sm-12 d-flex align-items-end">
                             <div class="dropdown regional-drop d-flex">
                                 <button class="btn dropdown-toggle regional-drop-btn interface" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    الواجهة
+                                    {{__('labels.interface')}}
                                 </button>
                                 <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
                                 <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
@@ -117,17 +113,17 @@
                                     <li><a class="dropdown-item inter_val" href="#">North</a></li>
                                     <li><a class="dropdown-item inter_val" href="#">South</a></li>
                                 </ul>
-                                <p class="ps-3">متر</p>
+                                <p class="ps-3">{{__('labels.meter')}}</p>
                             </div>
                             <div class="position-relative d-flex flex-column align-items-end w-100">
-                                <label for="" class="font-14 theme-text-seondary-black"> معلومات الشارع 2</label>
-                                <input type="text" name="street_info_one" value="{{ !empty( $post_data->street_info_one) ? $post_data->street_info_one->content  : old("street_info_one") }}" id="interface_val" placeholder="عرض الشارع" class="form-control street_view theme-border">
+                                <label for="" class="font-14 theme-text-seondary-black">{{__('labels.street_info_2')}}</label>
+                                <input type="text" name="street_info_one" value="{{ !empty( $post_data->street_info_one) ? $post_data->street_info_one->content  : old("street_info_one") }}" id="interface_val" placeholder="{{__('labels.street_view')}} " class="form-control street_view theme-border">
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-4 col-sm-12 regional-street-1 d-flex align-items-end">
                             <div class="dropdown regional-drop d-flex">
                                 <button class="btn dropdown-toggle regional-drop-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    الواجهة
+                                    {{__('labels.interface')}}
                                 </button>
                                 <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
                                 <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
@@ -135,19 +131,19 @@
                                     <li><a class="dropdown-item inter_val2" href="#">20m</a></li>
                                     <li><a class="dropdown-item inter_val2" href="#">30m</a></li>
                                 </ul>
-                                <p class="ps-3">متر</p>
+                                <p class="ps-3">{{__('labels.meter')}}</p>
                             </div>
                             <div class="position-relative d-flex flex-column align-items-end w-100">
-                                <label for="" class="font-14 theme-text-seondary-black"> معلومات الشارع 1</label>
-                                <input type="text" name="street_info_two" value="{{ !empty( $post_data->street_info_two) ? $post_data->street_info_two->content  : old("street_info_two") }}" id="interface_val2" placeholder="عرض الشارع" class="form-control street_view theme-border">
+                                <label for="" class="font-14 theme-text-seondary-black">{{__('labels.street_info_1')}}</label>
+                                <input type="text" name="street_info_two" value="{{ !empty( $post_data->street_info_two) ? $post_data->street_info_two->content  : old("street_info_two") }}" id="interface_val2" placeholder="{{__('labels.street_view')}}" class="form-control street_view theme-border">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="d-flex justify-content-between description-btn-group">
-                <button type="submit" class="btn btn-theme">التالي</button>
-                <a href="{{ route('agent.property.create_property', decrypt($id))}}" class="btn btn-theme-secondary previous_btn center_property">السابق</a>
+                <button type="submit" class="btn btn-theme">{{__('labels.next')}}</button>
+                <a href="{{ route('agent.property.create_property', decrypt($id))}}" class="btn btn-theme-secondary previous_btn center_property">{{__('labels.previous')}}</a>
             </div>
         </form>
     </div>

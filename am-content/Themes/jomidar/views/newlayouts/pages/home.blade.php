@@ -5,7 +5,7 @@
     <div  class="overlay home_fade"></div>
     <div class="header d-flex flex-column align-items-center">
         <li class="col-12 col-sm-10 col-lg-8 col-xl-5">
-            <h1 class="font-medium theme-text-white text-center">المنصة الحصرية للعقارات الموثقة في <span class="font-bold">المملكة</span></h1>
+            <h1 class="font-medium theme-text-white text-center">{{__('labels.exclusive_platform')}} <span class="font-bold">{{__('labels.kingdom')}}</span></h1>
         </li>
         <form action="{{ url(list_page()) }}">
             <div class="col-12 row looking-for theme-bg-white d-flex flex-lg-row flex-sm-row align-items-center">
@@ -29,7 +29,7 @@
                                             <div class="nav nav-tabs mb-4 rent-tabs d-flex justify-content-center align-items-center" id="nav-tab" role="tablist">
                                                 @foreach($status as $status_data)
                                                     @if( $status_data->name =='Sale')
-                                                <a class="nav-item nav-link rent-link nav-sale active" id="nav-rent-tab" data-bs-toggle="tab" data-value="{{$status_data->id}}" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">للبيع</a>
+                                                <a class="nav-item nav-link rent-link nav-sale active" id="nav-rent-tab" data-bs-toggle="tab" data-value="{{$status_data->id}}" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">{{__('labels.for_sale')}}</a>
                                                     @elseif( $status_data->name =='Rent')
                                                 <a class="nav-item nav-link rent-link nav-rent" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" data-value="{{$status_data->id}}" role="tab" aria-controls="nav-buy" aria-selected="false">للايجار</a>
                                                     @endif
@@ -110,17 +110,19 @@
                                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                                 <div class="d-flex justify-content-between resident-centent">
                                                     <div class="resident-pans">
-                                                        <li class="resident-pan" name="category" value="1">فیلا<i class="fa-solid fa-house-circle-check"></i></li>
-                                                        <li class="resident-pan" name="category" value="2">بنتهاوس<i class="fa-solid fa-house-flag"></i></li>
-                                                        <li class="resident-pan" name="category" value="3">شقة فندقية<i class="fa-solid fa-bed"></i></li>
-                                                        <li class="resident-pan" name="category" value="4">طابق سكني<i class="fa-solid fa-lines-leaning"></i></li>
+                                                        <li class="resident-pan" name="category" value="7">استراحة<i class="fa-solid fa-house-user"></i></li>
+                                                        <li class="resident-pan" name="category" value="8">شاليه<i class="fa-solid fa-house-chimney-window"></i></li>
+                                                        <li class="resident-pan" name="category" value="9">سكن عمال<i class="fa-solid fa-house-signal"></i></li>
+                                                        <li class="resident-pan" name="category" value="10">غرفة فندقية<i class="fa-solid fa-building-flag"></i></li>
+                                                        <li class="resident-pan" name="category" value="11">قصر<i class="fa-solid fa-building-flag"></i></li>
                                                     </div>
                                                     <div class="resident-pans">
-                                                        <li class="resident-pan" name="category" value="5">شقة<i class="fa-solid fa-building-user"></i></li>
-                                                        <li class="resident-pan" name="category" value="6">تاون هاوس<i class="fa-solid fa-house-user"></i></li>
-                                                        <li class="resident-pan" name="category" value="7">فيلا مجمع سكني<i class="fa-solid fa-house-chimney-window"></i></li>
-                                                        <li class="resident-pan" name="category" value="8">ارض سكنية<i class="fa-solid fa-house-signal"></i></li>
-                                                        <li class="resident-pan" name="category" value="9">مبنى سكني<i class="fa-solid fa-building-flag"></i></li>
+                                                        <li class="resident-pan" name="category" value="1">شقة<i class="fa-solid fa-building-user"></i></li>
+                                                        <li class="resident-pan" name="category" value="2">فیلا<i class="fa-solid fa-house-circle-check"></i></li>
+                                                        <li class="resident-pan" name="category" value="3">دور<i class="fa-solid fa-building-user"></i></li>
+                                                        <li class="resident-pan" name="category" value="4">شقة فندقية<i class="fa-solid fa-building-user"></i></li>
+                                                        <li class="resident-pan" name="category" value="5">عمارة سكنية<i class="fa-solid fa-building-user"></i></li>
+                                                        <li class="resident-pan" name="category" value="6">ارض سكنية<i class="fa-solid fa-building-user"></i></li>
                                                     </div>
                                                 </div>
                                                 <div class="d-flex justify-content-between mt-2">
@@ -131,23 +133,18 @@
                                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                                 <div class="d-flex justify-content-between resident-centent">
                                                     <div class="resident-pans">
-                                                        <li class="resident-pan" name="category" value="10" data-val="1">محل تجاري<i class="fa-solid fa-store"></i></li>
-                                                        <li class="resident-pan" name="category" value="11" data-val="2">سكن عمال <i class="fa-solid fa-house-user"></i></li>
-                                                        <li class="resident-pan" name="category" value="12" data-val="3">مجمع سكني<i class="fa-solid fa-building-user"></i></li>
-                                                        <li class="resident-pan" name="category" value="13" data-val="4">طابق تجاري<i class="fa-solid fa-house-flood-water"></i></li>
-                                                        <li class="resident-pan" name="category" value="14" data-val="5">مصنع<i class="fa-solid fa-industry"></i></li>
-                                                        {{-- <li class="resident-pan" name="category" value="15" data-val="6">ارض استخدام متعدد<i class="fa fa-globe drop-icons" aria-hidden="true"></i></li>--}}
-                                                        <li class="resident-pan" name="category" value="16" data-val="7">عقارات تجارية اخرى<i class="fa-solid fa-sign-hanging"></i></li>
-                                                        <li class="resident-pan" name="category" value="17" data-val="7">ارض استخدام متعدد<i class="fa-solid fa-globe"></i></li>
+                                                        <li class="resident-pan" name="category" value="6" data-val="11">ارض تجارية<i class="fa-solid fa-industry drop-icons"></i></li>
+                                                        <li class="resident-pan" name="category" value="7" data-val="13">ارض صناعية<i class="fa-solid fa-land-mine-on drop-icons"></i></li>
+                                                        <li class="resident-pan" name="category" value="8" data-val="14">مزرعة<i class="fa-solid fa-plane drop-icons"></i></li>
+                                                        <li class="resident-pan" name="category" value="9" data-val="2">عقارات تجارية اخرى <i class="fa-solid fa-house-user"></i></li>
+                                                        <li class="resident-pan" name="category" value="10" data-val="3">ارض زراعية<i class="fa-solid fa-building-user"></i></li>
                                                     </div>
                                                     <div class="resident-pans">
-                                                        <li class="resident-pan" name="category" value="18" data-val="9">مکتب<i class="fa-solid fa-briefcase drop-icons"></i></li>
-                                                        <li class="resident-pan" name="category" value="19" data-val="9">مستودع<i class="fa-solid fa-dumpster drop-icons"></i></li>
-                                                        <li class="resident-pan" name="category" value="20" data-val="10">فيلا تجارية<i class="fa-solid fa-building-user drop-icons"></i></li>
-                                                        <li class="resident-pan" name="category" value="21" data-val="11">ارض تجارية<i class="fa-solid fa-industry drop-icons"></i></li>
-                                                        <li class="resident-pan" name="category" value="22" data-val="12">مبنی تجاري<i class="fa-solid fa-dumpster-fire drop-icons"></i></li>
-                                                        <li class="resident-pan" name="category" value="23" data-val="13">ارض صناعية<i class="fa-solid fa-land-mine-on drop-icons"></i></li>
-                                                        <li class="resident-pan" name="category" value="24" data-val="14">معرض تجاري<i class="fa-solid fa-plane drop-icons"></i></li>
+                                                        <li class="resident-pan" name="category" value="1" data-val="9">مکتب<i class="fa-solid fa-briefcase drop-icons"></i></li>
+                                                        <li class="resident-pan" name="category" value="2" data-val="1">محل تجاري<i class="fa-solid fa-store"></i></li>
+                                                        <li class="resident-pan" name="category" value="3" data-val="1">صالة عرض<i class="fa-solid fa-store"></i></li>
+                                                        <li class="resident-pan" name="category" value="4" data-val="1">عمارة تجارية<i class="fa-solid fa-store"></i></li>
+                                                        <li class="resident-pan" name="category" value="5" data-val="1">مستودع<i class="fa-solid fa-store"></i></li>
                                                     </div>
                                                 </div>
                                                 <div class="d-flex justify-content-between mt-2">
@@ -164,7 +161,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 search-input-bar">
-                    <select class="theme-text-secondary-black border-0" theme="google" width="400"  id="state_dropdown" style="appearance: none;" placeholder=" تبحث عن عقار؟" data-search="true" name="state">
+                    <select class="theme-text-secondary-black border-0" theme="google" width="400"  id="state_dropdown" style="appearance: none;" placeholder="{{__('labels.looking_property')}}" data-search="true" name="state">
                         @foreach($states as $row)
                             <option value="{{ $row->id }}">{{ $row->name }}</option>
                         @endforeach
@@ -179,17 +176,15 @@
     <div class="col-12 verified theme-bg-white">
         <ul class="list-unstyled d-flex flex-column flex-md-row justify-content-between">
             <li class="d-flex flex-sm-column-reverse flex-lg-row align-items-end align-items-sm-center align-items-lg-end">
-                <h3 class="col font-medium theme-text-blue text-end text-sm-center text-lg-end">معلومات شاملة عن
-                    العقار</h3>
+                <h3 class="col font-medium theme-text-blue text-end text-sm-center text-lg-end">{{__('labels.comprehensive_information')}}</h3>
                 <img src="{{theme_asset('assets/images/searching.svg')}}" alt="">
             </li>
             <li class="d-flex flex-sm-column-reverse flex-lg-row align-items-end align-items-sm-center align-items-lg-end">
-                <h3 class="col font-medium theme-text-blue text-end text-sm-center text-lg-end">معلومات حقيقية
-                    مدققة</h3>
+                <h3 class="col font-medium theme-text-blue text-end text-sm-center text-lg-end">{{__('labels.real_info')}}</h3>
                 <img src="{{theme_asset('assets/images/verified.svg')}}" alt="">
             </li>
             <li class="d-flex flex-sm-column-reverse flex-lg-row align-items-end align-items-sm-center align-items-lg-end">
-                <h3 class="col font-medium theme-text-blue text-end text-sm-center text-lg-end">أعضاء موثقين لدينا</h3>
+                <h3 class="col font-medium theme-text-blue text-end text-sm-center text-lg-end">{{__('labels.verified_member')}}</h3>
                 <img src="{{theme_asset('assets/images/verified2.svg')}}" alt="">
             </li>
         </ul>
@@ -202,13 +197,13 @@
                 <div class="property-listing-content d-flex align-items-center justify-content-between">
                     @foreach($status as $status_data)
                         @if( $status_data->name =='Sale')
-                            <p class="mb-0 theme-text-sky font-medium"><a href="{{ route('list', ['status' => $status_data->id]) }}">عرض المزيد</a></p>
+                            <p class="mb-0 theme-text-sky font-medium"><a href="{{ route('list', ['status' => $status_data->id]) }}">{{__('labels.show_more')}}</a></p>
                         @endif
                     @endforeach
                     <div class="d-flex align-items-center gap-3">
-                        <h2 class="mb-0 font-medium theme-text-blue">أضيفت مؤخرا</h2>
+                        <h2 class="mb-0 font-medium theme-text-blue">{{__('labels.recently_add')}}</h2>
                         <div class="chip font-medium theme-text-secondary">
-                            <span>للبيع</span>
+                            <span>{{__('labels.for_sale')}}</span>
                         </div>
                     </div>
                 </div>
@@ -225,11 +220,10 @@
                         <div class="listing">
 
                             <div class="list" style="background-image: url({{$image}});">
-
                                 <div class="content d-flex justify-content-between">
                                     <div class="d-flex flex-column align-items-start theme-text-white">
                                         <div class="sale theme-bg-sky">
-                                            <span class="font-medium">للبيع</span>
+                                            <span class="font-medium">{{__('labels.for_sale')}}</span>
                                         </div>
                                         <!--<div class="sale theme-bg-blue">
                                                 <span class="font-medium">متاح</span>
@@ -267,11 +261,11 @@
                 <div class="property-listing-content d-flex align-items-center justify-content-between">
                     @foreach($status as $status_data)
                         @if( $status_data->name =='Rent')
-                            <p class="mb-0 theme-text-sky font-medium"><a href="{{ route('list', ['status' => $status_data->id]) }}">عرض المزيد</a></p>
+                            <p class="mb-0 theme-text-sky font-medium"><a href="{{ route('list', ['status' => $status_data->id]) }}">{{__('labels.show_more')}}</a></p>
                         @endif
                     @endforeach
                     <div class="d-flex align-items-center gap-3">
-                        <h2 class="mb-0 font-medium theme-text-blue">أضيفت مؤخرا</h2>
+                        <h2 class="mb-0 font-medium theme-text-blue">{{__('labels.recently_add')}}</h2>
                         <div class="chip font-medium theme-text-secondary">
                             <span>للايجار</span>
                         </div>
@@ -329,15 +323,11 @@
     <!-- Property Sell and Buy section Starts Here -->
     <div class="property-sl-r d-flex justify-content-center align-items-center">
         <div class="col-12 col-sm-10 col-lg-8 col-xl-5">
-            <h1 class="font-bold theme-text-white mb-0">هل عندك عقار للبيع أو للإيجار</h1>
-            <h3 class="mb-0 theme-text-white">يمكنك تسويق عقارك على موقعنا بكل سهولة، او بإمكانك تفويض فريق خياراتي لبيع
-                وتأجير
-                العقار بالنيابة عنك بكل
-                سهولة
-            </h3>
+            <h1 class="font-bold theme-text-white mb-0">{{__('labels.property_sale_rent')}}</h1>
+            <h3 class="mb-0 theme-text-white">{{__('labels.market_property_txt')}}</h3>
             <div>
                 <button class="btn-add btn-theme">
-                    اضف عقارك الأن
+                    {{__('labels.add_property_now')}}
                 </button>
             </div>
         </div>
@@ -355,20 +345,20 @@
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center align-items-md-start">
                         <div class="card2 d-inline-block position-relative">
-                            <p>الحد الأدنى للمزيدة</p>
-                            <h1 class="my-3">1.8 مليون ريال</h1>
-                            <h3>ينتهي المزاد في 20-10-2022</h3>
+                            <p>{{__('labels.minimum_more')}}</p>
+                            <h1 class="my-3">1.8 {{__('labels.1_million_sar')}}</h1>
+                            <h3>{{__('labels.random_auction_end_date')}}</h3>
                         </div>
                         <div class="d-flex flex-column w-sm-100">
                             <div class="card">
                                 <div class="d-flex flex-column">
                                     <h1>1.85</h1>
-                                    <p>مليون ر.س</p>
+                                    <p>{{__('labels.1_million_sar')}}</p>
                                 </div>
                                 <div class="d-flex flex-column ms-auto">
-                                    <p>لديك مزايدة من</p>
-                                    <h1>أحمد هشام</h1>
-                                    <h3>قبل 35 دقيقة</h3>
+                                    <p>{{__('labels.you_bid_from')}}</p>
+                                    <h1>{{__('labels.ahmed_hisham')}}</h1>
+                                    <h3>{{__('labels.minutes_ago_35')}}</h3>
                                 </div>
                                 <div class="circle d-flex align-items-center justify-content-center">
                                     <h1 class="text-uppercase m-0">AH</h1>
@@ -377,11 +367,11 @@
                             <div class="card mb-0">
                                 <div class="d-flex flex-column">
                                     <h1>1.85</h1>
-                                    <p>مليون ر.س</p>
+                                    <p>{{__('labels.1_million_sar')}}</p>
                                 </div>
                                 <div class="d-flex flex-column ms-auto">
-                                    <p>لديك مزايدة من</p>
-                                    <h1>أحمد هشام</h1>
+                                    <p>{{__('labels.you_bid_from')}}</p>
+                                    <h1>{{__('labels.ahmed_hisham')}}</h1>
                                     <h3>قبل 35 دقيقة</h3>
                                 </div>
                                 <div class="circle d-flex align-items-center justify-content-center">
@@ -392,10 +382,10 @@
                     </div>
                 </div>
                 <div class="col-12 col-xl-5 d-flex flex-column justify-content-center mt-5 mt-xl-0">
-                    <h1>تقدم إلى المزادات العقارية الإلكترونية على منصتنا!</h1>
+                    <h1>{{__('labels.real_estate_auction')}}</h1>
                     <div>
                         <button class="auction-btn btn-theme">
-                            تصفح المزادات
+                            {{__('labels.browse_auction')}}
                         </button>
                     </div>
                 </div>
@@ -411,8 +401,8 @@
                     <img src="{{theme_asset('assets/images/mockup.png')}}" alt="" class="img-fluid">
                 </div>
                 <div class="col-12 col-lg-5 text-end apps-content d-flex flex-column justify-content-center">
-                    <h1>حمل التطبيق الآن</h1>
-                    <h3>اضغط على الرابط لتحميل تطبيق خياراتي للهواتف الذكية وتصفح آلاف العقارات المعتمدة من فريقنا</h3>
+                    <h1>{{__('labels.download_app')}}</h1>
+                    <h3>{{__('labels.team_approved_property')}}</h3>
                     <div class="d-flex flex-column flex-sm-row justify-content-end apps-store">
                         <img src="{{theme_asset('assets/images/google-store.png')}}" alt="google-store" class="mb-3 mb-sm-0 img-fluid">
                         <img src="{{theme_asset('assets/images/apple-store.png')}}" class="mb-3 mb-sm-0 ms-sm-4 img-fluid" alt="apple-store">

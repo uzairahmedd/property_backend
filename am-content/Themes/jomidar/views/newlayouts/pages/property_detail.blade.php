@@ -20,7 +20,7 @@
                 <li class="breadcrumb-item active theme-text-seondary-black" aria-current="page">{{ $property->title }}</li>
                 <li class="breadcrumb-item"><a href="#" class="theme-text-blue text-decoration-none">{{$property->property_status_type->category->name}}</a>
                 </li>
-                <li class="breadcrumb-item"><a href="/" class="theme-text-blue text-decoration-none">Home</a>
+                <li class="breadcrumb-item"><a href="/" class="theme-text-blue text-decoration-none">{{__('labels.home')}}</a>
                 </li>
             </ul>
         </nav>
@@ -35,7 +35,7 @@
                     {{-- </li>--}}
 
                     <li class="d-flex mb-3 mb-sm-0">
-                        <span>Share</span>
+                        <span>{{__('labels.share')}}</span>
                         <div class="btn btn-primary dropdown-toggle icon d-flex align-items-center justify-content-center" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{{theme_asset('assets/images/share.png')}}" class="border-0" alt="">
                         </div>
@@ -48,7 +48,7 @@
                         </ul>
                     </li>
                     <li class="d-flex mb-3 mb-sm-0">
-                        <span>Favorite property</span>
+                        <span>{{__('labels.save')}}</span>
                         @if (Auth::check())
                         <input type="hidden" value="{{ route('property.favourite') }}" id="favourite_property_url">
                         @php
@@ -75,7 +75,7 @@
                         @endif
                     </li>
                     <li class="d-flex mb-3 mb-sm-0">
-                        <span><span class="theme-text-blue font-bold">{{ $property->reviews_count }}</span> {{ __('Reviews') }}</span>
+                        <span><span class="theme-text-blue font-bold">{{ $property->reviews_count }}</span> {{__('labels.reviews')}}</span>
                     </li>
                 </ul>
             </div>
@@ -127,7 +127,7 @@
                 <div class="card text-end theme-bg-white align-items-end">
                     <h1 class="theme-text-blue font-medium">{{ amount_format($property->price->price ?? 0) }}</h1>
                     <hr>
-                    <h3 class="font-medium mb-2">Address</h3>
+                    <h3 class="font-medium mb-2">{{__('labels.address')}}</h3>
                     <div class="d-flex align-items-start justify-content-end mb-4">
                         <p class="mb-0 theme-text-seondary-black me-2">{{$property->post_city->value}}
                             - {{$property->post_city->category->name}}
@@ -166,14 +166,14 @@
                     @php
                     $info = isset($property->user->usermeta->content) ? json_decode($property->user->usermeta->content) : null ;
                     @endphp
-                    <div class="d-flex flex-column flex-sm-row justify-content-between w-100">
-                        <button class="contact-btn col-12 col-sm-7 theme-bg-sky border-0 theme-text-white font-medium mb-sm-0">
+                    <div class="d-flex flex-column flex-sm-row me-3 justify-content-between w-100">
+                        <button class="contact-btn col-12 col-sm-6 theme-bg-sky mx-2 px-2 border-0 theme-text-white font-medium mb-sm-0">
                             <img src="{{theme_asset('assets/images/phone.png')}}" alt="" class="phone me-2">
                             {{ isset($info->phone) ? $info->phone : 'N/A'  }}
                         </button>
-                        <button class="contact-btn col-12 col-sm-4 theme-bg-white border-0 theme-text-blue font-medium" data-bs-toggle="modal" data-bs-target="#inquiry_form">
+                        <button class="contact-btn col-12 col-sm-6 theme-bg-white border-0 mx-2 px-2 theme-text-blue font-medium" data-bs-toggle="modal" data-bs-target="#inquiry_form">
                             <img src="{{theme_asset('assets/images/booking-calender.png')}}" alt="" class="me-3">
-                            Book appointment
+                            {{__('labels.book_appoint')}}
                         </button>
                     </div>
                 </div>
@@ -182,11 +182,11 @@
                 <div class="d-flex flex-column align-items-end py-4">
                     <div class="d-flex justify-content-between w-100 mb-2">
                         <h1 class="font-24 theme-text-blue font-medium">{{$property->property_status_type->category->name}}</h1>
-                        <h1 class="font-24 theme-text-blue">وصف العقار</h1>
+                        <h1 class="font-24 theme-text-blue">{{__('labels.property_description')}}</h1>
                     </div>
                     <p class="theme-text-seondary-black font-16 text-end mb-2">{{ content_format($property->description->content ?? '') }}</p>
                     <hr class="w-100">
-                    <h1 class="font-24 theme-text-blue">المعلومات الأساسية</h1>
+                    <h1 class="font-24 theme-text-blue">{{__('labels.basic_info')}}</h1>
                     @foreach ($property_type_nature as $value)
                     @if( $value->type == 'parent_category')
                     <div class="row w-100 mb-3">
@@ -248,7 +248,7 @@
                     @endif
 
                     <hr class="w-100">
-                    <h1 class="font-24 theme-text-blue">المعلومات الإضافية</h1>
+                    <h1 class="font-24 theme-text-blue">{{__('labels.additional_info')}}</h1>
                     @foreach ($property->option_data as $options_data)
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start">
@@ -281,7 +281,7 @@
 
 
                     <hr class="w-100">
-                    <h1 class="font-24 theme-text-blue mb-3 mt-2">مميزات العقار</h1>
+                    <h1 class="font-24 theme-text-blue mb-3 mt-2">{{__('labels.property_features')}}</h1>
                     <div class="tags d-flex flex-wrap justify-content-end prop-feature">
                         @if (isset($features))
                         @foreach ($features as $facility)

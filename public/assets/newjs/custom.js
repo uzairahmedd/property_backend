@@ -1,4 +1,3 @@
-
 /*-----------------------------
     Properties Data Get for rent properties
 --------------------------------*/
@@ -254,7 +253,6 @@
     });
 
 
-
     //update phone
     $("#update_phone_btn").on("click", function (e) {
         e.preventDefault();
@@ -292,4 +290,42 @@
     });
 
 })(jQuery);
+
+
+// RTL LTR
+$(document).ready(function () {
+// localStorage.clear();
+    let baseUrl=$('#base_url').val();
+
+    $("#lang").click(function () {
+        if ($('#lang').text() == 'English') {
+            var url = 'lang/change/' + "?lang=" + 'en';
+            $('#lang').text('عربي');
+            $.ajax({
+                type: "get",
+                url: baseUrl + url,
+                success: function (data) {
+                    //for success
+                    if (data.status == 'success') {
+                        self.location.reload();
+                    }
+                }
+            });
+
+        } else if ($('#lang').text() == 'عربي') {
+            var url = 'lang/change/' + "?lang=" + 'ar';
+            $('#lang').text('English');
+            $.ajax({
+                type: "get",
+                url: baseUrl + url,
+                success: function (data) {
+                    //for success
+                    if (data.status == 'success') {
+                        self.location.reload();
+                    }
+                }
+            });
+        }
+    });
+});
 

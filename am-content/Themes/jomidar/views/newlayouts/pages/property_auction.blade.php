@@ -17,7 +17,7 @@
                                                                 alt=""></span>
                             <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button"
                                     id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-expanded="false"
-                                    data-toggle="dropdown">حالة المزاد
+                                    data-toggle="dropdown"> {{__('labels.auction_status')}}
                             </button>
                             <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink1">
                                 <h3>حالة المزاد</h3>
@@ -49,7 +49,7 @@
                     <div class="search-bar d-flex p-2 mt-1">
                         <img src="assets/images/search.svg" alt="">
                         <input type="search" class="theme-text-secondary-black w-100 border-0"
-                               placeholder="تبحث عن عقار؟">
+                               placeholder="{{__('labels.looking_property')}}">
                     </div>
                 </div>
             </div>
@@ -60,13 +60,12 @@
     <div class="container position-relative d-flex justify-content-between">
         <div class="sort-by d-flex align-items-center">
             <img src="assets/images/sort-icon.svg" alt="">
-            <p class="sort-text m-0 gap-8 theme-text-secondary-black">ترتيب حسب</p>
+            <p class="sort-text m-0 gap-8 theme-text-secondary-black"> {{__('labels.sort_by')}}</p>
         </div>
         <div class="all-ads d-flex">
-            <p class="all-results pe-2 theme-text-secondary-black"><span class="r-num font-bold pe-1">512</span>عدد
-                النتائج</p>
+            <p class="all-results pe-2 theme-text-secondary-black"><span class="r-num font-bold pe-1">512</span>{{__('labels.results')}}</p>
             <div class="vertical-line"></div>
-            <p class="ads theme-text-secondary-black ps-2">جميع الإعلانات</p>
+            <p class="ads theme-text-secondary-black ps-2">{{__('labels.all_properties')}}</p>
         </div>
     </div>
 </div>
@@ -760,14 +759,11 @@
 <!-- Property Sell and Buy section Starts Here -->
 <div class="property-sl-banner property-sl-r d-flex justify-content-center align-items-center">
     <div class="col-12 col-sm-10 col-lg-8 col-xl-5">
-        <h1 class="font-bold theme-text-white mb-0">هل عندك عقار للبيع أو للإيجار</h1>
-        <h3 class="mb-0 theme-text-white">يمكنك تسويق عقارك على موقعنا بكل سهولة، او بإمكانك تفويض فريق وصلت لبيع وتأجير
-            العقار بالنيابة عنك بكل
-            سهولة
-        </h3>
+        <h1 class="font-bold theme-text-white mb-0">{{__('labels.property_sale_rent')}}</h1>
+        <h3 class="mb-0 theme-text-white">{{__('labels.market_property_txt')}}</h3>
         <div>
             <button class="btn-add btn-theme">
-                اضف عقارك الأن
+                {{__('labels.add_property_now')}}
             </button>
         </div>
     </div>

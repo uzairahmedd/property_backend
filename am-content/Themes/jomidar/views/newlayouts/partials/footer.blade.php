@@ -3,28 +3,28 @@
         <div class="d-flex flex-column-reverse flex-xl-row align-items-center justify-content-center">
             <ul class="list-unstyled d-flex flex-sm-column-reverse flex-column flex-wrap flex-md-row-reverse justify-content-right align-items-center p-0 mt-4 me-lg-5 col-lg-9">
                 <li>
-                    <a href="/search">البحث</a>
+                    <a href="/search">{{__('labels.search')}}</a>
                 </li>
                 <li>
-                    <a href="#">إعلانات للبيع</a>
+                    <a href="#">{{__('labels.ads_sale')}}</a>
                 </li>
                 <li>
-                    <a href="#">إعلانات للايجار</a>
+                    <a href="#">{{__('labels.ads_rent')}}</a>
                 </li>
                 <li>
-                    <a href="/property_auction">المزادات</a>
+                    <a href="/property_auction">{{__('labels.auction')}}</a>
                 </li>
                 <li>
-                    <a href="/privacy_policy">شروط الخصوصية</a>
+                    <a href="/privacy_policy">{{__('labels.privacy_term')}}</a>
                 </li>
                 <li>
-                    <a href="/terms_and_conditions">شروط الاستخدام</a>
+                    <a href="/terms_and_conditions">{{__('labels.term_use')}}</a>
                 </li>
                 <li>
-                    <a href="/terms_for_advertisement">شروط الإعلان عبر الموقع</a>
+                    <a href="/terms_for_advertisement">{{__('labels.terms_of_advertising')}}</a>
                 </li>
                 <li>
-                    <a href="/complaints">للشكوى</a>
+                    <a href="/complaints">{{__('labels.complain')}}</a>
                 </li>
             </ul>
             <img src="{{theme_asset('assets/images/logo.png')}}"
@@ -36,7 +36,7 @@
         <div class="container">
             <div class="d-flex flex-column-reverse flex-sm-row justify-content-between align-items-center">
                 <div class="social-links d-flex flex-column align-items-end">
-                    <h3>تابعنا على صفحاتنا</h3>
+                    <h3>{{__('labels.follow_us')}}</h3>
                     <div class="d-flex">
                         <img src="{{asset('assets/images/facebook.svg')}}" alt="">
                         <img src="{{asset('assets/images/insta.png')}}" alt="">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
-                    <h3>مرخص من الهيئة العامة للعقار</h3>
+                    <h3>{{__('labels.real_estate_licensed')}}</h3>
                     <img src="{{asset('assets/images/license-logo.png')}}" class="ms-3" alt="">
                 </div>
             </div>
@@ -56,7 +56,7 @@
 </div>
 <div class="copy-right position-relative d-flex d-sm-block flex-column align-items-center">
     <div class="">
-        <h3>جميع الحقوق محفوظة ل خياراتي @ 2022</h3>
+        <h3>{{__('labels.all_right_reserved')}}</h3>
     </div>
     <div class="arrow-top d-flex align-items-center justify-content-center">
         <img src="{{asset('assets/images/arrow-up.svg')}}" alt="" class="img-fluid">
