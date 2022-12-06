@@ -294,6 +294,8 @@ Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Th
 	Route::get('delete_property/{id}', 'PropertyController@delete_property');
 	//agent accounts
 	Route::get('account', 'PropertyController@userboard_account')->name('profile.account');
+	//get property type
+	Route::get('get_property_type', 'PropertyController@get_property_type');
 	Route::post('contact_type/{id}', 'PropertyController@contact_type')->name('contact_type');
 	Route::post('floor-plan/{id}', 'PropertyController@floor_plan_store')->name('floor.store');
 	Route::get('floor-plan/delete/{id}', 'PropertyController@floor_plan_delete')->name('floor.delete');

@@ -7,7 +7,7 @@
         <div class="col-lg-4 col-md-4 d-flex flex-column align-items-end">
             <span class="font-16 theme-text-sky">{{__('labels.mobile_number')}}</span>
             <div class="d-flex align-items-center">
-                <img src="assets/images/tick-verified.png" alt="">
+                <img src="{{ asset('assets/images/tick-verified.png')}}" alt="">
                 <h3 class="font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->phone ?? 'N/A' }}</h3>
             </div>
         </div>
@@ -21,7 +21,7 @@
                 <h3 class="font-24 font-medium theme-text-blue align-items-end mb-0 ms-2">{{ Auth::User()->name }}</h3>
             </div>
             <div class="dp-elipse ms-4 d-flex align-items-center justify-content-center">
-                <img src="assets/images/avatar.png" alt="">
+                <img src="{{ asset('assets/images/avatar.png')}}" alt="">
             </div>
         </div>
     </div>

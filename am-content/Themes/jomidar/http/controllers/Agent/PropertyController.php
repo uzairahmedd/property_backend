@@ -782,6 +782,14 @@ class PropertyController extends controller
         return view('theme::newlayouts.property_dashboard.property_create_two', compact('id', 'parent_category', 'child_category', 'post_data', 'array'));
     }
 
+
+    public function get_property_type(Request $request)
+    {
+        $data['post_category'] = Postcategory::where('type', 'category')->where('term_id', decrypt($request->term_id))->first();
+        $data['category_data'] = Category::where('type', 'parent_category')->where('id', $request->id)->with('parent')->get();
+        return $data;
+    }
+
     /**
      * Property validations.
      * @return @array
@@ -812,7 +820,6 @@ class PropertyController extends controller
      */
     public function update_two_property(Request $request, $id)
     {
-
         $term_id = decrypt($id);
         $validator = $this->property_two_validations($request);
         if ($validator->fails()) {
@@ -865,7 +872,11 @@ class PropertyController extends controller
             $keys_table->content = $value;
             $keys_table->save();
         }
-
+        $check_category = Category::where('type', 'category')->where('id', $request->category)->first();
+        //if land then skip third step for facilities
+        if (!empty($check_category) && $check_category->name == 'Residential land') {
+            return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
+        }
         return redirect()->route('agent.property.third_edit_property', encrypt($term_id));
     }
 
@@ -959,8 +970,14 @@ class PropertyController extends controller
      */
     public function edit_forth_property($id)
     {
-        $info = Terms::with('medias', 'virtual_tour')->where('user_id', Auth::id())->findorFail(decrypt($id));
-        return view('theme::newlayouts.property_dashboard.property_create_forth', compact('id', 'info'));
+        $info = Terms::with('medias', 'virtual_tour', 'postcategory')->where('user_id', Auth::id())->findorFail(decrypt($id));
+        $check_category = Meta::where('type', 'property_condition')->where('term_id', decrypt($id))->first();
+        $skip_id = '';
+        if (empty($check_category)) {
+            $skip_id = 1;
+        }
+
+        return view('theme::newlayouts.property_dashboard.property_create_forth', compact('id', 'info', 'skip_id'));
     }
 
     /**
@@ -974,10 +991,10 @@ class PropertyController extends controller
     {
         $validator = \Validator::make($request->all(), [
             'media.*' => 'mimes:jpeg,jpg,png|max:20480',
-        ]);      
-            if ($validator->fails()) {
-                return back()->withErrors($validator->errors())->withInput();
-            }
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors())->withInput();
+        }
 
         $term_id = decrypt($id);
         //store and update virtual rour video

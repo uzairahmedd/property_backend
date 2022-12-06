@@ -189,7 +189,6 @@ function user_favourite_property_check(id) {
  */
 function property_del(elem) {
     var id = $(elem).attr('data-id');
-    console.log(id);
     var base_url = $('#base_url').val();
     Swal.fire({
         title: 'Are you sure?',

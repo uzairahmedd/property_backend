@@ -90,7 +90,11 @@
             </div>
             <div class="d-flex justify-content-between description-btn-group">
                 <button type="submit" class="btn btn-theme">{{__('labels.next')}}</button>
+                @if(!empty($skip_id))
+                <a href="{{ route('agent.property.second_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">{{__('labels.previous')}}</a>
+                @else
                 <a href="{{ route('agent.property.third_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">{{__('labels.previous')}}</a>
+                @endif
             </div>
         </form>
     </div>

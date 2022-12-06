@@ -235,7 +235,7 @@
                         </div>
                     </div>
                     @endif
-
+                    @if(count($property->option_data) > 0 || !empty($property->property_condition) || !empty($property->role))
                     <hr class="w-100">
                     <h1 class="font-24 theme-text-blue">{{__('labels.additional_info')}}</h1>
                     @foreach ($property->option_data as $options_data)
@@ -248,15 +248,23 @@
                         </div>
                     </div>
                     @endforeach
-
+                    @if(isset($property->property_condition))
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ isset($property->property_condition->content) && $property->property_condition->content == 1 ? 'غير مفروشة' : ( isset($property->property_condition->content) && $property->property_condition->content == 2 ? 'مفروشة' : 'نص مفروشة' )}}</h3>
+                            @if(isset($property->property_condition->content) && $property->property_condition->content == 3 )
+                            <h3 class="font-16 font-medium theme-text-blue">مفروشة</h3>
+                            @elseif(isset($property->property_condition->content) && $property->property_condition->content == 2 )
+                            <h3 class="font-16 font-medium theme-text-blue">نص مفروشة</h3>
+                            @elseif(isset($property->property_condition->content) && $property->property_condition->content == 1 )
+                            <h3 class="font-16 font-medium theme-text-blue">غير مفروشة</h3>
+                            @endif
+
                         </div>
                         <div class="col-6 text-end">
                             <span class="font-16 theme-text-seondary-black">التأثيث</span>
                         </div>
                     </div>
+                    @endif
                     @if(isset($property->role->content))
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start">
@@ -268,7 +276,7 @@
                     </div>
                     @endif
 
-
+                    @endif
                     <hr class="w-100">
                     <h1 class="font-24 theme-text-blue mb-3 mt-2">{{__('labels.property_features')}}</h1>
                     <div class="tags d-flex flex-wrap justify-content-end prop-feature">
@@ -293,7 +301,7 @@
                 </div>
                 @endif
 
-                @if(!empty($property->virtual_tour->content))
+                @if(!empty($property->virtual_tour->content) && !empty($property->virtual_tour))
                 <div class="text-center mb-0 pb-0 position-relative">
                     <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">Virtual Tour</h3>
                     <iframe src="{{ $property->virtual_tour->content ?? null }}" frameborder="0" allowfullscreen width="100%" height="480"></iframe>
