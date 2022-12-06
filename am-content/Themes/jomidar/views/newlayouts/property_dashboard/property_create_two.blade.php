@@ -9,7 +9,7 @@
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here -->
     <div class="container">
-        <form method="post" action="{{ route('agent.property.second_update_property',$id) }}" class="post_form">
+        <form method="post" action="{{ route('agent.property.second_update_property',$id) }}" class="post_form" id="second_form">
             @csrf
             @method('PUT')
             <div class="description-card card">
@@ -22,7 +22,7 @@
                     <div class="col-12 justify-content-end row theme-gx-3 mb-4">
                         @foreach($parent_category as $row)
                         <div class="radio-container">
-                            <input type="radio" name="parent_category" value="{{$row->id}}" {{ !empty($array) && $array['parent_category'] == $row->id ? "checked" : (old("parent_category") == $row->id ? "checked":"") }}>
+                            <input type="radio" name="parent_category" term-id='{{$id}}'  onclick="property_type(this)" value="{{$row->id}}" {{ !empty($array) && $array['parent_category'] == $row->id ? "checked" : (old("parent_category") == $row->id ? "checked":"") }}>
                             <span class="checmark font-16 font-medium">{{$row->name}}</span>
                         </div>
                         @endforeach
@@ -30,8 +30,8 @@
                     @if($errors->has('parent_category'))
                     <div class="error">{{ $errors->first('parent_category') }}</div>
                     @endif
-                    <p class="theme-text-black font-18">نوع العقار</p>
-                    <div class="col-12 justify-content-end property_types row theme-gx-3 mb-4_5">
+                    <p class="theme-text-black font-18" id="type_text">نوع العقار</p>
+                    <div class="col-12 justify-content-end property_types row theme-gx-3 mb-4_5" id="property_type_radio">
                         @foreach($child_category as $row)
                         <div class="radio-container property_radio">
                             <input type="radio" name="category" value="{{$row->id}}" {{ !empty($array) && $array['category'] == $row->id ? "checked" : (old("category") == $row->id ? "checked":"") }}>
