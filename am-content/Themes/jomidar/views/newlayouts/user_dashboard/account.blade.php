@@ -19,14 +19,8 @@
                         </div>
                         <div class="d-flex align-items-center mb-3 mb-lg-0">
                             <div class="col d-flex flex-column align-items-end">
-<<<<<<< HEAD
                                 <span class="font-16 theme-text-sky">{{__('labels.welcome')}}</span>
-                                <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->name }}
-                                    عثمان</h3>
-=======
-                                <span class="font-16 theme-text-sky">أهلا بك,</span>
                                 <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->name }}</h3>
->>>>>>> 6d4e4c6e319013ee828ad30bdc1b22cfde38a73c
                             </div>
                             <div class="dp-elipse d-flex align-items-center justify-content-center">
                                 <img src="http://127.0.0.1:8000/assets/images/avatar.png" alt="" class="img-fluid">

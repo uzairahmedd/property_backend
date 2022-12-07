@@ -334,4 +334,34 @@ function home_favourite_property_check(id) {
 }
 
 
+function property_type_filter(elem){
+    // $('#property_type_radio').html('');
+    var id = $(elem).attr('data-id');
+    console.log(id);
+    return false;
+    // var term_id = $(elem).attr('term-id');
+    var baseurl = $('#base_url').val();
+    var url = baseurl + 'agent/get_property_type';
+    $.ajax({
+        url: url,
+        type: 'get',
+        data: {'id':id,'term_id':term_id},
+        success: function (response) {
+            $('#property_type_radio').html('');
+            $.each(response.category_data, function (index, value) {
+                $.each(value.parent, function (index, value_data) {
+                    var checked='';
+                    if(response.post_category != null){
+                    if(value_data.id == response.post_category.category_id && value.id == response.post_category.term_id){
+                      checked='checked';
+                    }}
+                    $('#property_type_radio').append('<div class="radio-container property_radio"><input type="radio" name="category" '+checked+' value="'+value_data.id+'"><span class="checmark font-16 font-medium">'+value_data.name+'</span> </div>');
+                });
+            });
+
+        }
+    });
+}
+
+
 
