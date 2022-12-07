@@ -918,3 +918,6 @@ button a
 .error{
     color: red;
 }
+#lang{
+    cursor: pointer;
+}
