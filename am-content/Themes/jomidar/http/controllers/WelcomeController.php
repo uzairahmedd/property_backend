@@ -108,7 +108,8 @@ class WelcomeController extends controller
             $states = Category::where('type', 'states')->with('childrenCategories')->get();
             //for home rent and sell properties
             $status_properties = $this->status_property($status);
-            $parent_category = Category::where('type', 'parent_category')->get();
+            $parent_category = Category::where('type', 'parent_category')->with('parent')->get();
+            // dump($parent_category);
             return view('theme::newlayouts.pages.home', compact('status', 'categories', 'states', 'status_properties','parent_category'));
         } catch (\Exception $e) {
             return redirect()->route('install');

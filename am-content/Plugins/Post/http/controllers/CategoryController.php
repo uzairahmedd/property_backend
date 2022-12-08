@@ -103,6 +103,12 @@ class CategoryController extends Controller
     $post->featured = $request->featured;
     $post->save();
 
+    $meta = new Categorymeta;
+    $meta->category_id = $post->id;
+    $meta->type = 'icon';
+    $meta->content = $request->icon ?? '';
+    $meta->save();
+
     if ($request->child) {
       $childs = [];
       foreach ($request->child as $key => $row) {
@@ -161,7 +167,7 @@ class CategoryController extends Controller
     }
     // $info=Category::with('creditcharge','excerpt')->find($id);
 
-    $info = Category::where('type', 'category')->with('child')->findorFail($id);
+    $info = Category::where('type', 'category')->with('child', 'icon')->findorFail($id);
     $categories = Category::where('type', 'parent_category')->get();
     $childs = [];
     foreach ($info->child as $key => $value) {
@@ -221,6 +227,15 @@ class CategoryController extends Controller
     $post->slug = $slug;
     $post->featured = $request->featured;
     $post->save();
+
+    $meta = Categorymeta::where('type', 'icon')->where('category_id', $id)->first();
+    if (empty($meta)) {
+      $meta = new Categorymeta;
+      $meta->category_id = $post->id;
+      $meta->type = 'icon';
+    }
+    $meta->content = $request->icon ?? '';
+    $meta->save();
 
     if ($request->child) {
       $childs = [];
