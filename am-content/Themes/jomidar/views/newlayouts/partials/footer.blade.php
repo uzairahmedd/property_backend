@@ -41,7 +41,7 @@
                         <img src="{{asset('assets/images/facebook.svg')}}" alt="">
                         <img src="{{asset('assets/images/insta.png')}}" alt="">
                         <img src="{{asset('assets/images/linkedin.svg')}}" alt="">
-                        <img src="{{asset('assets/images/twitter.svg')}}" alt="">
+                        <img class="twitter" src="{{asset('assets/images/twitter.svg')}}" alt="">
                         <img src="{{asset('assets/images/youtube.png')}}" alt="">
                     </div>
                 </div>

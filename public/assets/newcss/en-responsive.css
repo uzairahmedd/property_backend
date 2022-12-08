@@ -1,0 +1,135 @@
+.rtl .add-btn img
+{
+    margin-left: -15px !important;
+    margin-right: 10px;
+}
+
+.rtl .after-sign-in button img
+{
+    margin-right: 10px;
+}
+
+.rtl .add-btn
+{
+    margin-right: 40px;
+}
+
+#lang
+{
+    font-size: 20px;
+    font-weight: 600;
+    color: #286BAD;
+}
+
+.lang-txt i
+{
+    color: #286BAD;
+    font-size: 16px;
+}
+
+.rtl #select_style_text
+{
+    text-align: left;
+}
+
+.rtl .dropdown .resident-btn
+{
+    border: 0;
+    border-left: 1px solid #C9C9C9;
+    padding: 0px 20px 0 15px;
+}
+
+.rtl .dropdown .rent-btn {
+    padding: 0px 10px 0 15px;
+    border: 0;
+    border-radius: unset;
+    border-left: 1px solid #C9C9C9;
+}
+
+.rtl .complete-rent-drop img
+{
+    margin-right: -6px;
+}
+
+.rtl .verified h3
+{
+    text-align: left !important;
+}
+
+.rtl .property-sale .owl-stage-outer
+{
+    display: flex;
+    justify-content: end;
+}
+
+.rtl .property-rent .owl-stage-outer
+{
+    display: flex;
+    justify-content: end;
+}
+
+.rtl .apps h1
+{
+    text-align: left;
+}
+
+.rtl .apps h3
+{
+    text-align: left;
+}
+
+.rtl .social-links .twitter
+{
+    margin-left: 20px;
+}
+
+.rtl .footer ul li {
+    border: 0;
+    border-left: 1px solid var(--theme-blue);
+}
+
+.rtl .footer .list-unstyled
+{
+    margin-left: 30px;
+}
+
+.rtl .apps-store img
+{
+    margin-left: 0 !important;
+}
+.rtl .contact-modal .mesg {
+    right: 0;
+}
+
+.rtl .close-modal
+{
+    right: 20px;
+}
+
+.rtl .signup-modal .mesg {
+    right: 0;
+}
+
+.rtl .floating-Input {
+    padding: 3px 28px;
+    font-size: 11px;
+    background: var(--theme-white);
+    top: -15px;
+    left: 19px;
+    display: block;
+}
+
+.rtl .property-sl-r h1
+{
+    direction: ltr;
+}
+
+.rtl .property-sl-r h3
+{
+    direction: ltr;
+}
+
+.rtl .apps-content
+{
+    direction: ltr;
+}

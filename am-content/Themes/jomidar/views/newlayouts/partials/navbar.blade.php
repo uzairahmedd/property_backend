@@ -12,7 +12,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-column flex-md-row w-100 align-items-center justify-content-between">
                      <div class="header-top-right-section f-right">
-                         <li class="nav-item mynavbar">
+                         <li class="nav-item mynavbar lang-txt d-flex">
+                             <i class="fa-solid fa-globe d-flex justify-content-center align-items-center"></i>
                              <a class="nav-link lang" id="lang">{{ session()->has('locale') ? session()->get('locale') =='ar' ? 'English' : 'عربي' : 'English'}}</a>
                          </li>
                     </div>

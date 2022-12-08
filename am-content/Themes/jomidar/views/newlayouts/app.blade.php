@@ -3,7 +3,10 @@
 @include('theme::newlayouts.partials.top')
 
 <body>
-
+<script>
+    var set_session = '{{Auth::check() ? 'true' : 'false'}}';
+</script>
+<div class="overflow-hidden position-relative {{ session()->has('locale') && session()->get('locale') =='en' ? 'rtl' : 'ltr'}}" id="main-home" data-session="">
     <input type="hidden" id="base_url" value="{{ asset('/') }}">
     <input type="hidden" id="asset_url" value="{{ asset('/') }}">
     <input type="hidden" value="{{ route('property.favourite') }}" id="favourite_property_url">
@@ -29,6 +32,7 @@
         @yield('home_properties')
     </div>
     {{ google_analytics() }}
+    </div>
 </body>
 
 </html>

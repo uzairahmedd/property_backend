@@ -81,8 +81,8 @@
                         <form action="{{ route('login') }}" method="POST" id="login_form">
                             @csrf
                             <div class="mb-4_5 position-relative">
-                                <input type="email" name="email" value="" class="form-control font-medium font-16" placeholder="{{__('labels.mobile_number')}}">
-                                <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">{{__('labels.mobile_number')}}</label>
+                                <input type="email" name="email" value="" class="form-control font-medium font-16" placeholder="{{__('labels.username')}}">
+                                <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">{{__('labels.username')}}</label>
                             </div>
                             <div class="position-relative mb-4_5">
                                 <input type="password" name="password" value="" class="form-control font-medium font-16" placeholder="{{__('labels.password')}}">

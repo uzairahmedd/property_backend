@@ -81,7 +81,7 @@ return [
     'results' => 'Results',
     'sort_by' => 'Sort By',
     'auction_status' => 'Auction Status',
-    'chat_with_adviser' => 'Please enter your data to chat with the advertiser',
+    'chat_with_adviser' => 'Welcome to Khiaratee',
     'email' => 'Email',
     'password' => 'Password',
     'login' => 'Login',
