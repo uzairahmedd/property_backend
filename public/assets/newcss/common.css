@@ -929,3 +929,13 @@ button a
 #lang{
     cursor: pointer;
 }
+
+#nav-home-tab
+{
+    font-weight: bold;
+}
+
+.favorite-container .nav-link.active
+{
+    background-color: unset;
+}

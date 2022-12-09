@@ -8,7 +8,7 @@
                     <div class="mb-4_5 d-flex flex-column-reverse flex-lg-row align-items-end  card personal-card justify-content-between align-items-lg-center">
                         <div class="d-flex flex-column align-items-end">
                             <span class="font-16 theme-text-sky">{{__('labels.mobile_number')}}</span>
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center profile-phone-nu">
                                 <img src="http://127.0.0.1:8000/assets/images/tick-verified.png" alt="">
                                 <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->phone ?? 'N/A' }}</h3>
                             </div>

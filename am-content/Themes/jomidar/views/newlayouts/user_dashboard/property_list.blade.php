@@ -10,7 +10,7 @@
             <div class="loader-logo"></div>
         </div>
     </div>
-    <div class="favorite-container col-lg-10 col-md-12" style="padding: 0px 20px 0px 70px;">
+    <div class="favorite-container col-lg-10 col-md-12">
         <div class="nav-tab">
             <nav>
                 <div class="nav nav-tabs d-flex align-items-end justify-content-end" id="nav-tab" role="tablist">

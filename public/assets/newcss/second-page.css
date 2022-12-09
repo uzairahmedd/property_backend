@@ -84,8 +84,13 @@
 }
 
 .all-listing .property-lists {
-    margin: 30px 0;
+    margin: 10px 0;
     z-index: -1 !important;
+}
+
+.profile .favorite-container
+{
+    padding: 0px 20px 0px 85px;
 }
 
 .documented span {
@@ -377,7 +382,7 @@
     text-align: right;
     color: var(--theme-black);
     font-weight: 500;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 19px;
     font-family: Tajawal;
     padding-bottom: 38px;
@@ -654,7 +659,7 @@ element.style {
     text-align: right;
     color: var(--theme-black);
     font-weight: 500;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 19px;
     font-family: Tajawal;
     padding-bottom: 16px;
@@ -1223,7 +1228,7 @@ input[type="range"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    width: 100%;
+    width: 100% !important;
     outline: none;
     position: absolute;
     margin: auto;

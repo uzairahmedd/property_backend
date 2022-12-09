@@ -215,7 +215,13 @@
 .regional-drop
 {
     position: absolute;
+    margin-bottom: 12px;
     z-index: 1;
+}
+
+.meter-div
+{
+    margin-left: 10px;
 }
 
 .regional-drop-btn::after {
@@ -440,4 +446,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}    
+}

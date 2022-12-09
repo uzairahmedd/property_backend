@@ -4,7 +4,7 @@
 </div>
 <div class="col-9 mx-auto profile">
     <div class="row mb-4_5 d-flex flex-column-reverse flex-lg-row card personal-card justify-content-between align-items-right align-items-lg-center">
-        <div class="col-lg-4 col-md-4 d-flex flex-column align-items-end">
+        <div class="col-lg-4 col-md-4 d-flex flex-column align-items-end mobile-icon-dash">
             <span class="font-16 theme-text-sky">{{__('labels.mobile_number')}}</span>
             <div class="d-flex align-items-center">
                 <img src="{{ asset('assets/images/tick-verified.png')}}" alt="">
