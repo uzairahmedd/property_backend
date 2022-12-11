@@ -161,12 +161,21 @@
 }
 
 .rtl .complete-rent-drop img {
-    right: 10px;
+    right: 12px !important;
 }
 
-.rtl .type-dropdown .type-dropdown-content
+.rtl .rent-toggle-icon img
 {
-    justify-content: start;
+    right: -4px !important;
+}
+
+.rtl .type-dropdown .auction-dropdown {
+    justify-content: end;
+}
+
+.rtl .type-dropdown .type-dropdown-content li
+{
+    padding-left: 0 !important;
 }
 
 .rtl .ps-2 {
@@ -620,6 +629,23 @@
     direction: ltr;
 }
 
+.rtl .term_policy p
+{
+    direction: ltr;
+}
+
+.rtl .data-collection p
+{
+    text-align: left;
+    direction: ltr;
+}
+
+.rtl .all-collection p
+{
+    text-align: left;
+    direction: ltr;
+}
+
 
 
 @media screen and (max-width:768px) {
@@ -722,5 +748,17 @@
         padding-bottom: 10px;
         border: none;
         border-bottom: 1px solid #C9C9C9 !important;
+    }
+}
+
+@media screen and (max-width: 378px) {
+    .rtl .close-modal {
+        width: 23px;
+        top: 12px;
+    }
+
+    .rtl .contact-modal .mesg {
+        margin-right: 20px;
+        width: 80%;
     }
 }
