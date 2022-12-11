@@ -390,12 +390,16 @@
     <div class="col-12 col-sm-10 col-lg-8 col-xl-5">
         <h1 class="font-bold theme-text-white mb-0">{{__('labels.property_sale_rent')}}</h1>
         <h3 class="mb-0 theme-text-white">{{__('labels.market_property_txt')}}</h3>
-        <div class="pt-5">
-        @if (!Auth::User())
-            <a href="{{ route('agent.property.create_property') }}" class="btn-add btn-theme">
-                {{__('labels.add_property_now')}}
-                    </a>
-        @endif
+        <div>
+            @if (Auth::User())
+            <button class="btn-add btn-theme">
+                <a href="{{ route('agent.property.create_property') }}"> {{__('labels.add_property_now')}}</a>
+            </button>
+            @else
+            <button class="btn-add btn-theme">
+                <a data-bs-toggle="modal" data-bs-target="#contactModal"> {{__('labels.add_property_now')}}</a>
+            </button>
+            @endif
         </div>
     </div>
 </div>

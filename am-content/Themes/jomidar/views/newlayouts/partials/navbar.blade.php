@@ -35,9 +35,9 @@
 
                     </li>
                     @endif
-                    @if (Auth::guest())
+                   
                     <li class="nav-item d-flex flex-column flex-sm-row align-items-center mb-3 mb-sm-0">
-
+                       @if (Auth::guest())
                         <div class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#contactModal">
                             <span class="nav-link theme-text-blue font-medium"> <a href="#">{{__('labels.sign_in')}}</a> </span>
                             <img src="{{theme_asset('assets/images/avatar.svg')}}" class="ms-3" />
@@ -53,9 +53,9 @@
                             <a data-bs-toggle="modal" data-bs-target="#contactModal">{{__('labels.add_property')}}</a>
                             <img src="{{theme_asset('assets/images/plus.svg')}}" class="ms-3">
                         </button>
+                        @endif
 
                     </li>
-                    @endif
                     <li class="nav-item d-flex align-items-center mb-3 mb-sm-0">
                         <span class="nav-link font-bold theme-text-blue">{{__('labels.download_app_top')}}</span>
                         <img src="{{theme_asset('assets/images/download.svg')}}" class="ms-3" />
