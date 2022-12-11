@@ -151,15 +151,39 @@ $(document).ready(function (event) {
 
     $('.reset-btn').click(function (e) {
         $('#fade').removeClass('add_overlay');
-
         e.preventDefault();
     });
+
+    //for nature reset btn
+    $('.nature-reset-btn').click(function (e) {
+        $('#fade').removeClass('add_overlay');
+        $('#category').val('');
+        $(".prop-checkbox input[type='checkbox']:checked").map(function () {
+            return $(this).removeAttr('checked');
+        }).get();
+        $(".prop-checkbox input[type='checkbox']:checked").removeAttr('checked');
+        $('#dropdownMenuLink-property-type').text('النوع');
+        var base_url = $('#base_url').val();
+        var url = base_url + 'get_properties_data';
+        get_properties(url)
+        e.preventDefault();
+    });
+
+
 
     $('body').css('overflow-x', 'hidden');
     //for rent sale and project filter
     if (status_id != null && status_id != '') {
         var text = $('.rent-all input[value=' + status_id + ']').attr("data-title");
         $('#dropdownMenuLink-buy').text(text);
+    }
+
+    //for property nature
+    if (category != null && category != '') {
+        var text = $('.prop-checkbox input[value=' + category + ']').attr("data-name");
+        $('#dropdownMenuLink-property-type').text('');
+        $("#dropdownMenuLink-property-type").width($("#dropdownMenuLink-property-type").width() + 50);
+        $('#dropdownMenuLink-property-type').text(text);
     }
 
     $('.search-input-bar').click(function () {
@@ -243,18 +267,43 @@ $(document).ready(function (event) {
     });
 
 
-    $('.prop-checkbox').on('click', function () {
-        if ($(".prop-checkbox input[type='checkbox']").is(":checked")) {
-            $('this').addClass("selected");
-            var n = $('this').text();
-            console.log(n);
+    //forpropery type dropdown
+    $("#nature_btn").click(function (e) {
+        $("#dropdownMenuLink-property-type").css('width', '100px');
+        var shortname = $(".prop-checkbox input[type='checkbox']:checked").map(function () {
+            return $(this).attr("data-name");
+        }).get().join(', ');
+
+        if (shortname == '') {
+            shortname = 'النوع';
         }
-        else {
-            $('.checmark').removeClass("selected");
+
+        if (shortname.length > 15) {
+            shortname = shortname.substring(0, 15) + " ...";
         }
+        $('#dropdownMenuLink-property-type').text('');
+        $("#dropdownMenuLink-property-type").width($("#dropdownMenuLink-property-type").width() + 100);
+        $('#dropdownMenuLink-property-type').text(shortname);
+        $('#fade').removeClass('add_overlay');
+        $("ul.type-dropdown").removeClass('show');
+
+        //for setting value
+        var value = $(".prop-checkbox input[type='checkbox']:checked").map(function () {
+            return $(this).val();
+        }).get().join(',');
+        $('#category').val(value);
+        var base_url = $('#base_url').val();
+        var url = base_url + 'get_properties_data';
+        get_properties(url)
+        e.preventDefault();
+        return false;
     });
 
+
+
 });
+
+
 
 
 

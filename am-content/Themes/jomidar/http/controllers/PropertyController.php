@@ -362,13 +362,13 @@ class PropertyController extends controller
 
         $status = $request->status ?? null;
         $state = $request->state ?? null;
-        $parent_category= $request->parent_category ?? null;
+        $parent_category = $request->parent_category ?? null;
         $category = $request->category ?? null;
-         
+
         $statuses = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
         $states = Category::where('type', 'states')->latest()->get();
-        $categories = Category::where('type', 'category')->get();
-        return view('theme::newlayouts.pages.property_lists', compact('category', 'state','status', 'statuses', 'categories', 'states','parent_category'));
+        $categories = Category::where('type', 'category')->with('icon')->get();
+        return view('theme::newlayouts.pages.property_lists', compact('category', 'state', 'status', 'statuses', 'categories', 'states', 'parent_category'));
     }
 
 

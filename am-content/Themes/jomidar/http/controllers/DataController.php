@@ -131,16 +131,16 @@ class DataController extends controller
         $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('min_price')
             ->whereHas('max_price')->whereHas('post_city')
             ->with('floor_plans', 'post_preview', 'min_price', 'max_price', 'post_city', 'post_state', 'user', 'featured_option', 'latitude', 'longitude', 'property_status_type')->whereHas('post_state', function ($q) {
-            if (!empty($this->state)) {
-                return $q->where('category_id', $this->state);
-            }
-            return $q;
-        })->whereHas('property_status_type', function ($q) {
-            if (!empty($this->status)) {
-                return $q->where('category_id', $this->status);
-            }
-            return $q;
-        });
+                if (!empty($this->state)) {
+                    return $q->where('category_id', $this->state);
+                }
+                return $q;
+            })->whereHas('property_status_type', function ($q) {
+                if (!empty($this->status)) {
+                    return $q->where('category_id', $this->status);
+                }
+                return $q;
+            });
 
         if (!empty($request->category)) {
             $posts = $posts->whereHas('category', function ($q) {
@@ -259,7 +259,7 @@ class DataController extends controller
         return response()->json($posts);
     }
 
-   
+
     public function get_properties_data(Request $request)
     {
 
@@ -268,8 +268,7 @@ class DataController extends controller
         $this->category = $request->category;
         $this->parent_category = $request->parent_category;
         $this->price = $request->price;
-
-        $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('price')->whereHas('post_city')->with('postcategory','area', 'post_preview', 'price', 'post_city','user', 'featured_option', 'property_status_type')->whereHas('post_city', function ($q) {
+        $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('price')->whereHas('post_city')->with('postcategory', 'area', 'post_preview', 'price', 'post_city', 'user', 'featured_option', 'property_status_type')->whereHas('post_city', function ($q) {
             if (!empty($this->state)) {
                 return $q->where('category_id', $this->state);
             }
@@ -286,7 +285,8 @@ class DataController extends controller
             return $q;
         })->whereHas('postcategory', function ($q) {
             if (!empty($this->category)) {
-                return $q->where('category_id', $this->category);
+                $my_categories = explode(',', $this->category);
+                return $q->whereIn('category_id', $my_categories);
             }
             return $q;
         });
@@ -303,7 +303,7 @@ class DataController extends controller
     }
 
 
-    
+
     public function get_projects(Request $request)
     {
 

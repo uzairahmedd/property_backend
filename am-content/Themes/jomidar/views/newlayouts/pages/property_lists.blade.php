@@ -3,8 +3,8 @@
 <script>
     var state_id = '<?php echo $state; ?>';
     var status_id = '<?php echo $status; ?>';
-    var $parent_category = '<?php echo $parent_category; ?>';
-    var $category = '<?php echo $category; ?>';
+    var parent_category = '<?php echo $parent_category; ?>';
+    var category = '<?php echo $category; ?>';
 </script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/second-page.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/propertylist-search.css')}}">
@@ -135,49 +135,19 @@
                             <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-property-type">
                                 <h3>{{__('labels.type_property')}}</h3>
                                 <div class="type-dropdown-content d-flex justify-content-around align-items-center">
-                                    <div class="radio-container prop-checkbox" value="0" id="1">
-                                        <input type="checkbox">
-                                        <span class="checmark step font-14 font-medium" value="عمارة"><i class="fa-regular fa-building"></i>عمارة</span>
+                                    @foreach($categories as $category_data)
+                                    <div class="radio-container prop-checkbox">
+                                        <input type="checkbox" data-name="{{$category_data->name}}" value="{{$category_data->id}}" {{ $category != "" && $category == $category_data->id ? "checked" : '' }}>
+                                        <span class="checmark step font-14 font-medium"><i class="{{$category_data->icon->content}}"></i>{{$category_data->name}}</span>
                                     </div>
-                                    <div class="radio-container prop-checkbox" value="0" id="2">
-                                        <input type="checkbox">
-                                        <span class="checmark step font-14 font-medium" value="قصر"><i class="fa-regular fa-chess-rook"></i>قصر</span>
-                                    </div>
-                                    <div class="radio-container prop-checkbox" value="0" id="3">
-                                        <input type="checkbox">
-                                        <span class="checmark step font-14 font-medium" value="فيلا"><i class="fa-regular fa-chess-queen"></i>فيلا</span>
-                                    </div>
-                                    <div class="radio-container prop-checkbox" value="0" id="4">
-                                        <input type="checkbox">
-                                        <span class="checmark step font-14 font-medium" value="شقة"><i class="fa-regular fa-building"></i>شقة</span>
-                                    </div>
-                                    <div class="radio-container prop-checkbox" value="0" id="5">
-                                        <input type="checkbox">
-                                        <span class="checmark step font-14 font-medium" value="شاليه"><i class="fa-solid fa-house"></i>شاليه</span>
-                                    </div>
-                                    <div class="radio-container prop-checkbox" value="0" id="6">
-                                        <input type="checkbox">
-                                        <span class="checmark step font-14 font-medium" value="استراحة"> <i class="fa-solid fa-spa"></i>استراحة</span>
-                                    </div>
-                                    <div class="radio-container prop-checkbox" value="0" id="7">
-                                        <input type="checkbox">
-                                        <span class="checmark step font-14 font-medium" value="مزرعة"><i class="fa-solid fa-wheat-awn"></i>مزرعة</span>
-                                    </div>
-                                    <div class="radio-container prop-checkbox" value="0" id="8">
-                                        <input type="checkbox">
-                                        <span class="checmark step font-14 font-medium" value="أرض"><i class="fa-solid fa-landmark-flag"></i>أرض</span>
-                                    </div>
-                                    <div class="radio-container prop-checkbox" value="0" id="9">
-                                        <input type="checkbox">
-                                        <span class="checmark step font-14 font-medium" value="دوبلكس"><i class="fa-solid fa-house-medical-flag"></i>دوبلكس</span>
-                                    </div>
+                                    @endforeach
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
                                     <li class="type-all">
-                                        <button class="btn type-box show-results-bttn">{{__('labels.apply')}}</button>
+                                        <button id="nature_btn" class="btn type-box show-results-bttn">{{__('labels.apply')}}</button>
                                     </li>
                                     <li class="type-all">
-                                        <button class="btn type-box">{{__('labels.reset')}}</button>
+                                        <button class="nature-reset-btn btn type-box">{{__('labels.reset')}}</button>
                                     </li>
                                 </div>
                             </ul>
@@ -193,7 +163,7 @@
                             @elseif($status_data->id == $status && $status_data->name =='Rent')
                             <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.rent')}}
                             </button>
-                             @endif
+                            @endif
                             @endforeach
                             <ul class="dropdown-menu list-rent-dropdown" aria-labelledby="dropdownMenuLink-buy">
                                 <div class="rent-dropdown-content">
@@ -271,8 +241,8 @@
                     <div class="search-bar d-flex p-2 mt-1">
                         <img src="assets/images/search.svg" alt="">
                         <select class="theme-text-secondary-black border-0" theme="google" width="400" style="appearance: none;" placeholder="{{__('labels.looking_property')}}" data-search="true" id="property_states_dropdown">
-                        <option value="" disabled selected>{{__('labels.looking_property')}}</option>   
-                        @foreach ($states as $row)
+                            <option value="" disabled selected>{{__('labels.looking_property')}}</option>
+                            @foreach ($states as $row)
                             <option value="{{ $row->id }}" @if($state==$row->id) selected="selected" @endif>{{ $row->name }}</option>
                             @endforeach
                             <!-- <option value="AX">الرياض<span class="property_num">(1)</span></option> -->
