@@ -32,15 +32,15 @@
                             <img src="{{theme_asset('assets/images/share.png')}}" class="border-0" alt="">
                         </div>
                         <ul class="dropdown-menu share-dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="https://www.facebook.com/sharer.php?u={{ URL::current() }}" target="_blank"><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
-                            <li><a class="dropdown-item" href="https://twitter.com/intent/tweet?text={{ URL::current() }}" target="_blank"><i class="fa-brands fa-twitter"></i> Twitter</a></li>
-                            <li><a class="dropdown-item" href="https://pinterest.com/pin/create/button/?url={{ URL::current() }}&media={{ $property->post_preview->media->url ?? asset('uploads/default.png') }}" target="_blank"><i class="fa-brands fa-pinterest-p"></i> Pinterest</a></li>
-                            <li><a class="dropdown-item" href="https://api.whatsapp.com/send?text={{ URL::current() }}" target="_blank"><i class="fa-brands fa-whatsapp"></i> Whatsapp</a></li>
-                            <li><a class="dropdown-item" href="mailto:{{ $property->user->email }}?subject={{ $property->title }}&body={{ URL::current() }}"><i class="fa-regular fa-envelope"></i> Gmail</a></li>
+                            <li><a class="dropdown-item share-drop-item" href="https://www.facebook.com/sharer.php?u={{ URL::current() }}" target="_blank"><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+                            <li><a class="dropdown-item share-drop-item" href="https://twitter.com/intent/tweet?text={{ URL::current() }}" target="_blank"><i class="fa-brands fa-twitter"></i> Twitter</a></li>
+                            <li><a class="dropdown-item share-drop-item" href="https://pinterest.com/pin/create/button/?url={{ URL::current() }}&media={{ $property->post_preview->media->url ?? asset('uploads/default.png') }}" target="_blank"><i class="fa-brands fa-pinterest-p"></i> Pinterest</a></li>
+                            <li><a class="dropdown-item share-drop-item" href="https://api.whatsapp.com/send?text={{ URL::current() }}" target="_blank"><i class="fa-brands fa-whatsapp"></i> Whatsapp</a></li>
+                            <li><a class="dropdown-item share-drop-item" href="mailto:{{ $property->user->email }}?subject={{ $property->title }}&body={{ URL::current() }}"><i class="fa-regular fa-envelope"></i> Gmail</a></li>
                         </ul>
                     </li>
                     <li class="d-flex mb-3 mb-sm-0">
-                        <span>{{__('labels.save')}}</span>
+                        <span class="save-item">{{__('labels.save')}}</span>
                         @if (Auth::check())
                         @php
                         $data = DB::table('terms_user')->where([
@@ -123,7 +123,7 @@
                         </p>
                         <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                     </div>
-                    <ul class="list-unstyled d-flex flex-column flex-sm-row align-items-end mb-5 flex-wrap justify-content-end">
+                    <ul class="list-unstyled d-flex flex-column flex-sm-row align-items-end mb-5 flex-wrap justify-content-end property-list-feature">
                         @if($property->option_data)
                         @foreach ($property->option_data as $value)
                         <li class="d-flex align-items-center mb-3 mb-sm-3">
@@ -155,7 +155,7 @@
                     @php
                     $info = isset($property->user->usermeta->content) ? json_decode($property->user->usermeta->content) : null ;
                     @endphp
-                    <div class="d-flex flex-column flex-sm-row me-3 justify-content-between w-100">
+                    <div class="d-flex flex-column flex-sm-row me-3 justify-content-between w-100 contact-btn">
                         <button class="contact-btn col-12 col-sm-6 theme-bg-sky mx-2 px-2 border-0 theme-text-white font-medium mb-sm-0">
                             <img src="{{theme_asset('assets/images/phone.png')}}" alt="" class="phone me-2">
                             {{ isset($info->phone) ? $info->phone : 'N/A'  }}
@@ -167,8 +167,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 col-xxl-7">
-                <div class="d-flex flex-column align-items-end py-4">
+            <div class="col-12 col-lg-6">
+                <div class="d-flex flex-column align-items-end basic-property-info py-4">
                     <div class="d-flex justify-content-between w-100 mb-2">
                         <h1 class="font-24 theme-text-blue font-medium">{{$property->property_status_type->category->name}}</h1>
                         <h1 class="font-24 theme-text-blue">{{__('labels.property_description')}}</h1>
@@ -183,7 +183,7 @@
                             <h3 class="font-16 font-medium theme-text-blue">{{ $value->name }}</h3>
                         </div>
                         <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">طبيعة العقار</span>
+                            <span class="font-16 theme-text-seondary-black b-info-txt">طبيعة العقار</span>
                         </div>
                     </div>
                     @elseif( $value->type == 'category')
@@ -192,7 +192,7 @@
                             <h3 class="font-16 font-medium theme-text-blue">{{ $value->name }}</h3>
                         </div>
                         <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">نوع العقار</span>
+                            <span class="font-16 theme-text-seondary-black b-info-txt">نوع العقار</span>
                         </div>
                     </div>
                     @endif
@@ -203,7 +203,7 @@
                             <h3 class="font-16 font-medium theme-text-blue">{{ $property->electricity_facility->content == 0 ? 'نعم' : 'لا' }}</h3>
                         </div>
                         <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">هل يوجد عداد كهرباء</span>
+                            <span class="font-16 theme-text-seondary-black b-info-txt">هل يوجد عداد كهرباء</span>
                         </div>
                     </div>
 
@@ -212,7 +212,7 @@
                             <h3 class="font-16 font-medium theme-text-blue">{{ $property->water_facility->content == 0 ? 'نعم' : 'لا' }}</h3>
                         </div>
                         <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">هل يوجد عداد ماء</span>
+                            <span class="font-16 theme-text-seondary-black b-info-txt">هل يوجد عداد ماء</span>
                         </div>
                     </div>
 
@@ -220,7 +220,7 @@
                         <div class="col-6 text-start">
                             <h3 class="font-16 font-medium theme-text-blue">{{ $property->streets->content }}</h3>
                         </div>
-                        <div class="col-6 text-end">
+                        <div class="col-6 text-end b-info-txt">
                             <span class="font-16 theme-text-seondary-black">عدد الشوارع</span>
                         </div>
                     </div>
@@ -230,7 +230,7 @@
                             <h3 class="font-16 font-medium theme-text-blue">{{ isset($property->street_info_one->content) ? $property->street_info_one->content : '' }}
                                 , {{ isset($property->street_info_two->content) ? $property->street_info_two->content : ''}}</h3>
                         </div>
-                        <div class="col-6 text-end">
+                        <div class="col-6 text-end b-info-txt">
                             <span class="font-16 theme-text-seondary-black">معلومات الشارع</span>
                         </div>
                     </div>

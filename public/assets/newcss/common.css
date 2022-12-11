@@ -45,6 +45,12 @@
     --theme-red: #FF0000;
 }
 /* Margins */
+
+ul li:focus-visible
+{
+    outline: none;
+}
+
 .mb-4_5{
     margin-bottom: 38px;
 }
@@ -673,6 +679,16 @@ button a
     border: 1px solid #e5e5e6;
     overflow: hidden;
     background: #fff;
+}
+
+.resend-txt button
+{
+    font-weight: 600;
+}
+
+.modify-txt a
+{
+    font-weight: 600;
 }
 
 
