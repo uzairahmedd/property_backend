@@ -78,7 +78,7 @@
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
                                 <select class="form-control add_prop_btn" name="city">
                                     <option value="" disabled selected>  {{__('labels.select_region')}}</option>
-                                    @foreach(App\Category::where('type','states')->get() as $row)
+                                    @foreach(App\Category::where('type','states')->latest()->get() as $row)
                                     <option value="{{ $row->id }}" {{ $post_data != '' && $post_data->city->category_id == $row->id ? "selected" : (old("city") == $row->id ? "selected" : '') }}>{{ $row->name }}</option>
 
                                     @endforeach

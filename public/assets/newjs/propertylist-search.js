@@ -84,15 +84,15 @@
             $('ul#select_style_ul').hide();
             var ul = $(this).parent('div').find('ul#select_style_ul');
             ul.show();
-            var height = ul.height();
-            var offset = $(this).offset();
-            if (offset.top + height > $(window).height()) {
-                ul.css({
-                    // marginTop: -(((offset.top+height) - $(window).height()) + 100)
-                });
-            }
+            // var height = ul.height();
+            // var offset = $(this).offset();
+            // if (offset.top + height > $(window).height()) {
+            //     ul.css({
+            //         // marginTop: -(((offset.top+height) - $(window).height()) + 100)
+            //     });
+            // }
         });
-       
+
 
         $("body").delegate("ul#select_style_ul li", "click", function (e) {
             $('#fade').removeClass('add_overlay');
@@ -111,9 +111,6 @@
 
         });
 
-
-
-
     }
 })(jQuery);
 
@@ -131,13 +128,13 @@ $(document).ready(function (event) {
         get_properties(url);
     });
 
-    
+
     $('#dropdownMenuLink-buy').click(function (e) {
         $('#fade').addClass('add_overlay');
     });
 
-        $('.overlay').click(function (event) {
-       $('#fade').removeClass('add_overlay');
+    $('.overlay').click(function (event) {
+        $('#fade').removeClass('add_overlay');
         $(".list-rent-dropdown").removeClass("show");
     });
 
@@ -151,14 +148,14 @@ $(document).ready(function (event) {
         }
     });
 
-    
+
     $('.reset-btn').click(function (e) {
         $('#fade').removeClass('add_overlay');
-    
+
         e.preventDefault();
     });
-    
-    $('body').css('overflow-x','hidden');
+
+    $('body').css('overflow-x', 'hidden');
     //for rent sale and project filter
     if (status_id != null && status_id != '') {
         var text = $('.rent-all input[value=' + status_id + ']').attr("data-title");
@@ -177,7 +174,7 @@ $(document).ready(function (event) {
         event.stopPropagation();
     });
 
-   
+
 
     $('.overlay').click(function (event) {
         $('#fade').removeClass('add_overlay');
@@ -231,7 +228,31 @@ $(document).ready(function (event) {
 
     });
 
+    $('.room-type-drop').click(function (e) {
+        $('#fade').addClass('add_overlay');
+        $("ul.list-rent-dropdown").removeAttr('style');
+    });
 
+    $("#room_studio").click(function (event) {
+        if ($("#room_studio").is(":checked")) {
+            var radio_val = $(".room_studio").text();
+            var txt = $('#').text(radio_val);
+            $('#fade').removeClass('add_overlay');
+            event.stopPropagation();
+        }
+    });
+
+
+    $('.prop-checkbox').on('click', function () {
+        if ($(".prop-checkbox input[type='checkbox']").is(":checked")) {
+            $('this').addClass("selected");
+            var n = $('this').text();
+            console.log(n);
+        }
+        else {
+            $('.checmark').removeClass("selected");
+        }
+    });
 
 });
 
@@ -430,62 +451,6 @@ function favourite_property_check(id) {
         }
     });
 }
-
-
-// Rent Dropdown Js Start
-$(document).ready(function (event) {
-    // $('.list-complete-rent-drop').click(function (e) {
-    //     $('.overlay').css({ 'opacity': 0.2, 'display': 'block' });
-    // });
-
-
-    // $('.overlay').click(function (event) {
-    //     $('.overlay').css({ 'opacity': 0, 'display': 'none' });
-    //     $(".list-rent-dropdown").removeClass("show");
-    //     // event.stopPropagation();
-    // });
-});
-// Rent Dropdown Js End
-
-$(document).ready(function (event) {
-    $('.room-type-drop').click(function (e) {
-        $('#fade').addClass('add_overlay');
-        $("ul.list-rent-dropdown").removeAttr('style');
-    });
-
-    $("#room_studio").click(function (event) {
-        if ($("#room_studio").is(":checked")) {
-            var radio_val = $(".room_studio").text();
-            var txt = $('#').text(radio_val);
-            $('#fade').removeClass('add_overlay');
-            event.stopPropagation();
-        }
-    });
-
-
-
-    // $('.overlay').click(function (event) {
-    //     $('.overlay').css({ 'opacity': 0, 'display': 'none' });
-    //     $(".list-rent-dropdown").removeClass("show");
-    //     // event.stopPropagation();
-    // });
-});
-// Rent Dropdown Js End
-
-
-
-$(document).ready(function () {
-    $('.prop-checkbox').on('click', function () {
-        if ($(".prop-checkbox input[type='checkbox']").is(":checked")) {
-            $('this').addClass("selected");
-            var n = $('this').text();
-            console.log(n);
-        }
-        else {
-            $('.checmark').removeClass("selected");
-        }
-    });
-});
 
 
 /*-------------------------------------
