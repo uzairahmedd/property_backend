@@ -34,15 +34,15 @@
                             <button class="btn dropdown-toggle budget-dropdown-toggle budget-btn" role="button" id="dropdownMenuLink-rooms" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.budget')}}
                             </button>
                             <ul class="dropdown-menu budget-dropdown" id="budgetdropdown" aria-labelledby="dropdownMenuLink-rooms">
-                                <h3>الميزانية ( ريال سعودي )</h3>
+                                <h3>{{__('labels.budget_sar')}}</h3>
                                 <div class="type-dropdown-content price-input d-flex justify-content-between align-items-center mb-4">
                                     <div class="mb-3 field col-lg-6 col-md-6 col-sm-12  p-1 position-relative">
-                                        <input type="number" class="input-min" value="" class="form-control font-medium font-16 text-end font-14" placeholder=" 0 ر.س   ">
-                                        <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">أقل سعر</label>
+                                        <input type="number" class="input-min" value="" class="form-control font-medium font-16 text-end font-14" placeholder=" 0 {{__('labels.sar')}}">
+                                        <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">{{__('labels.low_price')}}</label>
                                     </div>
                                     <div class="mb-3 field col-lg-6 col-md-6 col-sm-12 p-1 position-relative">
-                                        <input type="number" class="input-max" value="" class="form-control font-medium font-16 text-end font-14" placeholder="10,000.0000+ ر.س   ">
-                                        <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">أعلى سعر</label>
+                                        <input type="number" class="input-max" value="" class="form-control font-medium font-16 text-end font-14" placeholder="10,000.0000+ {{__('labels.sar')}}">
+                                        <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">{{__('labels.high_price')}}</label>
                                     </div>
                                 </div>
 
@@ -58,10 +58,10 @@
 
                                 <div class="d-flex justify-content-between mt-4">
                                     <li class="room-no-drop">
-                                        <button class="btn type-box show-results-bttn">اظهار النتائج</button>
+                                        <button class="btn type-box show-results-bttn">{{__('labels.apply')}}</button>
                                     </li>
                                     <li class="room-no-drop">
-                                        <button class="btn type-box">مسح</button>
+                                        <button class="btn type-box">{{__('labels.reset')}}</button>
                                     </li>
                                 </div>
                             </ul>
@@ -73,7 +73,7 @@
                             <button class="btn dropdown-toggle room-dropdown-toggle room-btn" role="button" id="dropdownMenuLink-roomss" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.bedroom')}}
                             </button>
                             <ul class="dropdown-menu room-dropdown" aria-labelledby="dropdownMenuLink-roomss">
-                                <h3>عدد الغرف</h3>
+                                <h3>{{__('labels.bedroom')}}</h3>
                                 <div class="room-dropdown-content d-flex justify-content-right align-items-center">
                                     <div class="room-container property_radio">
                                         <input type="radio" id="room_studio">
@@ -118,10 +118,10 @@
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
                                     <li class="room-no-drop">
-                                        <button class="btn type-box show-results-bttn">اظهار النتائج</button>
+                                        <button class="btn type-box show-results-bttn">{{__('labels.apply')}}</button>
                                     </li>
                                     <li class="room-no-drop">
-                                        <button class="btn type-box">مسح</button>
+                                        <button class="btn type-box">{{__('labels.reset')}}</button>
                                     </li>
                                 </div>
                             </ul>
@@ -133,7 +133,7 @@
                             <button class="btn dropdown-toggle type-dropdown-toggle type-btn" role="button" id="dropdownMenuLink-property-type" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.type')}}
                             </button>
                             <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink-property-type">
-                                <h3>نوع العقار</h3>
+                                <h3>{{__('labels.type_property')}}</h3>
                                 <div class="type-dropdown-content d-flex justify-content-around align-items-center">
                                     <div class="radio-container prop-checkbox" value="0" id="1">
                                         <input type="checkbox">
@@ -174,10 +174,10 @@
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
                                     <li class="type-all">
-                                        <button class="btn type-box show-results-bttn">اظهار النتائج</button>
+                                        <button class="btn type-box show-results-bttn">{{__('labels.apply')}}</button>
                                     </li>
                                     <li class="type-all">
-                                        <button class="btn type-box">مسح</button>
+                                        <button class="btn type-box">{{__('labels.reset')}}</button>
                                     </li>
                                 </div>
                             </ul>
@@ -188,10 +188,10 @@
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
                             @foreach($statuses as $status_data)
                             @if( $status_data->id == $status && $status_data->name =='Sale')
-                            <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.for_sale')}}
+                            <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.for_buy')}}
                             </button>
                             @elseif($status_data->id == $status && $status_data->name =='Rent')
-                            <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">ايجار
+                            <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.rent')}}
                             </button>
                              @endif
                             @endforeach
@@ -201,13 +201,13 @@
                                         <div class="col-12 p-0">
                                             <!-- Tab -->
                                             <nav>
-                                                <p class="rent-buy-txt">نوع العرض</p>
+                                                <p class="rent-buy-txt">{{__('labels.purpose')}}</p>
                                                 <div class="nav nav-tabs mb-4 rent-tabs d-flex justify-content-center align-items-center" id="nav-tab" role="tablist">
                                                     @foreach($statuses as $status_data)
                                                     @if( $status_data->name =='Sale')
-                                                    <a class="nav-item nav-link rent-link nav-sale active" id="nav-rent-tab" data-bs-toggle="tab" data-value="{{$status_data->id}}" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">للبيع</a>
+                                                    <a class="nav-item nav-link rent-link nav-sale active" id="nav-rent-tab" data-bs-toggle="tab" data-value="{{$status_data->id}}" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">{{__('labels.sale')}}</a>
                                                     @elseif( $status_data->name =='Rent')
-                                                    <a class="nav-item nav-link rent-link nav-sale" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" data-value="{{$status_data->id}}" role="tab" aria-controls="nav-buy" aria-selected="false">ايجار</a>
+                                                    <a class="nav-item nav-link rent-link nav-sale" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" data-value="{{$status_data->id}}" role="tab" aria-controls="nav-buy" aria-selected="false">{{__('labels.rent')}}</a>
                                                     @endif
                                                     @endforeach
                                                 </div>
@@ -221,12 +221,12 @@
                                                     {{-- <li class="buy-rent-pan" name="category" value="3">الجميع</li>--}}
                                                     {{-- </div>--}}
                                                     <div class="d-flex justify-content-between mt-2">
-                                                        <button class="complete-btn list-complete-btn"><a href="">تم</a></button>
-                                                        <button class="reset-btn"><a href="">إعادة ضبط</a></button>
+                                                        <button class="complete-btn list-complete-btn"><a href="">{{__('labels.apply')}}</a></button>
+                                                        <button class="reset-btn"><a href=""> {{__('labels.reset')}}</a></button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="nav-buy" role="tabpanel" aria-labelledby="nav-buy-tab">
-                                                    <p class="rent-buy-txt">مدة الايجار</p>
+                                                    <p class="rent-buy-txt">{{__('labels.rental_fre')}}</p>
                                                     <div class="rent-buy-pans d-flex flex-row-reverse justify-content-center align-items-center">
                                                         <li class="rent-all">
                                                             <input class="rent-select-dropdown" value="" type="radio" id="radio02-01" checked />
@@ -254,8 +254,8 @@
                                                         </li>
                                                     </div>
                                                     <div class="d-flex justify-content-between mt-2">
-                                                        <button class="complete-btn list-complete-btn"><a href="">تم</a></button>
-                                                        <button class="reset-btn"><a href="">إعادة ضبط</a></button>
+                                                        <button class="complete-btn list-complete-btn"><a href="">{{__('labels.apply')}}</a></button>
+                                                        <button class="reset-btn"><a href=""> {{__('labels.reset')}}</a></button>
                                                     </div>
                                                 </div>
                                             </div>

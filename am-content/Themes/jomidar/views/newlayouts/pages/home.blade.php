@@ -56,12 +56,12 @@
                                             {{-- <li class="buy-rent-pan" name="category" value="3">الجميع</li>--}}
                                             {{-- </div>--}}
                                             <div class="d-flex justify-content-between mt-2">
-                                                <button class="complete-btn"><a href="">تم</a></button>
-                                                <button class="reset-btn"><a href="">إعادة ضبط</a></button>
+                                                <button class="complete-btn"><a href="">{{__('labels.apply')}}</a></button>
+                                                <button class="reset-btn"><a href="">{{__('labels.reset')}}</a></button>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="nav-buy" role="tabpanel" aria-labelledby="nav-buy-tab">
-                                            <p class="rent-buy-txt">مدة الايجار</p>
+                                            <p class="rent-buy-txt">{{__('labels.rental_fre')}}</p>
                                             <div class="rent-buy-pans d-flex flex-row-reverse justify-content-center align-items-center">
                                                 <li class="rent-all">
                                                     <input class="rent-select-dropdown" value="" type="radio" id="radio02-01" checked />
@@ -89,8 +89,8 @@
                                                 </li>
                                             </div>
                                             <div class="d-flex justify-content-between mt-2">
-                                                <button class="complete-btn"><a href="">تم</a></button>
-                                                <button class="reset-btn"><a href="">إعادة ضبط</a></button>
+                                                <button class="complete-btn"><a href="">{{__('labels.apply')}}</a></button>
+                                                <button class="reset-btn"><a href="">{{__('labels.reset')}}</a></button>
                                             </div>
                                         </div>
                                     </div>
@@ -103,7 +103,7 @@
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                 <div class="dropdown complete-resident-drop">
-                    <span class="rent-toggle-icon" id="rent-t-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
+                    <span class="rent-toggle-icon rental-toggle-icon" id="rent-t-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
                     <button class="btn dropdown-toggle resident-dropdown-toggle resident-btn" role="button" id="dropdownMenuLink1" name="category" value="" onclick="" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.residential')}}
                     </button>
                     <ul class="dropdown-menu resident-dropdown" aria-labelledby="dropdownMenuLink1">
@@ -149,8 +149,8 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex justify-content-between mt-2">
-                                                <button class="complete-btn"><a href="">تم</a></button>
-                                                <button class="reset-btn"><a href="">إعادة ضبط</a></button>
+                                                <button class="complete-btn"><a href="">{{__('labels.apply')}}</a></button>
+                                                <button class="reset-btn"><a href="">{{__('labels.reset')}}</a></button>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="nav-commercial" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -178,8 +178,8 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex justify-content-between mt-2">
-                                                <button class="complete-btn"><a href="">تم</a></button>
-                                                <button class="reset-btn"><a href="">إعادة ضبط</a></button>
+                                                <button class="complete-btn"><a href="">{{__('labels.apply')}}</a></button>
+                                                <button class="reset-btn"><a href="">{{__('labels.reset')}}</a></button>
                                             </div>
                                         </div>
                                     </div>

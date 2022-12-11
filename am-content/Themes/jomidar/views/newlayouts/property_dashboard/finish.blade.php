@@ -10,9 +10,9 @@
                 <h3 class="font-medium theme-text-seondary-black">{{__('labels.process_finished')}}</h3>
                 <img src="{{asset('assets/images/finished.svg')}}" alt="">
                 <p class="col-7 text-center font-18 theme-text-seondary-black ads-p">{{__('labels.property_published')}}</p>
-                <div class="d-flex align-items-center mb-4_5">
+                <div class="d-flex align-items-center mb-4_5 advertise-document">
                     <img src="{{asset('assets/images/tick-verified.png')}}" alt="">
-                    <span class="font-16 font-medium theme-text-sky mb-0 ms-2">{{__('labels.advertisement_documents')}}</span>
+                    <span class="font-16 font-medium theme-text-sky mb-0 ms-2">{{__('labels.advertisement_document')}}</span>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="request text-center b-r-8">

@@ -211,21 +211,25 @@
                 <div class="col-12 d-flex flex-column-reverse flex-lg-row flex-md-row justify-content-end mt-5">
                     <div class="col-lg-6 col-md-8 col-sm-12 regional-street-1 d-flex align-items-end">
                         <div class="dropdown regional-drop d-flex">
-                            <button class="btn dropdown-toggle regional-drop-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{__('labels.property_role_no')}}
-                            </button>
-                            <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
-                            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
-                                <li><a class="dropdown-item inter_val3" href="#">1</a></li>
-                                <li><a class="dropdown-item inter_val3" href="#">2</a></li>
-                                <li><a class="dropdown-item inter_val3" href="#">3</a></li>
-                                <li><a class="dropdown-item inter_val3" href="#">4</a></li>
-                                <li><a class="dropdown-item inter_val3" href="#">5</a></li>
-                            </ul>
-                            <p class="ps-3">{{__('labels.role')}}</p>
+                            <div class="interface-div">
+                                <button class="btn dropdown-toggle regional-drop-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{__('labels.property_role_no')}}
+                                </button>
+                                <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
+                                <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
+                                    <li><a class="dropdown-item inter_val3" href="#">1</a></li>
+                                    <li><a class="dropdown-item inter_val3" href="#">2</a></li>
+                                    <li><a class="dropdown-item inter_val3" href="#">3</a></li>
+                                    <li><a class="dropdown-item inter_val3" href="#">4</a></li>
+                                    <li><a class="dropdown-item inter_val3" href="#">5</a></li>
+                                </ul>
+                            </div>
+                            <div class="meter-div">
+                                <p class="meter mb-0">{{__('labels.role')}}</p>
+                            </div>
                         </div>
                         <div class="position-relative d-flex flex-column align-items-end w-100">
-                            <label for="" class="font-14 theme-text-seondary-black">{{__('labels.real_estate_roles')}}</label>
+                            <label for="" class="font-18 theme-text-seondary-black">{{__('labels.real_estate_roles')}}</label>
                             <input type="text" name="role" value="{{ !empty( $post_data->role) ? $post_data->role->content  : old("role") }}" placeholder="{{__('labels.total_innings')}}" id="interface_val3" class="form-control street_view theme-border">
                         </div>
                     </div>

@@ -51,6 +51,10 @@
     margin-right: -6px;
 }
 
+.rtl .complete-rent-drop img {
+    right: -4px !important;
+}
+
 .rtl .verified h3
 {
     text-align: left !important;
@@ -133,3 +137,336 @@
 {
     direction: ltr;
 }
+
+.rtl .search-bar input[type='search'] {
+    text-align: left;
+}
+
+.rtl .auction-status-dropdown .dropdown .rent-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 124px;
+    padding: 0px 20px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
+.rtl .complete-rent-drop img {
+    right: 10px;
+}
+
+.rtl .type-dropdown .type-dropdown-content
+{
+    justify-content: start;
+}
+
+.rtl .ps-2 {
+    padding-right: 10px;
+}
+
+.rtl .contact-property-list .all-results
+{
+    padding-left: 10px;
+}
+
+.rtl .all-property-list .sort-text {
+    padding-right: 8px;
+}
+
+.rtl .offer-section .add-offer-btn
+{
+    margin-right: 0 !important;
+}
+
+.rtl .amenities .area p
+{
+    padding-left: 6px;
+}
+
+.rtl .ss_ulsearch
+{
+    margin-right: 22px;
+    direction: ltr;
+    padding: 1px 0px 10px 0px;
+}
+
+.rtl .resident-pan
+{
+    text-align: left !important;
+}
+
+.rtl .resident-pan i
+{
+    padding-right: 5px;
+}
+
+.rtl .rent-buy-txt
+{
+    text-align: left;
+    margin-left: 10px;
+}
+
+.rtl .ss_ul li .ssli_text
+{
+    text-align: left;
+}
+
+.rtl .ss_ulsearch .search input
+{
+    margin-left: 15px;
+}
+
+.rtl .ss_ulsearch
+{
+    margin-right: -70px !important;
+}
+
+.rtl .type-dropdown h3
+{
+    text-align: left;
+}
+
+.rtl .no-rooms-drop-btn .dropdown .room-btn
+{
+    padding: 0 20px 0px 10px;
+}
+
+.rtl .dropdown .type-btn
+{
+    text-align: left;
+}
+
+.rtl .room-type-drop img
+{
+    right: 12px;
+}
+
+.rtl .budget-drop-btn
+{
+    margin-left: 18px;
+}
+
+.rtl .type-drop img
+{
+    right: 14px;
+}
+
+.rtl .dropdown .type-btn
+{
+    width: 80px;
+}
+
+.rtl .dropdown .list-rent-btn
+{
+    text-align: left;
+}
+
+.rtl .list-complete-rent-drop img
+{
+    right: 11px;
+}
+
+.rtl .dropdown .list-rent-btn
+{
+    width: 70px;
+}
+
+.rtl .dropdown .room-btn
+{
+    width: 110px;
+}
+
+.rtl .dropdown .room-btn
+{
+    text-align: left;
+}
+
+.rtl .dropdown .budget-btn
+{
+    text-align: left;
+}
+
+.rtl .budget-drop img
+{
+    right: 8px;
+}
+
+.rtl .room-dropdown::before
+{
+    right: auto;
+}
+
+.rtl .budget-dropdown::before
+{
+    right: auto;
+}
+
+.rtl .range-input
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rtl .budget-dropdown
+{
+    width: 420px;
+}
+
+.rtl .budget-dropdown h3
+{
+    text-align: left;
+}
+
+.rtl .field input
+{
+    text-align: left;
+    direction: ltr;
+    padding-left: 10px;
+}
+
+.rtl .room-dropdown h3 {
+    text-align: left;
+}
+
+.rtl .all-listing #item_list
+{
+    display: flex;
+    justify-content: end;
+}
+
+.rtl .property-lists p {
+    padding-left: 7px;
+}
+
+.rtl .social-btn .call
+{
+    margin-right: 0 !important;
+}
+
+.rtl .price-section .whatsapp
+{
+    margin-right: 10px;
+}
+
+/*.rtl .rent-toggle-icon img {*/
+/*    right: 11px !important;*/
+/*}*/
+
+.rtl .property_address .input-icon {
+    right: 12px;
+}
+
+.rtl .property_address .input-drop-icon {
+    right: 12px;
+    top: 32px;
+}
+
+.rtl .description-card .form-control {
+    direction: ltr;
+    text-align: start;
+}
+
+.rtl .input-icon, .price-unit {
+    right: 12px;
+}
+
+.rtl .property-value .meter_txt
+{
+    direction: ltr;
+}
+
+.rtl .water-meter {
+    width: 168px;
+    max-width: 100%;
+}
+
+.rtl .regional-street-1
+{
+    margin-left: 0;
+}
+
+.rtl .sec-street
+{
+    margin-left: 20px;
+}
+
+.rtl .regional-drop-btn
+{
+    padding: 2px 80px 2px 16px;
+    border-left: 1px solid black;
+}
+
+.rtl .region-drop-icon {
+    right: 16px;
+}
+
+.rtl .description-card .dropdown-menu li
+{
+    text-align: left;
+}
+
+.rtl .meter-div
+{
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.rtl .interface-div button
+{
+    direction: ltr;
+}
+
+.rtl .img-ul
+{
+    direction: ltr;
+}
+
+.rtl .description-card p
+{
+    direction: ltr;
+}
+
+.rtl .mobile-icon-dash img
+{
+    margin-left: 8px;
+}
+
+.rtl .advertise-document img
+{
+    margin-left: 8px;
+}
+
+.rtl .sideBar-links li a span
+{
+    padding-left: 10px;
+}
+
+.rtl .profile .favorite-container
+{
+    padding: 0px 85px 0px 20px;
+}
+
+.rtl .profile .favorite-container
+{
+    padding: 0px 85px 0px 20px;
+}
+
+.rtl .profile-phone-nu img
+{
+    margin-left: 10px;
+}
+
+.rtl .profile .form-control
+{
+    direction: ltr;
+    text-align: left;
+}
+
+/*.rtl .rental-toggle-icon*/
+/*{*/
+/*    right: -5px !important;*/
+
+/*}*/
