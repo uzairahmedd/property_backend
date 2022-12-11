@@ -115,6 +115,48 @@
 })(jQuery);
 
 
+// Range Dropdown Js
+const rangeInput = document.querySelectorAll(".range-input input"),
+    priceInput = document.querySelectorAll(".price-input input"),
+    range = document.querySelector(".slider .progress");
+let priceGap = 1000;
+
+priceInput.forEach((input) => {
+    input.addEventListener("input", (e) => {
+        let minPrice = parseInt(priceInput[0].value),
+            maxPrice = parseInt(priceInput[1].value);
+
+        if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
+            if (e.target.className === "input-min") {
+                rangeInput[0].value = minPrice;
+                range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
+            } else {
+                rangeInput[1].value = maxPrice;
+                range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+            }
+        }
+    });
+});
+
+rangeInput.forEach((input) => {
+    input.addEventListener("input", (e) => {
+        let minVal = parseInt(rangeInput[0].value),
+            maxVal = parseInt(rangeInput[1].value);
+
+        if (maxVal - minVal < priceGap) {
+            if (e.target.className === "range-min") {
+                rangeInput[0].value = maxVal - priceGap;
+            } else {
+                rangeInput[1].value = minVal + priceGap;
+            }
+        } else {
+            priceInput[0].value = minVal;
+            priceInput[1].value = maxVal;
+            range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+            range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+        }
+    });
+});
 
 
 
@@ -138,7 +180,7 @@ $(document).ready(function (event) {
         $(".list-rent-dropdown").removeClass("show");
     });
 
-    $('.rent-link').click(function () {
+    $('.rent-link').click(function (event) {
         if ($(this).hasClass('active')) {
             let radio_text = $(this).text();
             $('#dropdownMenuLink-buy').text(radio_text);
@@ -146,6 +188,7 @@ $(document).ready(function (event) {
             $('#status_list').val(radio_val);
             $('#fade').removeClass('add_overlay');
         }
+        event.stopPropagation();
     });
 
 
@@ -158,11 +201,23 @@ $(document).ready(function (event) {
     $('.nature-reset-btn').click(function (e) {
         $('#fade').removeClass('add_overlay');
         $('#category').val('');
-        $(".prop-checkbox input[type='checkbox']:checked").map(function () {
-            return $(this).removeAttr('checked');
-        }).get();
         $(".prop-checkbox input[type='checkbox']:checked").removeAttr('checked');
         $('#dropdownMenuLink-property-type').text('النوع');
+        var base_url = $('#base_url').val();
+        var url = base_url + 'get_properties_data';
+        get_properties(url)
+        e.preventDefault();
+    });
+
+    //for nature reset btn
+    $('.room-reset-btn').click(function (e) {
+        $('#fade').removeClass('add_overlay');
+        $('#room').val('');
+        $(".property_radio input[type='checkbox']:checked").map(function () {
+            return $(this).removeAttr('checked');
+        }).get();
+        $(".property_radio input[type='checkbox']:checked").removeAttr('checked');
+        $('#dropdownMenuLink-room').text('عدد الغرف');
         var base_url = $('#base_url').val();
         var url = base_url + 'get_properties_data';
         get_properties(url)
@@ -267,7 +322,7 @@ $(document).ready(function (event) {
     });
 
 
-    //forpropery type dropdown
+    //for propery type dropdown
     $("#nature_btn").click(function (e) {
         $("#dropdownMenuLink-property-type").css('width', '100px');
         var shortname = $(".prop-checkbox input[type='checkbox']:checked").map(function () {
@@ -300,6 +355,37 @@ $(document).ready(function (event) {
     });
 
 
+    //for propery room dropdown
+    $("#room_btn").click(function (e) {
+        var shortname = $(".property_radio input[type='checkbox']:checked").map(function () {
+            return $(this).val();
+        }).get().join(',');
+
+        $('#dropdownMenuLink-room').text('');
+        $('#dropdownMenuLink-room').text(shortname);
+        $('#fade').removeClass('add_overlay');
+        $("ul.room-dropdown").removeClass('show');
+
+        //for setting value
+        $('#room').val(shortname);
+        var base_url = $('#base_url').val();
+        var url = base_url + 'get_properties_data';
+        get_properties(url)
+        e.preventDefault();
+        return false;
+    });
+
+
+    $("#price_btn").click(function (e) {
+
+        $('#fade').removeClass('add_overlay');
+        $("ul.budget-dropdown").removeClass('show');
+        var base_url = $('#base_url').val();
+        var url = base_url + 'get_properties_data';
+        get_properties(url)
+        e.preventDefault();
+        return false;
+    });
 
 });
 

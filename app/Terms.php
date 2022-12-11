@@ -40,6 +40,11 @@ class Terms extends Model
 		return $this->hasOne('App\PostCategory', 'term_id')->where('type', 'category');
 	}
 
+	public function parentcategory()
+	{
+		return $this->hasOne('App\PostCategory', 'term_id')->where('type', 'parent_category');
+	}
+
 	public function property_type()
 	{
 		return $this->hasOne('App\PostCategory', 'term_id')->where('type', 'category')->with('category');

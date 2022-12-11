@@ -21,6 +21,7 @@
             <input type="hidden" id="status_list" name="status" value="{{$status}}">
             <input type="hidden" id="parent_category" name="parent_category" value="{{$parent_category}}">
             <input type="hidden" id="category" name="category" value="{{$category}}">
+            <input type="hidden" id="room" name="room" value="">
             <div class="row">
                 <div class="filter-drop location-icon col-lg-1 col-md-2 col-sm-2 col-xs-2 order-lg-1" id="filter-map">
                     <div class="map-icon align-items-center d-flex justify-content-center">
@@ -50,18 +51,18 @@
                                     <div class="progress"></div>
                                 </div>
                                 <div class="range-input">
-                                    <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
-                                    <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
+                                    <input type="range" name="min_price" class="range-min" min="0" max="10000000" value="0" step="100">
+                                    <input type="range" name="max_price" class="range-max" min="0" max="10000000" value="10000000" step="100">
                                 </div>
 
 
 
                                 <div class="d-flex justify-content-between mt-4">
                                     <li class="room-no-drop">
-                                        <button class="btn type-box show-results-bttn">{{__('labels.apply')}}</button>
+                                        <button id="price_btn" class="btn type-box show-results-bttn">{{__('labels.apply')}}</button>
                                     </li>
                                     <li class="room-no-drop">
-                                        <button class="btn type-box">{{__('labels.reset')}}</button>
+                                        <button class="reset-btn btn type-box">{{__('labels.reset')}}</button>
                                     </li>
                                 </div>
                             </ul>
@@ -70,58 +71,46 @@
                     <div class="no-rooms-drop-btn">
                         <div class="dropdown room-type-drop">
                             <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                            <button class="btn dropdown-toggle room-dropdown-toggle room-btn" role="button" id="dropdownMenuLink-roomss" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.bedroom')}}
+                            <button class="btn dropdown-toggle room-dropdown-toggle room-btn" role="button" id="dropdownMenuLink-room" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.bedroom')}}
                             </button>
-                            <ul class="dropdown-menu room-dropdown" aria-labelledby="dropdownMenuLink-roomss">
+                            <ul class="dropdown-menu room-dropdown" aria-labelledby="dropdownMenuLink-room">
                                 <h3>{{__('labels.bedroom')}}</h3>
                                 <div class="room-dropdown-content d-flex justify-content-right align-items-center">
                                     <div class="room-container property_radio">
-                                        <input type="radio" id="room_studio">
-                                        <span class="roommark room_studio font-16 font-medium" for="room_studio">Studio</span>
+                                        <input type="checkbox" value="0">
+                                        <span class="checmark step font-14 font-medium">0</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" id="room_1">
-                                        <span class="roommark room1 font-16 font-medium" for="room_1">1</span>
+                                        <input type="checkbox" value="1">
+                                        <span class="checmark step font-14 font-medium">1</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" id="room_2">
-                                        <span class="roommark room2 font-16 font-medium" for="room_2">2</span>
+                                        <input type="checkbox" value="2">
+                                        <span class="checmark step font-14 font-medium">2</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" id="room_3">
-                                        <span class="roommark room3 font-16 font-medium" for="room_3">3</span>
+                                        <input type="checkbox" value="3">
+                                        <span class="checmark step font-14 font-medium">3</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" id="room_4">
-                                        <span class="roommark room4 font-16 font-medium" for="room_4">4</span>
+                                        <input type="checkbox" value="4">
+                                        <span class="checmark step font-14 font-medium">4</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" id="room_5">
-                                        <span class="roommark room5 font-16 font-medium" for="room_5">5</span>
+                                        <input type="checkbox" value="5">
+                                        <span class="checmark step font-14 font-medium">5</span>
                                     </div>
                                     <div class="room-container property_radio">
-                                        <input type="radio" id="room_6">
-                                        <span class="roommark room6 font-16 font-medium" for="room_6">6</span>
-                                    </div>
-                                    <div class="room-container property_radio">
-                                        <input type="radio" id="room_7">
-                                        <span class="roommark room7 font-16 font-medium" for="room_7">7</span>
-                                    </div>
-                                    <div class="room-container property_radio">
-                                        <input type="radio" id="room_8">
-                                        <span class="roommark room8 font-16 font-medium" for="room_8">8</span>
-                                    </div>
-                                    <div class="room-container property_radio">
-                                        <input type="radio" id="room_9">
-                                        <span class="roommark room9 font-16 font-medium" for="room_9">9+</span>
+                                        <input type="checkbox" value="6">
+                                        <span class="checmark step font-14 font-medium">6</span>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
                                     <li class="room-no-drop">
-                                        <button class="btn type-box show-results-bttn">{{__('labels.apply')}}</button>
+                                        <button id="room_btn" class="btn type-box show-results-bttn">{{__('labels.apply')}}</button>
                                     </li>
                                     <li class="room-no-drop">
-                                        <button class="btn type-box">{{__('labels.reset')}}</button>
+                                        <button class="room-reset-btn btn type-box">{{__('labels.reset')}}</button>
                                     </li>
                                 </div>
                             </ul>

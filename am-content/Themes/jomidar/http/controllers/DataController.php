@@ -268,7 +268,10 @@ class DataController extends controller
         $this->category = $request->category;
         $this->parent_category = $request->parent_category;
         $this->price = $request->price;
-        $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('price')->whereHas('post_city')->with('postcategory', 'area', 'post_preview', 'price', 'post_city', 'user', 'featured_option', 'property_status_type')->whereHas('post_city', function ($q) {
+        $this->room = $request->room;
+        $this->min_price = $request->min_price ?? 0;
+        $this->max_price = $request->max_price ?? 0;
+        $posts = Terms::where('type', 'property')->where('status', 1)->with('parentcategory', 'category', 'area', 'post_preview', 'price', 'post_city', 'user', 'featured_option', 'property_status_type', 'options')->whereHas('post_city', function ($q) {
             if (!empty($this->state)) {
                 return $q->where('category_id', $this->state);
             }
@@ -278,22 +281,30 @@ class DataController extends controller
                 return $q->where('category_id', $this->status);
             }
             return $q;
-        })->whereHas('postcategory', function ($q) {
-            if (!empty($this->parent_category)) {
+        })
+            ->whereHas('options', function ($q) {
+                if (!empty($this->room)) {
+                    $my_options = explode(',', $this->room);
+                    return $q->whereIn('value', $my_options);
+                }
+                return $q;
+            });
+        if (!empty($this->parent_category)) {
+            $posts = $posts->whereHas('parentcategory', function ($q) {
                 return $q->where('category_id', $this->parent_category);
-            }
-            return $q;
-        })->whereHas('postcategory', function ($q) {
-            if (!empty($this->category)) {
+            });
+        }
+        if (!empty($this->category)) {
+            $posts = $posts->whereHas('category', function ($q) {
                 $my_categories = explode(',', $this->category);
-                return $q->whereIn('category_id', $my_categories);
-            }
-            return $q;
-        });
+                return $q->where('category_id', $my_categories);
+            });
+        }
 
-        if (!empty($request->price)) {
+        if (!empty($this->min_price) || !empty($this->max_price)) {
             $posts = $posts->whereHas('price', function ($q) {
-                return $q->where('price', '=', $this->price);
+
+                return $q->whereBetween('price', [$this->min_price, $this->max_price]);
             });
         }
 

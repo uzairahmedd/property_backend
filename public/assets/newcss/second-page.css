@@ -453,7 +453,7 @@ element.style {
     background: #FFFFFF;
     box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
     border-radius: 8px;
-    padding: 30px 25px 10px 25px;
+    padding: 30px 10px 10px;
     margin-top: 35px !important;
 }
 
@@ -1575,8 +1575,8 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 .slider .progress {
     height: 100%;
-    left: 25%;
-    right: 25%;
+    left: 5%;
+    right: 5%;
     position: absolute;
     border-radius: 5px;
     background: var(--theme-blue);
