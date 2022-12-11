@@ -75,6 +75,16 @@ $('.home-complete-btn').click(function (e) {
 
     e.preventDefault();
 });
+$('.reset-btn').click(function (e) {
+    $('.home_fade').removeClass('add_overlay');
+
+    e.preventDefault();
+});
+
+$('#nav-tab-main a').click(function (e) {
+  var val=$(this).attr('data-id');
+  $('#parent_category').val(val);
+});
 
 
 
@@ -135,6 +145,8 @@ $(document).ready(function () {
         $(".resident-pan").removeClass('selected');
         $(this).addClass('selected');
         var drop_text = $(".resident-pan.selected").text();
+        var val=$(this).val();
+        $('#category').val(val);
         $("#dropdownMenuLink1").html(drop_text);
         $('.resident-pan.selected').css({ "margin-bottom": "0px", "margin-top": "10px", "border": "none", "padding": "0px 20px 0 35px;" });
         $('.overlay').css('opacity', 0);
@@ -333,35 +345,6 @@ function home_favourite_property_check(id) {
     });
 }
 
-
-function property_type_filter(elem){
-    // $('#property_type_radio').html('');
-    var id = $(elem).attr('data-id');
-    console.log(id);
-    return false;
-    // var term_id = $(elem).attr('term-id');
-    var baseurl = $('#base_url').val();
-    var url = baseurl + 'agent/get_property_type';
-    $.ajax({
-        url: url,
-        type: 'get',
-        data: {'id':id,'term_id':term_id},
-        success: function (response) {
-            $('#property_type_radio').html('');
-            $.each(response.category_data, function (index, value) {
-                $.each(value.parent, function (index, value_data) {
-                    var checked='';
-                    if(response.post_category != null){
-                    if(value_data.id == response.post_category.category_id && value.id == response.post_category.term_id){
-                      checked='checked';
-                    }}
-                    $('#property_type_radio').append('<div class="radio-container property_radio"><input type="radio" name="category" '+checked+' value="'+value_data.id+'"><span class="checmark font-16 font-medium">'+value_data.name+'</span> </div>');
-                });
-            });
-
-        }
-    });
-}
 
 
 

@@ -186,7 +186,7 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::post('mailchamp', 'MailchampController@store')->name('mailchamp.store');
 	Route::get('property/{slug}', 'PropertyController@show')->name('property.show');
 	Route::get('project/{slug}', 'PropertyController@project_view');
-	Route::get('list', 'PropertyController@list')->name('list');
+	Route::get('list', 'PropertyController@list_page')->name('list');
 	Route::get('project', 'PropertyController@project');
 	Route::get('map', 'PropertyController@map')->name('map');
 	Route::get('state/{slug}', 'PropertyController@city');

@@ -3,6 +3,8 @@
 <script>
     var state_id = '<?php echo $state; ?>';
     var status_id = '<?php echo $status; ?>';
+    var $parent_category = '<?php echo $parent_category; ?>';
+    var $category = '<?php echo $category; ?>';
 </script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/second-page.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/propertylist-search.css')}}">
@@ -17,6 +19,8 @@
         <form class="search_form">
             <input type="hidden" id="state" name="state" value="{{$state}}">
             <input type="hidden" id="status_list" name="status" value="{{$status}}">
+            <input type="hidden" id="parent_category" name="parent_category" value="{{$parent_category}}">
+            <input type="hidden" id="category" name="category" value="{{$category}}">
             <div class="row">
                 <div class="filter-drop location-icon col-lg-1 col-md-2 col-sm-2 col-xs-2 order-lg-1" id="filter-map">
                     <div class="map-icon align-items-center d-flex justify-content-center">
@@ -187,7 +191,7 @@
                             <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.for_sale')}}
                             </button>
                             @elseif($status_data->id == $status && $status_data->name =='Rent')
-                            <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">للايجار
+                            <button class="btn dropdown-toggle list-rent-dropdown-toggle list-rent-btn" role="button" id="dropdownMenuLink-buy" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">ايجار
                             </button>
                              @endif
                             @endforeach
@@ -203,7 +207,7 @@
                                                     @if( $status_data->name =='Sale')
                                                     <a class="nav-item nav-link rent-link nav-sale active" id="nav-rent-tab" data-bs-toggle="tab" data-value="{{$status_data->id}}" href="#nav-rent" role="tab" aria-controls="nav-rent" aria-selected="true">للبيع</a>
                                                     @elseif( $status_data->name =='Rent')
-                                                    <a class="nav-item nav-link rent-link nav-sale" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" data-value="{{$status_data->id}}" role="tab" aria-controls="nav-buy" aria-selected="false">للايجار</a>
+                                                    <a class="nav-item nav-link rent-link nav-sale" id="nav-buy-tab" data-bs-toggle="tab" href="#nav-buy" data-value="{{$status_data->id}}" role="tab" aria-controls="nav-buy" aria-selected="false">ايجار</a>
                                                     @endif
                                                     @endforeach
                                                 </div>
@@ -267,7 +271,8 @@
                     <div class="search-bar d-flex p-2 mt-1">
                         <img src="assets/images/search.svg" alt="">
                         <select class="theme-text-secondary-black border-0" theme="google" width="400" style="appearance: none;" placeholder="{{__('labels.looking_property')}}" data-search="true" id="property_states_dropdown">
-                            @foreach ($states as $row)
+                        <option value="" disabled selected>{{__('labels.looking_property')}}</option>   
+                        @foreach ($states as $row)
                             <option value="{{ $row->id }}" @if($state==$row->id) selected="selected" @endif>{{ $row->name }}</option>
                             @endforeach
                             <!-- <option value="AX">الرياض<span class="property_num">(1)</span></option> -->

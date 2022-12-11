@@ -327,8 +327,48 @@ class PropertyController extends controller
 
 
         $category = $request->category;
-        return view('theme::newlayouts.pages.property_lists', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
-//         return view('view::property.list', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
+        return view('view::property.list', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
+    }
+
+    public function list_page(Request $request)
+    {
+
+        $seo = Options::where('key', 'seo')->first();
+        $seo = json_decode($seo->value);
+
+        SEOMeta::setTitle('Property list');
+        SEOMeta::setDescription($seo->description);
+
+
+        OpenGraph::setDescription($seo->description);
+        OpenGraph::setTitle('Property list');
+        OpenGraph::addProperty('keywords', $seo->tags);
+
+        TwitterCard::setTitle('Property list');
+        TwitterCard::setSite($seo->twitterTitle);
+
+        JsonLd::setTitle('Property list');
+        JsonLd::setDescription($seo->description);
+        JsonLd::addImage(asset(content('header', 'logo')));
+
+
+
+        SEOTools::setTitle('Property list');
+        SEOTools::setDescription($seo->description);
+        SEOTools::setCanonical($seo->canonical);
+        SEOTools::opengraph()->addProperty('keywords', $seo->tags);
+        SEOTools::twitter()->setSite($seo->twitterTitle);
+        SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
+
+        $status = $request->status ?? null;
+        $state = $request->state ?? null;
+        $parent_category= $request->parent_category ?? null;
+        $category = $request->category ?? null;
+         
+        $statuses = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
+        $states = Category::where('type', 'states')->latest()->get();
+        $categories = Category::where('type', 'category')->get();
+        return view('theme::newlayouts.pages.property_lists', compact('category', 'state','status', 'statuses', 'categories', 'states','parent_category'));
     }
 
 

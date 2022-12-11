@@ -122,7 +122,7 @@ return [
     'list_your_property' => 'أدرج عقارك معنا',
     'easily_market_property' => 'يمكنك بسهولة تسويق عقارك على موقعنا',
     'rent' => 'ايجار',
-    'sale' => 'بيع',
+    'sale' => 'للبيع',
     'property_address' => 'عنوان الملكية',
     'property_descr' => 'وصف العقار',
     'enter_here' => 'ادخل هنا..',

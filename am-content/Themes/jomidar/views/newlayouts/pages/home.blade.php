@@ -16,7 +16,18 @@
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                 <div class="dropdown complete-rent-drop">
                     <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
-                    <input type="hidden" value="27" name="status" id=status>
+                    @foreach($status as $status_data)
+                    @if( $status_data->name =='Rent')
+                    <input type="hidden" value="{{ $status_data->id}}" name="status" id=status>
+                    @endif
+                    @endforeach
+                    @foreach($property_nature as $nature)
+                    @if($nature->name == 'Residential')
+                    <input type="hidden" name="parent_category" value="{{ $nature->id}}" id="parent_category">
+                    @endif
+                    @endforeach
+
+                    <input type="hidden" name="category" value="" id="category">
                     <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button" id="dropdownMenuLink-home" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown">{{__('labels.rent')}}
                     </button>
                     <ul class="dropdown-menu new-rent-dropdown" aria-labelledby="dropdownMenuLink-list">
@@ -45,7 +56,7 @@
                                             {{-- <li class="buy-rent-pan" name="category" value="3">الجميع</li>--}}
                                             {{-- </div>--}}
                                             <div class="d-flex justify-content-between mt-2">
-                                                <button class="complete-btn home-complete-btn"><a href="">تم</a></button>
+                                                <button class="complete-btn"><a href="">تم</a></button>
                                                 <button class="reset-btn"><a href="">إعادة ضبط</a></button>
                                             </div>
                                         </div>
@@ -78,7 +89,7 @@
                                                 </li>
                                             </div>
                                             <div class="d-flex justify-content-between mt-2">
-                                                <button class="complete-btn home-complete-btn"><a href="">تم</a></button>
+                                                <button class="complete-btn"><a href="">تم</a></button>
                                                 <button class="reset-btn"><a href="">إعادة ضبط</a></button>
                                             </div>
                                         </div>
@@ -101,26 +112,40 @@
                                 <div class="col-12 p-0">
                                     <!-- Tab -->
                                     <nav>
-                                        <div class="nav nav-tabs mb-4 resident-tabs" id="nav-tab" role="tablist">
-                                            <a class="nav-item nav-link resident-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">{{__('labels.commercial')}}</a>
-                                            <a class="nav-item nav-link resident-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">{{__('labels.residential')}}</a>
+                                        <div class="nav nav-tabs mb-4 resident-tabs" id="nav-tab-main" role="tablist">
+                                            @foreach($property_nature as $nature)
+                                            @if($nature->name == 'Commercial')
+                                            <a class="nav-item nav-link resident-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-commercial" role="tab" aria-controls="nav-profile" data-id="{{$nature->id}}" aria-selected="false">{{$nature->name}}</a>
+                                            @else
+                                            <a class="nav-item nav-link resident-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-residential" role="tab" aria-controls="nav-home" data-id="{{$nature->id}}" aria-selected="true">{{$nature->name}}</a>
+                                            @endif
+                                            @endforeach
+
                                         </div>
                                     </nav>
                                     <div class="tab-content" id="nav-tabContent">
-                                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                        <div class="tab-pane fade show active" id="nav-residential" role="tabpanel" aria-labelledby="nav-home-tab">
                                             <div class="d-flex justify-content-between resident-centent">
                                                 <div class="resident-pans">
-                                                    <li class="resident-pan" name="category" value="1">فیلا<i class="fa-solid fa-house-circle-check"></i></li>
-                                                    <li class="resident-pan" name="category" value="2">بنتهاوس<i class="fa-solid fa-house-flag"></i></li>
-                                                    <li class="resident-pan" name="category" value="3">شقة فندقية<i class="fa-solid fa-bed"></i></li>
-                                                    <li class="resident-pan" name="category" value="4">طابق سكني<i class="fa-solid fa-lines-leaning"></i></li>
+                                                    @foreach($property_type as $key=>$value)
+                                                    @if($key < 3) @foreach($value->child as $child)
+                                                        @if($child->name == 'Residential')
+                                                        <li class="resident-pan" name="category" value="{{$value->id}}">{{$value->name}}<i class="fa-solid {{$value->icon->content}}"></i></li>
+                                                        @endif
+                                                        @endforeach
+                                                        @endif
+                                                        @endforeach
                                                 </div>
                                                 <div class="resident-pans">
-                                                    <li class="resident-pan" name="category" value="5">شقة<i class="fa-solid fa-building-user"></i></li>
-                                                    <li class="resident-pan" name="category" value="6">تاون هاوس<i class="fa-solid fa-house-user"></i></li>
-                                                    <li class="resident-pan" name="category" value="7">فيلا مجمع سكني<i class="fa-solid fa-house-chimney-window"></i></li>
-                                                    <li class="resident-pan" name="category" value="8">ارض سكنية<i class="fa-solid fa-house-signal"></i></li>
-                                                    <li class="resident-pan" name="category" value="9">مبنى سكني<i class="fa-solid fa-building-flag"></i></li>
+                                                    @foreach($property_type as $key=>$value)
+                                                    @if($key >= 3)
+                                                    @foreach($value->child as $child)
+                                                    @if($child->name == 'Residential')
+                                                    <li class="resident-pan" name="category" value="{{$value->id}}">{{$value->name}}<i class="fa-solid {{$value->icon->content}}"></i></li>
+                                                    @endif
+                                                    @endforeach
+                                                    @endif
+                                                    @endforeach
                                                 </div>
                                             </div>
                                             <div class="d-flex justify-content-between mt-2">
@@ -128,26 +153,28 @@
                                                 <button class="reset-btn"><a href="">إعادة ضبط</a></button>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                        <div class="tab-pane fade" id="nav-commercial" role="tabpanel" aria-labelledby="nav-profile-tab">
                                             <div class="d-flex justify-content-between resident-centent">
                                                 <div class="resident-pans">
-                                                    <li class="resident-pan" name="category" value="10" data-val="1">محل تجاري<i class="fa-solid fa-store"></i></li>
-                                                    <li class="resident-pan" name="category" value="11" data-val="2">سكن عمال <i class="fa-solid fa-house-user"></i></li>
-                                                    <li class="resident-pan" name="category" value="12" data-val="3">مجمع سكني<i class="fa-solid fa-building-user"></i></li>
-                                                    <li class="resident-pan" name="category" value="13" data-val="4">طابق تجاري<i class="fa-solid fa-house-flood-water"></i></li>
-                                                    <li class="resident-pan" name="category" value="14" data-val="5">مصنع<i class="fa-solid fa-industry"></i></li>
-                                                    {{-- <li class="resident-pan" name="category" value="15" data-val="6">ارض استخدام متعدد<i class="fa fa-globe drop-icons" aria-hidden="true"></i></li>--}}
-                                                    <li class="resident-pan" name="category" value="16" data-val="7">عقارات تجارية اخرى<i class="fa-solid fa-sign-hanging"></i></li>
-                                                    <li class="resident-pan" name="category" value="17" data-val="7">ارض استخدام متعدد<i class="fa-solid fa-globe"></i></li>
+                                                    @foreach($property_type as $key=>$value)
+                                                    @if($key < 3) @foreach($value->child as $child)
+                                                        @if($child->name == 'Commercial')
+                                                        <li class="resident-pan" name="category" value="{{$value->id}}">{{$value->name}}<i class="fa-solid {{$value->icon->content}}"></i></li>
+                                                        @endif
+                                                        @endforeach
+                                                        @endif
+                                                        @endforeach
                                                 </div>
                                                 <div class="resident-pans">
-                                                    <li class="resident-pan" name="category" value="18" data-val="9">مکتب<i class="fa-solid fa-briefcase drop-icons"></i></li>
-                                                    <li class="resident-pan" name="category" value="19" data-val="9">مستودع<i class="fa-solid fa-dumpster drop-icons"></i></li>
-                                                    <li class="resident-pan" name="category" value="20" data-val="10">فيلا تجارية<i class="fa-solid fa-building-user drop-icons"></i></li>
-                                                    <li class="resident-pan" name="category" value="21" data-val="11">ارض تجارية<i class="fa-solid fa-industry drop-icons"></i></li>
-                                                    <li class="resident-pan" name="category" value="22" data-val="12">مبنی تجاري<i class="fa-solid fa-dumpster-fire drop-icons"></i></li>
-                                                    <li class="resident-pan" name="category" value="23" data-val="13">ارض صناعية<i class="fa-solid fa-land-mine-on drop-icons"></i></li>
-                                                    <li class="resident-pan" name="category" value="24" data-val="14">معرض تجاري<i class="fa-solid fa-plane drop-icons"></i></li>
+                                                    @foreach($property_type as $key=>$value)
+                                                    @if($key >= 3)
+                                                    @foreach($value->child as $child)
+                                                    @if($child->name == 'Commercial')
+                                                    <li class="resident-pan" name="category" value="{{$value->id}}">{{$value->name}}<i class="fa-solid {{$value->icon->content}}"></i></li>
+                                                    @endif
+                                                    @endforeach
+                                                    @endif
+                                                    @endforeach
                                                 </div>
                                             </div>
                                             <div class="d-flex justify-content-between mt-2">
@@ -165,6 +192,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 search-input-bar">
                 <select class="theme-text-secondary-black border-0" theme="google" width="400" id="state_dropdown" style="appearance: none;" placeholder="{{__('labels.looking_property')}}" data-search="true" name="state">
+                    <option value="" disabled selected>{{__('labels.looking_property')}}</option>
                     @foreach($states as $row)
                     <option value="{{ $row->id }}">{{ $row->name }}</option>
                     @endforeach
@@ -452,8 +480,9 @@
 <!-- Apps Section Ends Here -->
 @endsection
 
-@section('dropdown-select')
+@section('home.js')
 <script src="{{theme_asset('assets/newjs/select-style.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/home.js')}}"></script>
 <script>
     jQuery(document).ready(function($) {
         $('select').selectstyle({

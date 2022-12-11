@@ -1736,14 +1736,14 @@ span.directorist-select__selected-list--item:first-letter {
         width: 240px;
     }
 
-    ..list-rent-dropdown
+    .list-rent-dropdown
     {
         width: 270px;
     }
 }
 
 @media screen and (max-width: 280px) {
-    ..list-rent-dropdown
+    .list-rent-dropdown
     {
         width: 240px;
     }

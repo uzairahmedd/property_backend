@@ -24,12 +24,11 @@
         @include('theme::newlayouts.partials.modals')
         @include ('theme::newlayouts.partials.footer')
         @include ('theme::newlayouts.partials.bottom')
-        @yield('dropdown-select')
+        @yield('home.js')
         @yield('property_list_select')
         @yield('favorite_properties')
         @yield('property_create')
         @yield('OTPScript')
-        @yield('home_properties')
     </div>
     {{ google_analytics() }}
     </div>

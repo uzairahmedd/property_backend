@@ -105,12 +105,12 @@ class WelcomeController extends controller
             // $data = get_currency_info();
             $status = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
             $categories = Category::where('type', 'category')->inRandomOrder()->get();
-            $states = Category::where('type', 'states')->with('childrenCategories')->get();
+            $states = Category::where('type', 'states')->with('childrenCategories')->latest()->get();
             //for home rent and sell properties
             $status_properties = $this->status_property($status);
-            $parent_category = Category::where('type', 'parent_category')->with('parent')->get();
-            // dump($parent_category);
-            return view('theme::newlayouts.pages.home', compact('status', 'categories', 'states', 'status_properties','parent_category'));
+            $property_nature = Category::where('type', 'parent_category')->get();
+            $property_type = Category::where('type', 'category')->with('child','icon')->get();
+            return view('theme::newlayouts.pages.home', compact('status', 'categories', 'states', 'status_properties','property_type','property_nature'));
         } catch (\Exception $e) {
             return redirect()->route('install');
         }

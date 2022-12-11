@@ -7,14 +7,12 @@
 <!--    Select All Js-->
 <!-- Owl Carousel -->
 <script src="{{theme_asset('assets/newjs/owl.carousel.min.js')}}"></script>
-{{-- Selectric Js--}}
+<!-- Selectric Js -->
 <link rel="stylesheet" href="{{ asset('admin/assets/css/selectric.css') }}">
-{{--    Font Awesome Js--}}
+ <!-- Font Awesome Js -->
 <script src="{{theme_asset('assets/newjs/fontawesome/font.js')}}"></script>
 <script src="{{ theme_asset('assets/js/jquery.selectric.js') }}"></script>
 <script src="{{ theme_asset('assets/js/helper.js') }}"></script>
-<!-- Home Jquery -->
-<script src="{{theme_asset('assets/newjs/main.js')}}"></script>
 @stack('js')
 <script src="{{theme_asset('assets/newjs/custom.js')}}"></script>
 <script src="{{theme_asset('assets/newjs/property_step.js')}}"></script>
