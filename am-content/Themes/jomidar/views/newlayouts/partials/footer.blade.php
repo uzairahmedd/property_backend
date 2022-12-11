@@ -58,7 +58,7 @@
     <div class="">
         <h3>{{__('labels.all_right_reserved')}}</h3>
     </div>
-    <div class="arrow-top d-flex align-items-center justify-content-center">
+    <div class="arrow-top d-flex align-items-center justify-content-center" onclick="scrollToTop()">
         <img src="{{asset('assets/images/arrow-up.svg')}}" alt="" class="img-fluid">
     </div>
 </div>

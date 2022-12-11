@@ -20,8 +20,8 @@
                                     data-toggle="dropdown"> {{__('labels.auction_status')}}
                             </button>
                             <ul class="dropdown-menu type-dropdown" aria-labelledby="dropdownMenuLink1">
-                                <h3>حالة المزاد</h3>
-                                <div class="type-dropdown-content">
+                                <h3>{{__('labels.auction_status')}}</h3>
+                                <div class="type-dropdown-content auction-dropdown">
                                     <li class="type-all ps-2">
                                         <input class="type-select-dropdown" type="radio" id="radio03-09"
                                                name="radio-btn"/>
@@ -35,10 +35,10 @@
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
                                     <li class="type-all">
-                                        <button class="btn type-box show-results-bttn">اظهار النتائج</button>
+                                        <button class="btn type-box show-results-bttn">{{__('labels.apply')}}</button>
                                     </li>
                                     <li class="type-all">
-                                        <button class="btn type-box">مسح</button>
+                                        <button class="btn type-box">{{__('labels.reset')}}</button>
                                     </li>
                                 </div>
                             </ul>

@@ -43,7 +43,7 @@
                                 <input type="password" value="" class="form-control font-medium font-16" placeholder="{{__('labels.confirm_password')}}" name="password_confirmation">
                                 <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">{{__('labels.confirm_password')}}</label>
                             </div>
-                            <div class="col-12 mb-3 d-flex align-items-center justify-content-end">
+                            <div class="col-12 mb-3 d-flex align-items-center justify-content-end terms-check">
                                 <a href="JavaScript:void(0)" class="text-decoration-none theme-text-blue font-12 font-medium">
                                     {{__('labels.check_terms_policy')}}
                                 </a>

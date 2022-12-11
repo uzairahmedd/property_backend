@@ -135,6 +135,7 @@
 .listing p {
     font-size: 14px;
     opacity: 0.5;
+    padding-left: 5px;
 }
 
 .list {
@@ -1265,7 +1266,8 @@ room-dropdown-toggle::after
     }
 
     .home .navbar {
-        padding: 25px 0px 20px 0px;
+        margin: 0px 0px 20px 0px;
+        padding: 0 10px 20px;
     }
 }
 
