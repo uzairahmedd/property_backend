@@ -366,7 +366,7 @@ class PropertyController extends controller
         $category = $request->category ?? null;
 
         $statuses = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
-        $states = Category::where('type', 'states')->latest()->get();
+        $states = Category::where('type', 'states')->get();
         $categories = Category::where('type', 'category')->with('icon')->get();
         return view('theme::newlayouts.pages.property_lists', compact('category', 'state', 'status', 'statuses', 'categories', 'states', 'parent_category'));
     }

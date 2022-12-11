@@ -105,7 +105,7 @@ class WelcomeController extends controller
             // $data = get_currency_info();
             $status = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
             $categories = Category::where('type', 'category')->inRandomOrder()->get();
-            $states = Category::where('type', 'states')->with('childrenCategories')->latest()->get();
+            $states = Category::where('type', 'states')->with('childrenCategories')->get();
             //for home rent and sell properties
             $status_properties = $this->status_property($status);
             $property_nature = Category::where('type', 'parent_category')->get();

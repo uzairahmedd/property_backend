@@ -51,8 +51,8 @@
                                     <div class="progress"></div>
                                 </div>
                                 <div class="range-input">
-                                    <input type="range" name="min_price" class="range-min" min="0" max="10000000" value="0" step="100">
-                                    <input type="range" name="max_price" class="range-max" min="0" max="10000000" value="10000000" step="100">
+                                    <input type="range" id="min_price" name="min_price" class="range-min" min="0" max="10000000" value="0" step="100">
+                                    <input type="range" id="max_price" name="max_price" class="range-max" min="0" max="10000000" value="10000000" step="100">
                                 </div>
 
 
@@ -62,7 +62,7 @@
                                         <button id="price_btn" class="btn type-box show-results-bttn">{{__('labels.apply')}}</button>
                                     </li>
                                     <li class="room-no-drop">
-                                        <button class="reset-btn btn type-box">{{__('labels.reset')}}</button>
+                                        <button class="reset-reset-btn btn type-box">{{__('labels.reset')}}</button>
                                     </li>
                                 </div>
                             </ul>
