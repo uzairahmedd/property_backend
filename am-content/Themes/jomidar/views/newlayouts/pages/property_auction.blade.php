@@ -1,6 +1,7 @@
 @extends('theme::newlayouts.app')
 @section('content')
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/second-page.css')}}">
+    <link rel="stylesheet" href="{{theme_asset('assets/newcss/auction.css')}}">
     <div class="filter-bar">
         <div class="container">
             <div class="row">
@@ -13,7 +14,7 @@
                     class="col-lg-6 col-md-10 col-sm-10 col-xs-10 order-lg-2 d-flex justify-content-end flex-md-row select-filter ms-auto">
                     <div class="auction-status-dropdown">
                         <div class="dropdown complete-rent-drop">
-                            <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}"
+                            <span class="auction-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}"
                                                                 alt=""></span>
                             <button class="btn dropdown-toggle rent-dropdown-toggle rent-btn" role="button"
                                     id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-expanded="false"

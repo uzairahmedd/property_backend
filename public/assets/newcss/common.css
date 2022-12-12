@@ -691,6 +691,150 @@ button a
     font-weight: 600;
 }
 
+/*@keyframes glowing {*/
+/*    0% {*/
+/*        background-color: #CF57BB ;*/
+/*        box-shadow: 0 0 5px #CF57BB ;*/
+/*    }*/
+/*    50% {*/
+/*        background-color: #292071 ;*/
+/*        box-shadow: 0 0 20px #292071 ;*/
+/*    }*/
+/*    100% {*/
+/*        background-color: #2894CF ;*/
+/*        box-shadow: 0 0 5px #2894CF ;*/
+/*    }*/
+/*}*/
+/*.add-btn {*/
+/*    animation: glowing 1300ms infinite;*/
+/*}*/
+
+/*Property Add Shine Button CSS Start*/
+
+.add-btn {
+    background: radial-gradient(102.59% 309.05% at 11.74% 193.12%, #CF57BB 0.07%, #292071 51.14%, #2894CF 100%);
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    font-size: 18px;
+    padding: 12px;
+    padding-left: 28px;
+    border: none;
+    margin-left: 40px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+}
+
+.add-btn {
+    background: radial-gradient(102.59% 309.05% at 11.74% 193.12%, #CF57BB 0.07%, #292071 51.14%, #2894CF 100%);
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    font-size: 18px;
+    color: #fff;
+    overflow: hidden;
+}
+
+.add-btn:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.add-btn:before {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    top: -180px;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background-color: #fff;
+    animation: shiny-btn1 3s ease-in-out infinite;
+}
+
+.add-btn:hover{
+    opacity: .7;
+}
+
+.add-btn:active{
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+@-webkit-keyframes shiny-btn1 {
+    0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
+    80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
+    81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
+    100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
+}
+
+/*Sale and Rent button*/
+
+
+.chip {
+    background: radial-gradient(102.59% 309.05% at 11.74% 193.12%, #CF57BB 0.07%, #292071 51.14%, #2894CF 100%);
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    font-size: 18px;
+    padding: 12px;
+    padding-left: 28px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+}
+
+.chip {
+    background: radial-gradient(102.59% 309.05% at 11.74% 193.12%, #CF57BB 0.07%, #292071 51.14%, #2894CF 100%);
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    color: var(--theme-white) !important;
+    font-size: 18px;
+    overflow: hidden;
+}
+
+.chip:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.chip:before {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    top: -180px;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background-color: #fff;
+    animation: shiny-btn1 3s ease-in-out infinite;
+}
+
+.chip:hover{
+    opacity: .7;
+}
+
+.chip:active{
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+@-webkit-keyframes shiny-btn1 {
+    0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
+    80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
+    81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
+    100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
+}
+
 
 /*Home page responsiveness Start From Here*/
 @media screen and (max-width:1400px) {

@@ -659,6 +659,28 @@ element.style {
     margin-right: -90px !important;
 }
 
+.rtl .type-dropdown
+{
+    margin-left: 0px !important;
+}
+
+.rtl .type-dropdown::before
+{
+    left: 0 !important;
+    right: unset;
+}
+
+.rtl .list-rent-dropdown
+{
+    margin-left: 0px !important;
+}
+
+.rtl .list-rent-dropdown::before
+{
+    left: 0;
+    right: unset;
+}
+
 .room-dropdown h3 {
     text-align: right;
     color: var(--theme-black);

@@ -351,7 +351,7 @@
 
 .rtl .budget-dropdown
 {
-    width: 420px;
+    width: 388px;
 }
 
 .rtl .budget-dropdown h3
@@ -675,6 +675,13 @@
 
 
 @media screen and (max-width:768px) {
+
+    .rtl .budget-dropdown::before
+    {
+        left: unset;
+        right: 0;
+    }
+
     .rtl .new-rent-dropdown::before {
         right: 0;
     }
@@ -781,6 +788,11 @@
     .rtl .close-modal {
         width: 23px;
         top: 12px;
+    }
+
+    .rtl .price-input
+    {
+        flex-direction: column;
     }
 
     .rtl .contact-modal .mesg {

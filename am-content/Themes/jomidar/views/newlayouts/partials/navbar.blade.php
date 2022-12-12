@@ -35,7 +35,7 @@
 
                     </li>
                     @endif
-                   
+
                     <li class="nav-item d-flex flex-column flex-sm-row align-items-center mb-3 mb-sm-0">
                        @if (Auth::guest())
                         <div class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#contactModal">
@@ -44,12 +44,12 @@
                         </div>
                         @endif
                         @if (Auth::User())
-                        <button class="btn add-btn font-bold theme-text-white d-flex align-items-center my-3 my-sm-0">
+                        <button class="btn add-btn custom-btn font-bold theme-text-white d-flex align-items-center my-3 my-sm-0">
                             <a href="{{ route('agent.property.create_property') }}">{{__('labels.add_property')}}</a>
                             <img src="{{theme_asset('assets/images/plus.svg')}}" class="ms-3">
                         </button>
                         @else
-                        <button class="btn add-btn font-bold theme-text-white d-flex align-items-center my-3 my-sm-0">
+                        <button class="btn add-btn custom-btn font-bold theme-text-white d-flex align-items-center my-3 my-sm-0">
                             <a data-bs-toggle="modal" data-bs-target="#contactModal">{{__('labels.add_property')}}</a>
                             <img src="{{theme_asset('assets/images/plus.svg')}}" class="ms-3">
                         </button>

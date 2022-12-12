@@ -37,11 +37,11 @@
                             <ul class="dropdown-menu budget-dropdown" id="budgetdropdown" aria-labelledby="dropdownMenuLink-rooms">
                                 <h3>{{__('labels.budget_sar')}}</h3>
                                 <div class="type-dropdown-content price-input d-flex justify-content-between align-items-center mb-4">
-                                    <div class="mb-3 field col-lg-6 col-md-6 col-sm-12  p-1 position-relative">
+                                    <div class="mb-3 field p-1 position-relative">
                                         <input type="number" class="input-min" value="" class="form-control font-medium font-16 text-end font-14" placeholder=" 0 {{__('labels.sar')}}">
                                         <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">{{__('labels.low_price')}}</label>
                                     </div>
-                                    <div class="mb-3 field col-lg-6 col-md-6 col-sm-12 p-1 position-relative">
+                                    <div class="mb-3 field p-1 position-relative">
                                         <input type="number" class="input-max" value="" class="form-control font-medium font-16 text-end font-14" placeholder="10,000.0000+ {{__('labels.sar')}}">
                                         <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">{{__('labels.high_price')}}</label>
                                     </div>
