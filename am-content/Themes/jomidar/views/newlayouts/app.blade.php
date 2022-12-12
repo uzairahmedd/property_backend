@@ -3,9 +3,6 @@
 @include('theme::newlayouts.partials.top')
 
 <body>
-<script>
-    var set_session = '{{Auth::check() ? 'true' : 'false'}}';
-</script>
 <div class="overflow-hidden position-relative {{ session()->has('locale') && session()->get('locale') =='en' ? 'rtl' : 'ltr'}}" id="main-home" data-session="">
     <input type="hidden" id="base_url" value="{{ asset('/') }}">
     <input type="hidden" id="asset_url" value="{{ asset('/') }}">
@@ -24,7 +21,7 @@
         @include('theme::newlayouts.partials.modals')
         @include ('theme::newlayouts.partials.footer')
         @include ('theme::newlayouts.partials.bottom')
-        @yield('home.js')
+        @yield('home_js')
         @yield('property_list_select')
         @yield('favorite_properties')
         @yield('property_create')

@@ -486,7 +486,7 @@
 <!-- Apps Section Ends Here -->
 @endsection
 
-@section('home.js')
+@section('home_js')
 <script src="{{theme_asset('assets/newjs/select-style.js')}}"></script>
 <script src="{{theme_asset('assets/newjs/home.js')}}"></script>
 <script>
