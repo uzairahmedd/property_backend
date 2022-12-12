@@ -646,6 +646,11 @@
     direction: ltr;
 }
 
+.rtl .terms-top p
+{
+    direction: ltr;
+}
+
 
 
 @media screen and (max-width:768px) {
