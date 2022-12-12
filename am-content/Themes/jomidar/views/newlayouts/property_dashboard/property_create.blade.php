@@ -47,7 +47,7 @@
                     </div>
 
 
-                    <div class="col-lg-4 col-md-4 col-sm-12 d-flex flex-column align-items-end">
+                    <div class="col-12 d-flex flex-column align-items-end">
                         <label for="title" class="font-14 theme-text-seondary-black">{{__('labels.property_address')}}</label>
                         <div class="position-relative d-flex justify-content-end align-items-center w-100">
                             <input type="text" value="{{ $post_data != '' ? $post_data->title : old('title')}}" name="title" id="title" placeholder="{{__('labels.property_address')}}" class="form-control theme-border">
@@ -71,8 +71,7 @@
                         @endif
                     </div>
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
-
-                        <div class="col-lg-4 col-md-4 col-sm-12 d-flex flex-column align-items-end property_address">
+                        <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop">
                             <label class="font-14 theme-text-seondary-black">{{__('labels.region')}}</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
@@ -88,7 +87,7 @@
                             <div class="error pt-1">{{ $errors->first('city') }}</div>
                             @endif
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12 d-flex flex-column align-items-end property_address">
+                        <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address">
                             <label for="location" class="font-14 theme-text-seondary-black">{{__('labels.address_property')}}</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <input type="text" name="location" value="{{ $post_data != '' ? $post_data->city->value  : old('location') }}" id="location" placeholder="{{__('labels.address_property')}}" class="form-control theme-border">
@@ -98,7 +97,7 @@
                             <div class="error pt-1">{{ $errors->first('location') }}</div>
                             @endif
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12 d-flex flex-column align-items-end">
+                        <div class="col-lg-4 col-md-12   col-sm-12 d-flex flex-column align-items-end">
                             <label for="area" class="font-14 theme-text-seondary-black">{{__('labels.property_area')}}</label>
                             <input type="number" step="any" id="area" value="{{ $post_data != '' ? $post_data->area->content  : old('area') }}" name="area" placeholder="{{__('labels.area_square_meter')}}" class="form-control theme-border">
                             @if($errors->has('area'))

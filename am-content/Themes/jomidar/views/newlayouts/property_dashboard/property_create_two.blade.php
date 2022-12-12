@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-lg-6 col-md-12 d-flex add-address justify-content-end">
                             <div class="col-lg-8 col-md-10 col-sm-12 d-flex flex-column align-items-end">
-                                <label for="" class="font-14 theme-text-seondary-black">{{__('labels.property_value')}}</label>
+                                <label for="" class="font-18 theme-text-seondary-black">{{__('labels.property_value')}}</label>
                                 <div class="position-relative d-flex align-items-center w-100">
 
                                     <input type="text" value="{{ !empty($post_data->price) ? $post_data->price->price  : old("price") }}" name="price" placeholder="{{__('labels.rental_value')}}" class="form-control theme-border">
@@ -101,7 +101,7 @@
                     <!-- Street Section Ends Here -->
                     {{--input with dropdown button start--}}
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row flex-md-row justify-content-end mt-5">
-                        <div class="col-lg-5 col-md-4 col-sm-12 d-flex align-items-end sec-street">
+                        <div class="col-lg-5 col-md-4 col-sm-12 d-flex align-items-end sec-street ">
                             <div class="dropdown regional-drop d-flex justify-content-center align-items-center">
                                <div class="interface-div">
                                    <button class="btn dropdown-toggle regional-drop-btn interface" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -119,8 +119,8 @@
                                     <p class="meter mb-0">{{__('labels.meter')}}</p>
                                 </div>
                             </div>
-                            <div class="position-relative d-flex flex-column align-items-end w-100">
-                                <label for="" class="font-14 theme-text-seondary-black">{{__('labels.street_info_2')}}</label>
+                            <div class="position-relative d-flex flex-column align-items-end w-100 street_info_2">
+                                <label for="" class="font-18 theme-text-seondary-black">{{__('labels.street_info_2')}}</label>
                                 <input type="text" name="street_info_one" value="{{ !empty( $post_data->street_info_one) ? $post_data->street_info_one->content  : old("street_info_one") }}" id="interface_val" placeholder="{{__('labels.street_view')}} " class="form-control street_view theme-border">
                             </div>
                         </div>
@@ -143,7 +143,7 @@
 
                             </div>
                             <div class="position-relative d-flex flex-column align-items-end w-100">
-                                <label for="" class="font-14 theme-text-seondary-black">{{__('labels.street_info_1')}}</label>
+                                <label for="" class="font-18 theme-text-seondary-black">{{__('labels.street_info_1')}}</label>
                                 <input type="text" name="street_info_two" value="{{ !empty( $post_data->street_info_two) ? $post_data->street_info_two->content  : old("street_info_two") }}" id="interface_val2" placeholder="{{__('labels.street_view')}}" class="form-control street_view theme-border">
                             </div>
                         </div>

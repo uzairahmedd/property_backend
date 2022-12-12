@@ -1273,7 +1273,7 @@ room-dropdown-toggle::after
     }
 
     .home .navbar {
-        margin: 0px 0px 20px 0px;
+        margin: 0px 0px 0px 0px;
         padding: 0 10px 20px;
     }
 }

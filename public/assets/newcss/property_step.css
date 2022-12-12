@@ -101,7 +101,6 @@
     width: 100%;
     padding: 30px 0px 30px 0px;
     margin-bottom: 10px;
-    width: 190px;
     height: 160px;
 }
 .input-container img {
@@ -200,6 +199,7 @@
 .property_types
 {
     margin-top: -25px;
+    margin-right: 0;
 }
 
 .yesno-btn
@@ -302,12 +302,29 @@
     {
         margin-bottom: 3rem;
     }
+    .description-card .property_address {
+        padding: 40px 0px;
+    }
+    .dp-elipse
+    {
+        margin-right: 24px !important;
+    }
+    .admin-name
+    {
+        margin-left: 0 !important;
+    }
 }
 
 @media screen and (max-width:768px) {
     .description-card .property_address {
         padding: 38px 0;
     }
+
+    .region-drop
+    {
+        padding;
+    }
+
     .profile .personal-card
     {
         display: flex;
@@ -320,7 +337,7 @@
 
     .add-address
     {
-        margin-left: 60px;
+        margin-left: 0px;
         margin-bottom: 3rem;
     }
 
@@ -370,8 +387,7 @@
     }
 
     .description-card .form-control {
-        width: 300px;
-        max-width: 100%;
+        width: 100%;
     }
     .container {
         padding: 0 6px;
@@ -379,6 +395,12 @@
 }
 
 @media screen and (max-width:385px) {
+
+    .add-property .personal-card {
+        padding: 10px 5px;
+        margin-top: 45px;
+    }
+
     .radio-container .checmark {
         padding: 8px 30px;
     }
@@ -386,7 +408,7 @@
         font-size: 12px;
     }
     .description-card {
-        padding: 8px;
+        padding: 20px 10px;
     }
     .font-24 {
         font-size: 10px;
@@ -406,10 +428,6 @@
         margin-left: 25px;
     }
 
-    .description-card .form-control {
-        width: 250px;
-        max-width: 100%;
-    }
 }
 
 @media screen and (max-width: 280px) {
@@ -425,16 +443,8 @@
         padding: 10px 20px 10px 20px;
         margin-left: 0px;
     }
-    .description-card .form-control {
-        width: 160px;
-        max-width: 100%;
-    }
     .checkbox-step5 .checmark {
         padding: 6px 35px;
-    }
-    .description-card .form-control {
-        width: 180px;
-        max-width: 100%;
     }
 }
 

@@ -691,23 +691,10 @@ button a
     font-weight: 600;
 }
 
-/*@keyframes glowing {*/
-/*    0% {*/
-/*        background-color: #CF57BB ;*/
-/*        box-shadow: 0 0 5px #CF57BB ;*/
-/*    }*/
-/*    50% {*/
-/*        background-color: #292071 ;*/
-/*        box-shadow: 0 0 20px #292071 ;*/
-/*    }*/
-/*    100% {*/
-/*        background-color: #2894CF ;*/
-/*        box-shadow: 0 0 5px #2894CF ;*/
-/*    }*/
-/*}*/
-/*.add-btn {*/
-/*    animation: glowing 1300ms infinite;*/
-/*}*/
+.after-sign-in button
+{
+    font-size: 18px;
+}
 
 /*Property Add Shine Button CSS Start*/
 
@@ -773,7 +760,6 @@ button a
 }
 
 /*Sale and Rent button*/
-
 
 .chip {
     background: radial-gradient(102.59% 309.05% at 11.74% 193.12%, #CF57BB 0.07%, #292071 51.14%, #2894CF 100%);

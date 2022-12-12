@@ -29,14 +29,14 @@
                 </ul>
 
                 <div class="col-12 d-flex justify-content-between flex-wrap">
-                    <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="col-lg-2 col-md-3 col-sm-3">
                         <div class="position-relative d-flex flex-column align-items-center justify-content-center b-r-8 input-container">
                             <input type="file" name="media[]" class="file-input" onchange="loadFile(event)">
                             <img id="first_image" src="{{asset('assets/images/bx_image-alt.png')}}" alt="">
                             <span class="font-16 theme-text-sky">{{__('labels.add_photo')}}</span>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="col-lg-2 col-md-3 col-sm-3">
                         <div class="position-relative d-flex flex-column align-items-center justify-content-center b-r-8 input-container">
                             <input type="file" class="file-input" name="media[]" onchange="loadFile1(event)">
                             <img id="second_image" src="{{asset('assets/images/bx_image-alt.png')}}" alt="">
@@ -44,28 +44,27 @@
                         </div>
 
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="col-lg-2 col-md-3 col-sm-3">
                         <div class="position-relative d-flex flex-column align-items-center justify-content-center b-r-8 input-container">
                             <input type="file" class="file-input" name="media[]" onchange="loadFile2(event)">
                             <img id="third_image" src="{{asset('assets/images/bx_image-alt.png')}}" alt="">
                             <span class="font-16 theme-text-sky">{{__('labels.add_photo')}}</span>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="col-lg-2 col-md-3 col-sm-3">
                         <div class="position-relative d-flex flex-column align-items-center justify-content-center b-r-8 input-container">
                             <input type="file" class="file-input" name="media[]" onchange="loadFile3(event)">
                             <img id="forth_image" src="{{asset('assets/images/bx_image-alt.png')}}" alt="">
                             <span class="font-16 theme-text-sky">{{__('labels.add_photo')}}</span>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="col-lg-2 col-md-3 col-sm-3">
                         <div class="position-relative d-flex flex-column align-items-center justify-content-center b-r-8 input-container">
                             <input type="file" class="file-input" name="media[]" onchange="loadFile4(event)">
                             <img id="five_image" src="{{asset('assets/images/bx_image-alt.png')}}" alt="">
                             <span class="font-16 theme-text-sky">{{__('labels.add_photo')}}</span>
                         </div>
                     </div>
-
                 </div>
                 <div class="row mt-2">
                     @foreach($info->medias as $key => $row)
