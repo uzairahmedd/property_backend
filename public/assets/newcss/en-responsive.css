@@ -693,6 +693,10 @@
     direction: ltr;
 }
 
+.rtl .all-listing .property-lists {
+    direction: ltr;
+}
+
 
 
 @media screen and (max-width:768px) {
