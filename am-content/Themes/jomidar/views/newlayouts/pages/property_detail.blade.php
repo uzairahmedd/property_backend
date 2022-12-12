@@ -18,7 +18,7 @@
                 <li class="breadcrumb-item active theme-text-seondary-black" aria-current="page">{{ $property->title }}</li>
                 <li class="breadcrumb-item"><a href="#" class="theme-text-blue text-decoration-none">{{$property->property_status_type->category->name}}</a>
                 </li>
-                <li class="breadcrumb-item"><a href="/" class="theme-text-blue text-decoration-none">{{__('labels.home')}}</a>
+                <li class="breadcrumb-item home-breadcrumb"><a href="/" class="theme-text-blue text-decoration-none">{{__('labels.home')}}</a>
                 </li>
             </ul>
         </nav>
@@ -72,7 +72,7 @@
         </div>
     </div>
     <!-- Slider Starts Here -->
-    <div class="container p-0">
+    <div class="container">
         <div id="carouselExampleIndicators" class="carousel carousel-single-item slide d-flex px-4 px-md-0" data-bs-ride="true">
             <div class="carousel-indicators mb-1 mb-md-4">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -183,7 +183,7 @@
                             <h3 class="font-16 font-medium theme-text-blue">{{ $value->name }}</h3>
                         </div>
                         <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black b-info-txt">طبيعة العقار</span>
+                            <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.property_nature')}}</span>
                         </div>
                     </div>
                     @elseif( $value->type == 'category')
@@ -192,7 +192,7 @@
                             <h3 class="font-16 font-medium theme-text-blue">{{ $value->name }}</h3>
                         </div>
                         <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black b-info-txt">نوع العقار</span>
+                            <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.type_property')}} </span>
                         </div>
                     </div>
                     @endif
@@ -203,7 +203,7 @@
                             <h3 class="font-16 font-medium theme-text-blue">{{ $property->electricity_facility->content == 0 ? 'نعم' : 'لا' }}</h3>
                         </div>
                         <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black b-info-txt">هل يوجد عداد كهرباء</span>
+                            <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.electricity_meter_is_there')}}</span>
                         </div>
                     </div>
 
@@ -212,7 +212,7 @@
                             <h3 class="font-16 font-medium theme-text-blue">{{ $property->water_facility->content == 0 ? 'نعم' : 'لا' }}</h3>
                         </div>
                         <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black b-info-txt">هل يوجد عداد ماء</span>
+                            <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.water_meter_is_there')}}</span>
                         </div>
                     </div>
 
@@ -221,7 +221,7 @@
                             <h3 class="font-16 font-medium theme-text-blue">{{ $property->streets->content }}</h3>
                         </div>
                         <div class="col-6 text-end b-info-txt">
-                            <span class="font-16 theme-text-seondary-black">عدد الشوارع</span>
+                            <span class="font-16 theme-text-seondary-black">{{__('labels.no_street')}}</span>
                         </div>
                     </div>
                     @if(isset($property->street_info_one->content) || isset($property->street_info_two->content))
@@ -231,7 +231,7 @@
                                 , {{ isset($property->street_info_two->content) ? $property->street_info_two->content : ''}}</h3>
                         </div>
                         <div class="col-6 text-end b-info-txt">
-                            <span class="font-16 theme-text-seondary-black">معلومات الشارع</span>
+                            <span class="font-16 theme-text-seondary-black">{{__('labels.street-info')}}</span>
                         </div>
                     </div>
                     @endif
@@ -261,7 +261,7 @@
 
                         </div>
                         <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">التأثيث</span>
+                            <span class="font-16 theme-text-seondary-black">{{__('labels.furnishing')}}</span>
                         </div>
                     </div>
                     @endif
@@ -271,7 +271,7 @@
                             <h3 class="font-16 font-medium theme-text-blue">{{ $property->role->content }}</h3>
                         </div>
                         <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">إجمالي الأدوار/ الدور</span>
+                            <span class="font-16 theme-text-seondary-black">{{__('labels.total_roles')}}</span>
                         </div>
                     </div>
                     @endif

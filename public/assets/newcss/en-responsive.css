@@ -651,6 +651,16 @@
     direction: ltr;
 }
 
+.item-header .breadcrumb-item+.home-breadcrumb:before
+{
+    display: none;
+}
+
+.item-header .breadcrumb-item+.home-breadcrumb
+{
+    padding-left: 0;
+}
+
 
 
 @media screen and (max-width:768px) {
