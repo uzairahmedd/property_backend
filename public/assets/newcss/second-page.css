@@ -195,9 +195,28 @@
     height: 48px;
     background: #292071;
     border-radius: 8px;
+    margin-right: 0 !important;
+    margin-left: 10px;
+}
+
+.price-section .dash-call {
+    width: 52px;
+    height: 48px;
+    background: #292071;
+    border-radius: 8px;
+    margin-right: 0px !important;
+    margin-left: 10px;
 }
 
 .price-section .whatsapp {
+    width: 53px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #4AC958;
+    border-radius: 8px;
+}
+
+.price-section .dash-whatsapp {
     width: 53px;
     height: 48px;
     background: #FFFFFF;

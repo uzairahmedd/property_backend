@@ -1709,6 +1709,11 @@ span.directorist-select__selected-list--item:first-letter {
     transform: rotate(45deg);
 }
 
+.owl-home-carousel
+{
+    direction: rtl;
+}
+
 .new-rent-dropdown {
     /* height: 75px; */
     /* overflow-y: auto; */
