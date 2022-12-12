@@ -167,7 +167,7 @@ class RegisterController extends controller
         if ($user->save()) {
             $otp_response = $this->send_otp($user->phone);
             if (is_array($otp_response) && str_contains($otp_response['body'], 'Send Successful')) {
-                $url = env("APP_URL") . '/Verify_OTP_page/' . encrypt($user->id);
+                $url = env("APP_URL") . 'Verify_OTP_page/' . encrypt($user->id);
                 return success_response(['url' => $url, 'Otp send successfully']);
             }
             $user = error_response(['message' => 'OTP not Send', 'Otp error']);
@@ -322,7 +322,7 @@ class RegisterController extends controller
         }
         $otp_response = $this->update_send_otp($request->all());
         if (is_array($otp_response) && str_contains($otp_response['body'], 'Send Successful')) {
-            $url = env("APP_URL") . '/Verify_OTP_page/' . $request->user_id;
+            $url = env("APP_URL") . 'Verify_OTP_page/' . $request->user_id;
             return success_response(['url' => $url, 'Otp send successfully']);
         }
         return error_response(['phone' => 'OTP not Send', 'Otp error']);

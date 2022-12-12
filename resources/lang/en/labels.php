@@ -125,7 +125,7 @@ return [
     'property_address' => 'Property title',
     'property_descr' => 'Property Description',
     'enter_here' => 'Enter Here...',
-    'position_no' => 'No. of Position',
+    'position_no' => 'No. of Parking',
     'boards' => 'Boards',
     'property_area' => 'Property Area',
     'area_square_meter' => 'Area in Square Meter',
