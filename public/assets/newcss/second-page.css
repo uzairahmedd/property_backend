@@ -655,6 +655,10 @@ element.style {
     color: #fff;
 }
 
+.rtl .ss_ulsearch {
+    margin-right: -90px !important;
+}
+
 .room-dropdown h3 {
     text-align: right;
     color: var(--theme-black);
