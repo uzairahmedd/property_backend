@@ -697,6 +697,33 @@
     direction: ltr;
 }
 
+.rtl .social-btn .call
+{
+    margin-right: 10px !important;
+}
+
+.rtl .home-listing-detail
+{
+    padding: 0px 10px 10px 10px;
+}
+
+.rtl .property-listing-content i.ar-arrow
+{
+    display: none;
+}
+
+.rtl .property-listing-content i.en-arrow
+{
+    display: block;
+}
+
+.rtl .property-listing-content a
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 @media screen and (max-width:768px) {

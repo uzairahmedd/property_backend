@@ -273,42 +273,30 @@ return [
     'age_restriction' => 'Age Restriction',
     'term60' => 'If you are under the age of 18, you may use our Platforms only under the supervision of a person exercising parental or guardianship over you (i.e. a parent or guardian).',
     'term61' => 'Intellectual property rights',
-
-
     'term62' => 'The copyright of materials, information and all content included in the site is the property of the company including graphics, logos, icons, images, clips and digital downloads. The User may not copy, extract, publish, upload, transmit, distribute or display any content on this website in any way whatsoever except as authorized by the User and subject to the expressly authorized restrictions or limitations, and agrees not to change or delete any proprietary logos They are downloaded from the website. The user may be subject to legal accountability under the applicable laws in the event that he violates any of this.',
     'term63' => 'USE, LICENSE AND LIMITATIONS',
     'term64' => 'All material posted on the Site, including advertisements, data, text, video, still images, audio or other
                 The material that we have allowed you to access is for your viewing and use of the site only, and you are not entitled to do any of the following:',
-
     'term65' => 'Modification and copying of materials.',
-    'term66' => '
-Use the Materials for any private commercial purpose outside of the Site.',
+    'term66' => 'Use the Materials for any private commercial purpose outside of the Site.',
     'term67' => 'Remove any copyright or other proprietary notations from the materials.',
     'term68' => 'Transfer the material to another person or re-publish it on any other website.',
     'term69' => 'When you access the Website and/or use any of the services on it, you represent and warrant that you will not do any of the following',
     'term70' => 'Sharing, uploading or publishing any content that is misleading, deceptive, incorrect, disproportionate to the purposes of the site, obscene or defamatory',
     'term71' => 'Using or browsing the site in any way that violates the laws, provisions and rules in force in the Kingdom of Saudi Arabia.',
-    'term72' => '
-Use or access the Website in any way that is unlawful or fraudulent, or that has an unlawful or fraudulent purpose or effect.',
+    'term72' => 'Use or access the Website in any way that is unlawful or fraudulent, or that has an unlawful or fraudulent purpose or effect.',
     'term73' => 'Transmit or attempt to transmit any computer virus, defect or other destructive material.',
     'term74' => 'Upload, post, transmit, transmit or otherwise make available any information on or through the Site that may be harmful, threatening, immoral, harassing, obscene, vulgar, defamatory, hateful, racially or ethnically discriminatory, or otherwise illegal other respects',
     'term75' => 'Sending spam, chain letters, content, spam, surveys or other mass messages.',
     'term76' => 'Violate anyone rights, including copyright, trade secret, right to privacy, or any other intellectual property or proprietary right.',
-    'term77' => '
-Publish or share any information of third parties without their written consent.',
-    'term78' => '
-Using any electronic program, means or device to interfere or attempt to interfere electronically or manually with the operation or functionality of the website.',
-    'term79' => '
-To circumvent the laws, policies and regulations of the site or any rights related to a third party.',
-    'term80' => '
-Copy or republish any content on other websites.',
-    'term81' => '
-Collect information about other Site users for private purposes.',
-    'term82' => '
-Use the Site for any private commercial or business purposes unless we expressly agree to this in writing.',
+    'term77' => 'Publish or share any information of third parties without their written consent.',
+    'term78' => 'Using any electronic program, means or device to interfere or attempt to interfere electronically or manually with the operation or functionality of the website.',
+    'term79' => 'To circumvent the laws, policies and regulations of the site or any rights related to a third party.',
+    'term80' => 'Copy or republish any content on other websites.',
+    'term81' => 'Collect information about other Site users for private purposes.',
+    'term82' => 'Use the Site for any private commercial or business purposes unless we expressly agree to this in writing.',
     'term83' => 'The user agrees and authorizes the company to save any data or information entered on the site, and the company has the right to view and review them and monitor private messages and ensure their compliance with these restrictions and conditions of use. The company has the right to delete any content and/or suspend or suspend any user membership without giving reasons.',
-    'term84' => '
-Advertising through the site',
+    'term84' => 'Advertising through the site',
     'term85' => 'We do not own any real estate, but we make the site available to the public, through which real estate owners or developers, agents and/or brokers can advertise and market real estate, and you can view the details of the advertisement along with other content that we hosted and developed.',
     'term86' => 'You acknowledge and agree to the following:',
     'term87' => 'We are trying our best to verify the validity and details of each advertisement posted on the site, but we do not provide any guarantee and bear no responsibility for the validity, accuracy or completeness of any of the information contained in the advertisement details and you are responsible for verifying and confirming the details and ensuring their correctness.',
@@ -320,11 +308,9 @@ Advertising through the site',
     'term93' => 'We do not make any kind of representation or warranty regarding the materials and information contained in the site and the user use of the site is at the user own risk. The Company assumes no responsibility for any error or omission in the content of the Website and for the obligation to update this information. The User agrees that the Company shall not be liable for any damages related to the User use of or reliance on the Website or any of its contents.',
     'term94' => 'In no event shall we be liable for any damages (including, without limitation, compensation for loss of data or profits, or business interruption) arising from the use of, or inability to use, the Site, even if one of our authorized representatives has received An oral or written notification of the possibility of such damage.',
     'term95' => 'We will not be liable to you for any loss or damage, arising out of or in connection with any of the following:',
-    'term96' => '
-Any malfunction due to software, network errors, unavailability or any other reasons.',
+    'term96' => 'Any malfunction due to software, network errors, unavailability or any other reasons.',
     'term97' => 'Any loss of password or account',
-    'term98' => '
-Use of, or inability to use, the Site',
+    'term98' => 'Use of, or inability to use, the Site',
     'term99' => 'reliance on any content or information displayed on our site',
     'term100' => 'direct, consequential, special or punitive loss, damage, costs and expenses, loss of profit, loss of business, loss or decline of goodwill',
     'term101' => 'We will not be liable for any loss or damage caused by any virus, denial-of-service attack or other technologically harmful material that infects your computer systems, computer programs, data or other property as a result of your use of our Site or your downloading of any content on it or on any site linked to it.',
@@ -341,14 +327,13 @@ Use of, or inability to use, the Site',
     'term112' => 'Third party service providers may also modify their terms of use from time to time, and we cannot guarantee that third party links will be valid and usable.',
     'term113' => 'Monitor and record phone calls',
     'term114' => 'We may trace telephone calls that arise from inquiries about the Site and/or Company services. Such calls may be tracked and recorded for the purposes of customer service evaluation and training. You agree in advance to this recording, and we will try to remind you to record calls before each call.',
-    'term115' => 'compensation',
+    'term115' => 'Compensation',
     'term116' => 'User acknowledges and agrees to protect, indemnify and hold harmless the Company and its contractors, shareholders and partners as well as their respective directors, officers, employees and agents (and any third parties entitled to indemnification) from any and all third party claims and expenses, including attorneys fees, arising from breach of these Terms of Use and/or access to site or violate copyright, trademark, or other policies posted on the site.',
-    'term117' => 'full agreement',
+    'term117' => 'Full agreement',
     'term118' => 'These Terms of Use, the Privacy Policy and any other policies, terms and conditions posted on the Website represent the entire agreement between you and the Company for the use of this Website.',
     'term119' => 'Law',
     'term120' => 'These Terms of Use and any other terms, conditions or policies posted on the Site shall be governed by the laws of the Kingdom of Saudi Arabia, and the jurisdiction of the competent courts shall be in the city of Riyadh.',
     'term121' => 'In the event that any item is found to be invalid or unenforceable, the validity or enforceability of the other items will not be affected',
-    'term122' => '
-If you have any questions, complaints or comments regarding these Terms of Use, please contact us at the following address:info@khaiaraty.com',
+    'term122' => 'If you have any questions, complaints or comments regarding these Terms of Use, please contact us at the following address:info@khaiaraty.com',
     '' => '',
 ];

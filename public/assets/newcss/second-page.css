@@ -1018,6 +1018,7 @@ element.style {
     }
 }
 @media screen and (max-width:576px) {
+    
     .dropdown .rent-btn {
         width: 90px;
     }
