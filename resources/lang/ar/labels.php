@@ -144,6 +144,8 @@ return [
     'water_meter_is_there' => 'هل يوجد عداد ماء',
     'yes' => 'نعم',
     'no' => 'لا',
+    'position_no' => 'عدد المواقف',
+    'boards' => 'مجالس',
     'no_street' => 'عدد الشوارع',
     'street_info_1' => 'معلومات الشارع 1',
     'street_info_2' => 'معلومات الشارع 2',

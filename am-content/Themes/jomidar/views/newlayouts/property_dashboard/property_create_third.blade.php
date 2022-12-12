@@ -122,7 +122,7 @@
                     <!-- lounges Section Ends Here -->
                     <!-- Boards Section Starts Here -->
                     @if($row->name == 'Boards')
-                    <p class="theme-text-black font-18">مجالس</p>
+                    <p class="theme-text-black font-18">{{__('labels.boards')}}</p>
                     <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
                     <div class="row gx-2 mb-4_5">
                         <div class="radio-container">
@@ -158,7 +158,7 @@
                     <!-- Boards Section Ends Here -->
                     <!-- Parking Section Starts Here -->
                     @if($row->name == 'Parking')
-                    <p class="theme-text-black font-18">عدد المواقف</p>
+                    <p class="theme-text-black font-18">{{__('labels.position_no')}} </p>
                     <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
                     <div class="row gx-2 mb-4_5">
                         <div class="radio-container">

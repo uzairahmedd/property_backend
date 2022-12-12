@@ -91,7 +91,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-12 d-flex flex-column align-items-end property_address">
                             <label for="location" class="font-14 theme-text-seondary-black">{{__('labels.address_property')}}</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
-                                <input type="text" name="location" value="{{ $post_data != '' ? $post_data->city->value  : old('location') }}" id="location" placeholder="{{__('labels.city')}}" class="form-control theme-border">
+                                <input type="text" name="location" value="{{ $post_data != '' ? $post_data->city->value  : old('location') }}" id="location" placeholder="{{__('labels.address_property')}}" class="form-control theme-border">
                                 <img src="{{asset('assets/images/location.png')}}" alt="" class="position-absolute input-icon">
                             </div>
                             @if($errors->has('location'))

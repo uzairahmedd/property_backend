@@ -48,11 +48,11 @@
 
 .rtl .complete-rent-drop img
 {
-    margin-right: -6px;
+    /*margin-right: -6px;*/
 }
 
 .rtl .complete-rent-drop img {
-    right: -4px !important;
+    /*right: -4px !important;*/
 }
 
 .rtl .verified h3
@@ -87,6 +87,11 @@
     margin-left: 20px;
 }
 
+.rtl .rental-toggle-icon img
+{
+    right: -8px !important;
+}
+
 .rtl .footer ul li {
     border: 0;
     border-left: 1px solid var(--theme-blue);
@@ -95,6 +100,12 @@
 .rtl .footer .list-unstyled
 {
     margin-left: 30px;
+}
+
+.rtl .document label
+{
+    text-align: left;
+    direction: ltr;
 }
 
 .rtl .apps-store img
@@ -161,12 +172,12 @@
 }
 
 .rtl .complete-rent-drop img {
-    right: 12px !important;
+    /*right: 12px !important;*/
 }
 
 .rtl .rent-toggle-icon img
 {
-    right: -4px !important;
+    /*right: -4px !important;*/
 }
 
 .rtl .type-dropdown .auction-dropdown {
@@ -719,7 +730,7 @@
     }
 
     .rtl .complete-rent-drop img {
-        right: 5px !important;
+        /*right: 5px !important;*/
     }
 
     .rtl .new-rent-dropdown::before {

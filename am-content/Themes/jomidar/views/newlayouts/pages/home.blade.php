@@ -15,7 +15,7 @@
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                 <div class="dropdown complete-rent-drop">
-                    <span class="rent-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
+                    <span class="rental-toggle-icon"><img src="{{theme_asset('assets/images/arrow-down.svg')}}" alt=""></span>
                     @foreach($status as $status_data)
                     @if( $status_data->name =='Rent')
                     <input type="hidden" value="{{ $status_data->id}}" name="status" id=status>
