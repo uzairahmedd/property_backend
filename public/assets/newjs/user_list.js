@@ -87,7 +87,7 @@ function user_properties_list(target, data) {
         if (value.post_preview != null) {
             image = value.post_preview.media.url;
         } else {
-            image = base_url + '/uploads/default.png';
+            image = base_url + 'uploads/default.png';
         }
 
         if (value.property_status_type != null) {
