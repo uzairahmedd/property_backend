@@ -1,7 +1,7 @@
 @extends('theme::newlayouts.app')
 @section('content')
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/select-style.css')}}">
-<link rel="stylesheet" href="{{theme_asset('assets/newcss/home-page.css')}}">
+{{--<link rel="stylesheet" href="{{theme_asset('assets/newcss/home-page.css')}}">--}}
 <!-- Header Section Starts Here -->
 <div class="overlay home_fade"></div>
 <div class="header d-flex flex-column align-items-center">

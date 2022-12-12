@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('.owl-carousel').owlCarousel({
         responsiveClass: true,
-        margin: 20,
+        margin: 10,
         dots: false,
         loop: true,
         responsive: {
@@ -178,7 +178,7 @@ $('#nav-tab-main a').click(function (e) {
 
 // Room Dropdown Selection Start
 // $(document).ready(function (event) {
-  
+
 //     $('.overlay').click(function (event) {
 //         $('.overlay').css('opacity', 0);
 //         $('.overlay').css('display', 'none');

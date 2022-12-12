@@ -717,6 +717,10 @@
     display: block;
 }
 
+.rtl .home-listing-detail {
+    padding: 0px 10px 10px 10px;
+}
+
 .rtl .property-listing-content a
 {
     display: flex;

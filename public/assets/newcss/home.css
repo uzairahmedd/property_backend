@@ -1791,17 +1791,17 @@ span.directorist-select__selected-list--item:first-letter {
     display:block;
 }
 
-.property-sale .owl-stage-outer
-{
-    display: flex;
-    justify-content: end;
-}
+/*.property-sale .owl-stage-outer*/
+/*{*/
+/*    display: flex;*/
+/*    justify-content: end;*/
+/*}*/
 
-.property-rent .owl-stage-outer
-{
-    display: flex;
-    justify-content: end;
-}
+/*.property-rent .owl-stage-outer*/
+/*{*/
+/*    display: flex;*/
+/*    justify-content: end;*/
+/*}*/
 
 
 

@@ -18,13 +18,13 @@
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/owl.theme.default.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/owl.theme.default.min.css')}}">.
     <!-- Selection Style Sheet -->
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/selectric.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('admin/assets/css/selectric.css') }}">--}}
     <!-- Home Stylesheet -->
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/common.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/home.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/view-item.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/en-responsive.css')}}">
-{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"--}}
-{{--    />--}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
     @stack('css')
 </head>
