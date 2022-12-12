@@ -655,8 +655,13 @@ element.style {
     color: #fff;
 }
 
+.all-listing .property-lists
+{
+    direction: rtl;
+}
+
 .rtl .ss_ulsearch {
-    margin-right: -90px !important;
+    margin-right: -70px !important;
 }
 
 .rtl .type-dropdown
@@ -763,14 +768,6 @@ element.style {
     .ss_ulsearch
     {
         width: 372px !important;
-    }
-}
-
-@media screen and (max-width: 1240px)
-{
-    .ss_ulsearch
-    {
-        width: 314px !important;
     }
 }
 
@@ -1128,7 +1125,7 @@ element.style {
     }
 
     .ss_ulsearch {
-        width: 140% !important;
+        width: 152% !important;
         /* width: 466px !important; */
     }
 

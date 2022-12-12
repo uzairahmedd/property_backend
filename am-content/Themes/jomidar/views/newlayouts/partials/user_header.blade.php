@@ -18,7 +18,7 @@
         <div class="col-lg-4 col-md-4 d-flex align-items-center flex-column-reverse flex-lg-row">
             <div class="col d-flex flex-column align-items-end text-sm-right welcome justify-content-end">
                 <span class="font-16 theme-text-sky">{{__('labels.welcome')}}</span>
-                <h3 class="font-24 font-medium theme-text-blue align-items-end mb-0 ms-2">{{ Auth::User()->name }}</h3>
+                <h3 class="font-24 font-medium theme-text-blue align-items-end mb-0 ms-2 admin-name">{{ Auth::User()->name }}</h3>
             </div>
             <div class="dp-elipse ms-4 d-flex align-items-center justify-content-center">
                 <img src="{{ asset('assets/images/avatar.png')}}" alt="">

@@ -99,7 +99,7 @@
 /* Property Listing Start*/
 .chip {
     padding: 6px 16px;
-    border: 1px solid var(--theme-secondary);
+    /*border: 1px solid var(--theme-secondary);*/
     border-radius: 8px;
     font-size: 16px;
 }
@@ -1273,7 +1273,7 @@ room-dropdown-toggle::after
     }
 
     .home .navbar {
-        margin: 0px 0px 20px 0px;
+        margin: 0px 0px 0px 0px;
         padding: 0 10px 20px;
     }
 }

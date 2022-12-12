@@ -406,6 +406,12 @@
 .rtl .description-card .form-control {
     direction: ltr;
     text-align: start;
+    width: 100%;
+}
+
+.rtl .region-drop img
+{
+    right: 12px;
 }
 
 .rtl .input-icon, .price-unit {
@@ -429,7 +435,7 @@
 
 .rtl .sec-street
 {
-    margin-left: 20px;
+    margin-left: 0px;
 }
 
 .rtl .regional-drop-btn
@@ -451,6 +457,11 @@
 {
     margin-right: 5px;
     margin-top: 5px;
+}
+
+.rtl .street_info_2
+{
+    margin-left: 20px;
 }
 
 .rtl .interface-div button
@@ -672,10 +683,27 @@
     padding-left: 0;
 }
 
+.rtl .price-section .del
+{
+    margin-right: 10px;
+}
+
+.rtl .theme-text-sky
+{
+    direction: ltr;
+}
+
+.rtl .all-listing .property-lists {
+    direction: ltr;
+}
+
 
 
 @media screen and (max-width:768px) {
-
+    .rtl .street_info_2
+    {
+        margin-left: 0px;
+    }
     .rtl .budget-dropdown::before
     {
         left: unset;
@@ -706,7 +734,7 @@
     }
     .rtl #select_style_ul
     {
-        margin-right: -22px !important;
+        margin-right: -78px !important;
     }
 
     .rtl .navbar-nav
@@ -798,5 +826,11 @@
     .rtl .contact-modal .mesg {
         margin-right: 20px;
         width: 80%;
+    }
+}
+
+@media screen and (max-width: 335px) {
+    .rtl .regional-drop-btn {
+        padding: 2px 30px 2px 16px;
     }
 }
