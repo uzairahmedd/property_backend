@@ -127,7 +127,7 @@
                                     @foreach($categories as $category_data)
                                     <div class="radio-container prop-checkbox">
                                         <input type="checkbox" data-name="{{$category_data->name}}" value="{{$category_data->id}}" {{ $category != "" && $category == $category_data->id ? "checked" : '' }}>
-                                        <span class="checmark step font-14 font-medium"><i class="{{$category_data->icon->content}}"></i>{{$category_data->name}}</span>
+                                        <span class="checmark step font-14 font-medium"><i class="{{ !empty($category_data->icon) ? $category_data->icon->content : 'fas fa-home'}}"></i>{{$category_data->name}}</span>
                                     </div>
                                     @endforeach
                                 </div>

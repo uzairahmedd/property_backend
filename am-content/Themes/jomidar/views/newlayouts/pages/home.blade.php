@@ -131,7 +131,7 @@
                                                     @foreach($property_type as $key=>$value)
                                                     @if($key < 3) @foreach($value->child as $child)
                                                         @if($child->name == 'Residential')
-                                                        <li class="resident-pan" name="category" value="{{$value->id}}">{{$value->name}}<i class="fa-solid {{$value->icon->content}}"></i></li>
+                                                        <li class="resident-pan" name="category" value="{{$value->id}}">{{$value->name}}<i class="fa-solid {{ !empty($value->icon) ? $value->icon->content : 'fas fa-home'}}"></i></li>
                                                         @endif
                                                         @endforeach
                                                         @endif

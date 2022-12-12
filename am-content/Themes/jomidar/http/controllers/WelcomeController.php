@@ -102,7 +102,6 @@ class WelcomeController extends controller
             SEOTools::opengraph()->addProperty('keywords', $seo->tags);
             SEOTools::twitter()->setSite($seo->twitterTitle);
             SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
-            // $data = get_currency_info();
             $status = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
             $categories = Category::where('type', 'category')->inRandomOrder()->get();
             $states = Category::where('type', 'states')->with('childrenCategories')->get();
