@@ -1,6 +1,7 @@
 @extends('theme::newlayouts.app')
 @section('content')
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/select-style.css')}}">
+<link rel="stylesheet" href="{{theme_asset('assets/newcss/home-page.css')}}">
 <!-- Header Section Starts Here -->
 <div class="overlay home_fade"></div>
 <div class="header d-flex flex-column align-items-center">
@@ -228,7 +229,7 @@
         <div class="property-listing-content d-flex align-items-center justify-content-between">
             @foreach($status as $status_data)
             @if( $status_data->name =='Sale')
-            <p class="mb-0 theme-text-sky font-medium"><a href="{{ route('list', ['status' => $status_data->id]) }}">{{__('labels.show_more')}}</a></p>
+            <p class="mb-0 theme-text-sky font-medium"><a href="{{ route('list', ['status' => $status_data->id]) }}"><i class="fa-solid fa-arrow-left pe-1 ar-arrow"></i>{{__('labels.show_more')}}<i class="fa-solid fa-arrow-right ps-1 en-arrow"></i></a></p>
             @endif
             @endforeach
             <div class="d-flex align-items-center gap-3">
@@ -249,7 +250,6 @@
             }
             @endphp
             <div class="listing">
-
                 <div class="list" style="background-image: url({{$image}});">
                     <div class="content d-flex justify-content-between">
                         <div class="d-flex flex-column align-items-start theme-text-white">
@@ -287,7 +287,7 @@
                     </div>
                 </div>
                 <a href="property-detail/{{$sale_data->slug}}">
-                    <div class="mt-3">
+                    <div class="mt-3 home-listing-detail">
                         <h3 class="font-medium theme-text-blue">{{$sale_data->title}}</h3>
                         <div class="d-flex align-items-start justify-content-end pt-2">
                             <p class="mb-0 theme-text-seondary-black me-2">{{$sale_data->post_city->value}} - {{$sale_data->post_city->category->name}} </p>
@@ -310,7 +310,7 @@
         <div class="property-listing-content d-flex align-items-center justify-content-between">
             @foreach($status as $status_data)
             @if( $status_data->name =='Rent')
-            <p class="mb-0 theme-text-sky font-medium"><a href="{{ route('list', ['status' => $status_data->id]) }}">{{__('labels.show_more')}}</a></p>
+            <p class="mb-0 theme-text-sky font-medium"><a href="{{ route('list', ['status' => $status_data->id]) }}"><i class="fa-solid fa-arrow-left pe-1 ar-arrow"></i>{{__('labels.show_more')}}<i class="fa-solid fa-arrow-right ps-1 en-arrow"></i></a></p>
             @endif
             @endforeach
             <div class="d-flex align-items-center gap-3">
@@ -370,7 +370,7 @@
                     </div>
                 </div>
                 <a href="property-detail/{{$rent_data->slug}}">
-                    <div class="mt-3">
+                    <div class="mt-3 home-listing-detail">
                         <h3 class="font-medium theme-text-blue">{{$rent_data->title}}</h3>
                         <div class="d-flex align-items-start justify-content-end pt-2">
                             <p class="mb-0 theme-text-seondary-black me-2">{{$rent_data->post_city->value}} - {{$rent_data->post_city->category->name}}</p>

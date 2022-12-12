@@ -126,6 +126,32 @@
 
 .listing {
     text-align: end;
+    border-radius: 8px;
+    border: 1px solid #e5e5e6;
+    overflow: hidden;
+    background: #fff;
+}
+
+.home-listing-detail
+{
+    padding: 0px 10px 10px 10px;
+}
+
+.property-listing-content i.en-arrow
+{
+    display: none;
+}
+
+.property-listing-content i.ar-arrow
+{
+    display: block;
+}
+
+.property-listing-content a
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .listing h3 {
@@ -1016,6 +1042,8 @@ room-dropdown-toggle::after
 }
 
 @media screen and (min-width: 576px) {
+
+
     .looking-for .search-home-btn {
         display: none;
     }
