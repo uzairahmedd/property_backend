@@ -2,6 +2,13 @@
 @section('content')
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/select-style.css')}}">
     {{--<link rel="stylesheet" href="{{theme_asset('assets/newcss/home-page.css')}}">--}}
+    <style>
+        @media screen and (max-width: 576px) {
+            .rtl #select_style_ul {
+                margin-right: -22px !important;
+            }
+        }
+    </style>
     <!-- Header Section Starts Here -->
     <div class="overlay home_fade"></div>
     <div class="header d-flex flex-column align-items-center">
