@@ -22,10 +22,9 @@
                 </li>
             </ul>
         </nav>
-        <div class="d-flex flex-wrap-reverse justify-content-end justify-content-lg-between align-items-center my-3">
-            <div class="col-12 col-lg-8 col-xl-7 col-xxl-6">
+        <div class="d-flex flex-wrap-reverse justify-content-between justify-content-lg-between align-items-center my-3">
+            <div class="">
                 <ul class="detail list-unstyled mb-0 d-flex flex-column flex-sm-row align-items-end justify-content-between align-items-sm-center">
-
                     <li class="d-flex mb-3 mb-sm-0">
                         <span>{{__('labels.share')}}</span>
                         <div class="btn btn-primary dropdown-toggle icon d-flex align-items-center justify-content-center" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -68,7 +67,7 @@
                     </li>
                 </ul>
             </div>
-            <h1 class="title font-medium theme-text-seondary-black mb-3 mb-lg-0">{{ $property->title }}</h1>
+            <div><h1 class="title d-flex justify-content-start flex-wrap font-medium theme-text-seondary-black mb-3 mb-lg-0">{{ $property->title }}</h1></div>
         </div>
     </div>
     <!-- Slider Starts Here -->
