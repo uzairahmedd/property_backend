@@ -60,18 +60,6 @@
     text-align: left !important;
 }
 
-/*.rtl .property-sale .owl-stage-outer*/
-/*{*/
-/*    display: flex;*/
-/*    justify-content: end;*/
-/*}*/
-
-/*.rtl .property-rent .owl-stage-outer*/
-/*{*/
-/*    display: flex;*/
-/*    justify-content: end;*/
-/*}*/
-
 .rtl .apps h1
 {
     text-align: left;

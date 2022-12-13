@@ -222,11 +222,12 @@ $(document).ready(function () {
     $("#lang").click(function () {
         if ($('#lang').text() == 'English') {
             var url = 'lang/change/' + "?lang=" + 'en';
-            $('#lang').text('عربي');
+            
             $.ajax({
                 type: "get",
                 url: baseUrl + url,
                 success: function (data) {
+                    $('#lang').text('عربي');
                     //for success
                     if (data.status == 'success') {
                         self.location.reload();
@@ -236,11 +237,12 @@ $(document).ready(function () {
 
         } else if ($('#lang').text() == 'عربي') {
             var url = 'lang/change/' + "?lang=" + 'ar';
-            $('#lang').text('English');
+           
             $.ajax({
                 type: "get",
                 url: baseUrl + url,
                 success: function (data) {
+                    $('#lang').text('English');
                     //for success
                     if (data.status == 'success') {
                         self.location.reload();
