@@ -277,7 +277,61 @@ button a
 }
 
 .contact-modal .modal-body {
-    padding: 67px 36px 57px;
+    padding: 50px 36px 10px;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.google-btn {
+    background: #fff;
+    border: solid 2px rgb(245 239 239);
+    border-radius: 8px;
+    font-weight: bold;
+    display: flex;
+    padding: 10px 10px;
+    flex: auto;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}
+
+.fb-btn {
+    background: #fff;
+    border: solid 2px rgb(69, 69, 185);
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.social-login img {
+    width: 24px;
+}
+
+.social-login img {
+    width: 24px;
+}
+
+.subtitle {
+    text-align: center;
+    font-weight: bold;
+}
+
+.or {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid rgb(245 239 239);
+    line-height: 0.1em;
+    margin: 25px 0;
+}
+
+.or span {
+    background: #fff;
+    padding: 0 10px;
 }
 
 .contact-modal h1 {
@@ -285,7 +339,11 @@ button a
 }
 
 .send-modal .modal-body {
-    padding: 67px 55px 57px;
+    padding: 50px 36px 10px;
+}
+
+.terms-check{
+    border-radius: 5px;
 }
 
 .send-modal h1 {
@@ -803,6 +861,21 @@ button a
     animation: shiny-btn1 3s ease-in-out infinite;
 }
 
+.modal-width
+{
+    width: 35%;
+    max-width: 100%;
+}
+
+.modal-logo
+{
+    padding: 0px 0px 10px 0px;
+    width: 40%;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 .chip:hover{
@@ -846,9 +919,15 @@ button a
     {
         display: none;
     }
+
+
 }
 
 @media screen and (max-width:992px) {
+
+    .modal-width {
+        width: 54%;
+    }
     .container {
         padding: 0 24px;
     }
@@ -879,7 +958,9 @@ button a
     /*.dropdown-select.wide {*/
     /*    width: auto;*/
     /*}*/
-
+    .modal-width {
+        width: 68%;
+    }
     /*.looking-for input[type='search'] {*/
     /*    text-align: right;*/
     /*    width: auto;*/
@@ -893,6 +974,8 @@ button a
     .lang-txt i {
         padding-right: 5px;
     }
+
+
 
     .dropdown-select.wide {
         left: 60px;
@@ -971,9 +1054,14 @@ button a
     {
         display: none;
     }
+
 }
 
 @media screen and (max-width:576px) {
+
+    .modal-width {
+        width: 100%;
+    }
     .dropdown-select .list {
         width: 215px;
     }

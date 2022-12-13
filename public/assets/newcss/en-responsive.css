@@ -658,6 +658,10 @@
     direction: ltr;
 }
 
+.rtl .home-listing-detail {
+    direction: rtl;
+}
+
 .rtl #otp_notification
 {
     direction: ltr;
@@ -746,6 +750,11 @@
 }
 
 
+@media screen and (max-width:992px) {
+    .rtl .owl-home-carousel {
+        direction: ltr !important;
+    }
+}
 
 @media screen and (max-width:768px) {
     .rtl .street_info_2

@@ -6,12 +6,13 @@
 @if (Auth::guest())
 <!--Sign Up Modal -->
 <div class="modal fade theme-modal send-modal signup-modal" id="signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog px-3 px-md-0">
+    <div class="modal-dialog px-3 px-md-0 modal-width">
         <div class="modal-content">
             <div class="modal-body position-relative">
+                <img src="{{theme_asset('assets/images/logo.png')}}" class="modal-logo" alt="modal-logo">
                 <div class="d-flex flex-wrap justify-content-end">
-                    <div class="col-12 col-sm-8 col-md-7 ps-0 px-sm-3" style="z-index:11 ;">
-                        <h1 class="font-24 font-medium theme-text-seondary-black" style="margin-bottom:10px ;">{{__('labels.chat_with_adviser')}}</h1>
+                    <div class="col-12 col-sm-12 col-md-12 ps-0 px-sm-3" style="z-index:11 ;">
+{{--                        <h1 class="font-24 font-medium theme-text-seondary-black" style="margin-bottom:10px ;">{{__('labels.chat_with_adviser')}}</h1>--}}
                         <p id="errors_msg"></p>
                         <form action="{{ route('user_register') }}" method="POST" id="register_form">
                             @csrf
@@ -52,17 +53,16 @@
                             </div>
                             <span id="reg_terms_notification" class="error"></span>
                             <div class="form-group">
-                                <button class="basicbtn chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16" type="submit">{{__('labels.create_account')}}</button>
+                                <button class="basicbtn chat-btn theme-bg-blue theme-text-white border-0 font-bold font-16" type="submit">{{__('labels.create_account')}}</button>
                             </div>
                         </form>
-                        <p href="" class="d-flex justify-content-center mt-2"><a href="#" class="text-decoration-none ms-1" data-bs-target="#contactModal" data-bs-toggle="modal"> {{__('labels.do_you_have_account')}} </a>&nbsp;
+{{--                        <p href="" class="d-flex justify-content-center mt-2"><a href="#" class="text-decoration-none ms-1" data-bs-target="#contactModal" data-bs-toggle="modal"> {{__('labels.do_you_have_account')}} </a>&nbsp;--}}</p>
 
-
-                        </p>
+                        <p class="subtitle mt-2">{{__('labels.have_account')}}  <a href="#" class="theme-text-sky" data-bs-target="#contactModal" data-bs-toggle="modal">{{__('labels.sign_in')}}</a></p>
                         </form>
                     </div>
                 </div>
-                <img src="{{theme_asset('assets/images/Messaging.png')}}" alt="" class="position-absolute mesg">
+{{--                <img src="{{theme_asset('assets/images/Messaging.png')}}" alt="" class="position-absolute mesg">--}}
                 <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt="" class="position-absolute close-modal">
             </div>
         </div>
@@ -71,12 +71,13 @@
 <!-- Sign Up Modal Ends Here -->
 <!--Sign In Modal -->
 <div class="modal fade theme-modal contact-modal" id="contactModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog px-3 px-md-0">
+    <div class="modal-dialog px-3 px-md-0 modal-width">
         <div class="modal-content">
             <div class="modal-body position-relative">
+                <img src="{{theme_asset('assets/images/logo.png')}}" class="modal-logo" alt="modal-logo">
                 <div class="d-flex flex-wrap justify-content-end">
-                    <div class="col-12 col-sm-8 col-md-7 ps-0 px-sm-3" style="z-index:11 ;">
-                        <h1 class="font-24 font-medium theme-text-seondary-black" style="margin-bottom: 10px;">{{__('labels.chat_with_adviser')}}</h1>
+                    <div class="col-12 col-sm-12 col-md-12 ps-0 px-sm-3" style="z-index:11 ;">
+{{--                        <h1 class="font-24 font-medium theme-text-seondary-black" style="margin-bottom: 10px;">{{__('labels.chat_with_adviser')}}</h1>--}}
                         <p id="login_error_msg" style="color:red ;"></p>
                         <form action="{{ route('login') }}" method="POST" id="login_form">
                             @csrf
@@ -88,14 +89,25 @@
                                 <input type="password" name="password" value="" class="form-control font-medium font-16" placeholder="{{__('labels.password')}}">
                                 <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">{{__('labels.password')}}</label>
                             </div>
-                            <button type="submit" class="basicbtn chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16">
+                            <button type="submit" class="basicbtn chat-btn theme-bg-blue theme-text-white border-0 font-bold font-16">
                                 {{__('labels.login')}}
                             </button>
                         </form>
-                        <a href="" class="d-flex justify-content-center mt-2 theme-text-blue" data-bs-target="#signup" data-bs-toggle="modal">{{__('labels.create_account')}}</a>
+{{--                        <a href="" class="d-flex justify-content-center mt-2 theme-text-blue" data-bs-target="#signup" data-bs-toggle="modal">{{__('labels.create_account')}}</a>--}}
+                        <p class="or"><span>or</span></p>
+                        <div class="social-login">
+                            <button class="fb-btn">
+                                <img alt="FB" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDI5MS4zMTkgMjkxLjMxOSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjkxLjMxOSAyOTEuMzE5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8Zz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojM0I1OTk4OyIgZD0iTTE0NS42NTksMGM4MC40NSwwLDE0NS42Niw2NS4yMTksMTQ1LjY2LDE0NS42NmMwLDgwLjQ1LTY1LjIxLDE0NS42NTktMTQ1LjY2LDE0NS42NTkNCgkJUzAsMjI2LjEwOSwwLDE0NS42NkMwLDY1LjIxOSw2NS4yMSwwLDE0NS42NTksMHoiLz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojRkZGRkZGOyIgZD0iTTE2My4zOTQsMTAwLjI3N2gxOC43NzJ2LTI3LjczaC0yMi4wNjd2MC4xYy0yNi43MzgsMC45NDctMzIuMjE4LDE1Ljk3Ny0zMi43MDEsMzEuNzYzaC0wLjA1NQ0KCQl2MTMuODQ3aC0xOC4yMDd2MjcuMTU2aDE4LjIwN3Y3Mi43OTNoMjcuNDM5di03Mi43OTNoMjIuNDc3bDQuMzQyLTI3LjE1NmgtMjYuODF2LTguMzY2DQoJCUMxNTQuNzkxLDEwNC41NTYsMTU4LjM0MSwxMDAuMjc3LDE2My4zOTQsMTAwLjI3N3oiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
+                            </button>
+                            <button class="google-btn">
+                                <p class="btn-text mb-0">{{__('labels.sign_google')}}</p>
+                                <img alt="Google" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGQkJCMDA7IiBkPSJNMTEzLjQ3LDMwOS40MDhMOTUuNjQ4LDM3NS45NGwtNjUuMTM5LDEuMzc4QzExLjA0MiwzNDEuMjExLDAsMjk5LjksMCwyNTYNCgljMC00Mi40NTEsMTAuMzI0LTgyLjQ4MywyOC42MjQtMTE3LjczMmgwLjAxNGw1Ny45OTIsMTAuNjMybDI1LjQwNCw1Ny42NDRjLTUuMzE3LDE1LjUwMS04LjIxNSwzMi4xNDEtOC4yMTUsNDkuNDU2DQoJQzEwMy44MjEsMjc0Ljc5MiwxMDcuMjI1LDI5Mi43OTcsMTEzLjQ3LDMwOS40MDh6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojNTE4RUY4OyIgZD0iTTUwNy41MjcsMjA4LjE3NkM1MTAuNDY3LDIyMy42NjIsNTEyLDIzOS42NTUsNTEyLDI1NmMwLDE4LjMyOC0xLjkyNywzNi4yMDYtNS41OTgsNTMuNDUxDQoJYy0xMi40NjIsNTguNjgzLTQ1LjAyNSwxMDkuOTI1LTkwLjEzNCwxNDYuMTg3bC0wLjAxNC0wLjAxNGwtNzMuMDQ0LTMuNzI3bC0xMC4zMzgtNjQuNTM1DQoJYzI5LjkzMi0xNy41NTQsNTMuMzI0LTQ1LjAyNSw2NS42NDYtNzcuOTExaC0xMzYuODlWMjA4LjE3NmgxMzguODg3TDUwNy41MjcsMjA4LjE3Nkw1MDcuNTI3LDIwOC4xNzZ6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojMjhCNDQ2OyIgZD0iTTQxNi4yNTMsNDU1LjYyNGwwLjAxNCwwLjAxNEMzNzIuMzk2LDQ5MC45MDEsMzE2LjY2Niw1MTIsMjU2LDUxMg0KCWMtOTcuNDkxLDAtMTgyLjI1Mi01NC40OTEtMjI1LjQ5MS0xMzQuNjgxbDgyLjk2MS02Ny45MWMyMS42MTksNTcuNjk4LDc3LjI3OCw5OC43NzEsMTQyLjUzLDk4Ljc3MQ0KCWMyOC4wNDcsMCw1NC4zMjMtNy41ODIsNzYuODctMjAuODE4TDQxNi4yNTMsNDU1LjYyNHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGMTQzMzY7IiBkPSJNNDE5LjQwNCw1OC45MzZsLTgyLjkzMyw2Ny44OTZjLTIzLjMzNS0xNC41ODYtNTAuOTE5LTIzLjAxMi04MC40NzEtMjMuMDEyDQoJYy02Ni43MjksMC0xMjMuNDI5LDQyLjk1Ny0xNDMuOTY1LDEwMi43MjRsLTgzLjM5Ny02OC4yNzZoLTAuMDE0QzcxLjIzLDU2LjEyMywxNTcuMDYsMCwyNTYsMA0KCUMzMTguMTE1LDAsMzc1LjA2OCwyMi4xMjYsNDE5LjQwNCw1OC45MzZ6Ii8+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8L3N2Zz4NCg==">
+                            </button>
+                        </div>
+                        <p class="subtitle mt-2">{{__('labels.not_have_account')}} <a href="#" class="theme-text-sky" data-bs-target="#signup" data-bs-toggle="modal">{{__('labels.sign_up')}}</a></p>
                     </div>
                 </div>
-                <img src="{{theme_asset('assets/images/Messaging.png')}}" alt="" class="position-absolute mesg">
+{{--                <img src="{{theme_asset('assets/images/Messaging.png')}}" alt="" class="position-absolute mesg">--}}
                 <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt="" class="position-absolute close-modal">
             </div>
         </div>
