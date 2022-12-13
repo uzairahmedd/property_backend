@@ -1173,22 +1173,35 @@ element.style {
 
     .budget-dropdown {
         width: 250px;
-        max-width: 100%;
+        /*max-width: 100%;*/
         padding: 12px 15px 10px 13px;
         margin-top: 0 !important;
     }
 
+    .list-rent-dropdown
+    {
+        width: 270px;
+        margin-left: 0px !important;
+    }
+
     .room-dropdown {
         width: 234px;
-        max-width: 100%;
+        /*max-width: 100%;*/
         padding: 12px 15px 10px 13px;
         margin-top: 0 !important;
+        /*margin-left: -145px !important;*/
     }
     .room-dropdown::before {
-        left: 1;
+        right: 0;
+        left: unset;
     }
     .font-16 {
         font-size: 10px;
+    }
+
+    .price-input
+    {
+        flex-direction: column;
     }
 
     .room-container
@@ -1247,6 +1260,7 @@ element.style {
     .type-dropdown
     {
         width: 218px;
+        margin-left: 0 !important;
     }
 }
 

@@ -10,7 +10,7 @@
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav flex-column flex-md-row w-100 align-items-center justify-content-between">
+                <ul class="navbar-nav flex-column-reverse flex-md-row w-100 align-items-center justify-content-between">
                      <div class="header-top-right-section f-right">
                          <li class="nav-item mynavbar lang-txt d-flex">
                              <i class="fa-solid fa-globe d-flex justify-content-center align-items-center"></i>

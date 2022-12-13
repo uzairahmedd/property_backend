@@ -803,6 +803,8 @@ button a
     animation: shiny-btn1 3s ease-in-out infinite;
 }
 
+
+
 .chip:hover{
     opacity: .7;
 }
@@ -882,6 +884,15 @@ button a
     /*    text-align: right;*/
     /*    width: auto;*/
     /*}*/
+    .header-top-right-section {
+        border: 2px solid #286BAD;
+        border-radius: 5px;
+        padding: 0px 12px;
+    }
+
+    .lang-txt i {
+        padding-right: 5px;
+    }
 
     .dropdown-select.wide {
         left: 60px;
