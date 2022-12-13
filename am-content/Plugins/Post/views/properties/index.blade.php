@@ -20,7 +20,7 @@
 				</div>
 			</div>
 			<div class="col-lg-2">
-
+                <a href="{{ route('admin.property.create') }}" class="btn btn-outline-primary add-property-btn">{{ __('Add') }}</a>
 			</div>
 		</div>
 		<br>

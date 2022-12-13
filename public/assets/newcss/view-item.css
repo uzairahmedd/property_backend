@@ -31,6 +31,16 @@
     left: 8px;
 }
 
+.detail
+{
+    display: flex !important;
+    justify-content: end !important;
+    flex-direction: row !important;
+    align-items: end !important;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
 .item-header .breadcrumb-item+.breadcrumb-item::before {
     content: '<';
     color: var(--theme-seondary-black);
