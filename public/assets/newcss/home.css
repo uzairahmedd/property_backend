@@ -886,7 +886,10 @@ room-dropdown-toggle::after
 }
 
 @media screen and (max-width: 992px) {
-
+    .owl-home-carousel
+    {
+        direction: ltr !important;
+    }
     .looking-for
     {
         width: 720px;
@@ -932,7 +935,6 @@ room-dropdown-toggle::after
     /*    text-align: right;*/
     /*    width: auto;*/
     /*}*/
-
     .looking-for {
         width: 580px;
         max-width: 100%;
@@ -1687,6 +1689,15 @@ span.directorist-select__selected-list--item:first-letter {
 .rent-link
 {
     color: black;
+}
+
+.owl-home-carousel
+{
+    direction: rtl;
+}
+.home-listing-detail
+{
+    direction: ltr;
 }
 
 .new-rent-dropdown::before {
