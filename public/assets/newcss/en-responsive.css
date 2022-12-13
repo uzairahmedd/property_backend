@@ -579,6 +579,7 @@
     justify-content: start !important;
     align-items: start !important;
     flex-direction: row-reverse !important;
+    direction: ltr;
 }
 
 .rtl .property-detail .card li {
@@ -764,6 +765,10 @@
 
 @media screen and (max-width: 576px) {
 
+    .rtl .budget-dropdown::before {
+        left: 0;
+        right: unset;
+    }
     .rtl .add-btn {
         margin-right: 0px;
     }
@@ -847,7 +852,23 @@
     }
 }
 
+@media screen and (max-width: 480px) {
+    .rtl .budget-dropdown {
+        width: 300px;
+    }
+
+}
+
 @media screen and (max-width: 378px) {
+    .rtl .room-dropdown::before {
+        right: unset;
+        left: 0;
+    }
+
+    .rtl .budget-dropdown {
+        width: 226px;
+    }
+
     .rtl .close-modal {
         width: 23px;
         top: 12px;
