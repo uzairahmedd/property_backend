@@ -19,8 +19,17 @@
 
                         echo  input($arr);
 
+                        $ar_arr['title']= 'State Name in Arabic';
+                        $ar_arr['id']= 'ar_title';
+                        $ar_arr['type']= 'text';
+                        $ar_arr['placeholder']= 'Enter Name in Arabic';
+                        $ar_arr['name']= 'ar_name';
+                        $ar_arr['is_required'] = true;
 
-                    
+                        echo  input($ar_arr);
+
+
+                      
                         @endphp
                     </div>
                 </div>

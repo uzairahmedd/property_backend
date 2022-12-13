@@ -93,10 +93,12 @@ class CategoryController extends Controller
   {
     $validatedData = $request->validate([
       'name' => 'required|max:100',
+      'ar_name' => 'required|max:100',
     ]);
     $slug = Str::slug($request->name);
     $post = new Category;
     $post->name = $request->name;
+    $post->ar_name = $request->ar_name;
     $post->slug = $slug;
     $post->type = 'category';
     $post->user_id = Auth::id();
@@ -220,10 +222,12 @@ class CategoryController extends Controller
 
     $validatedData = $request->validate([
       'name' => 'required|max:100',
+      'ar_name' => 'required|max:100',
     ]);
     $slug = Str::slug($request->name);
     $post =  Category::where('type', 'category')->findorFail($id);
     $post->name = $request->name;
+    $post->ar_name = $request->ar_name;
     $post->slug = $slug;
     $post->featured = $request->featured;
     $post->save();
