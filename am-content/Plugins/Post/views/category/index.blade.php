@@ -45,7 +45,7 @@
 								</div>
 							</th>
 							<th class="am-title">{{ __('Title') }}</th>
-							<!-- <th class="am-title">{{ __('Credit Charge') }}</th> -->
+							<th class="am-title">{{ __('Arabic title') }}</th>
 							<th class="am-title">{{ __('Featured') }}</th>
 							<th class="am-date">{{ __('Date') }}</th>
 						</tr>
@@ -64,6 +64,9 @@
 								<div class="hover">
 									<a href="{{ route('admin.category.edit',$post->id) }}">{{ __('Edit') }}</a>
 								</div>
+							</td>
+							<td>
+								{{ $post->ar_name }}
 							</td>
 							<!-- <td>{{ $post->creditcharge->content ?? '' }}</td> -->
 
@@ -90,7 +93,7 @@
 							</div>
 						</th>
 						<th class="am-title">{{ __('Title') }}</th>
-						<!-- <th class="am-title">{{ __('Credit Charge') }}</th> -->
+						<th class="am-title">{{ __('Arabic title') }}</th>
 						<th class="am-title">{{ __('Featured') }}</th>
 						<th class="am-date">{{ __('Date') }}</th>
 					</tr>

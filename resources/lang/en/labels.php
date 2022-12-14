@@ -340,4 +340,6 @@ return [
     'term121' => 'In the event that any item is found to be invalid or unenforceable, the validity or enforceability of the other items will not be affected',
     'term122' => 'If you have any questions, complaints or comments regarding these Terms of Use, please contact us at the following address:info@khaiaraty.com',
     '' => '',
+    'yes'=>'Yes',
+    'no'=>'No',
 ];

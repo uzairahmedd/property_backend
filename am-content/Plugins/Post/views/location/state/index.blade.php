@@ -46,6 +46,7 @@
 							</th>
 							<th class="am-title"><i class="far fa-image"></i></th>
 							<th class="am-title">{{ __('Title') }}</th>
+							<th class="am-title">{{ __('Arabic Title') }}</th>
 							<th class="am-title">{{ __('Url') }}</th>
 							<th class="am-date">{{ __('Date') }}</th>
 						</tr>
@@ -68,6 +69,7 @@
 									<a href="{{ route('admin.location.edit',$post->id) }}">{{ __('Edit') }}</a>
 								</div>
 							</td>
+							<td>{{ $post->ar_name }}</td>
 							<td>{{ url('/state',$post->slug) }}</td>
 							<td>{{ __('Last Modified') }}
 								<div class="date">
@@ -88,6 +90,7 @@
 						</th>
 						<th class="am-title"><i class="far fa-image"></i></th>
 						<th class="am-title">{{ __('Title') }}</th>
+						<th class="am-title">{{ __('Arabic Title') }}</th>
 						<th class="am-title">{{ __('Url') }}</th>
 						<th class="am-date">{{ __('Date') }}</th>
 					</tr>

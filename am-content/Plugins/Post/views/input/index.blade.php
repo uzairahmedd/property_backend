@@ -57,6 +57,7 @@
 								</div>
 							</th>
 							<th class="am-title">{{ __('Name') }}</th>
+							<th class="am-title">{{ __('Arabic Name') }}</th>
 							<th class="am-title">{{ __('Input Type') }}</th>
 							<th class="am-title">{{ __('Is Required') }}</th>
 							<th class="am-title">{{ __('Is Featured') }}</th>
@@ -79,6 +80,9 @@
 								<div>
 									<a href="{{ route('admin.input.edit',$row->id) }}">Edit</a>
 								</div>
+							</td>
+							<td>
+								{{ $row->ar_name }}
 							</td>
 							<td>
 								{{ $row->slug }}

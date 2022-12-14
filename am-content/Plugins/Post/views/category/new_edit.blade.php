@@ -29,6 +29,12 @@
                         <input type="hidden" name="icon" id="icon" class="item-menu" value="{{ $info->icon->content ?? '' }}">
                     </div>
                     <div class="form-group">
+                        <label for="text">{{ __('Arabic Name') }}</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control item-menu" name="ar_name" id="ar_text" placeholder="Enter Name" autocomplete="off" required="" value="{{ $info->ar_name }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="p_id">{{ __('Parent Category') }}</label>
                         <select multiple="" class="form-control select2" name="child[]">
                             @foreach($categories as $row)

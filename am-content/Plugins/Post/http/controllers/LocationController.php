@@ -75,7 +75,7 @@ class LocationController extends Controller
         abort(401);
        }
        $posts=Category::where('type','countries')->with('preview')->withCount('address')->latest()->get();
-       return view('plugin::location.state.create',compact('posts'));
+       return view('plugin::location.state.new_create',compact('posts'));
        
      }
 
@@ -136,7 +136,8 @@ class LocationController extends Controller
     public function store(Request $request)
     {
       $validatedData = $request->validate([
-        'name' => 'required|max:100',           
+        'name' => 'required|max:100',    
+        'ar_name' => 'required|max:100',            
       ]);
 
       if ($request->slug) {
@@ -154,6 +155,7 @@ class LocationController extends Controller
       }
       $category=new Category;
       $category->name=$request->name;
+      $category->ar_name=$request->ar_name;
       $category->slug=$slug;
       $category->p_id=$pid;
       $category->type=$request->type;
@@ -224,8 +226,7 @@ class LocationController extends Controller
          if(!Auth()->user()->can('states.edit')) {
           abort(401);
         }
-
-        return view('plugin::location.state.edit',compact('info','json','posts'));
+        return view('plugin::location.state.new_edit',compact('info','json','posts'));
       }
       
 
@@ -242,11 +243,13 @@ class LocationController extends Controller
     {
       $validatedData = $request->validate([
         'name' => 'required|max:100',
-        'slug' => 'required|max:100',            
+        'slug' => 'required|max:100',  
+        'ar_name' => 'required|max:100',          
       ]);
 
       $category=Category::find($id);
       $category->name=$request->name;
+      $category->ar_name=$request->ar_name;
       if ($request->p_id) {
         $category->p_id=$request->p_id;
       }

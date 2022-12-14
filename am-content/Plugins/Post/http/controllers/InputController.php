@@ -56,10 +56,12 @@ class InputController extends controller
     {
          $validatedData = $request->validate([
             'title' => 'required|max:50',
+            'ar_title' => 'required|max:50',
         ]);
 
         $post= new Category;
         $post->name=$request->title;
+        $post->ar_name=$request->ar_title;
         $post->slug=$request->input_type;
         $post->type='option';
         $post->user_id=Auth::id();
@@ -124,10 +126,12 @@ class InputController extends controller
     {
         $validatedData = $request->validate([
             'title' => 'required|max:50',
+            'ar_title' => 'required|max:50',
         ]);
 
         $post=  Category::where('type','option')->findorFail($id);
         $post->name=$request->title;
+        $post->ar_name=$request->ar_title;
         $post->slug=$request->input_type;
         $post->status=$request->required;
         $post->featured=$request->featured;

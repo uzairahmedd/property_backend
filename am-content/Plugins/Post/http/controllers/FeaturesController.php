@@ -66,13 +66,15 @@ class FeaturesController extends Controller
     public function store(Request $request)
     {
       $validatedData = $request->validate([
-        'name' => 'required|unique:categories|max:100',           
+        'name' => 'required|unique:categories|max:100',   
+        'ar_name' => 'required|max:100',           
       ]);
 
       $slug=Str::slug($request->name);
 
       $category=new Category;
       $category->name=$request->name;
+      $category->ar_name=$request->ar_name;
       $category->slug=$slug;
       $category->featured=$request->featured;
       $category->type=$request->type;
@@ -131,11 +133,13 @@ class FeaturesController extends Controller
     public function update(Request $request, $id)
     {
       $validatedData = $request->validate([
-        'name' => 'required|max:100',         
+        'name' => 'required|max:100',       
+        'ar_name' => 'required|max:100',    
       ]);
 
       $category=Category::find($id);
       $category->name=$request->name;
+      $category->ar_name=$request->ar_name;
        $category->featured=$request->featured;
       $category->save();
 

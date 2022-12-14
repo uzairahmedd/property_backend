@@ -90,8 +90,8 @@
                                             </div>
                                             <div class="tab-pane fade" id="nav-buy" role="tabpanel"
                                                  aria-labelledby="nav-buy-tab">
-                                                <p class="rent-buy-txt">{{__('labels.rental_fre')}}</p>
-                                                <div
+                                                <!-- <p class="rent-buy-txt">{{__('labels.rental_fre')}}</p> -->
+                                                <!-- <div
                                                     class="rent-buy-pans d-flex flex-row-reverse justify-content-center align-items-center">
                                                     <li class="rent-all">
                                                         <input class="rent-select-dropdown" value="" type="radio"
@@ -126,7 +126,7 @@
                                                         <label class="rent-box project_label"
                                                                for="radio05-05">سنوياً</label>
                                                     </li>
-                                                </div>
+                                                </div> -->
                                                 <div class="d-flex justify-content-between mt-2">
                                                     <button class="complete-btn"><a href="">{{__('labels.apply')}}</a>
                                                     </button>
@@ -163,13 +163,13 @@
                                                         <a class="nav-item nav-link resident-link" id="nav-profile-tab"
                                                            data-bs-toggle="tab" href="#nav-commercial" role="tab"
                                                            aria-controls="nav-profile" data-id="{{$nature->id}}"
-                                                           aria-selected="false">{{$nature->name}}</a>
+                                                           aria-selected="false">{{ Session::get('locale') == 'ar' ? $nature->ar_name : $nature->name}}</a>
                                                     @else
                                                         <a class="nav-item nav-link resident-link active"
                                                            id="nav-home-tab" data-bs-toggle="tab"
                                                            href="#nav-residential" role="tab" aria-controls="nav-home"
                                                            data-id="{{$nature->id}}"
-                                                           aria-selected="true">{{$nature->name}}</a>
+                                                           aria-selected="true">{{ Session::get('locale') == 'ar' ? $nature->ar_name : $nature->name}}</a>
                                                     @endif
                                                 @endforeach
 
@@ -185,7 +185,7 @@
                                                                 @foreach($value->child as $child)
                                                                     @if($child->name == 'Residential')
                                                                         <li class="resident-pan" name="category"
-                                                                            value="{{$value->id}}">{{$value->name}}<i
+                                                                            value="{{$value->id}}">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}<i
                                                                                 class="fa-solid {{ !empty($value->icon) ? $value->icon->content : 'fas fa-home'}}"></i>
                                                                         </li>
                                                                     @endif
@@ -199,7 +199,7 @@
                                                                 @foreach($value->child as $child)
                                                                     @if($child->name == 'Residential')
                                                                         <li class="resident-pan" name="category"
-                                                                            value="{{$value->id}}">{{$value->name}}<i
+                                                                            value="{{$value->id}}">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}<i
                                                                                 class="fa-solid {{$value->icon->content}}"></i>
                                                                         </li>
                                                                     @endif
@@ -224,7 +224,7 @@
                                                                 @foreach($value->child as $child)
                                                                     @if($child->name == 'Commercial')
                                                                         <li class="resident-pan" name="category"
-                                                                            value="{{$value->id}}">{{$value->name}}<i
+                                                                            value="{{$value->id}}">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}<i
                                                                                 class="fa-solid {{$value->icon->content}}"></i>
                                                                         </li>
                                                                     @endif
@@ -238,7 +238,7 @@
                                                                 @foreach($value->child as $child)
                                                                     @if($child->name == 'Commercial')
                                                                         <li class="resident-pan" name="category"
-                                                                            value="{{$value->id}}">{{$value->name}}<i
+                                                                            value="{{$value->id}}">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}<i
                                                                                 class="fa-solid {{$value->icon->content}}"></i>
                                                                         </li>
                                                                     @endif
@@ -268,7 +268,7 @@
                             name="state">
                         <option value="" disabled selected>{{__('labels.looking_property')}}</option>
                         @foreach($states as $row)
-                            <option value="{{ $row->id }}">{{ $row->name }}</option>
+                            <option value="{{ $row->id }}">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
                         @endforeach
                         <!-- <option value="AX">الرياض<span class="property_num">(1)</span></option>-->
                     </select>
