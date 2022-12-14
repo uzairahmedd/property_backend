@@ -360,8 +360,9 @@ button a
 }
 
 .contact-modal .mesg {
-    top: 66px;
+    top: 160px;
     left: 0;
+    margin-left: 55px;
 }
 
 .send-modal .mesg {
@@ -503,8 +504,9 @@ button a
 }
 
 .signup-modal .mesg {
-    top: 160px;
+    top: 275px;
     left: 0;
+    margin-left: 55px;
 }
 
 
@@ -863,7 +865,7 @@ button a
 
 .modal-width
 {
-    width: 35%;
+    width: 55%;
     max-width: 100%;
 }
 

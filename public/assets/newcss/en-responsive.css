@@ -737,6 +737,23 @@
     align-items: center;
 }
 
+.rtl .terms-check {
+    direction: rtl;
+    border-radius: 5px;
+}
+
+.rtl .contact-modal .mesg {
+    top: 160px;
+    left: 0;
+    margin-right: 52px;
+}
+
+.rtl .signup-modal .mesg {
+    top: 275px;
+    left: 0;
+    margin-right: 55px;
+}
+
 
 @media screen and (max-width:992px) {
     .rtl .owl-home-carousel {
