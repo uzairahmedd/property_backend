@@ -16,7 +16,7 @@
         <nav aria-label="breadcrumb" class="d-flex justify-content-end align-items-center">
             <ul class="breadcrumb mb-0">
                 <li class="breadcrumb-item active theme-text-seondary-black" aria-current="page">{{ $property->title }}</li>
-                <li class="breadcrumb-item"><a href="#" class="theme-text-blue text-decoration-none">{{$property->property_status_type->category->name}}</a>
+                <li class="breadcrumb-item"><a href="#" class="theme-text-blue text-decoration-none"> {{ Session::get('locale') == 'ar' ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}}</a>
                 </li>
                 <li class="breadcrumb-item home-breadcrumb"><a href="/" class="theme-text-blue text-decoration-none">{{__('labels.home')}}</a>
                 </li>
@@ -118,7 +118,7 @@
                     <h3 class="font-medium mb-2">{{__('labels.address')}}</h3>
                     <div class="d-flex align-items-start justify-content-end mb-4">
                         <p class="mb-0 theme-text-seondary-black me-2">{{$property->post_city->value}}
-                            - {{$property->post_city->category->name}}
+                            - {{ Session::get('locale') == 'ar' ? $property->post_city->category->ar_name : $property->post_city->category->name}}
                         </p>
                         <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                     </div>
@@ -129,18 +129,18 @@
                             <span> {{ $value->value }}</span>
                             @if($value->category->name =='Bathrooms')
 
-                            <img src="{{theme_asset('assets/images/shower.png')}}" title="{{ $value->category->name }}" data-toggle="tooltip" alt="">
+                            <img src="{{theme_asset('assets/images/shower.png')}}" title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}" data-toggle="tooltip" alt="">
                             @elseif($value->category->name =='Bedrooms')
-                            <img src="{{theme_asset('assets/images/room.png')}}" title="{{ $value->category->name }}" data-toggle="tooltip" alt="">
+                            <img src="{{theme_asset('assets/images/room.png')}}" title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}" data-toggle="tooltip" alt="">
 
                             @elseif($value->category->name =='Parking')
-                            <img src="{{theme_asset('assets/images/parking.png')}}" title="{{ $value->category->name }}" data-toggle="tooltip" alt="">
+                            <img src="{{theme_asset('assets/images/parking.png')}}" title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}" data-toggle="tooltip" alt="">
 
                             @elseif($value->category->name =='lounges')
-                            <img src="{{theme_asset('assets/images/lunch.png')}}" title="{{ $value->category->name }}" data-toggle="tooltip" alt="">
+                            <img src="{{theme_asset('assets/images/lunch.png')}}" title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}" data-toggle="tooltip" alt="">
 
                             @elseif($value->category->name =='Boards')
-                            <img src="{{theme_asset('assets/images/board-room.png')}}" title="{{ $value->category->name }}" data-toggle="tooltip" alt="">
+                            <img src="{{theme_asset('assets/images/board-room.png')}}" title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}" data-toggle="tooltip" alt="">
                             @endif
                         </li>
 
@@ -169,7 +169,7 @@
             <div class="col-12 col-lg-6">
                 <div class="d-flex flex-column align-items-end basic-property-info py-4">
                     <div class="d-flex justify-content-between w-100 mb-2">
-                        <h1 class="font-24 theme-text-blue font-medium">{{$property->property_status_type->category->name}}</h1>
+                        <h1 class="font-24 theme-text-blue font-medium">{{ Session::get('locale') == 'ar' ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}}</h1>
                         <h1 class="font-24 theme-text-blue">{{__('labels.property_description')}}</h1>
                     </div>
                     <p class="theme-text-seondary-black font-16 text-end mb-2">{{ content_format($property->description->content ?? '') }}</p>
@@ -179,7 +179,7 @@
                     @if( $value->type == 'parent_category')
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ $value->name }}</h3>
+                            <h3 class="font-16 font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}</h3>
                         </div>
                         <div class="col-6 text-end">
                             <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.property_nature')}}</span>
@@ -188,7 +188,7 @@
                     @elseif( $value->type == 'category')
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ $value->name }}</h3>
+                            <h3 class="font-16 font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}</h3>
                         </div>
                         <div class="col-6 text-end">
                             <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.type_property')}} </span>
@@ -199,7 +199,7 @@
 
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ $property->electricity_facility->content == 0 ? 'نعم' : 'لا' }}</h3>
+                            <h3 class="font-16 font-medium theme-text-blue">{{ $property->electricity_facility->content == 0 ? __('labels.yes') : __('labels.no') }}</h3>
                         </div>
                         <div class="col-6 text-end">
                             <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.electricity_meter_is_there')}}</span>
@@ -208,7 +208,7 @@
 
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ $property->water_facility->content == 0 ? 'نعم' : 'لا' }}</h3>
+                            <h3 class="font-16 font-medium theme-text-blue">{{ $property->water_facility->content == 0 ? __('labels.yes') : __('labels.no') }}</h3>
                         </div>
                         <div class="col-6 text-end">
                             <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.water_meter_is_there')}}</span>
@@ -243,7 +243,7 @@
                             <h3 class="font-16 font-medium theme-text-blue">{{ $options_data->value == 0 ? 'غير متوفر' : $options_data->value}}</h3>
                         </div>
                         <div class="col-6 text-end">
-                            <span class="font-16 theme-text-seondary-black">{{ $options_data->category->name }}</span>
+                            <span class="font-16 theme-text-seondary-black"> {{ Session::get('locale') == 'ar' ? $options_data->category->ar_name : $options_data->category->name}}</span>
                         </div>
                     </div>
                     @endforeach
@@ -251,11 +251,11 @@
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start">
                             @if(isset($property->property_condition->content) && $property->property_condition->content == 3 )
-                            <h3 class="font-16 font-medium theme-text-blue">مفروشة</h3>
+                            <h3 class="font-16 font-medium theme-text-blue">{{__('labels.furnishing')}}</h3>
                             @elseif(isset($property->property_condition->content) && $property->property_condition->content == 2 )
-                            <h3 class="font-16 font-medium theme-text-blue">نص مفروشة</h3>
+                            <h3 class="font-16 font-medium theme-text-blue">{{__('labels.txt_furnished')}}</h3>
                             @elseif(isset($property->property_condition->content) && $property->property_condition->content == 1 )
-                            <h3 class="font-16 font-medium theme-text-blue">غير مفروشة</h3>
+                            <h3 class="font-16 font-medium theme-text-blue">{{__('labels.unfurnished')}}</h3>
                             @endif
 
                         </div>
@@ -282,7 +282,7 @@
                         @if (isset($features))
                         @foreach ($features as $facility)
                         <div class="tag d-flex justify-content-center align-items-center mb-2">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ $facility->name }}</h3>
+                            <h3 class="font-16 font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ?  $facility->ar_name : $facility->name}}</h3>
                         </div>
                         @endforeach
                     </div>

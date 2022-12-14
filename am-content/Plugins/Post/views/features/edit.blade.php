@@ -22,6 +22,10 @@
               </div>
             </div>
             <input type="hidden" name="icon" id="icon" class="item-menu" value="{{ $info->icon->content ?? '' }}">
+            <label for="text">{{ __('Arabic Name') }}</label>
+            <div class="input-group">
+              <input type="text" class="form-control item-menu" name="ar_name" id="ar_text" placeholder="Enter Name in Arabic" autocomplete="off" required="" value="{{ $info->ar_name }}">
+            </div>
           </div>
         </div>
       </div>

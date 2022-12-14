@@ -46,6 +46,7 @@
 							</th>
 							<th class="am-title"><i class="far fa-image"></i></th>
 							<th class="am-title">{{ __('Title') }}</th>
+							<th class="am-title">{{ __('Arabic Title') }}</th>
 							<th class="am-date">{{ __('Date') }}</th>
 						</tr>
 					</thead>
@@ -67,6 +68,9 @@
 									<a href="{{ route('admin.feature.edit',$post->id) }}">{{ __('Edit') }}</a>
 								</div>
 							</td>
+							<td>
+								{{ $post->ar_name }}
+							</td>
 							<td>{{ __('Last Modified') }}
 								<div class="date">
 									{{ $post->updated_at->diffForHumans() }}
@@ -86,6 +90,7 @@
 						</th>
 						<th class="am-title"><i class="far fa-image"></i></th>
 						<th class="am-title">{{ __('Title') }}</th>
+						<th class="am-title">{{ __('Arabic Title') }}</th>
 						<th class="am-date">{{ __('Date') }}</th>
 					</tr>
 				</tfoot>

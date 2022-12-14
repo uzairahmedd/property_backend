@@ -126,8 +126,8 @@
                                 <div class="type-dropdown-content d-flex justify-content-around align-items-center">
                                     @foreach($categories as $category_data)
                                     <div class="radio-container prop-checkbox">
-                                        <input type="checkbox" data-name="{{$category_data->name}}" value="{{$category_data->id}}" {{ $category != "" && $category == $category_data->id ? "checked" : '' }}>
-                                        <span class="checmark step font-14 font-medium"><i class="{{ !empty($category_data->icon) ? $category_data->icon->content : 'fas fa-home'}}"></i>{{$category_data->name}}</span>
+                                        <input type="checkbox" data-name="{{ Session::get('locale') == 'ar' ? $category_data->ar_name : $category_data->name}}" value="{{$category_data->id}}" {{ $category != "" && $category == $category_data->id ? "checked" : '' }}>
+                                        <span class="checmark step font-14 font-medium"><i class="{{ !empty($category_data->icon) ? $category_data->icon->content : 'fas fa-home'}}"></i>{{ Session::get('locale') == 'ar' ? $category_data->ar_name : $category_data->name}}</span>
                                     </div>
                                     @endforeach
                                 </div>
@@ -185,7 +185,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="nav-buy" role="tabpanel" aria-labelledby="nav-buy-tab">
-                                                    <p class="rent-buy-txt">{{__('labels.rental_fre')}}</p>
+                                                    <!-- <p class="rent-buy-txt">{{__('labels.rental_fre')}}</p>
                                                     <div class="rent-buy-pans d-flex flex-row-reverse justify-content-center align-items-center">
                                                         <li class="rent-all">
                                                             <input class="rent-select-dropdown" value="" type="radio" id="radio02-01" checked />
@@ -211,7 +211,7 @@
                                                             <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio05-05" />
                                                             <label class="rent-box project_label" for="radio05-05">سنوياً</label>
                                                         </li>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="d-flex justify-content-between mt-2">
                                                         <button class="complete-btn list-complete-btn"><a href="">{{__('labels.apply')}}</a></button>
                                                         <button class="reset-btn"><a href=""> {{__('labels.reset')}}</a></button>
@@ -232,7 +232,7 @@
                         <select class="theme-text-secondary-black border-0" theme="google" width="400" style="appearance: none;" placeholder="{{__('labels.looking_property')}}" data-search="true" id="property_states_dropdown">
                             <option value="" disabled selected>{{__('labels.looking_property')}}</option>
                             @foreach ($states as $row)
-                            <option value="{{ $row->id }}" @if($state==$row->id) selected="selected" @endif>{{ $row->name }}</option>
+                            <option value="{{ $row->id }}" @if($state==$row->id) selected="selected" @endif>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
                             @endforeach
                             <!-- <option value="AX">الرياض<span class="property_num">(1)</span></option> -->
                         </select>
