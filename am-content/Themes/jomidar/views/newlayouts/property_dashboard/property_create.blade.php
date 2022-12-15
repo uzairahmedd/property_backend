@@ -7,11 +7,6 @@
     <div class="container">
         <form method="post" action="{{ route('agent.property.store_property') }}">
             @csrf
-            @php
-            $form_check=microtime();
-            Session::put('form_check', $form_check);
-            @endphp
-            <!-- <input type="hidden" name="form_check" value="{{$form_check}}"> -->
             <input type="hidden" name="term_id" value="{{$id}}">
             <div class="description-card card">
                 @if($errors->has('message'))
@@ -78,7 +73,7 @@
                                 <select class="form-control add_prop_btn" name="city">
                                     <option value="" disabled selected>  {{__('labels.select_region')}}</option>
                                     @foreach(App\Category::where('type','states')->get() as $row)
-                                    <option value="{{ $row->id }}" {{ $post_data != '' && $post_data->city->category_id == $row->id ? "selected" : (old("city") == $row->id ? "selected" : '') }}>{{ $row->name }}</option>
+                                    <option value="{{ $row->id }}" {{ $post_data != '' && $post_data->city->category_id == $row->id ? "selected" : (old("city") == $row->id ? "selected" : '') }}> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
 
                                     @endforeach
                                 </select>

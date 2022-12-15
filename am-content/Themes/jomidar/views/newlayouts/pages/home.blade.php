@@ -1,7 +1,6 @@
 @extends('theme::newlayouts.app')
 @section('content')
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/select-style.css')}}">
-    {{--<link rel="stylesheet" href="{{theme_asset('assets/newcss/home-page.css')}}">--}}
     <style>
         @media screen and (max-width: 576px) {
             .rtl #select_style_ul {

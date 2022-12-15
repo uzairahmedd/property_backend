@@ -197,10 +197,8 @@ class WelcomeController extends controller
      */
     public function change(Request $request)
     {
-//        dump($request->all());
         App::setLocale($request->lang);
         session()->put('locale', $request->lang);
-//        dd(session()->get('locale'));
-            return $respons = ['status' => 'success'];
+        return $respons = ['status' => 'success'];
     }
 }

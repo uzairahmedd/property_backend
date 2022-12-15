@@ -19,7 +19,7 @@
                     @foreach(App\Category::where('type','feature')->get() as $row)
                     <div class="radio-container checkbox-step5">
                         <input name="features[]" type="checkbox" value="{{ $row->id }}" @if(in_array($row->id, $features_array)) checked @endif >
-                        <span class="checmark step font-14 font-medium">{{ $row->name }}</span>
+                        <span class="checmark step font-14 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
                     </div>
                     @endforeach
                 </div>
