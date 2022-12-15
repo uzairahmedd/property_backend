@@ -69,3 +69,4 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
     @include('theme::newlayouts.partials.sidebar')
 </div>
 @endsection
+

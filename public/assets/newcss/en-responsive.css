@@ -418,8 +418,14 @@
     right: 12px;
 }
 
-.rtl .input-icon, .price-unit {
+.rtl .input-icon {
     right: 12px;
+}
+
+.rtl .price-unit {
+    right: 0;
+    margin-right: 10px;
+    top: 26px;
 }
 
 .rtl .property-value .meter_txt

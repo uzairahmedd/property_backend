@@ -38,7 +38,7 @@ $(document).ready(function (event) {
 });
 // Property Step Js End
 
-//to get property type 
+//to get property type
 function property_type(elem){
     $('#property_type_radio').html('');
     var id = $(elem).val();
@@ -65,3 +65,18 @@ function property_type(elem){
         }
     });
 }
+
+$(document).ready(function () {
+    var parts = $(location).attr("href").split('/');
+    var lastSegment = parts.pop() || parts.pop();  // handle potential trailing slash
+    if (lastSegment == 'property-list') {
+        $('#sidebar_url a').removeClass("sidebar-active");
+        $('#property_list').addClass("sidebar-active");
+    } else if (lastSegment == 'favorite-property-list') {
+        $('#sidebar_url a').removeClass("sidebar-active");
+        $('#favorite').addClass("sidebar-active");
+    }else if (lastSegment == 'account') {
+        $('#sidebar_url a').removeClass("sidebar-active");
+        $('#setting').addClass("sidebar-active");
+    }
+});

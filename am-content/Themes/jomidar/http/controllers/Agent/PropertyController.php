@@ -612,7 +612,7 @@ class PropertyController extends controller
      */
     public function create_property($id = null)
     {
-        $currency = default_currency();
+//        $currency = default_currency();
         $categories = Category::where('type', 'category')->get();
         //new design khiaratee
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
@@ -621,7 +621,7 @@ class PropertyController extends controller
         if (isset($id)) {
             $post_data = Terms::with('description', 'area', 'city', 'property_status_type')->where('user_id', Auth::id())->findorFail($id);
         }
-        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'currency', 'status_category', 'id', 'post_data'));
+        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'status_category', 'id', 'post_data'));
     }
 
     /**

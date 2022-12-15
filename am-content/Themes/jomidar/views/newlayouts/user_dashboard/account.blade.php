@@ -61,3 +61,4 @@
         @include('theme::newlayouts.partials.sidebar')
     </div>
 @endsection
+

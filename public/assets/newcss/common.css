@@ -513,6 +513,20 @@ button a
 /* COntact Modal ends here */
 
 
+/*sidebar active css*/
+
+.sidebar-active
+{
+    color: var(--theme-white) !important;
+    background: var(--theme-sky);
+}
+
+.sidebar-inactive
+{
+    color: var(--theme-blue) !important;
+    background: var(--theme-grey-light);
+}
+
 /* Owl Carosuel Styling starts Here */
 
 .owl-carousel .owl-nav button.owl-next,

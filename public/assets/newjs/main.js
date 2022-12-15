@@ -33,7 +33,6 @@ $(document).ready(function () {
 });
 
 
-
 // jquery for dropdown button start
 $(document).ready(function (event) {
     $('#dropdownMenuLink-home').click(function (e) {
@@ -82,10 +81,9 @@ $('.reset-btn').click(function (e) {
 });
 
 $('#nav-tab-main a').click(function (e) {
-  var val=$(this).attr('data-id');
-  $('#parent_category').val(val);
+    var val = $(this).attr('data-id');
+    $('#parent_category').val(val);
 });
-
 
 
 $("#list_radio_01").click(function (event) {
@@ -132,7 +130,7 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-   
+
     $('.resident-tabs .resident-link').click(function (e) {
         e.stopPropagation();
     });
@@ -145,10 +143,15 @@ $(document).ready(function () {
         $(".resident-pan").removeClass('selected');
         $(this).addClass('selected');
         var drop_text = $(".resident-pan.selected").text();
-        var val=$(this).val();
+        var val = $(this).val();
         $('#category').val(val);
         $("#dropdownMenuLink1").html(drop_text);
-        $('.resident-pan.selected').css({ "margin-bottom": "0px", "margin-top": "10px", "border": "none", "padding": "0px 20px 0 35px;" });
+        $('.resident-pan.selected').css({
+            "margin-bottom": "0px",
+            "margin-top": "10px",
+            "border": "none",
+            "padding": "0px 20px 0 35px;"
+        });
         $('.overlay').css('opacity', 0);
         $('.overlay').css('display', 'none');
         $(".resident-dropdown").removeClass("show");
@@ -160,7 +163,12 @@ $(document).ready(function () {
         $(this).addClass('selected');
         var drop_text = $(".resident-pan.selected").text();
         $("#dropdownMenuLink1").html(drop_text);
-        $('.resident-pan.selected').css({ "margin-bottom": "0px", "margin-top": "10px", "border": "none", "padding": "0px 20px 0 35px;" });
+        $('.resident-pan.selected').css({
+            "margin-bottom": "0px",
+            "margin-top": "10px",
+            "border": "none",
+            "padding": "0px 20px 0 35px;"
+        });
         $('.overlay').css('opacity', 0);
         $('.overlay').css('display', 'none');
         $(".resident-dropdown").removeClass("show");
@@ -176,7 +184,6 @@ $(document).ready(function () {
 
 
 });
-
 
 
 $("#rent-propertylist-drop").click(function (event) {
@@ -247,9 +254,6 @@ $(document).ready(function (event) {
 // jquery for dropdown button End
 
 
-
-
-
 // Property Type Dropdown Selection Start
 $(document).ready(function (event) {
     $('.overlay').click(function (event) {
@@ -264,7 +268,7 @@ $(document).ready(function (event) {
 
 // Room Dropdown Selection Start
 $(document).ready(function (event) {
-  
+
     $('.overlay').click(function (event) {
         $('.overlay').css('opacity', 0);
         $('.overlay').css('display', 'none');
@@ -319,8 +323,6 @@ rangeInput.forEach((input) => {
 });
 
 
-
-
 /*---------------------------
         Favourite Check
     ------------------------------*/
@@ -328,7 +330,7 @@ function home_favourite_property_check(id) {
     var url = $("#favourite_check_url").val();
     $.ajax({
         url: url,
-        data: { id: id },
+        data: {id: id},
         type: "GET",
         dataType: "HTML",
         success: function (response) {
@@ -344,6 +346,7 @@ function home_favourite_property_check(id) {
         }
     });
 }
+
 
 
 

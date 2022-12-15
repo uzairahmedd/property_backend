@@ -58,6 +58,18 @@
                                 <form id="productform" novalidate method="post"
                                       action="{{ route('admin.property.update',$info->id) }}">
                                     @csrf
+                                {{--Property Seleciton--}}
+                                    <div class="form-group mt-3">
+                                        <label>Property</label>
+                                        <select class="form-control form-select-lg mb-3"
+                                                aria-label=".form-select-lg example">
+                                            <option selected>Select Property Type</option>
+                                            <option value="1">Rent</option>
+                                            <option value="2">Sale</option>
+                                            <option value="3">Auction</option>
+                                        </select>
+                                    </div>
+
                                     @method('PUT')
 
                                     @php
@@ -81,14 +93,17 @@
 
                                         echo  textarea($arr2);
 
-                                        $arr3['title']= 'Content';
-                                        $arr3['id']= 'content';
-                                        $arr3['name']= 'content';
-                                        $arr3['placeholder']= '';
-                                        $arr3['is_required'] = true;
-                                        $arr3['value'] = $info->content->content ?? '';
-                                        echo  editor($arr3);
+//                                        $arr3['title']= 'Content';
+//                                        $arr3['id']= 'content';
+//                                        $arr3['name']= 'content';
+//                                        $arr3['placeholder']= '';
+//                                        $arr3['is_required'] = true;
+//                                        $arr3['value'] = $info->content->content ?? '';
+//                                        echo  editor($arr3);
                                     @endphp
+
+{{--                                    Select State, Area and Location--}}
+
                                     <div class="form-group">
                                         <label for="title">{{ __('Select State') }}</label>
                                         <select class="form-control selectric" id="state" name="state[]">
@@ -122,104 +137,240 @@
                                            value="{{ $info->longitude->value ?? '' }}">
                                     <div id="map-canvas" height="200" class="map-canvas"></div>
                                     <hr>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>{{ __('Min Price') }}</label>
-                                                <input type="number" step="any" name="min_price" class="form-control"
-                                                       required="" value="{{ $info->min_price->price ?? '' }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>{{ __('Max Price') }}</label>
-                                                <input type="number" step="any" name="max_price" class="form-control"
-                                                       required="" value="{{ $info->max_price->price ?? '' }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p>{{ __('Options') }}</p>
-                                    <hr>
-                                    <div class="row">
-                                        @foreach($input_options as $row)
-                                            <div class="col-sm-3">
+
+                                        {{--property nature, type and value input box--}}
+                                        <div class="row">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label>{{ $row->name }}</label>
-                                                    <input type="number" step="any" name="input_option[]"
-                                                           value="{{ $row->post_category_option->value ?? '' }}"
-                                                           placeholder="{{ $row->name }}" class="form-control">
-                                                    <input type="hidden" name="input_id[]" value="{{ $row->id }}">
+                                                    <label>Property Nature</label>
+                                                    <select class="form-control form-select-lg mb-3"
+                                                            aria-label=".form-select-lg example">
+                                                        <option selected>Property Nature</option>
+                                                        <option value="1">Residential</option>
+                                                        <option value="2">Commercial</option>
+                                                    </select>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Property Type</label>
+                                                    <select class="form-control form-select-lg mb-3"
+                                                            aria-label=".form-select-lg example">
+                                                        <option selected>Property Type</option>
+                                                        <option value="1">Building</option>
+                                                        <option value="2">Charlet</option>
+                                                        <option value="2">Duplex</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Property Value</label>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+
+{{--                                        <div class="col-sm-4">--}}
+{{--                                            <div class="form-group">--}}
+{{--                                                <label>{{ __('Min Price') }}</label>--}}
+{{--                                                <input type="number" step="any" name="min_price" class="form-control"--}}
+{{--                                                       required="" value="{{ $info->min_price->price ?? '' }}">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-sm-4">--}}
+{{--                                            <div class="form-group">--}}
+{{--                                                <label>{{ __('Max Price') }}</label>--}}
+{{--                                                <input type="number" step="any" name="max_price" class="form-control"--}}
+{{--                                                       required="" value="{{ $info->max_price->price ?? '' }}">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </div>
-                                    <div class="form-group">
-                                        <div>
-                                            <label>{{ __('Distance between facilities') }}</label>
-                                            <button type="button" class="btn btn-primary float-right add_more">Add
-                                                More
-                                            </button>
-                                            <hr>
-                                            <div class="form-group mb-3">
-                                                @php
-                                                    $rand=rand(100,300);
-                                                @endphp
-                                                <table class="table facilities_area">
-                                                    @if(count($info->facilities) == 0)
-                                                        <tr id="table_row{{ $rand }}">
-                                                            <td>
-                                                                <select name="facilities[]" class="form-control">
-                                                                    <option
-                                                                        value="">{{ __('Select facility') }}</option>
-                                                                    @foreach($facilities as $row)
-                                                                        <option value="{{ $row->id }}"
-                                                                                @if(in_array($row->id, $array)) selected="" @endif>{{ $row->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </td>
-                                                            <td>
-                                                                <input type="number" name="facilities_input[]"
-                                                                       placeholder="Distance (Km)"
-                                                                       class="form-control col-12" step="any">
-                                                            </td>
-                                                            <td>
-                                                                <button type="button" onclick="remove_row({{ $rand }})"
-                                                                        class="btn btn-danger mt-1 float-left delete_btn">
-                                                                    <i class="fa fa-trash"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                    @else
-                                                        @foreach($info->facilities as $facility)
-                                                            <tr id="table_row{{ !empty($rand.$facility->id) ? $rand.$facility->id : null }}">
-                                                                <td>
-                                                                    <select name="facilities[]" class="form-control">
-                                                                        <option
-                                                                            value="">{{ __('Select facility') }}</option>
-                                                                        @foreach($facilities as $rows)
-                                                                            <option value="{{ $rows->id }}"
-                                                                                    @if($facility->category_id == $rows->id) selected="" @endif>{{ $rows->name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                </td>
-                                                                <td>
-                                                                    <input value="{{ $facility->value }}" type="number"
-                                                                           step="any" name="facilities_input[]"
-                                                                           placeholder="Distance (Km)"
-                                                                           class="form-control col-12">
-                                                                </td>
-                                                                <td>
-                                                                    <button type="button"
-                                                                            onclick="remove_row({{ $rand.$facility->id }})"
-                                                                            class="btn btn-danger mt-1 float-left delete_btn">
-                                                                        <i class="fa fa-trash"></i></button>
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
-                                                    @endif
-                                                </table>
+                                    {{--water and electric Facilities--}}
+                                     <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Is there an electricity meter?</label>
+                                                <select class="form-control form-select-lg mb-3"
+                                                        aria-label=".form-select-lg example">
+                                                    <option selected>Is there an electricity meter?</option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="2">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Is there a water meter?</label>
+                                                <select class="form-control form-select-lg mb-3"
+                                                        aria-label=".form-select-lg example">
+                                                    <option selected>Is there a water meter?</option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="2">No</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
+{{--                                    <p>{{ __('Options') }}</p>--}}
+{{--                                    <hr>--}}
+{{--                                    <div class="row">--}}
+{{--                                        @foreach($input_options as $row)--}}
+{{--                                            <div class="col-sm-3">--}}
+{{--                                                <div class="form-group">--}}
+{{--                                                    <label>{{ $row->name }}</label>--}}
+{{--                                                    <input type="number" step="any" name="input_option[]"--}}
+{{--                                                           value="{{ $row->post_category_option->value ?? '' }}"--}}
+{{--                                                           placeholder="{{ $row->name }}" class="form-control">--}}
+{{--                                                    <input type="hidden" name="input_id[]" value="{{ $row->id }}">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        @endforeach--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <div>--}}
+{{--                                            <label>{{ __('Distance between facilities') }}</label>--}}
+{{--                                            <button type="button" class="btn btn-primary float-right add_more">Add--}}
+{{--                                                More--}}
+{{--                                            </button>--}}
+{{--                                            <hr>--}}
+{{--                                            <div class="form-group mb-3">--}}
+{{--                                                @php--}}
+{{--                                                    $rand=rand(100,300);--}}
+{{--                                                @endphp--}}
+{{--                                                <table class="table facilities_area">--}}
+{{--                                                    @if(count($info->facilities) == 0)--}}
+{{--                                                        <tr id="table_row{{ $rand }}">--}}
+{{--                                                            <td>--}}
+{{--                                                                <select name="facilities[]" class="form-control">--}}
+{{--                                                                    <option--}}
+{{--                                                                        value="">{{ __('Select facility') }}</option>--}}
+{{--                                                                    @foreach($facilities as $row)--}}
+{{--                                                                        <option value="{{ $row->id }}"--}}
+{{--                                                                                @if(in_array($row->id, $array)) selected="" @endif>{{ $row->name }}</option>--}}
+{{--                                                                    @endforeach--}}
+{{--                                                                </select>--}}
+{{--                                                            </td>--}}
+{{--                                                            <td>--}}
+{{--                                                                <input type="number" name="facilities_input[]"--}}
+{{--                                                                       placeholder="Distance (Km)"--}}
+{{--                                                                       class="form-control col-12" step="any">--}}
+{{--                                                            </td>--}}
+{{--                                                            <td>--}}
+{{--                                                                <button type="button" onclick="remove_row({{ $rand }})"--}}
+{{--                                                                        class="btn btn-danger mt-1 float-left delete_btn">--}}
+{{--                                                                    <i class="fa fa-trash"></i></button>--}}
+{{--                                                            </td>--}}
+{{--                                                        </tr>--}}
+{{--                                                    @else--}}
+{{--                                                        @foreach($info->facilities as $facility)--}}
+{{--                                                            <tr id="table_row{{ !empty($rand.$facility->id) ? $rand.$facility->id : null }}">--}}
+{{--                                                                <td>--}}
+{{--                                                                    <select name="facilities[]" class="form-control">--}}
+{{--                                                                        <option--}}
+{{--                                                                            value="">{{ __('Select facility') }}</option>--}}
+{{--                                                                        @foreach($facilities as $rows)--}}
+{{--                                                                            <option value="{{ $rows->id }}"--}}
+{{--                                                                                    @if($facility->category_id == $rows->id) selected="" @endif>{{ $rows->name }}</option>--}}
+{{--                                                                        @endforeach--}}
+{{--                                                                    </select>--}}
+{{--                                                                </td>--}}
+{{--                                                                <td>--}}
+{{--                                                                    <input value="{{ $facility->value }}" type="number"--}}
+{{--                                                                           step="any" name="facilities_input[]"--}}
+{{--                                                                           placeholder="Distance (Km)"--}}
+{{--                                                                           class="form-control col-12">--}}
+{{--                                                                </td>--}}
+{{--                                                                <td>--}}
+{{--                                                                    <button type="button"--}}
+{{--                                                                            onclick="remove_row({{ $rand.$facility->id }})"--}}
+{{--                                                                            class="btn btn-danger mt-1 float-left delete_btn">--}}
+{{--                                                                        <i class="fa fa-trash"></i></button>--}}
+{{--                                                                </td>--}}
+{{--                                                            </tr>--}}
+{{--                                                        @endforeach--}}
+{{--                                                    @endif--}}
+{{--                                                </table>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
+                                    {{--Street Information Input Boxes--}}
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>No. of Street</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Street Information 1</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Street Information 2</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {{--Optional Facilities parking, board, charlet--}}
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Parking</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Board</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Lounges</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Bathrooms</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Bedrooms</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>{{ __('Select Category') }}</label>
+                                        <select class="form-control" name="type">
+                                            <?php echo ConfigCategory('category') ?>
+                                        </select>
+                                    </div>
+                                    {{-- youtube video link--}}
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Video Link</label>
+                                                <input type="number" step="any" name="" class="form-control"
+                                                       required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                            {{--Property Features Checkboxes--}}
                                     <div class="form-group">
                                         <label>{{ __('Features') }}</label>
                                         <hr>
@@ -231,6 +382,24 @@
 
                                         @endforeach
                                     </div>
+                            {{--identification and instrument number--}}
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Identification No.</label>
+                                                <input type="number" name="" class="form-control"
+                                                       required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Instrument No.</label>
+                                                <input type="number" name="" class="form-control"
+                                                       required="">
+                                            </div>
+                                        </div>
+                                    </div>
+
                             </div>
                         </div>
                     </div>
