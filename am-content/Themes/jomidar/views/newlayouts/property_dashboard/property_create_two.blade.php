@@ -1,5 +1,8 @@
 @extends('theme::newlayouts.app')
 @section('content')
+<script>
+    var locale = '<?php Session::get('locale'); ?>';
+</script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
 <div class="add-property row-style">
     @include('theme::newlayouts.partials.user_header')

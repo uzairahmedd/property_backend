@@ -54,11 +54,15 @@ function property_type(elem){
             $.each(response.category_data, function (index, value) {
                 $.each(value.parent, function (index, value_data) {
                     var checked='';
+                    var name=value_data.name;
+                    if(locale == 'ar'){
+                        name=value_data.ar_name;
+                    }
                     if(response.post_category != null){
                     if(value_data.id == response.post_category.category_id && value.id == response.post_category.term_id){
                       checked='checked';
                     }}
-                    $('#property_type_radio').append('<div class="radio-container property_radio"><input type="radio" name="category" '+checked+' value="'+value_data.id+'"><span class="checmark font-16 font-medium">'+value_data.name+'</span> </div>');
+                    $('#property_type_radio').append('<div class="radio-container property_radio"><input type="radio" name="category" '+checked+' value="'+value_data.id+'"><span class="checmark font-16 font-medium">'+name+'</span> </div>');
                 });
             });
 
