@@ -20,7 +20,33 @@
                         echo  input($arr);
 
 
-                    
+                        $arr['title']= 'Latitude';
+                        $arr['id']= 'latitude';
+                        $arr['type']= 'number';
+                        $arr['step']= 'any';
+                        $arr['placeholder']= '22.3569';
+                        $arr['name']= 'latitude';
+                        $arr['is_required'] = true;
+
+                        echo  input($arr);
+
+                        $arr['title']= 'Longitude';
+                        $arr['id']= 'longitude';
+                        $arr['step']= 'any';
+                        $arr['placeholder']= '91.7832';
+                        $arr['name']= 'longitude';
+                        $arr['is_required'] = true;
+
+                        echo  input($arr);
+
+                        $arr['title']= 'Map Zoom Lavel';
+                        $arr['id']= 'zoom';
+                        $arr['type']= 'number';
+                        $arr['placeholder']= 'Enter zoom Lavel';
+                        $arr['name']= 'zoom';
+                        $arr['is_required'] = true;
+
+                        echo  input($arr);
                         @endphp
                     </div>
                 </div>
