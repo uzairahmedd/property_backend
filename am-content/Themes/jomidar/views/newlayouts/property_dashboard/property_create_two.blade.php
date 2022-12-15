@@ -19,7 +19,7 @@
                         @foreach($parent_category as $row)
                         <div class="radio-container">
                             <input type="radio" name="parent_category" term-id='{{$id}}'  onclick="property_type(this)" value="{{$row->id}}" {{ !empty($array) && $array['parent_category'] == $row->id ? "checked" : (old("parent_category") == $row->id ? "checked":"") }}>
-                            <span class="checmark font-16 font-medium">{{$row->name}}</span>
+                            <span class="checmark font-16 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
                         </div>
                         @endforeach
                     </div>
@@ -31,7 +31,7 @@
                         @foreach($child_category as $row)
                         <div class="radio-container property_radio">
                             <input type="radio" name="category" value="{{$row->id}}" {{ !empty($array) && $array['category'] == $row->id ? "checked" : (old("category") == $row->id ? "checked":"") }}>
-                            <span class="checmark font-16 font-medium">{{$row->name}}</span>
+                            <span class="checmark font-16 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
                         </div>
                         @endforeach
                         @if($errors->has('category'))
