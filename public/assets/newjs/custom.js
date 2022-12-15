@@ -195,8 +195,6 @@
                 $("#update_phone_btn").prop('disabled', false);
                 $("#update_phone_btn i").removeClass('fa fa-spinner fa-spin ');
                 if (response.status == 'success') {
-                   console.log(response.data['url']);
-                   return false;
                     window.location.href = response.data['url'];
 
                 }
