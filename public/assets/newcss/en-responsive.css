@@ -60,6 +60,13 @@
     text-align: left !important;
 }
 
+.rtl .item-header .breadcrumb-item.active::after{
+    content: '<';
+    color: var(--theme-seondary-black);
+    font-weight: bold;
+    padding: 0 5px;
+}
+
 .rtl .apps h1
 {
     text-align: left;
@@ -456,10 +463,6 @@
 
 .rtl .region-drop-icon {
     right: 16px;
-}
-
-.rtl .item-header .breadcrumb-item.active::after{
-    display: none;
 }
 
 .rtl .description-card .dropdown-menu li

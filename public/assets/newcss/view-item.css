@@ -47,12 +47,6 @@
     font-weight: bold;
 }
 
-.item-header .breadcrumb-item.active::after{
-    content: '<';
-    color: var(--theme-seondary-black);
-    font-weight: bold;
-    padding: 0 5px;
-}
 
 .item-header .breadcrumb-item {
     font-size: 14px;
