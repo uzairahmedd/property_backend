@@ -72,7 +72,6 @@ class WelcomeController extends controller
      */
     public function new_home()
     {
-        dd(Category::where('type', 'parent_category')->get());
         try {
             \DB::select('SHOW TABLES');
             $seo = Options::where('key', 'seo')->first();
