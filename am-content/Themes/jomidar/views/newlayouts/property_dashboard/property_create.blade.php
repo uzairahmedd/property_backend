@@ -45,7 +45,7 @@
                         </div>
                         <!-- <div class="col-12 d-flex flex-column-reverse flex-lg-row "> -->
                             <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop prop-title-en">
-                                <label for="title" class="theme-text-seondary-black">{{__('labels.property_title')}} (English)</label>
+                                <label for="title" class="theme-text-seondary-black">{{__('labels.property_title')}}</label>
                                 <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                     <input type="text" value="{{ $post_data != '' ? $post_data->title : old('title')}}" name="title" id="title" placeholder="{{__('labels.property_title')}}" class="form-control theme-border">
                                 </div>
