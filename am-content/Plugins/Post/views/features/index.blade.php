@@ -44,7 +44,7 @@
 									<label class="custom-control-label checkAll" for="customCheck12"></label>
 								</div>
 							</th>
-							<th class="am-title"><i class="far fa-image"></i></th>
+							<!-- <th class="am-title"><i class="far fa-image"></i></th> -->
 							<th class="am-title">{{ __('Title') }}</th>
 							<th class="am-title">{{ __('Arabic Title') }}</th>
 							<th class="am-date">{{ __('Date') }}</th>
@@ -59,9 +59,9 @@
 									<label class="custom-control-label" for="customCheck{{ $post->id }}"></label>
 								</div>
 							</th>
-							<td>
+							<!-- <td>
 								<i class="{{ $post->icon->content ?? '' }}"></i>
-							</td>
+							</td> -->
 							<td>
 								{{ $post->name }}
 								<div class="hover">
@@ -88,7 +88,7 @@
 								<label class="custom-control-label checkAll" for="customCheck12"></label>
 							</div>
 						</th>
-						<th class="am-title"><i class="far fa-image"></i></th>
+						<!-- <th class="am-title"><i class="far fa-image"></i></th> -->
 						<th class="am-title">{{ __('Title') }}</th>
 						<th class="am-title">{{ __('Arabic Title') }}</th>
 						<th class="am-date">{{ __('Date') }}</th>

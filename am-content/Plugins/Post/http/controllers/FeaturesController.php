@@ -81,11 +81,11 @@ class FeaturesController extends Controller
       $category->user_id=Auth::id();
       $category->save();
 
-      $meta=new Categorymeta;
-      $meta->category_id=$category->id;
-      $meta->type='icon';
-      $meta->content=$request->icon ?? '';
-      $meta->save();
+      // $meta=new Categorymeta;
+      // $meta->category_id=$category->id;
+      // $meta->type='icon';
+      // $meta->content=$request->icon ?? '';
+      // $meta->save();
       return response()->json($request->type.' created');
 
     }
@@ -143,9 +143,9 @@ class FeaturesController extends Controller
        $category->featured=$request->featured;
       $category->save();
 
-      $meta= Categorymeta::where('type','icon')->where('category_id',$id)->first();
-      $meta->content=$request->icon ?? '';
-      $meta->save();
+      // $meta= Categorymeta::where('type','icon')->where('category_id',$id)->first();
+      // $meta->content=$request->icon ?? '';
+      // $meta->save();
 
 
       return response()->json($category->type.' Updated');

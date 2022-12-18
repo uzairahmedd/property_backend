@@ -17,11 +17,11 @@
             <label for="text">{{ __('Name') }}</label>
             <div class="input-group">
               <input type="text" class="form-control item-menu" name="name" id="text" placeholder="Enter Name" autocomplete="off" required="" value="{{ $info->name }}">
-              <div class="input-group-append">
+              <!-- <div class="input-group-append">
                  <button class="btn btn-outline-primary" id="target" data-icon="{{ $info->icon->content ?? '' }}" role="iconpicker"></button>
-              </div>
+              </div> -->
             </div>
-            <input type="hidden" name="icon" id="icon" class="item-menu" value="{{ $info->icon->content ?? '' }}">
+            <!-- <input type="hidden" name="icon" id="icon" class="item-menu" value="{{ $info->icon->content ?? '' }}"> -->
             <label for="text">{{ __('Arabic Name') }}</label>
             <div class="input-group">
               <input type="text" class="form-control item-menu" name="ar_name" id="ar_text" placeholder="Enter Name in Arabic" autocomplete="off" required="" value="{{ $info->ar_name }}">
