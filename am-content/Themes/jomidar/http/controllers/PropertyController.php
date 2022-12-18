@@ -94,7 +94,7 @@ class PropertyController extends controller
             ['type', 'property'],
             ['status', 1],
             ['slug', $slug]
-        ])->with('virtual_tour', 'post_preview', 'streets', 'street_info_one', 'street_info_two', 'role', 'price', 'area', 'electricity_facility', 'water_facility', 'post_city', 'user', 'description', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->withCount('reviews')->first();
+        ])->with('virtual_tour', 'post_preview', 'streets', 'street_info_one', 'street_info_two', 'role', 'price', 'area', 'electricity_facility', 'water_facility', 'post_city', 'user','arabic_description', 'description', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->withCount('reviews')->first();
 
         $features = [];
         foreach ($property->postcategory as $key => $value) {

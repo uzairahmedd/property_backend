@@ -619,7 +619,7 @@ class PropertyController extends controller
         //for edit
         $post_data = '';
         if (isset($id)) {
-            $post_data = Terms::with('description', 'area', 'city', 'property_status_type')->where('user_id', Auth::id())->findorFail($id);
+            $post_data = Terms::with('arabic_description','description', 'area', 'city', 'property_status_type')->where('user_id', Auth::id())->findorFail($id);
         }
         return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'status_category', 'id', 'post_data'));
     }
@@ -678,6 +678,16 @@ class PropertyController extends controller
         }
         $description->content = $request->description;
         $description->save();
+
+        //store arabic description
+        $ar_description = Meta::where('term_id', $term->id)->where('type', 'arabic_description')->first();
+        if (empty($ar_description)) {
+            $ar_description = new Meta;
+            $ar_description->term_id = $term->id;
+            $ar_description->type = 'arabic_description';
+        }
+        $ar_description->content = $request->ar_description;
+        $ar_description->save();
 
         //store & update contact type
         $json['contact_type'] = "mail";
@@ -741,6 +751,7 @@ class PropertyController extends controller
             'status' => 'required',
             'title' => 'required|max:100',
             'description' => 'required|max:1000',
+            'ar_description' => 'required|max:1000',
             'area' => 'required|numeric',
             'location' => 'required',
             'city' => 'required'
@@ -749,6 +760,8 @@ class PropertyController extends controller
             'title.required' => 'Please provide title of property',
             'description.required' => 'Please provide property description',
             'description.max' => 'Property description must be 1000 words',
+            'ar_description.required' => 'Please provide property description in Arabic',
+            'ar_description.max' => 'Property arabic description must be 1000 words',
             'area.required' => 'Please provide area',
             'area.numeric' => 'Area must be number',
             'location.required' => 'Please provide address',

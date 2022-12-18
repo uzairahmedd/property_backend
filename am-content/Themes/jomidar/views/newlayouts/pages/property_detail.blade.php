@@ -172,7 +172,7 @@
                         <h1 class="font-24 theme-text-blue font-medium">{{ Session::get('locale') == 'ar' ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}}</h1>
                         <h1 class="font-24 theme-text-blue">{{__('labels.property_description')}}</h1>
                     </div>
-                    <p class="theme-text-seondary-black font-16 text-end mb-2">{{ content_format($property->description->content ?? '') }}</p>
+                    <p class="theme-text-seondary-black font-16 text-end mb-2">{{ Session::get('locale') == 'ar' ? $property->arabic_description->content : $property->description->content }}</p>
                     <hr class="w-100">
                     <h1 class="font-24 theme-text-blue">{{__('labels.basic_info')}}</h1>
                     @foreach ($property_type_nature as $value)

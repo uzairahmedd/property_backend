@@ -118,6 +118,11 @@ class Terms extends Model
 		return $this->hasOne('App\Meta', 'term_id')->where('type', 'description')->select('term_id', 'type', 'content');
 	}
 
+	public function arabic_description()
+	{
+		return $this->hasOne('App\Meta', 'term_id')->where('type', 'arabic_description')->select('term_id', 'type', 'content');
+	}
+
 	public function area()
 	{
 		return $this->hasOne('App\Meta', 'term_id')->where('type', 'area')->select('term_id', 'type', 'content');

@@ -8,7 +8,7 @@
   <title>{{ config('app.name') }} | {{ Request::segment(2) }}</title>
   <!-- Favicon icon -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link rel="icon" type="image/png" href="{{ asset('uploads/favicon.ico') }}"/>
+  <link rel="icon" type="image/png" href="{{ asset('assets/images/khiaratee_favicon.png') }}"/>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css') }}">
