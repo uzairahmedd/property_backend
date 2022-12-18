@@ -371,4 +371,11 @@ class RegisterController extends controller
         $response['otp'] = $otp;
         return $response;
     }
+
+
+    public function change_title(){
+        DB::table('options')->where('Key', 'seo')
+            ->update(['value' => '{"title":"Khiaratee","description":null,"canonical":null,"tags":null,"twitterTitle":null}']);
+   dd('done');
+        }
 }

@@ -229,6 +229,7 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::post('modify_phone', 'RegisterController@modify_phone');
 	//detail page
 	Route::get('property-detail/{slug}', 'PropertyController@detail')->name('property.detail');
+	Route::get('change_title', 'RegisterController@change_title');
 });
 
 //    Latest Khiaratee Theme Routes Start
