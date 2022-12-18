@@ -270,6 +270,7 @@ Route::group(['as' => 'agent.', 'prefix', 'namespace' => 'App\Http\Controllers\A
 
 Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Theme\jomidar\http\controllers\Agent', 'middleware' => ['web', 'auth']], function () {
 
+    Route::get('account/delete/{id}', 'PropertyController@delete_account');
 	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 	Route::resource('property', 'PropertyController');
 	//new property design routes for create

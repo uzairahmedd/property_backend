@@ -392,6 +392,12 @@ class PropertyController extends controller
         return view('theme::newlayouts.user_dashboard.auction');
     }
 
+//    public function account_id()
+//    {
+//        $id = User::where('id')->get();
+//        return view('account',['ids' => $id]);
+//    }
+
     // public function userboard_account()
     // {
     //     return view('theme::newlayouts.user_dashboard.account');
@@ -692,4 +698,6 @@ class PropertyController extends controller
             return "no";
         }
     }
+
+
 }

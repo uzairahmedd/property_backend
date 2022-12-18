@@ -1508,10 +1508,25 @@ class PropertyController extends controller
             $term = Terms::where('user_id', Auth::id())->where('id', $id)->update(['status' => 0]);
             $data = ['messages' => 'Property deleted successfully', 'status' => 'success'];
         }
-
         return response()->json($data);
     }
 
+
+    public function delete_account($id)
+    {
+
+
+        $data = ['messages' => 'Admin can not delete your account', 'status' => 'error'];
+
+        if($id != 1)
+        {
+            User::where('id', $id)->update(['status' => 0]);
+            Auth::logout();
+            $data = ['messages' => 'Account deleted successfully', 'status' => 'success'];
+        }
+
+        return response()->json($data);
+    }
 
     public function userboard_account()
     {

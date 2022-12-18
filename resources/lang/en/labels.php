@@ -126,7 +126,7 @@ return [
     'list_your_property' => 'List your Property',
     'easily_market_property' => 'You can easily market your property on our website',
     'sale' => 'Sale',
-    'property_address' => 'Property title',
+    'property_title' => 'Property title',
     'property_descr' => 'Property Description',
     'enter_here' => 'Enter Here...',
     'position_no' => 'No. of Parking',

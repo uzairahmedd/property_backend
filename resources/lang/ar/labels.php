@@ -123,7 +123,7 @@ return [
     'easily_market_property' => 'يمكنك بسهولة تسويق عقارك على موقعنا',
     'rent' => 'ايجار',
     'sale' => 'للبيع',
-    'property_address' => 'عنوان الملكية',
+    'property_title' => 'عنوان الملكية',
     'property_descr' => 'وصف العقار',
     'enter_here' => 'ادخل هنا..',
     'property_area' => 'مساحة العقار',

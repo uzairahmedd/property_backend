@@ -23,6 +23,7 @@
         @include ('theme::newlayouts.partials.bottom')
         @yield('home_js')
         @yield('property_list_select')
+        @yield('account_js')
         @yield('favorite_properties')
         @yield('property_create')
         @yield('OTPScript')

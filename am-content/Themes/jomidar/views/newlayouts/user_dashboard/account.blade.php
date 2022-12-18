@@ -52,7 +52,7 @@
                         <hr class="mb-4_5">
                         <div class="d-flex">
                             <button class="btn btn-outline-danger">
-                                {{__('labels.delete_account')}}
+                                <a data-id="{{Auth::User()->id}}"  onclick="account_del(this)">{{__('labels.delete_account')}}</a>
                             </button>
                         </div>
                     </div>
@@ -60,5 +60,11 @@
             </div>
         @include('theme::newlayouts.partials.sidebar')
     </div>
+@endsection
+
+@section('account_js')
+    <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
+    <script src="{{theme_asset('assets/newjs/user_account.js')}}"></script>
+
 @endsection
 

@@ -1,7 +1,8 @@
 /* Row Width */
-.row-style .row>* {
+.row-style .row > * {
     width: unset;
 }
+
 .add-property .head {
     height: 265px;
     background: url(/assets/images/add-property-header.png);
@@ -22,6 +23,7 @@
 .add-property .personal-card {
     padding: 36px 46px;
 }
+
 /* Radio Button Style Satrts Here */
 .radio-container {
     position: relative;
@@ -53,19 +55,20 @@
     line-height: 1.7;
 }
 
-.radio-container input:checked~.checmark {
+.radio-container input:checked ~ .checmark {
     background: var(--theme-sky);
     border: 0.5px solid #FFFFFF;
     color: #fff;
 }
+
 .yes-no-radio .checmark {
     padding: 8px 12px;
 }
+
 /* Radio Button Styles End */
 .description-card {
     padding: 48px;
 }
-
 
 
 .description-card .form-control {
@@ -73,10 +76,12 @@
     margin-top: 10px;
     height: 48px;
 }
+
 .form-control::placeholder {
     font-size: 14px;
     color: var(--theme-grey);
 }
+
 .input-icon {
     left: 12px;
     top: 26px;
@@ -88,71 +93,82 @@
     top: 22px;
 }
 
-.input-drop-icon{
+.input-drop-icon {
     left: 12px;
     top: 32px;
 }
 
-.description-btn-group{
+.description-btn-group {
     margin-top: 59px;
     margin-bottom: 84px;
 }
 
-.property-value{
+.property-value {
     margin-bottom: 42px;
 }
 
 /* File Input */
-.input-container{
+.input-container {
     border: 1px dashed #1DA1F2;
     width: 100%;
     padding: 30px 0px 30px 0px;
     margin-bottom: 10px;
     height: 160px;
 }
+
 .input-container img {
     margin-bottom: 12px;
 }
-.file-input{
+
+.file-input {
     position: absolute;
     width: 100%;
     height: 100%;
     opacity: 0;
 }
+
 /* File input style end */
-.img-ul{
+.img-ul {
     padding-right: 20px;
     direction: rtl;
     margin-bottom: 20px;
 }
-.video-link{
+
+.video-link {
     margin-top: 56px;
 }
+
 .finished h3 {
     font-size: 31px;
     margin-bottom: 40px;
 }
+
 .ads-p {
     margin-top: 56px;
     margin-bottom: 30px;
 }
+
 .request {
     border: 1px dashed var(--theme-sky);
     padding: 12px 16px;
     margin-bottom: 36px;
 }
+
 .request p {
     font-size: 12px;
 }
+
 .modify-btn {
     background: var(--theme-blue);
     padding: 8px 12px;
     margin-top: 10px;
 }
+
 .modify-btn:hover {
     color: var(--theme-blue) !important;
     border: 1px solid var(--theme-blue);
 }
+
 .request ~ .btn-theme-secondary {
     border-color: var(--theme-sky);
 }
@@ -164,22 +180,19 @@
 /*    align-items: end;*/
 /*}*/
 
-.description-card .property_address
-{
+.description-card .property_address {
     padding: 0 16px;
 }
 
-.description-card .add_prop_btn::after
-{
+.description-card .add_prop_btn::after {
     display: none;
 }
-.description-card .dropdown-menu li
-{
+
+.description-card .dropdown-menu li {
     text-align: right;
 }
 
-.description-card .add_prop_btn
-{
+.description-card .add_prop_btn {
     border: 1px solid var(--theme-blue);
     width: 100%;
     text-align: end;
@@ -187,53 +200,47 @@
     height: 48px;
 }
 
-.previous_btn
-{
+.previous_btn {
     border: 0.5px solid var(--theme-blue);
 }
-.previous_btn:hover
-{
+
+.previous_btn:hover {
     border-color: unset;
 }
 
 /*Step_2 pages content */
 
-.description-card .property_radio
-{
+.description-card .property_radio {
     padding: 30px 5px;
 }
 
-.property_types
-{
+.property_types {
     margin-top: -25px;
     margin-right: 0;
 }
 
-.yesno-btn
-{
+.yesno-btn {
     margin-right: 135px;
 }
 
-.str-addtess-one
-{
+.str-addtess-one {
     margin-left: 200px;
 }
 
-.regional-drop
-{
+.regional-drop {
     position: absolute;
     margin-bottom: 12px;
     z-index: 1;
 }
 
-.meter-div
-{
+.meter-div {
     margin-left: 10px;
 }
 
 .regional-drop-btn::after {
     display: none;
 }
+
 .regional-drop-btn {
     border-radius: unset;
     height: 25px;
@@ -243,97 +250,97 @@
     border-right: 1px solid black;
 }
 
-.street_view
-{
+.street_view {
     font-size: 18px;
     font-family: Tajawal;
 }
 
-.regional-drop .dropdown-menu{
+.regional-drop .dropdown-menu {
     margin-top: 13px !important;
 }
 
-.region-drop-icon
-{
+.region-drop-icon {
     left: 16px;
     top: 14px;
 }
 
-.regional-street-1
-{
+.regional-street-1 {
     margin-left: 3rem;
     /*margin-bottom: 3rem;*/
 }
 
-.checkbox-step5
-{
+.checkbox-step5 {
     margin-bottom: 36px;
 }
 
-.description-card .payment
-{
+.description-card .payment {
     width: 363px;
     max-width: 100%;
 }
 
-.my-ads-btns
-{
+.my-ads-btns {
     background: #FFFFFF;
     border: 1px solid #1DA1F2;
     box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
-.description-card .id-number
-{
+.description-card .id-number {
     padding-bottom: 10px;
 }
 
-.water-meter
-{
+.water-meter {
     width: 150px;
     max-width: 100%;
 }
 
-.other-meter
-{
+.other-meter {
     width: 130px;
     max-width: 100%;
 }
 
-@media screen and (max-width:992px) {
+@media screen and (max-width: 992px) {
     .regional-drop-btn {
         padding: 1px 16px 2px 39px;
     }
-    .add-address
-    {
+
+    .add-address {
         margin-bottom: 3rem;
     }
+
     .description-card .property_address {
         padding: 40px 0px;
     }
-    .dp-elipse
-    {
+
+    .dp-elipse {
         margin-right: 24px !important;
     }
-    .admin-name
-    {
+
+    .admin-name {
         margin-left: 0 !important;
     }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
     .description-card .property_address {
         padding: 38px 0;
     }
 
-    .region-drop
-    {
+    .prop-title-en {
+        width: 100% !important;
+        margin-top: -15px !important;
+    }
+
+    .prop-title-ar {
+        width: 100% !important;
+        padding-top: 0 !important;
+    }
+
+    .region-drop {
         padding;
     }
 
-    .profile .personal-card
-    {
+    .profile .personal-card {
         display: flex;
         justify-content: end;
     }
@@ -342,51 +349,53 @@
         padding: 8px 23px;
     }
 
-    .add-address
-    {
+    .add-address {
         margin-left: 0px;
         margin-bottom: 3rem;
     }
 
-    .font-24
-    {
+    .font-24 {
         font-size: 18px;
     }
 
-    .regional-street-1
-    {
+    .regional-street-1 {
         margin-left: 0;
         margin-bottom: 3rem;
     }
 }
 
-@media screen and (max-width:576px) {
+@media screen and (max-width: 576px) {
     .font-24 {
         font-size: 16px;
     }
+
     .yesno-btn {
         margin-right: 70px;
     }
+
     .radio-container .checmark {
         padding: 8px 28px;
     }
-    .yes-no-radio .checmark
-    {
+
+    .yes-no-radio .checmark {
         padding: 6px 8px;
     }
+
     .description-card {
         padding: 15px;
     }
+
     .radio-container .checkmark-step3 {
         padding: 4px 9px;
     }
+
     .input-container {
         padding: 25px 0px 25px 0px;
         margin-bottom: 10px;
     }
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width: 480px) {
 
     .input-container {
         padding: 15px 30px 15px 30px;
@@ -396,12 +405,13 @@
     .description-card .form-control {
         width: 100%;
     }
+
     .container {
         padding: 0 6px;
     }
 }
 
-@media screen and (max-width:385px) {
+@media screen and (max-width: 385px) {
 
     .add-property .personal-card {
         padding: 10px 5px;
@@ -411,25 +421,30 @@
     .radio-container .checmark {
         padding: 8px 30px;
     }
+
     .font-16 {
         font-size: 12px;
     }
+
     .description-card {
         padding: 20px 10px;
     }
+
     .font-24 {
         font-size: 10px;
     }
+
     .radio-container .checmark {
         padding: 6px 16px;
     }
+
     .radio-container .checkmark-step3 {
         padding: 4px 8px;
     }
+
     /*.input-container{*/
     /*    margin-right: -27px;*/
     /*}*/
-
     .input-container {
         padding: 10px 20px 10px 20px;
         margin-left: 25px;
@@ -442,6 +457,7 @@
         padding: 2px 5px;
         font-size: 10px;
     }
+
     .regional-drop-btn {
         padding: 1px 6px 2px 30px;
     }
@@ -450,16 +466,18 @@
         padding: 10px 20px 10px 20px;
         margin-left: 0px;
     }
+
     .checkbox-step5 .checmark {
         padding: 6px 35px;
     }
 }
 
-#first_image, #five_image,#second_image,#third_image,#forth_image{
-    max-width: 50px;}
+#first_image, #five_image, #second_image, #third_image, #forth_image {
+    max-width: 50px;
+}
 
 
-.center_property{
+.center_property {
     display: flex;
     justify-content: center;
     align-items: center;

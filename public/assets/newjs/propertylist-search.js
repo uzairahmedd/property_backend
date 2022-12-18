@@ -513,7 +513,7 @@ function properties_list(target, data) {
             $('.second_container').addClass('last-property-list');
             target = '#second_item_list';
         }
-        
+
         if(value.price != null){
             price=value.price.price;
         }
@@ -529,7 +529,7 @@ function properties_list(target, data) {
             floor_name = value.area.type + " in sqm";
             sq_feet = value.area.content + " sqm";
         }
-       
+
 
         htmls = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + sq_feet + '</span></p><img src="assets/images/area-icon.png" alt="" data-toggle="tooltip"  title="' + floor_name + '"></div>';
         $('.facilities_area' + index).append(htmls);
