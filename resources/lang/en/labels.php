@@ -77,7 +77,7 @@ return [
     'term_use' => 'Terms of Use',
     'terms_of_advertising' => 'Terms of advertising',
     'complain' => 'Complains',
-    'real_estate_licensed' => 'Your property is our first priority',
+    'real_estate_licensed' => 'Your property is our priority',
     'follow_us' => 'Follow us',
     'all_right_reserved' => '© Khiaratee 2022. All rights reserved.',
     'type' => 'Type',
