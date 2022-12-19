@@ -47,7 +47,7 @@
                 </div>
                 <div class="d-flex align-items-center">
                     <h3>{{__('labels.real_estate_licensed')}}</h3>
-                    <img src="{{asset('assets/images/Khiaratee_slogan.PNG')}}" class="ms-3" alt="">
+                    <img src="{{asset('assets/images/Khiaratee_slogan.png')}}" class="ms-3" alt="">
                 </div>
             </div>
         </div>
