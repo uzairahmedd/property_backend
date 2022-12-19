@@ -14,7 +14,7 @@
                      <div class="header-top-right-section f-right">
                          <li class="nav-item mynavbar lang-txt d-flex">
                              <i class="fa-solid fa-globe d-flex justify-content-center align-items-center"></i>
-                             <a class="nav-link lang" id="lang">{{ session()->has('locale') ? session()->get('locale') =='ar' ? 'English' : 'عربي' : 'English'}}</a>
+                             <a class="nav-link lang" id="lang">{{ session()->get('locale') == "ar" ? "English" : "عربي" }}</a>
                          </li>
                     </div>
                     @if (Auth::check())
