@@ -3,7 +3,7 @@
         <div class="d-flex flex-column-reverse flex-xl-row align-items-center justify-content-center">
             <ul class="list-unstyled d-flex flex-sm-column-reverse flex-column flex-wrap flex-md-row-reverse justify-content-right align-items-center p-0 mt-4 me-lg-5 col-lg-9">
                 <li>
-                    <a href="/search">{{__('labels.search')}}</a>
+                    <a href="{{ route('list') }}">{{__('labels.search')}}</a>
                 </li>
                 <li>
                     <a href="{{ route('list', ['status' => '26']) }}">{{__('labels.ads_sale')}}</a>
@@ -12,7 +12,7 @@
                     <a href="{{ route('list', ['status' => '27']) }}">{{__('labels.ads_rent')}}</a>
                 </li>
                 <li>
-                    <a href="/property_auction">{{__('labels.auction')}}</a>
+                    <a href="#">{{__('labels.auction')}}</a>
                 </li>
                 <li>
                     <a href="/privacy_policy">{{__('labels.privacy_term')}}</a>
@@ -21,10 +21,10 @@
                     <a href="/terms_and_conditions">{{__('labels.term_use')}}</a>
                 </li>
                 <li>
-                    <a href="/terms_for_advertisement">{{__('labels.terms_of_advertising')}}</a>
+                    <a href="#">{{__('labels.terms_of_advertising')}}</a>
                 </li>
                 <li>
-                    <a href="/complaints">{{__('labels.complain')}}</a>
+                    <a href="#">{{__('labels.complain')}}</a>
                 </li>
             </ul>
             <img src="{{theme_asset('assets/images/logo.png')}}"
@@ -47,7 +47,7 @@
                 </div>
                 <div class="d-flex align-items-center">
                     <h3>{{__('labels.real_estate_licensed')}}</h3>
-                    <img src="{{asset('assets/images/license-logo.png')}}" class="ms-3" alt="">
+                    <img src="{{asset('assets/images/Khiaratee-slogan.png')}}" class="ms-3" alt="">
                 </div>
             </div>
         </div>

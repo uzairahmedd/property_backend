@@ -71,7 +71,7 @@ return [
     'term_use' => 'شروط الاستخدام',
     'terms_of_advertising' => 'شروط الإعلان عبر الموقع',
     'complain' => 'للشكوى',
-    'real_estate_licensed' => 'مرخص من الهيئة العامة للعقار',
+    'real_estate_licensed' => 'خدماتك العقارية هي اولويتنا',
     'follow_us' => 'تابعنا على صفحاتنا',
     'all_right_reserved' => 'جميع الحقوق محفوظة ل خياراتي',
     'type' => 'النوع',

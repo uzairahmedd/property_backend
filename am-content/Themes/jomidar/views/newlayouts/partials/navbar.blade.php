@@ -61,7 +61,7 @@
                         <img src="{{theme_asset('assets/images/download.svg')}}" class="ms-3" />
                     </li>
                     <li class="nav-item d-flex align-items-center mb-3 mb-sm-0">
-                        <span class="nav-link theme-text-blue font-medium"> <a href="/property_auction">{{__('labels.auction')}}</a> </span>
+                        <span class="nav-link theme-text-blue font-medium"> <a href="#">{{__('labels.auction')}}</a> </span>
                         <img src="{{theme_asset('assets/images/hammer.svg')}}" class="ms-3" />
                     </li>
                     <li class="logo d-none d-lg-block">

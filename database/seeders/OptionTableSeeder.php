@@ -34,7 +34,7 @@ class OptionTableSeeder extends Seeder
 
       Options::create([
         'key'=>'seo',
-        'value'=>'{"title":"Khiaratee","description":null,"canonical":null,"tags":null,"twitterTitle":null}',
+        'value'=>'{"title":"MyChoice خياراتي","description":null,"canonical":null,"tags":null,"twitterTitle":null}',
       ]);
 
       Options::create([

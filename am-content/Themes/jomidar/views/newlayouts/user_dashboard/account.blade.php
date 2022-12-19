@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="col-12 d-flex justify-content-end mt-5 mb-4_5">
-                                <button class="btn acct-btn b-r-8  theme-bg-sky border-0 theme-text-white font-bold font-16">{{__('labels.save')}}</button>
+                                <!-- <button class="btn acct-btn b-r-8  theme-bg-sky border-0 theme-text-white font-bold font-16">{{__('labels.save')}}</button> -->
                             </div>
                         </form>
                         <hr class="mb-4_5">
