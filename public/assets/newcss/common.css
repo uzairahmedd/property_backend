@@ -741,6 +741,18 @@ button a
     color: red;
 }
 
+/*Editor textarea css*/
+
+.ck-editor__editable
+{
+    height: 50vh;
+}
+
+.ck.ck-editor {
+    width: 100%;
+    margin-top: 10px;
+}
+
 /*Property Crousel Css*/
 .single-property-list
 {

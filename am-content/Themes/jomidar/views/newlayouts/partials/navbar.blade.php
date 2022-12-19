@@ -18,7 +18,7 @@
                          </li>
                     </div>
                     @if (Auth::check())
-                    <li class="nav-item d-flex align-items-center mb-3 mb-sm-0">
+                    <li class="nav-item d-flex align-items-center mb-3 mb-md-0">
 
                         <div class="dropdown after-sign-in">
                             <button class="btn dropdown-toggle theme-text-blue font-medium" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,33 +36,43 @@
                     </li>
                     @endif
 
-                    <li class="nav-item d-flex flex-column flex-sm-row align-items-center mb-3 mb-sm-0">
+                    <li class="nav-item d-flex flex-column flex-md-row align-items-center mb-3 mb-md-0">
                        @if (Auth::guest())
                         <div class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#contactModal">
                             <span class="nav-link theme-text-blue font-medium"> <a href="#">{{__('labels.sign_in')}}</a> </span>
-                            <img src="{{theme_asset('assets/images/avatar.svg')}}" class="ms-3" />
+                            <img src="{{theme_asset('assets/images/avatar.svg')}}" class="nav-icons" />
                         </div>
                         @endif
                         @if (Auth::User())
                         <button class="btn add-btn custom-btn font-bold theme-text-white d-flex align-items-center my-3 my-sm-0">
                             <a href="{{ route('agent.property.create_property') }}">{{__('labels.add_property')}}</a>
-                            <img src="{{theme_asset('assets/images/plus.svg')}}" class="ms-3">
+                            <img src="{{theme_asset('assets/images/plus.svg')}}" class="nav-icons">
                         </button>
                         @else
                         <button class="btn add-btn custom-btn font-bold theme-text-white d-flex align-items-center my-3 my-sm-0">
                             <a data-bs-toggle="modal" data-bs-target="#contactModal">{{__('labels.add_property')}}</a>
-                            <img src="{{theme_asset('assets/images/plus.svg')}}" class="ms-3">
+                            <img src="{{theme_asset('assets/images/plus.svg')}}" class="nav-icons">
                         </button>
                         @endif
 
                     </li>
-                    <li class="nav-item d-flex align-items-center mb-3 mb-sm-0">
-                        <span class="nav-link font-bold theme-text-blue">{{__('labels.download_app_top')}}</span>
-                        <img src="{{theme_asset('assets/images/download.svg')}}" class="ms-3" />
+                    <li class="nav-item d-flex align-items-center mb-3 mb-md-0">
+                        <div class="dropdown">
+                            <ul class="dropdown-menu drop-download-app" aria-labelledby="download-app">
+                               <h3>{{__('labels.download_app_now')}}</h3>
+                                <p>{{__('labels.download_my_options')}}</p>
+                                <div class="app-download-img d-flex justify-content-around flex-wrap">
+                                    <div class="drop-google-img"><img src="{{asset('assets/images/google-store.png')}}" alt=""></div>
+                                    <div class="drop-apple-img"><img src="{{asset('assets/images/google-store.png')}}" alt=""></div>
+                                </div>
+                            </ul>
+                            <span class="nav-link font-bold theme-text-blue dropdown-toggle download-app" id="download-app" data-bs-toggle="dropdown" aria-expanded="false">{{__('labels.download_app_top')}}</span>
+                        </div>
+                        <img src="{{theme_asset('assets/images/download.svg')}}" class="nav-icons" />
                     </li>
-                    <li class="nav-item d-flex align-items-center mb-3 mb-sm-0">
+                    <li class="nav-item d-flex align-items-center mb-3 mb-md-0">
                         <span class="nav-link theme-text-blue font-medium"> <a href="#">{{__('labels.auction')}}</a> </span>
-                        <img src="{{theme_asset('assets/images/hammer.svg')}}" class="ms-3" />
+                        <img src="{{theme_asset('assets/images/hammer.svg')}}" class="ms-2" />
                     </li>
                     <li class="logo d-none d-lg-block">
                         <a href="/" class="">

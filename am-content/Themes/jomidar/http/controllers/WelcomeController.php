@@ -55,7 +55,6 @@ class WelcomeController extends controller
             SEOTools::opengraph()->addProperty('keywords', $seo->tags);
             SEOTools::twitter()->setSite($seo->twitterTitle);
             SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
-            $data = get_currency_info();
             $status = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
             $categories = Category::where('type', 'category')->inRandomOrder()->get();
             $states = Category::where('type', 'states')->with('childrenCategories')->get();
@@ -105,7 +104,6 @@ class WelcomeController extends controller
             $status = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
             $categories = Category::where('type', 'category')->inRandomOrder()->get();
             $states = Category::where('type', 'states')->with('childrenCategories')->get();
-            //for home rent and sell properties
             $status_properties = $this->status_property($status);
             $property_nature = Category::where('type', 'parent_category')->get();
             $property_type = Category::where('type', 'category')->with('child','icon')->get();

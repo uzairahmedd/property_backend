@@ -127,6 +127,8 @@ return [
     'easily_market_property' => 'You can easily market your property on our website',
     'sale' => 'Sale',
     'property_title' => 'Property title',
+    'download_app_now' => 'Download App Now',
+    'download_my_options' => 'Click on the link to download my options app for smartphones and browse thousands of properties approved by our team.',
     'property_descr' => 'Property Description',
     'enter_here' => 'Enter Here...',
     'position_no' => 'No. of Parking',

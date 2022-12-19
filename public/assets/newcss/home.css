@@ -847,9 +847,82 @@ room-dropdown-toggle::after
     margin-left: 24px;
 }
 
+/*download app dropdown css*/
 
+#download-app::after
+{
+    display: none !important;
+    margin: 0;
+    padding: 0;
+}
 
+.drop-download-app
+{
+    width: 335px;
+    height: 250px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 18px rgba(41, 32, 113, 0.15);
+    border-radius: 8px;
+}
 
+.drop-download-app::before {
+    background-color: #ffffff;
+    content: "";
+    height: 20px;
+    left: 0;
+    margin: 0 15px;
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    top: -8px;
+    width: 13px;
+    opacity: 0.95;
+    border-radius: 2px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.drop-download-app h3
+{
+    font-weight: 700;
+    font-size: 30px;
+    text-align: right;
+    letter-spacing: -0.3px;
+    padding: 20px 10px;
+}
+
+.drop-download-app p {
+    font-weight: 500;
+    font-size: 16px;
+    text-align: right;
+    letter-spacing: -0.3px;
+    padding: 0 20px 0px 10px;
+}
+
+.drop-google-img img
+{
+    width: 150px;
+    max-width: 100%;
+}
+
+.drop-apple-img img
+{
+    width: 150px;
+    max-width: 100%;
+}
+
+.lang-txt i
+{
+    padding-right: 5px;
+}
+
+.nav-icons
+{
+    padding-left: 10px;
+}
 
 /*Home page responsiveness Start From Here*/
 
@@ -886,6 +959,10 @@ room-dropdown-toggle::after
 }
 
 @media screen and (max-width: 992px) {
+
+    .navbar-nav .dropdown-menu {
+        position: absolute;
+    }
     .owl-home-carousel
     {
         direction: rtl !important;
@@ -926,6 +1003,16 @@ room-dropdown-toggle::after
     }
 }
 
+@media screen and (max-width: 930px) {
+    .drop-download-app{
+        margin-left: -180px;
+    }
+    .drop-download-app::before {
+        left: unset;
+        right: 0;
+    }
+}
+
 @media screen and (max-width: 768px) {
 
     /*.dropdown-select.wide {*/
@@ -935,6 +1022,12 @@ room-dropdown-toggle::after
     /*    text-align: right;*/
     /*    width: auto;*/
     /*}*/
+
+    .add-btn
+    {
+        margin: 1rem 0 !important;
+    }
+
     .looking-for {
         width: 580px;
         max-width: 100%;
@@ -1048,8 +1141,6 @@ room-dropdown-toggle::after
 }
 
 @media screen and (min-width: 576px) {
-
-
     .looking-for .search-home-btn {
         display: none;
     }
@@ -1060,6 +1151,29 @@ room-dropdown-toggle::after
 }
 
 @media screen and (max-width: 576px) {
+
+    .drop-download-app {
+        width: 258px;
+        height: 326px;
+    }
+
+    .drop-google-img img {
+        width: 200px;
+        max-width: 100%;
+    }
+    .drop-apple-img img {
+        width: 200px;
+        max-width: 100%;
+    }
+    .drop-download-app
+    {
+        margin-left: -53px;
+        margin-top: 20px !important;
+    }
+    .drop-download-app::before {
+        left: unset;
+        right: 102px;
+    }
     .font-lg-18 {
         font-size: 16px;
     }

@@ -15,10 +15,10 @@
     <div class="container">
         <nav aria-label="breadcrumb" class="d-flex justify-content-end align-items-center">
             <ul class="breadcrumb mb-0">
-                <li class="breadcrumb-item active theme-text-seondary-black" aria-current="page">{{ $property->title }}</li>
-                <li class="breadcrumb-item"><a href="#" class="theme-text-blue text-decoration-none"> {{ Session::get('locale') == 'ar' ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}}</a>
+                <li class="breadcrumb-item active theme-text-seondary-black category-title-bread" aria-current="page">{{ $property->title }}</li>
+                <li class="breadcrumb-item"><a href="#" class="theme-text-blue text-decoration-none category-breadicon"> {{ Session::get('locale') == 'ar' ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}}</a>
                 </li>
-                <li class="breadcrumb-item home-breadcrumb"><a href="/" class="theme-text-blue text-decoration-none">{{__('labels.home')}}</a>
+                <li class="breadcrumb-item home-breadcrumb"><a href="/" class="theme-text-blue text-decoration-none first-hom-breadicon">{{__('labels.home')}}</a>
                 </li>
             </ul>
         </nav>

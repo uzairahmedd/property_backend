@@ -55,16 +55,55 @@
     /*right: -4px !important;*/
 }
 
+/*.rtl .home-breadcrumb:after*/
+/*{*/
+/*    content: '<';*/
+/*    color: var(--theme-seondary-black);*/
+/*    font-weight: bold;*/
+/*}*/
+
 .rtl .verified h3
 {
     text-align: left !important;
 }
 
-.rtl .item-header .breadcrumb-item.active::after{
+/*.rtl .item-header .breadcrumb-item.active::after{*/
+/*    content: '<';*/
+/*    color: var(--theme-seondary-black);*/
+/*    font-weight: bold;*/
+/*    padding: 0 5px;*/
+/*}*/
+
+.rtl .category-title-bread::after {
     content: '<';
     color: var(--theme-seondary-black);
     font-weight: bold;
     padding: 0 5px;
+}
+
+.rtl .carousel-control-next-icon {
+    background-image: url(/assets/images/arrow-left.png);
+    width: 7px;
+    height: 13px;
+}
+
+.rtl .description-card .property_address {
+    padding: 0 16px;
+}
+
+.rtl .carousel-control-prev-icon {
+    background-image: url(/assets/images/arrow-right.png);
+    width: 10px;
+    font-width: bold;
+    height: 13px;
+}
+
+.rtl .breadcrumb .home-breadcrumb {
+    padding-left: 0;
+}
+
+.rtl .item-header .breadcrumb-item+.home-breadcrumb::before {
+    content: '';
 }
 
 .rtl .apps h1
@@ -695,15 +734,15 @@
     direction: ltr;
 }
 
-.item-header .breadcrumb-item+.home-breadcrumb:before
-{
-    display: none;
-}
+/*.item-header .breadcrumb-item+.home-breadcrumb:before*/
+/*{*/
+/*    display: none;*/
+/*}*/
 
-.item-header .breadcrumb-item+.home-breadcrumb
-{
-    padding-left: 0;
-}
+/*.item-header .breadcrumb-item+.home-breadcrumb*/
+/*{*/
+/*    padding-left: 0;*/
+/*}*/
 
 .rtl .price-section .del
 {
@@ -767,6 +806,47 @@
     margin-right: 55px;
 }
 
+.rtl .drop-download-app::before
+{
+    left: 0;
+    right: unset !important;
+}
+
+.rtl .lang-txt i
+{
+    padding-left: 5px;
+}
+
+.rtl .nav-icons
+{
+    padding-right: 10px;
+}
+
+.rtl .add-btn
+{
+    padding-left: 16px;
+}
+
+.rtl .add-btn img {
+    margin-left: -15px !important;
+    margin-right: 0;
+}
+
+.rtl .drop-download-app h3
+{
+    text-align: left;
+}
+
+.rtl .drop-download-app p
+{
+    text-align: left;
+}
+
+@media screen and (max-width: 930px) {
+    .rtl .drop-download-app {
+        margin-left: 0;
+    }
+}
 
 @media screen and (max-width:992px) {
     .rtl .owl-home-carousel {
@@ -775,6 +855,26 @@
 }
 
 @media screen and (max-width:768px) {
+
+
+    .rtl .drop-download-app {
+        margin-left: -130px;
+    }
+
+    .rtl .drop-download-app::before {
+        left: 150px;
+        right: unset !important;
+    }
+
+    .rtl .description-card .property_address {
+         padding: 15px 0;
+    }
+
+    .rtl .prop-title-en
+    {
+        padding-top: 15px;
+    }
+
     .rtl .street_info_2
     {
         margin-left: 0px;
@@ -803,7 +903,13 @@
 
 
 @media screen and (max-width: 576px) {
-
+    .rtl .drop-download-app {
+        margin-left: -98px;
+    }
+    .rtl .drop-download-app::before {
+        left: 106px;
+        right: unset !important;
+    }
     .rtl .budget-dropdown::before {
         left: 0;
         right: unset;
