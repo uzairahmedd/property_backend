@@ -210,7 +210,7 @@ class PropertyController extends controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function old_edit($id)
     {
        if (!Auth()->user()->can('Properties.edit')) {
             abort(401);
@@ -255,6 +255,37 @@ class PropertyController extends controller
         $child=$info->child->child_id ?? null;
         return view('plugin::properties.edit',compact('info','input_options','array','facilities','child'));
     }
+
+
+        /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+       if (!Auth()->user()->can('Properties.edit')) {
+            abort(401);
+        }
+
+        $info = Terms::where('id',$id)->with('virtual_tour', 'post_preview', 'streets', 'street_info_one', 'street_info_two', 'role', 'price', 'area', 'electricity_facility', 'water_facility', 'post_city', 'user','arabic_description', 'description', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->first();
+        $status_category = Category::where('type', 'status')->where('featured', 1)->get();
+        $parent_category = Category::where('type', 'parent_category')->get();
+        $child_category =  Category::where('type', 'category')->get();
+        $array = [];
+        foreach ($info->postcategory as $key => $value) {
+            if ($value->type == 'parent_category') {
+                $array[$value->type] = $value->category_id;
+            }
+            if ($value->type == 'category') {
+                $array[$value->type] = $value->category_id;
+            }
+        }
+        $facilities=[];
+        return view('plugin::properties.edit',compact('info','array','status_category','parent_category','child_category','facilities'));
+    }
+    
 
     /**
      * Update the specified resource in storage.

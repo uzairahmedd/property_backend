@@ -160,18 +160,6 @@
     </div>
 @endsection
 @section('property_create')
-    <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor_en' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-
-        ClassicEditor
-            .create( document.querySelector( '#editor_ar' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-    </script>
+<!-- <script src="{{ asset('admin/js/ckeditor/ckeditor.js') }}"></script> -->
+<script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
 @endsection

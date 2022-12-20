@@ -487,3 +487,6 @@
     justify-content: center;
     align-items: center;
 }
+#cke_description, #cke_ar_description{
+    width: 100%;
+}

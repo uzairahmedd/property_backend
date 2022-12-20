@@ -58,15 +58,15 @@
                                 <form id="productform" novalidate method="post"
                                       action="{{ route('admin.property.update',$info->id) }}">
                                     @csrf
-                                {{--Property Seleciton--}}
+                             
                                     <div class="form-group mt-3">
                                         <label>Property</label>
                                         <select class="form-control form-select-lg mb-3"
                                                 aria-label=".form-select-lg example">
-                                            <option selected>Select Property Type</option>
-                                            <option value="1">Rent</option>
-                                            <option value="2">Sale</option>
-                                            <option value="3">Auction</option>
+                                            <option value='' disabled selected>Select Property Type</option>
+                                            @foreach($status_category as $statuses)
+                                            <option value='{{$statuses->id}}' {{ $info->property_status_type->category_id == $statuses->id ? 'selected' : '' }}>{{ $statuses->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -74,51 +74,88 @@
 
                                     @php
 
-                                        $arr['title']= 'Name';
+                                        $arr['title']= 'English title';
                                         $arr['id']= 'title';
                                         $arr['type']= 'text';
-                                        $arr['placeholder']= 'Enter Name';
-                                        $arr['name']= 'name';
+                                        $arr['placeholder']= 'Enter english title';
+                                        $arr['name']= 'title';
                                         $arr['is_required'] = true;
                                         $arr['value'] = $info->title;
 
                                         echo  input($arr);
 
-                                        $arr2['title']= 'Description';
+                                        $arr['title']= 'Arabic title';
+                                        $arr['id']= 'ar_title';
+                                        $arr['type']= 'text';
+                                        $arr['placeholder']= 'Enter Arabic title';
+                                        $arr['name']= 'title';
+                                        $arr['is_required'] = true;
+                                        $arr['value'] = $info->ar_title;
+
+                                        echo  input($arr);
+
+                                        $arr2['title']= 'English Description';
                                         $arr2['id']= 'Description';
-                                        $arr2['name']= 'excerpt';
-                                        $arr2['placeholder']= 'Short Description';
+                                        $arr2['name']= 'dsscription';
+                                        $arr2['placeholder']= 'English Description';
                                         $arr2['is_required'] = true;
-                                        $arr2['value'] = $info->excerpt->content ?? '';
+                                        $arr2['value'] = $info->description->content ?? '';
 
-                                        echo  textarea($arr2);
+                                        echo editor($arr2);
 
-//                                        $arr3['title']= 'Content';
-//                                        $arr3['id']= 'content';
-//                                        $arr3['name']= 'content';
-//                                        $arr3['placeholder']= '';
-//                                        $arr3['is_required'] = true;
-//                                        $arr3['value'] = $info->content->content ?? '';
-//                                        echo  editor($arr3);
+                                        $arr2['title']= 'Arabic Description';
+                                        $arr2['id']= 'ar_Description';
+                                        $arr2['name']= 'ar_dsscription';
+                                        $arr2['placeholder']= 'Arabic Description';
+                                        $arr2['is_required'] = true;
+                                        $arr2['value'] = $info->arabic_description->content ?? '';
+
+                                        echo editor($arr2);
+
+                                        $arr22['title']= 'Area';
+                                        $arr22['id']= 'area';
+                                        $arr22['type']= 'number';
+                                        $arr22['placeholder']= 'Enter area';
+                                        $arr22['name']= 'area';
+                                        $arr22['value']= $info->area->content ?? '';
+                                        $arr22['is_required'] = true;
+
+                                        echo  input($arr22);
+
+                                        $arr22['title']= 'Location';
+                                        $arr22['id']= 'location_input';
+                                        $arr22['type']= 'text';
+                                        $arr22['placeholder']= 'Enter Location';
+                                        $arr22['name']= 'location';
+                                        $arr22['value']= $info->city->value ?? '';
+                                        $arr22['is_required'] = true;
+
+                                        echo  input($arr22);
+
                                     @endphp
 
-{{--                                    Select State, Area and Location--}}
-
+                                     
                                     <div class="form-group">
                                         <label for="title">{{ __('Select State') }}</label>
                                         <select class="form-control selectric" id="state" name="state[]">
-                                            <option>{{ __('Select State') }}</option>
+                                            <option value='' disabled selected>{{ __('Select State') }}</option>
                                             @foreach(App\Category::where('type','states')->get() as $row)
-                                                <option value="{{ $row->id }}"
-                                                        @if(in_array($row->id, $array)) selected="" @endif>{{ $row->name }}</option>
+                                                <option value="{{ $row->id }}" {{ $info->city->category_id == $row->id ? "selected" : ''}}>{{ $row->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group none city">
-                                        <label for="title">{{ __('Select Area') }}</label>
-                                        <select class="form-control" name="city" id="city">
-                                            <option disabled="" selected="">{{ __('Select Area') }}</option>
+                                    <div class="row">
+                                            <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="title">Property Nature</label>
+                                        <select class="form-control" name="parent_category" id="parent_category">
+                                            <option value='' disabled selected>Property Nature</option>
+                                            @foreach($parent_category as $row)
+                                            <option value="{{ $row->id }}" {{ $info->city->category_id == $row->id ? "selected" : ''}} >Property Nature</option>
+                                            @endforeach
                                         </select>
+                                    </div>
+                                    </div>
                                     </div>
                                     @php
                                         $arr22['title']= 'Location';
@@ -512,7 +549,8 @@
 
         (function ($) {
 
-            // CKEDITOR.replace( 'content' );
+            CKEDITOR.replace( 'Description' );
+            CKEDITOR.replace( 'ar_Description' );
 
             $('#state').on('change', () => {
                 $('#id2').val($('#state').val());

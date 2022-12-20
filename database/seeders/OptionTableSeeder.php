@@ -122,7 +122,7 @@ class OptionTableSeeder extends Seeder
         array('id' => '66','name' => 'Rest House','slug' => 'rest-house','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:20','updated_at' => '2020-12-31 08:09:18'),
         array('id' => '67','name' => 'Parking','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 09:21:03','updated_at' => '2021-01-10 18:24:13'),
         array('id' => '68','name' => 'Board','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:26:03','updated_at' => '2021-01-10 18:22:13'),
-
+        array('id' => '69','name' => 'Auctions','slug' => 'auction','type' => 'status','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2021-01-10 08:46:34','updated_at' => '2021-01-10 08:46:34'),
       );
 
       Category::insert($categories);
