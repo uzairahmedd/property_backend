@@ -1,5 +1,8 @@
 @extends('theme::newlayouts.app')
 @section('content')
+<script>
+    var locale = '<?php echo Session::get('locale'); ?>';
+</script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/second-page.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/profile.css')}}">
 

@@ -50,7 +50,7 @@ class LoginController extends Controller
 
     public function redirectToProvider($provider)
     {
-        dd();
+    
         return Socialite::driver($provider)->redirect();
     }
 
@@ -61,7 +61,7 @@ class LoginController extends Controller
      */
     public function handleProviderCallback($provider)
     {
-        dd();
+    
         $users = Socialite::driver($provider)->user();
 
         
@@ -120,7 +120,7 @@ class LoginController extends Controller
         }
         elseif (Auth::user()->role_id==2) {
                   
-           return $this->redirectTo=route('agent.dashboard');
+           return $this->redirectTo=route('agent.profile.settings');
        }
        // elseif (Auth::user()->role_id==3) {
           

@@ -192,3 +192,17 @@ var loadFile = function(event) {
 });
 })(jQuery);
 
+
+//ckeditor for description
+ClassicEditor
+.create( document.querySelector( '#description' ) )
+.catch( error => {
+    console.error( error );
+} );
+
+ClassicEditor
+.create( document.querySelector( '#ar_description' ) )
+.catch( error => {
+    console.error( error );
+} );
+

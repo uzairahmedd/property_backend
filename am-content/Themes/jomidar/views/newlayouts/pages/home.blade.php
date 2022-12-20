@@ -370,7 +370,7 @@
                                 </div>
                                 <a href="property-detail/{{$sale_data->slug}}">
                                     <div class="mt-3 home-listing-detail">
-                                        <h3 class="font-medium theme-text-blue">{{$sale_data->title}}</h3>
+                                        <h3 class="font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ? $sale_data->ar_title : $sale_data->title }}</h3>
                                         <div class="d-flex align-items-start justify-content-end pt-2">
                                             <p class="mb-0 theme-text-seondary-black me-2">{{$sale_data->post_city->value}}
                                                 - {{$sale_data->post_city->category->name}} </p>
@@ -465,7 +465,7 @@
                                 </div>
                                 <a href="property-detail/{{$rent_data->slug}}">
                                     <div class="mt-3 home-listing-detail">
-                                        <h3 class="font-medium theme-text-blue">{{$rent_data->title}}</h3>
+                                        <h3 class="font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ? $rent_data->ar_title : $rent_data->title }}</h3>
                                         <div class="d-flex align-items-start justify-content-end pt-2">
                                             <p class="mb-0 theme-text-seondary-black me-2">{{$rent_data->post_city->value}}
                                                 - {{$rent_data->post_city->category->name}}</p>

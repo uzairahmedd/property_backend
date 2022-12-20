@@ -5,6 +5,7 @@
     var status_id = '<?php echo $status; ?>';
     var parent_category = '<?php echo $parent_category; ?>';
     var category = '<?php echo $category; ?>';
+    var locale = '<?php echo Session::get('locale'); ?>';
 </script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/second-page.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/propertylist-search.css')}}">

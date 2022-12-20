@@ -215,7 +215,18 @@
 
 // RTL LTR
 $(document).ready(function () {
-// localStorage.clear();
+
+      // Download App Dropdown
+      $('.download-app').click(function (e) {
+        $('.home_fade').addClass('add_overlay');
+    });
+
+    $('.overlay').click(function (event) {
+        $('.home_fade').removeClass('add_overlay');
+        $(".drop-download-app").removeClass("show");
+    });
+
+
     let baseUrl=$('#base_url').val();
 
     $("#lang").click(function () {

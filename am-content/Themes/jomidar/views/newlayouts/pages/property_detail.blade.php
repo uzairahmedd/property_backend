@@ -15,7 +15,7 @@
     <div class="container">
         <nav aria-label="breadcrumb" class="d-flex justify-content-end align-items-center">
             <ul class="breadcrumb mb-0">
-                <li class="breadcrumb-item active theme-text-seondary-black category-title-bread" aria-current="page">{{ $property->title }}</li>
+                <li class="breadcrumb-item active theme-text-seondary-black category-title-bread" aria-current="page">{{ Session::get('locale') == 'ar' ? $property->ar_title : $property->title }}</li>
                 <li class="breadcrumb-item"><a href="#" class="theme-text-blue text-decoration-none category-breadicon"> {{ Session::get('locale') == 'ar' ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}}</a>
                 </li>
                 <li class="breadcrumb-item home-breadcrumb"><a href="/" class="theme-text-blue text-decoration-none first-hom-breadicon">{{__('labels.home')}}</a>
@@ -67,7 +67,7 @@
                     </li>
                 </ul>
             </div>
-            <div><h1 class="title d-flex justify-content-start flex-wrap font-medium theme-text-seondary-black mb-3 mb-lg-0">{{ $property->title }}</h1></div>
+            <div><h1 class="title d-flex justify-content-start flex-wrap font-medium theme-text-seondary-black mb-3 mb-lg-0">{{ Session::get('locale') == 'ar' ? $property->ar_title : $property->title }}</h1></div>
         </div>
     </div>
     <!-- Slider Starts Here -->
@@ -172,7 +172,12 @@
                         <h1 class="font-24 theme-text-blue font-medium">{{ Session::get('locale') == 'ar' ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}}</h1>
                         <h1 class="font-24 theme-text-blue">{{__('labels.property_description')}}</h1>
                     </div>
-                    <p class="theme-text-seondary-black font-16 text-end mb-2">{{ Session::get('locale') == 'ar' ? $property->arabic_description->content : $property->description->content }}</p>
+                    @if(Session::get('locale') == 'ar')
+                    <p class="theme-text-seondary-black font-16 text-end mb-2">{!! $property->arabic_description->content !!}</p>
+                    @else
+                    <p class="theme-text-seondary-black font-16 text-end mb-2">{!! $property->description->content !!}</p>
+                    @endif
+                    
                     <hr class="w-100">
                     <h1 class="font-24 theme-text-blue">{{__('labels.basic_info')}}</h1>
                     @foreach ($property_type_nature as $value)

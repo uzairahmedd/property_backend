@@ -106,8 +106,11 @@ function user_properties_list(target, data) {
         }
 
 
-
         title = str_limit(value.title, 20, true);
+        if(locale == 'ar'){
+            title = str_limit(value.ar_title, 20, true);
+        }
+      
         location = value.post_city.value + '-' + value.post_city.category.name;
         $(target).append('<div class="col-lg-4 col-md-4 col-sm-6 single-property-list"> <div class="slide single-img-carousel"> <div id="myCarousel' + value.id + '" class="carousel" data-bs-ride="carousel"><div class="features"><div class="d-flex justify-content-between"><div class="content d-flex flex-column align-items-start theme-text-white"><div class="fav-elipse justify-content-center align-items-center theme-bg-blue"><span class="font-medium" onclick="favourite_property(' + value.id + ')"> <i title="favorite property" data-toggle="tooltip" class="fa-regular fa-heart heart' + value.id + '"></i></span></div><div class="sale theme-bg-sky"><span class="font-medium">' + status + '</span> </div></div> <div class="d-flex justify-content-center pt-3">  </div></div> </div>' +
             '<ol class="carousel-indicators"><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="0" class="active"></li>' +

@@ -612,7 +612,6 @@ class PropertyController extends controller
      */
     public function create_property($id = null)
     {
-//        $currency = default_currency();
         $categories = Category::where('type', 'category')->get();
         //new design khiaratee
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
@@ -632,21 +631,7 @@ class PropertyController extends controller
      */
     public function add_property(Request $request)
     {
-        // $check_credit=Auth::user()->credits;
-        // $post_credit=Category::where('type','category')->with('creditcharge')->findorFail($request->category);
-        // $post_credit = (int)$post_credit->creditcharge->content;
 
-        // if($post_credit > $check_credit){
-        //    Session::flash('error','credit limit exceeded please recharge your credit');
-        //    return redirect()->route('agent.package.index');
-        // }
-        // $new_credit=$check_credit-$post_credit;
-        // $form_check = Session::get('form_check');
-        // if (isset($form_check) && $form_check == $request->form_check) {
-        //     return back()->withErrors(['message' => 'You already add this property'])->withInput();
-        // }
-        // dd($request->all());
-        // dump(Auth::id());
         $validator = $this->property_create_validations($request);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -667,6 +652,7 @@ class PropertyController extends controller
             $term->slug = $slug;
         }
         $term->title = $request->title;
+        $term->ar_title = $request->ar_title;
         $term->save();
 
         //store and update description
@@ -728,15 +714,6 @@ class PropertyController extends controller
         Postcategory::where('type', 'status')->where('term_id', $term->id)->delete();
         Postcategory::insert($post_cat);
 
-        // Session::flash("flash_notification", [
-        //     "level"     => "success",
-        //     "message"   => "Property Created Successfully"
-        // ]);
-
-        // $user = User::find(Auth::id());
-        // $user->credits = $new_credit;
-        // $user->save();
-
         return redirect()->route('agent.property.second_edit_property', encrypt($term->id));
     }
 
@@ -750,6 +727,7 @@ class PropertyController extends controller
         return  \Validator::make($request->all(), [
             'status' => 'required',
             'title' => 'required|max:100',
+            'ar_title' => 'required|max:100',
             'description' => 'required|max:1000',
             'ar_description' => 'required|max:1000',
             'area' => 'required|numeric',
@@ -758,6 +736,9 @@ class PropertyController extends controller
         ], [
             'status.required' => 'Please select property type',
             'title.required' => 'Please provide title of property',
+            'title.max' => 'Property title must be 100 words',
+            'ar_title.required' => 'Please provide arabic title of property',
+            'ar_title.max' => 'Property arabic title must be 100 words',
             'description.required' => 'Please provide property description',
             'description.max' => 'Property description must be 1000 words',
             'ar_description.required' => 'Please provide property description in Arabic',

@@ -60,7 +60,7 @@
                                 <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                     <input type="text" value="{{ $post_data != '' ? $post_data->ar_title : old('ar_title')}}" name="ar_title" id="ar_title" placeholder="{{__('labels.property_title')}} (Arabic)" class="form-control theme-border">
                                 </div>
-                                @if($errors->has('title'))
+                                @if($errors->has('ar_title'))
                                     <div class="error pt-1">{{ $errors->first('ar_title') }}</div>
                                 @endif
                             </div>
@@ -76,8 +76,8 @@
                                 <span class="theme-text-seondary-black">{{__('labels.property_descr')}}</span>
                             </label>
                             <div class="col-12 d-flex flex-wrap justify-content-end">
-                                <textarea name="editor_en" cols="60" rows="10"
-                                          placeholder="{{__('labels.enter_here')}}" id="editor_en"
+                                <textarea name="description" cols="60" rows="10"
+                                          placeholder="{{__('labels.enter_here')}}" id="description"
                                           class="form-control b-r-8 theme-border">{{ $post_data != '' ? $post_data->description->content  : (old("description")) }}</textarea>
                             </div>
                             @if($errors->has('description'))
@@ -92,8 +92,8 @@
                                 <span class="theme-text-seondary-black">{{__('labels.property_descr')}}</span>
                             </label>
                             <div class="col-12 d-flex flex-wrap justify-content-end">
-                                <textarea name="editor_ar" cols="30" rows="3"
-                                          placeholder="{{__('labels.enter_here')}}" id="editor_ar"
+                                <textarea name="ar_description" cols="30" rows="3"
+                                          placeholder="{{__('labels.enter_here')}}" id="ar_description"
                                           class="form-control b-r-8 theme-border">{{ $post_data != '' ? $post_data->arabic_description->content  : (old("ar_description")) }}</textarea>
                             </div>
                             @if($errors->has('ar_description'))
