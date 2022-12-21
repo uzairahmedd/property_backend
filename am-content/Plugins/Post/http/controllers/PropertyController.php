@@ -297,9 +297,9 @@ class PropertyController extends controller
     public function update(Request $request, $id)
     {
        $validatedData = $request->validate([
-            'name' => 'required|max:100',
+            'title' => 'required|max:100',
             
-            'description' => 'max:500',
+            // 'description' => 'max:500',
            
         ]);
 
