@@ -751,6 +751,27 @@ button a
 .ck.ck-editor {
     width: 100%;
     margin-top: 10px;
+    direction: rtl;
+}
+
+.ck.ck-dropdown .ck-button.ck-dropdown__button {
+    direction: ltr;
+}
+
+.ck-blurred.ck.ck-content.ck-editor__editable
+{
+    text-align: right;
+}
+
+.ck-placeholder
+{
+    direction: rtl;
+}
+
+.ck-editor__editable_inline.ck-blurred[dir]
+{
+    text-align: right;
+    direction: rtl;
 }
 
 /*Property Crousel Css*/
