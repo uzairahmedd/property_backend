@@ -305,7 +305,7 @@ class PropertyController extends controller
 
          
         $term=Terms::find($id);
-        $term->title=$request->name;
+        $term->title=$request->title;
         $term->status=$request->moderation_status;
         $term->featured=$request->featured;
         $term->save();
