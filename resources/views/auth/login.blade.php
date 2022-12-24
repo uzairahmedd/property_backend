@@ -41,7 +41,7 @@
                   @enderror
                 </div>
                 <div class="form-group">
-                  <div class="d-block">
+                  <!-- <div class="d-block">
                     <label for="password" class="control-label">{{ __('Password') }}</label>
                     @if (Route::has('password.request'))
                     <div class="float-right">
@@ -50,7 +50,7 @@
                       </a>
                     </div>
                     @endif
-                  </div>
+                  </div> -->
                   <input id="password" type="password" class="form-control  @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                   @error('password')
                   <div class="invalid-feedback">
