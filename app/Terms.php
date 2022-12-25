@@ -185,7 +185,7 @@ class Terms extends Model
 		return $this->belongsTo('App\Models\Price', 'id', 'term_id')->where('type', 'max_price');
 	}
 
-	//new price 
+	//new price
 	public function price()
 	{
 		return $this->belongsTo('App\Models\Price', 'id', 'term_id')->where('type', 'price');

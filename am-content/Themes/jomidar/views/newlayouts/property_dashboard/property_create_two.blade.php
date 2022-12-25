@@ -76,10 +76,8 @@
                             <div class="col-lg-8 col-md-10 col-sm-12 d-flex flex-column align-items-end">
                                 <label for="" class="font-18 theme-text-seondary-black">{{__('labels.property_value')}}</label>
                                 <div class="position-relative d-flex align-items-center w-100">
-
-                                    <input type="text" value="{{ !empty($post_data->price) ? $post_data->price->price  : old("price") }}" name="price" placeholder="{{__('labels.rental_value')}}" class="form-control theme-border">
+                                    <input type="text" value="{{ !empty($post_data->price) ? $post_data->price->price  : "" }}" name="price" placeholder="{{__('labels.rental_value')}}" class="form-control theme-border">
                                     <span class="font-14 font-medium position-absolute theme-text-blue price-unit">{{__('labels.sar')}}</span>
-
                                 </div>
                                 @if($errors->has('price'))
                                 <span class="error">{{ $errors->first('price') }}</span>

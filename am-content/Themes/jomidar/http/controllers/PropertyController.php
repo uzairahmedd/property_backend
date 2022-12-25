@@ -387,6 +387,11 @@ class PropertyController extends controller
         return view('theme::newlayouts.user_dashboard.favorite');
     }
 
+    public function forgotLogin()
+    {
+        return view('theme::newlayouts.pages.forgot');
+    }
+
     public function userboard_auction()
     {
         return view('theme::newlayouts.user_dashboard.auction');

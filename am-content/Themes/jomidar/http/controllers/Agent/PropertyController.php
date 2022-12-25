@@ -759,7 +759,6 @@ class PropertyController extends controller
      */
     public function edit_two_property($id)
     {
-
         $parent_category = Category::where('type', 'parent_category')->get();
         $child_category =  Category::where('type', 'category')->get();
         //for edit
@@ -914,7 +913,6 @@ class PropertyController extends controller
      */
     public function update_third_property(Request $request, $id)
     {
-
         $term_id = decrypt($id);
         //store number of features
         $options = [];
@@ -970,7 +968,6 @@ class PropertyController extends controller
         if (empty($check_category)) {
             $skip_id = 1;
         }
-
         return view('theme::newlayouts.property_dashboard.property_create_forth', compact('id', 'info', 'skip_id'));
     }
 

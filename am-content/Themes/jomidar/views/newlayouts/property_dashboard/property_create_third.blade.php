@@ -162,7 +162,7 @@
                     <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
                     <div class="row gx-2 mb-4_5">
                         <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="6" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 6 ? "checked"  : "" }}>
+                            <input type="radio" name="{{ $row->name }}" value="6" {{ !empty($row->post_category_option)  && $row->ost_category_option->valuep == 6 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">6</span>
                         </div>
                         <div class="radio-container">

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Amcoders\Plugin\Post\http\controllers;
 use Illuminate\Http\Request;
@@ -81,7 +81,7 @@ class PropertyController extends controller
 
     public function findUser(Request $request)
     {
-        
+
         $user=User::where('role_id',2)->where('email',$request->email)->first();
         if (empty($user)) {
             $data['errors']['user']='User Not Found';
@@ -143,14 +143,14 @@ class PropertyController extends controller
         $max_price->term_id=$term->id;
         $max_price->price=$request->max_price;
         $max_price->save();
-        
+
 
         $cat=PostCategory::insert(['term_id'=>$term->id,'category_id'=>$request->type]);
         Session::flash("flash_notification", [
             "level"     => "success",
             "message"   => "Project Created Successfully"
         ]);
-        
+
         return redirect()->route('admin.property.edit',$term->id);
     }
 
@@ -221,7 +221,7 @@ class PropertyController extends controller
         $input_options=\App\Category::where('type','option')->with(['post_category_option'=>function($q){
             return $q->where('term_id',$this->term_id);
         }])->get();
-       
+
         $array=[];
         $property_type=null;
         foreach ($info->postcategory as $key => $value) {
@@ -230,8 +230,8 @@ class PropertyController extends controller
                $this->property_type=$value->category_id;
             }
         }
-        
-       
+
+
         // foreach ($info->facilities as $key => $row) {
         //     array_push($array, $row->category_id);
         // }
@@ -270,10 +270,12 @@ class PropertyController extends controller
         }
 
         $info = Terms::where('id',$id)->with('virtual_tour', 'post_preview', 'streets', 'street_info_one', 'street_info_two', 'role', 'price', 'area', 'electricity_facility', 'water_facility', 'post_city', 'user','arabic_description', 'description', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->first();
-        $status_category = Category::where('type', 'status')->where('featured', 1)->get();
+       dump($info);
+       $status_category = Category::where('type', 'status')->where('featured', 1)->get();
         $parent_category = Category::where('type', 'parent_category')->get();
         $child_category =  Category::where('type', 'category')->get();
         $array = [];
+        $property_type = null;
         foreach ($info->postcategory as $key => $value) {
             if ($value->type == 'parent_category') {
                 $array[$value->type] = $value->category_id;
@@ -282,10 +284,30 @@ class PropertyController extends controller
                 $array[$value->type] = $value->category_id;
             }
         }
+        foreach ($info->postcategory as $key => $value) {
+            array_push($array, $value->category_id);
+            if ($value->type == 'category') {
+                $this->property_type = $value->category_id;
+            }
+        }
+
+        $input_options = Category::where('type', 'option')->whereHas('child', function ($q) {
+            return $q->where('id', $this->property_type);
+        })->with(['post_category_option' => function ($q) {
+            return $q->where('term_id', $this->term_id);
+        }])->get();
+
+        $skip_id = '';
+        if (empty($check_category)) {
+            $skip_id = 1;
+        }
+
+        $post_data = Terms::with('id_number', 'instrument_number')->where('user_id', Auth::id())->findorFail($id);
+
         $facilities=[];
-        return view('plugin::properties.edit',compact('info','array','status_category','parent_category','child_category','facilities'));
+        return view('plugin::properties.edit',compact('info','array','status_category','parent_category','child_category','facilities','input_options','skip_id','post_data'));
     }
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -298,19 +320,19 @@ class PropertyController extends controller
     {
        $validatedData = $request->validate([
             'name' => 'required|max:100',
-            
+
             'description' => 'max:500',
-           
+
         ]);
 
-         
+
         $term=Terms::find($id);
         $term->title=$request->name;
         $term->status=$request->moderation_status;
         $term->featured=$request->featured;
         $term->save();
 
-       
+
         return response()->json(['Property Updated Successfully']);
     }
 
@@ -336,12 +358,12 @@ class PropertyController extends controller
         elseif(!empty($request->method)){
              if ($request->ids) {
                 if ($request->method=="trash") {
-                    $method=0; 
+                    $method=0;
                 }
                 else{
-                   $method=$request->method; 
+                   $method=$request->method;
                 }
-                
+
                 foreach ($request->ids as $id) {
                     $term=Terms::find($id);
                     $term->status=$method;
