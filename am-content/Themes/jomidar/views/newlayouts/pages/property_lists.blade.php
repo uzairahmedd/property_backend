@@ -24,11 +24,11 @@
             <input type="hidden" id="category" name="category" value="{{$category}}">
             <input type="hidden" id="room" name="room" value="">
             <div class="row">
-                <div class="filter-drop location-icon col-lg-1 col-md-2 col-sm-2 col-xs-2 order-lg-1" id="filter-map">
+                <!-- <div class="filter-drop location-icon col-lg-1 col-md-2 col-sm-2 col-xs-2 order-lg-1" id="filter-map">
                     <div class="map-icon align-items-center d-flex justify-content-center">
                         <img src="assets/images/map-icon.svg" alt="">
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-7 filter-drop col-md-10 col-sm-10 col-xs-10 order-lg-2 d-flex justify-content-end flex-md-row select-filter ms-auto flex-wrap" id="filter-drop">
                     <div class="budget-drop-btn" id="budget-drop">
                         <div class="dropdown budget-drop">
@@ -246,10 +246,10 @@
 <!-- Property Listing Sale Section Starts Here -->
 <div class="all-property-list contact-property-list">
     <div class="filter-all-bar container position-relative d-flex justify-content-between">
-        <div class="sort-by d-flex align-items-center">
+        <!-- <div class="sort-by d-flex align-items-center">
             <img src="assets/images/sort-icon.svg" alt="">
             <p class="sort-text m-0 gap-8 theme-text-secondary-black">{{__('labels.sort_by')}}</p>
-        </div>
+        </div> -->
         <div class="all-ads d-flex">
             <p class="all-results pe-2 theme-text-secondary-black"><span class="r-num font-bold pe-1 results"></span>{{__('labels.results')}}</p>
             <div class="vertical-line"></div>

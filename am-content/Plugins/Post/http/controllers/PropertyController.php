@@ -319,15 +319,16 @@ class PropertyController extends controller
     public function update(Request $request, $id)
     {
        $validatedData = $request->validate([
-            'name' => 'required|max:100',
+            'title' => 'required|max:100',
 
-            'description' => 'max:500',
+            // 'description' => 'max:500',
+
 
         ]);
 
 
         $term=Terms::find($id);
-        $term->title=$request->name;
+        $term->title=$request->title;
         $term->status=$request->moderation_status;
         $term->featured=$request->featured;
         $term->save();
