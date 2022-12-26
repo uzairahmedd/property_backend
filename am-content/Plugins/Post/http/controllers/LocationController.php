@@ -94,6 +94,20 @@ class LocationController extends Controller
        return view('plugin::location.cities.index',compact('posts'));
      }
 
+      /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function neighborhood(Request $request)
+    {
+     if(!Auth()->user()->can('neighborhood.list')) {
+       abort(401);
+      }
+      $posts=Category::where('type','neighborhood')->withCount('address')->latest()->paginate(20);
+      return view('plugin::location.neighborhood.index',compact('posts'));
+    }
+
      /**
      * Display a listing of the resource.
      *
@@ -108,6 +122,21 @@ class LocationController extends Controller
        $posts=Category::where('type','countries')->with('preview')->withCount('address')->latest()->get();
        return view('plugin::location.cities.create',compact('posts'));
      }
+
+      /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function neighborhoodCreate(Request $request)
+    {
+     if(!Auth()->user()->can('neighborhood.create')) {
+       abort(401);
+      }
+
+      $posts=Category::where('type','countries')->withCount('address')->latest()->get();
+      return view('plugin::location.neighborhood.create',compact('posts'));
+    }
 
      public function info(Request $request)
      {
@@ -133,11 +162,10 @@ class LocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function old_store(Request $request)
     {
       $validatedData = $request->validate([
-        'name' => 'required|max:100',    
-        'ar_name' => 'required|max:100',            
+        'name' => 'required|max:100',              
       ]);
 
       if ($request->slug) {
@@ -155,7 +183,6 @@ class LocationController extends Controller
       }
       $category=new Category;
       $category->name=$request->name;
-      $category->ar_name=$request->ar_name;
       $category->slug=$slug;
       $category->p_id=$pid;
       $category->type=$request->type;
@@ -184,6 +211,42 @@ class LocationController extends Controller
 
     }
 
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+      $validatedData = $request->validate([
+        'name' => 'required|max:100',    
+        'ar_name' => 'required|max:100',            
+      ]);
+
+     
+      if ($request->p_id) {
+        $pid=$request->p_id;
+      }
+      else{
+        $pid=null;
+      }
+      $category=new Category;
+      $category->name=$request->name;
+      $category->ar_name=$request->ar_name;
+      $category->p_id=$pid;
+      $category->type=$request->type;
+      $category->featured=$request->featured;
+      $category->user_id=Auth::id();
+      $category->save();
+
+      return response()->json('Location created');
+
+
+
+    }
+
+
     /**
      * Display the specified resource.
      *
@@ -201,7 +264,7 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function old_edit($id)
     {
       $info=Category::with('preview','map')->find($id);
       if ($info->type=='countries') {
@@ -232,6 +295,35 @@ class LocationController extends Controller
 
     }
 
+     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+      $info=Category::find($id);
+     
+      if ($info->type=='neighborhood') {
+        if(!Auth()->user()->can('neighborhood.edit')) {
+          abort(401);
+        }
+        $parent=Category::find($info->p_id);
+        $states=Category::where('type','states')->where('p_id',$parent->p_id)->latest()->get();
+        $parent=$parent->p_id ?? 0;
+        return view('plugin::location.neighborhood.edit',compact('info','states','parent'));
+      }
+      else{
+         if(!Auth()->user()->can('states.edit')) {
+          abort(401);
+        }
+        return view('plugin::location.state.new_edit',compact('info'));
+      }
+      
+
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -239,17 +331,15 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function old_update(Request $request, $id)
     {
       $validatedData = $request->validate([
         'name' => 'required|max:100',
-        'slug' => 'required|max:100',  
-        'ar_name' => 'required|max:100',          
+        'slug' => 'required|max:100',           
       ]);
 
       $category=Category::find($id);
       $category->name=$request->name;
-      $category->ar_name=$request->ar_name;
       if ($request->p_id) {
         $category->p_id=$request->p_id;
       }
@@ -277,6 +367,33 @@ class LocationController extends Controller
          $map->save();
         
        }
+        return response()->json('Location Updated');
+     
+
+   }
+
+   /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+      $validatedData = $request->validate([
+        'name' => 'required|max:100', 
+        'ar_name' => 'required|max:100',          
+      ]);
+
+      $category=Category::find($id);
+      $category->name=$request->name;
+      $category->ar_name=$request->ar_name;
+      if ($request->p_id) {
+        $category->p_id=$request->p_id;
+      }
+      $category->save();
+     
         return response()->json('Location Updated');
      
 

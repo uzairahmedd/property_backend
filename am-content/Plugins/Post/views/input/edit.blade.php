@@ -11,8 +11,8 @@
         <div class="card">
             <div class="card-body">
                 <form method="post" action="{{ route('admin.input.update',$info->id) }}" class="basicform">
-                @csrf
-                @method('PUT')
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="text">{{ __('Name') }}</label>
                         <div class="input-group">
@@ -25,7 +25,7 @@
                             <input type="text" class="form-control item-menu" name="ar_title" id="ar_text" placeholder="Enter Name in Arabic" autocomplete="off" required="" value="{{ $info->ar_name }}">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="text">{{ __('Input Type') }}</label>
                         <div class="input-group">
                             <select name="input_type" class="form-control">
@@ -42,7 +42,7 @@
                                 <option value="0" @if($info->status==0) selected="" @endif>{{ __('No') }}</option>
                             </select>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label>{{ __('Select Category') }}</label>
                         <select multiple="" class="form-control select2" name="child[]">
@@ -51,37 +51,36 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
             </div>
-        </div>
-        {{ publish(['class'=>'basicbtn']) }}
-        <div class="single-area">
-            <div class="card sub">
-                <div class="card-body">
-                    <h5>{{ __('Is Featured ?') }}</h5>
-                    <hr>
-                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
-                        <option  value="1" @if($info->featured==1) selected="" @endif>{{ __('Yes') }}</option>
-                        <option value="0"  @if($info->featured==0) selected="" @endif>{{ __('No') }}</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-            <?php
-                if(!empty($info->preview)){
-                    $media['preview'] = $info->preview->content;
-                    $media['value'] = $info->preview->content;
-                    $media['title'] = 'Icon Image';
-                    echo  mediasection($media);
-                }
-                else{
-                    $media['title'] = 'Icon Image';
-                echo mediasection($media);
-                }
-            ?>
-            </form>
         </div>
     </div>
+    {{ publish(['class'=>'basicbtn']) }}
+    <div class="single-area">
+        <div class="card sub">
+            <div class="card-body">
+                <h5>{{ __('Is Featured ?') }}</h5>
+                <hr>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
+                    <option value="1" @if($info->featured==1) selected="" @endif>{{ __('Yes') }}</option>
+                    <option value="0" @if($info->featured==0) selected="" @endif>{{ __('No') }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <?php
+    if (!empty($info->preview)) {
+        $media['preview'] = $info->preview->content;
+        $media['value'] = $info->preview->content;
+        $media['title'] = 'Icon Image';
+        echo  mediasection($media);
+    } else {
+        $media['title'] = 'Icon Image';
+        echo mediasection($media);
+    }
+    ?>
+    </form>
+</div>
+</div>
 </div>
 {{ mediasingle() }}
 @endsection
@@ -91,12 +90,16 @@
 <script src="{{ asset('admin/js/form.js') }}"></script>
 <script src="{{ asset('admin/js/media.js') }}"></script>
 <script>
-"use strict";
-(function ($) {
-    $('.use').on('click',function(){
-      $('#preview').attr('src',myradiovalue);
-      $('#preview_input').val(myradiovalue);
-    });
-})(jQuery);
+    "use strict";
+    (function($) {
+        $('.use').on('click', function() {
+            $('#preview').attr('src', myradiovalue);
+            $('#preview_input').val(myradiovalue);
+        });
+    })(jQuery);
+    //success response will assign here
+    function success(res){
+      location.reload()
+    }
 </script>
 @endsection

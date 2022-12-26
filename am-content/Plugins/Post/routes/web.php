@@ -21,7 +21,9 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 
 		Route::get('locations/states', 'LocationController@States')->name('states.index');
 		Route::get('locations/states/create', 'LocationController@StatesCreate')->name('states.create');
-
+       
+		Route::get('locations/neighborhood', 'LocationController@neighborhood')->name('neighborhood.index');
+		Route::get('locations/neighborhood/create', 'LocationController@neighborhoodCreate')->name('neighborhood.create');
 
 		Route::get('locations/cities', 'LocationController@Cities')->name('cities.index');
 		Route::get('locations/cities/create', 'LocationController@CitiesCreate')->name('cities.create');

@@ -1,16 +1,16 @@
 @extends('layouts.backend.app')
 
 @section('content')
-@include('layouts.backend.partials.headersection',['title'=>'City'])
+@include('layouts.backend.partials.headersection',['title'=>'Neighborhood'])
 <div class="card"  >
 	<div class="card-body">
 		<div class="row mb-30">
 			<div class="col-lg-6">
-				<h4>{{ __('Cities') }}</h4>
+				<h4>Neighborhood</h4>
 			</div>
 			<div class="col-lg-6">
 				<div class="add-new-btn">
-					<a href="{{ route('admin.cities.create') }}" class="btn float-right btn-primary">{{ __('Add New') }}</a>
+					<a href="{{ route('admin.neighborhood.create') }}" class="btn float-right btn-primary">{{ __('Add New') }}</a>
 				</div>
 			</div>
 		</div>
@@ -44,9 +44,8 @@
 									<label class="custom-control-label checkAll" for="customCheck12"></label>
 								</div>
 							</th>
-							<!-- <th class="am-title"><i class="far fa-image"></i></th> -->
+						
 							<th class="am-title">{{ __('Title') }}</th>
-							<th class="am-title">{{ __('Url') }}</th>
 							<th class="am-date">{{ __('Date') }}</th>
 						</tr>
 					</thead>
@@ -59,16 +58,14 @@
 									<label class="custom-control-label" for="customCheck{{ $post->id }}"></label>
 								</div>
 							</th>
-							<!-- <td>
-								<img src="{{ asset($post->preview->content ?? '') }}" alt="" height="50">
-							</td> -->
+							
 							<td>
 								{{ $post->name }}
 								<div class="hover">
 									<a href="{{ route('admin.location.edit',$post->id) }}">{{ __('Edit') }}</a>
 								</div>
 							</td>
-							<td>{{ url('/area',$post->slug) }}</td>
+							
 							<td>{{ __('Last Modified') }}
 								<div class="date">
 									{{ $post->updated_at->diffForHumans() }}
@@ -85,10 +82,10 @@
                                             <label class="custom-control-label checkAll" for="customCheck12"></label>
                                         </div>
                                     </th>
-                                    <!-- <th class="am-title"><i class="far fa-image"></i></th> -->
+                                   
                                     <th class="am-title">{{ __('Title') }}</th>
 
-                                    <th class="am-title">{{ __('Url') }}</th>
+                                  
                                     <th class="am-date">{{ __('Date') }}</th>
                                 </tr>
 					        </tfoot>

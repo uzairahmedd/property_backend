@@ -18,7 +18,7 @@ use App\Models\Postcategoryoption;
 use App\Models\Termrelation;
 use App\Models\Price;
 use App\Models\User;
-use Str;
+use Illuminate\Support\Str;
 use Session;
 use Auth;
 
@@ -644,9 +644,12 @@ class PropertyController extends controller
 
         //store & update title and slug
         $term = Terms::where('user_id', Auth::id())->where('id', $request->term_id)->first();
+        $unique_id=generate_unique_id($term,'5');
+   
         if (empty($term)) {
             $term = new Terms;
             $term->user_id = Auth::id();
+            $term->unique_id =  $unique_id;
             $term->status = 3;
             $term->type = 'property';
             $term->slug = $slug;
@@ -697,7 +700,7 @@ class PropertyController extends controller
         $area->content = $request->area;
         $area->save();
 
-        //store & updateproperty city and location
+        //store & update property city and location
         $city = Postcategoryoption::where('term_id', $term->id)->where('type', 'city')->first();
         if (empty($city)) {
             $city = new Postcategoryoption;
@@ -867,7 +870,8 @@ class PropertyController extends controller
         }
         $check_category = Category::where('type', 'category')->where('id', $request->category)->first();
         //if land then skip third step for facilities
-        if (!empty($check_category) && $check_category->name == 'Residential land') {
+        
+        if (!empty($check_category) && Str::contains($check_category->name, 'land') ) {
             return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
         }
         return redirect()->route('agent.property.third_edit_property', encrypt($term_id));

@@ -20,10 +20,10 @@
                         $arr['value'] = $info->name;
 
 
-                        echo  input($arr);
+                        echo input($arr);
 
 
-                        $arr['title']= 'slug';
+                        <!-- $arr['title']= 'slug';
                         $arr['id']= 'slug';
                         $arr['type']= 'text';
                         $arr['placeholder']= 'slug';
@@ -32,7 +32,7 @@
                         $arr['value'] = $info->slug;
 
 
-                        echo  input($arr);
+                        echo input($arr); -->
 
                         $arr['title']= 'State Name in Arabic';
                         $arr['id']= 'ar_title';
@@ -43,66 +43,59 @@
                         $arr['value'] = $info->ar_name;
 
 
-                        echo  input($arr);
+                        echo input($arr);
 
                         @endphp
                     </div>
-                </div>
             </div>
         </div>
-        <div class="col-lg-3">
-            <div class="single-area">
-                <div class="card">
-                    <div class="card-body">
-                        <h5>{{ __('Publish') }}</h5>
-                        <hr>
-                        <div class="btn-publish">
+    </div>
+    <div class="col-lg-3">
+        <div class="single-area">
+            <div class="card">
+                <div class="card-body">
+                    <h5>{{ __('Publish') }}</h5>
+                    <hr>
+                    <div class="btn-publish">
                         <button type="submit" class="btn btn-primary col-12"><i class="fa fa-save"></i> {{ __('Save') }}</button>
-                        </div>
                     </div>
                 </div>
             </div>
-            <div class="single-area">
-                <div class="card sub">
-                    <div class="card-body">
-                        <h5>{{ __('Is Featured ?') }}</h5>
-                        <hr>
-                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
-                            <option  value="1" @if($info->featured==1) selected="" @endif>{{ __('Yes') }}</option>
-                            <option value="0"  @if($info->featured==0) selected="" @endif>{{ __('No') }}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <?php
-            if(!empty($info->preview)){
-                $media['preview'] = $info->preview->content;
-                $media['value'] = $info->preview->content;
-                echo  mediasection($media);
-            }
-            else{
-            echo mediasection();
-            }
-            ?>
         </div>
+        <div class="single-area">
+            <div class="card sub">
+                <div class="card-body">
+                    <h5>{{ __('Is Featured ?') }}</h5>
+                    <hr>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
+                        <option value="1" @if($info->featured==1) selected="" @endif>{{ __('Yes') }}</option>
+                        <option value="0" @if($info->featured==0) selected="" @endif>{{ __('No') }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
     </form>
- {{ mediasingle() }}
-@endsection
+    @endsection
 
-@section('script')
-<script src="{{ asset('admin/js/form.js') }}"></script>
-<script src="{{ asset('admin/js/media.js') }}"></script>
-<script>
-    "use strict";
-    (function ($) {
+    @section('script')
+    <script src="{{ asset('admin/js/form.js') }}"></script>
+    <script src="{{ asset('admin/js/media.js') }}"></script>
+    <script>
+        "use strict";
+        (function($) {
 
-        $('.use').on('click',function(){
+            $('.use').on('click', function() {
 
-            $('#preview').attr('src',myradiovalue);
-            $('#preview_input').val(myradiovalue);
+                $('#preview').attr('src', myradiovalue);
+                $('#preview_input').val(myradiovalue);
 
-        });
+            });
 
-    })(jQuery);
-</script>
-@endsection
+        })(jQuery);
+        //success response will assign here
+        function success(res) {
+            location.reload()
+        }
+    </script>
+    @endsection
