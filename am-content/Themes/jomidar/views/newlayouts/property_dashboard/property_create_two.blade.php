@@ -100,7 +100,6 @@
                     <span class="error">{{ $errors->first('streets') }}</span>
                     @endif
                     <!-- Street Section Ends Here -->
-                    {{--input with dropdown button start--}}
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row flex-md-row justify-content-end mt-5">
                         <div class="col-lg-5 col-md-4 col-sm-12 d-flex align-items-end sec-street ">
                             <div class="dropdown regional-drop d-flex justify-content-center align-items-center">
@@ -121,8 +120,8 @@
                                 </div>
                             </div>
                             <div class="position-relative d-flex flex-column align-items-end w-100 street_info_2">
-                                <label for="" class="font-18 theme-text-seondary-black">{{__('labels.street_info_2')}}</label>
-                                <input type="text" name="street_info_one" value="{{ !empty( $post_data->street_info_one) ? $post_data->street_info_one->content  : old("street_info_one") }}" id="interface_val" placeholder="{{__('labels.street_view')}} " class="form-control street_view theme-border">
+                                <label for="interface_val" class="font-18 theme-text-seondary-black">{{__('labels.street_info_2')}}</label>
+                                <input type="text" name="street_info_two" value="{{ !empty( $post_data->street_info_two) ? $post_data->street_info_two->content  : old("street_info_two") }}" id="interface_val" placeholder="{{__('labels.street_view')}} " class="form-control street_view theme-border">
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-4 col-sm-12 regional-street-1 d-flex align-items-end first-street">
@@ -144,8 +143,8 @@
 
                             </div>
                             <div class="position-relative d-flex flex-column align-items-end w-100">
-                                <label for="" class="font-18 theme-text-seondary-black">{{__('labels.street_info_1')}}</label>
-                                <input type="text" name="street_info_two" value="{{ !empty( $post_data->street_info_two) ? $post_data->street_info_two->content  : old("street_info_two") }}" id="interface_val2" placeholder="{{__('labels.street_view')}}" class="form-control street_view theme-border">
+                                <label for="interface_val2" class="font-18 theme-text-seondary-black">{{__('labels.street_info_1')}}</label>
+                                <input type="text" name="street_info_one" value="{{ !empty( $post_data->street_info_one) ? $post_data->street_info_one->content  : old("street_info_one") }}" id="interface_val2" placeholder="{{__('labels.street_view')}}" class="form-control street_view theme-border">
                             </div>
                         </div>
                     </div>

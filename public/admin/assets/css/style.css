@@ -3835,4 +3835,8 @@ tfoot tr th {
     border-color: #007bff;
 }
 
+.hiden{
+  display: none;
+}
+
 

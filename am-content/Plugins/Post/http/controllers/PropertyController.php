@@ -76,8 +76,23 @@ class PropertyController extends controller
         if (!Auth()->user()->can('Properties.create')) {
             abort(401);
         }
-         return view('plugin::properties.create');
+
+        $categories = Category::where('type', 'category')->get();
+        $parent_category = Category::where('type', 'parent_category')->get();
+        //new design khiaratee
+        $status_category = Category::where('type', 'status')->where('featured', 1)->get();
+        //feature
+        $feature=Category::where('type','feature')->get();
+         return view('plugin::properties.create',compact('categories','status_category','parent_category','feature'));
     }
+
+    public function property_type($id)
+    {
+   
+        $data['category_data'] = Category::where('type', 'parent_category')->where('id',$id)->with('parent')->get();
+        return response()->json($data);
+    }
+
 
     public function findUser(Request $request)
     {
@@ -96,7 +111,7 @@ class PropertyController extends controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function old_store(Request $request)
     {
        $validatedData = $request->validate([
         'title' => 'required|max:255',
@@ -154,6 +169,16 @@ class PropertyController extends controller
         return redirect()->route('admin.property.edit',$term->id);
     }
 
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
     /**
      * Display the specified resource.
      *
@@ -268,10 +293,9 @@ class PropertyController extends controller
        if (!Auth()->user()->can('Properties.edit')) {
             abort(401);
         }
-
-        $info = Terms::where('id',$id)->with('virtual_tour', 'post_preview', 'streets', 'street_info_one', 'street_info_two', 'role', 'price', 'area', 'electricity_facility', 'water_facility', 'post_city', 'user','arabic_description', 'description', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->first();
-       dump($info);
-       $status_category = Category::where('type', 'status')->where('featured', 1)->get();
+        $this->term_id=$id;
+        $info = Terms::where('id',$id)->with('id_number','instrument_number','virtual_tour', 'post_preview', 'streets', 'street_info_one', 'street_info_two', 'role', 'price', 'area', 'electricity_facility', 'water_facility', 'post_city', 'user','arabic_description', 'description', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->first();
+        $status_category = Category::where('type', 'status')->where('featured', 1)->get();
         $parent_category = Category::where('type', 'parent_category')->get();
         $child_category =  Category::where('type', 'category')->get();
         $array = [];
@@ -282,30 +306,31 @@ class PropertyController extends controller
             }
             if ($value->type == 'category') {
                 $array[$value->type] = $value->category_id;
+                $this->property_type=$value->category_id;
             }
         }
-        foreach ($info->postcategory as $key => $value) {
-            array_push($array, $value->category_id);
-            if ($value->type == 'category') {
-                $this->property_type = $value->category_id;
-            }
-        }
-
-        $input_options = Category::where('type', 'option')->whereHas('child', function ($q) {
-            return $q->where('id', $this->property_type);
-        })->with(['post_category_option' => function ($q) {
-            return $q->where('term_id', $this->term_id);
+       
+        $input_options=\App\Category::where('type','option')->whereHas('child',function($q){
+            return $q->where('id',$this->property_type);
+        })->with(['post_category_option'=>function($q){
+            return $q->where('term_id',$this->term_id);
         }])->get();
 
-        $skip_id = '';
-        if (empty($check_category)) {
-            $skip_id = 1;
+       if (count($input_options) == 0) {
+            $input_options=Category::where('type','option')->whereHas('post_category_option',function($q){
+            return $q->where('term_id',$this->term_id);
+            })->with(['post_category_option'=>function($q){
+            return $q->where('term_id',$this->term_id);
+            }])->get();
         }
 
-        $post_data = Terms::with('id_number', 'instrument_number')->where('user_id', Auth::id())->findorFail($id);
-
-        $facilities=[];
-        return view('plugin::properties.edit',compact('info','array','status_category','parent_category','child_category','facilities','input_options','skip_id','post_data'));
+      
+        $features_array = [];
+        foreach ($info->postcategory as $key => $value) {
+            array_push($features_array, $value->category_id);
+        }
+        
+        return view('plugin::properties.edit',compact('info','array','status_category','parent_category','child_category','features_array','input_options'));
     }
 
 
@@ -318,6 +343,7 @@ class PropertyController extends controller
      */
     public function update(Request $request, $id)
     {
+       
        $validatedData = $request->validate([
             'title' => 'required|max:100',
 
