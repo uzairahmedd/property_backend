@@ -202,54 +202,54 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
 
-                    <div class="col-12 d-flex flex-column-reverse flex-lg-row flex-md-row justify-content-end mt-5">
-                        <div class="col-lg-5 col-md-4 col-sm-12 d-flex align-items-end sec-street ">
-                            <div class="dropdown regional-drop d-flex justify-content-center align-items-center">
-                               <div class="interface-div">
-                                   <button class="btn dropdown-toggle regional-drop-btn interface" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                       {{__('labels.interface')}}
-                                   </button>
-                                   <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
-                                   <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
-                                       <li><a class="dropdown-item inter_val" href="#">East</a></li>
-                                       <li><a class="dropdown-item inter_val" href="#">West</a></li>
-                                       <li><a class="dropdown-item inter_val" href="#">North</a></li>
-                                       <li><a class="dropdown-item inter_val" href="#">South</a></li>
-                                   </ul>
-                               </div>
-                                <div class="meter-div">
-                                    <p class="meter mb-0">{{__('labels.meter')}}</p>
-                                </div>
-                            </div>
-                            <div class="position-relative d-flex flex-column align-items-end w-100 street_info_2">
-                                <label for="interface_val" class="font-18 theme-text-seondary-black">{{__('labels.street_info_2')}}</label>
-                                <input type="text" name="street_info_two" value="{{ !empty( $post_data->street_info_two) ? $post_data->street_info_two->content  : old("street_info_two") }}" id="interface_val" placeholder="{{__('labels.street_view')}} " class="form-control street_view theme-border">
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-md-4 col-sm-12 regional-street-1 d-flex align-items-end first-street">
-                            <div class="dropdown regional-drop d-flex justify-content-center align-items-center">
-                                <div class="interface-btn">
-                                    <button class="btn dropdown-toggle regional-drop-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{__('labels.interface')}}
-                                    </button>
-                                    <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
-                                    <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
-                                        <li><a class="dropdown-item inter_val2" href="#">10m</a></li>
-                                        <li><a class="dropdown-item inter_val2" href="#">20m</a></li>
-                                        <li><a class="dropdown-item inter_val2" href="#">30m</a></li>
-                                    </ul>
-                                </div>
-                                <div class="meter-div">
-                                    <p class="meter mb-0">{{__('labels.meter')}}</p>
-                                </div>
+{{--                    <div class="col-12 d-flex flex-column-reverse flex-lg-row flex-md-row justify-content-end mt-5">--}}
+{{--                        <div class="col-lg-5 col-md-4 col-sm-12 d-flex align-items-end sec-street ">--}}
+{{--                            <div class="dropdown regional-drop d-flex justify-content-center align-items-center">--}}
+{{--                               <div class="interface-div">--}}
+{{--                                   <button class="btn dropdown-toggle regional-drop-btn interface" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                                       {{__('labels.interface')}}--}}
+{{--                                   </button>--}}
+{{--                                   <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">--}}
+{{--                                   <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">--}}
+{{--                                       <li><a class="dropdown-item inter_val" href="#">East</a></li>--}}
+{{--                                       <li><a class="dropdown-item inter_val" href="#">West</a></li>--}}
+{{--                                       <li><a class="dropdown-item inter_val" href="#">North</a></li>--}}
+{{--                                       <li><a class="dropdown-item inter_val" href="#">South</a></li>--}}
+{{--                                   </ul>--}}
+{{--                               </div>--}}
+{{--                                <div class="meter-div">--}}
+{{--                                    <p class="meter mb-0">{{__('labels.meter')}}</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="position-relative d-flex flex-column align-items-end w-100 street_info_2">--}}
+{{--                                <label for="interface_val" class="font-18 theme-text-seondary-black">{{__('labels.street_info_2')}}</label>--}}
+{{--                                <input type="text" name="street_info_two" value="{{ !empty( $post_data->street_info_two) ? $post_data->street_info_two->content  : old("street_info_two") }}" id="interface_val" placeholder="{{__('labels.street_view')}} " class="form-control street_view theme-border">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-lg-5 col-md-4 col-sm-12 regional-street-1 d-flex align-items-end first-street">--}}
+{{--                            <div class="dropdown regional-drop d-flex justify-content-center align-items-center">--}}
+{{--                                <div class="interface-btn">--}}
+{{--                                    <button class="btn dropdown-toggle regional-drop-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                                        {{__('labels.interface')}}--}}
+{{--                                    </button>--}}
+{{--                                    <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">--}}
+{{--                                    <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">--}}
+{{--                                        <li><a class="dropdown-item inter_val2" href="#">10m</a></li>--}}
+{{--                                        <li><a class="dropdown-item inter_val2" href="#">20m</a></li>--}}
+{{--                                        <li><a class="dropdown-item inter_val2" href="#">30m</a></li>--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+{{--                                <div class="meter-div">--}}
+{{--                                    <p class="meter mb-0">{{__('labels.meter')}}</p>--}}
+{{--                                </div>--}}
 
-                            </div>
-                            <div class="position-relative d-flex flex-column align-items-end w-100">
-                                <label for="interface_val2" class="font-18 theme-text-seondary-black">{{__('labels.street_info_1')}}</label>
-                                <input type="text" name="street_info_one" value="{{ !empty( $post_data->street_info_one) ? $post_data->street_info_one->content  : old("street_info_one") }}" id="interface_val2" placeholder="{{__('labels.street_view')}}" class="form-control street_view theme-border">
-                            </div>
-                        </div>
-                    </div>
+{{--                            </div>--}}
+{{--                            <div class="position-relative d-flex flex-column align-items-end w-100">--}}
+{{--                                <label for="interface_val2" class="font-18 theme-text-seondary-black">{{__('labels.street_info_1')}}</label>--}}
+{{--                                <input type="text" name="street_info_one" value="{{ !empty( $post_data->street_info_one) ? $post_data->street_info_one->content  : old("street_info_one") }}" id="interface_val2" placeholder="{{__('labels.street_view')}}" class="form-control street_view theme-border">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                 </div>
             </div>
