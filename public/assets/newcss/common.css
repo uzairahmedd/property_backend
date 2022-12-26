@@ -109,8 +109,6 @@ ul li:focus-visible
     outline: none;
 }
 
-
-
 /* Palette */
 .theme-text-white {
     color: var(--theme-white) !important;

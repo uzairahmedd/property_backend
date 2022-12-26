@@ -47,18 +47,18 @@
                         <!-- <div class="col-12 d-flex flex-column-reverse flex-lg-row "> -->
                         <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
                             <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop prop-title-en">
-                                <label for="title" class="theme-text-seondary-black">{{__('labels.property_title')}} (English)</label>
+                                <label for="title" class="theme-text-seondary-black">Property Title (English)</label>
                                 <div class="position-relative d-flex justify-content-end align-items-center w-100">
-                                    <input type="text" value="{{ $post_data != '' ? $post_data->title : old('title')}}" name="title" id="title" placeholder="{{__('labels.property_title')}} (English)" class="form-control theme-border">
+                                    <input type="text" value="{{ $post_data != '' ? $post_data->title : old('title')}}" name="title" id="title" placeholder="Property Title" class="form-control theme-border">
                                 </div>
                                 @if($errors->has('title'))
                                     <div class="error pt-1">{{ $errors->first('title') }}</div>
                                 @endif
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address ps-0 pt-sm-0 prop-title-ar">
-                                <label for="title" class="theme-text-seondary-black">{{__('labels.property_title')}} (Arabic)</label>
+                                <label for="title" class="theme-text-seondary-black property_title_ar">عنوان الملكية (عربى)</label>
                                 <div class="position-relative d-flex justify-content-end align-items-center w-100">
-                                    <input type="text" value="{{ $post_data != '' ? $post_data->ar_title : old('ar_title')}}" name="ar_title" id="ar_title" placeholder="{{__('labels.property_title')}} (Arabic)" class="form-control theme-border">
+                                    <input type="text" value="{{ $post_data != '' ? $post_data->ar_title : old('ar_title')}}" name="ar_title" id="ar_title" placeholder="عنوان الملكية (عربى)" class="form-control theme-border property_title_ar">
                                 </div>
                                 @if($errors->has('ar_title'))
                                     <div class="error pt-1">{{ $errors->first('ar_title') }}</div>
@@ -66,6 +66,19 @@
                             </div>
                         </div>
 
+
+
+                        <div class="col-lg-4 col-md-12   col-sm-12 d-flex flex-column align-items-end">
+                            <label for="area" class="theme-text-seondary-black">{{__('labels.property_area')}}
+                            </label>
+                            <input type="number" step="any" id="area"
+                                   value="{{ $post_data != '' ? $post_data->area->content  : old('area') }}"
+                                   name="area" placeholder="{{__('labels.area_square_meter')}}"
+                                   class="form-control theme-border">
+                            @if($errors->has('area'))
+                                <div class="error pt-1">{{ $errors->first('area') }}</div>
+                            @endif
+                        </div>
 
 
 
@@ -102,8 +115,24 @@
                         </div>
 
 
-                        <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
-                            <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop">
+                        <div class="col-12 mt-4 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
+                            <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address">
+                                <label for="location"
+                                       class="theme-text-seondary-black">{{__('labels.address_property')}}
+                                </label>
+                                <div class="position-relative d-flex justify-content-end align-items-center w-100">
+                                    <input type="text" name="location"
+                                           value="{{ $post_data != '' ? $post_data->city->value  : old('location') }}"
+                                           id="location" placeholder="{{__('labels.address_property')}}"
+                                           class="form-control theme-border">
+                                    <img src="{{asset('assets/images/location.png')}}" alt=""
+                                         class="position-absolute input-icon">
+                                </div>
+                                @if($errors->has('location'))
+                                    <div class="error pt-1">{{ $errors->first('location') }}</div>
+                                @endif
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop">
                                 <label class="theme-text-seondary-black">{{__('labels.region')}}</label>
                                 <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                     <img src="{{asset('assets/images/arrow-down.svg')}}" alt=""
@@ -117,34 +146,6 @@
                                 </div>
                                 @if($errors->has('city'))
                                     <div class="error pt-1">{{ $errors->first('city') }}</div>
-                                @endif
-                            </div>
-                            <div
-                                class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address">
-                                <label for="location"
-                                       class="theme-text-seondary-black">{{__('labels.address_property')}}
-                                   </label>
-                                <div class="position-relative d-flex justify-content-end align-items-center w-100">
-                                    <input type="text" name="location"
-                                           value="{{ $post_data != '' ? $post_data->city->value  : old('location') }}"
-                                           id="location" placeholder="{{__('labels.address_property')}}"
-                                           class="form-control theme-border">
-                                    <img src="{{asset('assets/images/location.png')}}" alt=""
-                                         class="position-absolute input-icon">
-                                </div>
-                                @if($errors->has('location'))
-                                    <div class="error pt-1">{{ $errors->first('location') }}</div>
-                                @endif
-                            </div>
-                            <div class="col-lg-4 col-md-12   col-sm-12 d-flex flex-column align-items-end">
-                                <label for="area" class="theme-text-seondary-black">{{__('labels.property_area')}}
-                                    </label>
-                                <input type="number" step="any" id="area"
-                                       value="{{ $post_data != '' ? $post_data->area->content  : old('area') }}"
-                                       name="area" placeholder="{{__('labels.area_square_meter')}}"
-                                       class="form-control theme-border">
-                                @if($errors->has('area'))
-                                    <div class="error pt-1">{{ $errors->first('area') }}</div>
                                 @endif
                             </div>
                         </div>

@@ -81,15 +81,51 @@
     padding: 0 5px;
 }
 
+.rtl .land-size {
+    margin-left: 20px !important;
+}
+
+.rtl .meter {
+    margin-right: 30px;
+    margin-left: 0;
+}
+
+.rtl .property_role_no
+{
+
+}
+
+.rtl .role_span {
+    margin-right: 10px;
+}
+
+.rtl .realestate_roles
+{
+    margin-left: 0 !important;
+    margin-right: 3rem;
+}
+
+.meters_span {
+    margin-right: 10px;
+    margin-left: 0;
+}
+
+.rtl .sqm-unit
+{
+    left: 0;
+    margin-left: 10px;
+    top: 22px;
+}
+
 .rtl .carousel-control-next-icon {
     background-image: url(/assets/images/arrow-left.png);
     width: 7px;
     height: 13px;
 }
 
-.rtl .description-card .property_address {
-    padding: 0 16px;
-}
+/*.rtl .description-card .property_address {*/
+/*    padding: 0 16px;*/
+/*}*/
 
 .rtl .carousel-control-prev-icon {
     background-image: url(/assets/images/arrow-right.png);

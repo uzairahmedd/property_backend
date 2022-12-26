@@ -26,6 +26,7 @@
         @yield('account_js')
         @yield('favorite_properties')
         @yield('property_create')
+        @yield('yearpicker')
         @yield('OTPScript')
     </div>
     {{ google_analytics() }}

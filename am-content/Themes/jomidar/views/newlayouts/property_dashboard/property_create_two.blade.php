@@ -4,6 +4,8 @@
     var locale = '<?php echo Session::get('locale'); ?>';
 </script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
+<link rel="stylesheet" href="{{theme_asset('assets/newcss/yearcalender.css')}}">
+<link rel="stylesheet" href="{{theme_asset('assets/newcss/yearpicker.css')}}">
 <div class="add-property row-style">
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here -->
@@ -42,6 +44,52 @@
                         @endif
                     </div>
 
+
+                    <div class="col-12 d-flex justify-content-end">
+                       <div class="col-lg-4 d-flex flex-column justify-content-end align-items-end land-size">
+                           <label for="area" class="theme-text-seondary-black">{{__('labels.land_size')}}
+                           </label>
+                           <input type="number" step="any" id="area"
+                                  value="{{ $post_data != '' ? $post_data->area->content  : old('area') }}"
+                                  name="area" placeholder="{{__('labels.area_square_meter')}}"
+                                  class="form-control theme-border">
+{{--                           <span class="sqm_span">SQM</span>--}}
+                           @if($errors->has('area'))
+                               <div class="error pt-1">{{ $errors->first('area') }}</div>
+                           @endif
+                       </div>
+                        <div class="col-lg-4 d-flex flex-column justify-content-end align-items-end">
+                            <label for="area" class="theme-text-seondary-black">{{__('labels.built_up_area')}}
+                            </label>
+                            <input type="number" step="any" id="area"
+                                   value="{{ $post_data != '' ? $post_data->area->content  : old('area') }}"
+                                   name="area" placeholder="{{__('labels.area_square_meter')}}"
+                                   class="form-control theme-border">
+{{--                            <span class="sqm_span">SQM</span>--}}
+                            @if($errors->has('area'))
+                                <div class="error pt-1">{{ $errors->first('area') }}</div>
+                            @endif
+                        </div>
+                    </div>
+
+
+                    <div class="built-up-year mt-4">
+                        <p class="theme-text-black font-18">{{__('labels.building_year')}}</p>
+                        <div class="row theme-gx-3 mb-4_5">
+                            <div class="radio-container">
+                                <input type="radio" name="ready" id="ready">
+                                <span class="build-ready font-16 font-medium">{{__('labels.ready')}}</span>
+                            </div>
+                            <div class="radio-container">
+                                <input type="radio" name="ready" id="not_ready">
+                                <span class="build-ready font-16 font-medium">{{__('labels.not_ready')}}</span>
+                            </div>
+                        </div>
+                        <div id="year_calender">
+                            <input type="text" class="yearpicker form-control hidden" id='yearpicker'  placeholder="Select a year" value="" />
+                        </div>
+
+                    </div>
                     <!-- property value Section Starts Here -->
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row property-value">
                         <div class="col-lg-6 col-md-12 flex-column">
@@ -74,9 +122,9 @@
                         </div>
                         <div class="col-lg-6 col-md-12 d-flex add-address justify-content-end">
                             <div class="col-lg-8 col-md-10 col-sm-12 d-flex flex-column align-items-end">
-                                <label for="" class="font-18 theme-text-seondary-black">{{__('labels.property_value')}}</label>
+                                <label for="" class="font-18 theme-text-seondary-black">{{__('labels.rental_value')}}</label>
                                 <div class="position-relative d-flex align-items-center w-100">
-                                    <input type="text" value="{{ !empty($post_data->price) ? $post_data->price->price  : "" }}" name="price" placeholder="{{__('labels.rental_value')}}" class="form-control theme-border">
+                                    <input type="text" value="{{ !empty($post_data->price) ? $post_data->price->price  : "" }}" name="price" placeholder="{{__('labels.rental_value')}}" class="form-control theme-border w-100">
                                     <span class="font-14 font-medium position-absolute theme-text-blue price-unit">{{__('labels.sar')}}</span>
                                 </div>
                                 @if($errors->has('price'))
@@ -100,55 +148,62 @@
                     <span class="error">{{ $errors->first('streets') }}</span>
                     @endif
                     <!-- Street Section Ends Here -->
-                    {{--input with dropdown button start--}}
-                    <div class="col-12 d-flex flex-column-reverse flex-lg-row flex-md-row justify-content-end mt-5">
-                        <div class="col-lg-5 col-md-4 col-sm-12 d-flex align-items-end sec-street ">
-                            <div class="dropdown regional-drop d-flex justify-content-center align-items-center">
-                               <div class="interface-div">
-                                   <button class="btn dropdown-toggle regional-drop-btn interface" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                       {{__('labels.interface')}}
-                                   </button>
-                                   <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
-                                   <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
-                                       <li><a class="dropdown-item inter_val" href="#">East</a></li>
-                                       <li><a class="dropdown-item inter_val" href="#">West</a></li>
-                                       <li><a class="dropdown-item inter_val" href="#">North</a></li>
-                                       <li><a class="dropdown-item inter_val" href="#">South</a></li>
-                                   </ul>
-                               </div>
-                                <div class="meter-div">
-                                    <p class="meter mb-0">{{__('labels.meter')}}</p>
-                                </div>
-                            </div>
-                            <div class="position-relative d-flex flex-column align-items-end w-100 street_info_2">
-                                <label for="" class="font-18 theme-text-seondary-black">{{__('labels.street_info_2')}}</label>
-                                <input type="text" name="street_info_one" value="{{ !empty( $post_data->street_info_one) ? $post_data->street_info_one->content  : old("street_info_one") }}" id="interface_val" placeholder="{{__('labels.street_view')}} " class="form-control street_view theme-border">
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-md-4 col-sm-12 regional-street-1 d-flex align-items-end first-street">
-                            <div class="dropdown regional-drop d-flex justify-content-center align-items-center">
-                                <div class="interface-btn">
-                                    <button class="btn dropdown-toggle regional-drop-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{__('labels.interface')}}
-                                    </button>
-                                    <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
-                                    <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
-                                        <li><a class="dropdown-item inter_val2" href="#">10m</a></li>
-                                        <li><a class="dropdown-item inter_val2" href="#">20m</a></li>
-                                        <li><a class="dropdown-item inter_val2" href="#">30m</a></li>
-                                    </ul>
-                                </div>
-                                <div class="meter-div">
-                                    <p class="meter mb-0">{{__('labels.meter')}}</p>
-                                </div>
+                    <div id="street_detailss"></div>
 
-                            </div>
-                            <div class="position-relative d-flex flex-column align-items-end w-100">
-                                <label for="" class="font-18 theme-text-seondary-black">{{__('labels.street_info_1')}}</label>
-                                <input type="text" name="street_info_two" value="{{ !empty( $post_data->street_info_two) ? $post_data->street_info_two->content  : old("street_info_two") }}" id="interface_val2" placeholder="{{__('labels.street_view')}}" class="form-control street_view theme-border">
-                            </div>
-                        </div>
-                    </div>
+
+
+
+
+                    {{--input with dropdown button start--}}
+{{--                    <div class="col-12 d-flex flex-column-reverse flex-lg-row flex-md-row justify-content-end mt-5">--}}
+{{--                        <div class="col-lg-5 col-md-4 col-sm-12 d-flex align-items-end sec-street ">--}}
+{{--                            <div class="dropdown regional-drop d-flex justify-content-center align-items-center">--}}
+{{--                               <div class="interface-div">--}}
+{{--                                   <button class="btn dropdown-toggle regional-drop-btn interface" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                                       {{__('labels.interface')}}--}}
+{{--                                   </button>--}}
+{{--                                   <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">--}}
+{{--                                   <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">--}}
+{{--                                       <li><a class="dropdown-item inter_val" href="#">East</a></li>--}}
+{{--                                       <li><a class="dropdown-item inter_val" href="#">West</a></li>--}}
+{{--                                       <li><a class="dropdown-item inter_val" href="#">North</a></li>--}}
+{{--                                       <li><a class="dropdown-item inter_val" href="#">South</a></li>--}}
+{{--                                   </ul>--}}
+{{--                               </div>--}}
+{{--                                <div class="meter-div">--}}
+{{--                                    <p class="meter mb-0">{{__('labels.meter')}}</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            --}}
+{{--                            <div class="position-relative d-flex flex-column align-items-end w-100 street_info_2">--}}
+{{--                                <label for="" class="font-18 theme-text-seondary-black">{{__('labels.street_info_2')}}</label>--}}
+{{--                                <input type="text" name="street_info_one" value="{{ !empty( $post_data->street_info_one) ? $post_data->street_info_one->content  : old("street_info_one") }}" id="interface_val" placeholder="{{__('labels.street_view')}} " class="form-control street_view theme-border">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-lg-5 col-md-4 col-sm-12 regional-street-1 d-flex align-items-end first-street">--}}
+{{--                            <div class="dropdown regional-drop d-flex justify-content-center align-items-center">--}}
+{{--                                <div class="interface-btn">--}}
+{{--                                    <button class="btn dropdown-toggle regional-drop-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                                        {{__('labels.interface')}}--}}
+{{--                                    </button>--}}
+{{--                                    <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">--}}
+{{--                                    <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">--}}
+{{--                                        <li><a class="dropdown-item inter_val2" href="#">10m</a></li>--}}
+{{--                                        <li><a class="dropdown-item inter_val2" href="#">20m</a></li>--}}
+{{--                                        <li><a class="dropdown-item inter_val2" href="#">30m</a></li>--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+{{--                                <div class="meter-div">--}}
+{{--                                    <p class="meter mb-0">{{__('labels.meter')}}</p>--}}
+{{--                                </div>--}}
+
+{{--                            </div>--}}
+{{--                            <div class="position-relative d-flex flex-column align-items-end w-100">--}}
+{{--                                <label for="" class="font-18 theme-text-seondary-black">{{__('labels.street_info_1')}}</label>--}}
+{{--                                <input type="text" name="street_info_two" value="{{ !empty( $post_data->street_info_two) ? $post_data->street_info_two->content  : old("street_info_two") }}" id="interface_val2" placeholder="{{__('labels.street_view')}}" class="form-control street_view theme-border">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
             </div>
             <div class="d-flex justify-content-between description-btn-group">
@@ -159,4 +214,7 @@
     </div>
     <!-- Property Description Section Ends Here -->
 </div>
+@endsection
+@section('yearpicker')
+    <script src="{{theme_asset('assets/newjs/yearpicker.js')}}"></script>
 @endsection
