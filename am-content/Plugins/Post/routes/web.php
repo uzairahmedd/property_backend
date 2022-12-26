@@ -55,6 +55,8 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::resource('property', 'PropertyController');
 		Route::post('properties/destroy', 'PropertyController@destroy')->name('properties.destroy');
 		Route::post('properties/user', 'PropertyController@findUser')->name('properties.findUser');
+			//property type
+	    Route::get('property_type/{id}', 'PropertyController@property_type')->name('properties.type');
 
 	});
 
