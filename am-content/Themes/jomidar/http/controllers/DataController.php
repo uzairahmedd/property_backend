@@ -271,7 +271,7 @@ class DataController extends controller
         $this->room = $request->room;
         $this->min_price = $request->min_price ?? 0;
         $this->max_price = $request->max_price ?? 0;
-        $posts = Terms::where('type', 'property')->where('status', 1)->with('parentcategory', 'category', 'area', 'post_preview', 'price', 'post_city', 'user', 'featured_option', 'property_status_type', 'options')->whereHas('post_city', function ($q) {
+        $posts = Terms::where('type', 'property')->where('status', 1)->with('parentcategory', 'category', 'area', 'post_preview', 'price', 'post_city', 'user', 'property_status_type', 'option_data')->whereHas('post_city', function ($q) {
             if (!empty($this->state)) {
                 return $q->where('category_id', $this->state);
             }
@@ -282,7 +282,7 @@ class DataController extends controller
             }
             return $q;
         })
-            ->whereHas('options', function ($q) {
+            ->whereHas('option_data', function ($q) {
                 if (!empty($this->room)) {
                     $my_options = explode(',', $this->room);
                     return $q->whereIn('value', $my_options);

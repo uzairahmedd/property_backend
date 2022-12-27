@@ -12,7 +12,7 @@ class Postcategoryoption extends Model
 
 	public function category()
 	{
-		return $this->hasOne('App\Category','id','category_id')->select('id','name','ar_name','slug')->with('icon');
+		return $this->hasOne('App\Category','id','category_id')->select('id','name','ar_name','slug')->with('icon','preview');
 	}
 
 	public function featured_category()

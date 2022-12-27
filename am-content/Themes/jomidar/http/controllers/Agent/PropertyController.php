@@ -1367,7 +1367,7 @@ class PropertyController extends controller
         $this->floor = $request->floor[18] ?? null;
         $this->block = $request->block[15] ?? null;
 
-        $posts = Terms::where('type', 'property')->where('status', 1)->where('user_id', Auth::id())->whereHas('price')->whereHas('post_city')->with('area', 'post_preview', 'price', 'post_city', 'user', 'featured_option', 'property_status_type')->whereHas('post_city', function ($q) {
+        $posts = Terms::where('type', 'property')->where('status', 1)->where('user_id', Auth::id())->whereHas('price')->whereHas('post_city')->with('area', 'post_preview', 'price', 'post_city', 'user', 'option_data', 'property_status_type')->whereHas('post_city', function ($q) {
             if (!empty($this->state)) {
                 return $q->where('category_id', $this->state);
             }

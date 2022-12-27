@@ -43,7 +43,7 @@
                             </select>
                         </div>
                     </div> -->
-                    <div class="form-group">
+                    <div class="form-group col-12">
                         <label>{{ __('Select Category') }}</label>
                         <select multiple="" class="form-control select2" name="child[]">
                             @foreach($categories as $row)

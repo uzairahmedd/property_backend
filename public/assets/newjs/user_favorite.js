@@ -128,44 +128,45 @@ function user_properties_list(target, data) {
         htmls = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + sq_feet + '</span></p><img src="/assets/images/area-icon.png" alt="" data-toggle="tooltip"  title="' + floor_name + '"></div>';
         $('.facilities_area' + index).append(htmls);
         //for facilities
-        $.each(value.featured_option, function (i, v) {
+        $.each(value.option_data, function (i, v) {
             var imgg = '';
             var name = '';
             var quantity = '';
-            if (v.featured_category != null && v.featured_category.name == 'Bathrooms') {
-                imgg = '/assets/images/bath-icon.png';
-                name = v.featured_category.name;
-                quantity = v.value;
-                html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
-                $('.facilities_area' + index).append(html);
-            } else if (v.featured_category != null && v.featured_category.name == 'Bedrooms') {
-                imgg = '/assets/images/bed-icon.png';
-                name = v.featured_category.name;
+            if (v.value != 0) {
+                imgg =  v.category.preview.content;
+                name = v.category.name;
                 quantity = v.value;
                 html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
                 $('.facilities_area' + index).append(html);
             }
-            else if (v.featured_category != null && v.featured_category.name == 'Parking') {
-                imgg = '/assets/images/parking.png';
-                name = v.featured_category.name;
-                quantity = v.value;
-                html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
-                $('.facilities_area' + index).append(html);
-            }
-            else if (v.featured_category != null && v.featured_category.name == 'lounges') {
-                imgg = '/assets/images/lunch.png';
-                name = v.featured_category.name;
-                quantity = v.value;
-                html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
-                $('.facilities_area' + index).append(html);
-            }
-            else if (v.featured_category != null && v.featured_category.name == 'Boards') {
-                imgg = '/assets/images/board-room.png';
-                name = v.featured_category.name;
-                quantity = v.value;
-                html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
-                $('.facilities_area' + index).append(html);
-            }
+            //  else if (v.featured_category != null && v.featured_category.name == 'Bedrooms') {
+            //     imgg = '/assets/images/bed-icon.png';
+            //     name = v.featured_category.name;
+            //     quantity = v.value;
+            //     html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
+            //     $('.facilities_area' + index).append(html);
+            // }
+            // else if (v.featured_category != null && v.featured_category.name == 'Parking') {
+            //     imgg = '/assets/images/parking.png';
+            //     name = v.featured_category.name;
+            //     quantity = v.value;
+            //     html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
+            //     $('.facilities_area' + index).append(html);
+            // }
+            // else if (v.featured_category != null && v.featured_category.name == 'lounges') {
+            //     imgg = '/assets/images/lunch.png';
+            //     name = v.featured_category.name;
+            //     quantity = v.value;
+            //     html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
+            //     $('.facilities_area' + index).append(html);
+            // }
+            // else if (v.featured_category != null && v.featured_category.name == 'Boards') {
+            //     imgg = '/assets/images/board-room.png';
+            //     name = v.featured_category.name;
+            //     quantity = v.value;
+            //     html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
+            //     $('.facilities_area' + index).append(html);
+            // }
 
         });
 

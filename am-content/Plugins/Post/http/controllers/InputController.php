@@ -23,10 +23,10 @@ class InputController extends controller
             abort(401);
         }
         if ($request->src) {
-            $posts=Category::where('type','option')->where($request->type,'LIKE','%'.$request->src.'%')->latest()->paginate(20);  
+            $posts=Category::where('type','option')->with('preview')->where($request->type,'LIKE','%'.$request->src.'%')->latest()->paginate(20);  
         }
         else{
-            $posts=Category::where('type','option')->latest()->paginate(20);  
+            $posts=Category::where('type','option')->with('preview')->latest()->paginate(20);  
         }
         $src=$request->src;
         return view('plugin::input.index',compact('posts','src'));
@@ -210,6 +210,8 @@ class InputController extends controller
      */
     public function update(Request $request, $id)
     {
+        dump($id);
+        dd($request->all());
         $validatedData = $request->validate([
             'title' => 'required|max:50',
             'ar_title' => 'required|max:50',

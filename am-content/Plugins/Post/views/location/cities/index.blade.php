@@ -59,9 +59,9 @@
 									<label class="custom-control-label" for="customCheck{{ $post->id }}"></label>
 								</div>
 							</th>
-							<!-- <td>
+							<td>
 								<img src="{{ asset($post->preview->content ?? '') }}" alt="" height="50">
-							</td> -->
+							</td>
 							<td>
 								{{ $post->name }}
 								<div class="hover">
@@ -85,7 +85,7 @@
                                             <label class="custom-control-label checkAll" for="customCheck12"></label>
                                         </div>
                                     </th>
-                                    <!-- <th class="am-title"><i class="far fa-image"></i></th> -->
+                                    <th class="am-title"><i class="far fa-image"></i></th>
                                     <th class="am-title">{{ __('Title') }}</th>
 
                                     <th class="am-title">{{ __('Url') }}</th>

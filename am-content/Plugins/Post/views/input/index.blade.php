@@ -56,6 +56,7 @@
 									<label class="custom-control-label checkAll" for="selectAll"></label>
 								</div>
 							</th>
+							<th class="am-title"><i class="far fa-image"></i></th>
 							<th class="am-title">{{ __('Name') }}</th>
 							<th class="am-title">{{ __('Arabic Name') }}</th>
 							<th class="am-title">{{ __('Is Featured') }}</th>
@@ -73,6 +74,9 @@
 								</div>
 							</td>
 							<td>
+								<img src="{{ $row->preview->content ?? '/uploads/defaultsmall.png' }}"  height="20" alt=""></img>
+							</td>
+							<td>
 								{{ $row->name }}
 								<div>
 									<a href="{{ route('admin.input.edit',$row->id) }}">Edit</a>
@@ -81,16 +85,6 @@
 							<td>
 								{{ $row->ar_name }}
 							</td>
-							<!-- <td>
-								{{ $row->slug }}
-							</td> -->
-							<!-- <td>
-								@if($row->status==1)
-								<span class="badge badge-success">{{ __('Yes') }}</span>
-								@else
-								<span class="badge badge-danger">{{ __('No') }}</span>
-								@endif
-							</td> -->
 							<td>
 								@if($row->featured==1)
 								<span class="badge badge-success">{{ __('Yes') }}</span>
