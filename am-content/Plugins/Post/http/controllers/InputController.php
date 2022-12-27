@@ -210,8 +210,7 @@ class InputController extends controller
      */
     public function update(Request $request, $id)
     {
-        dump($id);
-        dd($request->all());
+       
         $validatedData = $request->validate([
             'title' => 'required|max:50',
             'ar_title' => 'required|max:50',
