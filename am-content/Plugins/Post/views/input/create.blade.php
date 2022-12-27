@@ -24,7 +24,7 @@
                             <input type="text" class="form-control item-menu" name="ar_title" id="ar_text" placeholder="Enter Name in Arabic" autocomplete="off" required="">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="text">{{ __('Input Type') }}</label>
                         <div class="input-group">
                             <select name="input_type" class="form-control">
@@ -32,8 +32,8 @@
                                 <option value="number">{{ __('Number') }}</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="form-group">
+                    </div> -->
+                    <!-- <div class="form-group">
                         <label for="text">{{ __('Is Required') }}</label>
                         <div class="input-group">
                             <select name="required" class="form-control">
@@ -41,7 +41,7 @@
                                 <option value="0" selected="">{{ __('No') }}</option>
                             </select>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label>{{ __('Select Category') }}</label>
                         <select multiple="" class="form-control select2" name="child[]">

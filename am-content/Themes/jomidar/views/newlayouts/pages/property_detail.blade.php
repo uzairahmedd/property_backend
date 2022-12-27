@@ -125,25 +125,12 @@
                     <ul class="list-unstyled d-flex flex-column flex-sm-row align-items-end mb-5 flex-wrap justify-content-end property-list-feature">
                         @if($property->option_data)
                         @foreach ($property->option_data as $value)
+                        @if( $value->value != 0)
                         <li class="d-flex align-items-center mb-3 mb-sm-3">
                             <span> {{ $value->value }}</span>
-                            @if($value->category->name =='Bathrooms')
-
-                            <img src="{{theme_asset('assets/images/shower.png')}}" title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}" data-toggle="tooltip" alt="">
-                            @elseif($value->category->name =='Bedrooms')
-                            <img src="{{theme_asset('assets/images/room.png')}}" title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}" data-toggle="tooltip" alt="">
-
-                            @elseif($value->category->name =='Parking')
-                            <img src="{{theme_asset('assets/images/parking.png')}}" title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}" data-toggle="tooltip" alt="">
-
-                            @elseif($value->category->name =='lounges')
-                            <img src="{{theme_asset('assets/images/lunch.png')}}" title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}" data-toggle="tooltip" alt="">
-
-                            @elseif($value->category->name =='Boards')
-                            <img src="{{theme_asset('assets/images/board-room.png')}}" title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}" data-toggle="tooltip" alt="">
-                            @endif
+                            <img src="{{ $value->category->preview->content }}" title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}" data-toggle="tooltip" alt="">
                         </li>
-
+                        @endif
                         @endforeach
                         @endif
                         <li class="d-flex align-items-center mb-3 mb-sm-3">

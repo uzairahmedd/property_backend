@@ -20,7 +20,7 @@
 		<div class="float-right">
 			<form>
 				<div class="input-group mb-2">
-					<input type="text"  id="src" class="form-control h-100" placeholder="Search..." required="" name="src" autocomplete="off" value="{{ $src ?? '' }}">
+					<input type="text" id="src" class="form-control h-100" placeholder="Search..." required="" name="src" autocomplete="off" value="{{ $src ?? '' }}">
 					<select class="form-control selectric" name="type" id="type">
 						<option value="name">{{ __('Search By Name') }}</option>
 						<option value="slug">{{ __('Search By Input Type') }}</option>
@@ -56,10 +56,9 @@
 									<label class="custom-control-label checkAll" for="selectAll"></label>
 								</div>
 							</th>
+							<th class="am-title"><i class="far fa-image"></i></th>
 							<th class="am-title">{{ __('Name') }}</th>
 							<th class="am-title">{{ __('Arabic Name') }}</th>
-							<th class="am-title">{{ __('Input Type') }}</th>
-							<th class="am-title">{{ __('Is Required') }}</th>
 							<th class="am-title">{{ __('Is Featured') }}</th>
 							<th class="am-date">{{ __('Last Update') }}</th>
 						</tr>
@@ -68,12 +67,14 @@
 						@foreach($posts as $row)
 						<tr id="row{{  $row->id }}">
 							<td>
-								@if($row->id != 18 && $row->id != 17 && $row->id != 16 && $row->id != 15)
+
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" name="ids[]" class="custom-control-input" id="customCheck{{ $row->id }}" value="{{ $row->id }}">
 									<label class="custom-control-label" for="customCheck{{ $row->id }}"></label>
 								</div>
-								@endif
+							</td>
+							<td>
+								<img src="{{ $row->preview->content ?? '/uploads/defaultsmall.png' }}"  height="20" alt=""></img>
 							</td>
 							<td>
 								{{ $row->name }}
@@ -83,16 +84,6 @@
 							</td>
 							<td>
 								{{ $row->ar_name }}
-							</td>
-							<td>
-								{{ $row->slug }}
-							</td>
-							<td>
-								@if($row->status==1)
-								<span class="badge badge-success">{{ __('Yes') }}</span>
-								@else
-								<span class="badge badge-danger">{{ __('No') }}</span>
-								@endif
 							</td>
 							<td>
 								@if($row->featured==1)
@@ -106,10 +97,10 @@
 						@endforeach
 					</tbody>
 				</table>
-			</form>
-			{{ $posts->links('vendor.pagination.bootstrap') }}
-		</div>
+		</form>
+		{{ $posts->links('vendor.pagination.bootstrap') }}
 	</div>
+</div>
 </div>
 @endsection
 
@@ -117,10 +108,11 @@
 <script src="{{ asset('admin/js/form.js') }}"></script>
 <script>
 	"use strict";
-	function success(res){
-		$('input[name="ids[]"]:checked').each(function(i){
+
+	function success(res) {
+		$('input[name="ids[]"]:checked').each(function(i) {
 			var ids = $(this).val();
-			$('#row'+ids).remove();
+			$('#row' + ids).remove();
 		});
 	}
 </script>

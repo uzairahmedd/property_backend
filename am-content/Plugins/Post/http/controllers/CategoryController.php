@@ -167,8 +167,6 @@ class CategoryController extends Controller
     if (!Auth()->user()->can('category.edit')) {
       abort(401);
     }
-    // $info=Category::with('creditcharge','excerpt')->find($id);
-
     $info = Category::where('type', 'category')->with('child', 'icon')->findorFail($id);
     $categories = Category::where('type', 'parent_category')->get();
     $childs = [];

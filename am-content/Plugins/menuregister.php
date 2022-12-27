@@ -42,6 +42,10 @@ function RegisterAdminMenuBar()
 			// 	$location['Cities'] =  route('admin.cities.index');
 
 			// }
+			if (Auth()->user()->can('neighborhood.list')) {
+				$location['Neighborhood'] =  route('admin.neighborhood.index');
+
+			}
 			if (count($location ?? []) > 0) {
 			$data['admin_locations']=array(
 				'name' => 'Locations',

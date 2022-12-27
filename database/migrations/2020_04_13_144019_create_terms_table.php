@@ -15,6 +15,7 @@ class CreateTermsTable extends Migration
     {
         Schema::create('terms', function (Blueprint $table) {
             $table->id();
+            $table->string('unique_id')->nullable();
             $table->string('title');
             $table->string('ar_title')->nullable();
             $table->string('slug');

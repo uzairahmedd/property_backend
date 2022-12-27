@@ -130,9 +130,9 @@ class UserSeeder extends Seeder
                     'states.list',
                     'states.create',
                     'states.edit',
-                    'cities.list',
-                    'cities.create',
-                    'cities.edit',
+                    'neighborhood.list',
+                    'neighborhood.create',
+                    'neighborhood.edit',
                     
                 ]
             ],
