@@ -324,6 +324,11 @@
     margin-left: 30px;
 }
 
+.hiden
+{
+    display: none !important;
+}
+
 .hidden{
     display: none;
 }

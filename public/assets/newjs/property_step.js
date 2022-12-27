@@ -52,205 +52,38 @@ $(document).ready(function(){
         });
 });
 
-$(document).ready(function() {
-    $('input:radio[name="streets"]').click(function () {
-        if ($('input[name=streets]:checked').val() == 1) {
+function generate_input(n)
+{
+    $('.street_detailss').html('');
+    var i;
+    for(i=1; i<=n; i++) {
+        $('.street_detailss').append('<div class="col-12 street_detail d-flex justify-content-end mt-3" id="street_detail">\n' +
+            '                        <div class="col-lg-6 d-flex flex-column">\n' +
+            '                            <label for="" class="d-flex justify-content-end theme-text-black">Select Facing</label>\n' +
+            '                            <select class="form-select form-control w-100 select-face" name="interface[]" aria-label="Default select example">\n' +
+            '                                <option value="" disabled selected>Select facing</option>\n' +
+            '                                <option value="1">East</option>\n' +
+            '                                <option value="2">West</option>\n' +
+            '                                <option value="3">North</option>\n' +
+            '                                <option value="4">South</option>\n' +
+            '                            </select>\n' +
+            '                        </div>\n' +
+            '                        <div class="col-lg-6 d-flex flex-column meter">\n' +
+            '                            <label for="" class="d-flex justify-content-end theme-text-black">Street 1 Width</label>\n' +
+            '                            <input type="text" name="meter[]" class="form-control d-flex justify-content-start align-items-start w-100">\n' +
+            '                            <span class="meters_span">Meters</span>\n' +
+            '                        </div>\n' +
+            '                    </div>');
+    }
 
-            $('#street_detailss').html('<div class="col-12 street_detail d-flex justify-content-end mt-3" id="street_detail">\n' +
-                '                        <div class="col-lg-6 d-flex flex-column">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Select Facing</label>\n' +
-                '                            <select class="form-select form-control w-100 select-face" aria-label="Default select example">\n' +
-                '                                <option selected>Select facing</option>\n' +
-                '                                <option value="1">East</option>\n' +
-                '                                <option value="2">West</option>\n' +
-                '                                <option value="3">North</option>\n' +
-                '                                <option value="3">South</option>\n' +
-                '                            </select>\n' +
-                '                        </div>\n' +
-                '                        <div class="col-lg-6 d-flex flex-column meter">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Street 1 Width</label>\n' +
-                '                            <input type="text" class="form-control d-flex justify-content-start align-items-start w-100">\n' +
-                '                            <span class="meters_span">Meters</span>\n' +
-                '                        </div>\n' +
-                '                    </div>\n');
+}
 
-        }
-        else if($('input[name=streets]:checked').val() == 2) {
-
-            $('#street_detailss').html('<div class="col-12 street_detail d-flex justify-content-end mt-3" id="street_detail">\n' +
-                '                        <div class="col-lg-6 d-flex flex-column">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Select Facing</label>\n' +
-                '                            <select class="form-select form-control w-100 select-face" aria-label="Default select example">\n' +
-                '                                <option selected>Select facing</option>\n' +
-                '                                <option value="1">East</option>\n' +
-                '                                <option value="2">West</option>\n' +
-                '                                <option value="3">North</option>\n' +
-                '                                <option value="3">South</option>\n' +
-                '                            </select>\n' +
-                '                        </div>\n' +
-                '                        <div class="col-lg-6 d-flex flex-column meter">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Street 1 Width</label>\n' +
-                '                            <input type="text" class="form-control d-flex justify-content-start align-items-start w-100">\n' +
-                '                            <span class="meters_span">Meters</span>\n' +
-                '                        </div>\n' +
-                '                    </div>\n<div class="col-12 street_detail d-flex justify-content-end mt-2" id="street_detail">\n' +
-                '                        <div class="col-lg-6 d-flex flex-column">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Select Facing</label>\n' +
-                '                            <select class="form-select form-control w-100 select-face" aria-label="Default select example">\n' +
-                '                                <option selected>Select facing</option>\n' +
-                '                                <option value="1">East</option>\n' +
-                '                                <option value="2">West</option>\n' +
-                '                                <option value="3">North</option>\n' +
-                '                                <option value="3">South</option>\n' +
-                '                            </select>\n' +
-                '                        </div>\n' +
-                '                        <div class="col-lg-6 d-flex flex-column meter">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Street 1 Width</label>\n' +
-                '                            <input type="text" class="form-control d-flex justify-content-start align-items-start w-100">\n' +
-                '                            <span class="meters_span">Meters</span>\n' +
-                '                        </div>\n' +
-                '                    </div>\n');
-        }
-
-            else if ($('input[name=streets]:checked').val() == 3) {
-
-                $('#street_detailss').html('<div class="col-12 street_detail d-flex justify-content-end mt-3" id="street_detail">\n' +
-                    '                        <div class="col-lg-6 d-flex flex-column">\n' +
-                    '                            <label for="" class="d-flex justify-content-end theme-text-black">Select Facing</label>\n' +
-                    '                            <select class="form-select form-control w-100 select-face" aria-label="Default select example">\n' +
-                    '                                <option selected>Select facing</option>\n' +
-                    '                                <option value="1">East</option>\n' +
-                    '                                <option value="2">West</option>\n' +
-                    '                                <option value="3">North</option>\n' +
-                    '                                <option value="3">South</option>\n' +
-                    '                            </select>\n' +
-                    '                        </div>\n' +
-                    '                        <div class="col-lg-6 d-flex flex-column meter">\n' +
-                    '                            <label for="" class="d-flex justify-content-end theme-text-black">Street 1 Width</label>\n' +
-                    '                            <input type="text" class="form-control d-flex justify-content-start align-items-start w-100">\n' +
-                    '                            <span class="meters_span">Meters</span>\n' +
-                    '                        </div>\n' +
-                    '                    </div>\n<div class="col-12 street_detail d-flex justify-content-end mt-2" id="street_detail">\n' +
-                    '                        <div class="col-lg-6 d-flex flex-column">\n' +
-                    '                            <label for="" class="d-flex justify-content-end theme-text-black">Select Facing</label>\n' +
-                    '                            <select class="form-select form-control w-100 select-face" aria-label="Default select example">\n' +
-                    '                                <option selected>Select facing</option>\n' +
-                    '                                <option value="1">East</option>\n' +
-                    '                                <option value="2">West</option>\n' +
-                    '                                <option value="3">North</option>\n' +
-                    '                                <option value="3">South</option>\n' +
-                    '                            </select>\n' +
-                    '                        </div>\n' +
-                    '                        <div class="col-lg-6 d-flex flex-column meter">\n' +
-                    '                            <label for="" class="d-flex justify-content-end theme-text-black">Street 1 Width</label>\n' +
-                    '                            <input type="text" class="form-control d-flex justify-content-start align-items-start w-100">\n' +
-                    '                            <span class="meters_span">Meters</span>\n' +
-                    '                        </div>\n' +
-                    '                    </div>\n<div class="col-12 street_detail d-flex justify-content-end mt-2" id="street_detail">\n' +
-                    '                        <div class="col-lg-6 d-flex flex-column">\n' +
-                    '                            <label for="" class="d-flex justify-content-end theme-text-black">Select Facing</label>\n' +
-                    '                            <select class="form-select form-control w-100 select-face" aria-label="Default select example">\n' +
-                    '                                <option selected>Select facing</option>\n' +
-                    '                                <option value="1">East</option>\n' +
-                    '                                <option value="2">West</option>\n' +
-                    '                                <option value="3">North</option>\n' +
-                    '                                <option value="3">South</option>\n' +
-                    '                            </select>\n' +
-                    '                        </div>\n' +
-                    '                        <div class="col-lg-6 d-flex flex-column meter">\n' +
-                    '                            <label for="" class="d-flex justify-content-end theme-text-black">Street 1 Width</label>\n' +
-                    '                            <input type="text" class="form-control d-flex justify-content-start align-items-start w-100">\n' +
-                    '                            <span class="meters_span">Meters</span>\n' +
-                    '                        </div>\n' +
-                    '                    </div>\n')
-            }
-        else if ($('input[name=streets]:checked').val() == 4) {
-            $('#street_detailss').html('<div class="col-12 street_detail d-flex justify-content-end mt-3" id="street_detail">\n' +
-                '                        <div class="col-lg-6 d-flex flex-column">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Select Facing</label>\n' +
-                '                            <select class="form-select form-control w-100 select-face" aria-label="Default select example">\n' +
-                '                                <option selected>Select facing</option>\n' +
-                '                                <option value="1">East</option>\n' +
-                '                                <option value="2">West</option>\n' +
-                '                                <option value="3">North</option>\n' +
-                '                                <option value="3">South</option>\n' +
-                '                            </select>\n' +
-                '                        </div>\n' +
-                '                        <div class="col-lg-6 d-flex flex-column meter">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Street 1 Width</label>\n' +
-                '                            <input type="text" class="form-control d-flex justify-content-start align-items-start w-100">\n' +
-                '                            <span class="meters_span">Meters</span>\n' +
-                '                        </div>\n' +
-                '                    </div>\n<div class="col-12 street_detail d-flex justify-content-end mt-2" id="street_detail">\n' +
-                '                        <div class="col-lg-6 d-flex flex-column">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Select Facing</label>\n' +
-                '                            <select class="form-select form-control w-100 select-face" aria-label="Default select example">\n' +
-                '                                <option selected>Select facing</option>\n' +
-                '                                <option value="1">East</option>\n' +
-                '                                <option value="2">West</option>\n' +
-                '                                <option value="3">North</option>\n' +
-                '                                <option value="3">South</option>\n' +
-                '                            </select>\n' +
-                '                        </div>\n' +
-                '                        <div class="col-lg-6 d-flex flex-column meter">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Street 1 Width</label>\n' +
-                '                            <input type="text" class="form-control d-flex justify-content-start align-items-start w-100">\n' +
-                '                            <span class="meters_span">Meters</span>\n' +
-                '                        </div>\n' +
-                '                    </div>\n<div class="col-12 street_detail d-flex justify-content-end mt-2" id="street_detail">\n' +
-                '                        <div class="col-lg-6 d-flex flex-column">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Select Facing</label>\n' +
-                '                            <select class="form-select form-control w-100 select-face" aria-label="Default select example">\n' +
-                '                                <option selected>Select facing</option>\n' +
-                '                                <option value="1">East</option>\n' +
-                '                                <option value="2">West</option>\n' +
-                '                                <option value="3">North</option>\n' +
-                '                                <option value="3">South</option>\n' +
-                '                            </select>\n' +
-                '                        </div>\n' +
-                '                        <div class="col-lg-6 d-flex flex-column meter">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Street 1 Width</label>\n' +
-                '                            <input type="text" class="form-control d-flex justify-content-start align-items-start w-100">\n' +
-                '                            <span class="meters_span">Meters</span>\n' +
-                '                        </div>\n' +
-                '                    </div>\n<div class="col-12 street_detail d-flex justify-content-end mt-2" id="street_detail">\n' +
-                '                        <div class="col-lg-6 d-flex flex-column">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Select Facing</label>\n' +
-                '                            <select class="form-select form-control w-100 select-face" aria-label="Default select example">\n' +
-                '                                <option selected>Select facing</option>\n' +
-                '                                <option value="1">East</option>\n' +
-                '                                <option value="2">West</option>\n' +
-                '                                <option value="3">North</option>\n' +
-                '                                <option value="3">South</option>\n' +
-                '                            </select>\n' +
-                '                        </div>\n' +
-                '                        <div class="col-lg-6 d-flex flex-column meter">\n' +
-                '                            <label for="" class="d-flex justify-content-end theme-text-black">Street 1 Width</label>\n' +
-                '                            <input type="text" class="form-control d-flex justify-content-start align-items-start w-100">\n' +
-                '                            <span class="meters_span">Meters</span>\n' +
-                '                        </div>\n' +
-                '                    </div>\n');
-        }
-    });
-});
+function  dropdown_btn(elem){
+    var count=$(elem).val();
+    generate_input(count);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 //to get property type
 function property_type(elem){
@@ -276,7 +109,7 @@ function property_type(elem){
                     if(value_data.id == response.post_category.category_id && value.id == response.post_category.term_id){
                       checked='checked';
                     }}
-                    $('#property_type_radio').append('<div class="radio-container property_radio"><input type="radio" name="category" '+checked+' value="'+value_data.id+'"><span class="checmark font-16 font-medium">'+name+'</span> </div>');
+                    $('#property_type_radio').append('<div class="radio-container property_radio"><input type="radio" name="category" '+checked+' data-name="'+value_data.name+'" value="'+value_data.id+'"><span class="checmark font-16 font-medium">'+name+'</span> </div>');
                 });
             });
 
@@ -298,3 +131,43 @@ $(document).ready(function () {
         $('#setting').addClass("sidebar-active");
     }
 });
+
+
+$(document).ready(function () {
+    $(document).on('change', '.property_radio', function(e) {
+        e.preventDefault();
+        var text = $("input:radio[name=category]:checked").data('name');
+        if(text === 'Building' || text === 'building')
+        {
+            console.log('built');
+            $('#land_size').removeClass('hiden');
+        }
+        else if(text === 'Chalet' || text === 'chalet')
+        {
+            $('#land_size').removeClass('hiden');
+        }else if(text === 'Residential land' || text === 'Residential Land' || text === 'residential land' || text === 'residential Land')
+        {
+            $('#land_size').addClass('hiden');
+        } else if(text === 'Duplex' || text === 'duplex')
+        {
+            $('#land_size').removeClass('hiden');
+        }
+        else if(text === 'Villa' || text === 'villa')
+        {
+            $('#land_size').removeClass('hiden');
+        }
+        else if(text === 'Apartment' || text === 'apartment')
+        {
+            $('#land_size').addClass('hiden');
+        }else if(text === 'Rest House' || text === 'rest house' || text === 'Rest house' || text === 'rest House')
+        {
+            $('#land_size').removeClass('hiden');
+        }
+    });
+});
+
+
+
+
+
+

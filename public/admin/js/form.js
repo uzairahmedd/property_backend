@@ -214,8 +214,6 @@
 				errosresponse(xhr, status, error);
 			}
 		})
-
-
 	});
 
 	$(".basicform").on('submit', function (e) {
@@ -240,7 +238,6 @@
 				$('.basicbtn').attr('disabled', '')
 
 			},
-
 			success: function (response) {
 				$('.basicbtn').removeAttr('disabled')
 				Sweet('success', response);
@@ -258,8 +255,6 @@
 				errosresponse(xhr, status, error);
 			}
 		})
-
-
 	});
 
 	$("#basicform3").on('submit', function (e) {
@@ -293,7 +288,7 @@
 		})
 	});
 
-	//id basicform1 when submit 
+	//id basicform1 when submit
 	$("#basicform1").on('submit', function (e) {
 		e.preventDefault();
 
@@ -410,7 +405,6 @@ $(function () {
 	$("#property_type").on("change", function (e) {
 		e.preventDefault();
 		var text=$(this).find('option:selected').text();
-		
        if(text.indexOf('land') > -1 || text.indexOf('Land') > -1){
         $('#features').addClass('hiden');
 	   }

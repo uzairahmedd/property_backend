@@ -813,6 +813,7 @@ class PropertyController extends controller
      */
     public function update_two_property(Request $request, $id)
     {
+//        dd($request->all());
         $term_id = decrypt($id);
         $validator = $this->property_two_validations($request);
         if ($validator->fails()) {
@@ -853,7 +854,7 @@ class PropertyController extends controller
 
         //street info ,slectricity and water flag store and update
         $data = $request->all();
-        unset($data['_token'], $data['_method'], $data['parent_category'], $data['category'], $data['price']);
+        unset($data['_token'], $data['_method'], $data['parent_category'], $data['category'], $data['price'],$data['landsize'],$data['builtarea'],$data['ready'],$data['property-age'],$data['meter'],$data['interface']);
         foreach ($data as $key => $value) {
             $keys_table = '';
             $keys_table = Meta::where('term_id', $term_id)->where('type', $key)->first();
