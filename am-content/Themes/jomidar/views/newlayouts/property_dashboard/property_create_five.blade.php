@@ -61,17 +61,35 @@
                         <input type="text" class="form-control">
                     </div>
                 </div>-->
-            </div> 
-
-
-
-
-            <div class="d-flex justify-content-between description-btn-group">
-                <button class="btn btn-theme">{{__('labels.next')}}</button>
-                <a href="{{ route('agent.property.forth_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">{{__('labels.previous')}}</a>
             </div>
-        </form>
+            <div class="preview-property">
+                <h2 class="d-flex justify-content-end align-items-end">Property Title and Description preview</h2>
+                <h6 class="d-flex justify-content-end align-items-end">Auto generated based on the information filled by you</h6>
+                <p class="pb-0 mb-0"> <span>{{ Session::get('locale') == 'ar' && !empty($info->property_type) ? $info->property_type->category->ar_name : $info->property_type->category->name}}</span> for <span>{{ Session::get('locale') == 'ar' && !empty($info->property_status_type) ? $info->property_status_type->category->ar_name : $info->property_status_type->category->name}} </span>in <span>{{$info->post_district->value}}
+                        , {{ Session::get('locale') == 'ar' ? $info->post_district->category->ar_name : $info->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $info->post_new_city->category->ar_name : $info->post_new_city->category->name }}</span></p>
+                <p class="pb-0 mb-0">Land Area: <span>{{$info->landarea->content}} SQM</span></p>
+                <p class="pb-0 mb-0">Built up Area: <span>{{$info->builtarea->content}} SQM</span></p>
+                <!-- <p class="pb-0 mb-0">Property Borders: Length: <span>15m,</span>Depth: <span>20m</span></p> -->
+                @if($info->option_data)
+                @foreach ($info->option_data as $value)
+                @if( $value->value != 0)
+                <p class="pb-0 mb-0">The property has <span>{{ $value->value }} </span> {{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}</p>
+                @endif
+                @endforeach
+                @endif
+
+                <p class="pb-0 mb-0">{{ Session::get('locale') == 'ar' && !empty($info->property_type) ? $info->property_type->category->ar_name : $info->property_type->category->name}} has <span>{{ $info->electricity_facility->content == 0 ? 'electricity' : 'no electricity' }}</span> and <span>{{ $info->water_facility->content == 0 ? 'water' : 'no water' }}</span> connections</p>
+                <p class="pb-0 mb-0">Building year: <span>{{!empty($info->property_age) ? $info->property_age->content : 'N/A'}}</span></p>
+                <p class="pb-0 mb-0">Price: <span>{{$info->price->price}} SAR</span></p>
+            </div>
+
     </div>
-    <!-- Property Description Section Ends Here -->
+    <div class="d-flex justify-content-between description-btn-group">
+        <button class="btn btn-theme">{{__('labels.next')}}</button>
+        <a href="{{ route('agent.property.forth_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">{{__('labels.previous')}}</a>
+    </div>
+    </form>
+</div>
+<!-- Property Description Section Ends Here -->
 </div>
 @endsection

@@ -22,7 +22,7 @@
                         <span class="theme-text-seondary-black">6</span>
                     </div>
                     <p class="theme-text-black font-18">{{__('labels.property_nature')}}</p>
-                    <div class="col-12 justify-content-end row theme-gx-3 mb-4">
+                    <div class="col-12 justify-content-end row">
                         @foreach($parent_category as $row)
                         <div class="radio-container">
                             <input type="radio" name="parent_category" term-id='{{$id}}' onclick="property_type(this)" value="{{$row->id}}" {{ !empty($array) && $array['parent_category'] == $row->id ? "checked" : (old("parent_category") == $row->id ? "checked":"") }}>
@@ -33,10 +33,10 @@
                     @if($errors->has('parent_category'))
                     <div class="error">{{ $errors->first('parent_category') }}</div>
                     @endif
-                    <p class="theme-text-black font-18" id="type_text">{{__('labels.type_property')}}</p>
+                    <p class="theme-text-black font-18 mt-3" id="type_text">{{__('labels.type_property')}}</p>
                     <div class="col-12 justify-content-end property_types row theme-gx-3 mb-4_5" id="property_type_radio">
                         @foreach($child_category as $row)
-                        <div class="radio-container property_radio">
+                        <div class="radio-container radio-edit-two property_radio">
                             <input type="radio" name="category" value="{{$row->id}}" data-name="{{$row->name}}" {{ !empty($array) && $array['category'] == $row->id ? "checked" : (old("category") == $row->id ? "checked":"") }}>
                             <span class="checmark font-16 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
                         </div>
@@ -64,7 +64,7 @@
                     @endif
 
 
-                    <div class="built-up-year mt-4">
+                    <div class="built-up-year">
                         <p class="theme-text-black font-18">{{__('labels.building_year')}}</p>
                         <div class="row theme-gx-3 mb-4_5">
                             <div class="radio-container">
@@ -130,7 +130,7 @@
                     <!-- property value Section Ends Here -->
                     <!-- Street Section Starts Here -->
                     <p class="theme-text-black font-18">{{__('labels.no_street')}}</p>
-                    <div class="row row d-flex flex-row-reverse justify-content-end flex-lg-row gx-2">
+                    <div class="row row d-flex flex-row-reverse justify-content-end flex-lg-row">
                         @for($i=4; $i>=1; $i--)
                         <div class="radio-container">
                             <input type="radio" name="streets" onclick="dropdown_btn(this)" id="street" data-streets='{{ !empty($post_data->streets) ? $post_data->streets->content : old("streets") }}' class="street_sdropdown" value="{{$i}}" {{ !empty($post_data->streets) && $post_data->streets->content == $i ? "checked"  : (old("streets") == $i ? "checked" : '') }}>

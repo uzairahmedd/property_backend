@@ -161,7 +161,24 @@
                         <h1 class="font-24 theme-text-blue font-medium">{{ Session::get('locale') == 'ar' ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}}</h1>
                         <h1 class="font-24 theme-text-blue">{{__('labels.property_description')}}</h1>
                     </div>
-                    <p class="theme-text-seondary-black font-16 text-end mb-2">descritpion</p>
+                    <p class="theme-text-seondary-black font-16 text-end mb-2">
+                    <p class="pb-0 mb-0"> <span>{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : $property->property_type->category->name}}</span> for <span>{{ Session::get('locale') == 'ar' && !empty($property->property_status_type) ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}} </span>in <span>{{$property->post_district->value}}
+                            , {{ Session::get('locale') == 'ar' ? $property->post_district->category->ar_name : $property->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $property->post_new_city->category->ar_name : $property->post_new_city->category->name }}</span></p>
+                    <p class="pb-0 mb-0">Land Area: <span>{{$property->landarea->content}} SQM</span></p>
+                    <p class="pb-0 mb-0">Built up Area: <span>{{$property->builtarea->content}} SQM</span></p>
+                    <!-- <p class="pb-0 mb-0">Property Borders: Length: <span>15m,</span>Depth: <span>20m</span></p> -->
+                    @if($property->option_data)
+                    @foreach ($property->option_data as $value)
+                    @if( $value->value != 0)
+                    <p class="pb-0 mb-0">The property has <span>{{ $value->value }} </span> {{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}</p>
+                    @endif
+                    @endforeach
+                    @endif
+
+                    <p class="pb-0 mb-0">{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : $property->property_type->category->name}} has <span>{{ $property->electricity_facility->content == 0 ? 'electricity' : 'no electricity' }}</span> and <span>{{ $property->water_facility->content == 0 ? 'water' : 'no water' }}</span> connections</p>
+                    <p class="pb-0 mb-0">Building year: <span>{{!empty($property->property_age) ? $property->property_age->content : 'N/A'}}</span></p>
+                    <p class="pb-0 mb-0">Price: <span>{{$property->price->price}} SAR</span></p>
+                    </p>
 
                     <hr class="w-100">
                     <h1 class="font-24 theme-text-blue">{{__('labels.basic_info')}}</h1>

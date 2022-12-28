@@ -463,6 +463,16 @@ class PropertyController extends controller
         return view('theme::newlayouts.pages.phone_no');
     }
 
+    public function postProperty()
+    {
+        return view('theme::newlayouts.pages.post_property');
+    }
+
+    public function selectOwner()
+    {
+        return view('theme::newlayouts.pages.select_owner');
+    }
+
     public function map(Request $request)
     {
 

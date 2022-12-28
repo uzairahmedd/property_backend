@@ -887,7 +887,6 @@ class PropertyController extends controller
         }
         $check_category = Category::where('type', 'category')->where('id', $request->category)->first();
         //if land then skip third step for facilities
-
         if (!empty($check_category) && Str::contains($check_category->name, 'land')) {
             return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
         }
@@ -905,7 +904,12 @@ class PropertyController extends controller
         $this->term_id = decrypt($id);
         $array = [];
         $property_type = null;
-        $info = Terms::with('postcategory')->where('user_id', Auth::id())->findorFail($this->term_id);
+        $info = Terms::with('postcategory', 'property_type')->where('user_id', Auth::id())->findorFail($this->term_id);
+        //if land is property type
+        if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'land')) {
+            return redirect()->route('agent.property.second_edit_property', $id);
+        }
+
         foreach ($info->postcategory as $key => $value) {
             array_push($array, $value->category_id);
             if ($value->type == 'category') {
@@ -1044,12 +1048,12 @@ class PropertyController extends controller
     public function edit_five_property($id)
     {
         $term_id = decrypt($id);
-        $info = Terms::with('postcategory')->where('user_id', Auth::id())->findorFail($term_id);
+        $info = Terms::with('property_type','interface', 'property_age', 'meter', 'total_floors', 'property_floor',  'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility',  'property_status_type', 'postcategory', 'property_condition','option_data')->where('user_id', Auth::id())->findorFail($term_id);
         $features_array = [];
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
         }
-        return view('theme::newlayouts.property_dashboard.property_create_five', compact('id', 'features_array'));
+        return view('theme::newlayouts.property_dashboard.property_create_five', compact('id', 'features_array','info'));
     }
 
     /**

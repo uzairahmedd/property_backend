@@ -37,13 +37,13 @@
                 </div>
                 <div class="document theme-gx-32 justify-content-end">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox2" value="2" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '2') ? "checked"  : old("rule") }}>>
+                        <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox2" value="2" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '2') ? "checked"  : old("rule") }}>
                         <label class="form-check-label" for="inlineCheckbox2"> Rights and obligations on the property that are not documented in the property document ?</label>
                     </div>
                 </div>
                 <div class="document theme-gx-32 justify-content-end">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox3" value="3" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '3') ? "checked"  : old("rule") }}>>
+                        <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox3" value="3" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '3') ? "checked"  : old("rule") }}>
                         <label class="form-check-label" for="inlineCheckbox3"> Information that may affect the property, whether in reducing its value or influencing the decision of the target to advertise ?</label>
                     </div>
                 </div>

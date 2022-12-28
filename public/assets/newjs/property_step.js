@@ -36,8 +36,6 @@ $(document).ready(function (event) {
     });
 });
 // Property Step Js End
-
-
 $(document).ready(function () {
     var parts = $(location).attr("href").split('/');
     var lastSegment = parts.pop() || parts.pop();  // handle potential trailing slash

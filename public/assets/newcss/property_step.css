@@ -24,10 +24,17 @@
     padding: 36px 46px;
 }
 
+.radio-edit-two
+{
+    margin-right: 20px;
+}
+
 /* Radio Button Style Satrts Here */
 .radio-container {
     position: relative;
     height: 35px;
+    padding: 0;
+    margin: 0;
 }
 
 .radio-container input {
@@ -135,8 +142,8 @@
 }
 
 .property-value {
-    margin-bottom: 42px;
-    margin-top: 32px;
+    /*margin-bottom: 42px;*/
+    /*margin-top: 32px;*/
 }
 
 .land-size
@@ -190,7 +197,7 @@
 }
 
 .video-link {
-    margin-top: 56px;
+    margin-top: 0px;
 }
 
 .finished h3 {
@@ -271,7 +278,7 @@
 /*Step_2 pages content */
 
 .description-card .property_radio {
-    padding: 30px 5px;
+    padding: 30px 0px;
 }
 
 .property_types {
@@ -369,8 +376,26 @@
     /*margin-bottom: 3rem;*/
 }
 
+.preview-property
+{
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #d2d2d7;
+    -webkit-box-shadow: 0 9px 17px rgb(0 0 0 / 6%), 0 2.71324px 5.125px rgb(0 0 0 / 4%), 0 1.12694px 2.12866px rgb(0 0 0 / 5%), 0 0.407592px 0.769896px rgb(0 0 0 / 7%);
+    box-shadow: 0 9px 17px rgb(0 0 0 / 6%), 0 2.71324px 5.125px rgb(0 0 0 / 4%), 0 1.12694px 2.12866px rgb(0 0 0 / 5%), 0 0.407592px 0.769896px rgb(0 0 0 / 7%);
+    border-radius: 12px;
+}
+
+.preview-property p
+{
+    font-size: 18px;
+
+}
+
 .checkbox-step5 {
-    margin-bottom: 36px;
+    /*margin-bottom: 36px;*/
 }
 
 .description-card .payment {
@@ -395,8 +420,8 @@
 }
 
 .other-meter {
-    width: 130px;
-    max-width: 100%;
+    /*width: 130px;*/
+    /*max-width: 100%;*/
 }
 
 @media screen and (max-width: 1024px) {
@@ -407,6 +432,9 @@
 }
 
 @media screen and (max-width: 992px) {
+    .video-link {
+        width: 100%;
+    }
     .regional-drop-btn {
         padding: 1px 16px 2px 39px;
     }
@@ -459,6 +487,7 @@
 
     .radio-container .checkmark-step3 {
         padding: 8px 23px;
+
     }
 
     .add-address {

@@ -39,7 +39,7 @@
                             <input type="hidden" name="term_id" value="">
                         </form>
                         <div class="row">
-                          
+
                             <div class="col-sm-3" id="">
                                 <div class="card">
                                     <div class="card-body">
@@ -81,42 +81,16 @@
                                 </div>
                             </div>
 
-                            @php
-                            $arr2['title']= 'English Description';
-                            $arr2['id']= 'Description';
-                            $arr2['name']= 'dsscription';
-                            $arr2['placeholder']= 'English Description';
-                            $arr2['is_required'] = true;
-                            $arr2['value'] = $info->description->content ?? '';
-
-                            echo editor($arr2);
-
-                            $arr2['title']= 'Arabic Description';
-                            $arr2['id']= 'ar_Description';
-                            $arr2['name']= 'ar_dsscription';
-                            $arr2['placeholder']= 'Arabic Description';
-                            $arr2['is_required'] = true;
-                            $arr2['value'] = $info->arabic_description->content ?? '';
-
-                            echo editor($arr2);
-                            @endphp
-
                             <div>
 
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for="area">Property Area</label>
-                                            <input type="number" id="area"  name="area" class="form-control" required="" placeholder="Area in Square Meter">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="location">Address of Property</label>
                                             <input type="text" id="location" placeholder="Address" name="location" class="form-control" required="">
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="region">Select your Region</label>
                                             <select name="city" required="" id="region" class="form-control form-select-lg mb-3" aria-label=".form-select-lg example">
@@ -159,7 +133,7 @@
                                     </div>
                                 </div>
                             </div>
-                          
+
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -333,9 +307,6 @@
 <script src="{{ asset('admin/js/ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript">
     "use strict";
-
-    CKEDITOR.replace('Description');
-    CKEDITOR.replace('ar_Description');
 
     $('#email').on('focusout', () => {
         $('#user_mail').val($('#email').val());
