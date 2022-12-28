@@ -59,6 +59,10 @@ class Terms extends Model
 		return $this->hasOne('App\Models\Postcategoryoption', 'term_id')->where('type', 'city')->with('category');
 	}
 
+	public function post_district()
+	{
+		return $this->hasOne('App\Models\Postcategoryoption', 'term_id')->where('type', 'district')->with('category');
+	}
 
 	public function postcategory()
 	{
@@ -154,6 +158,11 @@ class Terms extends Model
 		return $this->hasOne('App\Models\Postcategoryoption', 'term_id')->where('type', 'city');
 	}
 
+	public function district()
+	{
+		return $this->hasOne('App\Models\Postcategoryoption', 'term_id')->where('type', 'district');
+	}
+
 
 	public function facilities()
 	{
@@ -195,6 +204,11 @@ class Terms extends Model
 	public function post_state()
 	{
 		return $this->hasOne('App\PostCategory', 'term_id')->where('type', 'state')->with('category');
+	}
+
+	public function post_new_city()
+	{
+		return $this->hasOne('App\PostCategory', 'term_id')->where('type', 'city')->with('category');
 	}
 
 	public function featured_option()
@@ -295,6 +309,30 @@ class Terms extends Model
 	{
 		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'streets');
 	}
+	public function property_age()
+	{
+		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'property_age');
+	}
+	public function landarea()
+	{
+		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'landarea');
+	}
+	public function builtarea()
+	{
+		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'builtarea');
+	}
+	public function ready()
+	{
+		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'ready');
+	}
+	public function interface()
+	{
+		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'interface');
+	}
+	public function meter()
+	{
+		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'meter');
+	}
 
 	public function id_number()
 	{
@@ -329,8 +367,16 @@ class Terms extends Model
 		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'parent_category');
 	}
 
-	public function role()
+	public function total_floors()
 	{
-		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'role');
+		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'total_floors');
+	}
+	public function property_floor()
+	{
+		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'property_floor');
+	}
+	public function rules()
+	{
+		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'rules');
 	}
 }

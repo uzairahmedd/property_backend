@@ -79,7 +79,9 @@ function user_properties_list(target, data) {
     var floor_name = '';
     var htmls = '';
     var sq_feet = '';
-    var price='';
+    var price = '';
+    var district = '';
+    var city = '';
     $.each(data, function (index, value) {
 
         user_favourite_property_check(value.id);
@@ -107,23 +109,25 @@ function user_properties_list(target, data) {
 
 
         title = str_limit(value.title, 20, true);
-        if(locale == 'ar'){
+        if (locale == 'ar') {
             title = str_limit(value.ar_title, 20, true);
         }
-      
-        location = value.post_city.value + '-' + value.post_city.category.name;
+
+        district = value.post_district.category.name;
+        city = value.post_new_city.category.name;
+        if (locale == 'ar') {
+            district = value.post_district.category.ar_name;
+            city = value.post_new_city.category.ar_name;
+        }
+        location = value.post_district.value + ', ' + district + ', ' + city;
         $(target).append('<div class="col-lg-4 col-md-4 col-sm-6 single-property-list"> <div class="slide single-img-carousel"> <div id="myCarousel' + value.id + '" class="carousel" data-bs-ride="carousel"><div class="features"><div class="d-flex justify-content-between"><div class="content d-flex flex-column align-items-start theme-text-white"><div class="fav-elipse justify-content-center align-items-center theme-bg-blue"><span class="font-medium" onclick="favourite_property(' + value.id + ')"> <i title="favorite property" data-toggle="tooltip" class="fa-regular fa-heart heart' + value.id + '"></i></span></div><div class="sale theme-bg-sky"><span class="font-medium">' + status + '</span> </div></div> <div class="d-flex justify-content-center pt-3">  </div></div> </div>' +
             '<ol class="carousel-indicators"><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="0" class="active"></li>' +
-            '<li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a href="' + base_url + 'property-detail/' + value.slug + '"><h3 class="resident-text">' + title + '</h3><div class="d-flex align-items-start justify-content-end mt-2"><p class="me-2">' + location + '</p><img src="/assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex flex-wrap flex-row-reverse justify-content-right align-items-center facilicites-area facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex">' +
+            '<li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a target="_blank" href="' + base_url + 'property-detail/' + value.slug + '"><h3 class="resident-text">' + title + '</h3><div class="d-flex align-items-start justify-content-end mt-2"><p class="me-2">' + location + '</p><img src="/assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex flex-wrap flex-row-reverse justify-content-right align-items-center facilicites-area facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex">' +
             '<div class="dash-call d-flex justify-content-center align-items-center me-3"> <img src="/assets/images/mobile-icon.png" alt="" data-toggle="tooltip" title="edit"></div><div class="dash-whatsapp d-flex justify-content-center align-items-center"><a href=""> <img  src="/assets/images/whatsapp-icon.png" alt=""></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span>' + price + ' </span></h3></div> </div></div></div></div></div>');
 
-        if(value.area != null){
-        floor_name = value.area.type + " in sqm";
-        sq_feet = value.area.content + " sqm";
-        }else{
-            floor_name='area in sqm';
-            sq_feet='N/A';
-        }
+
+        floor_name = value.landarea.type + " in SQM";
+        sq_feet = value.landarea.content + " SQM";
 
         htmls = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + sq_feet + '</span></p><img src="/assets/images/area-icon.png" alt="" data-toggle="tooltip"  title="' + floor_name + '"></div>';
         $('.facilities_area' + index).append(htmls);
@@ -133,41 +137,12 @@ function user_properties_list(target, data) {
             var name = '';
             var quantity = '';
             if (v.value != 0) {
-                imgg =  v.category.preview.content;
+                imgg = v.category.preview.content;
                 name = v.category.name;
                 quantity = v.value;
                 html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
                 $('.facilities_area' + index).append(html);
             }
-            //  else if (v.featured_category != null && v.featured_category.name == 'Bedrooms') {
-            //     imgg = '/assets/images/bed-icon.png';
-            //     name = v.featured_category.name;
-            //     quantity = v.value;
-            //     html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
-            //     $('.facilities_area' + index).append(html);
-            // }
-            // else if (v.featured_category != null && v.featured_category.name == 'Parking') {
-            //     imgg = '/assets/images/parking.png';
-            //     name = v.featured_category.name;
-            //     quantity = v.value;
-            //     html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
-            //     $('.facilities_area' + index).append(html);
-            // }
-            // else if (v.featured_category != null && v.featured_category.name == 'lounges') {
-            //     imgg = '/assets/images/lunch.png';
-            //     name = v.featured_category.name;
-            //     quantity = v.value;
-            //     html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
-            //     $('.facilities_area' + index).append(html);
-            // }
-            // else if (v.featured_category != null && v.featured_category.name == 'Boards') {
-            //     imgg = '/assets/images/board-room.png';
-            //     name = v.featured_category.name;
-            //     quantity = v.value;
-            //     html = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + quantity + '</span></p><img src="' + imgg + '" alt="" data-toggle="tooltip"  title="' + name + '"></div>';
-            //     $('.facilities_area' + index).append(html);
-            // }
-
         });
 
 

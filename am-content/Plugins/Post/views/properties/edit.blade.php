@@ -89,34 +89,6 @@
 
                                 echo input($arr);
 
-                                $arr2['title']= 'English Description';
-                                $arr2['id']= 'Description';
-                                $arr2['name']= 'dsscription';
-                                $arr2['placeholder']= 'English Description';
-                                $arr2['is_required'] = true;
-                                $arr2['value'] = $info->description->content ?? '';
-
-                                echo editor($arr2);
-
-                                $arr2['title']= 'Arabic Description';
-                                $arr2['id']= 'ar_Description';
-                                $arr2['name']= 'ar_dsscription';
-                                $arr2['placeholder']= 'Arabic Description';
-                                $arr2['is_required'] = true;
-                                $arr2['value'] = $info->arabic_description->content ?? '';
-
-                                echo editor($arr2);
-
-                                $arr22['title']= 'Area';
-                                $arr22['id']= 'area';
-                                $arr22['type']= 'number';
-                                $arr22['placeholder']= 'Enter area';
-                                $arr22['name']= 'area';
-                                $arr22['value']= $info->area->content ?? '';
-                                $arr22['is_required'] = true;
-
-                                echo input($arr22);
-
                                 $arr22['title']= 'Location';
                                 $arr22['id']= 'location_input';
                                 $arr22['type']= 'text';
@@ -134,9 +106,7 @@
                                     <label for="title">{{ __('Select State') }}</label>
                                     <select class="form-control selectric" id="state" name="state[]">
                                         <option value='' disabled selected>{{ __('Select State') }}</option>
-                                        @foreach(App\Category::where('type','states')->get() as $row)
-                                        <option value="{{ $row->id }}" {{ $info->city->category_id == $row->id ? "selected" : ''}}>{{ $row->name }}</option>
-                                        @endforeach
+
                                     </select>
                                 </div>
                                 <div class="row">
@@ -251,12 +221,12 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <!-- <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="role">Property role</label>
                                             <input type="text" name="role" value="{{ !empty($info->role) && $info->role->content  ? $info->role->content  : '' }}" id="role" placeholder="Property role" class="form-control">
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
 
 
@@ -331,7 +301,7 @@
             </div>
         </div>
     </div>
-   <!--  <div class="single-area">
+    <!--  <div class="single-area">
         <div class="card sub">
             <div class="card-body">
                 <h5>{{ __('Status') }}</h5>
@@ -391,14 +361,16 @@
 <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&libraries=places&callback=initialize"></script> -->
 <script src="{{ asset('admin/js/form.js') }}"></script>
 <script src="{{ asset('admin/js/select2.min.js') }}"></script>
-<script src="{{ asset('admin/js/ckeditor/ckeditor.js') }}"></script>
 <script>
     "use strict";
 
+    //success response will assign here
+    function success(res) {
+        location.reload()
+    }
     (function($) {
 
-        CKEDITOR.replace('Description');
-        CKEDITOR.replace('ar_Description');
+
 
         $('#state').on('change', () => {
             $('#id2').val($('#state').val());

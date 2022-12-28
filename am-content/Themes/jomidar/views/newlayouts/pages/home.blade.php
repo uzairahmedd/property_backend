@@ -269,7 +269,6 @@
                         @foreach($states as $row)
                             <option value="{{ $row->id }}">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
                         @endforeach
-                        <!-- <option value="AX">الرياض<span class="property_num">(1)</span></option>-->
                     </select>
                 </div>
             </div>
@@ -368,12 +367,12 @@
                                             class="font-bold">{{ new_amount_format($sale_data->price->price ?? 0) }}</span>
                                     </div>
                                 </div>
-                                <a href="property-detail/{{$sale_data->slug}}">
+                                <a href="property-detail/{{$sale_data->slug}}" target="_blank">
                                     <div class="mt-3 home-listing-detail">
                                         <h3 class="font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ? $sale_data->ar_title : $sale_data->title }}</h3>
                                         <div class="d-flex align-items-start justify-content-end pt-2">
-                                            <p class="mb-0 theme-text-seondary-black me-2">{{$sale_data->post_city->value}}
-                                                - {{$sale_data->post_city->category->name}} </p>
+                                            <p class="mb-0 theme-text-seondary-black me-2">{{$sale_data->post_district->value}}
+                                                , {{ Session::get('locale') == 'ar' ? $sale_data->post_district->category->ar_name : $sale_data->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $sale_data->post_new_city->category->ar_name : $sale_data->post_new_city->category->name }} </p>
                                             <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                                         </div>
                                     </div>
@@ -463,12 +462,12 @@
                                             class="font-bold">{{ new_amount_format($rent_data->price->price ?? 0) }}</span>
                                     </div>
                                 </div>
-                                <a href="property-detail/{{$rent_data->slug}}">
+                                <a href="property-detail/{{$rent_data->slug}}" target="_blank">
                                     <div class="mt-3 home-listing-detail">
                                         <h3 class="font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ? $rent_data->ar_title : $rent_data->title }}</h3>
                                         <div class="d-flex align-items-start justify-content-end pt-2">
-                                            <p class="mb-0 theme-text-seondary-black me-2">{{$rent_data->post_city->value}}
-                                                - {{$rent_data->post_city->category->name}}</p>
+                                            <p class="mb-0 theme-text-seondary-black me-2">{{$rent_data->post_district->value}}
+                                                , {{ Session::get('locale') == 'ar' ? $rent_data->post_district->category->ar_name : $rent_data->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $rent_data->post_new_city->category->ar_name : $rent_data->post_new_city->category->name }}</p>
                                             <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                                         </div>
                                     </div>

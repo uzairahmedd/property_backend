@@ -29,6 +29,25 @@
                         <input type="text" name="instrument_number" value="{{ !empty( $post_data->instrument_number) ? $post_data->instrument_number->content  : old("instrument_number") }}" placeholder="10251511212151" class="form-control payment theme-border">
                     </div>
                 </div>
+                <div class="document theme-gx-32 justify-content-end">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox1" value="1" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '1') ? "checked"  : old("rule") }}>
+                        <label class="form-check-label" for="inlineCheckbox1"> Is there a mortgage or restriction that prevents or limits the disposal or use of the property ?</label>
+                    </div>
+                </div>
+                <div class="document theme-gx-32 justify-content-end">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox2" value="2" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '2') ? "checked"  : old("rule") }}>>
+                        <label class="form-check-label" for="inlineCheckbox2"> Rights and obligations on the property that are not documented in the property document ?</label>
+                    </div>
+                </div>
+                <div class="document theme-gx-32 justify-content-end">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox3" value="3" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '3') ? "checked"  : old("rule") }}>>
+                        <label class="form-check-label" for="inlineCheckbox3"> Information that may affect the property, whether in reducing its value or influencing the decision of the target to advertise ?</label>
+                    </div>
+                </div>
+
             </div>
             <div class="d-flex justify-content-between description-btn-group">
                 <button type="submit" class="btn btn-theme">{{__('labels.next')}}</button>

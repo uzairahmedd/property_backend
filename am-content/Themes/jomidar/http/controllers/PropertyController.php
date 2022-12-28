@@ -94,7 +94,7 @@ class PropertyController extends controller
             ['type', 'property'],
             ['status', 1],
             ['slug', $slug]
-        ])->with('virtual_tour', 'post_preview', 'streets', 'street_info_one', 'street_info_two', 'role', 'price', 'area', 'electricity_facility', 'water_facility', 'post_city', 'user','arabic_description', 'description', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->withCount('reviews')->first();
+        ])->with('virtual_tour', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'post_preview', 'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->withCount('reviews')->first();
 
         $features = [];
         foreach ($property->postcategory as $key => $value) {
@@ -128,10 +128,10 @@ class PropertyController extends controller
 
         if ($property) {
             SEOMeta::setTitle($property->title);
-            SEOMeta::setDescription($property->description->content ?? '');
+            // SEOMeta::setDescription($property->description->content ?? '');
             SEOMeta::addMeta('article:published_time', $property->updated_at->format('Y-m-d'), 'property');
 
-            OpenGraph::setDescription($property->description->content ?? '');
+            // OpenGraph::setDescription($property->description->content ?? '');
             OpenGraph::setTitle($property->title);
 
 
@@ -144,11 +144,11 @@ class PropertyController extends controller
 
 
             JsonLd::setTitle($property->title);
-            JsonLd::setDescription($property->description->content ?? '');
+            // JsonLd::setDescription($property->description->content ?? '');
             JsonLd::setType('Property');
 
             JsonLdMulti::setTitle($property->title);
-            JsonLdMulti::setDescription($property->description->content ?? '');
+            // JsonLdMulti::setDescription($property->description->content ?? '');
             JsonLdMulti::setType('Property');
             return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features', 'property_type_nature'));
         } else {
@@ -397,11 +397,11 @@ class PropertyController extends controller
         return view('theme::newlayouts.user_dashboard.auction');
     }
 
-//    public function account_id()
-//    {
-//        $id = User::where('id')->get();
-//        return view('account',['ids' => $id]);
-//    }
+    //    public function account_id()
+    //    {
+    //        $id = User::where('id')->get();
+    //        return view('account',['ids' => $id]);
+    //    }
 
     // public function userboard_account()
     // {
@@ -703,6 +703,4 @@ class PropertyController extends controller
             return "no";
         }
     }
-
-
 }

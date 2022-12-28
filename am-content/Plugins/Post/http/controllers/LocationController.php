@@ -140,6 +140,7 @@ class LocationController extends Controller
 
      public function info(Request $request)
      {
+      
        return $posts=Category::where('p_id',$request->id)->select('id','name')->latest()->get();
      }
 

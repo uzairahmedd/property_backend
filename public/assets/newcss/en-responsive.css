@@ -81,19 +81,16 @@
     padding: 0 5px;
 }
 
-.rtl .land-size {
+/* .rtl .land-size {
     margin-left: 20px !important;
-}
+} */
 
 .rtl .meter {
     margin-right: 30px;
     margin-left: 0;
 }
 
-.rtl .property_role_no
-{
 
-}
 
 .rtl .role_span {
     margin-right: 10px;

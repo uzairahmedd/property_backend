@@ -23,13 +23,13 @@
                     </div>
                     @endforeach
                 </div>
-                <div class="col-12 d-flex flex-lg-row flex-sm-column justify-content-end">
+                <!-- <div class="col-12 d-flex flex-lg-row flex-sm-column justify-content-end">
                     <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
                         <lable class="d-flex justify-content-end align-items-end">{{__('labels.apartment_numberss')}}</lable>
                         <input type="text" class="form-control">
                     </div>
-                </div>
-                <div class="col-12 d-flex flex-lg-row flex-sm-column justify-content-end">
+                </div> -->
+                <!-- <div class="col-12 d-flex flex-lg-row flex-sm-column justify-content-end">
                     <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
                         <lable class="d-flex justify-content-end align-items-end">{{__('labels.car_parking_no')}}</lable>
                         <input type="text" class="form-control">
@@ -60,8 +60,8 @@
                         <lable class="d-flex justify-content-end align-items-end">{{__('labels.total_floors')}}</lable>
                         <input type="text" class="form-control">
                     </div>
-                </div>
-            </div>
+                </div>-->
+            </div> 
 
 
 

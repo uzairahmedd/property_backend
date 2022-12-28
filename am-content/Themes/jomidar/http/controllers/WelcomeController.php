@@ -144,7 +144,7 @@ class WelcomeController extends controller
     {
         $this->status = $request;
 
-        $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('price')->whereHas('post_city')->with('description','area','post_preview', 'price', 'post_city', 'property_status_type')
+        $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('price')->whereHas('post_new_city')->with('post_preview', 'price', 'post_district','post_new_city', 'property_status_type')
             ->whereHas('property_status_type', function ($q) {
                 if (!empty($this->status)) {
                     return $q->where('category_id', $this->status);

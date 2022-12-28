@@ -1,6 +1,7 @@
 <?php
 
 namespace Amcoders\Plugin\Post\http\controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -14,56 +15,55 @@ use App\Models\Termrelation;
 use App\Models\Price;
 use Str;
 use Session;
+
 class PropertyController extends controller
 {
-	 protected $term_id;
+    protected $term_id;
     protected $property_type;
 
-	 /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$type="all")
+    public function index(Request $request, $type = "all")
     {
 
         if (!Auth()->user()->can('Properties.list')) {
             abort(401);
         }
-        if ($request->src && $request->type=='email') {
-            $this->email=$request->src;
-            $posts=Terms::where('type','property')->whereHas('user',function($q){
-                return $q->where('email',$this->email);
+        if ($request->src && $request->type == 'email') {
+            $this->email = $request->src;
+            $posts = Terms::where('type', 'property')->whereHas('user', function ($q) {
+                return $q->where('email', $this->email);
             })->latest()->paginate(40);
+        } elseif ($request->src) {
+            $posts = Terms::where('type', 'property')->where($request->type, 'LIKE', '%' . $request->src . '%')->latest()->paginate(40);
+        } else {
+            $posts = Terms::where('type', 'property')->latest()->paginate(40);
         }
-        elseif ($request->src) {
-            $posts=Terms::where('type','property')->where($request->type,'LIKE','%'.$request->src.'%')->latest()->paginate(40);
-        }
-        else{
-            $posts=Terms::where('type','property')->latest()->paginate(40);
-        }
-        $totals=Terms::where('type','property')->count();
-        $actives=Terms::where([
-            ['type','property'],
-            ['status',1],
+        $totals = Terms::where('type', 'property')->count();
+        $actives = Terms::where([
+            ['type', 'property'],
+            ['status', 1],
         ])->count();
-        $incomplete=Terms::where([
-            ['type','property'],
-            ['status',2],
+        $incomplete = Terms::where([
+            ['type', 'property'],
+            ['status', 2],
         ])->count();
-        $trash=Terms::where([
-            ['type','property'],
-            ['status',0],
+        $trash = Terms::where([
+            ['type', 'property'],
+            ['status', 0],
         ])->count();
-        $pendings=Terms::where([
-            ['type','property'],
-            ['status',3],
+        $pendings = Terms::where([
+            ['type', 'property'],
+            ['status', 3],
         ])->count();
-        $rejected=Terms::where([
-            ['type','property'],
-            ['status',4],
+        $rejected = Terms::where([
+            ['type', 'property'],
+            ['status', 4],
         ])->count();
-        return view('plugin::properties.index',compact('type','posts','totals','pendings','actives','incomplete','trash','pendings','request','rejected'));
+        return view('plugin::properties.index', compact('type', 'posts', 'totals', 'pendings', 'actives', 'incomplete', 'trash', 'pendings', 'request', 'rejected'));
     }
 
     /**
@@ -82,14 +82,14 @@ class PropertyController extends controller
         //new design khiaratee
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
         //feature
-        $feature=Category::where('type','feature')->get();
-         return view('plugin::properties.create',compact('categories','status_category','parent_category','feature'));
+        $feature = Category::where('type', 'feature')->get();
+        return view('plugin::properties.create', compact('categories', 'status_category', 'parent_category', 'feature'));
     }
 
     public function property_type($id)
     {
-   
-        $data['category_data'] = Category::where('type', 'parent_category')->where('id',$id)->with('parent')->get();
+
+        $data['category_data'] = Category::where('type', 'parent_category')->where('id', $id)->with('parent')->get();
         return response()->json($data);
     }
 
@@ -97,13 +97,12 @@ class PropertyController extends controller
     public function findUser(Request $request)
     {
 
-        $user=User::where('role_id',2)->where('email',$request->email)->first();
+        $user = User::where('role_id', 2)->where('email', $request->email)->first();
         if (empty($user)) {
-            $data['errors']['user']='User Not Found';
-            return response()->json($data,401);
+            $data['errors']['user'] = 'User Not Found';
+            return response()->json($data, 401);
         }
         return response()->json($user);
-
     }
     /**
      * Store a newly created resource in storage.
@@ -113,63 +112,63 @@ class PropertyController extends controller
      */
     public function old_store(Request $request)
     {
-       $validatedData = $request->validate([
-        'title' => 'required|max:255',
-        'type' => 'required',
-        'user_id' => 'required',
-        'max_price' => 'required',
-        'min_price' => 'required',
-       ]);
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'type' => 'required',
+            'user_id' => 'required',
+            'max_price' => 'required',
+            'min_price' => 'required',
+        ]);
 
-        $slug=Str::slug($request->title);
-        $count=Terms::where('type','property')->where('slug',$slug)->count();
+        $slug = Str::slug($request->title);
+        $count = Terms::where('type', 'property')->where('slug', $slug)->count();
         if ($count > 0) {
-            $slug=$slug.'-'.rand(40,60).$count;
+            $slug = $slug . '-' . rand(40, 60) . $count;
         }
 
-        $term=new Terms;
-        $term->title=$request->title;
-        $term->slug=$slug;
-        $term->user_id =$request->user_id;
+        $term = new Terms;
+        $term->title = $request->title;
+        $term->slug = $slug;
+        $term->user_id = $request->user_id;
         $term->status = 2;
         $term->type = 'property';
         $term->save();
 
-        $meta=new Meta;
-        $meta->term_id=$term->id;
-        $meta->type='excerpt';
-        $meta->content='';
+        $meta = new Meta;
+        $meta->term_id = $term->id;
+        $meta->type = 'excerpt';
+        $meta->content = '';
         $meta->save();
 
-        $meta=new Meta;
-        $meta->term_id=$term->id;
-        $meta->type='content';
-        $meta->content='';
+        $meta = new Meta;
+        $meta->term_id = $term->id;
+        $meta->type = 'content';
+        $meta->content = '';
         $meta->save();
 
-        $min_price= new Price;
-        $min_price->type="min_price";
-        $min_price->term_id=$term->id;
-        $min_price->price=$request->min_price;
+        $min_price = new Price;
+        $min_price->type = "min_price";
+        $min_price->term_id = $term->id;
+        $min_price->price = $request->min_price;
         $min_price->save();
 
-        $max_price= new Price;
-        $max_price->type= "max_price";
-        $max_price->term_id=$term->id;
-        $max_price->price=$request->max_price;
+        $max_price = new Price;
+        $max_price->type = "max_price";
+        $max_price->term_id = $term->id;
+        $max_price->price = $request->max_price;
         $max_price->save();
 
 
-        $cat=PostCategory::insert(['term_id'=>$term->id,'category_id'=>$request->type]);
+        $cat = PostCategory::insert(['term_id' => $term->id, 'category_id' => $request->type]);
         Session::flash("flash_notification", [
             "level"     => "success",
             "message"   => "Project Created Successfully"
         ]);
 
-        return redirect()->route('admin.property.edit',$term->id);
+        return redirect()->route('admin.property.edit', $term->id);
     }
 
-     /**
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -185,48 +184,46 @@ class PropertyController extends controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$id)
+    public function show(Request $request, $id)
     {
         if (!Auth()->user()->can('Properties.list')) {
             abort(401);
         }
 
-        if ($request->src && $request->type=='email') {
-            $this->email=$request->src;
-            $posts=Terms::where('type','property')->whereHas('user',function($q){
-                return $q->where('email',$this->email);
-            })->where('status',$id)->latest()->paginate(40);
+        if ($request->src && $request->type == 'email') {
+            $this->email = $request->src;
+            $posts = Terms::where('type', 'property')->whereHas('user', function ($q) {
+                return $q->where('email', $this->email);
+            })->where('status', $id)->latest()->paginate(40);
+        } elseif ($request->src) {
+            $posts = Terms::where('type', 'property')->where('status', $id)->where($request->type, 'LIKE', '%' . $request->src . '%')->latest()->paginate(40);
+        } else {
+            $posts = Terms::where('type', 'property')->where('status', $id)->latest()->paginate(40);
         }
-        elseif ($request->src) {
-            $posts=Terms::where('type','property')->where('status',$id)->where($request->type,'LIKE','%'.$request->src.'%')->latest()->paginate(40);
-        }
-        else{
-            $posts=Terms::where('type','property')->where('status',$id)->latest()->paginate(40);
-        }
-        $totals=Terms::where('type','property')->count();
-        $actives=Terms::where([
-            ['type','property'],
-            ['status',1],
+        $totals = Terms::where('type', 'property')->count();
+        $actives = Terms::where([
+            ['type', 'property'],
+            ['status', 1],
         ])->count();
-        $incomplete=Terms::where([
-            ['type','property'],
-            ['status',2],
+        $incomplete = Terms::where([
+            ['type', 'property'],
+            ['status', 2],
         ])->count();
-        $trash=Terms::where([
-            ['type','property'],
-            ['status',0],
+        $trash = Terms::where([
+            ['type', 'property'],
+            ['status', 0],
         ])->count();
-        $pendings=Terms::where([
-            ['type','property'],
-            ['status',3],
+        $pendings = Terms::where([
+            ['type', 'property'],
+            ['status', 3],
         ])->count();
-        $rejected=Terms::where([
-            ['type','property'],
-            ['status',4],
+        $rejected = Terms::where([
+            ['type', 'property'],
+            ['status', 4],
         ])->count();
 
-        $type=$id;
-        return view('plugin::properties.index',compact('type','posts','totals','pendings','actives','incomplete','trash','pendings','request','rejected'));
+        $type = $id;
+        return view('plugin::properties.index', compact('type', 'posts', 'totals', 'pendings', 'actives', 'incomplete', 'trash', 'pendings', 'request', 'rejected'));
     }
 
     /**
@@ -237,22 +234,22 @@ class PropertyController extends controller
      */
     public function old_edit($id)
     {
-       if (!Auth()->user()->can('Properties.edit')) {
+        if (!Auth()->user()->can('Properties.edit')) {
             abort(401);
         }
 
-        $this->term_id=$id;
-         $info=Terms::with('excerpt','content','postcategory','latitude','longitude','city','medias','facilities','options','child')->find($id);
-        $input_options=\App\Category::where('type','option')->with(['post_category_option'=>function($q){
-            return $q->where('term_id',$this->term_id);
+        $this->term_id = $id;
+        $info = Terms::with('excerpt', 'content', 'postcategory', 'latitude', 'longitude', 'city', 'medias', 'facilities', 'options', 'child')->find($id);
+        $input_options = \App\Category::where('type', 'option')->with(['post_category_option' => function ($q) {
+            return $q->where('term_id', $this->term_id);
         }])->get();
 
-        $array=[];
-        $property_type=null;
+        $array = [];
+        $property_type = null;
         foreach ($info->postcategory as $key => $value) {
             array_push($array, $value->category_id);
-            if ($value->type=='category') {
-               $this->property_type=$value->category_id;
+            if ($value->type == 'category') {
+                $this->property_type = $value->category_id;
             }
         }
 
@@ -261,28 +258,28 @@ class PropertyController extends controller
         //     array_push($array, $row->category_id);
         // }
 
-        $input_options=\App\Category::where('type','option')->whereHas('child',function($q){
-            return $q->where('id',$this->property_type);
-        })->with(['post_category_option'=>function($q){
-            return $q->where('term_id',$this->term_id);
+        $input_options = \App\Category::where('type', 'option')->whereHas('child', function ($q) {
+            return $q->where('id', $this->property_type);
+        })->with(['post_category_option' => function ($q) {
+            return $q->where('term_id', $this->term_id);
         }])->get();
 
-       if (count($input_options) == 0) {
-            $input_options=Category::where('type','option')->whereHas('post_category_option',function($q){
-            return $q->where('term_id',$this->term_id);
-            })->with(['post_category_option'=>function($q){
-            return $q->where('term_id',$this->term_id);
+        if (count($input_options) == 0) {
+            $input_options = Category::where('type', 'option')->whereHas('post_category_option', function ($q) {
+                return $q->where('term_id', $this->term_id);
+            })->with(['post_category_option' => function ($q) {
+                return $q->where('term_id', $this->term_id);
             }])->get();
         }
 
-        $facilities=\App\Category::where('type','facilities')->get();
+        $facilities = \App\Category::where('type', 'facilities')->get();
 
-        $child=$info->child->child_id ?? null;
-        return view('plugin::properties.edit',compact('info','input_options','array','facilities','child'));
+        $child = $info->child->child_id ?? null;
+        return view('plugin::properties.edit', compact('info', 'input_options', 'array', 'facilities', 'child'));
     }
 
 
-        /**
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -290,11 +287,11 @@ class PropertyController extends controller
      */
     public function edit($id)
     {
-       if (!Auth()->user()->can('Properties.edit')) {
+        if (!Auth()->user()->can('Properties.edit')) {
             abort(401);
         }
-        $this->term_id=$id;
-        $info = Terms::where('id',$id)->with('id_number','instrument_number','virtual_tour', 'post_preview', 'streets', 'street_info_one', 'street_info_two', 'role', 'price', 'area', 'electricity_facility', 'water_facility', 'post_city', 'user','arabic_description', 'description', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->first();
+        $this->term_id = $id;
+        $info = Terms::where('id', $id)->with('id_number', 'instrument_number', 'virtual_tour', 'post_preview', 'streets', 'price', 'area', 'electricity_facility', 'water_facility', 'post_city', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->first();
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
         $parent_category = Category::where('type', 'parent_category')->get();
         $child_category =  Category::where('type', 'category')->get();
@@ -306,31 +303,31 @@ class PropertyController extends controller
             }
             if ($value->type == 'category') {
                 $array[$value->type] = $value->category_id;
-                $this->property_type=$value->category_id;
+                $this->property_type = $value->category_id;
             }
         }
-       
-        $input_options=\App\Category::where('type','option')->whereHas('child',function($q){
-            return $q->where('id',$this->property_type);
-        })->with(['post_category_option'=>function($q){
-            return $q->where('term_id',$this->term_id);
+
+        $input_options = \App\Category::where('type', 'option')->whereHas('child', function ($q) {
+            return $q->where('id', $this->property_type);
+        })->with(['post_category_option' => function ($q) {
+            return $q->where('term_id', $this->term_id);
         }])->get();
 
-       if (count($input_options) == 0) {
-            $input_options=Category::where('type','option')->whereHas('post_category_option',function($q){
-            return $q->where('term_id',$this->term_id);
-            })->with(['post_category_option'=>function($q){
-            return $q->where('term_id',$this->term_id);
+        if (count($input_options) == 0) {
+            $input_options = Category::where('type', 'option')->whereHas('post_category_option', function ($q) {
+                return $q->where('term_id', $this->term_id);
+            })->with(['post_category_option' => function ($q) {
+                return $q->where('term_id', $this->term_id);
             }])->get();
         }
 
-      
+
         $features_array = [];
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
         }
-        
-        return view('plugin::properties.edit',compact('info','array','status_category','parent_category','child_category','features_array','input_options'));
+
+        return view('plugin::properties.edit', compact('info', 'array', 'status_category', 'parent_category', 'child_category', 'features_array', 'input_options'));
     }
 
 
@@ -343,8 +340,8 @@ class PropertyController extends controller
      */
     public function update(Request $request, $id)
     {
-       
-       $validatedData = $request->validate([
+
+        $validatedData = $request->validate([
             'title' => 'required|max:100',
 
             // 'description' => 'max:500',
@@ -353,10 +350,10 @@ class PropertyController extends controller
         ]);
 
 
-        $term=Terms::find($id);
-        $term->title=$request->title;
-        $term->status=$request->moderation_status;
-        $term->featured=$request->featured;
+        $term = Terms::find($id);
+        $term->title = $request->title;
+        $term->status = $request->moderation_status;
+        $term->featured = $request->featured;
         $term->save();
 
 
@@ -375,28 +372,26 @@ class PropertyController extends controller
             abort(401);
         }
 
-          if ($request->method=='delete') {
-             if ($request->ids) {
+        if ($request->method == 'delete') {
+            if ($request->ids) {
                 foreach ($request->ids as $id) {
                     Terms::destroy($id);
                 }
-             }
-        }
-        elseif(!empty($request->method)){
-             if ($request->ids) {
-                if ($request->method=="trash") {
-                    $method=0;
-                }
-                else{
-                   $method=$request->method;
+            }
+        } elseif (!empty($request->method)) {
+            if ($request->ids) {
+                if ($request->method == "trash") {
+                    $method = 0;
+                } else {
+                    $method = $request->method;
                 }
 
                 foreach ($request->ids as $id) {
-                    $term=Terms::find($id);
-                    $term->status=$method;
+                    $term = Terms::find($id);
+                    $term->status = $method;
                     $term->save();
                 }
-             }
+            }
         }
 
         return response()->json(['Success']);

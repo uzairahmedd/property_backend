@@ -617,10 +617,14 @@ class PropertyController extends controller
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
         //for edit
         $post_data = '';
+        $array = [];
         if (isset($id)) {
-            $post_data = Terms::with('arabic_description','description', 'area', 'city', 'property_status_type')->where('user_id', Auth::id())->findorFail($id);
+            $post_data = Terms::with('district', 'property_status_type', 'postcategory')->where('user_id', Auth::id())->findorFail($id);
+            foreach ($post_data->postcategory as $key => $value) {
+                array_push($array, $value->category_id);
+            }
         }
-        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'status_category', 'id', 'post_data'));
+        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'status_category', 'id', 'post_data', 'array'));
     }
 
     /**
@@ -644,8 +648,8 @@ class PropertyController extends controller
 
         //store & update title and slug
         $term = Terms::where('user_id', Auth::id())->where('id', $request->term_id)->first();
-        $unique_id=generate_unique_id($term,'5');
-   
+        $unique_id = generate_unique_id($term, '5');
+
         if (empty($term)) {
             $term = new Terms;
             $term->user_id = Auth::id();
@@ -657,26 +661,6 @@ class PropertyController extends controller
         $term->title = $request->title;
         $term->ar_title = $request->ar_title;
         $term->save();
-
-        //store and update description
-        $description = Meta::where('term_id', $term->id)->where('type', 'description')->first();
-        if (empty($description)) {
-            $description = new Meta;
-            $description->term_id = $term->id;
-            $description->type = 'description';
-        }
-        $description->content = $request->description;
-        $description->save();
-
-        //store arabic description
-        $ar_description = Meta::where('term_id', $term->id)->where('type', 'arabic_description')->first();
-        if (empty($ar_description)) {
-            $ar_description = new Meta;
-            $ar_description->term_id = $term->id;
-            $ar_description->type = 'arabic_description';
-        }
-        $ar_description->content = $request->ar_description;
-        $ar_description->save();
 
         //store & update contact type
         $json['contact_type'] = "mail";
@@ -690,26 +674,24 @@ class PropertyController extends controller
         $contact->content = json_encode($json);
         $contact->save();
 
-        //store & update property area
-        $area = Meta::where('term_id', $term->id)->where('type', 'area')->first();
-        if (empty($area)) {
-            $area = new Meta;
-            $area->term_id = $term->id;
-            $area->type = 'area';
+        //store & update property district and location
+        $district = Postcategoryoption::where('term_id', $term->id)->where('type', 'district')->first();
+        if (empty($district)) {
+            $district = new Postcategoryoption;
+            $district->term_id = $term->id;
+            $district->type = 'district';
         }
-        $area->content = $request->area;
-        $area->save();
+        $district->category_id = $request->district;
+        $district->value = $request->location;
+        $district->save();
 
-        //store & update property city and location
-        $city = Postcategoryoption::where('term_id', $term->id)->where('type', 'city')->first();
-        if (empty($city)) {
-            $city = new Postcategoryoption;
-            $city->term_id = $term->id;
-            $city->type = 'city';
-        }
-        $city->category_id = $request->city;
-        $city->value = $request->location;
-        $city->save();
+        //store & update property city 
+        $post_cat['term_id'] = $term->id;
+        $post_cat['category_id'] = $request->city;
+        $post_cat['type'] = 'city';
+        Postcategory::where('term_id', $term->id)->where('type', '=', 'city')->delete();
+        Postcategory::insert($post_cat);
+
         //property status create and update
         $post_cat['term_id'] = $term->id;
         $post_cat['category_id'] = $request->status;
@@ -731,9 +713,7 @@ class PropertyController extends controller
             'status' => 'required',
             'title' => 'required|max:100',
             'ar_title' => 'required|max:100',
-            'description' => 'required|max:1000',
-            'ar_description' => 'required|max:1000',
-            'area' => 'required|numeric',
+            'district' => 'required',
             'location' => 'required',
             'city' => 'required'
         ], [
@@ -742,14 +722,9 @@ class PropertyController extends controller
             'title.max' => 'Property title must be 100 words',
             'ar_title.required' => 'Please provide arabic title of property',
             'ar_title.max' => 'Property arabic title must be 100 words',
-            'description.required' => 'Please provide property description',
-            'description.max' => 'Property description must be 1000 words',
-            'ar_description.required' => 'Please provide property description in Arabic',
-            'ar_description.max' => 'Property arabic description must be 1000 words',
-            'area.required' => 'Please provide area',
-            'area.numeric' => 'Area must be number',
+            'district.required' => 'Please provide district',
             'location.required' => 'Please provide address',
-            'city.required' => 'Please provide Region',
+            'city.required' => 'Please provide city',
 
         ]);
     }
@@ -765,8 +740,9 @@ class PropertyController extends controller
         $parent_category = Category::where('type', 'parent_category')->get();
         $child_category =  Category::where('type', 'category')->get();
         //for edit
-        $post_data = Terms::with('price', 'electricity_facility', 'water_facility', 'streets', 'street_info_one', 'street_info_two', 'postcategory')->where('user_id', Auth::id())->where('id', decrypt($id))->first();
+        $post_data = Terms::with('property_age', 'landarea', 'builtarea', 'interface', 'meter', 'ready', 'price', 'electricity_facility', 'water_facility', 'streets', 'street_info_one', 'street_info_two', 'postcategory')->where('user_id', Auth::id())->where('id', decrypt($id))->first();
         $array = [];
+        $interface_array = [];
         foreach ($post_data->postcategory as $key => $value) {
             if ($value->type == 'parent_category') {
                 $array[$value->type] = $value->category_id;
@@ -797,12 +773,14 @@ class PropertyController extends controller
             'category' => 'required',
             'price' => 'required|numeric',
             'streets' => 'required',
+            'ready' => 'required',
         ], [
             'parent_category.required' => 'Please select property nature',
             'category.required' => 'Please select property type',
             'price.required' => 'Property price is required',
             'price.numeric' => 'Property price is only in digits',
             'streets.required' => 'Number of streets are required',
+            'ready.required' => 'Please provide property year',
 
         ]);
     }
@@ -816,13 +794,33 @@ class PropertyController extends controller
      */
     public function update_two_property(Request $request, $id)
     {
-//        dd($request->all());
+
         $term_id = decrypt($id);
         $validator = $this->property_two_validations($request);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
+        if (array_key_exists('builtarea', $request->all()) && empty($request->builtarea)) {
+            $message = ['area' => 'please provide property builtup area details'];
+            return back()->withErrors($message)->withInput();
+        }
+
+        if (array_key_exists('landarea', $request->all()) && empty($request->landarea)) {
+            $message = ['area' => 'please provide property land area details'];
+            return back()->withErrors($message)->withInput();
+        }
+
+        if ($request->ready == '1' && empty($request->property_age)) {
+            $message = ['property_age' => 'please provide property year'];
+            return back()->withErrors($message)->withInput();
+        }
+
+        $count_streets = $request->streets;
+        if (!isset($request->meter) || count($request->meter) < $count_streets || !isset($request->interface) || count($request->interface) < $count_streets) {
+            $message = ['meter' => 'please provide all meter/interface details'];
+            return back()->withErrors($message)->withInput();
+        }
         //price store & update
         $price = Price::where('term_id', $term_id)->where('type', 'price')->first();
         if (empty($price)) {
@@ -853,11 +851,29 @@ class PropertyController extends controller
         Postcategory::where('type', 'category')->where('term_id', $term_id)->delete();
         Postcategory::insert($category);
 
+        //for property age
+        $property_age = Meta::where('term_id', $term_id)->where('type', 'property_age')->first();
+        if ($request->ready == '1') {
+
+            if (empty($property_age)) {
+                $property_age = new Meta;
+                $property_age->term_id = $term_id;
+                $property_age->type = 'property_age';
+            }
+            $property_age->content = $request->property_age;
+            $property_age->save();
+        } elseif (!empty($property_age)) {
+            Meta::where('type', 'property_age')->where('term_id', $term_id)->delete();
+        }
 
 
         //street info ,slectricity and water flag store and update
+        $interface = implode(',',  $request->interface);
+        $meter = implode(',',  $request->meter);
         $data = $request->all();
-        unset($data['_token'], $data['_method'], $data['parent_category'], $data['category'], $data['price'],$data['landsize'],$data['builtarea'],$data['ready'],$data['property-age'],$data['meter'],$data['interface']);
+        $data['meter'] = $meter;
+        $data['interface'] = $interface;
+        unset($data['_token'], $data['_method'], $data['parent_category'], $data['category'], $data['price'], $data['property_age']);
         foreach ($data as $key => $value) {
             $keys_table = '';
             $keys_table = Meta::where('term_id', $term_id)->where('type', $key)->first();
@@ -871,8 +887,8 @@ class PropertyController extends controller
         }
         $check_category = Category::where('type', 'category')->where('id', $request->category)->first();
         //if land then skip third step for facilities
-        
-        if (!empty($check_category) && Str::contains($check_category->name, 'land') ) {
+
+        if (!empty($check_category) && Str::contains($check_category->name, 'land')) {
             return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
         }
         return redirect()->route('agent.property.third_edit_property', encrypt($term_id));
@@ -904,7 +920,7 @@ class PropertyController extends controller
         }])->get();
 
         //edit data
-        $post_data = Terms::with('role', 'property_condition')->where('user_id', Auth::id())->where('id',  $this->term_id)->first();
+        $post_data = Terms::with('total_floors', 'property_floor', 'property_condition')->where('user_id', Auth::id())->where('id',  $this->term_id)->first();
         return view('theme::newlayouts.property_dashboard.property_create_third', compact('id', 'input_options', 'post_data'));
     }
 
@@ -945,14 +961,23 @@ class PropertyController extends controller
         $meta->save();
 
         //property condition store & update
-        $meta_role = Meta::where('term_id', $term_id)->where('type', 'role')->first();
+        $meta_role = Meta::where('term_id', $term_id)->where('type', 'total_floors')->first();
         if (empty($meta_role)) {
             $meta_role = new Meta;
             $meta_role->term_id = $term_id;
-            $meta_role->type =  'role';
+            $meta_role->type =  'total_floors';
         }
-        $meta_role->content = $request['role'];
+        $meta_role->content = $request['total_floors'];
         $meta_role->save();
+
+        $property_floor = Meta::where('term_id', $term_id)->where('type', 'property_floor')->first();
+        if (empty($property_floor)) {
+            $property_floor = new Meta;
+            $property_floor->term_id = $term_id;
+            $property_floor->type =  'property_floor';
+        }
+        $property_floor->content = $request['property_floor'];
+        $property_floor->save();
 
 
         return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
@@ -1061,7 +1086,7 @@ class PropertyController extends controller
     public function edit_six_property($id)
     {
         $term_id = decrypt($id);
-        $post_data = Terms::with('id_number', 'instrument_number')->where('user_id', Auth::id())->findorFail($term_id);
+        $post_data = Terms::with('rules', 'id_number', 'instrument_number')->where('user_id', Auth::id())->findorFail($term_id);
         return view('theme::newlayouts.property_dashboard.property_create_six', compact('id', 'post_data'));
     }
 
@@ -1076,8 +1101,18 @@ class PropertyController extends controller
     {
 
         $term_id = decrypt($id);
+        $rule_data = isset($request['rule']) ? implode(',', $request['rule']) : 0;
+        $rule = Meta::where('term_id', $term_id)->where('type', 'rules')->first();
+        if (empty($rule)) {
+            $rule = new Meta;
+            $rule->term_id = $term_id;
+            $rule->type = 'rules';
+        }
+        $rule->content = $rule_data;
+        $rule->save();
+
         $data = $request->all();
-        unset($data['_token'], $data['_method']);
+        unset($data['_token'], $data['_method'], $data['rule']);
         foreach ($data as $key => $value) {
             $keys_table = '';
             $keys_table = Meta::where('term_id', $term_id)->where('type', $key)->first();
@@ -1356,137 +1391,10 @@ class PropertyController extends controller
 
     public function get_user_properties(Request $request)
     {
-
-        $this->state = $request->state;
-        $this->status = $request->status;
-        $this->category = $request->category;
-        $this->price = $request->price;
-        // $this->max_price = $request->max_price;
-
-        $this->badroom = $request->badroom[16] ?? null;
-        $this->bathroom = $request->bathroom[17] ?? null;
-        $this->floor = $request->floor[18] ?? null;
-        $this->block = $request->block[15] ?? null;
-
-        $posts = Terms::where('type', 'property')->where('status', 1)->where('user_id', Auth::id())->whereHas('price')->whereHas('post_city')->with('area', 'post_preview', 'price', 'post_city', 'user', 'option_data', 'property_status_type')->whereHas('post_city', function ($q) {
-            if (!empty($this->state)) {
-                return $q->where('category_id', $this->state);
-            }
-            return $q;
-        })->whereHas('property_status_type', function ($q) {
-            if (!empty($this->status)) {
-                return $q->where('category_id', $this->status);
-            }
-            return $q;
-        });
-
-        if (!empty($request->category)) {
-            $posts = $posts->whereHas('category', function ($q) {
-                return $q->where('category_id', $this->category);
-            });
-        }
-
-        if (!empty($request->price)) {
-            $posts = $posts->whereHas('price', function ($q) {
-                return $q->where('price', '=', $this->price);
-            });
-        }
-
-        if (!empty($request->src)) {
-            $posts = $posts->where('title', 'LIKE', '%' . $request->src . '%');
-        }
-
-
-        if (!empty($this->block) && !empty($this->badroom) && !empty($this->bathroom) && !empty($this->floor)) {
-
-            $data = $posts->whereHas('option_data', function ($q) {
-                $data = $q->where('category_id', 16);
-                return $data->where('value', '>=', $this->badroom);
-            })
-                ->whereHas('option_data', function ($q) {
-                    $data = $q->where('category_id', 17);
-                    return $data->where('value', '>=', $this->bathroom);
-                })
-                ->whereHas('option_data', function ($q) {
-                    $data = $q->where('category_id', 18);
-                    return $data->where('value', '>=', $this->floor);
-                })
-                ->whereHas('option_data', function ($q) {
-                    $data = $q->where('category_id', 15);
-                    return $data->where('value', '>=', $this->block);
-                })
-
-                ->latest()->paginate(30);
-
-            return response()->json($data);
-        }
-        if (!empty($this->badroom) && !empty($this->bathroom) && !empty($this->floor)) {
-
-            $data = $posts->whereHas('option_data', function ($q) {
-                $data = $q->where('category_id', 16);
-                return $data->where('value', '>=', $this->badroom);
-            })
-                ->whereHas('option_data', function ($q) {
-                    $data = $q->where('category_id', 17);
-                    return $data->where('value', '>=', $this->bathroom);
-                })
-                ->whereHas('option_data', function ($q) {
-                    $data = $q->where('category_id', 18);
-                    return $data->where('value', '>=', $this->floor);
-                })
-
-                ->latest()->paginate(30);
-
-
-            return response()->json($data);
-        }
-        if (!empty($this->bathroom) && !empty($this->floor)) {
-
-            $data = $posts->whereHas('option_data', function ($q) {
-                $data = $q->where('category_id', 17);
-                return $data->where('value', '>=', $this->bathroom);
-            })
-                ->whereHas('option_data', function ($q) {
-                    $data = $q->where('category_id', 18);
-                    return $data->where('value', '>=', $this->floor);
-                })
-                ->latest()->paginate(30);
-            return response()->json($data);
-        }
-        if (!empty($bathroom)) {
-
-            $data = $posts->whereHas('option_data', function ($q) {
-                $data = $q->where('category_id', 17);
-                return $data->where('value', '>=', $this->bathroom);
-            })
-                ->latest()->paginate(30);
-
-
-            return response()->json($data);
-        }
-
-        if (!empty($this->floor)) {
-
-            $data = $posts->whereHas('option_data', function ($q) {
-                $data = $q->where('category_id', 18);
-                return $data->where('value', '>=', $this->floor);
-            })
-                ->latest()->paginate(30);
-
-            return response()->json($data);
-        }
-
-        if (!empty($this->block)) {
-            $data = $posts->whereHas('option_data', function ($q) {
-                $data = $q->where('category_id', 15);
-                return $data->where('value', '>=', $this->block);
-            })
-                ->latest()->paginate(30);
-
-            return response()->json($data);
-        }
-
-        $posts = $posts->latest()->paginate(30);
+        $posts = Terms::where('type', 'property')->where('status', 1)
+            ->where('user_id', Auth::id())
+            ->with('landarea', 'post_new_city', 'post_preview', 'post_district', 'price', 'user', 'option_data', 'property_status_type')
+            ->latest()->paginate(1000);
         return response()->json($posts);
     }
 
@@ -1514,8 +1422,7 @@ class PropertyController extends controller
 
         $data = ['messages' => 'Admin can not delete your account', 'status' => 'error'];
 
-        if($id != 1)
-        {
+        if ($id != 1) {
             User::where('id', $id)->update(['status' => 0]);
             Auth::logout();
             $data = ['messages' => 'Account deleted successfully', 'status' => 'success'];
@@ -1527,5 +1434,11 @@ class PropertyController extends controller
     public function userboard_account()
     {
         return view('theme::newlayouts.user_dashboard.account');
+    }
+
+    //distric against cities
+    public function info(Request $request)
+    {
+        return Category::where('p_id', $request->id)->select('id', 'name', 'ar_name')->latest()->get();
     }
 }

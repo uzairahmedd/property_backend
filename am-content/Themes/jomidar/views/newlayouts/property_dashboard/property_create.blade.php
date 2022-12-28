@@ -1,7 +1,9 @@
 @extends('theme::newlayouts.app')
 @section('content')
+<script>
+    var locale = '<?php echo Session::get('locale'); ?>';
+</script>
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
-    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
     <div class="add-property row-style">
         @include('theme::newlayouts.partials.user_header')
         <!-- Property Description Section Starts Here -->
@@ -9,6 +11,7 @@
             <form method="post" action="{{ route('agent.property.store_property') }}">
                 @csrf
                 <input type="hidden" name="term_id" value="{{$id}}">
+                <input type="hidden" id="district_id" value="{{$post_data != '' ?  $post_data->district->category_id : ''}}">
                 <div class="description-card card">
                     @if($errors->has('message'))
                         <div class="error d-flex justify-content-end pt-1">{{ $errors->first('message') }}</div>
@@ -44,19 +47,19 @@
                                 @endif
                             </div>
                         </div>
-                        <!-- <div class="col-12 d-flex flex-column-reverse flex-lg-row "> -->
+                   
                         <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
                             <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop prop-title-en">
-                                <label for="title" class="theme-text-seondary-black">Property Title (English)</label>
+                                <label for="english_title" class="theme-text-seondary-black">Property Title (English)</label>
                                 <div class="position-relative d-flex justify-content-end align-items-center w-100">
-                                    <input type="text" value="{{ $post_data != '' ? $post_data->title : old('title')}}" name="title" id="title" placeholder="Property Title" class="form-control theme-border">
+                                    <input type="text" value="{{ $post_data != '' ? $post_data->title : old('title')}}" name="title" id="english_title" placeholder="Property Title" class="form-control theme-border">
                                 </div>
                                 @if($errors->has('title'))
                                     <div class="error pt-1">{{ $errors->first('title') }}</div>
                                 @endif
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address ps-0 pt-sm-0 prop-title-ar">
-                                <label for="title" class="theme-text-seondary-black property_title_ar">عنوان الملكية (عربى)</label>
+                                <label for="ar_title" class="theme-text-seondary-black property_title_ar">عنوان الملكية (عربى)</label>
                                 <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                     <input type="text" value="{{ $post_data != '' ? $post_data->ar_title : old('ar_title')}}" name="ar_title" id="ar_title" placeholder="عنوان الملكية (عربى)" class="form-control theme-border property_title_ar">
                                 </div>
@@ -66,63 +69,14 @@
                             </div>
                         </div>
 
-
-
-                        <div class="col-lg-4 col-md-12   col-sm-12 d-flex flex-column align-items-end">
-                            <label for="area" class="theme-text-seondary-black">{{__('labels.property_area')}}
-                            </label>
-                            <input type="number" step="any" id="area"
-                                   value="{{ $post_data != '' ? $post_data->area->content  : old('area') }}"
-                                   name="area" placeholder="{{__('labels.area_square_meter')}}"
-                                   class="form-control theme-border">
-                            @if($errors->has('area'))
-                                <div class="error pt-1">{{ $errors->first('area') }}</div>
-                            @endif
-                        </div>
-
-
-
-                        <!-- </div> -->
-                        <div class="col-12 d-flex flex-wrap justify-content-end mt-4">
-                            <label for="description" class="d-flex flex-column-reverse flex-lg-row align-items-end">
-                                <span class="font-16 theme-text-sky">{{__('labels.prop_exam')}} (English)</span>
-                                <span class="theme-text-seondary-black">{{__('labels.property_descr')}}</span>
-                            </label>
-                            <div class="col-12 d-flex flex-wrap justify-content-end">
-                                <textarea name="description" cols="60" rows="10"
-                                          placeholder="{{__('labels.enter_here')}}" id="description"
-                                          class="form-control b-r-8 theme-border">{{ $post_data != '' ? $post_data->description->content  : (old("description")) }}</textarea>
-                            </div>
-                            @if($errors->has('description'))
-                                <div class="error pt-1">{{ $errors->first('description') }}</div>
-                            @endif
-                        </div>
-
-
-                        <div class="col-12 d-flex flex-wrap justify-content-end mb-4_5 mt-4">
-                            <label for="ar_description" class="d-flex flex-column-reverse flex-lg-row align-items-end">
-                                <span class="font-16 theme-text-sky">{{__('labels.prop_exam')}} (Arabic)</span>
-                                <span class="theme-text-seondary-black">{{__('labels.property_descr')}}</span>
-                            </label>
-                            <div class="col-12 d-flex flex-wrap justify-content-end">
-                                <textarea name="ar_description" cols="30" rows="3"
-                                          placeholder="{{__('labels.enter_here')}}" id="ar_description"
-                                          class="form-control b-r-8 theme-border">{{ $post_data != '' ? $post_data->arabic_description->content  : (old("ar_description")) }}</textarea>
-                            </div>
-                            @if($errors->has('ar_description'))
-                                <div class="error pt-1">{{ $errors->first('ar_description') }}</div>
-                            @endif
-                        </div>
-
-
                         <div class="col-12 mt-4 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
-                            <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address">
+                            <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address">
                                 <label for="location"
                                        class="theme-text-seondary-black">{{__('labels.address_property')}}
                                 </label>
                                 <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                     <input type="text" name="location"
-                                           value="{{ $post_data != '' ? $post_data->city->value  : old('location') }}"
+                                           value="{{ $post_data != '' ? $post_data->district->value  : old('location') }}"
                                            id="location" placeholder="{{__('labels.address_property')}}"
                                            class="form-control theme-border">
                                     <img src="{{asset('assets/images/location.png')}}" alt=""
@@ -132,15 +86,28 @@
                                     <div class="error pt-1">{{ $errors->first('location') }}</div>
                                 @endif
                             </div>
-                            <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop">
-                                <label class="theme-text-seondary-black">{{__('labels.region')}}</label>
+                            <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop">
+                                <label for="district" class="theme-text-seondary-black">District</label>
                                 <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                     <img src="{{asset('assets/images/arrow-down.svg')}}" alt=""
                                          class="position-absolute input-drop-icon">
-                                    <select class="form-control add_prop_btn" name="city">
-                                        <option value="" disabled selected>  {{__('labels.select_region')}}</option>
+                                    <select class="form-control add_prop_btn" id="district" name="district">
+                                        <option value="" disabled selected>  Please select district</option>
+                                    </select>
+                                </div>
+                                @if($errors->has('district'))
+                                    <div class="error pt-1">{{ $errors->first('district') }}</div>
+                                @endif
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop">
+                                <label for="cities" class="theme-text-seondary-black">City</label>
+                                <div class="position-relative d-flex justify-content-end align-items-center w-100">
+                                    <img src="{{asset('assets/images/arrow-down.svg')}}" alt=""
+                                         class="position-absolute input-drop-icon">
+                                    <select class="form-control add_prop_btn" id="cities" name="city">
+                                        <option value="" disabled selected>  Please select city</option>
                                         @foreach(App\Category::where('type','states')->get() as $row)
-                                            <option value="{{ $row->id }}" {{ $post_data != '' && $post_data->city->category_id == $row->id ? "selected" : (old("city") == $row->id ? "selected" : '') }}> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
+                                            <option value="{{ $row->id }}" @if(in_array($row->id, $array)) selected="" @endif> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -161,6 +128,5 @@
     </div>
 @endsection
 @section('property_create')
-<!-- <script src="{{ asset('admin/js/ckeditor/ckeditor.js') }}"></script> -->
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
 @endsection

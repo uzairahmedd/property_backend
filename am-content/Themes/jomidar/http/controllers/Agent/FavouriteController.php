@@ -23,7 +23,7 @@ class FavouriteController extends controller
 
     public function get_favorite_properties()
     {
-        $properties = Auth::User()->user_favourite_properties()->paginate(20);
+        $properties = Auth::User()->user_favourite_properties()->paginate(1000);
         return $properties;
     }
 }
