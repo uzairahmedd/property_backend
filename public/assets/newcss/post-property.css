@@ -235,7 +235,12 @@
 }
 
 .hiden{
-    display: none;
+    display: none !important;
+}
+
+.hello-name
+{
+    direction: rtl;
 }
 
 
@@ -249,16 +254,30 @@
     border-color: #287DBD;
 }
 
-.cr-num input
+.rega input
+{
+    direction: rtl;
+}
+
+.mega-num input
 {
     direction: rtl;
 }
 
 @media screen and (max-width:992px) {
+    .company {
+        margin-right: 0;
+    }
     .form-left
     {
         display: none;
     }
+
+    .owner-form
+    {
+        width: 100%;
+    }
+
 
     .number-verify-property .form-right
     {
@@ -273,6 +292,8 @@
         -webkit-box-shadow: 0 25px 80px rgb(0 0 0 / 7%), 0 16.2037px 46.8519px rgb(0 0 0 / 5%), 0 9.62963px 25.4815px rgb(0 0 0 / 4%), 0 5px 13px rgb(0 0 0 / 4%), 0 2.03704px 6.51852px rgb(0 0 0 / 3%), 0 0.462963px 3.14815px rgb(0 0 0 / 2%);
         box-shadow: 0 25px 80px rgb(0 0 0 / 7%), 0 16.2037px 46.8519px rgb(0 0 0 / 5%), 0 9.62963px 25.4815px rgb(0 0 0 / 4%), 0 5px 13px rgb(0 0 0 / 4%), 0 2.03704px 6.51852px rgb(0 0 0 / 3%), 0 0.462963px 3.14815px rgb(0 0 0 / 2%);
         grid-row-gap: 16px!important;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
     .form-right img {
@@ -298,6 +319,24 @@
         width: 100%;
     }
 
+
+    .radio-container .checmark
+    {
+        padding: 8px 16px;
+    }
+
+}
+
+@media screen and (max-width: 378px) {
+
+    .radio-container .checmark
+    {
+        padding: 8px 10px;
+    }
+    .radio-container .checmark
+    {
+        font-size: 12px;
+    }
 }
 
 

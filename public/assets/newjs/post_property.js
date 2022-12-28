@@ -23,13 +23,6 @@ window.intlTelInput(input, {
     utilsScript: "build/js/utils.js",
 });
 
-$(document).ready(function(){
-    if ($('input.owner').is(':checked')) {
-        console.log(alert('dsfasfd'));
-        $(".select-account").addClass("hiden");
-        $(".cr-num").addClass("hiden");
-    }
 
-    });
 
 

@@ -25,6 +25,7 @@
         @yield('property_list_select')
         @yield('account_js')
         @yield('post_property_js')
+        @yield('select_owner')
         @yield('favorite_properties')
         @yield('property_create')
         @yield('yearpicker')

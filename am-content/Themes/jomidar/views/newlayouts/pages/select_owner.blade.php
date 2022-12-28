@@ -5,48 +5,56 @@
 
     <div class="container number-verify-property d-flex justify-content-center align-items-center">
         <div class="form-right d-flex justify-content-center align-items-center flex-column">
-            <img class="d-flex justify-content-center align-items-center" src="{{asset('assets/images/logo.png')}}" alt="">
+            <img class="d-flex justify-content-center align-items-center" src="{{asset('assets/images/logo.png')}}"
+                 alt="">
+            <p class="d-flex justify-content-end align-self-end hello-name">{{__('labels.hello')}}&nbsp; <span>{{__('labels.naeem')}}</span></p>
+            <p class="d-flex justify-content-end align-self-end">{{__('labels.list_property_as_a')}}</p>
 
-            <form id="form" class="form">
+            <form id="form" class="form owner-form">
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="radio-container developer">
-                        <input type="radio" name="status" id="developer" value="27">
-                        <span class="checmark font-16 font-medium">Developer</span>
+                        <input type="radio" name="status" id="developer" value="3" class="developer-input">
+                        <span class="checmark font-16 font-medium">{{__('labels.developer')}}</span>
                     </div>
                     <div class="radio-container px-3 broker">
-                        <input type="radio" name="status" id="broker" value="26">
-                        <span class="checmark font-16 font-medium">Broker</span>
+                        <input type="radio" name="status" id="broker" value="2" class="broker-input">
+                        <span class="checmark font-16 font-medium">{{__('labels.broker')}}</span>
                     </div>
                     <div class="radio-container owner">
-                        <input type="radio" name="status" id="owner" value="26" class="owner" checked>
-                        <span class="checmark font-16 font-medium">Owner</span>
+                        <input type="radio" name="status" id="owner" value="1" class="owner-input" checked>
+                        <span class="checmark font-16 font-medium">{{__('labels.owner')}}</span>
                     </div>
                 </div>
-                <div class="btn-content select-account d-flex justify-content-end align-items-center mt-4">
+                <div class="btn-content select-account d-flex flex-column-reverse flex-lg-row justify-content-end align-items-end mt-4">
                     <div class="form-check company">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Company
+                        <input class="form-check-input" type="radio" name="account_select" value="5" id="company_input">
+                        <label class="form-check-label" for="company">
+                            {{__('labels.company')}}
                         </label>
                     </div>
                     <div class="form-check indi-broker">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Individual Brokers
+                        <input class="form-check-input" type="radio" name="account_select" value="4" id="indi_broker"
+                               checked>
+                        <label class="form-check-label" for="indi_broker">
+                            {{__('labels.individual_brokers')}}
                         </label>
                     </div>
-                    <div class="form-check">
-                        <p class="pb-0 mb-0">I am</p>
+                    <div class="form-check iam">
+                        <p class="pb-0 mb-0">{{__('labels.iam')}}</p>
                     </div>
-
                 </div>
                 <div class="cr-num mt-4">
                     <div class="form-group">
-                        <label for="cr_number" class="d-flex justify-content-end">CR Number</label>
-                        <input type="email" class="form-control" id="cr_number" placeholder="CR Number">
+{{--                        <label for="cr_number" class="d-flex justify-content-end">{{__('labels.crnum')}}</label>--}}
+                        <input type="email" class="form-control" id="cr_number" placeholder="{{__('labels.crnum')}}">
                     </div>
                 </div>
-
+                <div class="rega-num mt-4">
+                    <div class="form-group">
+{{--                        <label for="cr_number" class="d-flex justify-content-end">{{__('labels.rega_advertisement')}}</label>--}}
+                        <input type="email" class="form-control" id="rega_number" placeholder="{{__('labels.rega_advertisement')}}">
+                    </div>
+                </div>
                 <button class="btn" id="btn">{{__('labels.next')}}</button>
             </form>
         </div>
@@ -70,7 +78,6 @@
     </div>
 @endsection
 
-@section('post_property_js')
-    <script src="{{ asset('assets/newjs/intlTelInput.js') }}"></script>
-    <script src="{{ asset('assets/newjs/post_property.js') }}"></script>
+@section('select_owner')
+    <script src="{{ asset('assets/newjs/select_owner.js') }}"></script>
 @endsection

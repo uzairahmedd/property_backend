@@ -944,6 +944,30 @@
     text-align: left;
 }
 
+.rtl .cr-num input {
+    direction: ltr;
+}
+
+.rtl .rega-num input {
+    direction: ltr;
+}
+
+.rtl .hello-name
+{
+    direction: ltr;
+}
+
+.rtl .iam
+{
+    padding-right: 1.5em;
+    padding-left: 0;
+}
+
+.rtl .company {
+    margin-left: 14px;
+    margin-right: 0;
+}
+
 @media screen and (max-width: 930px) {
     .rtl .drop-download-app {
         margin-left: 0;
@@ -953,6 +977,10 @@
 @media screen and (max-width:992px) {
     .rtl .owl-home-carousel {
         direction: ltr !important;
+    }
+
+    .rtl .company {
+        margin-left: 0;
     }
 }
 
@@ -1005,6 +1033,9 @@
 
 
 @media screen and (max-width: 576px) {
+    .rtl .company {
+        margin-left: 0;
+    }
     .rtl .drop-download-app {
         margin-left: -98px;
     }
