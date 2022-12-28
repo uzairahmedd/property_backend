@@ -81,8 +81,6 @@ function generate_input(n)
 function  dropdown_btn(elem){
     var count=$(elem).val();
     generate_input(count);
-
-
 }
 
 //to get property type

@@ -95,6 +95,72 @@
 
 }
 
+.rtl .header-h h2
+{
+    direction: ltr;
+}
+
+.otp-txt p
+{
+    direction: ltr;
+}
+
+.rtl .number-verify-property .form-right {
+    margin-right: -35px;
+    margin-left: 0;
+}
+
+.rtl .number-verify-property .form-left div h5 {
+    text-align: left;
+}
+
+.rtl .number-verify-property .form-left div i {
+    background-color: #287DBD !important;
+}
+
+.rtl .phone-txt h2
+{
+    direction: ltr;
+    font-weight: 600;
+    justify-content: start !important;
+}
+
+.rtl .indi-company .company {
+    margin-right: 49px;
+    margin-left: 0 !important;
+}
+
+.rtl .req-offer .offerer {
+    margin-left: 0px;
+    margin-right: 66px;
+}
+
+.rtl .commissioner {
+    margin-left: 0;
+    margin-right: 15px;
+}
+
+.rtl .submit-btn {
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+.rtl .phone-signup
+{
+    padding-left: 40px;;
+}
+
+.rtl #phone
+{
+    direction: ltr;
+}
+
+.rtl .iti--separate-dial-code .iti__selected-flag
+{
+    direction: ltr;
+}
+
 .rtl .role_span {
     margin-right: 10px;
 }
@@ -130,7 +196,7 @@
 .rtl .carousel-control-prev-icon {
     background-image: url(/assets/images/arrow-right.png);
     width: 10px;
-    font-width: bold;
+    font-weight: bold;
     height: 13px;
 }
 
