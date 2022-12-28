@@ -107,7 +107,7 @@ function property_type(elem){
                     if(value_data.id == response.post_category.category_id && value.id == response.post_category.term_id){
                       checked='checked';
                     }}
-                    $('#property_type_radio').append('<div class="radio-container property_radio"><input type="radio" name="category" '+checked+' data-name="'+value_data.name+'" value="'+value_data.id+'"><span class="checmark font-16 font-medium">'+name+'</span> </div>');
+                    $('#property_type_radio').append('<div class="radio-container radio-edit-two property_radio"><input type="radio" name="category" '+checked+' data-name="'+value_data.name+'" value="'+value_data.id+'"><span class="checmark font-16 font-medium">'+name+'</span> </div>');
                 });
             });
 

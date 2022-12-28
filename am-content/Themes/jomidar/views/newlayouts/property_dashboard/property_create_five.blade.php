@@ -54,18 +54,25 @@
                         <span class="meters_span">{{__('labels.meter')}}</span>
                     </div>
                 </div>
-
-                <div class="col-12 d-flex justify-content-end">
-                    <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
-                        <lable class="d-flex justify-content-end align-items-end">{{__('labels.total_floors')}}</lable>
-                        <input type="text" class="form-control">
-                    </div>
+                <div class="preview-property">
+                    <h2 class="d-flex justify-content-end align-items-end">Property Title and Description preview</h2>
+                    <h6 class="d-flex justify-content-end align-items-end">Auto generated based on the information filled by you</h6>
+                    <p class="pb-0 mb-0"> <span>Villa</span> for <span>Sale </span>in <span>Al Falah, Jeddah</span></p>
+                    <p class="pb-0 mb-0">Land Area: <span>200SQM</span></p>
+                    <p class="pb-0 mb-0">Built up Area: <span>200SQM</span></p>
+                    <p class="pb-0 mb-0">Property Borders: Length: <span>15m,</span>Depth: <span>20m</span></p>
+                    <p class="pb-0 mb-0">The property has <span>4</span>bedrooms,<span>2</span> living rooms,<span>3</span>guest rooms</p>
+                    <p class="pb-0 mb-0">Villa has <span>electricity</span> and <span>water</span> connections</p>
+                    <p class="pb-0 mb-0">Building year: <span>2022</span></p>
+                    <p class="pb-0 mb-0">Properties amenities:</p>
+                    <p class="pb-0 mb-0"> - <span>Rooftop</span></p>
+                    <p class="pb-0 mb-0"> - <span>Indoor Parking</span></p>
+                    <p class="pb-0 mb-0"> - <span>Yard</span></p>
+                    <p class="pb-0 mb-0"> - <span>Driver Room</span></p>
+                    <p class="pb-0 mb-0">Price: <span>1350000 SAR</span></p>
                 </div>
+
             </div>
-
-
-
-
             <div class="d-flex justify-content-between description-btn-group">
                 <button class="btn btn-theme">{{__('labels.next')}}</button>
                 <a href="{{ route('agent.property.forth_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">{{__('labels.previous')}}</a>

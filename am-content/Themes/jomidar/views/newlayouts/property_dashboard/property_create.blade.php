@@ -18,18 +18,18 @@
                             <span class="theme-text-sky ">1</span>/
                             <span class="theme-text-seondary-black">6</span>
                         </div>
-                        <p class="theme-text-black font-18 ">{{__('labels.property_description')}}</p>
+                        <p class="theme-text-black font-18 prop-desc-one">{{__('labels.property_description')}}</p>
                         <div class="theme-gx-3 mb-4_5">
                             <div class="row">
                                 @foreach($status_category as $status)
                                     @if( $status->name =='Sale')
-                                        <div class="radio-container">
+                                        <div class="radio-container radio-sale-one">
                                             <input type="radio" name="status" id="create_status1"
                                                    value="{{ $status->id }}" {{ $post_data != '' && $post_data->property_status_type->category_id == $status->id ? "checked" : (old("status") == $status->id ? "checked" : '') }}>
                                             <span class="checmark font-16 font-medium">{{__('labels.sale')}}</span>
                                         </div>
                                     @elseif($status->name =='Rent')
-                                        <div class="radio-container">
+                                        <div class="radio-container radio-rent-one">
                                             <input type="radio" name="status" id="create_status2"
                                                    value="{{ $status->id }}" {{ $post_data != '' && $post_data->property_status_type->category_id == $status->id ? "checked" : (old("status") == $status->id ? "checked" : '') }}>
                                             <span class="checmark font-16 font-medium">{{__('labels.rent')}}</span>
@@ -115,7 +115,7 @@
                         </div>
 
 
-                        <div class="col-12 mt-4 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
+                        <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
                             <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address">
                                 <label for="location"
                                        class="theme-text-seondary-black">{{__('labels.address_property')}}

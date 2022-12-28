@@ -168,7 +168,13 @@
 .rtl .realestate_roles
 {
     margin-left: 0 !important;
-    margin-right: 3rem;
+    margin-right: 1rem;
+}
+
+.rtl .checkbox-step5
+{
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .meters_span {
@@ -582,9 +588,26 @@
 }
 
 .rtl .water-meter {
-    width: 168px;
+    width: 171px;
     max-width: 100%;
 }
+
+.rtl .radio-rent-one
+{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.rtl .radio-edit-third {
+    margin-right: 10px;
+}
+
+.rtl .prop-desc-one
+{
+    margin-top: 20px;
+}
+
+
 
 .rtl .regional-street-1
 {
@@ -947,6 +970,17 @@
 .rtl .cr-num input {
     direction: ltr;
 }
+
+.rtl .radio-edit-two
+{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/*.rtl .ready-not-ready*/
+/*{*/
+/*    margin-left: 2px;*/
+/*}*/
 
 .rtl .rega-num input {
     direction: ltr;

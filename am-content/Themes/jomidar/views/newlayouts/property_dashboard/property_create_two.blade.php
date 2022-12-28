@@ -20,9 +20,9 @@
                         <span class="theme-text-seondary-black">6</span>
                     </div>
                     <p class="theme-text-black font-18">{{__('labels.property_nature')}}</p>
-                    <div class="col-12 justify-content-end row theme-gx-3 mb-4">
+                    <div class="col-12 justify-content-end row">
                         @foreach($parent_category as $row)
-                        <div class="radio-container">
+                        <div class="radio-container radio-edit-two">
                             <input type="radio" name="parent_category" term-id='{{$id}}'  onclick="property_type(this)" value="{{$row->id}}" {{ !empty($array) && $array['parent_category'] == $row->id ? "checked" : (old("parent_category") == $row->id ? "checked":"") }}>
                             <span class="checmark font-16 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
                         </div>
@@ -31,10 +31,10 @@
                     @if($errors->has('parent_category'))
                     <div class="error">{{ $errors->first('parent_category') }}</div>
                     @endif
-                    <p class="theme-text-black font-18" id="type_text">{{__('labels.type_property')}}</p>
+                    <p class="theme-text-black font-18 mt-3" id="type_text">{{__('labels.type_property')}}</p>
                     <div class="col-12 justify-content-end property_types row theme-gx-3 mb-4_5" id="property_type_radio">
                         @foreach($child_category as $row)
-                        <div class="radio-container property_radio">
+                        <div class="radio-container radio-edit-two property_radio">
                             <input type="radio" name="category" value="{{$row->id}}" data-name="{{$row->name}}" {{ !empty($array) && $array['category'] == $row->id ? "checked" : (old("category") == $row->id ? "checked":"") }}>
                             <span class="checmark font-16 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
                         </div>
@@ -61,14 +61,14 @@
                     </div>
 
 
-                    <div class="built-up-year mt-4">
+                    <div class="built-up-year">
                         <p class="theme-text-black font-18">{{__('labels.building_year')}}</p>
-                        <div class="row theme-gx-3 mb-4_5">
-                            <div class="radio-container">
+                        <div class="row theme-gx-3 mb-4_5 ready-not-ready">
+                            <div class="radio-container radio-edit-two radio-edit-two">
                                 <input type="radio" name="ready" value="1" id="ready">
                                 <span class="build-ready font-16 font-medium">{{__('labels.ready')}}</span>
                             </div>
-                            <div class="radio-container">
+                            <div class="radio-container radio-edit-two radio-edit-two">
                                 <input type="radio" name="ready" value="2" id="not_ready">
                                 <span class="build-ready font-16 font-medium">{{__('labels.not_ready')}}</span>
                             </div>
@@ -80,32 +80,32 @@
                     </div>
                     <!-- property value Section Starts Here -->
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row property-value">
-                        <div class="col-lg-6 col-md-12 flex-column">
-                            <div class="d-flex justify-content-end mb-2">
-                                <div class="row d-flex yesno-btn gx-2 other-meter">
-                                    <div class="radio-container yes-no-radio">
-                                        <input type="radio" name="electricity_facility" value="1" {{ !empty($post_data->electricity_facility)  && $post_data->electricity_facility->content == 1 ? "checked"  : (old("electricity_facility") == 1 ? "checked" : "") }}>
-                                        <span class="checmark font-16 font-medium">{{__('labels.no')}}</span>
-                                    </div>
-                                    <div class="radio-container yes-no-radio">
-                                        <input type="radio" name="electricity_facility" value="0" {{ !empty($post_data->electricity_facility) && $post_data->electricity_facility->content == 0 ? "checked"  : (old("electricity_facility") == 0 ? "checked" : "") }}>
-                                        <span class="checmark font-16 font-medium">{{__('labels.yes')}}</span>
-                                    </div>
-                                </div>
-                                <p class="mb-0 font-18 theme-text-seondary-black meter_txt">{{__('labels.electricity_meter_is_there')}}</p>
-                            </div>
-                            <div class="d-flex justify-content-end mb-2">
+                        <div class="col-lg-6 col-md-12 flex-column mt-3">
+                            <div class="d-flex justify-content-end align-items-center mb-2">
                                 <div class="row d-flex yesno-btn gx-2 water-meter">
-                                    <div class="radio-container yes-no-radio">
+                                    <div class="radio-container radio-edit-two yes-no-radio">
                                         <input type="radio" name="water_facility" value="1" {{ !empty($post_data->water_facility) && $post_data->water_facility->content == 1 ? "checked"  : (old("water_facility") == 1 ? "checked" : "") }}>
                                         <span class="checmark font-16 font-medium">{{__('labels.no')}}</span>
                                     </div>
-                                    <div class="radio-container yes-no-radio">
+                                    <div class="radio-container radio-edit-two yes-no-radio">
                                         <input type="radio" name="water_facility" value="0" {{ !empty($post_data->water_facility) && $post_data->water_facility->content == 0 ? "checked"  : (old("water_facility") == 0 ? "checked" : "") }}>
                                         <span class="checmark font-16 font-medium">{{__('labels.yes')}}</span>
                                     </div>
                                 </div>
                                 <p class="mb-0 font-18 theme-text-seondary-black meter_txt">{{__('labels.water_meter_is_there')}}</p>
+                            </div>
+                            <div class="d-flex justify-content-end align-items-center mb-2">
+                                <div class="row d-flex yesno-btn gx-2 other-meter">
+                                    <div class="radio-container radio-edit-two yes-no-radio">
+                                        <input type="radio" name="electricity_facility" value="1" {{ !empty($post_data->electricity_facility)  && $post_data->electricity_facility->content == 1 ? "checked"  : (old("electricity_facility") == 1 ? "checked" : "") }}>
+                                        <span class="checmark font-16 font-medium">{{__('labels.no')}}</span>
+                                    </div>
+                                    <div class="radio-container radio-edit-two yes-no-radio">
+                                        <input type="radio" name="electricity_facility" value="0" {{ !empty($post_data->electricity_facility) && $post_data->electricity_facility->content == 0 ? "checked"  : (old("electricity_facility") == 0 ? "checked" : "") }}>
+                                        <span class="checmark font-16 font-medium">{{__('labels.yes')}}</span>
+                                    </div>
+                                </div>
+                                <p class="mb-0 font-18 theme-text-seondary-black meter_txt">{{__('labels.electricity_meter_is_there')}}</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 d-flex add-address justify-content-end">
@@ -124,9 +124,9 @@
                     <!-- property value Section Ends Here -->
                     <!-- Street Section Starts Here -->
                     <p class="theme-text-black font-18">{{__('labels.no_street')}}</p>
-                    <div class="row row d-flex flex-row-reverse justify-content-end flex-lg-row gx-2">
+                    <div class="row row d-flex flex-row-reverse justify-content-end flex-lg-row">
                         @for($i=4; $i>=1; $i--)
-                        <div class="radio-container">
+                        <div class="radio-container radio-edit-two">
                             <input type="radio" name="streets" onclick="dropdown_btn(this)" class="street_sdropdown" value="{{$i}}" {{ !empty($post_data->streets) && $post_data->streets->content == $i ? "checked"  : (old("streets") == $i ? "checked" : '') }}>
                             <span class="checmark font-16 font-medium">{{$i}}</span>
                         </div>
