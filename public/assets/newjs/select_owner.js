@@ -1,12 +1,9 @@
 $(document).ready(function() {
-
     if ($('#owner').is(':checked')) {
-        // alert('owner');
         $(".select-account").addClass("hiden");
         $("#cr_number").addClass("hiden");
         $("#rega_number").addClass("hiden");
     }
-
     $("input[name=status]:radio").click(function () {
         if ($('input[name=status]:checked').val() == "1") {
             $(".select-account").addClass("hiden");
@@ -31,16 +28,11 @@ $(document).ready(function() {
             });
         }
         else if ($('input[name=status]:checked').val() == "3") {
-            alert('developer');
             $("#cr_number").removeClass("hiden");
             $("#rega_number").addClass("hiden");
             $(".select-account").addClass("hiden");
         }
 
     });
-
-
-
-
 });
 
