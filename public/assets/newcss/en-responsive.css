@@ -741,14 +741,15 @@
     margin-left: 0;
 }
 
-.rtl .basic-property-info  h1
-{
-    padding-bottom: 10px;
-}
-
 .rtl .property-detail .card img {
     margin-right: 6px;
     margin-left: 0px;
+}
+
+.rtl #show-more-content ul li
+{
+    text-align: left;
+    direction: ltr;
 }
 
 .rtl .property-list-feature
@@ -957,6 +958,43 @@
     margin-right: 0;
 }
 
+.rtl #show-more-content p{
+    text-align: left;
+}
+
+.rtl .prop-description-detail h1
+{
+    text-align: left;
+}
+
+.rtl #show-more
+{
+    text-align: left;
+}
+
+.rtl .detail-heading
+{
+    text-align: left;
+}
+
+.rtl #show-less
+{
+    text-align: left;
+    margin-top: -18px;
+}
+
+.rtl .detail-txt-left
+{
+    text-align: left !important;
+    margin: 0;
+    padding: 0;
+}
+
+.rtl .detail-txt-left span
+{
+    margin-left: -10px;
+}
+
 .rtl .drop-download-app h3
 {
     text-align: left;
@@ -1010,6 +1048,10 @@
 .rtl .preview-property p
 {
     text-align: left;
+}
+
+.rtl .input-drop-icon {
+    right: 12px;
 }
 
 .rtl .realestate_roles {

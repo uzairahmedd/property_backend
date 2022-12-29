@@ -191,6 +191,55 @@
     background: #292071;
 }
 
+#show-more-content{
+
+}
+
+#show-more {
+    text-align: right;
+}
+
+.rtl .basic-property-info .text-end {
+    text-align: right!important;
+}
+
+#show-more-content p
+{
+    text-align: right;
+}
+
+#show-more-content ul li
+{
+    text-align: right;
+}
+
+#show-less {
+    text-align: right;
+    margin-top: -18px;
+}
+
+.detail-heading {
+    text-align: right;
+}
+
+.detail-heading {
+    text-align: right;
+}
+
+.detail-txt-left {
+    text-align: right !important;
+    margin: 0;
+    padding: 0;
+}
+
+.detail-txt-left span {
+    margin-right: -10px;
+}
+
+.detail-txt-right {
+    text-align: right!important;
+}
+
 
 /* Media Query */
 
