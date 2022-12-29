@@ -67,7 +67,9 @@
                 <h6 class="d-flex justify-content-end align-items-end">Auto generated based on the information filled by you</h6>
                 <p class="pb-0 mb-0"> <span>{{ Session::get('locale') == 'ar' && !empty($info->property_type) ? $info->property_type->category->ar_name : $info->property_type->category->name}}</span> for <span>{{ Session::get('locale') == 'ar' && !empty($info->property_status_type) ? $info->property_status_type->category->ar_name : $info->property_status_type->category->name}} </span>in <span>{{$info->post_district->value}}
                         , {{ Session::get('locale') == 'ar' ? $info->post_district->category->ar_name : $info->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $info->post_new_city->category->ar_name : $info->post_new_city->category->name }}</span></p>
+                @if(!empty($info->landarea))
                 <p class="pb-0 mb-0">Land Area: <span>{{$info->landarea->content}} SQM</span></p>
+                @endif
                 <p class="pb-0 mb-0">Built up Area: <span>{{$info->builtarea->content}} SQM</span></p>
                 <!-- <p class="pb-0 mb-0">Property Borders: Length: <span>15m,</span>Depth: <span>20m</span></p> -->
                 @if($info->option_data)

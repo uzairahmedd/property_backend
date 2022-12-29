@@ -135,10 +135,12 @@
                         @endif
                         @endforeach
                         @endif
+                        @if(!empty($property->landarea))
                         <li class="d-flex align-items-center mb-3 mb-sm-3">
                             <span> {{ $property->landarea->content }} SQM</span>
                             <img src="{{theme_asset('assets/images/area.png')}}" title="{{ $property->landarea->type }} in SQM" data-toggle="tooltip">
                         </li>
+                        @endif
                     </ul>
                     @php
                     $info = isset($property->user->usermeta->content) ? json_decode($property->user->usermeta->content) : null ;
