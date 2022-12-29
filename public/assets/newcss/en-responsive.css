@@ -171,6 +171,10 @@
     margin-right: 1rem;
 }
 
+.rtl .prop-title-en, .region-drop {
+    padding-left: 10px;
+}
+
 .rtl .checkbox-step5
 {
     margin-left: 10px;
@@ -657,7 +661,7 @@
 
 .rtl .description-card p
 {
-    direction: ltr;
+   text-align: left;
 }
 
 .rtl .mobile-icon-dash img

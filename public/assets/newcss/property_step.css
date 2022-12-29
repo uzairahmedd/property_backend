@@ -246,9 +246,61 @@
 /*    padding: 16px 0;*/
 /*}*/
 
-.prop-title-en, .property_address, .region-drop
+.add_prop_btn option
+{
+    padding: 10px;
+}
+
+.checkbox-step5 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.preview-property p
+{
+    text-align: right;
+}
+
+.radio-edit-third {
+    margin-left: 10px;
+}
+
+.realestate_roles {
+    margin-right: 0 !important;
+    margin-left: 1rem;
+}
+
+.built-up-year p
+{
+    text-align: right;
+}
+
+.description-card .form-control {
+    width: 100%;
+}
+
+.radio-edit-two {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.prop-title-en, .region-drop
 {
     padding-right: 10px;
+}
+
+.prop-title-en, .region-drop {
+    padding-left: 10px;
+}
+
+.prop-desc-one
+{
+    margin-top: 20px;
+}
+
+.radio-rent-one {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .description-card .add_prop_btn::after {
