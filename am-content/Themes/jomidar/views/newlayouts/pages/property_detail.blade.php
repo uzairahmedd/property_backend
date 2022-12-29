@@ -130,7 +130,7 @@
                         @if( $value->value != 0)
                         <li class="d-flex align-items-center mb-3 mb-sm-3">
                             <span> {{ $value->value }}</span>
-                            <img src="{{ $value->category->preview->content }}" title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}" data-toggle="tooltip" alt="">
+                            <img src="{{ !empty($value->category->preview) ? $value->category->preview->content : '' }}" title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}" data-toggle="tooltip" alt="">
                         </li>
                         @endif
                         @endforeach
