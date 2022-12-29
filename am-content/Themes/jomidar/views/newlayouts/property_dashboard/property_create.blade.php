@@ -89,7 +89,7 @@
                             <div class="error pt-1">{{ $errors->first('district') }}</div>
                             @endif
                         </div>
-                        <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop">
+                        <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end">
                             <label for="cities" class="theme-text-seondary-black">City</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">

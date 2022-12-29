@@ -17,7 +17,7 @@
                 <p class="mb-3 font-14 theme-text-grey ps-2">{{__('labels.choose_more_than_one')}}</p>
                 <div class="row theme-gx-2 theme-gy-36 justify-content-end p-2">
                     @foreach(App\Category::where('type','feature')->get() as $row)
-                    <div class="radio-container checkbox-step5">
+                    <div class="radio-container checkbox-step5 mb-3">
                         <input name="features[]" type="checkbox" value="{{ $row->id }}" @if(in_array($row->id, $features_array)) checked @endif >
                         <span class="checmark step font-14 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
                     </div>
@@ -28,8 +28,8 @@
                         <lable class="d-flex justify-content-end align-items-end">{{__('labels.apartment_numberss')}}</lable>
                         <input type="text" class="form-control">
                     </div>
-                </div> -->
-                <!-- <div class="col-12 d-flex flex-lg-row flex-sm-column justify-content-end">
+                </div>  -->
+                 <!-- <div class="col-12 d-flex flex-lg-row flex-sm-column justify-content-end">
                     <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
                         <lable class="d-flex justify-content-end align-items-end">{{__('labels.car_parking_no')}}</lable>
                         <input type="text" class="form-control">
@@ -39,7 +39,7 @@
                             {{__('labels.opening_no')}}</lable>
                         <input type="text" class="form-control">
                     </div>
-                </div>
+                </div> -->
                 <span class="font-24 d-flex justify-content-end py-3 px-2 font-weight-bold">{{__('labels.border_length')}}</span>
                 <div class="col-12 d-flex justify-content-end flex-lg-row flex-sm-column">
                     <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
@@ -55,12 +55,12 @@
                     </div>
                 </div>
 
-                <div class="col-12 d-flex justify-content-end">
+                <!-- <div class="col-12 d-flex justify-content-end">
                     <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
                         <lable class="d-flex justify-content-end align-items-end">{{__('labels.total_floors')}}</lable>
                         <input type="text" class="form-control">
                     </div>
-                </div>-->
+                </div> -->
             </div>
             <div class="preview-property">
                 <h2 class="d-flex justify-content-end align-items-end">Property Title and Description preview</h2>
@@ -82,11 +82,10 @@
                 <p class="pb-0 mb-0">Building year: <span>{{!empty($info->property_age) ? $info->property_age->content : 'N/A'}}</span></p>
                 <p class="pb-0 mb-0">Price: <span>{{$info->price->price}} SAR</span></p>
             </div>
-
-    </div>
-    <div class="d-flex justify-content-between description-btn-group">
+            <div class="d-flex justify-content-between description-btn-group">
         <button class="btn btn-theme">{{__('labels.next')}}</button>
         <a href="{{ route('agent.property.forth_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">{{__('labels.previous')}}</a>
+    </div>
     </div>
     </form>
 </div>

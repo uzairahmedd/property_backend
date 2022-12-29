@@ -75,7 +75,7 @@
 /* Radio Button Styles End */
 .description-card {
     padding: 48px;
-    /* width: 1100px;
+    /* width: 1100px !important;
     max-width: 100%; */
 }
 
@@ -246,9 +246,71 @@
 /*    padding: 16px 0;*/
 /*}*/
 
-.prop-title-en, .property_address, .region-drop
+.add_prop_btn option
+{
+    padding: 10px;
+}
+
+.checkbox-step5 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.preview-property p
+{
+    text-align: right;
+}
+
+.radio-edit-third {
+    margin-left: 10px;
+}
+
+.realestate_roles {
+    margin-right: 0 !important;
+    margin-left: 1rem !important;
+}
+
+.chek-info
+{
+    margin-top: 15px;
+}
+
+.chek-info .form-check-inline
+{
+    margin-left: 0;
+}
+
+.built-up-year p
+{
+    text-align: right;
+}
+
+.description-card .form-control {
+    width: 100%;
+}
+
+.radio-edit-two {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.prop-title-en, .region-drop
 {
     padding-right: 10px;
+}
+
+.prop-title-en, .region-drop {
+    padding-left: 10px;
+}
+
+.prop-desc-one
+{
+    margin-top: 20px;
+}
+
+.radio-rent-one {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .description-card .add_prop_btn::after {
@@ -283,7 +345,7 @@
 
 .property_types {
     margin-top: -25px;
-    margin-right: 0;
+    /* margin-right: 0; */
 }
 
 .yesno-btn {
@@ -420,8 +482,13 @@
 }
 
 .other-meter {
-    /*width: 130px;*/
-    /*max-width: 100%;*/
+    width: 170px;
+    max-width: 100%;
+}
+
+.not-ready-margin
+{
+    margin-right: 10px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -491,8 +558,8 @@
     }
 
     .add-address {
-        margin-left: 0px;
-        margin-bottom: 3rem;
+        margin-left: 0;
+        margin-bottom: 0;
     }
 
     .font-24 {
@@ -514,6 +581,17 @@
         margin-right: 70px;
     }
 
+    .other-meter {
+        width: 134px;
+        max-width: 100%;
+    }
+
+    .select-face
+    {
+        width: 196px !important;
+        max-width: 100%;
+    }
+
     .radio-container .checmark {
         padding: 8px 28px;
     }
@@ -523,7 +601,7 @@
     }
 
     .description-card {
-        padding: 15px;
+        padding: 25px;
     }
 
     .radio-container .checkmark-step3 {
@@ -538,13 +616,13 @@
 
 @media screen and (max-width: 480px) {
 
+    .description-card .form-control {
+        width: 100%;
+    }
+
     .input-container {
         padding: 15px 30px 15px 30px;
         /* margin-left: -13px; */
-    }
-
-    .description-card .form-control {
-        width: 100%;
     }
 
     .container {
@@ -569,6 +647,7 @@
 
     .description-card {
         padding: 20px 10px;
+        width: 100% !important;
     }
 
     .font-24 {

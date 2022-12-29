@@ -7,7 +7,7 @@
 </script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
 <!-- <link rel="stylesheet" href="{{theme_asset('assets/newcss/yearcalender.css')}}"> -->
-<link rel="stylesheet" href="{{theme_asset('assets/newcss/yearpicker.css')}}">
+<!-- <link rel="stylesheet" href="{{theme_asset('assets/newcss/yearpicker.css')}}"> -->
 <div class="add-property row-style">
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here -->
@@ -24,7 +24,7 @@
                     <p class="theme-text-black font-18">{{__('labels.property_nature')}}</p>
                     <div class="col-12 justify-content-end row">
                         @foreach($parent_category as $row)
-                        <div class="radio-container">
+                        <div class="radio-container radio-edit-two">
                             <input type="radio" name="parent_category" term-id='{{$id}}' onclick="property_type(this)" value="{{$row->id}}" {{ !empty($array) && $array['parent_category'] == $row->id ? "checked" : (old("parent_category") == $row->id ? "checked":"") }}>
                             <span class="checmark font-16 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
                         </div>
@@ -47,13 +47,13 @@
                     </div>
 
 
-                    <div class="col-12 row justify-content-end">
-                        <div class="col-lg-5 d-flex flex-column justify-content-end align-items-end land-size" id="land_size">
+                    <div class="col-12 d-flex justify-content-end">
+                        <div class="col-lg-4 d-flex flex-column justify-content-end align-items-end land-size" id="land_size">
                             <label for="land_size_area" class="theme-text-seondary-black">{{__('labels.land_size')}}
                             </label>
                             <input type="number" id="land_size_area" step="any" value="{{ !empty($post_data->landarea) ? $post_data->landarea->content  : old("landarea")}}" name="landarea" placeholder="{{__('labels.area_square_meter')}}" class="form-control theme-border">
                         </div>
-                        <div class="col-lg-5 d-flex flex-column justify-content-end align-items-end" id="built_up_area">
+                        <div class="col-lg-4 d-flex flex-column justify-content-end align-items-end" id="built_up_area">
                             <label for="built_area" class="theme-text-seondary-black">{{__('labels.built_up_area')}}
                             </label>
                             <input type="number" step="any" id="built_area" value="{{ !empty($post_data->builtarea) ? $post_data->builtarea->content  : old("builtarea")}}" name="builtarea" placeholder="{{__('labels.area_square_meter')}}" class="form-control theme-border">
@@ -64,20 +64,20 @@
                     @endif
 
 
-                    <div class="built-up-year">
+                    <div class="built-up-year mt-3">
                         <p class="theme-text-black font-18">{{__('labels.building_year')}}</p>
-                        <div class="row theme-gx-3 mb-4_5">
-                            <div class="radio-container">
+                        <div class="row theme-gx-3 mb-4_5 ready-not-ready">
+                            <div class="radio-container radio-edit-two">
                                 <input type="radio" name="ready" value="1" data-isready='{{ !empty($post_data->ready)  ? $post_data->ready->content : old("ready")  }}' id="ready">
                                 <span class="build-ready font-16 font-medium">{{__('labels.ready')}}</span>
                             </div>
-                            <div class="radio-container">
+                            <div class="radio-container not-ready-margin">
                                 <input type="radio" name="ready" value="0" id="not_ready" {{ !empty($post_data->ready)  && $post_data->ready->content == 0 ? "checked"  : (old("ready") == 0 ? "checked" : "")}}>
                                 <span class="build-ready font-16 font-medium">{{__('labels.not_ready')}}</span>
                             </div>
                         </div>
-                        <div id="year_calender">
-                            <input type="text" class="yearpicker form-control hidden" id='yearpicker' name="property_age" placeholder="Select a year" value="{{ !empty($post_data->property_age) ? $post_data->property_age->content : old('property_age') }}" />
+                        <div id="year_calender" class="mb-3">
+                            <input type="text" class="yearpicker form-control hidden" id='yearpicker' name="property_age"  placeholder="Select a year" value="{{ !empty($post_data->property_age) ? $post_data->property_age->content : old('property_age') }}" />
                         </div>
                         @if($errors->has('property_age'))
                         <span class="error">{{ $errors->first('property_age') }}</span>
@@ -86,14 +86,14 @@
                     </div>
                     <!-- property value Section Starts Here -->
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row property-value">
-                        <div class="col-lg-6 col-md-12 flex-column">
+                        <div class="col-lg-6 col-md-12 flex-column mt-3">
                             <div class="d-flex justify-content-end mb-2">
-                                <div class="row d-flex yesno-btn gx-2 other-meter">
-                                    <div class="radio-container yes-no-radio">
+                                <div class="row d-flex yesno-btn gx-2 water-meter">
+                                    <div class="radio-container yes-no-radio radio-edit-two">
                                         <input type="radio" name="electricity_facility" data-val="{{!empty($post_data->electricity_facility) ? $post_data->electricity_facility->content :  old('electricity_facility')}}" value="1">
                                         <span class="checmark font-16 font-medium">{{__('labels.no')}}</span>
                                     </div>
-                                    <div class="radio-container yes-no-radio">
+                                    <div class="radio-container radio-edit-two yes-no-radio">
                                         <input type="radio" name="electricity_facility" value="0" data-val="{{!empty($post_data->electricity_facility) ? $post_data->electricity_facility->content :  old('electricity_facility')}}">
                                         <span class="checmark font-16 font-medium">{{__('labels.yes')}}</span>
                                     </div>
@@ -101,12 +101,12 @@
                                 <p class="mb-0 font-18 theme-text-seondary-black meter_txt">{{__('labels.electricity_meter_is_there')}}</p>
                             </div>
                             <div class="d-flex justify-content-end mb-2">
-                                <div class="row d-flex yesno-btn gx-2 water-meter">
-                                    <div class="radio-container yes-no-radio">
+                                <div class="row d-flex yesno-btn gx-2 other-meter">
+                                    <div class="radio-container yes-no-radio radio-edit-two">
                                         <input type="radio" name="water_facility" data-val="{{ !empty($post_data->water_facility) ? $post_data->water_facility->content : old('water_facility')}}" value="1">
                                         <span class="checmark font-16 font-medium">{{__('labels.no')}}</span>
                                     </div>
-                                    <div class="radio-container yes-no-radio">
+                                    <div class="radio-container yes-no-radio radio-edit-two">
                                         <input type="radio" name="water_facility" data-val="{{ !empty($post_data->water_facility) ? $post_data->water_facility->content :  old('water_facility')}}" value="0">
                                         <span class="checmark font-16 font-medium">{{__('labels.yes')}}</span>
                                     </div>
@@ -132,7 +132,7 @@
                     <p class="theme-text-black font-18">{{__('labels.no_street')}}</p>
                     <div class="row row d-flex flex-row-reverse justify-content-end flex-lg-row">
                         @for($i=4; $i>=1; $i--)
-                        <div class="radio-container">
+                        <div class="radio-container radio-edit-two">
                             <input type="radio" name="streets" onclick="dropdown_btn(this)" id="street" data-streets='{{ !empty($post_data->streets) ? $post_data->streets->content : old("streets") }}' class="street_sdropdown" value="{{$i}}" {{ !empty($post_data->streets) && $post_data->streets->content == $i ? "checked"  : (old("streets") == $i ? "checked" : '') }}>
                             <span class="checmark font-16 font-medium">{{$i}}</span>
                         </div>
