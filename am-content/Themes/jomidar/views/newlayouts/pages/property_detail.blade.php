@@ -166,7 +166,9 @@
                     <p class="theme-text-seondary-black font-16 text-end mb-2">
                     <p class="pb-0 mb-0"> <span>{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : $property->property_type->category->name}}</span> for <span>{{ Session::get('locale') == 'ar' && !empty($property->property_status_type) ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}} </span>in <span>{{$property->post_district->value}}
                             , {{ Session::get('locale') == 'ar' ? $property->post_district->category->ar_name : $property->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $property->post_new_city->category->ar_name : $property->post_new_city->category->name }}</span></p>
+                    @if(!empty($property->landarea))
                     <p class="pb-0 mb-0">Land Area: <span>{{$property->landarea->content}} SQM</span></p>
+                    @endif
                     <p class="pb-0 mb-0">Built up Area: <span>{{$property->builtarea->content}} SQM</span></p>
                     <!-- <p class="pb-0 mb-0">Property Borders: Length: <span>15m,</span>Depth: <span>20m</span></p> -->
                     @if($property->option_data)

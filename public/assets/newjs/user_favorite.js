@@ -125,12 +125,13 @@ function user_properties_list(target, data) {
             '<li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a target="_blank" href="' + base_url + 'property-detail/' + value.slug + '"><h3 class="resident-text">' + title + '</h3><div class="d-flex align-items-start justify-content-end mt-2"><p class="me-2">' + location + '</p><img src="/assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex flex-wrap flex-row-reverse justify-content-right align-items-center facilicites-area facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex">' +
             '<div class="dash-call d-flex justify-content-center align-items-center me-3"> <img src="/assets/images/mobile-icon.png" alt="" data-toggle="tooltip" title="edit"></div><div class="dash-whatsapp d-flex justify-content-center align-items-center"><a href=""> <img  src="/assets/images/whatsapp-icon.png" alt=""></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span>' + price + ' </span></h3></div> </div></div></div></div></div>');
 
-
+        if(value.landarea != null){
         floor_name = value.landarea.type + " in SQM";
         sq_feet = value.landarea.content + " SQM";
 
         htmls = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + sq_feet + '</span></p><img src="/assets/images/area-icon.png" alt="" data-toggle="tooltip"  title="' + floor_name + '"></div>';
         $('.facilities_area' + index).append(htmls);
+        }
         //for facilities
         $.each(value.option_data, function (i, v) {
             var imgg = '';
