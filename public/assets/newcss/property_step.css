@@ -75,7 +75,7 @@
 /* Radio Button Styles End */
 .description-card {
     padding: 48px;
-    width: 1100px;
+    width: 1100px !important;
     max-width: 100%;
 }
 
@@ -543,8 +543,8 @@
     }
 
     .add-address {
-        margin-left: 0px;
-        margin-bottom: 3rem;
+        margin-left: 0;
+        margin-bottom: 0;
     }
 
     .font-24 {
@@ -563,7 +563,18 @@
     }
 
     .yesno-btn {
-        margin-right: 70px;
+        /*margin-right: 70px;*/
+    }
+
+    .other-meter {
+        width: 134px;
+        max-width: 100%;
+    }
+
+    .select-face
+    {
+        width: 196px !important;
+        max-width: 100%;
     }
 
     .radio-container .checmark {
@@ -575,7 +586,7 @@
     }
 
     .description-card {
-        padding: 15px;
+        padding: 25px;
     }
 
     .radio-container .checkmark-step3 {
@@ -590,13 +601,13 @@
 
 @media screen and (max-width: 480px) {
 
+    .description-card .form-control {
+        width: 100%;
+    }
+
     .input-container {
         padding: 15px 30px 15px 30px;
         /* margin-left: -13px; */
-    }
-
-    .description-card .form-control {
-        width: 100%;
     }
 
     .container {
@@ -621,6 +632,7 @@
 
     .description-card {
         padding: 20px 10px;
+        width: 100% !important;
     }
 
     .font-24 {

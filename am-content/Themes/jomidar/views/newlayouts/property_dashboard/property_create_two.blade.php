@@ -61,7 +61,7 @@
                     </div>
 
 
-                    <div class="built-up-year">
+                    <div class="built-up-year mt-3">
                         <p class="theme-text-black font-18">{{__('labels.building_year')}}</p>
                         <div class="row theme-gx-3 mb-4_5 ready-not-ready">
                             <div class="radio-container radio-edit-two radio-edit-two">
@@ -73,7 +73,7 @@
                                 <span class="build-ready font-16 font-medium">{{__('labels.not_ready')}}</span>
                             </div>
                         </div>
-                        <div id="year_calender">
+                        <div id="year_calender" class="mb-3">
                             <input type="text" class="yearpicker form-control hidden" id='yearpicker' name="property-age"  placeholder="Select a year" value="" />
                         </div>
 
