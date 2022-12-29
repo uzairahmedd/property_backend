@@ -70,7 +70,9 @@
                 @if(!empty($info->landarea))
                 <p class="pb-0 mb-0">Land Area: <span>{{$info->landarea->content}} SQM</span></p>
                 @endif
+                @if(!empty($info->builtarea))
                 <p class="pb-0 mb-0">Built up Area: <span>{{$info->builtarea->content}} SQM</span></p>
+                @endif
                 <!-- <p class="pb-0 mb-0">Property Borders: Length: <span>15m,</span>Depth: <span>20m</span></p> -->
                 @if($info->option_data)
                 @foreach ($info->option_data as $value)
