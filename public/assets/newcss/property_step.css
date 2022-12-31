@@ -261,6 +261,11 @@
     text-align: right;
 }
 
+.detail-book-btns
+{
+    margin-right: 0;
+}
+
 .radio-edit-third {
     margin-left: 10px;
 }

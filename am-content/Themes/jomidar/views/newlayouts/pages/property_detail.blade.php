@@ -146,7 +146,7 @@
                     @php
                     $info = isset($property->user->usermeta->content) ? json_decode($property->user->usermeta->content) : null ;
                     @endphp
-                    <div class="d-flex flex-column flex-sm-row me-3 justify-content-between w-100 contact-btn">
+                    <div class="d-flex flex-column flex-sm-row me-3 justify-content-centerd detail-book-btns w-100">
                         <button class="contact-btn col-12 col-sm-6 theme-bg-sky mx-2 px-2 border-0 theme-text-white font-medium mb-3">
                             <img src="{{theme_asset('assets/images/phone.png')}}" alt="" class="phone me-2">
                             {{ isset($info->phone) ? $info->phone : 'N/A'  }}
@@ -158,170 +158,32 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Slider Starts Here -->
-        <div class="container">
-            <div id="carouselExampleIndicators" class="carousel carousel-single-item slide d-flex px-4 px-md-0"
-                 data-bs-ride="true">
-                <div class="carousel-indicators mb-1 mb-md-4">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                            class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                </div>
-                <button class="carousel-control-prev me-2 ms-4" type="button"
-                        data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-
-                <div class="carousel-inner single-item-carousel item-carousel b-r-8" id="single-item-carousel">
-                    @if(isset($property->multiple_images) && count($property->multiple_images) > 0)
-                        @foreach ($property->multiple_images as $key=>$media)
-                            <div class="carousel-item sin-carousel-items  {{  $key == 0 ? 'active' : '' }}">
-                                <img src="{{ $media->media->url }}" class="d-block w-100 b-r-8" alt="...">
-                            </div>
-
-                        @endforeach
-                    @else
-                        <div class="carousel-item sin-carousel-items active">
-                            <img src="{{ $property->post_preview->media->url ?? asset('uploads/default.png') }}"
-                                 class="d-block w-100 b-r-8" alt="...">
-                        </div>
-                    @endif
-                </div>
-
-                <button class="carousel-control-next ms-2 me-4" type="button"
-                        data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-        <!-- Slider Ends Here -->
-    </div>
-    <!-- Heder Sections Ends Here -->
-    <!-- Property Detail section -->
-    <div class="property-detail my-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-6 col-xxl-5">
-                    <div class="card text-end theme-bg-white align-items-end">
-                        <h1 class="theme-text-blue font-medium">{{ new_amount_format($property->price->price ?? 0) }}</h1>
-                        <hr>
-                        <h3 class="font-medium mb-2">{{__('labels.address')}}</h3>
-                        <div class="d-flex align-items-start justify-content-end mb-4">
-                            <p class="mb-0 theme-text-seondary-black me-2">{{$property->post_district->value}}
-                                , {{ Session::get('locale') == 'ar' ? $property->post_district->category->ar_name : $property->post_district->category->name }}
-                                , {{ Session::get('locale') == 'ar' ? $property->post_new_city->category->ar_name : $property->post_new_city->category->name }}
-                            </p>
-                            <img src="{{theme_asset('assets/images/location.png')}}" alt="">
-                        </div>
-                        <ul class="list-unstyled d-flex flex-column flex-sm-row align-items-end mb-5 flex-wrap justify-content-end property-list-feature">
-                            @if($property->option_data)
-                                @foreach ($property->option_data as $value)
-                                    @if( $value->value != 0)
-                                        <li class="d-flex align-items-center mb-3 mb-sm-3">
-                                            <span> {{ $value->value }}</span>
-                                            <img
-                                                src="{{ !empty($value->category->preview) ? $value->category->preview->content : '' }}"
-                                                title="{{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}"
-                                                data-toggle="tooltip" alt="">
-                                        </li>
-                                    @endif
-                                @endforeach
-                            @endif
-                            @if(!empty($property->landarea))
-                                <li class="d-flex align-items-center mb-3 mb-sm-3">
-                                    <span> {{ $property->landarea->content }} SQM</span>
-                                    <img src="{{theme_asset('assets/images/area.png')}}"
-                                         title="{{ $property->landarea->type }} in SQM" data-toggle="tooltip">
-                                </li>
-                            @endif
-                        </ul>
-                        @php
-                            $info = isset($property->user->usermeta->content) ? json_decode($property->user->usermeta->content) : null ;
-                        @endphp
-                        <div class="d-flex flex-column flex-sm-row me-3 justify-content-center align-items-center detail-book-btn w-100">
-                            <button
-                                class="contact-btn col-12 col-sm-6 theme-bg-sky mx-2 px-2 border-0 theme-text-white font-medium mb-3">
-                                <img src="{{theme_asset('assets/images/phone.png')}}" alt="" class="phone me-2">
-                                {{ isset($info->phone) ? $info->phone : 'N/A'  }}
-                            </button>
-                            <button
-                                class="contact-btn col-12 col-sm-6 theme-bg-white border-0 mx-2 px-2 theme-text-blue font-medium mb-3"
-                                data-bs-toggle="modal" data-bs-target="#inquiry_form">
-                                <img src="{{theme_asset('assets/images/booking-calender.png')}}" alt="" class="me-3">
-                                {{__('labels.book_appoint')}}
-                            </button>
-                        </div>
+            <div class="col-12 col-lg-6">
+                <div class="d-flex flex-column align-items-end basic-property-info pt-4">
+                    <div class="d-flex justify-content-between w-100 mb-2">
+                        <h1 class="font-24 theme-text-blue font-medium">{{ Session::get('locale') == 'ar' ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}}</h1>
+                        <h1 class="font-24 theme-text-blue text-bold">{{__('labels.property_description')}}</h1>
                     </div>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <div class="d-flex flex-column align-items-end basic-property-info pt-4">
-                        <div class="d-flex justify-content-between w-100 mb-2">
-                            <h1 class="font-24 theme-text-blue font-medium">{{ Session::get('locale') == 'ar' ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}}</h1>
-                            <h1 class="font-24 theme-text-blue">{{__('labels.property_description')}}</h1>
-                        </div>
-                       <div class="prop-description-detail mt-0 pt-0">
-                           <p class="theme-text-seondary-black font-16 text-end mb-2">
-                           <p class="pb-0 mb-0">
-                               <span>{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : $property->property_type->category->name}}</span>
-                               for
-                               <span>{{ Session::get('locale') == 'ar' && !empty($property->property_status_type) ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}} </span>in
-                               <span>{{$property->post_district->value}}
-                            , {{ Session::get('locale') == 'ar' ? $property->post_district->category->ar_name : $property->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $property->post_new_city->category->ar_name : $property->post_new_city->category->name }}</span>
-                           </p>
-                           @if(!empty($property->landarea))
-                               <p class="pb-0 mb-0">Land Area: <span>{{$property->landarea->content}} SQM</span></p>
-                           @endif
-                           <div id="show-more"><a href="javascript:void(0)" class="font-weight-bold theme-text-sky">View
-                                   More</a></div>
-                       </div>
-                        <div id="show-more-content">
-                            <p class="pb-0 mb-0">{{__('labels.built_up_area')}}: <span>{{$property->builtarea->content}} {{__('labels.sqm')}}</span></p>
-                            <!-- <p class="pb-0 mb-0">Property Borders: Length: <span>15m,</span>Depth: <span>20m</span></p> -->
-                            @if($property->option_data)
-                                @foreach ($property->option_data as $value)
-                                    @if( $value->value != 0)
-                                        <p class="pb-0 mb-0">{{__('labels.the_property_has')}}
-                                            <span>{{ $value->value }} </span> {{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}
-                                        </p>
-                                    @endif
-                                @endforeach
-                            @endif
-                            <p class="pb-0 mb-0">{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : $property->property_type->category->name}}
-                                has
-                                <span>{{ $property->electricity_facility->content == 0 ? 'electricity' : 'no electricity' }}</span>
-                                and <span>{{ $property->water_facility->content == 0 ? 'water' : 'no water' }}</span>
-                                connections</p>
-                            <p class="pb-0 mb-0">Building year:
-                                <span>{{!empty($property->property_age) ? $property->property_age->content : 'N/A'}}</span>
-                            </p>
-                            <p class="pb-0 mb-0">Property amenities</p>
-                            <ul class="list-unstyled text-decoration-none m-0">
-                                <li><span> - </span> Park</li>
-                                <li><span> - </span> Maids Room</li>
-                                <li><span> - </span> Garden</li>
-                                <li><span> - </span> Indoor Staircase</li>
-                                <li><span> - </span> Annex</li>
-                                <li><span> - </span> Rooftop</li>
-                                <li><span> - </span> Outdoor Pool</li>
-                            </ul>
-                            <p class="pb-0 mb-0">Price: <span>{{$property->price->price}} SAR</span></p>
-                            </p>
-                            <div id="show-less"><a href="javascript:void(0)" class="font-weight-bold theme-text-sky">Show
-                                    less</a></div>
-                        </div>
+                    <div class="prop-description-detail mt-0 pt-0">
+                        <p class="theme-text-seondary-black font-16 text-end mb-2">
+                        <p class="pb-0 mb-0">
+                            <span>{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : $property->property_type->category->name}}</span>
+                            for
+                            <span>{{ Session::get('locale') == 'ar' && !empty($property->property_status_type) ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}} </span>in
+                            <span>{{$property->post_district->value}}
+                                , {{ Session::get('locale') == 'ar' ? $property->post_district->category->ar_name : $property->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $property->post_new_city->category->ar_name : $property->post_new_city->category->name }}</span>
+                        </p>
+                        @if(!empty($property->landarea))
+                        <p class="pb-0 mb-0">Land Area: <span>{{$property->landarea->content}} SQM</span></p>
+                        @endif
+                        <div id="show-more"><a href="javascript:void(0)" class="font-weight-bold theme-text-sky">{{__('labels.show_more')}}</a></div>
                     </div>
                     <div id="show-more-content">
-                        <p class="pb-0 mb-0">Built up Area: <span>{{$property->builtarea->content}} SQM</span></p>
+                        <p class="pb-0 mb-0">{{__('labels.built_up_area')}}: <span>{{$property->builtarea->content}} {{__('labels.sqm')}}</span></p>
                         @if($property->option_data)
                         @foreach ($property->option_data as $value)
                         @if( $value->value != 0)
-                        <p class="pb-0 mb-0">The property has
+                        <p class="pb-0 mb-0">{{__('labels.the_property_has')}}
                             <span>{{ $value->value }} </span> {{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}
                         </p>
                         @endif
@@ -333,31 +195,30 @@
                             and <span>{{ $property->water_facility->content == 0 ? 'water' : 'no water' }}</span>
                             connections
                         </p>
-                        <p class="pb-0 mb-0">Building year:
+                        <p class="pb-0 mb-0">{{__('labels.building_year')}}:
                             <span>{{!empty($property->property_age) ? $property->property_age->content : 'N/A'}}</span>
                         </p>
                         @if (isset($features))
-                        <p class="pb-0 mb-0">Property amenities</p>
+                        <p class="pb-0 mb-0 text-bold">{{__('labels.property_amenities')}}</p>
                         <ul class="list-unstyled text-decoration-none m-0">
                             @foreach ($features as $facility)
                             <li><span> * </span> {{ Session::get('locale') == 'ar' ?  $facility->ar_name : $facility->name}}</li>
                             @endforeach
                         </ul>
                         @endif
-                        <p class="pb-0 mb-0">Price: <span>{{$property->price->price}} SAR</span></p>
+                        <p class="pb-0 mb-0">{{__('labels.price')}}: <span>{{$property->price->price}} {{__('labels.sar')}}</span></p>
                         </p>
-                        <div id="show-less"><a href="javascript:void(0)" class="font-weight-bold theme-text-sky">Show
-                                less</a></div>
+                        <div id="show-less"><a href="javascript:void(0)" class="font-weight-bold theme-text-sky">{{__('labels.show_less')}}</a></div>
                     </div>
                 </div>
                 <hr class="w-100">
                 <div class="basic-info-detail">
-                    <h1 class="font-24 theme-text-blue detail-heading mb-3">{{__('labels.basic_info')}}</h1>
+                    <h1 class="font-24 theme-text-blue detail-heading mb-3 text-bold">{{__('labels.basic_info')}}</h1>
                     @foreach ($property_type_nature as $value)
                     @if( $value->type == 'parent_category')
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start detail-txt-right">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}</h3>
+                            <h3 class="font-16 text-bold">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}</h3>
                         </div>
                         <div class="col-6 detail-txt-left">
                             <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.property_nature')}}</span>
@@ -366,7 +227,7 @@
                     @elseif( $value->type == 'category')
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start detail-txt-right">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}</h3>
+                            <h3 class="font-16 text-bold">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}</h3>
                         </div>
                         <div class="col-6 detail-txt-left">
                             <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.type_property')}} </span>
@@ -377,7 +238,7 @@
 
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start detail-txt-right">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ $property->electricity_facility->content == 0 ? __('labels.yes') : __('labels.no') }}</h3>
+                            <h3 class="font-16 text-bold">{{ $property->electricity_facility->content == 0 ? __('labels.yes') : __('labels.no') }}</h3>
                         </div>
                         <div class="col-6 detail-txt-left">
                             <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.electricity_meter_is_there')}}</span>
@@ -386,7 +247,7 @@
 
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start detail-txt-right">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ $property->water_facility->content == 0 ? __('labels.yes') : __('labels.no') }}</h3>
+                            <h3 class="font-16 text-bold">{{ $property->water_facility->content == 0 ? __('labels.yes') : __('labels.no') }}</h3>
                         </div>
                         <div class="col-6 detail-txt-left">
                             <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.water_meter_is_there')}}</span>
@@ -396,7 +257,7 @@
                     @if(isset($property->landarea->content))
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start detail-txt-right">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ isset($property->landarea->content) ? $property->landarea->content."SQM" : '' }}</h3>
+                            <h3 class="font-16 text-bold">{{ isset($property->landarea->content) ? $property->landarea->content."SQM" : '' }}</h3>
                         </div>
                         <div class="col-6 detail-txt-left b-info-txt">
                             <span class="font-16 theme-text-seondary-black">Land Area</span>
@@ -404,74 +265,48 @@
                     </div>
                     @endif
 
-<<<<<<< HEAD
-                    @isset($property->post_district->value)
-                        <div class="theme-bg-secondary text-center mb-0 pb-0 position-relative">
-                            <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">اسم الحي</h3>
-                            <iframe id="gmap_canvas" width="100%" height="400"
-                                    src="https://maps.google.com/maps?q={{ $property->post_district->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                        </div>
-                    @endif
-
-                    @if(!empty($property->virtual_tour->content) && !empty($property->virtual_tour))
-                        <div class="text-center mb-0 pb-0 position-relative">
-                            <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">Virtual Tour</h3>
-                            <iframe src="{{ $property->virtual_tour->content ?? null }}" frameborder="0" allowfullscreen
-                                    width="100%" height="480"></iframe>
-                        </div>
-
-                    @endif
-
-                </div>
-
-=======
                     @if(isset($property->builtarea->content))
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start detail-txt-right">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ isset($property->builtarea->content) ? $property->builtarea->content."SQM"  : '' }}</h3>
+                            <h3 class="font-16 text-bold">{{ isset($property->builtarea->content) ? $property->builtarea->content."SQM"  : '' }}</h3>
                         </div>
                         <div class="col-6 detail-txt-left b-info-txt">
-                            <span class="font-16 theme-text-seondary-black">Built-up Area</span>
+                            <span class="font-16 theme-text-seondary-black">{{__('labels.built_up_area')}}</span>
                         </div>
                     </div>
                     @endif
                 </div>
-
                 <hr class="w-100">
                 <div class="basic-info-detail">
-                    <h1 class="font-24 theme-text-blue detail-heading mb-3">Streets info</h1>
-                    <div class="row w-100 mb-3">
-                        <div class="col-6 text-start detail-txt-right">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ $property->streets->content }}</h3>
+                    <h1 class="font-24 theme-text-blue detail-heading mb-3 text-bold">{{__('labels.street_info')}}</h1>
+                        <div class="d-flex street-information-detail justify-content-end">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <p class="text-bold">South</p>
+                                <p>{{__('labels.facing')}}</p>
+                            </div>
+                            <div class="horizontal-line "></div>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <p class="theme-text-blue text-bold">15m</p>
+                                <p>{{__('labels.width')}}</p>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <p class="theme-text-blue text-bold">{{ $property->streets->content }}</p>
+                                <p>{{__('labels.street')}}</p>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-start p-1"><i class="fa-solid fa-location-crosshairs"></i></div>
                         </div>
-                        <div class="col-6 detail-txt-left b-info-txt">
-                            <span class="font-16 theme-text-seondary-black">{{__('labels.no_street')}}</span>
-                        </div>
-                    </div>
-                    @if(isset($property->interface->content) || isset($property->meter->content))
-                    <div class="row w-100 mb-3">
-                        <div class="col-6 text-start detail-txt-right">
-                            <h3 class="font-16 font-medium theme-text-blue">{{ isset($property->meter->content) ? $property->meter->content  : '' }}
-                                , {{ isset($property->interface->content) ? $property->interface->content  : ''}}</h3>
-                        </div>
-                        <div class="col-6 detail-txt-left b-info-txt">
-                            <span class="font-16 theme-text-seondary-black">{{__('labels.street-info')}}</span>
-                        </div>
-                    </div>
-                    @endif
                 </div>
 
                 @if(count($property->option_data) > 0 || !empty($property->property_condition) || !empty($property->role))
                 <hr class="w-100">
-                <h1 class="font-24 theme-text-blue detail-heading mb-3">{{__('labels.additional_info')}}</h1>
+                <h1 class="font-24 theme-text-blue detail-heading mb-3 text-bold">{{__('labels.additional_info')}}</h1>
                 @foreach ($property->option_data as $options_data)
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right">
-                        <h3 class="font-16 font-medium theme-text-blue">{{ $options_data->value == 0 ? 'غير متوفر' : $options_data->value}}</h3>
+                        <h3 class="font-16 text-bold">{{ $options_data->value == 0 ? 'غير متوفر' : $options_data->value}}</h3>
                     </div>
                     <div class="col-6 detail-txt-left">
-                        <span class="font-16 theme-text-seondary-black"> {{ Session::get('locale') == 'ar' ? $options_data->category->ar_name : $options_data->category->name}}</span>
+                        <span class="font-16 theme-text-seondary-black "> {{ Session::get('locale') == 'ar' ? $options_data->category->ar_name : $options_data->category->name}}</span>
                     </div>
                 </div>
                 @endforeach
@@ -479,11 +314,11 @@
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right">
                         @if(isset($property->property_condition->content) && $property->property_condition->content == 3 )
-                        <h3 class="font-16 font-medium theme-text-blue">{{__('labels.furnishing')}}</h3>
+                        <h3 class="font-16 text-bold">{{__('labels.furnishing')}}</h3>
                         @elseif(isset($property->property_condition->content) && $property->property_condition->content == 2 )
-                        <h3 class="font-16 font-medium theme-text-blue">{{__('labels.txt_furnished')}}</h3>
+                        <h3 class="font-16 text-bold">{{__('labels.txt_furnished')}}</h3>
                         @elseif(isset($property->property_condition->content) && $property->property_condition->content == 1 )
-                        <h3 class="font-16 font-medium theme-text-blue">{{__('labels.unfurnished')}}</h3>
+                        <h3 class="font-16 text-bold">{{__('labels.unfurnished')}}</h3>
                         @endif
 
                     </div>
@@ -495,10 +330,10 @@
                 @if(isset($property->total_floors->content))
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right">
-                        <h3 class="font-16 font-medium theme-text-blue">{{ $property->total_floors->content }}</h3>
+                        <h3 class="font-16 text-bold">{{ $property->total_floors->content }}</h3>
                     </div>
                     <div class="col-6 detail-txt-left">
-                        <span class="font-16 theme-text-seondary-black">Total floors</span>
+                        <span class="font-16 theme-text-seondary-black">{{__('labels.total_floors')}}</span>
                     </div>
                 </div>
                 @endif
@@ -506,10 +341,10 @@
                 @if(isset($property->property_floor->content))
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right">
-                        <h3 class="font-16 font-medium theme-text-blue">{{ $property->property_floor->content }}</h3>
+                        <h3 class="font-16 text-bold">{{ $property->property_floor->content }}</h3>
                     </div>
                     <div class="col-6 detail-txt-left">
-                        <span class="font-16 theme-text-seondary-black">Property floors</span>
+                        <span class="font-16 theme-text-seondary-black">{{__('labels.property_floor')}}</span>
                     </div>
                 </div>
                 @endif
@@ -549,7 +384,7 @@
 
                 @endif
                 <hr class="w-100">
-                <h1 class="font-24 theme-text-blue mb-3 mt-2 detail-heading">{{__('labels.property_features')}}</h1>
+                <h1 class="font-24 theme-text-blue mb-3 mt-2 detail-heading text-bold">{{__('labels.property_features')}}</h1>
                 <div class="tags d-flex flex-wrap justify-content-end prop-feature">
                     @if (isset($features))
                     @foreach ($features as $facility)
@@ -563,15 +398,14 @@
                     <h3 class="font-16 font-medium text-right theme-text-blue">No data avaialable</h3>
                 </div>
                 @endif
+                @isset($property->post_district->value)
+                    <div class="theme-bg-secondary text-center mb-0 pb-0 position-relative mt-3">
+                        <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">اسم الحي</h3>
+                        <iframe id="gmap_canvas" width="100%" height="400" src="https://maps.google.com/maps?q={{ $property->post_district->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                    </div>
+                @endif
+            </div>
 
->>>>>>> 61cb55414819cb911afc9860a431e3b8b87af5d3
-            </div>
-            @isset($property->post_district->value)
-            <div class="theme-bg-secondary text-center mb-0 pb-0 position-relative">
-                <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">اسم الحي</h3>
-                <iframe id="gmap_canvas" width="100%" height="400" src="https://maps.google.com/maps?q={{ $property->post_district->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-            </div>
-            @endif
 
             @if(!empty($property->virtual_tour->content) && !empty($property->virtual_tour))
             <div class="text-center mb-0 pb-0 position-relative">

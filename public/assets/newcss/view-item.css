@@ -82,6 +82,27 @@
     margin-right: 0 !important;
 }
 
+.contact-btn {
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    height: 41px;
+    font-size: 16px;
+}
+.street-information-detail p
+{
+    padding: 0 5px;
+}
+
+.text-bold
+{
+    font-weight: bold;
+}
+.horizontal-line {
+    width: 1px;
+    height: 24px;
+    background: #ddd;
+}
+
 .detail-txt-left
 {
     direction: ltr;
