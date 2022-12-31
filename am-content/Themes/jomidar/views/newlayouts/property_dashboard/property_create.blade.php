@@ -78,11 +78,11 @@
                             @endif
                         </div>
                         <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop">
-                            <label for="district" class="theme-text-seondary-black">District</label>
+                            <label for="district" class="theme-text-seondary-black">{{__('labels.district')}}</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
                                 <select class="form-control add_prop_btn" id="district" name="district">
-                                    <option value="" disabled selected> Please select district</option>
+                                    <option value="" disabled selected>{{__('labels.select_district')}}</option>
                                 </select>
                             </div>
                             @if($errors->has('district'))
@@ -90,11 +90,11 @@
                             @endif
                         </div>
                         <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end">
-                            <label for="cities" class="theme-text-seondary-black">City</label>
+                            <label for="cities" class="theme-text-seondary-black">{{__('labels.city')}}</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
                                 <select class="form-control add_prop_btn" id="cities" name="city">
-                                    <option value="" disabled selected> Please select city</option>
+                                    <option value="" disabled selected> {{__('labels.select_city')}}</option>
                                     @foreach(App\Category::where('type','states')->get() as $row)
                                     <option value="{{ $row->id }}" @if(in_array($row->id, $array)) selected="" @endif> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
                                     @endforeach

@@ -7,7 +7,7 @@
 </script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
 <!-- <link rel="stylesheet" href="{{theme_asset('assets/newcss/yearcalender.css')}}"> -->
-<!-- <link rel="stylesheet" href="{{theme_asset('assets/newcss/yearpicker.css')}}"> -->
+<link rel="stylesheet" href="{{theme_asset('assets/newcss/yearpicker.css')}}">
 <div class="add-property row-style">
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here -->
