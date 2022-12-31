@@ -379,4 +379,12 @@ class Terms extends Model
 	{
 		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'rules');
 	}
+	public function length()
+	{
+		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'length');
+	}
+	public function depth()
+	{
+		return $this->belongsTo('App\Meta', 'id', 'term_id')->where('type', 'depth');
+	}
 }
