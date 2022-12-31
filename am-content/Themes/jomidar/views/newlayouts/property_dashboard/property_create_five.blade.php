@@ -23,44 +23,20 @@
                     </div>
                     @endforeach
                 </div>
-                <!-- <div class="col-12 d-flex flex-lg-row flex-sm-column justify-content-end">
-                    <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
-                        <lable class="d-flex justify-content-end align-items-end">{{__('labels.apartment_numberss')}}</lable>
-                        <input type="text" class="form-control">
-                    </div>
-                </div>  -->
-                 <!-- <div class="col-12 d-flex flex-lg-row flex-sm-column justify-content-end">
-                    <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
-                        <lable class="d-flex justify-content-end align-items-end">{{__('labels.car_parking_no')}}</lable>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
-                        <lable class="d-flex justify-content-end align-items-end">
-                            {{__('labels.opening_no')}}</lable>
-                        <input type="text" class="form-control">
-                    </div>
-                </div> -->
                 <span class="font-24 d-flex justify-content-end py-3 px-2 font-weight-bold">{{__('labels.border_length')}}</span>
                 <div class="col-12 d-flex justify-content-end flex-lg-row flex-sm-column">
                     <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
                         <lable class="d-flex justify-content-end align-items-end">{{__('labels.land_depth')}}</lable>
-                        <input type="text" class="form-control">
+                        <input type="number" name="depth" value="{{ !empty($info->depth) ? $info->depth->content  : old('depth')}}" class="form-control">
                         <span class="meters_span">{{__('labels.meter')}}</span>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
                         <lable class="d-flex justify-content-end align-items-end">
                             {{__('labels.land_length')}}</lable>
-                        <input type="text" class="form-control">
+                        <input type="number" name="length" value="{{ !empty($info->length) ? $info->length->content  : old('length')}}" class="form-control">
                         <span class="meters_span">{{__('labels.meter')}}</span>
                     </div>
                 </div>
-
-                <!-- <div class="col-12 d-flex justify-content-end">
-                    <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
-                        <lable class="d-flex justify-content-end align-items-end">{{__('labels.total_floors')}}</lable>
-                        <input type="text" class="form-control">
-                    </div>
-                </div> -->
             </div>
             <div class="preview-property">
                 <h2 class="d-flex justify-content-end align-items-end">Property Title and Description preview</h2>

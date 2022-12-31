@@ -14,6 +14,9 @@
                     <span class="theme-text-sky ">4</span>/
                     <span class="theme-text-seondary-black">6</span>
                 </div>
+                @if($errors->has('error'))
+                <div class="error col-12 d-flex mt-n3 font-medium">{{ $errors->first('error') }}</div>
+                @endif
                 @if($errors->has('media.*'))
                 @foreach($errors->get('media.*') as $errors)
                 @foreach($errors as $error)

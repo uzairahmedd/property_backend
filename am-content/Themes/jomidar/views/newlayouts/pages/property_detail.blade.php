@@ -401,6 +401,28 @@
                             </div>
                         @endif
 
+                        @if(isset($property->length->content))
+                            <div class="row w-100 mb-3">
+                                <div class="col-6 text-start detail-txt-right">
+                                    <h3 class="font-16 font-medium theme-text-blue">{{ $property->length->content }} meter</h3>
+                                </div>
+                                <div class="col-6 detail-txt-left">
+                                    <span class="font-16 theme-text-seondary-black">Property Length</span>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if(isset($property->depth->content))
+                            <div class="row w-100 mb-3">
+                                <div class="col-6 text-start detail-txt-right">
+                                    <h3 class="font-16 font-medium theme-text-blue">{{ $property->depth->content }} meter</h3>
+                                </div>
+                                <div class="col-6 detail-txt-left">
+                                    <span class="font-16 theme-text-seondary-black">Property Depth</span>
+                                </div>
+                            </div>
+                        @endif
+
                     @endif
                     <hr class="w-100">
                     <h1 class="font-24 theme-text-blue mb-3 mt-2 detail-heading">{{__('labels.property_features')}}</h1>

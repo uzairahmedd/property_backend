@@ -1020,7 +1020,12 @@ class PropertyController extends controller
         if ($validator->fails()) {
             return back()->withErrors($validator->errors())->withInput();
         }
-
+        foreach ($request->file('media') as $image) {
+            $ext = $image->getClientOriginalExtension();
+            if($ext == 'jfif'){
+                return back()->withErrors(['error'=>'PLease provide jpg/png images'])->withInput();
+            }
+        }
         $term_id = decrypt($id);
         //store and update virtual rour video
         $virtual_tour = Meta::where('term_id', $term_id)->where('type', 'virtual_tour')->first();
@@ -1048,12 +1053,12 @@ class PropertyController extends controller
     public function edit_five_property($id)
     {
         $term_id = decrypt($id);
-        $info = Terms::with('property_type','interface', 'property_age', 'meter', 'total_floors', 'property_floor',  'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility',  'property_status_type', 'postcategory', 'property_condition','option_data')->where('user_id', Auth::id())->findorFail($term_id);
+        $info = Terms::with('length','depth','property_type', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor',  'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility',  'property_status_type', 'postcategory', 'property_condition', 'option_data')->where('user_id', Auth::id())->findorFail($term_id);
         $features_array = [];
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
         }
-        return view('theme::newlayouts.property_dashboard.property_create_five', compact('id', 'features_array','info'));
+        return view('theme::newlayouts.property_dashboard.property_create_five', compact('id', 'features_array', 'info'));
     }
 
     /**
@@ -1065,6 +1070,7 @@ class PropertyController extends controller
      */
     public function update_five_property(Request $request, $id)
     {
+    
         $term_id = decrypt($id);
         $category = [];
         foreach ($request->features ?? [] as $key => $value) {
@@ -1077,6 +1083,21 @@ class PropertyController extends controller
         }
         Postcategory::where('type', 'features')->where('term_id', $term_id)->delete();
         Postcategory::insert($category);
+
+        //length and depth
+        $data=$request->all();
+        unset($data['_token'], $data['_method'], $data['features']);
+        foreach ($data as $key => $value) {
+            $keys_table = '';
+            $keys_table = Meta::where('term_id', $term_id)->where('type', $key)->first();
+            if (empty($keys_table)) {
+                $keys_table = new Meta;
+                $keys_table->term_id = $term_id;
+                $keys_table->type = $key;
+            }
+            $keys_table->content = $value;
+            $keys_table->save();
+        }
         return redirect()->route('agent.property.six_edit_property', encrypt($term_id));
     }
 
@@ -1146,11 +1167,6 @@ class PropertyController extends controller
     public function upload_images($request)
     {
 
-        request()->validate([
-            'media.*' => 'required'
-
-        ]);
-
         $auth_id = Auth::id();
 
 
@@ -1173,7 +1189,7 @@ class PropertyController extends controller
                 $path = 'uploads/' . date('y') . '/' . date('m') . '/';
 
 
-                if (substr($image->getMimeType(), 0, 5) == 'image' &&  $ext != 'ico') {
+                if (substr($image->getMimeType(), 0, 5) == 'image' &&  $ext != 'ico' && $ext != 'jfif') {
 
                     $image->move($path, $name);
                     $compress = $this->run($path . $name, $ext, $info->compress);
@@ -1247,41 +1263,6 @@ class PropertyController extends controller
                     $media->path = $newpath;
                     $media->user_id = $auth_id;
                     $media->size = $compress['data']['size'] . 'kib';
-                    $media->save();
-                    $data = $media;
-                } else {
-                    request()->validate([
-                        'media.*' => 'required||mimes:doc,docx,txt,pdf,xlsx,ico|max:2024'
-
-                    ]);
-                    if ($info->system_type == 'do') {
-                        $file = uniqid() . $image;
-                        $upload = Storage::disk('do')->putFileAs(date('Ym'), $file, $name, 'public');
-                        $fileUrl = $info->system_url . date('Ym') . '/' . $upload;
-                        $newpath = date('Ym');
-                    } else {
-                        $name = uniqid() . time() . "." . $image->getClientOriginalExtension();
-                        $ext = $image->getClientOriginalExtension();
-                        $path = 'uploads/' . date('y') . '/' . date('m') . '/';
-                        $image->move($path, $name);
-
-                        $schemeurl = parse_url(url('/'));
-                        if ($schemeurl['scheme'] == 'https') {
-                            $url = substr(url('/'), 6);
-                        } else {
-                            $url = substr(url('/'), 5);
-                        }
-                        $fileUrl = $url . '/' . $path . $name;
-                        $newpath = $path;
-                    }
-
-                    $media = new Media;
-                    $media->name = $fileUrl;
-                    $media->url = $fileUrl;
-                    $media->type = $ext;
-                    $media->size = 'unknown';
-                    $media->path = $newpath;
-                    $media->user_id = $auth_id;
                     $media->save();
                     $data = $media;
                 }
