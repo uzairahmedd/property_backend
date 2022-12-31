@@ -35,6 +35,15 @@ if ($('#street').data('streets') != '') {
 }
 function generate_input(n, interface_array = null, meter_array = null) {
     $('.street_detailss').html('');
+    var select_facing='';
+    var property_nature='';
+    var west='';
+    var east='';
+    var north='';
+    var south='';
+    var width='';
+    var street='';
+    var meter='';
     var i;
     var count = '';
     for (i = 0; i < n; i++) {
@@ -59,21 +68,30 @@ function generate_input(n, interface_array = null, meter_array = null) {
         if (meter_array != null) {
             meter_value = meter_array[i];
         }
+        select_facing=$('#select_facing').text();
+        property_nature=$('#property_nature').text();
+        east=$('#east').text();
+        west=$('#west').text();
+        north=$('#north').text();
+        south=$('#south').text();
+        meter=$('#meter').text();
+        width=$('#width').text();
+        street=$('#street').text();
         $('.street_detailss').append('<div class="col-12 street_detail d-flex justify-content-end mt-3" id="street_detail">\n' +
             '                        <div class="col-lg-6 d-flex flex-column">\n' +
-            '                            <label for="" class="d-flex justify-content-end theme-text-black">Select Facing</label>\n' +
+            '                            <label for="" class="d-flex justify-content-end theme-text-black">'+select_facing+'</label>\n' +
             '                            <select class="form-select form-control w-100 select-face" name="interface[]" aria-label="Default select example">\n' +
-            '                                <option value="" disabled selected>Select facing</option>\n' +
-            '                                <option value="East" ' + check + '>East</option>\n' +
-            '                                <option value="West" ' + West_check + '>West</option>\n' +
-            '                                <option value="North" ' + North_check + '>North</option>\n' +
-            '                                <option value="South" ' + South_check + '>South</option>\n' +
+            '                                <option value="" disabled selected>'+property_nature+'</option>\n' +
+            '                                <option value="East">'+east+'</option>\n' +
+            '                                <option value="West">'+west+'</option>\n' +
+            '                                <option value="North">'+north+'</option>\n' +
+            '                                <option value="South">'+south+'</option>\n' +
             '                            </select>\n' +
             '                        </div>\n' +
             '                        <div class="col-lg-6 d-flex flex-column meter">\n' +
-            '                            <label for="" class="d-flex justify-content-end theme-text-black">Street ' + count + ' Width</label>\n' +
+            '                            <label for="" class="d-flex justify-content-end theme-text-black"> '+ street +'  '+ count+' '+ width +'</label>\n' +
             '                            <input type="text" value="' + meter_value + '" name="meter[]" class="form-control d-flex justify-content-start align-items-start w-100">\n' +
-            '                            <span class="meters_span">Meters</span>\n' +
+            '                            <span class="meters_span">'+meter+'</span>\n' +
             '                        </div>\n' +
             '                    </div>');
     }

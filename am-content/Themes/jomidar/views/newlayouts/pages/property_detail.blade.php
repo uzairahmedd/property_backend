@@ -175,7 +175,7 @@
                         @php
                             $info = isset($property->user->usermeta->content) ? json_decode($property->user->usermeta->content) : null ;
                         @endphp
-                        <div class="d-flex flex-column flex-sm-row me-3 justify-content-between w-100 contact-btn">
+                        <div class="d-flex flex-column flex-sm-row me-3 justify-content-center align-items-center detail-book-btn w-100">
                             <button
                                 class="contact-btn col-12 col-sm-6 theme-bg-sky mx-2 px-2 border-0 theme-text-white font-medium mb-3">
                                 <img src="{{theme_asset('assets/images/phone.png')}}" alt="" class="phone me-2">
@@ -212,12 +212,12 @@
                                    More</a></div>
                        </div>
                         <div id="show-more-content">
-                            <p class="pb-0 mb-0">Built up Area: <span>{{$property->builtarea->content}} SQM</span></p>
+                            <p class="pb-0 mb-0">{{__('labels.built_up_area')}}: <span>{{$property->builtarea->content}} {{__('labels.sqm')}}</span></p>
                             <!-- <p class="pb-0 mb-0">Property Borders: Length: <span>15m,</span>Depth: <span>20m</span></p> -->
                             @if($property->option_data)
                                 @foreach ($property->option_data as $value)
                                     @if( $value->value != 0)
-                                        <p class="pb-0 mb-0">The property has
+                                        <p class="pb-0 mb-0">{{__('labels.the_property_has')}}
                                             <span>{{ $value->value }} </span> {{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}
                                         </p>
                                     @endif
@@ -440,24 +440,26 @@
                         </div>
                     @endif
 
+                    @isset($property->post_district->value)
+                        <div class="theme-bg-secondary text-center mb-0 pb-0 position-relative">
+                            <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">اسم الحي</h3>
+                            <iframe id="gmap_canvas" width="100%" height="400"
+                                    src="https://maps.google.com/maps?q={{ $property->post_district->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                        </div>
+                    @endif
+
+                    @if(!empty($property->virtual_tour->content) && !empty($property->virtual_tour))
+                        <div class="text-center mb-0 pb-0 position-relative">
+                            <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">Virtual Tour</h3>
+                            <iframe src="{{ $property->virtual_tour->content ?? null }}" frameborder="0" allowfullscreen
+                                    width="100%" height="480"></iframe>
+                        </div>
+
+                    @endif
+
                 </div>
-                @isset($property->post_district->value)
-                    <div class="theme-bg-secondary text-center mb-0 pb-0 position-relative">
-                        <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">اسم الحي</h3>
-                        <iframe id="gmap_canvas" width="100%" height="400"
-                                src="https://maps.google.com/maps?q={{ $property->post_district->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                    </div>
-                @endif
 
-                @if(!empty($property->virtual_tour->content) && !empty($property->virtual_tour))
-                    <div class="text-center mb-0 pb-0 position-relative">
-                        <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">Virtual Tour</h3>
-                        <iframe src="{{ $property->virtual_tour->content ?? null }}" frameborder="0" allowfullscreen
-                                width="100%" height="480"></iframe>
-                    </div>
-
-                @endif
             </div>
         </div>
     </div>

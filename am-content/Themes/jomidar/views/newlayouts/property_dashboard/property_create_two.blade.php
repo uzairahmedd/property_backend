@@ -9,6 +9,15 @@
 <!-- <link rel="stylesheet" href="{{theme_asset('assets/newcss/yearcalender.css')}}"> -->
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/yearpicker.css')}}">
 <div class="add-property row-style">
+    <p class="d-none" id="property_nature">{{__('labels.property_nature')}}</p>
+    <p class="d-none" id="select_facing">{{__('labels.select_facing')}}</p>
+    <p class="d-none" id="east">{{__('labels.east')}}</p>
+    <p class="d-none" id="west">{{__('labels.west')}}</p>
+    <p class="d-none" id="north">{{__('labels.north')}}</p>
+    <p class="d-none" id="south">{{__('labels.south')}}</p>
+    <p class="d-none" id="street">{{__('labels.street')}}</p>
+    <p class="d-none" id="width">{{__('labels.width')}}</p>
+    <p class="d-none" id="meter">{{__('labels.meter')}}</p>
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here -->
     <div class="container">

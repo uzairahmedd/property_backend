@@ -77,6 +77,16 @@
     margin-left: 12px;
 }
 
+.detail-book-btn
+{
+    margin-right: 0 !important;
+}
+
+.detail-txt-left
+{
+    direction: ltr;
+}
+
 .carousel-single-item
 {
     height: 600px;
