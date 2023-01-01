@@ -150,6 +150,9 @@ function property_type(elem) {
 $(document).ready(function () {
     //by default
     var land_size_value = '';
+    var built_up_areaa = $('#built_up_areaa').text();
+    var land_areaa = $('#land_areaa').text();
+    var area_in_square_m = $('#area_in_square_m').text();
     var built_up_value = '';
     if ($('#land_size_area').val() != '') {
         land_size_value = $('#land_size_area').val();
@@ -170,57 +173,59 @@ $(document).ready(function () {
         if (text === 'Building' || text === 'building') {
             $('#land_size').html('');
             $('#built_up_area').html('');
-            $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">land area</label>\n' +
-                '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="Area in Square Meter" class="form-control theme-border">');
-            $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">Built-up-area</label>\n' +
-                '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="Area in Square Meter" class="form-control theme-border">');
+            $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">'+land_areaa+'</label>\n' +
+                '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="'+area_in_square_m+'" class="form-control theme-border">');
+            $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">'+ built_up_areaa+'</label>\n' +
+                '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="'+area_in_square_m+'" class="form-control theme-border">');
         }
 
         else if (text === 'Chalet' || text === 'chalet') {
             $('#land_size').html('');
             $('#built_up_area').html('');
-            $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">land area</label>\n' +
-                '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="Area in Square Meter" class="form-control theme-border">');
-            $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">Built-up-area</label>\n' +
-                '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="Area in Square Meter" class="form-control theme-border">');
+            $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">'+land_areaa+'</label>\n' +
+                '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="'+area_in_square_m+'" class="form-control theme-border">');
+            $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">'+ built_up_areaa+'</label>\n' +
+                '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="'+area_in_square_m+'" class="form-control theme-border">');
 
         } else if (text === 'Residential land' || text === 'Residential Land' || text === 'residential land' || text === 'residential Land') {
             $('#land_size').html('');
             $('#built_up_area').html('');
-            $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">land area</label>\n' +
-                '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="Area in Square Meter" class="form-control theme-border">');
+            // $('.built-land-both').html('');
+            $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">'+land_areaa+'</label>\n' +
+                '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="'+area_in_square_m+'" class="form-control theme-border">');
+
 
         } else if (text === 'Duplex' || text === 'duplex') {
             $('#land_size').html('');
             $('#built_up_area').html('');
-            $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">land area</label>\n' +
-                '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="Area in Square Meter" class="form-control theme-border">');
-            $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">Built-up-area</label>\n' +
-                '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="Area in Square Meter" class="form-control theme-border">');
+            $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">'+land_areaa+'</label>\n' +
+                '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="'+area_in_square_m+'" class="form-control theme-border">');
+            $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">'+ built_up_areaa+'</label>\n' +
+                '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="'+area_in_square_m+'" class="form-control theme-border">');
 
         }
         else if (text === 'Villa' || text === 'villa') {
             $('#land_size').html('');
             $('#built_up_area').html('');
-            $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">land area</label>\n' +
-                '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="Area in Square Meter" class="form-control theme-border">');
-            $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">Built-up-area</label>\n' +
-                '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="Area in Square Meter" class="form-control theme-border">');
+            $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">'+land_areaa+'</label>\n' +
+                '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="'+area_in_square_m+'" class="form-control theme-border">');
+            $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">'+ built_up_areaa+'</label>\n' +
+                '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="'+area_in_square_m+'" class="form-control theme-border">');
 
         }
         else if (text === 'Apartment' || text === 'apartment') {
             $('#land_size').html('');
             $('#built_up_area').html('');
-            $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">Built-up-area</label>\n' +
-                '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="Area in Square Meter" class="form-control theme-border">');
+            $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">'+ built_up_areaa+'</label>\n' +
+                '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="'+area_in_square_m+'" class="form-control theme-border">');
 
         } else if (text === 'Rest House' || text === 'rest house' || text === 'Rest house' || text === 'rest House') {
             $('#land_size').html('');
             $('#built_up_area').html('');
-            $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">land area</label>\n' +
-                '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="Area in Square Meter" class="form-control theme-border">');
-            $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">Built-up-area</label>\n' +
-                '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="Area in Square Meter" class="form-control theme-border">');
+            $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">'+land_areaa+'</label>\n' +
+                '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="'+area_in_square_m+'" class="form-control theme-border">');
+            $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">'+ built_up_areaa+'</label>\n' +
+                '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="'+area_in_square_m+'" class="form-control theme-border">');
 
         }
     };

@@ -9,6 +9,7 @@
 <!-- <link rel="stylesheet" href="{{theme_asset('assets/newcss/yearcalender.css')}}"> -->
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/yearpicker.css')}}">
 <div class="add-property row-style">
+    {{--    create dictionary of attribute some paragraph --}}
     <p class="d-none" id="property_nature">{{__('labels.property_nature')}}</p>
     <p class="d-none" id="select_facing">{{__('labels.select_facing')}}</p>
     <p class="d-none" id="east">{{__('labels.east')}}</p>
@@ -18,6 +19,10 @@
     <p class="d-none" id="street">{{__('labels.street')}}</p>
     <p class="d-none" id="width">{{__('labels.width')}}</p>
     <p class="d-none" id="meter">{{__('labels.meter')}}</p>
+    <p id="land_areaa" class="d-none"> {{__('labels.land_area')}}</p>
+    <p id="built_up_areaa" class="d-none">{{__('labels.built_up_area')}}</p>
+    <p id="area_in_square_m" class="d-none">{{__('labels.area_in_square_m')}}</p>
+    {{--    create dictionary of attribute some paragraph end--}}
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here -->
     <div class="container">
@@ -54,18 +59,20 @@
                         <div class="error">{{ $errors->first('category') }}</div>
                         @endif
                     </div>
-
-
-                    <div class="col-12 d-flex justify-content-end">
-                        <div class="col-lg-4 d-flex flex-column justify-content-end align-items-end land-size" id="land_size">
-                            <label for="land_size_area" class="theme-text-seondary-black">{{__('labels.land_size')}}
-                            </label>
-                            <input type="number" id="land_size_area" step="any" value="{{ !empty($post_data->landarea) ? $post_data->landarea->content  : old("landarea")}}" name="landarea" placeholder="{{__('labels.area_square_meter')}}" class="form-control theme-border">
+                    <div class="col-12 d-flex justify-content-end built-land-both">
+                        <div class="col-lg-4 d-flex flex-column justify-content-end align-items-end land-size" id="top_land_size">
+                            <div id="land_size" class="d-flex justify-content-end align-items-end flex-column w-100">
+                                <label for="land_size_area" class="theme-text-seondary-black">{{__('labels.land_size')}}
+                                </label>
+                                <input type="number" id="land_size_area" step="any" value="{{ !empty($post_data->landarea) ? $post_data->landarea->content  : old("landarea")}}" name="landarea" placeholder="{{__('labels.area_square_meter')}}" class="form-control theme-border">
+                            </div>
                         </div>
                         <div class="col-lg-4 d-flex flex-column justify-content-end align-items-end" id="built_up_area">
-                            <label for="built_area" class="theme-text-seondary-black">{{__('labels.built_up_area')}}
-                            </label>
-                            <input type="number" step="any" id="built_area" value="{{ !empty($post_data->builtarea) ? $post_data->builtarea->content  : old("builtarea")}}" name="builtarea" placeholder="{{__('labels.area_square_meter')}}" class="form-control theme-border">
+                            <div class="d-flex justify-content-end align-items-end flex-column w-100">
+                                <label for="built_area" class="theme-text-seondary-black">{{__('labels.built_up_area')}}
+                                </label>
+                                <input type="number" step="any" id="built_area" value="{{ !empty($post_data->builtarea) ? $post_data->builtarea->content  : old("builtarea")}}" name="builtarea" placeholder="{{__('labels.area_square_meter')}}" class="form-control theme-border">
+                            </div>
                         </div>
                     </div>
                     @if($errors->has('area'))

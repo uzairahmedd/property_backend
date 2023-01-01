@@ -138,8 +138,8 @@
                         @endif
                         @if(!empty($property->landarea))
                         <li class="d-flex align-items-center mb-3 mb-sm-3">
-                            <span> {{ $property->landarea->content }} SQM</span>
-                            <img src="{{theme_asset('assets/images/area.png')}}" title="{{ $property->landarea->type }} in SQM" data-toggle="tooltip">
+                            <span> {{ $property->landarea->content }} {{__('labels.sqm')}}</span>
+                            <img src="{{theme_asset('assets/images/area.png')}}" title="{{ $property->landarea->type }}{{__("labels.sqm")}} {{__("labels.in")}} " data-toggle="tooltip">
                         </li>
                         @endif
                     </ul>
@@ -174,7 +174,7 @@
                                 , {{ Session::get('locale') == 'ar' ? $property->post_district->category->ar_name : $property->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $property->post_new_city->category->ar_name : $property->post_new_city->category->name }}</span>
                         </p>
                         @if(!empty($property->landarea))
-                        <p class="pb-0 mb-0">Land Area: <span>{{$property->landarea->content}} SQM</span></p>
+                        <p class="pb-0 mb-0">{{__('labels.land_area')}}: <span>{{$property->landarea->content}} {{__('labels.sqm')}}</span></p>
                         @endif
                         <div id="show-more"><a href="javascript:void(0)" class="font-weight-bold theme-text-sky">{{__('labels.show_more')}}</a></div>
                     </div>
@@ -200,9 +200,9 @@
                         </p>
                         @if (isset($features))
                         <p class="pb-0 mb-0 text-bold">{{__('labels.property_amenities')}}</p>
-                        <ul class="list-unstyled text-decoration-none m-0">
+                        <ul class="list-unstyled text-decoration-none properties-of-amineties">
                             @foreach ($features as $facility)
-                            <li><span> * </span> {{ Session::get('locale') == 'ar' ?  $facility->ar_name : $facility->name}}</li>
+                            <li> {{ Session::get('locale') == 'ar' ?  $facility->ar_name : $facility->name}} <span> * </span></li>
                             @endforeach
                         </ul>
                         @endif
@@ -256,19 +256,19 @@
 
                     @if(isset($property->landarea->content))
                     <div class="row w-100 mb-3">
-                        <div class="col-6 text-start detail-txt-right">
-                            <h3 class="font-16 text-bold">{{ isset($property->landarea->content) ? $property->landarea->content."SQM" : '' }}</h3>
+                        <div class="col-6 text-start detail-txt-right sqm-rtl">
+                            <h3 class="font-16 text-bold">{{ isset($property->landarea->content) ? $property->landarea->content.__('labels.sqm') : '' }}</h3>
                         </div>
                         <div class="col-6 detail-txt-left b-info-txt">
-                            <span class="font-16 theme-text-seondary-black">Land Area</span>
+                            <span class="font-16 theme-text-seondary-black">{{__('labels.land_area')}}</span>
                         </div>
                     </div>
                     @endif
 
                     @if(isset($property->builtarea->content))
                     <div class="row w-100 mb-3">
-                        <div class="col-6 text-start detail-txt-right">
-                            <h3 class="font-16 text-bold">{{ isset($property->builtarea->content) ? $property->builtarea->content."SQM"  : '' }}</h3>
+                        <div class="col-6 text-start detail-txt-right sqm-rtl">
+                            <h3 class="font-16 text-bold">{{ isset($property->builtarea->content) ? $property->builtarea->content.__('labels.sqm')  : '' }}</h3>
                         </div>
                         <div class="col-6 detail-txt-left b-info-txt">
                             <span class="font-16 theme-text-seondary-black">{{__('labels.built_up_area')}}</span>
@@ -355,7 +355,7 @@
                         <h3 class="font-16 font-medium theme-text-blue">{{ $property->property_age->content }}</h3>
                     </div>
                     <div class="col-6 detail-txt-left">
-                        <span class="font-16 theme-text-seondary-black">Building age</span>
+                        <span class="font-16 theme-text-seondary-black">{{__("labels.building_age")}}</span>
                     </div>
                 </div>
                 @endif
@@ -363,21 +363,21 @@
                 @if(isset($property->length->content))
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right">
-                        <h3 class="font-16 font-medium theme-text-blue">{{ $property->length->content }} meter</h3>
+                        <h3 class="font-16 font-medium theme-text-blue meter-rtl"> {{ $property->length->content }} {{__("labels.meter")}}</h3>
                     </div>
                     <div class="col-6 detail-txt-left">
-                        <span class="font-16 theme-text-seondary-black">Property Length</span>
+                        <span class="font-16 theme-text-seondary-black">{{__("labels.property_length")}}</span>
                     </div>
                 </div>
                 @endif
 
                 @if(isset($property->depth->content))
                 <div class="row w-100 mb-3">
-                    <div class="col-6 text-start detail-txt-right">
-                        <h3 class="font-16 font-medium theme-text-blue">{{ $property->depth->content }} meter</h3>
+                    <div class="col-6 text-start detail-txt-right meter-rtl">
+                        <h3 class="font-16 font-medium theme-text-blue"> {{ $property->depth->content }} {{__("labels.meter")}} </h3>
                     </div>
                     <div class="col-6 detail-txt-left">
-                        <span class="font-16 theme-text-seondary-black">Property Depth</span>
+                        <span class="font-16 theme-text-seondary-black">{{__("labels.property_depth")}}</span>
                     </div>
                 </div>
                 @endif

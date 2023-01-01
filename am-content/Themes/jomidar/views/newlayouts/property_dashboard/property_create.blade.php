@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
 <div class="add-property row-style">
     @include('theme::newlayouts.partials.user_header')
-    <!-- Property Description Section Starts Here -->
+    <!-- Property Description Section Starts Here start -->
     <div class="container">
         <form method="post" action="{{ route('agent.property.store_property') }}">
             @csrf
@@ -84,6 +84,7 @@
                                 <select class="form-control add_prop_btn" id="district" name="district">
                                     <option value="" disabled selected>{{__('labels.select_district')}}</option>
                                 </select>
+                                <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>
                             </div>
                             @if($errors->has('district'))
                             <div class="error pt-1">{{ $errors->first('district') }}</div>

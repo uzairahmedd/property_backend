@@ -212,8 +212,19 @@
     margin-left: -8px;
 }
 
+.rtl .properties-of-amineties
+{
+    margin-left: 10px;
+}
+
 .rtl .item-header .breadcrumb-item+.home-breadcrumb::before {
     content: '';
+}
+
+.rtl select option
+{
+    text-align: left;
+    padding: 10px;
 }
 
 .rtl .apps h1

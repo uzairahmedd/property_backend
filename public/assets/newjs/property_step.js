@@ -57,6 +57,7 @@ $(document).ready(function () {
 //district against cities
 $(function () {
     $("#cities").on("change", function (e) {
+        var select_district = $('#please_select_district').text();
         e.preventDefault();
         var id = $(this).val();
         $("#district").val("");
@@ -68,7 +69,7 @@ $(function () {
             data: { 'id': id },
             success: function (response) {
                 $('#district').html('');
-                $('#district').append('<option disabled selected>Please Select district </option>');
+                $('#district').append('<option disabled selected> '+select_district+' </option>');
                 var name = '';
                 $.each(response, function (index, value) {
                     name = value.name;
@@ -131,6 +132,7 @@ else if($("input[name=furnishing][value=2]").data('val') != ''  && $("input[name
 else if($("input[name=furnishing][value=1]").data('val') != ''  && $("input[name=furnishing][value=1]").data('val') == '1'){
     $("input[name=furnishing][value=1]").prop('checked', true);
 }
+
 
 
 

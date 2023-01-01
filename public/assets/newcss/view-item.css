@@ -82,6 +82,22 @@
     margin-right: 0 !important;
 }
 
+.sqm-rtl
+{
+    direction: rtl;
+}
+
+.meter-rtl
+{
+    direction: rtl;
+}
+
+.properties-of-amineties
+{
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
 .contact-btn {
     box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
     border-radius: 8px;

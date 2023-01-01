@@ -26,41 +26,41 @@
                 <span class="font-24 d-flex justify-content-end py-3 px-2 font-weight-bold">{{__('labels.border_length')}}</span>
                 <div class="col-12 d-flex justify-content-end flex-lg-row flex-sm-column">
                     <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
-                        <lable class="d-flex justify-content-end align-items-end">{{__('labels.land_depth')}}</lable>
+                        <label class="d-flex justify-content-end align-items-end">{{__('labels.land_depth')}}</label>
                         <input type="number" name="depth" value="{{ !empty($info->depth) ? $info->depth->content  : old('depth')}}" class="form-control">
                         <span class="meters_span">{{__('labels.meter')}}</span>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
-                        <lable class="d-flex justify-content-end align-items-end">
-                            {{__('labels.land_length')}}</lable>
+                        <label class="d-flex justify-content-end align-items-end">
+                            {{__('labels.land_length')}}</label>
                         <input type="number" name="length" value="{{ !empty($info->length) ? $info->length->content  : old('length')}}" class="form-control">
                         <span class="meters_span">{{__('labels.meter')}}</span>
                     </div>
                 </div>
             </div>
             <div class="preview-property">
-                <h2 class="d-flex justify-content-end align-items-end">Property Title and Description preview</h2>
-                <h6 class="d-flex justify-content-end align-items-end">Auto generated based on the information filled by you</h6>
+                <h2 class="d-flex justify-content-end align-items-end">{{__('labels.property_description_preview')}}</h2>
+                <h6 class="d-flex justify-content-end align-items-end">{{__('labels.info_filled_preview')}}</h6>
                 <p class="pb-0 mb-0"> <span>{{ Session::get('locale') == 'ar' && !empty($info->property_type) ? $info->property_type->category->ar_name : $info->property_type->category->name}}</span> for <span>{{ Session::get('locale') == 'ar' && !empty($info->property_status_type) ? $info->property_status_type->category->ar_name : $info->property_status_type->category->name}} </span>in <span>{{$info->post_district->value}}
                         , {{ Session::get('locale') == 'ar' ? $info->post_district->category->ar_name : $info->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $info->post_new_city->category->ar_name : $info->post_new_city->category->name }}</span></p>
                 @if(!empty($info->landarea))
-                <p class="pb-0 mb-0">Land Area: <span>{{$info->landarea->content}} SQM</span></p>
+                <p class="pb-0 mb-0">{{__('labels.land_area')}}: <span>{{$info->landarea->content}} {{__('labels.sqm')}}</span></p>
                 @endif
                 @if(!empty($info->builtarea))
-                <p class="pb-0 mb-0">Built up Area: <span>{{$info->builtarea->content}} SQM</span></p>
+                <p class="pb-0 mb-0">{{__('labels.built_up_area')}}: <span>{{$info->builtarea->content}} {{__('labels.sqm')}}</span></p>
                 @endif
                 <!-- <p class="pb-0 mb-0">Property Borders: Length: <span>15m,</span>Depth: <span>20m</span></p> -->
                 @if($info->option_data)
                 @foreach ($info->option_data as $value)
                 @if( $value->value != 0)
-                <p class="pb-0 mb-0">The property has <span>{{ $value->value }} </span> {{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}</p>
+                <p class="pb-0 mb-0">{{__('labels.the_property_has')}} <span>{{ $value->value }} </span> {{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}</p>
                 @endif
                 @endforeach
                 @endif
 
-                <p class="pb-0 mb-0">{{ Session::get('locale') == 'ar' && !empty($info->property_type) ? $info->property_type->category->ar_name : $info->property_type->category->name}} has <span>{{ $info->electricity_facility->content == 0 ? 'electricity' : 'no electricity' }}</span> and <span>{{ $info->water_facility->content == 0 ? 'water' : 'no water' }}</span> connections</p>
-                <p class="pb-0 mb-0">Building year: <span>{{!empty($info->property_age) ? $info->property_age->content : 'N/A'}}</span></p>
-                <p class="pb-0 mb-0">Price: <span>{{$info->price->price}} SAR</span></p>
+                <p class="pb-0 mb-0">{{ Session::get('locale') == 'ar' && !empty($info->property_type) ? $info->property_type->category->ar_name : $info->property_type->category->name}} {{__('labels.has')}} <span>{{ $info->electricity_facility->content == 0 ? __("labels.electricity") : __("labels.no_electricity") }}</span> {{__('labels.and')}} <span>{{ $info->water_facility->content == 0 ? __("labels.water") : __("labels.no_water") }}</span> {{__('labels.connections')}}</p>
+                <p class="pb-0 mb-0"> <span>{{!empty($info->property_age) ? $info->property_age->content : 'N/A'}}</span> :{{__("labels.building_year")}}</p>
+                <p class="pb-0 mb-0">{{__('labels.price')}}: <span>{{$info->price->price}} {{__('labels.sar')}}</span></p>
             </div>
             <div class="d-flex justify-content-between description-btn-group">
         <button class="btn btn-theme">{{__('labels.next')}}</button>

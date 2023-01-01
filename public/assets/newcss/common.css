@@ -98,6 +98,12 @@ ul li:focus-visible
     background: var(--theme-grey);
 }
 
+select option
+{
+    text-align: right;
+    padding: 10px;
+}
+
 .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus-visible
 {
     border: none;
