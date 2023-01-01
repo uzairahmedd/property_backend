@@ -11,7 +11,7 @@
         <form method="post" action="{{ route('agent.property.store_property') }}">
             @csrf
             <input type="hidden" name="term_id" value="{{$id}}">
-            <input type="hidden" id="district_id" value="{{$post_data != '' ?  $post_data->district->category_id : ''}}">
+            <input type="hidden" id="district_id" value="{{$post_data != '' ?  $post_data->district->category_id : old('district')}}">
             <div class="description-card card">
                 @if($errors->has('message'))
                 <div class="error d-flex justify-content-end pt-1">{{ $errors->first('message') }}</div>
@@ -97,7 +97,7 @@
                                 <select class="form-control add_prop_btn" id="cities" name="city">
                                     <option value="" disabled selected> {{__('labels.select_city')}}</option>
                                     @foreach(App\Category::where('type','states')->get() as $row)
-                                    <option value="{{ $row->id }}" @if(in_array($row->id, $array)) selected="" @endif> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
+                                    <option value="{{ $row->id }}" {{ in_array($row->id, $array) ?  "selected" : (old('city') == $row->id ? 'selected' : '')  }}> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

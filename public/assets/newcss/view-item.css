@@ -297,7 +297,13 @@
 
 .land-area-txt
 {
-    margin-left: 41px;
+    /* margin-left: 41px; */
+    text-align: right;
+}
+
+.detail-book-btns
+{
+    margin-right: 0 !important;
 }
 
 

@@ -234,6 +234,7 @@
 
 .rtl .detail-txt-right {
     text-align: left!important;
+    direction: ltr;
 }
 
 .rtl .meter-rtl {
@@ -789,7 +790,7 @@
 .rtl #show-more-content ul li
 {
     text-align: left;
-    direction: ltr;
+    direction: rtl;
 }
 
 .rtl .property-list-feature

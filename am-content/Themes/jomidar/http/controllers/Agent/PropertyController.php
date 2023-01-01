@@ -741,7 +741,7 @@ class PropertyController extends controller
         $parent_category = Category::where('type', 'parent_category')->get();
         $child_category =  Category::where('type', 'category')->get();
         //for edit
-        $post_data = Terms::with('property_age', 'landarea', 'builtarea', 'interface', 'meter', 'ready', 'price', 'electricity_facility', 'water_facility', 'streets', 'street_info_one', 'street_info_two', 'postcategory')->where('user_id', Auth::id())->where('id', decrypt($id))->first();
+        $post_data = Terms::with('property_age', 'landarea', 'builtarea', 'interface', 'meter', 'ready', 'price', 'electricity_facility', 'water_facility', 'streets', 'postcategory')->where('user_id', Auth::id())->where('id', decrypt($id))->first();
         $array = [];
         $interface_array = [];
         foreach ($post_data->postcategory as $key => $value) {
@@ -758,9 +758,8 @@ class PropertyController extends controller
 
     public function get_property_type(Request $request)
     {
-        $data['post_category'] = Postcategory::where('type', 'category')->where('term_id', decrypt($request->term_id))->first();
-        $data['category_data'] = Category::where('type', 'parent_category')->where('id', $request->id)->with('parent')->get();
-        return $data;
+        $info = Category::where('type', 'parent_category')->with('parent')->where('id', $request->id)->get();
+        return $info;
     }
 
     /**
