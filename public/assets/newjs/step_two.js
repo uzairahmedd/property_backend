@@ -165,14 +165,16 @@ $(document).ready(function () {
     var land_areaa = $('#land_areaa').text();
     var area_in_square_m = $('#area_in_square_m').text();
     var built_up_value = '';
-    if ($('#land_size_area').val() != '') {
-        land_size_value = $('#land_size_area').val();
-    }
-    if ($('#built_area').val() != '') {
-        built_up_value = $('#built_area').val();
-    }
-    var decr = $("input:radio[name=category]:checked").data('name');
-    land_built_area(decr, land_size_value, built_up_value);
+    setTimeout(function () {
+        if ($('#land_size_area').val() != '') {
+            land_size_value = $('#land_size_area').val();
+        }
+        if ($('#built_area').val() != '') {
+            built_up_value = $('#built_area').val();
+        }
+        var decr = $("input:radio[name=category]:checked").data('name');
+        land_built_area(decr, land_size_value, built_up_value);
+    }, 1500);
     //on change
     $(document).on('change', '.property_radio', function (e) {
         e.preventDefault();
