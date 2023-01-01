@@ -185,6 +185,7 @@ return [
          Amcoders\Lpress\LpressServiceProvider::class,
          Amcoders\Check\CheckServiceProvider::class,
          Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+         App\Providers\OciObjectStorageServiceProvider::class,
 
     ],
 

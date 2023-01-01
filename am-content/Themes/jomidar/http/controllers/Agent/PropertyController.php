@@ -12,6 +12,7 @@ use App\PostCategory;
 use App\Options;
 use Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 use App\Models\Mediapost;
 use App\Media;
 use App\Models\Postcategoryoption;
@@ -1020,12 +1021,14 @@ class PropertyController extends controller
         if ($validator->fails()) {
             return back()->withErrors($validator->errors())->withInput();
         }
+        if ($request->hasfile('media'))
         foreach ($request->file('media') as $image) {
             $ext = $image->getClientOriginalExtension();
             if($ext == 'jfif'){
                 return back()->withErrors(['error'=>'PLease provide jpg/png images'])->withInput();
             }
         }
+        
         $term_id = decrypt($id);
         //store and update virtual rour video
         $virtual_tour = Meta::where('term_id', $term_id)->where('type', 'virtual_tour')->first();
@@ -1166,19 +1169,18 @@ class PropertyController extends controller
 
     public function upload_images($request)
     {
-
+        // ini_set('max_execution_time', 300);
         $auth_id = Auth::id();
 
 
         $info = Options::where('key', 'lp_filesystem')->first();
         $info = json_decode($info->value);
 
-
         $imageSizes = json_decode(imageSizes());
 
         if ($request->hasfile('media')) {
             foreach ($request->file('media') as $image) {
-
+              
                 $name = uniqid() . date('dmy') . time() . "." . $image->getClientOriginalExtension();
                 $ext = $image->getClientOriginalExtension();
 
@@ -1192,6 +1194,7 @@ class PropertyController extends controller
                 if (substr($image->getMimeType(), 0, 5) == 'image' &&  $ext != 'ico' && $ext != 'jfif') {
 
                     $image->move($path, $name);
+                    // Storage::disk('oci')->putFile('uploads', $image);
                     $compress = $this->run($path . $name, $ext, $info->compress);
 
                     if (file_exists($path . $name)) {
@@ -1204,7 +1207,7 @@ class PropertyController extends controller
                     if ($info->system_type == 'do') {
                         $file = asset($compress['data']['image']);
 
-                        $upload = Storage::disk('do')->putFileAs(date('Ym'), $file, $compress['data']['name'], 'public');
+                        $upload = Storage::disk('oci')->putFileAs(date('Ym'), $file, $compress['data']['name'], 'public');
 
                         $fileUrl = $info->system_url . '/' . $upload;
 
@@ -1224,7 +1227,7 @@ class PropertyController extends controller
 
                             $resizeIMG = asset('uploads/' . date('y') . '/' . date('m') . '/' . $imgArr[0] . $size->key . '.' . $imgArr[1]);
 
-                            Storage::disk('do')->putFileAs(date('Ym'), $resizeIMG, $imgArr[0] . $size->key . '.' . $imgArr[1], 'public');
+                            Storage::disk('oci')->putFileAs(date('Ym'), $resizeIMG, $imgArr[0] . $size->key . '.' . $imgArr[1], 'public');
                             if (file_exists('uploads/' . date('y') . '/' . date('m') . '/' . $imgArr[0] . $size->key . '.' . $imgArr[1])) {
                                 unlink('uploads/' . date('y') . '/' . date('m') . '/' . $imgArr[0] . $size->key . '.' . $imgArr[1]);
                             }
