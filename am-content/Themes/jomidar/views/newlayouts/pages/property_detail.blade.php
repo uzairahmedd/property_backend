@@ -352,7 +352,7 @@
                 @if(isset($property->property_age->content))
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right">
-                        <h3 class="font-16 font-medium theme-text-blue">{{ $property->property_age->content }}</h3>
+                        <h3 class="font-16 text-bold">{{ $property->property_age->content }}</h3>
                     </div>
                     <div class="col-6 detail-txt-left">
                         <span class="font-16 theme-text-seondary-black">{{__("labels.building_age")}}</span>
@@ -363,7 +363,7 @@
                 @if(isset($property->length->content))
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right">
-                        <h3 class="font-16 font-medium theme-text-blue meter-rtl"> {{ $property->length->content }} {{__("labels.meter")}}</h3>
+                        <h3 class="font-16 meter-rtl text-bold"> {{ $property->length->content }} {{__("labels.meter")}}</h3>
                     </div>
                     <div class="col-6 detail-txt-left">
                         <span class="font-16 theme-text-seondary-black">{{__("labels.property_length")}}</span>
@@ -374,7 +374,7 @@
                 @if(isset($property->depth->content))
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right meter-rtl">
-                        <h3 class="font-16 font-medium theme-text-blue"> {{ $property->depth->content }} {{__("labels.meter")}} </h3>
+                        <h3 class="font-16 text-bold"> {{ $property->depth->content }} {{__("labels.meter")}} </h3>
                     </div>
                     <div class="col-6 detail-txt-left">
                         <span class="font-16 theme-text-seondary-black">{{__("labels.property_depth")}}</span>

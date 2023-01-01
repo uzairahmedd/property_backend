@@ -232,6 +232,10 @@
     direction: ltr;
 }
 
+.rtl .detail-txt-right {
+    text-align: left!important;
+}
+
 .rtl .meter-rtl {
     direction: ltr;
 }
@@ -799,6 +803,7 @@
 .rtl .property-detail .card li {
     margin-right: 60px;
     margin-left: 0;
+    direction: rtl;
 }
 
 .rtl .contact-btn
