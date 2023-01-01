@@ -806,6 +806,10 @@
     direction: rtl;
 }
 
+.rtl .land-area-txt {
+    margin-left: 0;
+}
+
 .rtl .contact-btn
 {
     justify-content: center !important;
