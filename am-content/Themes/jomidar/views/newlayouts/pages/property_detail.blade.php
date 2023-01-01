@@ -137,16 +137,16 @@
                         @endforeach
                         @endif
                         @if(!empty($property->landarea))
-                        <li class="d-flex align-items-center mb-3 mb-sm-3">
-                            <span> {{ $property->landarea->content }} {{__('labels.sqm')}}</span>
+                        <li class="d-flex align-items-center mb-3 mb-sm-3 sqm-ltr-square">
                             <img src="{{theme_asset('assets/images/area.png')}}" title="{{ $property->landarea->type }}{{__("labels.sqm")}} {{__("labels.in")}} " data-toggle="tooltip">
+                            <span> {{ $property->landarea->content }} {{__('labels.sqm')}}</span>
                         </li>
                         @endif
                     </ul>
                     @php
                     $info = isset($property->user->usermeta->content) ? json_decode($property->user->usermeta->content) : null ;
                     @endphp
-                    <div class="d-flex flex-column flex-sm-row me-3 justify-content-centerd detail-book-btns w-100">
+                    <div class="d-flex flex-column flex-sm-row me-3 justify-content-center detail-book-btns w-100">
                         <button class="contact-btn col-12 col-sm-6 theme-bg-sky mx-2 px-2 border-0 theme-text-white font-medium mb-3">
                             <img src="{{theme_asset('assets/images/phone.png')}}" alt="" class="phone me-2">
                             {{ isset($info->phone) ? $info->phone : 'N/A'  }}
@@ -174,7 +174,7 @@
                                 , {{ Session::get('locale') == 'ar' ? $property->post_district->category->ar_name : $property->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $property->post_new_city->category->ar_name : $property->post_new_city->category->name }}</span>
                         </p>
                         @if(!empty($property->landarea))
-                        <p class="pb-0 mb-0">{{__('labels.land_area')}}: <span>{{$property->landarea->content}} {{__('labels.sqm')}}</span></p>
+                        <p class="pb-0 mb-0 land-area-txt">{{__('labels.land_area')}}: <span>{{$property->landarea->content}} {{__('labels.sqm')}}</span></p>
                         @endif
                         <div id="show-more"><a href="javascript:void(0)" class="font-weight-bold theme-text-sky">{{__('labels.show_more')}}</a></div>
                     </div>

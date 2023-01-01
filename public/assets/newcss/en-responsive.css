@@ -212,9 +212,33 @@
     margin-left: -8px;
 }
 
+.rtl .property-list-feature .sqm-ltr-square
+{
+    direction: rtl;
+}
+
 .rtl .properties-of-amineties
 {
     margin-left: 10px;
+}
+
+.rtl .property-list-feature .sqm-ltr-square
+{
+    direction: ltr;
+}
+
+.rtl .check-box-terms
+{
+    direction: ltr;
+}
+
+.rtl .meter-rtl {
+    direction: ltr;
+}
+
+.rtl .land-area-txt
+{
+    text-align: left;
 }
 
 .rtl .item-header .breadcrumb-item+.home-breadcrumb::before {
