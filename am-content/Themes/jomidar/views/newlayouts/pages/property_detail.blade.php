@@ -404,16 +404,13 @@
                         <iframe id="gmap_canvas" width="100%" height="400" src="https://maps.google.com/maps?q={{ $property->post_district->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                     </div>
                 @endif
+                @if(!empty($property->virtual_tour->content) && !empty($property->virtual_tour))
+                    <div class="text-center mb-0 pb-0 position-relative">
+                        <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">Virtual Tour</h3>
+                        <iframe src="{{ $property->virtual_tour->content ?? null }}" frameborder="0" allowfullscreen width="100%" height="480"></iframe>
+                    </div>
+                @endif
             </div>
-
-
-            @if(!empty($property->virtual_tour->content) && !empty($property->virtual_tour))
-            <div class="text-center mb-0 pb-0 position-relative">
-                <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">Virtual Tour</h3>
-                <iframe src="{{ $property->virtual_tour->content ?? null }}" frameborder="0" allowfullscreen width="100%" height="480"></iframe>
-            </div>
-
-            @endif
         </div>
     </div>
 </div>
