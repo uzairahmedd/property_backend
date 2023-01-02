@@ -47,18 +47,18 @@
 
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
                         <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop prop-title-en">
-                            <label for="english_title" class="theme-text-seondary-black">Property Title (English)</label>
+                            <label for="english_title" class="theme-text-seondary-black">{{__('labels.property_title_en')}}</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
-                                <input type="text" value="{{ $post_data != '' ? $post_data->title : old('title')}}" name="title" id="english_title" placeholder="Property Title" class="form-control theme-border">
+                                <input type="text" value="{{ $post_data != '' ? $post_data->title : old('title')}}" name="title" id="english_title" placeholder="{{__('labels.property_title_en')}}" class="form-control theme-border">
                             </div>
                             @if($errors->has('title'))
                             <div class="error pt-1">{{ $errors->first('title') }}</div>
                             @endif
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address ps-0 pt-sm-0 prop-title-ar">
-                            <label for="ar_title" class="theme-text-seondary-black property_title_ar">عنوان الملكية (عربى)</label>
+                            <label for="ar_title" class="theme-text-seondary-black property_title_ar">{{__('labels.property_title_ar')}}</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
-                                <input type="text" value="{{ $post_data != '' ? $post_data->ar_title : old('ar_title')}}" name="ar_title" id="ar_title" placeholder="عنوان الملكية (عربى)" class="form-control theme-border property_title_ar">
+                                <input type="text" value="{{ $post_data != '' ? $post_data->ar_title : old('ar_title')}}" name="ar_title" id="ar_title" placeholder="{{__('labels.property_title_ar')}}" class="form-control theme-border property_title_ar">
                             </div>
                             @if($errors->has('ar_title'))
                             <div class="error pt-1">{{ $errors->first('ar_title') }}</div>

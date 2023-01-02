@@ -198,6 +198,8 @@ return [
     'electricity' => 'كهرباء',
     'no_electricity' => 'لا كهرباء',
     'building_age'=>'عمر البناء',
+    'property_title_en'=>'عنوان العقار (إنجليزي)',
+    'property_title_ar'=>'عنوان الملكية (عربى)',
     'property_length' => 'طول الملكية',
     'property_depth' => 'عمق الملكية',
     'in'=>'في',

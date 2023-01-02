@@ -197,6 +197,8 @@ return [
     'add_your_property' => 'Add your property listing in 3 simple steps and Get',
 
     'qualified' => 'Qualified leads',
+    'property_title_en'=>'Property Title (English)',
+    'property_title_ar'=>'Property Title (Arabic)',
     'upfront_fees' => 'No upfront fees (only SR 50 upon sale or rent)',
     'great_user_exp' => 'Great user experience',
     'your_phone' => 'Your Phone!',

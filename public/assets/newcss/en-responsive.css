@@ -792,6 +792,11 @@
     direction: ltr;
 }
 
+.rtl .property-lists h3 {
+    text-align: left;
+    direction: ltr;
+}
+
 .rtl .property-list-feature
 {
     justify-content: start !important;

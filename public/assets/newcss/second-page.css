@@ -173,10 +173,17 @@
     width: 100%;
 }
 
+.propertylist-locate-icon
+{
+    direction: ltr;
+}
+
 .property-lists h3 {
     font-family: TajawalBold;
     font-size: 14px;
     letter-spacing: -0.3px;
+    direction: rtl;
+    text-align: right;
 }
 
 .property-lists p {
@@ -1708,5 +1715,6 @@ display: none !important;
 
 .facilicites-area
 {
+    direction: ltr;
    gap: 0px 10%;
 }
