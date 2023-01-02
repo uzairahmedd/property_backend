@@ -174,6 +174,7 @@ return [
     'building_year' => 'Building Year',
     'has' => 'has',
     'and' => 'and',
+    'for'=>'for',
     'connections' => 'connections',
     'electricity' => 'electricity',
     'no_electricity' => 'no electricity',

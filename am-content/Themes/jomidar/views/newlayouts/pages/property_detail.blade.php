@@ -166,47 +166,47 @@
                     </div>
                     <div class="prop-description-detail mt-0 pt-0">
                         <p class="theme-text-seondary-black font-16 text-end mb-2">
-                        <p class="pb-0 mb-0">
+                        <p class="mb-1">
                             <span>{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : $property->property_type->category->name}}</span>
-                            for
-                            <span>{{ Session::get('locale') == 'ar' && !empty($property->property_status_type) ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}} </span>in
+                            {{__('labels.for')}}
+                            <span>{{ Session::get('locale') == 'ar' && !empty($property->property_status_type) ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}} </span>{{__('labels.in')}}
                             <span>{{$property->post_district->value}}
                                 , {{ Session::get('locale') == 'ar' ? $property->post_district->category->ar_name : $property->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $property->post_new_city->category->ar_name : $property->post_new_city->category->name }}</span>
                         </p>
                         @if(!empty($property->landarea))
-                        <p class="pb-0 mb-0 land-area-txt">{{__('labels.land_area')}}: <span>{{$property->landarea->content}} {{__('labels.sqm')}}</span></p>
+                        <p class="mb-1 land-area-txt">{{__('labels.land_area')}}: <span>{{$property->landarea->content}} {{__('labels.sqm')}}</span></p>
                         @endif
                         <div id="show-more"><a href="javascript:void(0)" class="font-weight-bold theme-text-sky">{{__('labels.show_more')}}</a></div>
                     </div>
                     <div id="show-more-content">
-                        <p class="pb-0 mb-0">{{__('labels.built_up_area')}}: <span>{{$property->builtarea->content}} {{__('labels.sqm')}}</span></p>
+                        <p class="mb-1">{{__('labels.built_up_area')}}: <span>{{$property->builtarea->content}} {{__('labels.sqm')}}</span></p>
                         @if($property->option_data)
                         @foreach ($property->option_data as $value)
                         @if( $value->value != 0)
-                        <p class="pb-0 mb-0">{{__('labels.the_property_has')}}
+                        <p class="mb-1">{{__('labels.the_property_has')}}
                             <span>{{ $value->value }} </span> {{ Session::get('locale') == 'ar' ? $value->category->ar_name : $value->category->name}}
                         </p>
                         @endif
                         @endforeach
                         @endif
-                        <p class="pb-0 mb-0">{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : $property->property_type->category->name}}
-                            has
-                            <span>{{ $property->electricity_facility->content == 0 ? 'electricity' : 'no electricity' }}</span>
-                            and <span>{{ $property->water_facility->content == 0 ? 'water' : 'no water' }}</span>
-                            connections
+                        <p class="mb-1">{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : $property->property_type->category->name}}
+                            {{__('labels.has')}}
+                            <span>{{ $property->electricity_facility->content == 0 ? __('labels.electricity') : __('labels.no_electricity') }}</span>
+                            {{__('labels.and')}} <span>{{ $property->water_facility->content == 0 ? __('labels.water') : __('labels.no_water') }}</span>
+                            {{__('labels.connections')}}
                         </p>
-                        <p class="pb-0 mb-0">{{__('labels.building_year')}}:
+                        <p class="mb-1">{{__('labels.building_year')}}:
                             <span>{{!empty($property->property_age) ? $property->property_age->content : 'N/A'}}</span>
                         </p>
                         @if (isset($features))
-                        <p class="pb-0 mb-0 text-bold">{{__('labels.property_amenities')}}</p>
-                        <ul class="list-unstyled text-decoration-none properties-of-amineties">
+                        <p class="mb-1 text-bold">{{__('labels.property_amenities')}}</p>
+                        <ul class="list-unstyled text-decoration-none properties-of-amineties mb-1">
                             @foreach ($features as $facility)
                             <li> {{ Session::get('locale') == 'ar' ?  $facility->ar_name : $facility->name}} <span> * </span></li>
                             @endforeach
                         </ul>
                         @endif
-                        <p class="pb-0 mb-0">{{__('labels.price')}}: <span>{{$property->price->price}} {{__('labels.sar')}}</span></p>
+                        <p class="mb-1">{{__('labels.price')}}: <span>{{$property->price->price}} {{__('labels.sar')}}</span></p>
                         </p>
                         <div id="show-less"><a href="javascript:void(0)" class="font-weight-bold theme-text-sky">{{__('labels.show_less')}}</a></div>
                     </div>
@@ -257,7 +257,7 @@
                     @if(isset($property->landarea->content))
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start detail-txt-right sqm-rtl">
-                            <h3 class="font-16 text-bold">{{ isset($property->landarea->content) ? $property->landarea->content.__('labels.sqm') : '' }}</h3>
+                            <h3 class="font-16 text-bold">{{ isset($property->landarea->content) ? $property->landarea->content.' '.__('labels.sqm') : '' }}</h3>
                         </div>
                         <div class="col-6 detail-txt-left b-info-txt">
                             <span class="font-16 theme-text-seondary-black">{{__('labels.land_area')}}</span>
@@ -268,7 +268,7 @@
                     @if(isset($property->builtarea->content))
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start detail-txt-right sqm-rtl">
-                            <h3 class="font-16 text-bold">{{ isset($property->builtarea->content) ? $property->builtarea->content.__('labels.sqm')  : '' }}</h3>
+                            <h3 class="font-16 text-bold">{{ isset($property->builtarea->content) ? $property->builtarea->content.' '.__('labels.sqm')  : '' }}</h3>
                         </div>
                         <div class="col-6 detail-txt-left b-info-txt">
                             <span class="font-16 theme-text-seondary-black">{{__('labels.built_up_area')}}</span>
@@ -276,26 +276,30 @@
                     </div>
                     @endif
                 </div>
+                @if(!empty($property->streets))
                 <hr class="w-100">
                 <div class="basic-info-detail">
                     <h1 class="font-24 theme-text-blue detail-heading mb-3 text-bold">{{__('labels.street_info')}}</h1>
+                    @for($i=0; $i<$property->streets->content; $i++)
                         <div class="d-flex street-information-detail justify-content-end">
                             <div class="d-flex justify-content-center align-items-center">
-                                <p class="text-bold">South</p>
+                                <p class="text-bold">{{ !empty($street_face) ? $street_face[$i] : ''}}</p>
                                 <p>{{__('labels.facing')}}</p>
                             </div>
                             <div class="horizontal-line "></div>
                             <div class="d-flex justify-content-center align-items-center">
-                                <p class="theme-text-blue text-bold">15m</p>
+                                <p class="theme-text-blue text-bold">{{ !empty($street_width) ? $street_width[$i].' '.__("labels.meter") : ''}}</p>
                                 <p>{{__('labels.width')}}</p>
                             </div>
                             <div class="d-flex justify-content-center align-items-center">
-                                <p class="theme-text-blue text-bold">{{ $property->streets->content }}</p>
+                                <p class="theme-text-blue text-bold">{{$count=1+$i;}}</p>
                                 <p>{{__('labels.street')}}</p>
                             </div>
                             <div class="d-flex justify-content-center align-items-start p-1"><i class="fa-solid fa-location-crosshairs"></i></div>
                         </div>
+                        @endfor
                 </div>
+                @endif
 
                 @if(count($property->option_data) > 0 || !empty($property->property_condition) || !empty($property->role))
                 <hr class="w-100">
@@ -399,16 +403,16 @@
                 </div>
                 @endif
                 @isset($property->post_district->value)
-                    <div class="theme-bg-secondary text-center mb-0 pb-0 position-relative mt-3">
-                        <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">اسم الحي</h3>
-                        <iframe id="gmap_canvas" width="100%" height="400" src="https://maps.google.com/maps?q={{ $property->post_district->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                    </div>
+                <div class="theme-bg-secondary text-center mb-0 pb-0 position-relative mt-3">
+                    <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">اسم الحي</h3>
+                    <iframe id="gmap_canvas" width="100%" height="400" src="https://maps.google.com/maps?q={{ $property->post_district->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                </div>
                 @endif
-                @if(!empty($property->virtual_tour->content) && !empty($property->virtual_tour))
-                    <div class="text-center mb-0 pb-0 position-relative">
-                        <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">Virtual Tour</h3>
-                        <iframe src="{{ $property->virtual_tour->content ?? null }}" frameborder="0" allowfullscreen width="100%" height="480"></iframe>
-                    </div>
+                @if(!empty($property->virtual_tour->content) && isset($property->virtual_tour))
+                <div class="text-center mb-0 pb-0 position-relative">
+                    <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">Virtual Tour</h3>
+                    <iframe src="{{ $property->virtual_tour->content}}" frameborder="0" allowfullscreen width="100%" height="480"></iframe>
+                </div>
                 @endif
             </div>
         </div>

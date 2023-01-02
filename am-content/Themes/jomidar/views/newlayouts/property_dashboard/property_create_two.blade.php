@@ -9,7 +9,7 @@
 <!-- <link rel="stylesheet" href="{{theme_asset('assets/newcss/yearcalender.css')}}"> -->
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/yearpicker.css')}}">
 <div class="add-property row-style">
-    {{--    create dictionary of attribute some paragraph --}}
+    {{-- create dictionary of attribute some paragraph --}}
     <p class="d-none" id="property_nature">{{__('labels.property_nature')}}</p>
     <p class="d-none" id="select_facing">{{__('labels.select_facing')}}</p>
     <p class="d-none" id="east">{{__('labels.east')}}</p>
@@ -22,7 +22,7 @@
     <p id="land_areaa" class="d-none"> {{__('labels.land_area')}}</p>
     <p id="built_up_areaa" class="d-none">{{__('labels.built_up_area')}}</p>
     <p id="area_in_square_m" class="d-none">{{__('labels.area_in_square_m')}}</p>
-    {{--    create dictionary of attribute some paragraph end--}}
+    {{-- create dictionary of attribute some paragraph end--}}
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here -->
     <div class="container">
@@ -39,7 +39,7 @@
                     <div class="col-12 justify-content-end row">
                         @foreach($parent_category as $row)
                         <div class="radio-container radio-edit-two">
-                            <input type="radio" name="parent_category" term-id='{{$id}}' onclick="property_type(this)" value="{{$row->id}}" {{ !empty($array) && $array['parent_category'] == $row->id ? "checked" : (old("parent_category") == $row->id ? "checked":"") }}>
+                            <input type="radio" name="parent_category" onclick="property_type_triger(this)" value="{{$row->id}}" {{ !empty($array) && $array['parent_category'] == $row->id ? "checked" : (old("parent_category") == $row->id ? "checked":"") }}>
                             <span class="checmark font-16 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
                         </div>
                         @endforeach
@@ -51,7 +51,7 @@
                     <div class="col-12 justify-content-end property_types row theme-gx-3 mb-4_5" id="property_type_radio">
                         @foreach($child_category as $row)
                         <div class="radio-container radio-edit-two property_radio">
-                            <input type="radio" name="category" value="{{$row->id}}" data-name="{{$row->name}}" {{ !empty($array) && $array['category'] == $row->id ? "checked" : (old("category") == $row->id ? "checked":"") }}>
+                            <input type="radio" name="category" class="type_categpry" value="{{$row->id}}" data-val="{{ !empty($array) ? $array['category'] : old('category') }}" data-name="{{$row->name}}">
                             <span class="checmark font-16 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
                         </div>
                         @endforeach
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div id="year_calender" class="mb-3">
-                            <input type="text" class="yearpicker form-control hidden" id='yearpicker' name="property_age"  placeholder="Select a year" value="{{ !empty($post_data->property_age) ? $post_data->property_age->content : old('property_age') }}" />
+                            <input type="text" class="yearpicker form-control hidden" id='yearpicker' name="property_age" placeholder="Select a year" value="{{ !empty($post_data->property_age) ? $post_data->property_age->content : old('property_age') }}" />
                         </div>
                         @if($errors->has('property_age'))
                         <span class="error">{{ $errors->first('property_age') }}</span>

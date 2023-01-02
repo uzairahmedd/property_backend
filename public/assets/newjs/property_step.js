@@ -57,41 +57,22 @@ $(document).ready(function () {
 //district against cities
 $(function () {
     $("#cities").on("change", function (e) {
-        var select_district = $('#please_select_district').text();
         e.preventDefault();
-        var id = $(this).val();
-        $("#district").val("");
-        var baseurl = $('#base_url').val();
-        var url = baseurl + 'agent/get_district';
-        $.ajax({
-            type: 'get',
-            url: url,
-            data: { 'id': id },
-            success: function (response) {
-                $('#district').html('');
-                $('#district').append('<option disabled selected> '+select_district+' </option>');
-                var name = '';
-                $.each(response, function (index, value) {
-                    name = value.name;
-                    if (locale == 'ar') {
-                        name = value.ar_name;
-                    }
-                    $('#district').append('<option value=' + value.id + '>' + name + '</option>');
-                });
-
-            }
-        });
+        var city_id = $(this).val();
+        get_already_select_district(city_id, null);
     });
 });
 
 // for edit district
 if ($('#cities').val() != null) {
-    get_already_select_district();
+    var city_id = $('#cities').val();
+    var district_id = $('#district_id').val();
+    get_already_select_district(city_id, district_id);
+
 }
 
-function get_already_select_district() {
-    var city_id = $('#cities').val();
-    $("#district").val("");
+function get_already_select_district(city_id, district_id = null) {
+    var select_district = $('#please_select_district').text();
     var baseurl = $('#base_url').val();
     var url = baseurl + 'agent/get_district';
     $.ajax({
@@ -99,17 +80,16 @@ function get_already_select_district() {
         url: url,
         data: { 'id': city_id },
         success: function (response) {
-            var district_id = $('#district_id').val();
             $('#district').html('');
-            $('#district').append('<option disabled selected>Please Select district </option>');
+            $('#district').append('<option disabled selected> ' + select_district + ' </option>');
             var name = '';
-            var select = '';
             $.each(response, function (index, value) {
+                var select = '';
                 name = value.name;
                 if (locale == 'ar') {
                     name = value.ar_name;
                 }
-                if (district_id != null) {
+                if (district_id != null && district_id == value.id) {
                     select = 'selected';
                 }
                 $('#district').append('<option ' + select + ' value=' + value.id + '>' + name + '</option>');
@@ -123,13 +103,13 @@ function get_already_select_district() {
 //for furniching
 $("input[name=furnishing][value=3]").prop('checked', true);
 
-if($("input[name=furnishing][value=3]").data('val') != '' && $("input[name=furnishing][value=3]").data('val') == '3'){
+if ($("input[name=furnishing][value=3]").data('val') != '' && $("input[name=furnishing][value=3]").data('val') == '3') {
     $("input[name=furnishing][value=3]").prop('checked', true);
 }
-else if($("input[name=furnishing][value=2]").data('val') != ''  && $("input[name=furnishing][value=2]").data('val') == '2'){
+else if ($("input[name=furnishing][value=2]").data('val') != '' && $("input[name=furnishing][value=2]").data('val') == '2') {
     $("input[name=furnishing][value=2]").prop('checked', true);
 }
-else if($("input[name=furnishing][value=1]").data('val') != ''  && $("input[name=furnishing][value=1]").data('val') == '1'){
+else if ($("input[name=furnishing][value=1]").data('val') != '' && $("input[name=furnishing][value=1]").data('val') == '1') {
     $("input[name=furnishing][value=1]").prop('checked', true);
 }
 

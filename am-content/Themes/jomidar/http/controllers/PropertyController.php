@@ -150,7 +150,15 @@ class PropertyController extends controller
             JsonLdMulti::setTitle($property->title);
             // JsonLdMulti::setDescription($property->description->content ?? '');
             JsonLdMulti::setType('Property');
-            return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features', 'property_type_nature'));
+            $street_width='';
+            $street_face='';
+            if(!empty($property->meter)){
+                $street_width=explode(',',$property->meter->content);
+            }
+            if(!empty($property->interface)){
+            $street_face=explode(',',$property->interface->content);
+            }
+            return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features', 'property_type_nature','street_width','street_face'));
         } else {
             return abort(404);
         }
