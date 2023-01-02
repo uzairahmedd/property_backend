@@ -476,6 +476,11 @@ class PropertyController extends controller
         return view('theme::newlayouts.pages.post_property');
     }
 
+    public function otpProperty()
+    {
+        return view('theme::newlayouts.pages.otp_property');
+    }
+
     public function selectOwner()
     {
         return view('theme::newlayouts.pages.select_owner');

@@ -254,6 +254,7 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	// Route::get('otp','PropertyController@otp')->name('otp');
 	// Route::get('phone_no','PropertyController@phone_no')->name('phone_no');
     Route::get('post_property','PropertyController@postProperty')->name('post_property');
+    Route::get('otp_property','PropertyController@otpProperty')->name('otp_property');
     Route::get('select_owner','PropertyController@selectOwner')->name('select_owner');
 });
 

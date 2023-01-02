@@ -30,6 +30,7 @@
     padding: 0 6px 0 8px; }
   .iti__arrow {
     margin-left: 6px;
+      display: none;
     width: 0;
     height: 0;
     border-left: 3px solid transparent;
@@ -41,6 +42,7 @@
   .iti__country-list {
     position: absolute;
     z-index: 2;
+      display: none;
     list-style: none;
     text-align: left;
     padding: 0;

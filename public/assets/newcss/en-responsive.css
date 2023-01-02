@@ -822,6 +822,19 @@
     align-items: center;
 }
 
+.rtl .form-right p
+{
+    text-align: left;
+}
+
+.rtl .propertylist-locate-icon {
+    direction: rtl;
+}
+
+.rtl .facilicites-area {
+    direction: rtl;
+}
+
 .rtl .theme-modal .form-control
 {
     text-align: start;
@@ -1140,6 +1153,11 @@
 }
 
 @media screen and (max-width:768px) {
+
+    .rtl .number-verify-property .form-right {
+        margin-right: 0px;
+        margin-left: 0;
+    }
 
     .rtl .meters_span {
         margin-top: 49px;

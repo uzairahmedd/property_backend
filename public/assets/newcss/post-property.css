@@ -43,6 +43,8 @@
 {
     font-weight: 600;
     align-self: end;
+    font-size: 14px;
+    text-align: right;
 }
 .form-right img
 {
@@ -72,7 +74,8 @@
 }
 
 .number-verify-property .form-right {
-    max-width: 525px;
+    width: 600px;
+    max-width: 100%;
     text-align: left;
     padding: 40px;
     margin-left: -35px;
@@ -84,11 +87,39 @@
     opacity: 0.9;
 }
 
+.otp-box input {
+    width: 59px!important;
+    height: 44px;
+    background-color: #f2f2f3;
+    border: 1px solid var(--theme-blue)!important;
+    border-radius: 8px;
+    border-bottom-color: #73558c;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #191919;
+    outline: none;
+    box-shadow: 0 25px 80px rgb(0 0 0 / 7%), 0 16.2037px 46.8519px rgb(0 0 0 / 5%), 0 9.62963px 25.4815px rgb(0 0 0 / 4%), 0 5px 13px rgb(0 0 0 / 4%), 0 2.03704px 6.51852px rgb(0 0 0 / 3%), 0 0.462963px 3.14815px rgb(0 0 0 / 2%);
+}
+
+.post-prop-otp-h
+{
+    text-align: center !important;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.post-prop-otp-p
+{
+    text-align: center !important;
+    font-weight: 600;
+}
+
 .number-verify-property .form-right .btn {
     border: none;
     outline: none;
     width: 100%;
-    margin-top: 1.5rem;
     background-color: #287DBD;
     color: #fff;
     font-weight: 700;
@@ -96,6 +127,11 @@
     border-radius: 5px;
     transition: 0.3s ease all;
     cursor: pointer;
+}
+
+.otp-txt
+{
+    margin-top: 10px;
 }
 
 .phone-section
@@ -308,6 +344,15 @@
     .number_form
     {
         width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .number-verify-property .form-right {
+        margin-right: 0px;
+        margin-left: 0;
     }
 
 }
