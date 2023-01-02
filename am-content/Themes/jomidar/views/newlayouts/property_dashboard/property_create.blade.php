@@ -4,6 +4,8 @@
     var locale = '<?php echo Session::get('locale'); ?>';
 </script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
+<link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/chosen.css')}}">
+<link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/prism.css')}}">
 <div class="add-property row-style">
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here start -->
@@ -81,7 +83,8 @@
                             <label for="district" class="theme-text-seondary-black">{{__('labels.district')}}</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
-                                <select class="form-control add_prop_btn" id="district" name="district">
+                                <select data-placeholder="Select your location" class="select-icon chosen-select"
+                                        tabindex="5" id="district" name="district">
                                     <option value="" disabled selected>{{__('labels.select_district')}}</option>
                                 </select>
                                 <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>
@@ -94,10 +97,11 @@
                             <label for="cities" class="theme-text-seondary-black">{{__('labels.city')}}</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
-                                <select class="form-control add_prop_btn" id="cities" name="city">
+                                <select data-placeholder="Select your location" class="select-icon chosen-select"
+                                        tabindex="5" name="city">
                                     <option value="" disabled selected> {{__('labels.select_city')}}</option>
                                     @foreach(App\Category::where('type','states')->get() as $row)
-                                    <option value="{{ $row->id }}" {{ in_array($row->id, $array) ?  "selected" : (old('city') == $row->id ? 'selected' : '')  }}> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
+                                        <option value="{{ $row->id }}" {{ in_array($row->id, $array) ?  "selected" : (old('city') == $row->id ? 'selected' : '')  }}> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -119,4 +123,7 @@
 @endsection
 @section('property_create')
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/selectdrop/chosen.jquery.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/selectdrop/init.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/selectdrop/prism.js')}}"></script>
 @endsection

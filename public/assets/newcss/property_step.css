@@ -134,6 +134,7 @@
 .input-drop-icon {
     left: 12px;
     top: 32px;
+    z-index: 1;
 }
 
 .description-btn-group {

@@ -1116,6 +1116,17 @@
 
 .rtl .input-drop-icon {
     right: 12px;
+    z-index: 1;
+}
+
+.rtl .chosen-container-single .chosen-single span
+{
+    text-align: left;
+}
+
+.rtl .chosen-container .chosen-results
+{
+    text-align: left;
 }
 
 .rtl .realestate_roles {
