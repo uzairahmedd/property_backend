@@ -5,7 +5,6 @@
 </script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/chosen.css')}}">
-<link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/prism.css')}}">
 <div class="add-property row-style">
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here start -->
@@ -84,7 +83,7 @@
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
                                 <select data-placeholder="Select your location" class="select-icon chosen-select"
-                                        tabindex="5" id="district" name="district">
+                                        tabindex="5" id="districts" name="district">
                                     <option value="" disabled selected>{{__('labels.select_district')}}</option>
                                 </select>
                                 <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>
@@ -127,5 +126,4 @@
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
 <script src="{{theme_asset('assets/newjs/selectdrop/chosen.jquery.js')}}"></script>
 <script src="{{theme_asset('assets/newjs/selectdrop/init.js')}}"></script>
-<script src="{{theme_asset('assets/newjs/selectdrop/prism.js')}}"></script>
 @endsection

@@ -371,7 +371,8 @@
                                     <div class="mt-3 home-listing-detail">
                                         <h3 class="font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ? $sale_data->ar_title : $sale_data->title }}</h3>
                                         <div class="d-flex align-items-start justify-content-end pt-2">
-                                            <p class="mb-0 theme-text-seondary-black me-2">{{$sale_data->post_district->value}}
+                                            <p class="mb-0 theme-text-seondary-black me-2">
+                                                <!-- {{$sale_data->post_district->value}} -->
                                                 , {{ Session::get('locale') == 'ar' ? $sale_data->post_district->category->ar_name : $sale_data->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $sale_data->post_new_city->category->ar_name : $sale_data->post_new_city->category->name }} </p>
                                             <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                                         </div>
@@ -466,7 +467,8 @@
                                     <div class="mt-3 home-listing-detail">
                                         <h3 class="font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ? $rent_data->ar_title : $rent_data->title }}</h3>
                                         <div class="d-flex align-items-start justify-content-end pt-2">
-                                            <p class="mb-0 theme-text-seondary-black me-2">{{$rent_data->post_district->value}}
+                                            <p class="mb-0 theme-text-seondary-black me-2">
+                                                <!-- {{$rent_data->post_district->value}} -->
                                                 , {{ Session::get('locale') == 'ar' ? $rent_data->post_district->category->ar_name : $rent_data->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $rent_data->post_new_city->category->ar_name : $rent_data->post_new_city->category->name }}</p>
                                             <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                                         </div>

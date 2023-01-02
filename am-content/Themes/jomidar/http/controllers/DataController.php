@@ -301,12 +301,12 @@ class DataController extends controller
             });
         }
 
-//        if (!empty($this->min_price) || !empty($this->max_price)) {
-//            $posts = $posts->whereHas('price', function ($q) {
-//
-//                return $q->whereBetween('price', [$this->min_price, $this->max_price]);
-//            });
-//        }
+       if (!empty($this->min_price) || !empty($this->max_price)) {
+           $posts = $posts->whereHas('price', function ($q) {
+
+               return $q->whereBetween('price', [$this->min_price, $this->max_price]);
+           });
+       }
 
 
         $posts = $posts->latest()->paginate(30);

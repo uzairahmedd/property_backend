@@ -80,8 +80,8 @@ function get_already_select_district(city_id, district_id = null) {
         url: url,
         data: { 'id': city_id },
         success: function (response) {
-            $('#district').html('');
-            $('#district').append('<option disabled selected> ' + select_district + ' </option>');
+            $('#districts').html('');
+            $('#districts').append('<option disabled selected> ' + select_district + ' </option>');
             var name = '';
             $.each(response, function (index, value) {
                 var select = '';
@@ -93,7 +93,7 @@ function get_already_select_district(city_id, district_id = null) {
                     select = 'selected';
                 }
                 console.log(name);
-                $('#district').append('<option ' + select + ' value=' + value.id + '>' + name + '</option>');
+                $('#districts').append('<option ' + select + ' value=' + value.id + '>' + name + '</option>').trigger('chosen:updated');
             });
 
         }

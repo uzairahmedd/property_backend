@@ -41,7 +41,7 @@
             <div class="preview-property">
                 <h2 class="d-flex justify-content-end align-items-end">{{__('labels.property_description_preview')}}</h2>
                 <h6 class="d-flex justify-content-end align-items-end">{{__('labels.info_filled_preview')}}</h6>
-                <p class="pb-0 mb-0"> <span>{{ Session::get('locale') == 'ar' && !empty($info->property_type) ? $info->property_type->category->ar_name : $info->property_type->category->name}}</span> for <span>{{ Session::get('locale') == 'ar' && !empty($info->property_status_type) ? $info->property_status_type->category->ar_name : $info->property_status_type->category->name}} </span>in <span>{{$info->post_district->value}}
+                <p class="pb-0 mb-0"> <span>{{ Session::get('locale') == 'ar' && !empty($info->property_type) ? $info->property_type->category->ar_name : $info->property_type->category->name}}</span> {{__('labels.for')}} <span>{{ Session::get('locale') == 'ar' && !empty($info->property_status_type) ? $info->property_status_type->category->ar_name : $info->property_status_type->category->name}} </span>{{__('labels.in')}} <span>
                         , {{ Session::get('locale') == 'ar' ? $info->post_district->category->ar_name : $info->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $info->post_new_city->category->ar_name : $info->post_new_city->category->name }}</span></p>
                 @if(!empty($info->landarea))
                 <p class="pb-0 mb-0">{{__('labels.land_area')}}: <span>{{$info->landarea->content}} {{__('labels.sqm')}}</span></p>

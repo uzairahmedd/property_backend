@@ -119,7 +119,8 @@
                     <hr>
                     <h3 class="font-medium mb-2">{{__('labels.address')}}</h3>
                     <div class="d-flex align-items-start justify-content-end mb-4">
-                        <p class="mb-0 theme-text-seondary-black me-2">{{$property->post_district->value}}
+                        <p class="mb-0 theme-text-seondary-black me-2">
+                            <!-- {{$property->post_district->value}} -->
                             , {{ Session::get('locale') == 'ar' ? $property->post_district->category->ar_name : $property->post_district->category->name }}
                             , {{ Session::get('locale') == 'ar' ? $property->post_new_city->category->ar_name : $property->post_new_city->category->name }}
                         </p>
@@ -170,7 +171,8 @@
                             <span>{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : $property->property_type->category->name}}</span>
                             {{__('labels.for')}}
                             <span>{{ Session::get('locale') == 'ar' && !empty($property->property_status_type) ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}} </span>{{__('labels.in')}}
-                            <span>{{$property->post_district->value}}
+                            <span>
+                                <!-- {{$property->post_district->value}} -->
                                 , {{ Session::get('locale') == 'ar' ? $property->post_district->category->ar_name : $property->post_district->category->name }} , {{ Session::get('locale') == 'ar' ? $property->post_new_city->category->ar_name : $property->post_new_city->category->name }}</span>
                         </p>
                         @if(!empty($property->landarea))
@@ -283,7 +285,27 @@
                     @for($i=0; $i<$property->streets->content; $i++)
                         <div class="d-flex street-information-detail justify-content-end">
                             <div class="d-flex justify-content-center align-items-center">
-                                <p class="text-bold">{{ !empty($street_face) ? $street_face[$i] : ''}}</p>
+                                @if(Session::get('locale') == 'ar' && $street_face[$i] == 'East')
+                                <p class="text-bold">شرقية</p>
+                                @elseif($street_face[$i] == 'East')
+                                <p class="text-bold">East</p>
+                                @endif
+                                @if(Session::get('locale') == 'ar' && $street_face[$i] == 'West')
+                                <p class="text-bold">غربية</p>
+                                @elseif($street_face[$i] == 'West')
+                                <p class="text-bold">West</p>
+                                @endif
+                                @if(Session::get('locale') == 'ar' && $street_face[$i] == 'North')
+                                <p class="text-bold">شمالية</p>
+                                @elseif($street_face[$i] == 'North')
+                                <p class="text-bold">North</p>
+                                @endif
+                                @if(Session::get('locale') == 'ar' && $street_face[$i] == 'South')
+                                <p class="text-bold">جنوبية</p>
+                                @elseif($street_face[$i] == 'South')
+                                <p class="text-bold">South</p>
+                                @endif
+
                                 <p>{{__('labels.facing')}}</p>
                             </div>
                             <div class="horizontal-line "></div>

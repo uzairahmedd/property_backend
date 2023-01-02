@@ -27,10 +27,15 @@ if ($('#ready').data('isready') != '') {
 }
 
 //for street dropdowns
-if ($('.street_sdropdown').data('streets') != '') {
+if (interface != '' || meter!='') {
     var old_count = $('.street_sdropdown').data('streets');
     var interface_array = interface.split(',');
     var meter_array = meter.split(',');
+    generate_input(old_count, interface_array, meter_array);
+}
+
+if ($('.street_sdropdown').data('streets') != '') {
+    var old_count = $('.street_sdropdown').data('streets');
     generate_input(old_count, interface_array, meter_array);
 }
 function generate_input(n, interface_array = null, meter_array = null) {
@@ -77,7 +82,7 @@ function generate_input(n, interface_array = null, meter_array = null) {
         meter = $('#meter').text();
         width = $('#width').text();
         street = $('#street').text();
-        $('.street_detailss').append('<div class="col-12 street_detail d-flex justify-content-end mt-3" id="street_detail">\n' +
+        $('.street_detailss').append('<div class="col-12 street_detail d-flex justify-content-end mt-3">\n' +
             '                        <div class="col-lg-6 d-flex flex-column">\n' +
             '                            <label for="" class="d-flex justify-content-end theme-text-black">' + select_facing + '</label>\n' +
             '                            <select class="form-select form-control w-100 select-face" name="interface[]" aria-label="Default select example">\n' +
@@ -174,7 +179,7 @@ $(document).ready(function () {
         }
         var decr = $("input:radio[name=category]:checked").data('name');
         land_built_area(decr, land_size_value, built_up_value);
-    }, 1000);
+    }, 1500);
     //on change
     $(document).on('change', '.property_radio', function (e) {
         e.preventDefault();
