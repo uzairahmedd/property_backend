@@ -283,7 +283,7 @@
                     @for($i=0; $i<$property->streets->content; $i++)
                         <div class="d-flex street-information-detail justify-content-end">
                             <div class="d-flex justify-content-center align-items-center">
-                                <p class="text-bold">{{ !empty($street_face) ? $street_face[$i].' '.__("labels.meter") : ''}}</p>
+                                <p class="text-bold">{{ !empty($street_face) ? $street_face[$i] : ''}}</p>
                                 <p>{{__('labels.facing')}}</p>
                             </div>
                             <div class="horizontal-line "></div>
