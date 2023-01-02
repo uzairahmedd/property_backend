@@ -174,7 +174,7 @@ $(document).ready(function () {
         }
         var decr = $("input:radio[name=category]:checked").data('name');
         land_built_area(decr, land_size_value, built_up_value);
-    }, 1500);
+    }, 1000);
     //on change
     $(document).on('change', '.property_radio', function (e) {
         e.preventDefault();
