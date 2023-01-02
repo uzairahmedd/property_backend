@@ -88,6 +88,8 @@
                                     <option value="" disabled selected>{{__('labels.select_district')}}</option>
                                 </select>
                                 <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>
+
+
                             </div>
                             @if($errors->has('district'))
                             <div class="error pt-1">{{ $errors->first('district') }}</div>
@@ -98,7 +100,7 @@
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
                                 <select data-placeholder="Select your location" class="select-icon chosen-select"
-                                        tabindex="5" name="city">
+                                        tabindex="5" name="city" id="cities">
                                     <option value="" disabled selected> {{__('labels.select_city')}}</option>
                                     @foreach(App\Category::where('type','states')->get() as $row)
                                         <option value="{{ $row->id }}" {{ in_array($row->id, $array) ?  "selected" : (old('city') == $row->id ? 'selected' : '')  }}> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>

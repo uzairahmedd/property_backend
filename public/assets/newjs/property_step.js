@@ -92,6 +92,7 @@ function get_already_select_district(city_id, district_id = null) {
                 if (district_id != null && district_id == value.id) {
                     select = 'selected';
                 }
+                console.log(name);
                 $('#district').append('<option ' + select + ' value=' + value.id + '>' + name + '</option>');
             });
 
