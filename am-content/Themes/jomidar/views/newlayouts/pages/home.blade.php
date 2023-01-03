@@ -29,12 +29,12 @@
                                                               alt=""></span>
                         @foreach($status as $status_data)
                             @if( $status_data->name =='Rent')
-                                <input type="hidden" value="{{ $status_data->id}}" name="status" id=status>
+                                <input type="hidden" value="{{ $status_data->id}}" data-name="{{ Session::get('locale') == 'ar' ? $status_data->ar_name : $status_data->name}}" name="status" id=status>
                             @endif
                         @endforeach
                         @foreach($property_nature as $nature)
                             @if($nature->name == 'Residential')
-                                <input type="hidden" name="parent_category" value="{{ $nature->id}}"
+                                <input type="hidden" name="parent_category" data-name="{{ Session::get('locale') == 'ar' ? $nature->ar_name : $nature->name}}" value="{{ $nature->id}}"
                                        id="parent_category">
                             @endif
                         @endforeach
@@ -83,7 +83,7 @@
                                                 <div class="d-flex justify-content-between mt-2">
                                                     <button class="complete-btn"><a href="">{{__('labels.apply')}}</a>
                                                     </button>
-                                                    <button class="reset-btn"><a href="">{{__('labels.reset')}}</a>
+                                                    <button class="reset-btn reset_status"><a href="">{{__('labels.reset')}}</a>
                                                     </button>
                                                 </div>
                                             </div>
@@ -129,7 +129,7 @@
                                                 <div class="d-flex justify-content-between mt-2">
                                                     <button class="complete-btn"><a href="">{{__('labels.apply')}}</a>
                                                     </button>
-                                                    <button class="reset-btn"><a href="">{{__('labels.reset')}}</a>
+                                                    <button class="reset-btn reset_status"><a href="">{{__('labels.reset')}}</a>
                                                     </button>
                                                 </div>
                                             </div>
@@ -210,7 +210,7 @@
                                                 <div class="d-flex justify-content-between mt-2">
                                                     <button class="complete-btn"><a href="">{{__('labels.apply')}}</a>
                                                     </button>
-                                                    <button class="reset-btn"><a href="">{{__('labels.reset')}}</a>
+                                                    <button class="reset-btn reset_category"><a href="">{{__('labels.reset')}}</a>
                                                     </button>
                                                 </div>
                                             </div>
@@ -249,7 +249,7 @@
                                                 <div class="d-flex justify-content-between mt-2">
                                                     <button class="complete-btn"><a href="">{{__('labels.apply')}}</a>
                                                     </button>
-                                                    <button class="reset-btn"><a href="">{{__('labels.reset')}}</a>
+                                                    <button class="reset-btn reset_category"><a href="">{{__('labels.reset')}}</a>
                                                     </button>
                                                 </div>
                                             </div>
