@@ -316,9 +316,23 @@ $(document).ready(function (event) {
     });
 
     $('.room-type-drop').click(function (e) {
+        $('#select_style_ul').css('display','none');
         $('#fade').addClass('add_overlay');
         $("ul.list-rent-dropdown").removeAttr('style');
     });
+
+    $('.budget-drop').click(function (e) {
+        $('#select_style_ul').css('display','none');
+    });
+
+    $('.type-drop').click(function (e) {
+        $('#select_style_ul').css('display','none');
+    });
+    $('.list-complete-rent-drop').click(function (e) {
+        $('#select_style_ul').css('display','none');
+    });
+
+
 
     $("#room_studio").click(function (event) {
         if ($("#room_studio").is(":checked")) {

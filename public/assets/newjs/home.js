@@ -60,6 +60,19 @@ $(document).ready(function (event) {
         e.stopPropagation();
     });
 
+    $('.complete-resident-drop').click(function (e) {
+        $('#select_style_ul').css('display','none');
+        $('.new-rent-dropdown').removeClass('show');
+        e.stopPropagation();
+    });
+    $('.complete-rent-drop').click(function (e) {
+        $('#select_style_ul').css('display','none');
+        $(".resident-dropdown").removeClass("show");
+        e.stopPropagation();
+    });
+
+
+
     $('.resident-pan').on('click', function (event) {
         $(".resident-pan").removeClass('selected');
         $(this).addClass('selected');
