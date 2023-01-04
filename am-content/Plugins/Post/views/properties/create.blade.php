@@ -24,7 +24,7 @@
                         </div>
                     @endif
 
-                    <ul class="nav nav-pills d-flex justify-content-between" id="myTab3" role="tablist">
+                    <ul class="nav nav-tabs d-flex" id="myTab3" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab3" data-toggle="tab" href="#step_1" role="tab"
                                aria-controls="step_1" aria-selected="true">Step 1</a>
@@ -113,10 +113,13 @@
                                     </div>
                                 </div>
                                 <!-- first step end -->
-                                <div class="form-group">
-                                    <button class="btn btn-primary submitbtn" type="submit">Save
+                                <div class="form-group d-flex justify-content-between">
+                                    <button class="btn btn-primary previous-btn" type="submit">Previous
+                                    </button>
+                                    <button class="btn btn-primary save-btn" type="submit">Save
                                     </button>
                                 </div>
+                            </form>
                         </div>
                         {{--step 1 end here--}}
                         {{--step 2 start here--}}
@@ -203,8 +206,10 @@
                                     </div>
                                 </div>
                                 <!-- end step two -->
-                                <div class="form-group">
-                                    <button class="btn btn-primary submitbtn" type="submit">Save
+                                <div class="form-group d-flex justify-content-between">
+                                    <button class="btn btn-primary previous-btn" type="submit">Previous
+                                    </button>
+                                    <button class="btn btn-primary save-btn" type="submit">Save
                                     </button>
                                 </div>
                             </form>
@@ -279,8 +284,10 @@
                                     </div>
                                 </div>
                                 <!-- end third step -->
-                                <div class="form-group">
-                                    <button class="btn btn-primary submitbtn" type="submit">Save
+                                <div class="form-group d-flex justify-content-between">
+                                    <button class="btn btn-primary previous-btn" type="submit">Previous
+                                    </button>
+                                    <button class="btn btn-primary save-btn" type="submit">Save
                                     </button>
                                 </div>
                             </form>
@@ -382,8 +389,10 @@
                                     </div>
                                 </div>
                                 <!-- end third step -->
-                                <div class="form-group">
-                                    <button class="btn btn-primary submitbtn" type="submit">Save
+                                <div class="form-group d-flex justify-content-between">
+                                    <button class="btn btn-primary previous-btn" type="submit">Previous
+                                    </button>
+                                    <button class="btn btn-primary save-btn" type="submit">Save
                                     </button>
                                 </div>
                             </form>
@@ -454,8 +463,10 @@
                                     </div>
                                 </div>
                                 <!-- end third step -->
-                                <div class="form-group">
-                                    <button class="btn btn-primary submitbtn" type="submit">Save
+                                <div class="form-group d-flex justify-content-between">
+                                    <button class="btn btn-primary previous-btn" type="submit">Previous
+                                    </button>
+                                    <button class="btn btn-primary save-btn" type="submit">Save
                                     </button>
                                 </div>
                             </form>

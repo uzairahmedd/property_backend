@@ -3500,14 +3500,14 @@ a.btn-live {
 }
 
 .nav-tabs li {
-    width: 33%;
-    margin:auto;
+    /*width: 33%;*/
+    /*margin:auto;*/
     cursor: pointer;
 }
 
 ul.nav.nav-tabs {
     width: 100%;
-    border-bottom: none;
+    /*border-bottom: none;*/
 }
 
 .wizard-steps ul li a.active .wizard-step {
