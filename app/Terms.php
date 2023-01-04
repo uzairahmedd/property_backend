@@ -61,13 +61,20 @@ class Terms extends Model
 
 	public function post_district()
 	{
-		return $this->hasOne('App\Models\Postcategoryoption', 'term_id')->where('type', 'district')->with('category');
+		return $this->hasOne('App\Models\PostDistrict', 'term_id')->where('type', 'district')->with('district');
 	}
 
 	public function postcategory()
 	{
 		return $this->hasMany('App\PostCategory', 'term_id');
 	}
+
+
+	public function saudi_post_city()
+	{
+		return $this->hasone('App\Models\PostCity', 'term_id');
+	}
+
 	public function related()
 	{
 		return $this->hasMany('App\PostCategory', 'term_id');
@@ -160,8 +167,9 @@ class Terms extends Model
 
 	public function district()
 	{
-		return $this->hasOne('App\Models\Postcategoryoption', 'term_id')->where('type', 'district');
+		return $this->hasOne('App\Models\PostDistrict', 'term_id')->where('type', 'district');
 	}
+	
 
 
 	public function facilities()
@@ -208,7 +216,7 @@ class Terms extends Model
 
 	public function post_new_city()
 	{
-		return $this->hasOne('App\PostCategory', 'term_id')->where('type', 'city')->with('category');
+		return $this->hasOne('App\Models\PostCity', 'term_id')->with('city');
 	}
 
 	public function featured_option()

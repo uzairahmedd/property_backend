@@ -7,11 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Terms;
 use App\Options;
 use App\Category;
+use App\Models\City;
 use App\Models\Review;
 use CentralApps\MortgageCalculator\Calculator;
 use Auth;
 use Cart;
 use Amcoders\Plugin\sendmail\Helper\Propertymailsend;
+use App\Models\District;
 use App\Models\User;
 use DB;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -20,6 +22,7 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\JsonLdMulti;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class PropertyController extends controller
 {
@@ -150,15 +153,15 @@ class PropertyController extends controller
             JsonLdMulti::setTitle($property->title);
             // JsonLdMulti::setDescription($property->description->content ?? '');
             JsonLdMulti::setType('Property');
-            $street_width='';
-            $street_face='';
-            if(!empty($property->meter)){
-                $street_width=explode(',',$property->meter->content);
+            $street_width = '';
+            $street_face = '';
+            if (!empty($property->meter)) {
+                $street_width = explode(',', $property->meter->content);
             }
-            if(!empty($property->interface)){
-            $street_face=explode(',',$property->interface->content);
+            if (!empty($property->interface)) {
+                $street_face = explode(',', $property->interface->content);
             }
-            return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features', 'property_type_nature','street_width','street_face'));
+            return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features', 'property_type_nature', 'street_width', 'street_face'));
         } else {
             return abort(404);
         }
@@ -374,7 +377,7 @@ class PropertyController extends controller
         $category = $request->category ?? null;
 
         $statuses = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
-        $states = Category::where('type', 'states')->get();
+        $states = City::get();
         $categories = Category::where('type', 'category')->with('icon')->get();
         return view('theme::newlayouts.pages.property_lists', compact('category', 'state', 'status', 'statuses', 'categories', 'states', 'parent_category'));
     }
@@ -726,4 +729,112 @@ class PropertyController extends controller
             return "no";
         }
     }
+
+    public function cities()
+    {
+        $cities = array(
+            array('id' => '2', 'name' => 'Ad Dilam', 'ar_name' => '', 'slug' => 'Ad-Dilam', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '3', 'name' => "Ad Dir'iyah", 'ar_name' => '', 'slug' => 'Ad-Diriyah', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '4', 'name' => 'Al Hafuf', 'ar_name' => '', 'slug' => 'Al-Hafuf', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+            array('id' => '5', 'name' => 'Al Jafr', 'ar_name' => '', 'slug' => 'Al-Jafr', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '6', 'name' => "Al Jubail", 'ar_name' => '', 'slug' => 'Al-Jubail', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '7', 'name' => 'Al Khafji', 'ar_name' => '', 'slug' => 'Al-Khafji', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+            array('id' => '8', 'name' => 'Al Kharj', 'ar_name' => '', 'slug' => 'Al-Kharj', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '9', 'name' => "Al Khobar", 'ar_name' => '', 'slug' => 'Al-Khobar', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '10', 'name' => "Al Majma'ah", 'ar_name' => '', 'slug' => 'Al-Majmaah', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+            array('id' => '11', 'name' => 'Al Mubarraz', 'ar_name' => '', 'slug' => 'Al-Mubarraz', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '12', 'name' => "Al Qatif", 'ar_name' => '', 'slug' => 'Al-Qatif', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '13', 'name' => 'Al Qurayyat', 'ar_name' => '', 'slug' => 'Al-Qurayyat', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+            array('id' => '14', 'name' => 'Al Ula', 'ar_name' => '', 'slug' => 'Al-Ula', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '15', 'name' => "Al Uyainah", 'ar_name' => '', 'slug' => 'Al-Uyainah', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '16', 'name' => 'Ar Rass', 'ar_name' => '', 'slug' => 'Ar-Rass', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+            array('id' => '17', 'name' => 'Arar', 'ar_name' => '', 'slug' => 'Arar', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '18', 'name' => "At Taif", 'ar_name' => '', 'slug' => 'At-Taif', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '19', 'name' => 'Az Zulfi', 'ar_name' => '', 'slug' => 'Az-Zulfi', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+            array('id' => '20', 'name' => 'Bahah', 'ar_name' => '', 'slug' => 'Bahah', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '21', 'name' => "Buqayq", 'ar_name' => '', 'slug' => 'Buqayq', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '22', 'name' => 'Buraidah', 'ar_name' => '', 'slug' => 'Buraidah', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+            array('id' => '23', 'name' => 'Dammam', 'ar_name' => '', 'slug' => 'Dammam', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '24', 'name' => "Dhahran", 'ar_name' => '', 'slug' => 'Dhahran', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '25', 'name' => 'Hafar Al Batin', 'ar_name' => '', 'slug' => 'Hafar-Al-Batin', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+            array('id' => '26', 'name' => 'Hail', 'ar_name' => '', 'slug' => 'Hail', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '27', 'name' => "Jazan", 'ar_name' => '', 'slug' => 'Jazan', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '28', 'name' => 'Jeddah', 'ar_name' => '', 'slug' => 'Jeddah', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+            array('id' => '29', 'name' => 'Khamis Mushayt', 'ar_name' => '', 'slug' => 'Khamis-Mushayt', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '30', 'name' => "King Abdullah Economic City", 'ar_name' => '', 'slug' => 'King-Abdullah-Economic-City', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '31', 'name' => 'Madinah', 'ar_name' => '', 'slug' => 'Madinah', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+            array('id' => '32', 'name' => 'Makkah', 'ar_name' => '', 'slug' => 'Makkah', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '33', 'name' => "Najran", 'ar_name' => '', 'slug' => 'Najran', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '34', 'name' => 'Rabigh', 'ar_name' => '', 'slug' => 'Rabigh', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+
+            array('id' => '35', 'name' => 'Riyadh', 'ar_name' => '', 'slug' => 'Riyadh', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '36', 'name' => "Sakaka", 'ar_name' => '', 'slug' => 'Sakaka', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '37', 'name' => 'Sayhat', 'ar_name' => '', 'slug' => 'Sayhat', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+            array('id' => '38', 'name' => 'Tabuk', 'ar_name' => '', 'slug' => 'Tabuk', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '39', 'name' => "Tarut", 'ar_name' => '', 'slug' => 'Tarut', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '40', 'name' => 'Umluj', 'ar_name' => '', 'slug' => 'Umluj', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+            array('id' => '41', 'name' => 'Unayzah', 'ar_name' => '', 'slug' => 'Unayzah', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '42', 'name' => "Wadi Ad Dawasir", 'ar_name' => '', 'slug' => 'Wadi-Ad-Dawasir', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+            array('id' => '43', 'name' => 'Yanbu', 'ar_name' => '', 'slug' => 'Yanbu', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+            array('id' => '44', 'name' => 'Yanbu Al Sinaiyah', 'ar_name' => '', 'slug' => 'Yanbu-Al-Sinaiyah', 'type' => 'city', 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()),
+
+        );
+        City::insert($cities);
+        dd('done');
+    }
+
+
+    public function districts()
+    {
+
+
+
+
+
+    }
+
+    public function arabic_districts()
+    {
+
+        //   $count=District::where('ar_name','')->count();
+        //   dd($count);
+        // for ($i = 0; $i < count($jayParsedAry); $i++) {
+        //     $district=District::where('slug',$jayParsedAry[$i]['slug'])->first();
+        //            dump( $district->id);
+        //           $id=  District::where('id',$district->id)->update(['ar_name'=>$jayParsedAry[$i]['name']]);
+        //         }
+
+        //         dd('done');
+
+    }
+
+
+    // public function districts()
+    // {         
+    //     // dd(count($jayParsedAry));
+    //     $city_id = City::where('name', 'Jazan')->first();
+    //     // $city_id->id='10';
+    //     dump($city_id->id);
+    //     for ($i = 0; $i < count($jayParsedAry); $i++) {
+    //         $count = $i + 2151;
+    //         dump($count);
+    //         $district = array('id' => $count, 'name' => $jayParsedAry[$i]['name'], 'ar_name' => '', 'slug' => $jayParsedAry[$i]['slug'], 'type' => 'district', 'p_id' => $city_id->id, 'featured' => '1', 'user_id' => '1', 'status' => '1', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now());
+    //         District::insert($district);
+    //     }
+    //     dd('done');
+    // }
 }

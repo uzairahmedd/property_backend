@@ -14,8 +14,11 @@ use Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use App\Models\Mediapost;
+use App\Models\District;
 use App\Media;
 use App\Models\Postcategoryoption;
+use App\Models\PostDistrict;
+use App\Models\PostCity;
 use App\Models\Termrelation;
 use App\Models\Price;
 use App\Models\User;
@@ -618,14 +621,10 @@ class PropertyController extends controller
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
         //for edit
         $post_data = '';
-        $array = [];
         if (isset($id)) {
-            $post_data = Terms::with('district', 'property_status_type', 'postcategory')->where('user_id', Auth::id())->findorFail($id);
-            foreach ($post_data->postcategory as $key => $value) {
-                array_push($array, $value->category_id);
-            }
+            $post_data = Terms::with('district', 'property_status_type','saudi_post_city')->where('user_id', Auth::id())->findorFail($id);
         }
-        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'status_category', 'id', 'post_data', 'array'));
+        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'status_category', 'id', 'post_data'));
     }
 
     /**
@@ -676,22 +675,21 @@ class PropertyController extends controller
         $contact->save();
 
         //store & update property district and location
-        $district = Postcategoryoption::where('term_id', $term->id)->where('type', 'district')->first();
+        $district = PostDistrict::where('term_id', $term->id)->where('type', 'district')->first();
         if (empty($district)) {
-            $district = new Postcategoryoption;
+            $district = new PostDistrict;
             $district->term_id = $term->id;
             $district->type = 'district';
         }
-        $district->category_id = $request->district;
+        $district->district_id = $request->district;
         $district->value = $request->location;
         $district->save();
 
         //store & update property city 
-        $post_cat['term_id'] = $term->id;
-        $post_cat['category_id'] = $request->city;
-        $post_cat['type'] = 'city';
-        Postcategory::where('term_id', $term->id)->where('type', '=', 'city')->delete();
-        Postcategory::insert($post_cat);
+        $post_city['term_id'] = $term->id;
+        $post_city['city_id'] = $request->city;
+        PostCity::where('term_id', $term->id)->delete();
+        PostCity::insert($post_city);
 
         //property status create and update
         $post_cat['term_id'] = $term->id;
@@ -741,7 +739,7 @@ class PropertyController extends controller
         $parent_category = Category::where('type', 'parent_category')->get();
         $child_category =  Category::where('type', 'category')->get();
         //for edit
-        $post_data = Terms::with('property_age', 'landarea', 'builtarea', 'interface', 'meter', 'ready', 'price', 'electricity_facility', 'water_facility', 'streets', 'postcategory')->where('user_id', Auth::id())->where('id', decrypt($id))->first();
+        $post_data = Terms::with('property_age', 'landarea', 'builtarea', 'interface', 'meter', 'ready', 'price', 'electricity_facility', 'water_facility', 'streets', 'postcategory','property_status_type')->where('user_id', Auth::id())->where('id', decrypt($id))->first();
         $array = [];
         $interface_array = [];
         foreach ($post_data->postcategory as $key => $value) {
@@ -752,6 +750,7 @@ class PropertyController extends controller
                 $array[$value->type] = $value->category_id;
             }
         }
+      
         return view('theme::newlayouts.property_dashboard.property_create_two', compact('id', 'parent_category', 'child_category', 'post_data', 'array'));
     }
 
@@ -1055,7 +1054,7 @@ class PropertyController extends controller
     public function edit_five_property($id)
     {
         $term_id = decrypt($id);
-        $info = Terms::with('length','depth','property_type', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor',  'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility',  'property_status_type', 'postcategory', 'property_condition', 'option_data')->where('user_id', Auth::id())->findorFail($term_id);
+        $info = Terms::with('post_district','post_new_city','length','depth','property_type', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor',  'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility',  'property_status_type', 'postcategory', 'property_condition', 'option_data')->where('user_id', Auth::id())->findorFail($term_id);
         $features_array = [];
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
@@ -1426,6 +1425,6 @@ class PropertyController extends controller
     //distric against cities
     public function info(Request $request)
     {
-        return Category::where('p_id', $request->id)->select('id', 'name', 'ar_name')->latest()->get();
+        return District::where('p_id', $request->id)->select('id', 'name', 'ar_name')->get();
     }
 }

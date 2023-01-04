@@ -14,7 +14,7 @@
     <!-- owl carousel files -->
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/owl.theme.default.css')}}">
-    <link rel="stylesheet" href="{{theme_asset('assets/newcss/owl.theme.default.min.css')}}">.
+    <link rel="stylesheet" href="{{theme_asset('assets/newcss/owl.theme.default.min.css')}}">
     <!-- Home Stylesheet -->
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/common.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/home.css')}}">

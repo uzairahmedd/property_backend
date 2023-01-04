@@ -132,9 +132,9 @@
                         </div>
                         <div class="col-lg-6 col-md-12 d-flex add-address justify-content-end">
                             <div class="col-lg-8 col-md-10 col-sm-12 d-flex flex-column align-items-end">
-                                <label for="value" class="font-18 theme-text-seondary-black">{{__('labels.rental_value')}}</label>
+                                <label for="value" class="font-18 theme-text-seondary-black">{{__('labels.rental_value')}} {{ !empty($post_data->property_status_type) && $post_data->property_status_type->category->name == 'Rent'  ? __('labels.year') : '' }}</label>
                                 <div class="position-relative d-flex align-items-center w-100">
-                                    <input type="text" id="value" value="{{ !empty($post_data->price) ? $post_data->price->price  : old('price') }}" name="price" placeholder="{{__('labels.rental_value')}}" class="form-control theme-border w-100">
+                                    <input type="text" id="value" value="{{ !empty($post_data->price) ? $post_data->price->price  : old('price') }}" name="price" placeholder="{{__('labels.rental_value')}} {{ !empty($post_data->property_status_type) && $post_data->property_status_type->category->name == 'Rent'  ? __('labels.year') : '' }}" class="form-control theme-border w-100">
                                     <span class="font-14 font-medium position-absolute theme-text-blue price-unit">{{__('labels.sar')}}</span>
                                 </div>
                                 @if($errors->has('price'))

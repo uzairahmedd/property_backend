@@ -271,9 +271,9 @@ class DataController extends controller
         $this->room = $request->room;
         $this->min_price = $request->min_price ?? 0;
         $this->max_price = $request->max_price ?? 0;
-        $posts = Terms::where('type', 'property')->where('status', 1)->with('parentcategory', 'category', 'landarea', 'post_preview', 'price', 'post_district', 'user', 'property_status_type', 'option_data','post_new_city')->whereHas('post_district', function ($q) {
+        $posts = Terms::where('type', 'property')->where('status', 1)->with('parentcategory', 'category', 'landarea', 'post_preview', 'price', 'post_district', 'user', 'property_status_type', 'option_data','post_new_city')->whereHas('post_new_city', function ($q) {
             if (!empty($this->state)) {
-                return $q->where('category_id', $this->state);
+                return $q->where('city_id', $this->state);
             }
             return $q;
         })->whereHas('property_status_type', function ($q) {

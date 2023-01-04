@@ -5,13 +5,13 @@
     <div class="col-lg-9">
         <div class="card">
             <div class="card-body">
-                <h4>{{ __('Edit District') }}</h4>
+                <h4>{{ __('Edit City') }}</h4>
                 <form method="post" action="{{ route('admin.location.update',$info->id) }}" class="basicform">
                     @csrf
                     @method('PUT')
                     <div class="pt-20">
                         @php
-                        $arr['title']= 'District Name';
+                        $arr['title']= 'Location Name';
                         $arr['id']= 'title';
                         $arr['type']= 'text';
                         $arr['placeholder']= 'Enter Name';
@@ -21,27 +21,58 @@
 
                         echo  input($arr);
 
-                        $arr['title']= 'District Name in arabic';
-                        $arr['id']= 'ar_title';
+                        $arr['title']= 'slug';
+                        $arr['id']= 'slug';
                         $arr['type']= 'text';
-                        $arr['placeholder']= 'Enter Name in arabic';
-                        $arr['name']= 'ar_name';
+                        $arr['placeholder']= 'slug';
+                        $arr['name']= 'slug';
                         $arr['is_required'] = true;
-                        $arr['value'] = $info->ar_name;
+                        $arr['value'] = $info->slug;
 
                         echo  input($arr);
-
-                      
                         @endphp
                         <div class="form-group states">
-                            <label for="title">{{ __('Select City') }}</label>
+                            <label for="title">{{ __('Select State') }}</label>
                             <select class="form-control" name="p_id" id="state">
-                                <option disabled="" selected="">{{ __('Select City') }}</option>
-                                @foreach($cities as $r)
+                                <option disabled="" selected="">{{ __('Select State') }}</option>
+                                @foreach($states as $r)
                                 <option value="{{ $r->id }}" class="res" @if($r->id==$info->p_id) selected="" @endif>{{ $r->name }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        @php
+                        $arr['title']= 'Latitude';
+                        $arr['id']= 'latitude';
+                        $arr['type']= 'number';
+                        $arr['step']= 'any';
+                        $arr['placeholder']= '22.3569';
+                        $arr['name']= 'latitude';
+                        $arr['is_required'] = true;
+                        $arr['value'] = $json->latitude;
+
+                        echo  input($arr);
+
+                        $arr['title']= 'Longitude';
+                        $arr['id']= 'longitude';
+                        $arr['type']= 'number';
+                        $arr['step']= 'any';
+                        $arr['placeholder']= '91.7832';
+                        $arr['name']= 'longitude';
+                        $arr['is_required'] = true;
+                        $arr['value'] = $json->longitude;
+
+                        echo  input($arr);
+
+                        $arr['title']= 'Map Zoom Lavel';
+                        $arr['id']= 'zoom';
+                        $arr['type']= 'number';
+                        $arr['placeholder']= 'Enter zoom Lavel';
+                        $arr['name']= 'zoom';
+                        $arr['is_required'] = true;
+                        $arr['value'] = $json->zoom;
+
+                        echo  input($arr);
+                        @endphp
                     </div>
                 </div>
             </div>
@@ -59,8 +90,19 @@
                 </div>
             </div>
         </div>
+        <?php
+            if(!empty($info->preview)){
+                $media['preview'] = $info->preview->content;
+                $media['value'] = $info->preview->content;
+                echo  mediasection($media);
+            }
+            else{
+                echo mediasection();
+            }
+        ?>
    </div>
  </form>
+{{ mediasingle() }}
 @endsection
 
 @section('script')
@@ -83,9 +125,5 @@
       });
 
     })(jQuery);
-     //success response will assign here
-     function success(res) {
-            location.reload()
-        }
 </script>
 @endsection

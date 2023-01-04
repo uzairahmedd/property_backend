@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Terms;
 use App\Category;
 use App;
+use App\Models\City;
 use Session;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
@@ -103,7 +104,7 @@ class WelcomeController extends controller
             SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
             $status = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
             $categories = Category::where('type', 'category')->inRandomOrder()->get();
-            $states = Category::where('type', 'states')->with('childrenCategories')->get();
+            $states = City::get();
             $status_properties = $this->status_property($status);
             $property_nature = Category::where('type', 'parent_category')->get();
             $property_type = Category::where('type', 'category')->with('child','icon')->get();

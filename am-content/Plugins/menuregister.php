@@ -35,15 +35,15 @@ function RegisterAdminMenuBar()
 
 		if(Amcoders\Plugin\Plugin::is_active('Post'))
 		{
-			if (Auth()->user()->can('states.list')) {
-				$location['States'] = route('admin.states.index');
-			}
-			// if (Auth()->user()->can('cities.list')) {
-			// 	$location['Cities'] =  route('admin.cities.index');
-
+			// if (Auth()->user()->can('states.list')) {
+			// 	$location['States'] = route('admin.states.index');
 			// }
-			if (Auth()->user()->can('neighborhood.list')) {
-				$location['Neighborhood'] =  route('admin.neighborhood.index');
+			if (Auth()->user()->can('cities.list')) {
+				$location['Cities'] =  route('admin.cities.index');
+
+			}
+			if (Auth()->user()->can('district.list')) {
+				$location['District'] =  route('admin.district.index');
 
 			}
 			if (count($location ?? []) > 0) {
