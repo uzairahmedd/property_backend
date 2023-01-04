@@ -239,7 +239,7 @@ return [
     'offerer' => 'مقدم',
     'owner' => 'صاحب',
     'commissioner' => 'مفوض',
-    'rental_value' => 'قيمة ( السنة )',
+    'rental_value' => 'السعر (سنوي)',
     'sar' => 'ر.س',
     'electricity_meter_is_there' => 'هل يوجد عداد كهرباء',
     'water_meter_is_there' => 'هل يوجد عداد ماء',
