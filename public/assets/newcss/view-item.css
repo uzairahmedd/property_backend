@@ -301,9 +301,18 @@
     text-align: right;
 }
 
+.street-information-detail p {
+    direction: rtl;
+}
+
 .detail-book-btns
 {
     margin-right: 0 !important;
+}
+
+.prop-description-detail p
+{
+    text-align: right;
 }
 
 

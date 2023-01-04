@@ -314,7 +314,7 @@
                                 <p>{{__('labels.width')}}</p>
                             </div>
                             <div class="d-flex justify-content-center align-items-center">
-                                <p class="theme-text-blue text-bold">{{$count=1+$i;}}</p>
+                                <p class="theme-text-blue text-bold">{{$count=1+$i}}</p>
                                 <p>{{__('labels.street')}}</p>
                             </div>
                             <div class="d-flex justify-content-center align-items-start p-1"><i class="fa-solid fa-location-crosshairs"></i></div>

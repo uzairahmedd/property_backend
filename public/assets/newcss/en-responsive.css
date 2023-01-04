@@ -783,18 +783,27 @@
     direction: ltr;
 }
 
+.rtl .street-information-detail p {
+    direction: ltr;
+}
+
 .rtl .property-list-feature
 {
     justify-content: start !important;
     align-items: start !important;
     flex-direction: row-reverse !important;
-    direction: ltr;
+    /*direction: ltr;*/
 }
 
 .rtl .property-detail .card li {
     margin-right: 60px;
     margin-left: 0;
-    direction: rtl;
+    /*direction: rtl;*/
+}
+
+.rtl .prop-description-detail p
+{
+    text-align: left;
 }
 
 .rtl .land-area-txt {
@@ -922,6 +931,7 @@
 .rtl .price-section .del
 {
     margin-right: 10px;
+    /*margin-left: 10px;*/
 }
 
 .rtl .theme-text-sky
