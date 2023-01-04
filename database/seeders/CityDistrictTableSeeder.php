@@ -4,6 +4,21 @@ namespace Database\Seeders;
 
 use App\Models\City;
 use Illuminate\Database\Seeder;
+use App\Options;
+use App\Category;
+use App\Categorymeta;
+use App\Models\Categoryrelation;
+use App\Customizer;
+use App\Media;
+use App\Models\Mediapost;
+use App\Meta;
+use App\PostCategory;
+use App\Models\Postcategoryoption;
+use App\Models\Price;
+use App\Models\Transaction;
+use DB;
+use App\Terms;
+use App\Models\Categoryuser;
 
 class CityDistrictTableSeeder extends Seeder
 {
@@ -549,6 +564,6 @@ class CityDistrictTableSeeder extends Seeder
         ];
 
         City::insert($cities);
-        
+
     }
 }
