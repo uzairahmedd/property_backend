@@ -537,9 +537,9 @@ function properties_list(target, data) {
             price='N/A';
         }
 
-        title = str_limit(value.title, 20, true);
+        title = str_limit(value.title, 40, true);
         if(locale == 'ar'){
-            title = str_limit(value.ar_title, 20, true);
+            title = str_limit(value.ar_title, 40, true);
         }
 
         district = value.post_district.district.name;

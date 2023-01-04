@@ -211,7 +211,7 @@ return [
     'qualified' => 'Qualified leads',
     'property_title_en'=>'Title of ad (English)',
     'property_title_ar'=>'Title of ad (Arabic)',
-    'property_title_tooltip'=>'This helps your ad to be easily found in our website',
+    'property_title_tooltip'=>'This helps your ad to be easily found in google',
     'upfront_fees' => 'No upfront fees (only SR 50 upon sale or rent)',
     'great_user_exp' => 'Great user experience',
     'your_phone' => 'Your Phone!',
