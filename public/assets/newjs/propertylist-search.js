@@ -251,13 +251,14 @@ $(document).ready(function (event) {
 
     $('.search-input-bar').click(function () {
         $('#fade').addClass('add_overlay');
-        $('.overlay').css('z-index', '1');
-        $('.search-input-bar').css('z-index', '1');
+        $('.overlay').css('z-index', 'unset');
+        $('.search-input-bar').css('z-index', 'unset');
+        $('#property_states_dropdown .dropdown-menu').css('z-index', '1');
     });
 
     $('.overlay').click(function (event) {
         $('#fade').removeClass('add_overlay');
-        $("#select_style_ul").css('display', 'none');
+        // $("#select_style_ul").css('display', 'none');
         event.stopPropagation();
     });
 
@@ -266,7 +267,8 @@ $(document).ready(function (event) {
     $('.overlay').click(function (event) {
         $('#fade').removeClass('add_overlay');
         $("ul.list-rent-dropdown").removeClass('show');
-        $('.search-input-bar').css('z-index', 'unset');
+        $("#property_states_dropdown .dropdown-menu").removeClass('show');
+        // $('.search-input-bar').css('z-index', 'unset');
         event.stopPropagation();
     });
 

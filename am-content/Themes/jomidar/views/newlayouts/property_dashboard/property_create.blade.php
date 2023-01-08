@@ -1,10 +1,11 @@
 @extends('theme::newlayouts.app')
 @section('content')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sel" rel="stylesheet" />
+    <link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/create-property.css')}}">
+    <link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/hierarchy-select.min.css')}}">
 <script>
     var locale = '<?php echo Session::get('locale'); ?>';
 </script>
-<link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
-<link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/chosen.css')}}">
 <div class="add-property row-style">
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here start -->
@@ -48,7 +49,12 @@
 
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
                         <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop prop-title-en">
-                            <label for="english_title" class="theme-text-seondary-black">{{__('labels.property_title_en')}}</label>
+                            <div>
+                                    <button onclick="return false" class="fa fa-question-circle mt-1 tooltip_btn" type="btn" style="font-size: 1rem;" aria-hidden="true">
+                                        <span>{{__('labels.tooltip_google')}}</span>
+                                    </button>
+                                     <label for="english_title" class="theme-text-seondary-black">{{__('labels.property_title_en')}}</label>
+                            </div>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <input type="text" value="{{ $post_data != '' ? $post_data->title : old('title')}}" name="title" id="english_title" placeholder="{{__('labels.property_title_en')}}" class="form-control theme-border">
                             </div>
@@ -57,7 +63,12 @@
                             @endif
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address ps-0 pt-sm-0 prop-title-ar">
-                            <label for="ar_title" class="theme-text-seondary-black property_title_ar">{{__('labels.property_title_ar')}}</label>
+                            <div>
+                                <button onclick="return false" class="fa fa-question-circle mt-1 tooltip_btn" type="btn" style="font-size: 1rem;" aria-hidden="true">
+                                    <span>{{__('labels.tooltip_google')}}</span>
+                                </button>
+                                <label for="ar_title" class="theme-text-seondary-black property_title_ar">{{__('labels.property_title_ar')}}</label>
+                            </div>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <input type="text" value="{{ $post_data != '' ? $post_data->ar_title : old('ar_title')}}" name="ar_title" id="ar_title" placeholder="{{__('labels.property_title_ar')}}" class="form-control theme-border property_title_ar">
                             </div>
@@ -82,13 +93,23 @@
                             <label for="district" class="theme-text-seondary-black">{{__('labels.district')}}</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
-                                <select data-placeholder="Select your location" class="select-icon chosen-select"
-                                        tabindex="5" id="districts" name="district">
-                                    <option value="" disabled selected>{{__('labels.select_district')}}</option>
-                                </select>
-                                <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>
-
-
+                                <div class="dropdown hierarchy-select" id="district">
+                                    <button type="button" name="district" class="dropdown-toggle form-control district-form-control" id="example-two-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('labels.please_select_district')}}</button>
+                                    <div class="dropdown-menu" aria-labelledby="example-two-button">
+                                        <div class="hs-searchbox">
+                                            <input type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.search_district')}}">
+                                        </div>
+                                        <div class="hs-menu-inner" name="district">
+                                            <a class="dropdown-item" data-value="" data-default-selected="" href="#">{{__('labels.select_district')}}</a>
+                                        </div>
+                                    </div>
+                                    <input class="d-none" name="example_two" readonly="readonly" aria-hidden="true" type="text"/>
+                                </div>
+{{--                                <select data-placeholder="Select your location" class="select2 form-control"--}}
+{{--                                        tabindex="5" id="" name="district">--}}
+{{--                                    <option value="" disabled selected>{{__('labels.select_district')}}</option>--}}
+{{--                                </select>--}}
+{{--                                <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>--}}
                             </div>
                             @if($errors->has('district'))
                             <div class="error pt-1">{{ $errors->first('district') }}</div>
@@ -98,13 +119,28 @@
                             <label for="cities" class="theme-text-seondary-black">{{__('labels.city')}}</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
-                                <select data-placeholder="Select your location" class="select-icon chosen-select"
-                                        tabindex="5" name="city" id="cities">
-                                    <option value="" disabled selected> {{__('labels.select_city')}}</option>
-                                    @foreach(App\Category::where('type','states')->get() as $row)
-                                        <option value="{{ $row->id }}" {{ in_array($row->id, $array) ?  "selected" : (old('city') == $row->id ? 'selected' : '')  }}> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
-                                    @endforeach
-                                </select>
+
+                                <div class="dropdown hierarchy-select" id="cities">
+                                    <button type="button" class="dropdown-toggle form-control cities-form-control" tabindex="5" name="city" id="cities" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('labels.select_the_city')}}</button>
+                                    <div class="dropdown-menu" aria-labelledby="example-two-button">
+                                        <div class="hs-searchbox">
+                                            <input type="text" class="form-control" placeholder="{{__('labels.search_cities')}}" autocomplete="off">
+                                        </div>
+                                        <div class="hs-menu-inner" name="city">
+                                            @foreach(App\Category::where('type','states')->get() as $row)
+                                            <a class="dropdown-item" value="{{ $row->id }}" data-value="" data-default-selected="" href="#" {{ in_array($row->id, $array) ?  "selected" : (old('city') == $row->id ? 'selected' : '')  }}>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</a>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <input class="d-none" name="example_two" readonly="readonly" aria-hidden="true" type="text"/>
+                                </div>
+{{--                                <select data-placeholder="Select your location" class="select2 form-control"--}}
+{{--                                        tabindex="5" name="city" id="cities">--}}
+{{--                                    <option value="" disabled selected> {{__('labels.select_city')}}</option>--}}
+{{--                                    @foreach(App\Category::where('type','states')->get() as $row)--}}
+{{--                                        <option value="{{ $row->id }}" {{ in_array($row->id, $array) ?  "selected" : (old('city') == $row->id ? 'selected' : '')  }}> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </select>--}}
                             </div>
                             @if($errors->has('city'))
                             <div class="error pt-1">{{ $errors->first('city') }}</div>
@@ -124,6 +160,25 @@
 @endsection
 @section('property_create')
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
-<script src="{{theme_asset('assets/newjs/selectdrop/chosen.jquery.js')}}"></script>
-<script src="{{theme_asset('assets/newjs/selectdrop/init.js')}}"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- Popper Js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
+<script src="{{theme_asset('assets/newjs/selectdrop/hierarchy-select.js')}}"></script>
+<script>
+    $(document).ready(function(){
+        $('#cities').hierarchySelect({
+            hierarchy: false,
+            width: 'auto'
+        });
+    });
+    $(document).ready(function(){
+        $('#district').hierarchySelect({
+            hierarchy: false,
+            width: 'auto'
+        });
+    });
+</script>
 @endsection

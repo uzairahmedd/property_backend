@@ -509,6 +509,5 @@
 <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{ theme_asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ theme_asset('assets/js/property.js') }}"></script>
-<script src="{{ theme_asset('assets/js/custommap.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&callback=initialize&libraries=&v=weekly" defer></script>
 @endpush

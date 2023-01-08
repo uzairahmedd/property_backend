@@ -50,13 +50,15 @@ $(document).ready(function (event) {
        $('.home_fade').removeClass('add_overlay');
         $(".new-rent-dropdown").removeClass("show");
     });
+
     //city dropdown
-    $('.search-input-bar').click(function () {
+    $('.cities-form-control').click(function () {
         $('.home_fade').addClass('add_overlay');
     });
     $('.overlay').click(function (event) {
         $('.home_fade').removeClass('add_overlay');
-        $("#select_style_ul").css('display', 'none');
+        // $("#select_style_ul").css('display', 'none');
+        $(".hierarchy-select .dropdown-menu").removeClass("show");
     });
 
     //for property nature
@@ -73,12 +75,14 @@ $(document).ready(function (event) {
     });
 
     $('.complete-resident-drop').click(function (e) {
-        $('#select_style_ul').css('display','none');
+        // $('#select_style_ul').css('display','none');
+        $(".hierarchy-select .dropdown-menu").removeClass("show");
         $('.new-rent-dropdown').removeClass('show');
         e.stopPropagation();
     });
     $('.complete-rent-drop').click(function (e) {
-        $('#select_style_ul').css('display','none');
+        // $('#select_style_ul').css('display','none');
+        $(".hierarchy-select .dropdown-menu").removeClass("show");
         $(".resident-dropdown").removeClass("show");
         e.stopPropagation();
     });

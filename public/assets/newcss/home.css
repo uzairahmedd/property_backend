@@ -1644,6 +1644,7 @@ span.directorist-select__selected-list--item:first-letter {
     text-transform: capitalize;
 }
 
+
 /* Directorist Error */
 .directorist-select__container.directorist-error .directorist-select__label {
     border-color: rgb(199, 6, 6) !important;
@@ -1881,7 +1882,32 @@ span.directorist-select__selected-list--item:first-letter {
     border-radius: 25px;
 }
 
+@media screen and (max-width: 576px) {
+    .hierarchy-select .dropdown-menu
+    {
+        margin-left: -10px !important;
+    }
+
+    .cities-form-control
+    {
+        border-right: none;
+        padding-right: 0;
+        padding-top: 15px;
+        margin-left: 0;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #C9C9C9 !important;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .hierarchy-select
+    {
+        padding: 0 10px;
+    }
+}
+
 @media screen and (max-width: 336px) {
+
     .rent-box {
         width: 94px;
         max-width: 100%;

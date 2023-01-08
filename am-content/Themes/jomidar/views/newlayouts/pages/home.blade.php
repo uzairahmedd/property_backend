@@ -1,6 +1,9 @@
 @extends('theme::newlayouts.app')
 @section('content')
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/select-style.css')}}">
+    @push('home-drop')
+        <link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/home-drop.css')}}">
+    @endpush
     <style>
         @media screen and (max-width: 576px) {
             .rtl #select_style_ul {
@@ -262,14 +265,31 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 search-input-bar">
-                    <select class="theme-text-secondary-black border-0" theme="google" width="400" id="state_dropdown"
-                            style="appearance: none;" placeholder="{{__('labels.looking_property')}}" data-search="true"
-                            name="state">
-                        <option value="" disabled selected>{{__('labels.looking_property')}}</option>
-                        @foreach($states as $row)
-                            <option value="{{ $row->id }}">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
-                        @endforeach
-                    </select>
+                    <div class="dropdown hierarchy-select" id="example">
+                        <button type="button" class="dropdown-toggle form-control cities-form-control" id="state_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                        <div class="dropdown-menu" aria-labelledby="example-two-button">
+                            <div class="hs-searchbox">
+                                <img class="search-right-arrow" src="{{asset('assets/images/arrow-right.svg')}}" alt="">
+                                <input type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.select_the_city')}}">
+                            </div>
+                            <div class="hs-menu-inner" name="district">
+                                <a class="dropdown-item" data-value="" href="#">{{__('labels.looking_property')}}</a>
+                                @foreach($states as $row)
+                                <a class="dropdown-item" data-value="" value="{{ $row->id }}" href="#">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                        <input class="d-none" name="example_two" readonly="readonly" aria-hidden="true" type="text"/>
+                    </div>
+
+{{--                    <select class="theme-text-secondary-black border-0" theme="google" width="400" id="state_dropdown"--}}
+{{--                            style="appearance: none;" placeholder="{{__('labels.looking_property')}}" data-search="true"--}}
+{{--                            name="state">--}}
+{{--                        <option value="" disabled selected>{{__('labels.looking_property')}}</option>--}}
+{{--                        @foreach($states as $row)--}}
+{{--                            <option value="{{ $row->id }}">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>--}}
+{{--                        @endforeach--}}
+{{--                    </select>--}}
                 </div>
             </div>
         </form>
@@ -600,4 +620,23 @@
             });
         });
     </script>
+
+  @push('home-drop-js')
+      <!-- jQuery -->
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <!-- Popper Js -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <!-- Bootstrap JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
+      <script src="{{theme_asset('assets/newjs/selectdrop/hierarchy-select.js')}}"></script>
+      <script>
+          $(document).ready(function(){
+              $('#example').hierarchySelect({
+                  hierarchy: false,
+                  width: 'auto'
+              });
+          });
+      </script>
+  @endpush
+
 @endsection

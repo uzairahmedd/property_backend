@@ -9,6 +9,9 @@
 </script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/second-page.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/propertylist-search.css')}}">
+@push('property-list-drop')
+    <link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/propertylist-drop.css')}}">
+@endpush
 <div id="fade" class="overlay"></div>
 <div class="filter-bar">
     <div class="container">
@@ -230,13 +233,30 @@
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 order-lg-3 order-first search-box search-input-bar">
                     <div class="search-bar d-flex p-2 mt-1">
                         <img src="assets/images/search.svg" alt="">
-                        <select class="theme-text-secondary-black border-0" theme="google" width="400" style="appearance: none;" placeholder="{{__('labels.looking_property')}}" data-search="true" id="property_states_dropdown">
-                            <option value="" disabled selected>{{__('labels.looking_property')}}</option>
-                            @foreach ($states as $row)
-                            <option value="{{ $row->id }}" @if($state==$row->id) selected="selected" @endif>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
-                            @endforeach
-                            <!-- <option value="AX">الرياض<span class="property_num">(1)</span></option> -->
-                        </select>
+                        <div class="dropdown hierarchy-select" id="property_states_dropdown">
+                            <button type="button" class="dropdown-toggle form-control cities-form-control" id="state_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <div class="dropdown-menu" aria-labelledby="example-two-button">
+                                <div class="hs-searchbox">
+                                    <img class="search-right-arrow" src="{{asset('assets/images/arrow-right.svg')}}" alt="">
+                                    <input type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.select_the_city')}}">
+                                </div>
+                                <div class="hs-menu-inner" name="district">
+                                    <a class="dropdown-item" data-value="" href="#">{{__('labels.looking_property')}}</a>
+                                    @foreach($states as $row)
+                                        <a class="dropdown-item" data-value="" value="{{ $row->id }}" href="#" @if($state==$row->id) selected="selected" @endif>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</a>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <input class="d-none" name="example_two" readonly="readonly" aria-hidden="true" type="text"/>
+                        </div>
+
+{{--                        <select class="theme-text-secondary-black border-0" theme="google" width="400" style="appearance: none;" placeholder="{{__('labels.looking_property')}}" data-search="true" id="property_states_dropdown">--}}
+{{--                            <option value="" disabled selected>{{__('labels.looking_property')}}</option>--}}
+{{--                            @foreach ($states as $row)--}}
+{{--                            <option value="{{ $row->id }}" @if($state==$row->id) selected="selected" @endif>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>--}}
+{{--                            @endforeach--}}
+{{--                            <!-- <option value="AX">الرياض<span class="property_num">(1)</span></option> -->--}}
+{{--                        </select>--}}
                     </div>
                 </div>
             </div>
@@ -330,4 +350,23 @@
         }
     }, 2000);
 </script>
+
+@push('property-list-drop-js')
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Popper Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
+    <script src="{{theme_asset('assets/newjs/selectdrop/hierarchy-select.js')}}"></script>
+    <script>
+        $(document).ready(function(){
+            $('#property_states_dropdown').hierarchySelect({
+                hierarchy: false,
+                width: 'auto'
+            });
+        });
+    </script>
+@endpush
+
 @endsection

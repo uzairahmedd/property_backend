@@ -291,9 +291,78 @@
     text-align: right;
 }
 
-.description-card .form-control {
-    width: 100%;
+/*tooltips css start form here*/
+
+
+
+.tooltip_btn{
+    display: block;
+    font-size: 40px;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+
 }
+
+/*end of Average Styling */
+.tooltip_btn:focus{outline: none;}
+.tooltip_btn span{
+    background-color: #48AAE7;
+    border-radius: 5px;
+    z-index: 1;
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    font-size: 15px;
+    min-width: 240px;
+    padding: 10px 15px;
+    top: -60px;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    opacity: 0; /* to hide it but still there*/
+
+
+}
+.tooltip_btn span::before{
+    content: "";
+    position: absolute;
+    bottom: -20px ;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    border:10px solid;
+    border-color: #333 transparent transparent transparent;
+
+}
+.tooltip_btn:focus{
+    overflow: visible;
+}
+.tooltip_btn:focus span{
+    display: inline;
+    opacity: 1;
+}
+
+
+/*.description-card .form-control {*/
+/*    width: 100%;*/
+/*}*/
 
 .radio-edit-two {
     margin-right: 10px;

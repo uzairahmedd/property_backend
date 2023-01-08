@@ -1142,6 +1142,11 @@
     max-width: 100%;
 }
 
+.rtl .hs-menu-inner a
+{
+    text-align: left;
+}
+
 @media screen and (max-width: 930px) {
     .rtl .drop-download-app {
         margin-left: 0;
@@ -1153,12 +1158,20 @@
         direction: ltr !important;
     }
 
+    .rtl .prop-title-en, .region-drop {
+        margin-top: 25px;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
     .rtl .company {
         margin-left: 0;
     }
 }
 
 @media screen and (max-width:768px) {
+
+
 
     .rtl .number-verify-property .form-right {
         margin-right: 0px;
