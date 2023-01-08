@@ -81,7 +81,9 @@
 
 
 .description-card .form-control {
-    text-align: end;
+    text-align: right;
+    direction: rtl;
+    font-size: 14px;
     margin-top: 10px;
     height: 48px;
 }

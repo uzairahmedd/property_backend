@@ -52,11 +52,7 @@ $("#basicform").on('submit', function(e){
         cache: false,
         processData:false,
         beforeSend: function() {
-
                $('.basicbtn').attr('disabled','');
-
-
-
         },
 
         success: function(response){
@@ -197,9 +193,7 @@ var loadFile = function(event) {
 
 
 (function($) {
-
     $.fn.niceSelect = function(method) {
-
         // Methods
         if (typeof method == 'string') {
             if (method == 'update') {
@@ -207,11 +201,9 @@ var loadFile = function(event) {
                     var $select = $(this);
                     var $dropdown = $(this).next('.nice-select');
                     var open = $dropdown.hasClass('open');
-
                     if ($dropdown.length) {
                         $dropdown.remove();
                         create_nice_select($select);
-
                         if (open) {
                             $select.next().trigger('click');
                         }
@@ -257,7 +249,6 @@ var loadFile = function(event) {
                 .attr('tabindex', $select.attr('disabled') ? null : '0')
                 .html($select.attr('multiple') ? '<span class="multiple-options"></span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."/></div><ul class="list"></ul>' : '<span class="current"></span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."/></div><ul class="list"></ul>')
             );
-
             var $dropdown = $select.next();
             var $options = $select.find('option');
             if ($select.attr('multiple')) {

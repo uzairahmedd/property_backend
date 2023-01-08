@@ -269,8 +269,9 @@
                         <button type="button" class="dropdown-toggle form-control cities-form-control" id="state_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="example-two-button">
                             <div class="hs-searchbox">
-                                <img class="search-right-arrow" src="{{asset('assets/images/arrow-right.svg')}}" alt="">
-                                <input type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.select_the_city')}}">
+                                <img class="search-right-arrow" src="{{asset('assets/images/icons/arrow-right.png')}}" alt="">
+                                <input type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.search_cities')}}">
+                                <img class="search-left-arrow" src="{{asset('assets/images/icons/arrow-left.png')}}" alt="">
                             </div>
                             <div class="hs-menu-inner" name="district">
                                 <a class="dropdown-item" data-value="" href="#">{{__('labels.looking_property')}}</a>
@@ -633,7 +634,8 @@
           $(document).ready(function(){
               $('#example').hierarchySelect({
                   hierarchy: false,
-                  width: 'auto'
+                  width: 'auto',
+                  height: '160px'
               });
           });
       </script>

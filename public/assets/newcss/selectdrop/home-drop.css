@@ -73,17 +73,27 @@
 {
     position: absolute;
     margin-left: auto;
-    right: 0;
+    left: 0;
     top: 18px;
-    margin-right: 10px;
+    display: none;
+    margin-left: 10px;
+}
+
+.search-left-arrow
+{
+    position: absolute;
+    margin-left: auto;
+    top: 18px;
+    right: 5px;
 }
 
 .hs-searchbox input
 {
     text-align: right;
-    padding-right: 30px;
+    padding-right: 20px;
+    direction: rtl;
     border-radius: 0;
-    height: 45px;
+    height: 48px;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     border-top: unset;
@@ -95,6 +105,7 @@
 }
 
 .hierarchy-select .dropdown-menu::before {
+    display: none;
     background-color: #ffffff;
     content: "";
     height: 20px;
@@ -123,7 +134,7 @@
 }
 
 .hs-menu-inner a.dropdown-item:active {
-    background-color: var(--theme-blue);
+    background-color: unset !important;
 }
 
 .district-form-control
@@ -133,7 +144,7 @@
 
 .hierarchy-select .dropdown-menu
 {
-    /*top: -48px !important;*/
+    top: -56px !important;
 }
 
 .hs-menu-inner a
@@ -147,18 +158,41 @@
 }
 
 .rtl .hs-searchbox input {
+    padding-left: 25px;
+    direction: ltr;
+}
+
+.rtl .search-left-arrow
+{
+    display: none;
+}
+
+.rtl .search-right-arrow {
+    display: block;
+}
+
+.rtl .hs-searchbox input {
     text-align: left;
 }
 
 .rtl .hierarchy-select .dropdown-menu::before
 {
     left: 0;
+    display: none;
     right: unset;
 }
 
- @media screen and (max-width: 576px){
-    .rtl .hierarchy-select .dropdown-menu {
-        margin-left: -10px !important;
-    }
+.rtl .hierarchy-select .dropdown-menu
+{
+    left: -20px !important;
+}
+
+ @media screen and (max-width: 576px) {
+     .rtl .hierarchy-select .dropdown-menu {
+         margin-left: -10px !important;
+     }
+ }
+
+
 
 

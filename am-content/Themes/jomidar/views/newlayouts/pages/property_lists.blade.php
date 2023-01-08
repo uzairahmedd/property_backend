@@ -232,13 +232,14 @@
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 order-lg-3 order-first search-box search-input-bar">
                     <div class="search-bar d-flex p-2 mt-1">
-                        <img src="assets/images/search.svg" alt="">
+                        <img id="search-img" class="search-img" src="assets/images/search.svg" alt="">
                         <div class="dropdown hierarchy-select" id="property_states_dropdown">
                             <button type="button" class="dropdown-toggle form-control cities-form-control" id="state_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <div class="dropdown-menu" aria-labelledby="example-two-button">
                                 <div class="hs-searchbox">
-                                    <img class="search-right-arrow" src="{{asset('assets/images/arrow-right.svg')}}" alt="">
-                                    <input type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.select_the_city')}}">
+                                    <img class="search-right-arrow" src="{{asset('assets/images/icons/arrow-right.png')}}" alt="">
+                                    <input type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.search_cities')}}">
+                                    <img class="search-left-arrow" src="{{asset('assets/images/icons/arrow-left.png')}}" alt="">
                                 </div>
                                 <div class="hs-menu-inner" name="district">
                                     <a class="dropdown-item" data-value="" href="#">{{__('labels.looking_property')}}</a>

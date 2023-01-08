@@ -7,7 +7,17 @@
 {
     width: 100%;
     padding: 0 !important;
-    /*top: -49px !important;*/
+    top: -49px !important;
+}
+
+.hs-menu-inner option
+{
+    text-align: right;
+}
+
+.rtl .hs-menu-inner option
+{
+    text-align: left;
 }
 
 .dropdown-toggle::after
@@ -33,6 +43,29 @@
 .hierarchy-select button
 {
     border: 0.5px solid var(--theme-blue);
+}
+
+
+.hs-menu-inner::-webkit-scrollbar {
+    width: 4px;               /* width of the entire scrollbar */
+}
+
+.hs-menu-inner::-webkit-scrollbar {
+    float: left !important;              /* width of the entire scrollbar */
+}
+
+.hs-menu-inner::-webkit-scrollbar-track {
+    background: var(--theme-white);        /* color of the tracking area */
+}
+
+.hs-menu-inner::-webkit-scrollbar-thumb {
+    background-color: var(--theme-blue);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid var(--theme-blue);  /* creates padding around scroll thumb */
+}
+
+.hs-menu-inner a.dropdown-item:active {
+    background-color: unset !important;
 }
 
 .hs-menu-inner .dropdown-item.active

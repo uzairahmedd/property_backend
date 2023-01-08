@@ -15,7 +15,7 @@
 }
 
 .hierarchy-select .dropdown-menu {
-    top: 20px !important;
+    top: -62px !important;
     width: 100%;
     padding: 0;
     margin-left: 10px;
@@ -45,21 +45,27 @@
     background-color: unset;
 }
 
-.search-right-arrow
+/*.search-right-arrow*/
+/*{*/
+/*    position: absolute;*/
+/*    margin-left: auto;*/
+/*    right: 0;*/
+/*    top: 26px;*/
+/*    margin-right: 10px;*/
+/*}*/
+
+.z-index
 {
-    position: absolute;
-    margin-left: auto;
-    right: 0;
-    top: 18px;
-    margin-right: 10px;
+    z-index: unset;
 }
 
 .hs-searchbox input
 {
     text-align: right;
     padding-right: 30px;
+    border-left: unset;
     border-radius: 0;
-    height: 45px;
+    height: 60px;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     border-top: unset;
@@ -72,6 +78,7 @@
 
 .hierarchy-select .dropdown-menu::before {
     background-color: #ffffff;
+    display: none;
     content: "";
     height: 20px;
     left: unset;
@@ -780,6 +787,11 @@ element.style {
 
 .rtl .ss_ulsearch {
     margin-right: -70px !important;
+}
+
+.rtl .hierarchy-select .dropdown-menu
+{
+    margin-left: -8px;
 }
 
 .rtl .type-dropdown

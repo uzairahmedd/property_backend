@@ -249,15 +249,18 @@ $(document).ready(function (event) {
         $('#dropdownMenuLink-property-type').text(text);
     }
 
-    $('.search-input-bar').click(function () {
+    $('.hierarchy-select button').click(function () {
         $('#fade').addClass('add_overlay');
-        $('.overlay').css('z-index', 'unset');
-        $('.search-input-bar').css('z-index', 'unset');
-        $('#property_states_dropdown .dropdown-menu').css('z-index', '1');
+        $('.overlay').addClass('z-index');
+        $('.filter-all-bar').css('z-index','-1');
+        // $('#property_states_dropdown .dropdown-menu').css('z-index', '1');
+
+
     });
 
     $('.overlay').click(function (event) {
         $('#fade').removeClass('add_overlay');
+        $('.overlay').removeClass('z-index');
         // $("#select_style_ul").css('display', 'none');
         event.stopPropagation();
     });
@@ -268,13 +271,14 @@ $(document).ready(function (event) {
         $('#fade').removeClass('add_overlay');
         $("ul.list-rent-dropdown").removeClass('show');
         $("#property_states_dropdown .dropdown-menu").removeClass('show');
-        // $('.search-input-bar').css('z-index', 'unset');
+        $('.search-input-bar').css('z-index', 'unset');
+        $('.overlay').removeClass('z-index');
         event.stopPropagation();
     });
 
     $('#dropdownMenuLink-property-type').click(function () {
         $('#fade').addClass('add_overlay');
-        $('.overlay').css('z-index', '1');
+        // $('.overlay').css('z-index', '1');
         $('.search-input-bar').css('z-index', 'unset');
     });
 
@@ -283,30 +287,33 @@ $(document).ready(function (event) {
         $('#fade').removeClass('add_overlay');
         $("ul.type-dropdown").removeClass('show');
         $('.search-input-bar').css('z-index', 'unset');
+        $('.overlay').removeClass('z-index');
         event.stopPropagation();
     });
 
     $('.budget-btn').click(function () {
         $('#fade').addClass('add_overlay');
-        $('.overlay').css('z-index', '1');
+        // $('.overlay').css('z-index', '1');
         $('.search-input-bar').css('z-index', 'unset');
     });
 
     $('.overlay').click(function (event) {
         $('#fade').removeClass('add_overlay');
         $("ul.budget-dropdown").removeClass('show');
+        $('.overlay').removeClass('z-index');
         event.stopPropagation();
     });
 
     $('.room-btn').click(function () {
         $('#fade').addClass('add_overlay');
-        $('.overlay').css('z-index', '1');
+        // $('.overlay').css('z-index', '1');
         $('.search-input-bar').css('z-index', 'unset');
     });
 
     $('.overlay').click(function (event) {
         $('#fade').removeClass('add_overlay');
         $("ul.room-dropdown").removeClass('show');
+        $('.overlay').removeClass('z-index');
         event.stopPropagation();
     });
 
@@ -332,6 +339,7 @@ $(document).ready(function (event) {
     });
     $('.list-complete-rent-drop').click(function (e) {
         $('#select_style_ul').css('display','none');
+        $('.overlay').removeClass('z-index');
     });
 
 
@@ -662,4 +670,9 @@ function PaginationClicked(key) {
     var url = $('.page-link-no' + key).data('url');
     get_properties(url);
 }
+
+$('#search-img').click(function () {
+    $('#fade').removeClass('add_overlay');
+});
+
 
