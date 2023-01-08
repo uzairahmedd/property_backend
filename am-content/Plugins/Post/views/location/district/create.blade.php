@@ -5,12 +5,12 @@
     <div class="col-lg-9">
         <div class="card">
             <div class="card-body">
-                <h4>{{ __('Add new neighborhood') }}</h4>
+                <h4>{{ __('Add new District') }}</h4>
                 <form method="post" action="{{ route('admin.location.store') }}" class="basicform">
                     @csrf
                     <div class="pt-20">
                         @php
-                        $arr['title']= 'Neighborhood Name';
+                        $arr['title']= 'District Name';
                         $arr['id']= 'title';
                         $arr['type']= 'text';
                         $arr['placeholder']= 'Enter Name in english';
@@ -20,7 +20,7 @@
                         echo  input($arr);
 
                   
-                        $arr['title']= 'Neighborhood Name in Arabic';
+                        $arr['title']= 'District Name in Arabic';
                         $arr['id']= 'ar_title';
                         $arr['type']= 'text';
                         $arr['placeholder']= 'Enter Name in arabic';
@@ -30,10 +30,10 @@
                         echo  input($arr);
                         @endphp
                         <div class="form-group">
-                            <label for="title">Select State</label>
-                            <select class="form-control" name="p_id" id="state">
-                                <option disabled="" selected="">Select State</option>
-                                @foreach(App\Category::where('type','states')->get() as $row)
+                            <label for="title">Select city</label>
+                            <select class="form-control" name="p_id" id="city">
+                                <option disabled="" selected="">Select city</option>
+                                @foreach(App\Models\City::get() as $row)
                                 <option value="{{ $row->id }}">{{ $row->name }}</option>
                                 @endforeach
                             </select>
@@ -68,7 +68,7 @@
                 </div>
             </div>
     </div>
-    <input type="hidden" name="type" value="neighborhood">
+    <input type="hidden" name="type" value="district">
 </form>
 @endsection
 

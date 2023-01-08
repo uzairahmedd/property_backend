@@ -5,13 +5,13 @@
     <div class="col-lg-9">
         <div class="card">
             <div class="card-body">
-                <h4>{{ __('Edit Neighborhood') }}</h4>
+                <h4>{{ __('Edit City') }}</h4>
                 <form method="post" action="{{ route('admin.location.update',$info->id) }}" class="basicform">
                     @csrf
                     @method('PUT')
                     <div class="pt-20">
                         @php
-                        $arr['title']= 'Neighborhood Name';
+                        $arr['title']= 'Location Name';
                         $arr['id']= 'title';
                         $arr['type']= 'text';
                         $arr['placeholder']= 'Enter Name';
@@ -21,17 +21,15 @@
 
                         echo  input($arr);
 
-                        $arr['title']= 'Neighborhood Name in arabic';
-                        $arr['id']= 'ar_title';
+                        $arr['title']= 'slug';
+                        $arr['id']= 'slug';
                         $arr['type']= 'text';
-                        $arr['placeholder']= 'Enter Name in arabic';
-                        $arr['name']= 'ar_name';
+                        $arr['placeholder']= 'slug';
+                        $arr['name']= 'slug';
                         $arr['is_required'] = true;
-                        $arr['value'] = $info->ar_name;
+                        $arr['value'] = $info->slug;
 
                         echo  input($arr);
-
-                      
                         @endphp
                         <div class="form-group states">
                             <label for="title">{{ __('Select State') }}</label>
@@ -42,6 +40,39 @@
                                 @endforeach
                             </select>
                         </div>
+                        @php
+                        $arr['title']= 'Latitude';
+                        $arr['id']= 'latitude';
+                        $arr['type']= 'number';
+                        $arr['step']= 'any';
+                        $arr['placeholder']= '22.3569';
+                        $arr['name']= 'latitude';
+                        $arr['is_required'] = true;
+                        $arr['value'] = $json->latitude;
+
+                        echo  input($arr);
+
+                        $arr['title']= 'Longitude';
+                        $arr['id']= 'longitude';
+                        $arr['type']= 'number';
+                        $arr['step']= 'any';
+                        $arr['placeholder']= '91.7832';
+                        $arr['name']= 'longitude';
+                        $arr['is_required'] = true;
+                        $arr['value'] = $json->longitude;
+
+                        echo  input($arr);
+
+                        $arr['title']= 'Map Zoom Lavel';
+                        $arr['id']= 'zoom';
+                        $arr['type']= 'number';
+                        $arr['placeholder']= 'Enter zoom Lavel';
+                        $arr['name']= 'zoom';
+                        $arr['is_required'] = true;
+                        $arr['value'] = $json->zoom;
+
+                        echo  input($arr);
+                        @endphp
                     </div>
                 </div>
             </div>
@@ -59,8 +90,19 @@
                 </div>
             </div>
         </div>
+        <?php
+            if(!empty($info->preview)){
+                $media['preview'] = $info->preview->content;
+                $media['value'] = $info->preview->content;
+                echo  mediasection($media);
+            }
+            else{
+                echo mediasection();
+            }
+        ?>
    </div>
  </form>
+{{ mediasingle() }}
 @endsection
 
 @section('script')
@@ -83,9 +125,5 @@
       });
 
     })(jQuery);
-     //success response will assign here
-     function success(res) {
-            location.reload()
-        }
 </script>
 @endsection

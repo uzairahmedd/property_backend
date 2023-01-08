@@ -13,7 +13,7 @@
         <form method="post" action="{{ route('agent.property.store_property') }}">
             @csrf
             <input type="hidden" name="term_id" value="{{$id}}">
-            <input type="hidden" id="district_id" value="{{$post_data != '' ?  $post_data->district->category_id : old('district')}}">
+            <input type="hidden" id="district_id" value="{{$post_data != '' ?  $post_data->district->district_id : old('district')}}">
             <div class="description-card card">
                 @if($errors->has('message'))
                 <div class="error d-flex justify-content-end pt-1">{{ $errors->first('message') }}</div>
@@ -49,12 +49,18 @@
 
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
                         <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop prop-title-en">
+<<<<<<< HEAD
                             <div>
                                     <button onclick="return false" class="fa fa-question-circle mt-1 tooltip_btn" type="btn" style="font-size: 1rem;" aria-hidden="true">
                                         <span>{{__('labels.tooltip_google')}}</span>
                                     </button>
                                      <label for="english_title" class="theme-text-seondary-black">{{__('labels.property_title_en')}}</label>
                             </div>
+=======
+                            <label for="english_title" class="theme-text-seondary-black"><span data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('labels.property_title_tooltip')}}">
+                                    <i class="fa fa-question-circle" style="font-size: 1rem;"></i>
+                                </span>{{__('labels.property_title_en')}}</label>
+>>>>>>> f9bde03751b3a4ea40c31ce3e4de03567f9cdd33
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <input type="text" value="{{ $post_data != '' ? $post_data->title : old('title')}}" name="title" id="english_title" placeholder="{{__('labels.property_title_en')}}" class="form-control theme-border">
                             </div>
@@ -63,12 +69,18 @@
                             @endif
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address ps-0 pt-sm-0 prop-title-ar">
+<<<<<<< HEAD
                             <div>
                                 <button onclick="return false" class="fa fa-question-circle mt-1 tooltip_btn" type="btn" style="font-size: 1rem;" aria-hidden="true">
                                     <span>{{__('labels.tooltip_google')}}</span>
                                 </button>
                                 <label for="ar_title" class="theme-text-seondary-black property_title_ar">{{__('labels.property_title_ar')}}</label>
                             </div>
+=======
+                            <label for="ar_title" class="theme-text-seondary-black property_title_ar"><span data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('labels.property_title_tooltip')}}">
+                                    <i class="fa fa-question-circle" style="font-size: 1rem;"></i>
+                                </span>{{__('labels.property_title_ar')}}</label>
+>>>>>>> f9bde03751b3a4ea40c31ce3e4de03567f9cdd33
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <input type="text" value="{{ $post_data != '' ? $post_data->ar_title : old('ar_title')}}" name="ar_title" id="ar_title" placeholder="{{__('labels.property_title_ar')}}" class="form-control theme-border property_title_ar">
                             </div>
@@ -110,6 +122,13 @@
 {{--                                    <option value="" disabled selected>{{__('labels.select_district')}}</option>--}}
 {{--                                </select>--}}
 {{--                                <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>--}}
+{{--                                conflict select start--}}
+{{--                                <select data-placeholder="Select your location" class="select-icon chosen-select" tabindex="5" id="districts" name="district">--}}
+{{--                                    <option value="" disabled selected>{{__('labels.select_district')}}</option>--}}
+{{--                                </select>--}}
+{{--                                <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>--}}
+
+
                             </div>
                             @if($errors->has('district'))
                             <div class="error pt-1">{{ $errors->first('district') }}</div>
@@ -119,6 +138,7 @@
                             <label for="cities" class="theme-text-seondary-black">{{__('labels.city')}}</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
+<<<<<<< HEAD
 
                                 <div class="dropdown hierarchy-select" id="cities">
                                     <button type="button" class="dropdown-toggle form-control cities-form-control" tabindex="5" name="city" id="cities" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('labels.select_the_city')}}</button>
@@ -141,6 +161,14 @@
 {{--                                        <option value="{{ $row->id }}" {{ in_array($row->id, $array) ?  "selected" : (old('city') == $row->id ? 'selected' : '')  }}> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>--}}
 {{--                                    @endforeach--}}
 {{--                                </select>--}}
+=======
+                                <select data-placeholder="Select your location" class="select-icon chosen-select" tabindex="5" name="city" id="cities">
+                                    <option value="" disabled selected> {{__('labels.select_city')}}</option>
+                                    @foreach(App\Models\City::get() as $row)
+                                    <option value="{{ $row->id }}" {{ $post_data != '' &&  $post_data->saudi_post_city->city_id ==  $row->id ?  "selected" : (old('city') == $row->id ? 'selected' : '')  }}> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
+                                    @endforeach
+                                </select>
+>>>>>>> f9bde03751b3a4ea40c31ce3e4de03567f9cdd33
                             </div>
                             @if($errors->has('city'))
                             <div class="error pt-1">{{ $errors->first('city') }}</div>
@@ -160,6 +188,7 @@
 @endsection
 @section('property_create')
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
+<<<<<<< HEAD
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!-- Popper Js -->
@@ -182,3 +211,8 @@
     });
 </script>
 @endsection
+=======
+<script src="{{theme_asset('assets/newjs/selectdrop/chosen.jquery.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/selectdrop/init.js')}}"></script>
+@endsection
+>>>>>>> f9bde03751b3a4ea40c31ce3e4de03567f9cdd33

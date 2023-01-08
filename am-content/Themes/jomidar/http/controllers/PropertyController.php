@@ -7,11 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Terms;
 use App\Options;
 use App\Category;
+use App\Models\City;
 use App\Models\Review;
 use CentralApps\MortgageCalculator\Calculator;
 use Auth;
 use Cart;
 use Amcoders\Plugin\sendmail\Helper\Propertymailsend;
+use App\Models\District;
 use App\Models\User;
 use DB;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -20,6 +22,7 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\JsonLdMulti;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class PropertyController extends controller
 {
@@ -150,15 +153,15 @@ class PropertyController extends controller
             JsonLdMulti::setTitle($property->title);
             // JsonLdMulti::setDescription($property->description->content ?? '');
             JsonLdMulti::setType('Property');
-            $street_width='';
-            $street_face='';
-            if(!empty($property->meter)){
-                $street_width=explode(',',$property->meter->content);
+            $street_width = '';
+            $street_face = '';
+            if (!empty($property->meter)) {
+                $street_width = explode(',', $property->meter->content);
             }
-            if(!empty($property->interface)){
-            $street_face=explode(',',$property->interface->content);
+            if (!empty($property->interface)) {
+                $street_face = explode(',', $property->interface->content);
             }
-            return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features', 'property_type_nature','street_width','street_face'));
+            return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features', 'property_type_nature', 'street_width', 'street_face'));
         } else {
             return abort(404);
         }
@@ -374,7 +377,7 @@ class PropertyController extends controller
         $category = $request->category ?? null;
 
         $statuses = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
-        $states = Category::where('type', 'states')->get();
+        $states = City::get();
         $categories = Category::where('type', 'category')->with('icon')->get();
         return view('theme::newlayouts.pages.property_lists', compact('category', 'state', 'status', 'statuses', 'categories', 'states', 'parent_category'));
     }
