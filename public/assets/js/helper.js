@@ -224,7 +224,7 @@ function favourite_property(id) {
 				$('#login').modal('show');
 				$('.heart' + id).removeClass('fa-solid');
 				$('.heart' + id).addClass('fa-regular');
-				$('#contactModal').modal('show');
+				$('#login_modal').modal('show');
 			}
 		},
 		error: function (xhr, status, error) {

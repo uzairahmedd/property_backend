@@ -394,6 +394,11 @@ class PropertyController extends controller
         return view('theme::newlayouts.pages.property_auction');
     }
 
+    // public function phone_verification()
+    // {
+    //     return view('theme::newlayouts.pages.post_property');
+    // }
+
     // public function userboard_profile()
     // {
     //     return view('theme::newlayouts.user_dashboard.profile');

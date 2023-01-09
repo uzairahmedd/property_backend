@@ -19,10 +19,10 @@
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="request text-center b-r-8">
                         <p class="font-medium theme-text-seondary-black">{{__('labels.request_for_property')}}</p>
-                        <input type="phone" name="phone" value="{{ Auth::User()->phone ?? '' }}" placeholder="رقم الجوال" class="form-control theme-border">
-                        <div class="d-flex">
+                        <input disabled type="phone" name="phone" value="{{ Auth::User()->phone ?? '' }}" placeholder="رقم الجوال" class="form-control theme-border">
+                        <!-- <div class="d-flex">
                             <a  href="/Update-phone/{{encrypt(Auth::User()->id)}}" class="btn modify-btn font-medium font-14 theme-text-white b-r-8">{{__('labels.modify')}} <i class=""></i> </a>
-                        </div>
+                        </div> -->
                         <span id="phone_errors"></span>
                     </div>
                     <a href="{{ route('agent.property.property_list') }}" class="btn btn-theme-secondary my-ads-btns w-100 theme-text-sky center_property">{{__('labels.my_properties')}}</a>

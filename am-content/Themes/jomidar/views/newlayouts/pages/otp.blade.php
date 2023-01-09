@@ -27,7 +27,7 @@
                                 <input type="hidden" name="user_mobile" id="user_mbl" value="{{$user_data->phone}}">
                                 <div class="d-flex align-items-center justify-content-center mb-4_5 otp-inputs" style="gap:24px">
                                     <input type="text" name="otp[]" id="otp1" maxlength="1" value="" class="form-control">
-                                    <input type="text" name="otp[]" id="otp2" maxlength="1" value="" maxlength="1" value="" class="form-control">
+                                    <input type="text" name="otp[]" id="otp2" maxlength="1" value="" class="form-control">
                                     <input type="text" name="otp[]" id="otp3" maxlength="1" value="" class="form-control">
                                     <input type="text" name="otp[]" id="otp4" maxlength="1" value="" class="form-control">
                                 </div>
@@ -42,10 +42,10 @@
                             </form>
                             <span id="otp_error"></span>
                             <div class="timer">
-                                <p class="text-center">{{__('labels.code_expire')}}<span class="minute theme-red font-24">00</span><span class="theme-text-blue font-24">:</span><span class="second theme-red font-24">00</span> {{__('labels.second')}}
+                                <p  class="text-center">{{__('labels.code_expire')}}<span class="minute theme-red font-24">00</span><span class="theme-text-blue font-24">:</span><span class="second theme-red font-24">00</span> {{__('labels.second')}}
                                 </p>
-{{--                                <p id="error_msg" class="text-center d-none mb-0">{{__('labels.resend_link_expire')}}<span class="otp-time theme-text-blue font-weight-600"> {{__('labels.resubmit_link')}} </span>--}}
-{{--                                </p>--}}
+                              <p id="error_msg" class="text-center d-none mb-0">{{__('labels.resend_link_expire')}}<span class="otp-time theme-text-blue font-weight-600"> {{__('labels.resubmit_link')}} </span>
+                              </p>
                             </div>
                             <div class="d-flex justify-content-center font-14 resend-txt">
                                 <button type="submit" class="border-0 theme-red font-weight-600" id="resend_otp">{{__('labels.resend')}}&nbsp;</button>

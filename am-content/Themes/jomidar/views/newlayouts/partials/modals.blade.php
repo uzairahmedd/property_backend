@@ -1,8 +1,3 @@
-{{-- Modal Launch Button--}}
-{{--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">--}}
-{{-- Launch demo modal--}}
-{{--</button>--}}
-
 @if (Auth::guest())
 <!--Sign Up Modal -->
 <div class="modal fade theme-modal send-modal signup-modal" id="signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -56,9 +51,7 @@
                                 <button class="basicbtn chat-btn theme-bg-blue theme-text-white border-0 font-bold font-16" type="submit">{{__('labels.create_account')}}</button>
                             </div>
                         </form>
-{{--                        <p href="" class="d-flex justify-content-center mt-2"><a href="#" class="text-decoration-none ms-1" data-bs-target="#contactModal" data-bs-toggle="modal"> {{__('labels.do_you_have_account')}} </a>&nbsp;--}}</p>
-
-                        <p class="subtitle mt-2">{{__('labels.have_account')}}  <a href="#" class="theme-text-sky" data-bs-target="#contactModal" data-bs-toggle="modal">{{__('labels.sign_in')}}</a></p>
+                        <p class="subtitle mt-2">{{__('labels.have_account')}}  <a href="#" class="theme-text-sky" data-bs-target="#login_modal" data-bs-toggle="modal">{{__('labels.sign_in')}}</a></p>
                         </form>
                     </div>
                 </div>
@@ -105,6 +98,37 @@
 {{--                            </button>--}}
 {{--                        </div>--}}
                         <p class="subtitle mt-2">{{__('labels.not_have_account')}} <a href="#" class="theme-text-sky" data-bs-target="#signup" data-bs-toggle="modal">{{__('labels.sign_up')}}</a></p>
+                    </div>
+                </div>
+                <img src="{{theme_asset('assets/images/logo.png')}}" alt="" class="position-absolute mesg">
+                <img src="{{theme_asset('assets/images/close-modal.png')}}" data-bs-dismiss="modal" alt="" class="position-absolute close-modal">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sign Up Modal Ends Here -->
+
+
+<!--Sign In Modal -->
+<div class="modal fade theme-modal contact-modal" id="login_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog px-3 px-md-0 modal-width">
+        <div class="modal-content">
+            <div class="modal-body position-relative">
+                <div class="d-flex flex-wrap justify-content-end">
+                    <div class="col-12 col-sm-7 col-md-7 ps-0 px-sm-3" style="z-index:11 ;">
+                        <h1 class="font-24 font-medium theme-text-seondary-black text-center pb-2" style="margin-bottom: 10px;">{{__('labels.chat_with_adviser')}}</h1>
+                        <p id="phone_login_error_msg" style="color:red ;"></p>
+                        <form action="{{ route('user_login') }}" method="POST" id="phone_login_form">
+                            @csrf
+                            <div class="mb-4_5 position-relative">
+                                <input type="text" name="phone" value="" class="form-control font-medium font-16" placeholder="{{__('labels.mobile_number')}}">
+                                <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">{{__('labels.mobile_number')}}</label>
+                            </div>
+                            <button type="submit" class="basicbtn chat-btn theme-bg-blue theme-text-white border-0 font-bold font-16">
+                                {{__('labels.login')}}
+                            </button>
+                        </form>
+                        <p class="subtitle mt-2">{{__('labels.not_have_account')}} <a href="{{ route('phone_verification') }}" class="theme-text-sky">{{__('labels.sign_up')}}</a></p>
                     </div>
                 </div>
                 <img src="{{theme_asset('assets/images/logo.png')}}" alt="" class="position-absolute mesg">

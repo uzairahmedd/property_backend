@@ -38,7 +38,7 @@
 
                     <li class="nav-item d-flex flex-column flex-md-row align-items-center mb-3 mb-md-0">
                        @if (Auth::guest())
-                        <div class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#contactModal">
+                        <div class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#login_modal">
                             <span class="nav-link theme-text-blue font-medium"> <a href="#">{{__('labels.sign_in')}}</a> </span>
                             <img src="{{theme_asset('assets/images/avatar.svg')}}" class="nav-icons" />
                         </div>
@@ -50,7 +50,7 @@
                         </button>
                         @else
                         <button class="btn add-btn custom-btn font-bold theme-text-white d-flex align-items-center my-3 my-sm-0">
-                            <a data-bs-toggle="modal" data-bs-target="#contactModal">{{__('labels.add_property')}}</a>
+                            <a href="{{ route('phone_verification') }}">{{__('labels.add_property')}}</a>
                             <img src="{{theme_asset('assets/images/plus.svg')}}" class="nav-icons">
                         </button>
                         @endif
