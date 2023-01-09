@@ -109,12 +109,12 @@
 <!-- Sign Up Modal Ends Here -->
 
 
-<!--Sign In Modal -->
+<!--Login Through Number Modal -->
 <div class="modal fade theme-modal contact-modal" id="login_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog px-3 px-md-0 modal-width">
         <div class="modal-content">
             <div class="modal-body position-relative">
-                <div class="d-flex flex-wrap justify-content-end">
+                <div class="d-flex flex-wrap justify-content-end number-login-div">
                     <div class="col-12 col-sm-7 col-md-7 ps-0 px-sm-3" style="z-index:11 ;">
                         <h1 class="font-24 font-medium theme-text-seondary-black text-center pb-2" style="margin-bottom: 10px;">{{__('labels.chat_with_adviser')}}</h1>
                         <p id="phone_login_error_msg" style="color:red ;"></p>
@@ -137,7 +137,7 @@
         </div>
     </div>
 </div>
-<!-- Sign Up Modal Ends Here -->
+<!-- Login Through Number Modal End -->
 @endif
 
 <!-- Sign In Modal Starts Here -->

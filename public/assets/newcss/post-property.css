@@ -8,6 +8,37 @@
     list-style-type: none;
 }
 
+.cr-num input
+{
+    text-align: right;
+    direction: rtl;
+}
+
+.rtl .cr-num input
+{
+    text-align: left;
+    direction: ltr;
+}
+
+.rega-num input
+{
+    text-align: right;
+    direction: rtl;
+}
+
+.rtl .rega-num input
+{
+    text-align: left;
+    direction: ltr;
+}
+
+.cr-num
+{
+    margin-bottom: -15px;
+}
+
+
+
 .number-verify-property {
     background-color: #fff;
     max-width: 900px;
@@ -44,6 +75,7 @@
     font-weight: 600;
     align-self: end;
     font-size: 14px;
+    padding-right: 16px;
     text-align: right;
 }
 .form-right img
@@ -391,7 +423,7 @@
 .rtl .otp-div
 {
     flex-direction: row-reverse;
-    
+
 }
 
 .rtl .otp-box input {

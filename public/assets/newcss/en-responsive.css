@@ -1133,6 +1133,12 @@
     margin-left: 20px;
 }
 
+.rtl .post-prop-otp-p
+{
+    direction: ltr;
+}
+
+
 .rtl .not-ready-margin {
     margin-left: 10px;
 }
@@ -1145,6 +1151,22 @@
 .rtl .hs-menu-inner a
 {
     text-align: left;
+}
+
+.rtl #login_modal .number-login-div
+{
+    direction: rtl;
+}
+
+.rtl .close-modal {
+    top: 20px;
+    right: 20px;
+}
+
+.rtl .contact-modal .mesg {
+    top: 125px;
+    right: 0;
+    margin-right: 55px;
 }
 
 @media screen and (max-width: 930px) {

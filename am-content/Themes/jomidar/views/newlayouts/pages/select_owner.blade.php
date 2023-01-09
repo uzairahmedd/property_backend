@@ -56,7 +56,7 @@
                     <input type="text" name="rega_number" class="form-control" id="rega_number" placeholder="{{__('labels.rega_advertisement')}}">
                 </div>
             </div>
-            <button class="btn mt-4" type="submit" id="btn_owner">{{__('labels.next')}}</button>
+            <button class="btn mt-2" type="submit" id="btn_owner">{{__('labels.next')}}</button>
         </form>
     </div>
     <div class="form-left">

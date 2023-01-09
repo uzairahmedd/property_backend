@@ -12,7 +12,10 @@
         <input type="text" id="otp" value="{{$user_data->otp}}">
         <span class="post-prop-otp-h">{{__('labels.verify_phone_num')}}</span>
         <span class="post-prop-otp-p">{{__('labels.otp_phone_num_received')}}</span>
-        <span class="post-prop-otp-p">+966 {{ltrim($user_data->phone,0)}}</span> <a href="/user-phone/verification/{{encrypt($user_data->id)}}" class="theme-text-sky me-2">{{__('labels.modify')}}</a>
+        <span class="post-prop-otp-p">
+            +966 {{ltrim($user_data->phone,0)}}
+            <a href="/user-phone/verification/{{encrypt($user_data->id)}}" class="theme-text-sky me-2"><i class="fa-solid fa-pen edit-num-pen"></i></a>
+        </span>
         <form id="verify_otp" class="form number_form mt-4">
             <!-- <input type="hidden" name="user_id" value="{{$user_data->id}}"> -->
             <input type="hidden" name="user_mobile" id="user_mbl" value="{{$user_data->phone}}">

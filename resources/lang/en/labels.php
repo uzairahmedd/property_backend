@@ -222,7 +222,7 @@ return [
     'khiaratee' => 'Khiaratee',
     'in'=>'in',
     'instant_queries' => 'Instant Queries',
-    'que_over_sms_email' => 'Get instant queries over Phone, Email and SMS.',
+    'que_over_sms_email' => 'Get instant queries over Phone, Email and SMS',
     'lack_buyer' => '1 Lack Buyers',
     'access_buyer' => 'Get accessed by over 1 Lakh buyers',
     'property_info' => 'Property Information',

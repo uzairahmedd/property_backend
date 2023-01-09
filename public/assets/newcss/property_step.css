@@ -79,6 +79,14 @@
     max-width: 100%; */
 }
 
+.edit-num-pen
+{
+    padding-left: 4px;
+    font-size: 12px;
+    padding-top: 2px;
+    position: absolute;
+}
+
 
 .description-card .form-control {
     text-align: right;
