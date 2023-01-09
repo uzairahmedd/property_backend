@@ -256,7 +256,10 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
     Route::get('post_property','PropertyController@postProperty')->name('post_property');
     Route::get('otp_property','PropertyController@otpProperty')->name('otp_property');
     Route::get('select_owner','PropertyController@selectOwner')->name('select_owner');
+    Route::get('verify_user','PropertyController@verify_user');
 });
+
+
 
 /*
 |--------------------------------------------------------------------------

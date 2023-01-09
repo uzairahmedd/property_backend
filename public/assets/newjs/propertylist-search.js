@@ -351,8 +351,6 @@ $(document).ready(function (event) {
         $('.overlay').removeClass('z-index');
     });
 
-
-
     $("#room_studio").click(function (event) {
         if ($("#room_studio").is(":checked")) {
             var radio_val = $(".room_studio").text();

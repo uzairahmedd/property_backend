@@ -1,6 +1,8 @@
 @extends('theme::newlayouts.app')
 @section('content')
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
+<link rel="stylesheet" href="{{theme_asset('css/app.css')}}">
+
 <div class="add-property row-style">
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here -->
@@ -33,4 +35,5 @@
 @push('js')
 <!-- <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script> -->
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
+
 @endpush

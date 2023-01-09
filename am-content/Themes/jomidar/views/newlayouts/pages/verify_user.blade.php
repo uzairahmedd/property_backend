@@ -6,15 +6,10 @@
     <div class="container number-verify-property d-flex justify-content-center align-items-center">
         <div class="form-right d-flex justify-content-center align-items-center flex-column">
             <img class="d-flex justify-content-center align-items-center" src="{{asset('assets/images/logo.png')}}" alt="">
-            <p class='d-flex justify-content-end mb-0'>{{__('labels.enter_phone_num')}}</p>
             <form id="form" class="form number_form">
-                <div class="phone-div form-group">
-                    <input id="phone" name="phone" type="tel" class="form-control" placeholder="559851174">
-                </div>
-                <div class="otp-txt">
-                    <p>{{__('labels.four_digit_code')}}</p>
-                </div>
-                <button class="btn" id="btn">{{__('labels.next')}}</button>
+                <h2 class="text-center">{{__('labels.verification')}}</h2>
+                <p class="text-center">{{__('labels.absher_verification')}}</p>
+                <button class="btn" id="btn">{{__('labels.verify')}}</button>
             </form>
         </div>
         <div class="form-left">

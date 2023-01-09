@@ -84,6 +84,12 @@ class PropertyController extends controller
     }
 
 
+    public function verify_user()
+    {
+        return view('theme::newlayouts.pages.verify_user');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
