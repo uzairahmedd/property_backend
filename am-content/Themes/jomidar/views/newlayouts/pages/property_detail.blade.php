@@ -57,7 +57,7 @@
                             <i class="{{isset($property_id) ? 'fa-solid' : 'fa-regular'}} fa-heart ps-1" id="heart"></i>
                         </a>
                         @else
-                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#contactModal">
+                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#login_modal">
                             <i class="fa-regular fa-heart ps-1" id="heart"></i>
                         </a>
                         @endif

@@ -221,6 +221,7 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::get('contact', 'ContactController@index')->name('contact.index');
 	//new register
 	Route::post('user/user_register', 'RegisterController@user_register')->name('user_register');
+	Route::post('user/user_login', 'RegisterController@user_login')->name('user_login');
 	Route::get('Verify_OTP_page/{id}', 'RegisterController@Verify_OTP_page');
 	Route::post('verify_otp', 'RegisterController@verify_otp');
 	Route::get('resend_otp/{mobile}', 'RegisterController@send_otp');
@@ -231,6 +232,12 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	//detail page
 	Route::get('property-detail/{slug}', 'PropertyController@detail')->name('property.detail');
 	Route::get('change_title', 'RegisterController@change_title');
+	//user phone number verification page
+	Route::get('user-phone/verification/{id?}','RegisterController@phone_verification')->name('phone_verification');
+	Route::post('user/phone_register', 'RegisterController@phone_register')->name('phone_register');
+	Route::get('otp-processing-page/{id}','RegisterController@otpProperty')->name('otp_processing_page');
+	Route::get('select-owner/{id}','RegisterController@select_owner')->name('select_owner');
+	Route::post('user/add_user_id', 'RegisterController@add_user_id')->name('add_user_id');
 });
 
 //    Latest Khiaratee Theme Routes Start
@@ -253,9 +260,9 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::get('terms_and_conditions', 'PropertyController@terms_of_use')->name('terms_and_conditions');
 	// Route::get('otp','PropertyController@otp')->name('otp');
 	// Route::get('phone_no','PropertyController@phone_no')->name('phone_no');
-    Route::get('post_property','PropertyController@postProperty')->name('post_property');
-    Route::get('otp_property','PropertyController@otpProperty')->name('otp_property');
-    Route::get('select_owner','PropertyController@selectOwner')->name('select_owner');
+    // Route::get('post_property','PropertyController@postProperty')->name('post_property');
+    // Route::get('otp_property','PropertyController@otpProperty')->name('otp_property');
+    // Route::get('select_owner','PropertyController@selectOwner')->name('select_owner');
 });
 
 /*

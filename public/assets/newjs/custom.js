@@ -40,6 +40,49 @@
         })
     });
 
+     /*----------------------------
+            Login Form Submit
+        -------------------------------*/
+        $('#phone_login_form').on('submit', function (e) {
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: this.action,
+                data: new FormData(this),
+                dataType: 'json',
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function () {
+                    $('.basicbtn').attr('disabled', '');
+                    $('.basicbtn').html('Please Wait...');
+                },
+                success: function (data) {
+                    $('.basicbtn').removeAttr('disabled');
+                    $('.basicbtn').html('Login');
+                   
+                    if (data.status == 'success') {
+                        console.log(data);
+                        window.location.href = data.data['url'];
+                    }
+                    //for error page
+                    else if (data.status == 'error') {
+                        if (data.data['phone']) {
+                            $('#phone_login_error_msg').html('<span class="error">' + data.data['phone'] + '</span>');
+                        }
+                        setTimeout(function () {
+                            $('#phone_login_error_msg').html('<span class="error"></span>');
+                        }, 10000);
+                    }
+                }
+            })
+        });
+
     /*----------------------------
             Register Form Submit
         -------------------------------*/
@@ -65,7 +108,6 @@
             success: function (data) {
                 $('.basicbtn').removeAttr('disabled');
                 $('.basicbtn').html('Register');
-                console.log(data);
                 //for success page
                 if (data.status == 'success') {
                     window.location.href = data.data['url'];
@@ -124,7 +166,7 @@
                 $("#submit_otp i").removeClass('fa fa-spinner fa-spin ');
                 if (response.status == 'success') {
 
-                    window.location.href = baseurl;
+                    window.location.href = response.data;
 
                 }
                 if (response.status == 'error') {
@@ -154,7 +196,6 @@
             url: url,
             type: 'GET',
             success: function (response) {
-                console.log(response);
                 $("#resend_otp").prop('disabled', false);
                 $("#resend_otp i").removeClass('fa fa-spinner fa-spin ');
 
@@ -165,6 +206,9 @@
                     timer.start(1000);
                     $('#otp_notification').text('OTP send successfully!');
                     $('#otp').val(response.otp);
+                    setTimeout(function () {
+                        $('#otp_notification').html('');
+                    }, 1000);
 
                 }
                 if (response.header_code != 200) {
@@ -210,14 +254,55 @@
         });
     });
 
+
+    
+     /*----------------------------
+            owner id data form submit
+        -------------------------------*/
+        $('#owner_data_form').on('submit', function (e) {
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: this.action,
+                data: new FormData(this),
+                dataType: 'json',
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function () {
+                    $('#btn_owner').attr('disabled', '');
+                },
+                success: function (data) {
+                    $('#btn_owner').removeAttr('disabled');
+                    if (data.status == 'success') {
+                        window.location.href = data.data['url'];
+                    }
+                    //for error page
+                    else if (data.status == 'error') {
+                        if (data.data['message']) {
+                            $('#owner_errors_msg').html('<span class="error">' + data.data['message'] + '</span>');
+                        }
+                        setTimeout(function () {
+                            $('#owner_errors_msg').html('<span class="error"></span>');
+                        }, 10000);
+                    }
+                }
+            })
+        });
+
 })(jQuery);
 
 
 // RTL LTR
 $(document).ready(function () {
 
-      // Download App Dropdown
-      $('.download-app').click(function (e) {
+    // Download App Dropdown
+    $('.download-app').click(function (e) {
         $('.home_fade').addClass('add_overlay');
     });
 
@@ -227,12 +312,12 @@ $(document).ready(function () {
     });
 
 
-    let baseUrl=$('#base_url').val();
+    let baseUrl = $('#base_url').val();
 
     $("#lang").click(function () {
         if ($('#lang').text() == 'English') {
             var url = 'lang/change/' + "?lang=" + 'en';
-            
+
             $.ajax({
                 type: "get",
                 url: baseUrl + url,
@@ -247,7 +332,7 @@ $(document).ready(function () {
 
         } else if ($('#lang').text() == 'عربي') {
             var url = 'lang/change/' + "?lang=" + 'ar';
-           
+
             $.ajax({
                 type: "get",
                 url: baseUrl + url,
@@ -266,6 +351,6 @@ $(document).ready(function () {
 // Scroll To Top
 function scrollToTop() {
 
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
 }

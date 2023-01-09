@@ -355,7 +355,7 @@
                                             </div>
                                         @else
                                             <div class="fav-elipse d-flex align-items-center justify-content-center"
-                                                 data-bs-toggle="modal" data-bs-target="#contactModal">
+                                                 data-bs-toggle="modal" data-bs-target="#login_modal">
                                                 <i class="fa-regular fa-heart" title="Favorite property"
                                                    data-toggle="tooltip"></i>
                                             </div>
@@ -451,7 +451,7 @@
                                             </div>
                                         @else
                                             <div class="fav-elipse d-flex align-items-center justify-content-center"
-                                                 data-bs-toggle="modal" data-bs-target="#contactModal">
+                                                 data-bs-toggle="modal" data-bs-target="#login_modal">
                                                 <i class="fa-regular fa-heart" title="Favorite property"
                                                    data-toggle="tooltip"></i>
                                             </div>
@@ -494,7 +494,7 @@
                     </button>
                 @else
                     <button class="btn-add btn-theme">
-                        <a data-bs-toggle="modal" data-bs-target="#contactModal"> {{__('labels.add_property_now')}}</a>
+                        <a data-bs-toggle="modal" data-bs-target="#login_modal"> {{__('labels.add_property_now')}}</a>
                     </button>
                 @endif
             </div>

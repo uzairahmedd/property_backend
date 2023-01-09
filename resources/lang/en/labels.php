@@ -292,11 +292,11 @@ return [
     'activation_code' => 'Code Sent',
     'code_expire' => 'The code expires in ',
     'second' => 'sec',
-    'resend_link_expire' => '',
+    'resend_link_expire' => 'Code is expired,',
     'please_select_district' => 'Please Select District',
 
     'resend_activate_code' => 'Resend did not receive the activation code?',
-    'resubmit_link' => '',
+    'resubmit_link' => 'please click on the resend link',
     'resend' => 'Resend',
         'district' => 'District',
         'select_district' => 'Please select district',
