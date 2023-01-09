@@ -293,6 +293,7 @@ $(document).ready(function (event) {
 
     $('.budget-btn').click(function () {
         $('#fade').addClass('add_overlay');
+        $('.overlay').removeClass('z-index');
         // $('.overlay').css('z-index', '1');
         $('.search-input-bar').css('z-index', 'unset');
     });
@@ -306,6 +307,7 @@ $(document).ready(function (event) {
 
     $('.room-btn').click(function () {
         $('#fade').addClass('add_overlay');
+        $('.overlay').removeClass('z-index');
         // $('.overlay').css('z-index', '1');
         $('.search-input-bar').css('z-index', 'unset');
     });
@@ -327,18 +329,25 @@ $(document).ready(function (event) {
     $('.room-type-drop').click(function (e) {
         $('#select_style_ul').css('display','none');
         $('#fade').addClass('add_overlay');
+        $('.overlay').removeClass('z-index');
         $("ul.list-rent-dropdown").removeAttr('style');
     });
 
     $('.budget-drop').click(function (e) {
         $('#select_style_ul').css('display','none');
+        $('.overlay').removeClass('z-index');
     });
 
     $('.type-drop').click(function (e) {
         $('#select_style_ul').css('display','none');
+        $('.overlay').removeClass('z-index');
     });
     $('.list-complete-rent-drop').click(function (e) {
         $('#select_style_ul').css('display','none');
+        $('.overlay').removeClass('z-index');
+    });
+
+    $('.list-rent-btn').click(function (e) {
         $('.overlay').removeClass('z-index');
     });
 
