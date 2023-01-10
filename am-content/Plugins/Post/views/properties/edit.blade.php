@@ -370,19 +370,6 @@
     <form id="productform" novalidate method="post" action="{{ route('admin.property.update',$info->id) }}">
     @csrf
     @method('PUT')
-                             <div class="form-group col-6">
-                                        @php
-                                        $arr['title']= 'English title';
-                                        $arr['id']= 'title';
-                                        $arr['type']= 'text';
-                                        $arr['placeholder']= 'Enter english title';
-                                        $arr['name']= 'title';
-                                        $arr['is_required'] = true;
-                                        $arr['value'] = $info->title;
-
-                                        echo input($arr);
-                                        @endphp
-                                    </div>   
     {{ publish(['class'=>'basicbtn']) }}
 
         <div class="single-area">
