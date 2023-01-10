@@ -262,7 +262,7 @@ class DataController extends controller
 
     public function get_properties_data(Request $request)
     {
-
+        
         $this->state = $request->state;
         $this->status = $request->status;
         $this->category = $request->category;

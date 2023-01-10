@@ -9,8 +9,6 @@
         <input type="hidden" value="{{ route('property.favourite') }}" id="favourite_property_url">
         <input type="hidden" id="favourite_check_url" value="{{ route('favourite.check') }}">
         <input type="hidden" class="locale" value="{{ Session::has('locale') ? Session::get('locale') : 'ar' }}">
-        @stack('home-drop')
-        @stack('property-list-drop')
         <div>
             @include('theme::newlayouts.partials.navbar')
             <main>
@@ -29,8 +27,6 @@
             @yield('step_two_js')
             @yield('yearpicker')
             @yield('OTPScript')
-            @stack('home-drop-js')
-            @stack('property-list-drop-js')
         </div>
         {{ google_analytics() }}
     </div>

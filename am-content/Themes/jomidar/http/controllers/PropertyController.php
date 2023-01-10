@@ -349,7 +349,7 @@ class PropertyController extends controller
 
     public function list_page(Request $request)
     {
-
+      
         $seo = Options::where('key', 'seo')->first();
         $seo = json_decode($seo->value);
 

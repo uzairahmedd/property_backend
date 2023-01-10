@@ -14,7 +14,7 @@
         <span class="post-prop-otp-p">{{__('labels.otp_phone_num_received')}}</span>
         <span class="post-prop-otp-p">
             +966 {{ltrim($user_data->phone,0)}}
-            <a href="/user-phone/verification/{{encrypt($user_data->id)}}" class="theme-text-sky me-2"><i class="fa-solid fa-pen edit-num-pen"></i></a>
+            <a href="/user-phone/verification/{{encrypt($user_data->id)}}" class="theme-text-sky me-2"><i class="fa-solid fa-pen edit-num-pen" title="Edit phone number" data-toggle='tooltip'></i></a>
         </span>
         <form id="verify_otp" class="form number_form mt-4">
             <!-- <input type="hidden" name="user_id" value="{{$user_data->id}}"> -->

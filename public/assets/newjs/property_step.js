@@ -52,6 +52,27 @@ $(document).ready(function () {
 });
 
 
+$(document).ready(function(){
+    $('#cities').hierarchySelect({
+        hierarchy: false,
+        search: false,
+        width: 'auto',
+        initialValueSet: true,
+        onChange: function (value) {
+            get_already_select_district(value, null);
+        }
+    });
+});
+
+
+$(document).ready(function(){
+    $('#district').hierarchySelect({
+        hierarchy: false,
+        width: 'auto',
+        height: '160px'
+    });
+});
+
 
 
 //district against cities

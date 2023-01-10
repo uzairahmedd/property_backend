@@ -4,116 +4,128 @@
 /****************************************************************
  * Selector plug that made select tag in to custome select style *
  *****************************************************************/
-(function ($) {
-    $.fn.selectstyle = function (option) {
-        var defaults = {
-            width: 250,
-            height: 300,
-            theme: 'light'
-        },
-            setting = $.extend({}, defaults, option);
-        this.each(function () {
-            var $this = $(this),
-                parent = $(this).parent(),
-                html = '',
-                html_op = '',
-                search = $this.attr('data-search'),
-                name = $this.attr('name'),
-                style = $this.attr('style'),
-                placeholder = $this.attr('placeholder'),
-                id = $this.attr('id');
-            setting.width = (parseInt($this.attr('width') == null ? $this.width() : $this.attr('width')) + 10) + 'px';
-            setting.theme = $this.attr('theme') != null ? $this.attr('theme') : setting.theme;
+// (function ($) {
+//     $.fn.selectstyle = function (option) {
+//         var defaults = {
+//             width: 250,
+//             height: 300,
+//             theme: 'light'
+//         },
+//             setting = $.extend({}, defaults, option);
+//         this.each(function () {
+//             var $this = $(this),
+//                 parent = $(this).parent(),
+//                 html = '',
+//                 html_op = '',
+//                 search = $this.attr('data-search'),
+//                 name = $this.attr('name'),
+//                 style = $this.attr('style'),
+//                 placeholder = $this.attr('placeholder'),
+//                 id = $this.attr('id');
+//             setting.width = (parseInt($this.attr('width') == null ? $this.width() : $this.attr('width')) + 10) + 'px';
+//             setting.theme = $this.attr('theme') != null ? $this.attr('theme') : setting.theme;
 
-            $this.find('option').each(function (e) {
-                var $this_a = $(this),
-                    val = $this_a.val(),
-                    // span_val = $(this).find('span').text();
-                    image = $this_a.attr('data-image'),
-                    text = $this_a.html();
-                if (val == null) {
-                    val = text;
-                }
-                html_op += '<li data-title="' + text + '" value="' + val + '"';
-                if ($this_a.attr('font-family') != null) {
-                    html_op += ' style="font-family' + $this_a.attr('font-family') + '"';
-                }
-                html_op += '>';
-                if (image != null) {
-                    html_op += '<div class="ssli_image"><img src="' + image + '"></div>';
-                }
-                html_op += '<div class="ssli_text" style="">' + text + '</div></li>';
-            });
-            $this.hide();
+//             $this.find('option').each(function (e) {
+//                 var $this_a = $(this),
+//                     val = $this_a.val(),
+//                     // span_val = $(this).find('span').text();
+//                     image = $this_a.attr('data-image'),
+//                     text = $this_a.html();
+//                 if (val == null) {
+//                     val = text;
+//                 }
+//                 html_op += '<li data-title="' + text + '" value="' + val + '"';
+//                 if ($this_a.attr('font-family') != null) {
+//                     html_op += ' style="font-family' + $this_a.attr('font-family') + '"';
+//                 }
+//                 html_op += '>';
+//                 if (image != null) {
+//                     html_op += '<div class="ssli_image"><img src="' + image + '"></div>';
+//                 }
+//                 html_op += '<div class="ssli_text" style="">' + text + '</div></li>';
+//             });
+//             $this.hide();
 
-            html =
-                '<div class="selectstyle ss_dib ' + setting.theme + '" style="width:' + parseInt(setting.width) + 'px;">' +
-                '<div id="select_style" class="ss_button" style="width:' + parseInt(setting.width) + 'px;' + style + '">' +
-                '<div class="ss_dib ss_text" id="select_style_text" style="margin-right:10px;width:' + (parseInt(setting.width) - 20) + 'px;position:relative;">' + placeholder + '</div>' +
-                '<div class="ss_dib ss_image"></div>' +
-                '</div>';
-            if (search == "true") {
-                html += '<ul id="select_style_ul" sid="' + id + '" class="ss_ulsearch" style="max-height:' + setting.height + 'px;width:' + (parseInt(setting.width) + 20) + 'px; overflow-x: hidden; z-index: 3;"><div class="search" id="ss_search"><input type="text" placeholder="يبحث"></div><ul style="max-height:' + (parseInt(setting.height) - 53) + 'px;width:' + (parseInt(setting.width) + 20) + 'px; overflow-y: auto;" class="ss_ul">' + html_op + '</ul></ul>';
-            } else {
+//             html =
+//                 '<div class="selectstyle ss_dib ' + setting.theme + '" style="width:' + parseInt(setting.width) + 'px;">' +
+//                 '<div id="select_style" class="ss_button" style="width:' + parseInt(setting.width) + 'px;' + style + '">' +
+//                 '<div class="ss_dib ss_text" id="select_style_text" style="margin-right:10px;width:' + (parseInt(setting.width) - 20) + 'px;position:relative;">' + placeholder + '</div>' +
+//                 '<div class="ss_dib ss_image"></div>' +
+//                 '</div>';
+//             if (search == "true") {
+//                 html += '<ul id="select_style_ul" sid="' + id + '" class="ss_ulsearch" style="max-height:' + setting.height + 'px;width:' + (parseInt(setting.width) + 20) + 'px; overflow-x: hidden; z-index: 3;"><div class="search" id="ss_search"><input type="text" placeholder="يبحث"></div><ul style="max-height:' + (parseInt(setting.height) - 53) + 'px;width:' + (parseInt(setting.width) + 20) + 'px; overflow-y: auto;" class="ss_ul">' + html_op + '</ul></ul>';
+//             } else {
 
-                html += '<ul id="select_style_ul" sid="' + id + '" style="max-height:' + setting.height + 'px;width:' + (parseInt(setting.width) + 20) + 'px; " class="ss_ul">' + html_op + '</ul>';
-            }
+//                 html += '<ul id="select_style_ul" sid="' + id + '" style="max-height:' + setting.height + 'px;width:' + (parseInt(setting.width) + 20) + 'px; " class="ss_ul">' + html_op + '</ul>';
+//             }
 
-            html += '</div>';
-            $(html).insertAfter($this);
+//             html += '</div>';
+//             $(html).insertAfter($this);
 
-        });
+//         });
 
-        $("body").delegate("div#ss_search input", "keyup", function (e) {
-            var val = $(this).val(), flag = false;
-            $('#nosearch').remove();
-            $(this).parent().parent().find('li').each(function (index, el) {
-                if ($(el).text().indexOf(val) > -1) {
-                    $(el).show();
-                    flag = true;
-                } else {
-                    $(el).hide();
-                }
-            });
-            if (!flag) {
-                $(this).parent().parent().append('<div class="nosearch" id="nosearch">Nothing Found</div>')
-            }
-            ;
-        });
-        $("body").delegate("div#select_style", "click", function (e) {
-            $('ul#select_style_ul').hide();
-            var ul = $(this).parent('div').find('ul#select_style_ul');
-            ul.show();
-            // var height = ul.height();
-            // var offset = $(this).offset();
-            // if (offset.top + height > $(window).height()) {
-            //     ul.css({
-            //         // marginTop: -(((offset.top+height) - $(window).height()) + 100)
-            //     });
-            // }
-        });
+//         $("body").delegate("div#ss_search input", "keyup", function (e) {
+//             var val = $(this).val(), flag = false;
+//             $('#nosearch').remove();
+//             $(this).parent().parent().find('li').each(function (index, el) {
+//                 if ($(el).text().indexOf(val) > -1) {
+//                     $(el).show();
+//                     flag = true;
+//                 } else {
+//                     $(el).hide();
+//                 }
+//             });
+//             if (!flag) {
+//                 $(this).parent().parent().append('<div class="nosearch" id="nosearch">Nothing Found</div>')
+//             }
+//             ;
+//         });
+
+//         // $("body").delegate("div#select_style", "click", function (e) {
+//         //     $('ul#select_style_ul').hide();
+//         //     var ul = $(this).parent('div').find('ul#select_style_ul');
+//         //     ul.show();
+//         // });
 
 
-        $("body").delegate("ul#select_style_ul li", "click", function (e) {
+//         // $("body").delegate("ul#select_style_ul li", "click", function (e) {
+//         //     $('#fade').removeClass('add_overlay');
+//         //     var txt = $(this).data('title'),
+//         //         vl = $(this).attr('value');
+//         //     $(this).parents('ul#select_style_ul').hide();
+//         //     //for property list page
+//         //     $('#property_states_dropdown option').removeAttr('selected', 'selected');
+//         //     $('#property_states_dropdown option[value=' + vl + ']').attr('selected', 'selected');
+//         //     $(this).parents('ul#select_style_ul').parent('div').find('div#select_style_text').html(txt);
+//         //     $('#state').val(vl);
+//         //     //call get_properties
+//         //     var base_url = $('#base_url').val();
+//         //     var url = base_url + 'get_properties_data';
+//         //     get_properties(url);
+
+//         // });
+
+//     }
+// })(jQuery);
+
+
+
+$(document).ready(function () {
+    $('#property_states_dropdown').hierarchySelect({
+        hierarchy: false,
+        search: false,
+        width: 'auto',
+        initialValueSet: true,
+        onChange: function (value) {
+            $('#state').val(value);
             $('#fade').removeClass('add_overlay');
-            var txt = $(this).data('title'),
-                vl = $(this).attr('value');
-            $(this).parents('ul#select_style_ul').hide();
-            //for property list page
-            $('#property_states_dropdown option').removeAttr('selected', 'selected');
-            $('#property_states_dropdown option[value=' + vl + ']').attr('selected', 'selected');
-            $(this).parents('ul#select_style_ul').parent('div').find('div#select_style_text').html(txt);
-            $('#state').val(vl);
             //call get_properties
             var base_url = $('#base_url').val();
             var url = base_url + 'get_properties_data';
             get_properties(url);
-
-        });
-
-    }
-})(jQuery);
-
+        }
+    });
+});
 
 // Range Dropdown Js
 const rangeInput = document.querySelectorAll(".range-input input"),
@@ -252,7 +264,7 @@ $(document).ready(function (event) {
     $('.hierarchy-select button').click(function () {
         $('#fade').addClass('add_overlay');
         $('.overlay').addClass('z-index');
-        $('.filter-all-bar').css('z-index','-1');
+        $('.filter-all-bar').css('z-index', '-1');
         // $('#property_states_dropdown .dropdown-menu').css('z-index', '1');
 
 
@@ -261,7 +273,6 @@ $(document).ready(function (event) {
     $('.overlay').click(function (event) {
         $('#fade').removeClass('add_overlay');
         $('.overlay').removeClass('z-index');
-        // $("#select_style_ul").css('display', 'none');
         event.stopPropagation();
     });
 
@@ -327,23 +338,23 @@ $(document).ready(function (event) {
     });
 
     $('.room-type-drop').click(function (e) {
-        $('#select_style_ul').css('display','none');
+        // $('#select_style_ul').css('display', 'none');
         $('#fade').addClass('add_overlay');
         $('.overlay').removeClass('z-index');
         $("ul.list-rent-dropdown").removeAttr('style');
     });
 
     $('.budget-drop').click(function (e) {
-        $('#select_style_ul').css('display','none');
+        // $('#select_style_ul').css('display', 'none');
         $('.overlay').removeClass('z-index');
     });
 
     $('.type-drop').click(function (e) {
-        $('#select_style_ul').css('display','none');
+        // $('#select_style_ul').css('display', 'none');
         $('.overlay').removeClass('z-index');
     });
     $('.list-complete-rent-drop').click(function (e) {
-        $('#select_style_ul').css('display','none');
+        // $('#select_style_ul').css('display', 'none');
         $('.overlay').removeClass('z-index');
     });
 
@@ -436,9 +447,9 @@ $(document).ready(function (event) {
 /*----------------------------
         Properties Data Get
     -------------------------------*/
-var base_url = $('#base_url').val();
-var url = base_url + 'get_properties_data';
-get_properties(url)
+// var base_url = $('#base_url').val();
+// var url = base_url + 'get_properties_data';
+// get_properties(url)
 function get_properties(url) {
     $('.propertly-list-banner').addClass('hide');
     $.ajax({
@@ -519,7 +530,7 @@ function properties_list(target, data) {
     var floor_name = '';
     var htmls = '';
     var sq_feet = '';
-    var price='';
+    var price = '';
     var district = '';
     var city = '';
     $.each(data, function (index, value) {
@@ -547,15 +558,15 @@ function properties_list(target, data) {
             target = '#second_item_list';
         }
 
-        if(value.price != null){
-            price=value.price.price;
+        if (value.price != null) {
+            price = value.price.price;
         }
-        else{
-            price='N/A';
+        else {
+            price = 'N/A';
         }
 
         title = str_limit(value.title, 40, true);
-        if(locale == 'ar'){
+        if (locale == 'ar') {
             title = str_limit(value.ar_title, 40, true);
         }
 
@@ -566,15 +577,15 @@ function properties_list(target, data) {
             district = value.post_district.district.ar_name;
             city = value.post_new_city.city.ar_name;
         }
-        location =   district + ', ' + city;
+        location = district + ', ' + city;
         $(target).append('<div class="col-lg-3 col-md-4 col-sm-12 single-property-list"> <div class="slide single-img-carousel"> <div id="myCarousel' + value.id + '" class="carousel" data-bs-ride="carousel"><div class="features"><div class="d-flex justify-content-between"><div class="content d-flex flex-column align-items-start theme-text-white"><div class="fav-elipse justify-content-center align-items-center theme-bg-blue"><span class="font-medium" onclick="favourite_property(' + value.id + ')"> <i title="favorite property" data-toggle="tooltip" class="fa-regular fa-heart heart' + value.id + '"></i></span></div><div class="sale theme-bg-sky"><span class="font-medium">' + status + '</span> </div></div> <div class="d-flex justify-content-center pt-3">  </div></div> </div><ol class="carousel-indicators"><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="0" class="active"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a target="_blank" href="' + asset_url + 'property-detail/' + value.slug + '"><h3 class="resident-text">' + title + '</h3><div class="d-flex align-items-start justify-content-end mt-2 propertylist-locate-icon"><p class="me-2">' + location + '</p><img src="assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex flex-wrap flex-row-reverse justify-content-right align-items-center facilicites-area facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex"><div class="call d-flex justify-content-center align-items-center me-3"> <img src="assets/images/mobile-icon.png" alt="" data-toggle="tooltip" title="' + phone + '"></div><div class="whatsapp d-flex justify-content-center align-items-center"><a href="https://api.whatsapp.com/send?text=' + asset_url + 'property-detail/' + value.slug + '" target="_blank"> <img  src="assets/images/whatsapp-icon.png" alt=""></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span>' + new_amount_format(price) + ' </span></h3></div> </div></div></div></div></div>');
 
-        if(value.landarea != null){
-        floor_name = value.landarea.type + " in SQM";
-        sq_feet = value.landarea.content + " SQM";
+        if (value.landarea != null) {
+            floor_name = value.landarea.type + " in SQM";
+            sq_feet = value.landarea.content + " SQM";
 
-        htmls = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + sq_feet + '</span></p><img src="assets/images/area-icon.png" alt="" data-toggle="tooltip"  title="' + floor_name + '"></div>';
-        $('.facilities_area' + index).append(htmls);
+            htmls = '<div class="area d-flex justify-content-center align-items-start"><p class="theme-text-seondary-black"><span>' + sq_feet + '</span></p><img src="assets/images/area-icon.png" alt="" data-toggle="tooltip"  title="' + floor_name + '"></div>';
+            $('.facilities_area' + index).append(htmls);
         }
         //for facilities
         $.each(value.option_data, function (i, v) {

@@ -1,8 +1,6 @@
 @extends('theme::newlayouts.app')
 @section('content')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/sel" rel="stylesheet" />
-    <link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/create-property.css')}}">
-    <link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/hierarchy-select.min.css')}}">
+<link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/create-property.css')}}">
 <script>
     var locale = '<?php echo Session::get('locale'); ?>';
 </script>
@@ -50,10 +48,10 @@
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
                         <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop prop-title-en">
                             <div>
-                                    <button onclick="return false" class="fa fa-question-circle mt-1 tooltip_btn" type="btn" style="font-size: 1rem;" aria-hidden="true">
-                                        <span>{{__('labels.tooltip_google')}}</span>
-                                    </button>
-                                     <label for="english_title" class="theme-text-seondary-black">{{__('labels.property_title_en')}}</label>
+                                <button onclick="return false" class="fa fa-question-circle mt-1 tooltip_btn" type="btn" style="font-size: 1rem;" aria-hidden="true">
+                                    <span>{{__('labels.tooltip_google')}}</span>
+                                </button>
+                                <label for="english_title" class="theme-text-seondary-black">{{__('labels.property_title_en')}}</label>
                             </div>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <input type="text" value="{{ $post_data != '' ? $post_data->title : old('title')}}" name="title" id="english_title" placeholder="{{__('labels.property_title_en')}}" class="form-control theme-border">
@@ -107,12 +105,12 @@
                                     </div>
                                     <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>
                                 </div>
-{{--                                <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>--}}
-{{--                                conflict select start--}}
-{{--                                <select data-placeholder="Select your location" class="select-icon chosen-select" tabindex="5" id="districts" name="district">--}}
-{{--                                    <option value="" disabled selected>{{__('labels.select_district')}}</option>--}}
-{{--                                </select>--}}
-{{--                                <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>--}}
+                                {{-- <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>--}}
+                                {{-- conflict select start--}}
+                                {{-- <select data-placeholder="Select your location" class="select-icon chosen-select" tabindex="5" id="districts" name="district">--}}
+                                {{-- <option value="" disabled selected>{{__('labels.select_district')}}</option>--}}
+                                {{-- </select>--}}
+                                {{-- <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>--}}
                             </div>
                             @if($errors->has('district'))
                             <div class="error pt-1">{{ $errors->first('district') }}</div>
@@ -123,6 +121,21 @@
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
                                 <div class="dropdown hierarchy-select" id="cities">
+                                    <button type="button" class="dropdown-toggle form-control cities-form-control" id="cities_dropdown-button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                    <ul class="dropdown-menu" aria-labelledby="cities_dropdown-button">
+                                        <div class="hs-searchbox">
+                                            <input type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.search_cities')}}">
+                                        </div>
+                                        <div class="hs-menu-inner">
+                                            <li><a class="dropdown-item" data-value="" data-default-selected="" href="#">{{__('labels.select_city')}}</a></li>
+                                            @foreach(App\Models\City::get() as $row)
+                                            <li><a class="dropdown-item" class="dropdown-item" data-value="{{ $row->id }}"  href="#">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</a></li>
+                                            @endforeach
+                                        </div>
+                                    </ul>
+                                    <input class="d-none"  name="city" readonly="readonly" aria-hidden="true" type="text" value="{{ $post_data != '' ? $post_data->saudi_post_city->city_id : old('city')}}" />
+                                </div>
+                                <!-- <div class="dropdown hierarchy-select" id="cities">
                                     <button type="button" class="dropdown-toggle form-control cities-form-control" tabindex="5" name="city" id="cities" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('labels.select_the_city')}}</button>
                                     <div class="dropdown-menu" aria-labelledby="example-two-button">
                                         <div class="hs-searchbox">
@@ -134,13 +147,13 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                </div>
-{{--                                <select data-placeholder="Select your location" class="select-icon chosen-select" tabindex="5" name="city" id="cities">--}}
-{{--                                    <option value="" disabled selected> {{__('labels.select_city')}}</option>--}}
-{{--                                    @foreach(App\Models\City::get() as $row)--}}
-{{--                                    <option value="{{ $row->id }}" {{ $post_data != '' &&  $post_data->saudi_post_city->city_id ==  $row->id ?  "selected" : (old('city') == $row->id ? 'selected' : '')  }}> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>--}}
-{{--                                    @endforeach--}}
-{{--                                </select>--}}
+                                </div> -->
+                                {{-- <select data-placeholder="Select your location" class="select-icon chosen-select" tabindex="5" name="city" id="cities">--}}
+                                {{-- <option value="" disabled selected> {{__('labels.select_city')}}</option>--}}
+                                {{-- @foreach(App\Models\City::get() as $row)--}}
+                                {{-- <option value="{{ $row->id }}" {{ $post_data != '' &&  $post_data->saudi_post_city->city_id ==  $row->id ?  "selected" : (old('city') == $row->id ? 'selected' : '')  }}> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>--}}
+                                {{-- @endforeach--}}
+                                {{-- </select>--}}
                             </div>
                             @if($errors->has('city'))
                             <div class="error pt-1">{{ $errors->first('city') }}</div>
@@ -160,27 +173,4 @@
 @endsection
 @section('property_create')
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!-- Popper Js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<!-- Bootstrap JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
-<script src="{{theme_asset('assets/newjs/selectdrop/hierarchy-select.js')}}"></script>
-<script>
-    $(document).ready(function(){
-        $('#cities').hierarchySelect({
-            hierarchy: false,
-            width: 'auto',
-            height: '160px'
-        });
-    });
-    $(document).ready(function(){
-        $('#district').hierarchySelect({
-            hierarchy: false,
-            width: 'auto',
-            height: '160px'
-        });
-    });
-</script>
 @endsection

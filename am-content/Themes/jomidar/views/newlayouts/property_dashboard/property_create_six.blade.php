@@ -30,29 +30,29 @@
                     </div>
                 </div>
                 <div class="chek-info d-flex flex-column justify-content-end align-items-end">
-                <div class="document theme-gx-32 d-flex justify-content-end align-items-end">
-                    <div class="col-12 mb-3 d-flex align-items-center justify-content-end terms-check">
-                        <a class="form-check-label check-box-terms" for="inlineCheckbox1"> {{__("labels.is_there_mortage")}}</a>
-                        <span class="theme-text-seondary-black font-16 ms-1"> </span>
-                        <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox1" value="1" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '1') ? "checked"  : old("rule") }}>
+                    <div class="document theme-gx-32 d-flex justify-content-end align-items-end">
+                        <div class="col-12 mb-3 d-flex align-items-center justify-content-end terms-check">
+                            <a class="form-check-label check-box-terms" for="inlineCheckbox1"> {{__("labels.is_there_mortage")}}</a>
+                            <span class="theme-text-seondary-black font-16 ms-1"> </span>
+                            <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox1" value="1" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '1') ? "checked"  : old("rule") }}>
 
+                        </div>
                     </div>
-                </div>
-                <div class="document theme-gx-32 d-flex justify-content-end align-items-end">
-                    <div class="col-12 mb-3 d-flex align-items-center justify-content-end terms-check">
-                        <a class="form-check-label check-box-terms" for="inlineCheckbox2"> {{__("labels.right_and_obligations")}}</a>
-                        <span class="theme-text-seondary-black font-16 ms-1"> </span>
-                        <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox2" value="2" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '2') ? "checked"  : old("rule") }}>
+                    <div class="document theme-gx-32 d-flex justify-content-end align-items-end">
+                        <div class="col-12 mb-3 d-flex align-items-center justify-content-end terms-check">
+                            <a class="form-check-label check-box-terms" for="inlineCheckbox2"> {{__("labels.right_and_obligations")}}</a>
+                            <span class="theme-text-seondary-black font-16 ms-1"> </span>
+                            <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox2" value="2" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '2') ? "checked"  : old("rule") }}>
 
+                        </div>
                     </div>
-                </div>
-                <div class="document theme-gx-32 d-flex justify-content-end align-items-end">
-                    <div class="col-12 mb-3 d-flex align-items-center justify-content-end terms-check">
-                        <a class="form-check-label check-box-terms" for="inlineCheckbox3">{{__("labels.info_property_effects")}}</a>
-                        <span class="theme-text-seondary-black font-16 ms-1"> </span>
-                        <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox3" value="3" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '3') ? "checked"  : old("rule") }}>
+                    <div class="document theme-gx-32 d-flex justify-content-end align-items-end">
+                        <div class="col-12 mb-3 d-flex align-items-center justify-content-end terms-check">
+                            <a class="form-check-label check-box-terms" for="inlineCheckbox3">{{__("labels.info_property_effects")}}</a>
+                            <span class="theme-text-seondary-black font-16 ms-1"> </span>
+                            <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox3" value="3" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '3') ? "checked"  : old("rule") }}>
+                        </div>
                     </div>
-                </div>
                 </div>
 
             </div>

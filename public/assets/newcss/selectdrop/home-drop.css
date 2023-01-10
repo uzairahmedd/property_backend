@@ -192,6 +192,11 @@
          margin-left: -10px !important;
      }
  }
+ @media screen and (max-width: 576px) {
+    .rtl #select_style_ul {
+        margin-right: -22px !important;
+    }
+}
 
 
 

@@ -9,9 +9,7 @@
 </script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/second-page.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/propertylist-search.css')}}">
-@push('property-list-drop')
-    <link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/propertylist-drop.css')}}">
-@endpush
+<link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/propertylist-drop.css')}}">
 <div id="fade" class="overlay"></div>
 <div class="filter-bar">
     <div class="container">
@@ -21,7 +19,6 @@
             </div>
         </div>
         <form class="search_form">
-            <input type="hidden" id="state" name="state" value="{{$state}}">
             <input type="hidden" id="status_list" name="status" value="{{$status}}">
             <input type="hidden" id="parent_category" name="parent_category" value="{{$parent_category}}">
             <input type="hidden" id="category" name="category" value="{{$category}}">
@@ -177,45 +174,12 @@
                                             </nav>
                                             <div class="tab-content" id="nav-tabContent">
                                                 <div class="tab-pane fade show active" id="nav-rent" role="tabpanel" aria-labelledby="nav-rent-tab">
-                                                    {{-- <p class="rent-buy-txt">حالة العقار</p>--}}
-                                                    {{-- <div class="rent-buy-pans d-flex justify-content-center align-items-center">--}}
-                                                    {{-- <li class="buy-rent-pan" name="category" value="1">قيد الإنشاء</li>--}}
-                                                    {{-- <li class="buy-rent-pan" name="category" value="2">جاهز</li>--}}
-                                                    {{-- <li class="buy-rent-pan" name="category" value="3">الجميع</li>--}}
-                                                    {{-- </div>--}}
                                                     <div class="d-flex justify-content-between mt-2">
                                                         <button class="complete-btn list-complete-btn"><a href="">{{__('labels.apply')}}</a></button>
                                                         <button class="reset-btn"><a href=""> {{__('labels.reset')}}</a></button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="nav-buy" role="tabpanel" aria-labelledby="nav-buy-tab">
-                                                    <!-- <p class="rent-buy-txt">{{__('labels.rental_fre')}}</p>
-                                                    <div class="rent-buy-pans d-flex flex-row-reverse justify-content-center align-items-center">
-                                                        <li class="rent-all">
-                                                            <input class="rent-select-dropdown" value="" type="radio" id="radio02-01" checked />
-                                                            <label class="rent-box any" for="radio02-01">الجميع</label>
-                                                        </li>
-
-                                                        <li class="rent-all">
-                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio02-02" />
-                                                            <label class="rent-box rent_label_list" for="radio02-02">يومياً</label>
-                                                        </li>
-
-                                                        <li class="rent-all">
-                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio03-03" />
-                                                            <label class="rent-box project_label" for="radio03-03">أسبوعياً</label>
-                                                        </li>
-
-                                                        <li class="rent-all">
-                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio04-04" />
-                                                            <label class="rent-box project_label" for="radio04-04">شهرياً</label>
-                                                        </li>
-
-                                                        <li class="rent-all">
-                                                            <input class="rent-select-dropdown drive_percent-box" value="" type="radio" id="radio05-05" />
-                                                            <label class="rent-box project_label" for="radio05-05">سنوياً</label>
-                                                        </li>
-                                                    </div> -->
                                                     <div class="d-flex justify-content-between mt-2">
                                                         <button class="complete-btn list-complete-btn"><a href="">{{__('labels.apply')}}</a></button>
                                                         <button class="reset-btn"><a href=""> {{__('labels.reset')}}</a></button>
@@ -234,30 +198,22 @@
                     <div class="search-bar d-flex p-2 mt-1">
                         <img id="search-img" class="search-img" src="assets/images/search.svg" alt="">
                         <div class="dropdown hierarchy-select" id="property_states_dropdown">
-                            <button type="button" class="dropdown-toggle form-control cities-form-control" id="state_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                            <div class="dropdown-menu" aria-labelledby="example-two-button">
+                            <button type="button" class="dropdown-toggle form-control cities-form-control" id="property_states_dropdown-button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <ul class="dropdown-menu" aria-labelledby="property_states_dropdown-button">
                                 <div class="hs-searchbox">
                                     <img class="search-right-arrow" src="{{asset('assets/images/icons/arrow-right.png')}}" alt="">
                                     <input type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.search_cities')}}">
                                     <img class="search-left-arrow" src="{{asset('assets/images/icons/arrow-left.png')}}" alt="">
                                 </div>
-                                <div class="hs-menu-inner" name="district">
-                                    <a class="dropdown-item" data-value="" href="#">{{__('labels.looking_property')}}</a>
+                                <div class="hs-menu-inner">
+                                    <li><a class="dropdown-item" data-value="" data-default-selected="" href="#">{{__('labels.looking_property')}}</a></li>
                                     @foreach($states as $row)
-                                        <a class="dropdown-item" data-value="" value="{{ $row->id }}" href="#" @if($state==$row->id) selected="selected" @endif>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</a>
+                                    <li><a class="dropdown-item" class="dropdown-item" data-value="{{ $row->id }}" href="#">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</a></li>
                                     @endforeach
                                 </div>
-                            </div>
-                            <input class="d-none" name="example_two" readonly="readonly" aria-hidden="true" type="text"/>
+                            </ul>
+                            <input class="d-none" id="state" name="state" readonly="readonly" aria-hidden="true" type="text" value="{{$state}}" />
                         </div>
-
-{{--                        <select class="theme-text-secondary-black border-0" theme="google" width="400" style="appearance: none;" placeholder="{{__('labels.looking_property')}}" data-search="true" id="property_states_dropdown">--}}
-{{--                            <option value="" disabled selected>{{__('labels.looking_property')}}</option>--}}
-{{--                            @foreach ($states as $row)--}}
-{{--                            <option value="{{ $row->id }}" @if($state==$row->id) selected="selected" @endif>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>--}}
-{{--                            @endforeach--}}
-{{--                            <!-- <option value="AX">الرياض<span class="property_num">(1)</span></option> -->--}}
-{{--                        </select>--}}
                     </div>
                 </div>
             </div>
@@ -334,40 +290,4 @@
 
 @section('property_list_select')
 <script src="{{theme_asset('assets/newjs/propertylist-search.js')}}"></script>
-<script>
-    jQuery(document).ready(function($) {
-        $('select').selectstyle({
-            width: 400,
-            height: 300,
-            theme: 'light',
-            onchange: function(val) {}
-        });
-    });
-
-    setTimeout(function() {
-        if (state_id != null && state_id != '') {
-            var text = $('.ss_ul li[value=' + state_id + ']').attr("data-title");
-            $('#select_style_text').text(text);
-        }
-    }, 2000);
-</script>
-
-@push('property-list-drop-js')
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- Popper Js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
-    <script src="{{theme_asset('assets/newjs/selectdrop/hierarchy-select.js')}}"></script>
-    <script>
-        $(document).ready(function(){
-            $('#property_states_dropdown').hierarchySelect({
-                hierarchy: false,
-                width: 'auto'
-            });
-        });
-    </script>
-@endpush
-
 @endsection
