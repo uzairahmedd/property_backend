@@ -199,6 +199,66 @@
     opacity: 0;
 }
 
+/*Check Mark Css Star*/
+
+.check-spinner__worm-a,
+.check-spinner__worm-b {
+    visibility: hidden;
+}
+.check-spinner {
+    margin-bottom: 3em;
+    overflow: visible;
+    width: 6.25em;
+    height: 6.25em;
+}
+.check-spinner__worm-a {
+    animation: worm-a 1.2s linear;
+}
+.check-spinner__worm-b {
+    animation: worm-b 1.2s 1.2s linear forwards;
+    stroke-dashoffset: 0.01;
+}
+.check-spinner__circle {
+    animation: circle 0.2s 2.3s cubic-bezier(0,0,.42,1.33) forwards;
+}
+
+/* Animations */
+@keyframes worm-a {
+    from {
+        stroke-dashoffset: 36.1;
+        visibility: visible;
+    }
+    to {
+        stroke-dashoffset: -252.9;
+        visibility: visible;
+    }
+}
+@keyframes worm-b {
+    from {
+        animation-timing-function: linear;
+        stroke-dasharray: 0 0 72.2 341.3;
+        visibility: visible;
+    }
+    69.7% {
+        animation-timing-function: ease-out;
+        stroke-dasharray: 0 207 45 341.3;
+        visibility: visible;
+    }
+    to {
+        animation-timing-function: ease-out;
+        stroke-dasharray: 0 297 45 341.3;
+        visibility: visible;
+    }
+}
+@keyframes circle {
+    from { r: 0; }
+    to { r: 50px; }
+}
+@keyframes reappear {
+    from { visibility: hidden; }
+    to { visibility: visible; }
+}
+
 /* File input style end */
 .img-ul {
     padding-right: 20px;
@@ -211,12 +271,12 @@
 }
 
 .finished h3 {
-    font-size: 31px;
-    /*margin-bottom: 40px;*/
+    font-size: 20px;
+    margin-bottom: 40px;
 }
 
 .ads-p {
-    margin-top: 56px;
+    margin-top: -20px;
     margin-bottom: 30px;
 }
 
