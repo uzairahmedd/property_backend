@@ -21,6 +21,5 @@
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/home.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/view-item.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/en-responsive.css')}}">
-    <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
     @stack('css')
 </head>

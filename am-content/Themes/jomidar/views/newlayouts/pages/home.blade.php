@@ -1,6 +1,5 @@
 @extends('theme::newlayouts.app')
 @section('content')
-<!-- <link rel="stylesheet" href="{{theme_asset('assets/newcss/select-style.css')}}"> -->
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/home-drop.css')}}">
 <!-- Header Section Starts Here -->
 <div class="overlay home_fade"></div>

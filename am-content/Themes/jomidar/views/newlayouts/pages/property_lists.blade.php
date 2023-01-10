@@ -176,13 +176,13 @@
                                                 <div class="tab-pane fade show active" id="nav-rent" role="tabpanel" aria-labelledby="nav-rent-tab">
                                                     <div class="d-flex justify-content-between mt-2">
                                                         <button class="complete-btn list-complete-btn"><a href="">{{__('labels.apply')}}</a></button>
-                                                        <button class="reset-btn"><a href=""> {{__('labels.reset')}}</a></button>
+                                                        <button class="reset-btn reset_status_rent"><a href=""> {{__('labels.reset')}}</a></button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="nav-buy" role="tabpanel" aria-labelledby="nav-buy-tab">
                                                     <div class="d-flex justify-content-between mt-2">
                                                         <button class="complete-btn list-complete-btn"><a href="">{{__('labels.apply')}}</a></button>
-                                                        <button class="reset-btn"><a href=""> {{__('labels.reset')}}</a></button>
+                                                        <button class="reset-btn reset_status_sell"><a href=""> {{__('labels.reset')}}</a></button>
                                                     </div>
                                                 </div>
                                             </div>
