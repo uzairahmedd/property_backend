@@ -38,6 +38,10 @@
     height: 50px;
 }
 
+.hierarchy-select.dropdown .hs-searchbox {
+    padding: 12px 5px 4px;
+}
+
 .hierarchy-select .dropdown-menu {
     width: 100%;
     padding: 0;
@@ -73,7 +77,7 @@
     position: absolute;
     margin-left: auto;
     left: 0;
-    top: 18px;
+    top: 30px;
     display: none;
     margin-left: 10px;
 }
@@ -82,7 +86,7 @@
 {
     position: absolute;
     margin-left: auto;
-    top: 18px;
+    top: 30px;
     right: 5px;
 }
 
