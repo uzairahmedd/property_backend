@@ -443,7 +443,7 @@ class RegisterController extends controller
             $user->status = 1;
             $user->avatar = 'https://ui-avatars.com/api/?size=250&background=random&name=' . $request->name;
         }
-        $user->phone = $request->phone;
+        $user->phone = '0'.$request->phone;
         $user->save();
 
         $usermeta = new Usermeta();
