@@ -2,6 +2,7 @@
 @section('content')
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
 <link rel="stylesheet" href="{{theme_asset('css/app.css')}}">
+<link rel="stylesheet" href="{{theme_asset('css/app.css')}}">
 
 <div class="add-property row-style">
     @include('theme::newlayouts.partials.user_header')
@@ -10,7 +11,12 @@
             <input type="hidden" name="user_id" value="{{encrypt(Auth::User()->id)}}">
             <div class="description-card card finished align-items-center">
                 <h3 class="font-medium theme-text-seondary-black">{{__('labels.process_finished')}}</h3>
-                <img src="{{asset('assets/images/finished.svg')}}" alt="">
+                <div class="box-wrapper">
+                    <div class="box-front">
+                        <div class="check"></div>
+                    </div>
+                    <div class="box-back"></div>
+                </div>
                 <p class="col-7 text-center font-18 theme-text-seondary-black ads-p">{{__('labels.property_published')}}</p>
                 <div class="d-flex align-items-center mb-4_5 advertise-document">
                     <img src="{{asset('assets/images/tick-verified.png')}}" alt="">

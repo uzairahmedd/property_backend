@@ -68,6 +68,12 @@
     background-color: unset !important;
 }
 
+.hs-searchbox input
+{
+    border: 0;
+    padding: 0px 10px !important;
+}
+
 .hs-menu-inner .dropdown-item.active
 {
     background-color: var(--theme-blue);

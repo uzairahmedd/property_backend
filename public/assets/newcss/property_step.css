@@ -90,7 +90,6 @@
 
 .description-card .form-control {
     text-align: right;
-    direction: rtl;
     font-size: 14px;
     margin-top: 10px;
     height: 48px;
@@ -213,7 +212,7 @@
 
 .finished h3 {
     font-size: 31px;
-    margin-bottom: 40px;
+    /*margin-bottom: 40px;*/
 }
 
 .ads-p {
