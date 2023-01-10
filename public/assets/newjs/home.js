@@ -14,7 +14,7 @@ localStorage.setItem('name_status', status_name);
 $(document).ready(function () {
     $('#home_select').hierarchySelect({
         hierarchy: false,
-        search: false,
+        search: true,
         width: 'auto',
         initialValueSet: true,
         onChange: function (value) {

@@ -113,7 +113,7 @@
 $(document).ready(function () {
     $('#property_states_dropdown').hierarchySelect({
         hierarchy: false,
-        search: false,
+        search: true,
         width: 'auto',
         initialValueSet: true,
         onChange: function (value) {

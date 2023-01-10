@@ -55,7 +55,7 @@ $(document).ready(function () {
 $(document).ready(function(){
     $('#cities').hierarchySelect({
         hierarchy: false,
-        search: false,
+        search: true,
         width: 'auto',
         initialValueSet: true,
         onChange: function (value) {
