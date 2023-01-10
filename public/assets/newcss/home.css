@@ -1866,6 +1866,11 @@ span.directorist-select__selected-list--item:first-letter {
     z-index: 1000;
 }
 
+.hs-menu-inner
+{
+    background-color: white;
+}
+
 .buy-rent-pan {
     padding: 0px 14px;
     text-align: center;

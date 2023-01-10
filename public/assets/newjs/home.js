@@ -17,6 +17,7 @@ $(document).ready(function () {
         search: true,
         width: 'auto',
         initialValueSet: true,
+        width: '100%',
         onChange: function (value) {
             $('#state').val(value);
             $('.home_fade').removeClass('add_overlay');
