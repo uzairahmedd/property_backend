@@ -1158,6 +1158,11 @@
     direction: rtl;
 }
 
+.rtl .pro-del-btn
+{
+    margin-left: 10px;
+}
+
 .rtl .close-modal {
     top: 20px;
     right: 20px;
