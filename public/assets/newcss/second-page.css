@@ -45,6 +45,9 @@
     background-color: unset;
 }
 
+.single-property-list {
+    z-index: -1;
+}
 /*.search-right-arrow*/
 /*{*/
 /*    position: absolute;*/
