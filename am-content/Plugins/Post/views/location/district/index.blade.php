@@ -6,7 +6,7 @@
 	<div class="card-body">
 		<div class="row mb-30">
 			<div class="col-lg-6">
-				<h4>Neighborhood</h4>
+				<h4>Districts</h4>
 			</div>
 			<div class="col-lg-6">
 				<div class="add-new-btn">

@@ -6,7 +6,6 @@
 <script src="{{theme_asset('assets/newjs/selectdrop/hierarchy-select.js')}}"></script>
 
 <script src="{{theme_asset('assets/js/iconify.min.js') }}"></script>
-<!--    Select All Js-->
 <!-- Owl Carousel -->
 <script src="{{theme_asset('assets/newjs/owl.carousel.min.js')}}"></script>
 <!-- Selectric Js -->
@@ -14,8 +13,6 @@
 <!-- Font Awesome Js -->
 <script src="{{theme_asset('assets/newjs/fontawesome/font.js')}}"></script>
 <script src="{{ theme_asset('assets/js/jquery.selectric.js') }}"></script>
-{{--<script src="{{theme_asset('assets/newjs/selectdrop/chosen.jquery.js')}}"></script>--}}
-{{--<script src="{{theme_asset('assets/newjs/selectdrop/init.js')}}"></script>--}}
 <script src="{{ theme_asset('assets/js/helper.js') }}"></script>
 @stack('js')
 <script src="{{theme_asset('assets/newjs/custom.js')}}"></script>

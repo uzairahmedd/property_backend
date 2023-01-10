@@ -1,5 +1,6 @@
 @extends('theme::newlayouts.app')
 @section('content')
+<link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/create-property.css')}}">
 <script>
     var locale = '<?php echo Session::get('locale'); ?>';

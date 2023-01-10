@@ -4,7 +4,6 @@
     var page_time = '{{$time}}';
 </script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/post-property.css')}}">
-<!-- <link rel="stylesheet" href="{{theme_asset('assets/newcss/intlTelInput.css')}}"> -->
 
 <div class="container number-verify-property d-flex justify-content-center align-items-center">
     <div class="form-right d-flex justify-content-center align-items-center flex-column">

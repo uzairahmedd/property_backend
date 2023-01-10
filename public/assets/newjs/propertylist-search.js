@@ -175,6 +175,25 @@ rangeInput.forEach((input) => {
 
 
 $(document).ready(function (event) {
+//set status
+localStorage.setItem('list_status', $('#status_list').val());
+$('.reset_status_rent').click(function (e) {
+    e.preventDefault();
+    $('#status_list').val(localStorage.getItem('list_status'));
+    var base_url = $('#base_url').val();
+    var url = base_url + 'get_properties_data';
+    get_properties(url);
+});
+
+$('.reset_status_sell').click(function (e) {
+    e.preventDefault();
+    $('#status_list').val(localStorage.getItem('list_status'));
+    var base_url = $('#base_url').val();
+    var url = base_url + 'get_properties_data';
+    get_properties(url);
+});
+
+
     $('.list-complete-btn').click(function (e) {
         e.preventDefault();
         var base_url = $('#base_url').val();
@@ -198,7 +217,7 @@ $(document).ready(function (event) {
             $('#dropdownMenuLink-buy').text(radio_text);
             let radio_val = $(this).data('value');
             $('#status_list').val(radio_val);
-            $('#fade').removeClass('add_overlay');
+            // $('#fade').removeClass('add_overlay');
         }
         event.stopPropagation();
     });
