@@ -554,7 +554,7 @@ class RegisterController extends controller
         }
         $advertiser_id = null;
         if ($request->status == '1') {
-            $advertiser_id = Str::random(5);
+            $advertiser_id = rand(1000000000, 9999999999);
         }
 
         $user = User::find(decrypt($request->id));

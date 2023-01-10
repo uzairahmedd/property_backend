@@ -22,6 +22,7 @@ use App\Models\PostCity;
 use App\Models\Termrelation;
 use App\Models\Price;
 use App\Models\User;
+use App\Models\UserCredentials;
 use Illuminate\Support\Str;
 use Session;
 use Auth;
@@ -635,7 +636,6 @@ class PropertyController extends controller
      */
     public function add_property(Request $request)
     {
-
         $validator = $this->property_create_validations($request);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -1113,7 +1113,8 @@ class PropertyController extends controller
     {
         $term_id = decrypt($id);
         $post_data = Terms::with('rules', 'id_number', 'instrument_number')->where('user_id', Auth::id())->findorFail($term_id);
-        return view('theme::newlayouts.property_dashboard.property_create_six', compact('id', 'post_data'));
+        $user_id=UserCredentials::where('user_id', Auth::id())->first();
+        return view('theme::newlayouts.property_dashboard.property_create_six', compact('id', 'post_data','user_id'));
     }
 
     /**

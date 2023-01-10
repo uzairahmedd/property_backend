@@ -52,45 +52,58 @@ $(document).ready(function () {
 });
 
 
-$(document).ready(function(){
+$(document).ready(function () {
     $('#cities').hierarchySelect({
         hierarchy: false,
         search: true,
         width: 'auto',
         initialValueSet: true,
         onChange: function (value) {
+            $('#city_val').val(value);
             get_already_select_district(value, null);
         }
     });
+    setTimeout(function () {
+        $('#districts').hierarchySelect({
+            hierarchy: false,
+            search: true,
+            width: 'auto',
+            initialValueSet: true,
+            onChange: function (value) {
+                $('#district_val').val(value);
+            }
+        });
+    }, 2500);
+
 });
 
 
-$(document).ready(function(){
-    $('#district').hierarchySelect({
-        hierarchy: false,
-        width: 'auto',
-        height: '160px'
-    });
-});
+// $(document).ready(function(){
+//     $('#district').hierarchySelect({
+//         hierarchy: false,
+//         width: 'auto',
+//         height: '160px'
+//     });
+// });
 
 
 
 //district against cities
-$(function () {
-    $("#cities").on("change", function (e) {
-        e.preventDefault();
-        var city_id = $(this).val();
-        get_already_select_district(city_id, null);
-    });
-});
+// $(function () {
+//     $("#cities").on("change", function (e) {
+//         e.preventDefault();
+//         var city_id = $(this).val();
+//         get_already_select_district(city_id, null);
+//     });
+// });
 
 // for edit district
-if ($('#cities').val() != null) {
-    var city_id = $('#cities').val();
-    var district_id = $('#district_id').val();
-    get_already_select_district(city_id, district_id);
+// if ($('#cities').val() != null) {
+//     var city_id = $('#cities').val();
+//     var district_id = $('#district_id').val();
+//     get_already_select_district(city_id, district_id);
 
-}
+// }
 
 function get_already_select_district(city_id, district_id = null) {
     var select_district = $('#please_select_district').text();
@@ -101,20 +114,16 @@ function get_already_select_district(city_id, district_id = null) {
         url: url,
         data: { 'id': city_id },
         success: function (response) {
-            $('#districts').html('');
-            $('#districts').append('<option disabled selected> ' + select_district + ' </option>');
+            $('#district_inner').html('');
+            $('#district_inner').append('<li><a class="dropdown-item" data-value="" data-default-selected="" href="#">' + select_district + '</a></li>');
             var name = '';
             $.each(response, function (index, value) {
-                var select = '';
+                // var select = '';
                 name = value.name;
                 if (locale == 'ar') {
                     name = value.ar_name;
                 }
-                if (district_id != null && district_id == value.id) {
-                    select = 'selected';
-                }
-                console.log(name);
-                $('#districts').append('<option ' + select + ' value=' + value.id + '>' + name + '</option>').trigger('chosen:updated');
+                $('#district_inner').append('<li><a class="dropdown-item" class="dropdown-item" data-value=' + value.id + '  href="#">' + name + '</a></li>');
             });
 
         }
@@ -135,28 +144,28 @@ else if ($("input[name=furnishing][value=1]").data('val') != '' && $("input[name
     $("input[name=furnishing][value=1]").prop('checked', true);
 }
 
-function tooltip (btn, tool) {
+function tooltip(btn, tool) {
     var btn = document.getElementById(btn);  // El botón.
     var tool = document.getElementById(tool);  // El tooltip.
     var open = false;
 
     // Evito que se cierre el tooltip si hago click sobre el tooltip.
-    tool.addEventListener('click', function(event){
+    tool.addEventListener('click', function (event) {
         event.stopPropagation();
     });
 
     // Al hacer click en el botón.
-    btn.addEventListener('click', function(event){
+    btn.addEventListener('click', function (event) {
         event.stopPropagation();
         // Si estaba Cerrado.
-        if(!open){
+        if (!open) {
             tool.classList.add('abierto');
             open = true;
             // Cuando hago click en cualquier parte de la página.
             document.addEventListener('click', ocultar);
 
             // Si estaba abierto.
-        }else{
+        } else {
             // Oculto el tooltip.
             tool.classList.remove('abierto');
             open = false;
@@ -166,7 +175,7 @@ function tooltip (btn, tool) {
     });
 
     // Función para ocultar el tooltip si hago click en cualquier parte del document.
-    function ocultar () {
+    function ocultar() {
         // Oculto el tooltip.
         tool.classList.remove('abierto');
         open = false;

@@ -11,7 +11,7 @@
         <form method="post" action="{{ route('agent.property.store_property') }}">
             @csrf
             <input type="hidden" name="term_id" value="{{$id}}">
-            <input type="hidden" id="district_id" value="{{$post_data != '' ?  $post_data->district->district_id : old('district')}}">
+            <!-- <input type="hidden" id="district_id" value="{{$post_data != '' ?  $post_data->district->district_id : old('district')}}"> -->
             <div class="description-card card">
                 @if($errors->has('message'))
                 <div class="error d-flex justify-content-end pt-1">{{ $errors->first('message') }}</div>
@@ -93,24 +93,18 @@
                             <label for="district" class="theme-text-seondary-black">{{__('labels.district')}}</label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
                                 <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
-                                <div class="dropdown hierarchy-select" id="district">
-                                    <button type="button" name="district" class="dropdown-toggle form-control district-form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('labels.please_select_district')}}</button>
-                                    <div class="dropdown-menu" aria-labelledby="example-two-button">
+                                <div class="dropdown hierarchy-select" id="districts">
+                                    <button type="button" class="dropdown-toggle form-control cities-form-control" id="districts_dropdown-button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                    <ul class="dropdown-menu" aria-labelledby="districts_dropdown-button">
                                         <div class="hs-searchbox">
-                                            <input type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.search_district')}}">
+                                            <input id="placeholder_box_district" type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.search_district')}}">
                                         </div>
-                                        <div class="hs-menu-inner" name="district" id="districts">
-                                            <a class="dropdown-item">{{__('labels.select_district')}}</a>
+                                        <div class="hs-menu-inner" id="district_inner">
                                         </div>
-                                    </div>
-                                    <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>
+                                    </ul>
+                                    <input type="hidden" id="district_val" name="district" readonly="readonly" aria-hidden="true" type="text" value="{{$post_data != '' ?  $post_data->district->district_id : old('district')}}" />
                                 </div>
-                                {{-- <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>--}}
-                                {{-- conflict select start--}}
-                                {{-- <select data-placeholder="Select your location" class="select-icon chosen-select" tabindex="5" id="districts" name="district">--}}
-                                {{-- <option value="" disabled selected>{{__('labels.select_district')}}</option>--}}
-                                {{-- </select>--}}
-                                {{-- <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>--}}
+                                <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>
                             </div>
                             @if($errors->has('district'))
                             <div class="error pt-1">{{ $errors->first('district') }}</div>
@@ -129,31 +123,12 @@
                                         <div class="hs-menu-inner">
                                             <li><a class="dropdown-item" data-value="" data-default-selected="" href="#">{{__('labels.select_city')}}</a></li>
                                             @foreach(App\Models\City::get() as $row)
-                                            <li><a class="dropdown-item" class="dropdown-item" data-value="{{ $row->id }}"  href="#">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</a></li>
+                                            <li><a class="dropdown-item" class="dropdown-item" data-value="{{ $row->id }}" href="#">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</a></li>
                                             @endforeach
                                         </div>
                                     </ul>
-                                    <input class="d-none"  name="city" readonly="readonly" aria-hidden="true" type="text" value="{{ $post_data != '' ? $post_data->saudi_post_city->city_id : old('city')}}" />
+                                    <input type="hidden" id="city_val" name="city" readonly="readonly" aria-hidden="true" type="text" value="{{ $post_data != '' && !empty($post_data->saudi_post_city) ? $post_data->saudi_post_city->city_id : old('city')}}" />
                                 </div>
-                                <!-- <div class="dropdown hierarchy-select" id="cities">
-                                    <button type="button" class="dropdown-toggle form-control cities-form-control" tabindex="5" name="city" id="cities" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('labels.select_the_city')}}</button>
-                                    <div class="dropdown-menu" aria-labelledby="example-two-button">
-                                        <div class="hs-searchbox">
-                                            <input type="text" class="form-control" placeholder="{{__('labels.search_cities')}}" autocomplete="off">
-                                        </div>
-                                        <div class="hs-menu-inner" name="city">
-                                            @foreach(App\Models\City::get() as $row)
-                                            <a class="dropdown-item" value="{{ $row->id }}" href="#" {{ $post_data != '' &&  $post_data->saudi_post_city->city_id ==  $row->id ?  "selected" : (old('city') == $row->id ? 'selected' : '')  }}>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</a>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div> -->
-                                {{-- <select data-placeholder="Select your location" class="select-icon chosen-select" tabindex="5" name="city" id="cities">--}}
-                                {{-- <option value="" disabled selected> {{__('labels.select_city')}}</option>--}}
-                                {{-- @foreach(App\Models\City::get() as $row)--}}
-                                {{-- <option value="{{ $row->id }}" {{ $post_data != '' &&  $post_data->saudi_post_city->city_id ==  $row->id ?  "selected" : (old('city') == $row->id ? 'selected' : '')  }}> {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>--}}
-                                {{-- @endforeach--}}
-                                {{-- </select>--}}
                             </div>
                             @if($errors->has('city'))
                             <div class="error pt-1">{{ $errors->first('city') }}</div>
