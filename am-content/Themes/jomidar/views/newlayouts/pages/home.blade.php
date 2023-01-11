@@ -100,7 +100,7 @@
                                             <div class="d-flex justify-content-between resident-centent">
                                                 <div class="resident-pans">
                                                     @foreach($property_type as $key=>$value)
-                                                    @if($key < 3) @foreach($value->child as $child)
+                                                    @if($key < 4) @foreach($value->child as $child)
                                                         @if($child->name == 'Residential')
                                                         <li class="resident-pan" value="{{$value->id}}">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}<i class="fa-solid {{ !empty($value->icon) ? $value->icon->content : 'fas fa-home'}}"></i>
                                                         </li>
@@ -111,7 +111,7 @@
                                                 </div>
                                                 <div class="resident-pans">
                                                     @foreach($property_type as $key=>$value)
-                                                    @if($key >= 3)
+                                                    @if($key >= 4)
                                                     @foreach($value->child as $child)
                                                     @if($child->name == 'Residential')
                                                     <li class="resident-pan" value="{{$value->id}}">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}<i class="fa-solid {{$value->icon->content}}"></i>
@@ -133,7 +133,7 @@
                                             <div class="d-flex justify-content-between resident-centent">
                                                 <div class="resident-pans">
                                                     @foreach($property_type as $key=>$value)
-                                                    @if($key < 3) @foreach($value->child as $child)
+                                                    @if($key < 12) @foreach($value->child as $child)
                                                         @if($child->name == 'Commercial')
                                                         <li class="resident-pan" value="{{$value->id}}">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}<i class="fa-solid {{$value->icon->content}}"></i>
                                                         </li>
@@ -144,7 +144,7 @@
                                                 </div>
                                                 <div class="resident-pans">
                                                     @foreach($property_type as $key=>$value)
-                                                    @if($key >= 3)
+                                                    @if($key >= 12)
                                                     @foreach($value->child as $child)
                                                     @if($child->name == 'Commercial')
                                                     <li class="resident-pan" value="{{$value->id}}">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}<i class="fa-solid {{$value->icon->content}}"></i>
@@ -182,7 +182,7 @@
                         </div>
                         <div class="hs-menu-inner">
                             <li><a class="dropdown-item" data-value="" data-default-selected="" href="#">{{__('labels.looking_property')}}</a></li>
-                            @foreach($states as $row)
+                            @foreach($cities as $row)
                             <li><a class="dropdown-item" class="dropdown-item" data-value="{{ $row->id }}" href="#">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</a></li>
                             @endforeach
                         </div>

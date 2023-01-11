@@ -23,7 +23,7 @@ class CategoryController extends Controller
     if (!Auth()->user()->can('category.list')) {
       abort(401);
     }
-    $posts = Category::where('type', 'category')->with('creditcharge')->latest()->paginate(20);
+    $posts = Category::where('type', 'category')->with('child_name','icon')->latest()->paginate(20);
     return view('plugin::category.index', compact('posts'));
   }
 

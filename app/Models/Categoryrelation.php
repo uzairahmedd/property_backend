@@ -9,4 +9,9 @@ class Categoryrelation extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function categories()
+	{
+		return $this->hasMany('App\category','id','category_id')->select('id','name','ar_name','slug');
+	}
 }

@@ -3,39 +3,39 @@
 @section('content')
 @include('layouts.backend.partials.headersection',['title'=>'City'])
 <div class="card">
-    <div class="card-body">
-        <div class="row mb-30">
-            <div class="col-lg-6">
-                <h4>{{ __('Cities') }}</h4>
-            </div>
-            <div class="col-lg-6">
-                <div class="add-new-btn">
-                    <a href="{{ route('admin.cities.create') }}" class="btn float-right btn-primary">{{ __('Add New') }}</a>
-                </div>
-            </div>
-        </div>
-        <div class="card-action-filter mt-3">
-            <form method="post" id="basicform" action="{{ route('admin.cities.destroy') }}">
-                @csrf
-                <div class="float-left">
-                    <div class="input-group">
-                        <select class="form-control selectric" name="method">
-                            <option value="">{{ __('Select Action') }}</option>
-                            <option value="delete">{{ __('Delete Permanently') }}</option>
-                        </select>
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">{{ __('Submit') }}</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="float-right">
-                    <div class="form-group">
-                        <input type="text" id="data_search" class="form-control" placeholder="Enter Value">
-                    </div>
-                </div>
-        </div>
-        <div class="table-responsive">
-        <table class="table">
+	<div class="card-body">
+		<div class="row mb-30">
+			<div class="col-lg-6">
+				<h4>{{ __('Cities') }}</h4>
+			</div>
+			<div class="col-lg-6">
+				<div class="add-new-btn">
+					<a href="{{ route('admin.cities.create') }}" class="btn float-right btn-primary">{{ __('Add New') }}</a>
+				</div>
+			</div>
+		</div>
+		<div class="card-action-filter mt-3">
+			<form method="post" id="basicform" action="{{ route('admin.cities.destroy') }}">
+				@csrf
+				<div class="float-left">
+					<div class="input-group">
+						<select class="form-control selectric" name="method">
+							<option value="">{{ __('Select Action') }}</option>
+							<option value="delete">{{ __('Delete Permanently') }}</option>
+						</select>
+						<div class="input-group-append">
+							<button class="btn btn-primary" type="submit">{{ __('Submit') }}</button>
+						</div>
+					</div>
+				</div>
+				<div class="float-right">
+					<div class="form-group">
+						<input type="text" id="data_search" class="form-control" placeholder="Enter Value">
+					</div>
+				</div>
+		</div>
+		<div class="table-responsive">
+			<table class="table">
 				<thead>
 					<tr>
 						<th class="am-select">
@@ -46,6 +46,7 @@
 						</th>
 						<th class="am-title">{{ __('Title') }}</th>
 						<th class="am-title">{{ __('Arabic Title') }}</th>
+						<th class="am-title">{{ __('featured') }}</th>
 						<th class="am-date">{{ __('Date') }}</th>
 					</tr>
 				</thead>
@@ -68,7 +69,13 @@
 							</div>
 						</td>
 						<td>{{ $post->ar_name }}</td>
-						<!-- <td>{{ url('/state',$post->slug) }}</td> -->
+						<td>
+							@if($post->featured==1)
+							<span class="badge badge-success">{{ __('Yes') }}</span>
+							@else
+							<span class="badge badge-danger">{{ __('No') }}</span>
+							@endif
+						</td>
 						<td>{{ __('Last Modified') }}
 							<div class="date">
 								{{ $post->updated_at->diffForHumans() }}
@@ -89,15 +96,15 @@
 						<!-- <th class="am-title"><i class="far fa-image"></i></th> -->
 						<th class="am-title">{{ __('Title') }}</th>
 						<th class="am-title">{{ __('Arabic Title') }}</th>
-						<!-- <th class="am-title">{{ __('Url') }}</th> -->
+						<th class="am-title">{{ __('featured') }}</th>
 						<th class="am-date">{{ __('Date') }}</th>
 					</tr>
 				</tfoot>
 			</table>
-            {{ $posts->links('vendor.pagination.bootstrap') }}
-        </div>
-        </form>
-    </div>
+			{{ $posts->links('vendor.pagination.bootstrap') }}
+		</div>
+		</form>
+	</div>
 </div>
 </div>
 </div>
@@ -106,10 +113,10 @@
 
 <script src="{{ asset('admin/js/form.js') }}"></script>
 <script>
-    "use strict";
-    //response will assign this function
-    function success(res) {
-        location.reload();
-    }
+	"use strict";
+	//response will assign this function
+	function success(res) {
+		location.reload();
+	}
 </script>
 @endsection
