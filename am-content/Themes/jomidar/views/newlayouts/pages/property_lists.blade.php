@@ -207,7 +207,7 @@
                                 </div>
                                 <div class="hs-menu-inner">
                                     <li><a class="dropdown-item" data-value="" data-default-selected="" href="#">{{__('labels.looking_property')}}</a></li>
-                                    @foreach($states as $row)
+                                    @foreach($cities as $row)
                                     <li><a class="dropdown-item" class="dropdown-item" data-value="{{ $row->id }}" href="#">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</a></li>
                                     @endforeach
                                 </div>

@@ -16,6 +16,7 @@ use Illuminate\Http\File;
 use App\Models\Mediapost;
 use App\Models\District;
 use App\Media;
+use App\Models\City;
 use App\Models\Postcategoryoption;
 use App\Models\PostDistrict;
 use App\Models\PostCity;
@@ -617,7 +618,7 @@ class PropertyController extends controller
      */
     public function create_property($id = null)
     {
-        $categories = Category::where('type', 'category')->get();
+        $cities=City::where('featured', 1)->get();
         //new design khiaratee
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
         //for edit
@@ -625,7 +626,7 @@ class PropertyController extends controller
         if (isset($id)) {
             $post_data = Terms::with('district', 'property_status_type','saudi_post_city')->where('user_id', Auth::id())->findorFail($id);
         }
-        return view('theme::newlayouts.property_dashboard.property_create', compact('categories', 'status_category', 'id', 'post_data'));
+        return view('theme::newlayouts.property_dashboard.property_create', compact('cities','status_category', 'id', 'post_data'));
     }
 
     /**
@@ -737,7 +738,7 @@ class PropertyController extends controller
     public function edit_two_property($id)
     {
         $parent_category = Category::where('type', 'parent_category')->get();
-        $child_category =  Category::where('type', 'category')->get();
+        $child_category =  Category::where('type', 'category')->where('featured', 1)->limit(8)->get();
         //for edit
         $post_data = Terms::with('property_age', 'landarea', 'builtarea', 'interface', 'meter', 'ready', 'price', 'electricity_facility', 'water_facility', 'streets', 'postcategory','property_status_type')->where('user_id', Auth::id())->where('id', decrypt($id))->first();
         $array = [];
@@ -903,7 +904,7 @@ class PropertyController extends controller
         $this->term_id = decrypt($id);
         $array = [];
         $property_type = null;
-        $info = Terms::with('postcategory', 'property_type','property_status_type')->where('user_id', Auth::id())->findorFail($this->term_id);
+        $info = Terms::with('postcategory', 'property_type','property_status_type','total_floors', 'property_floor', 'property_condition')->where('user_id', Auth::id())->findorFail($this->term_id);
         //if land is property type
         if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'land')) {
             return redirect()->route('agent.property.second_edit_property', $id);
@@ -916,15 +917,13 @@ class PropertyController extends controller
             }
         }
 
-        $input_options = Category::where('type', 'option')->whereHas('child', function ($q) {
+        $input_options = Category::where('type', 'option')->where('featured', 1)->whereHas('child', function ($q) {
             return $q->where('id', $this->property_type);
         })->with(['post_category_option' => function ($q) {
             return $q->where('term_id', $this->term_id);
         }])->get();
 
-        //edit data
-        $post_data = Terms::with('total_floors', 'property_floor', 'property_condition')->where('user_id', Auth::id())->where('id',  $this->term_id)->first();
-        return view('theme::newlayouts.property_dashboard.property_create_third', compact('id', 'input_options', 'post_data','info'));
+        return view('theme::newlayouts.property_dashboard.property_create_third', compact('id', 'input_options','info'));
     }
 
 
@@ -1055,11 +1054,12 @@ class PropertyController extends controller
     {
         $term_id = decrypt($id);
         $info = Terms::with('post_district','post_new_city','length','depth','property_type', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor',  'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility',  'property_status_type', 'postcategory', 'property_condition', 'option_data')->where('user_id', Auth::id())->findorFail($term_id);
+        $categories_data=Category::where('type','feature')->where('featured', 1)->get();
         $features_array = [];
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
         }
-        return view('theme::newlayouts.property_dashboard.property_create_five', compact('id', 'features_array', 'info'));
+        return view('theme::newlayouts.property_dashboard.property_create_five', compact('id', 'features_array', 'info','categories_data'));
     }
 
     /**
@@ -1426,6 +1426,6 @@ class PropertyController extends controller
     //distric against cities
     public function info(Request $request)
     {
-        return District::where('p_id', $request->id)->select('id', 'name', 'ar_name')->get();
+        return District::where('p_id', $request->id)->where('featured', 1)->select('id', 'name', 'ar_name')->get();
     }
 }
