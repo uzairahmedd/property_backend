@@ -4,16 +4,21 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Terms;
+use App\Meta;
 use App\Options;
 use App\Category;
 use App\Models\Review;
+use App\PostCategory;
 use CentralApps\MortgageCalculator\Calculator;
 use Auth;
+use Str;
+use Session;
 use Cart;
 use Amcoders\Plugin\sendmail\Helper\Propertymailsend;
 use Amcoders\Theme\jomidar\http\controllers\DataController;
 use App\Http\Resources\PropertyResource;
 use App\Models\User;
+use App\Models\Price;
 use DB;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
@@ -45,6 +50,91 @@ class PropertyController extends controller
             return response()->json($property, 200);
         } else {
             return abort(404);
+        }
+    }
+
+    public function store(Request $request)
+    {
+        $user = Auth::user();
+        // $check_credit = Auth::user()->credits;
+        // $post_credit = Category::where('type', 'category')->with('creditcharge')->findorFail($request->category);
+        // $post_credit = (int)$post_credit->creditcharge->content;
+
+        // if ($post_credit > $check_credit) {
+        //     Session::flash('error', 'credit limit exceeded please recharge your credit');
+        //     return redirect()->route('agent.package.index');
+        // }
+        // $new_credit = $check_credit - $post_credit;
+
+        $validatedData = $request->validate([
+            'title' => 'required|max:100',
+            'category' => 'required',
+            'min_price' => 'required|max:100',
+            'max_price' => 'required|max:100',
+        ]);
+
+        $slug = Str::slug($request->title);
+        $count = Terms::where('type', 'property')->where('slug', $slug)->count();
+        if ($count > 0) {
+            $slug = $slug . '-' . rand(40, 60) . $count;
+        }
+
+        $term = new Terms;
+        $term->title = $request->title;
+        $term->slug = $slug;
+        $term->user_id = Auth::id();
+        $term->status = 3;
+        $term->type = 'property';
+        $term->save();
+
+        $meta = new Meta;
+        $meta->term_id = $term->id;
+        $meta->type = 'excerpt';
+        $meta->content = '';
+        $meta->save();
+
+        $meta = new Meta;
+        $meta->term_id = $term->id;
+        $meta->type = 'content';
+        $meta->content = '';
+        $meta->save();
+
+        $json['contact_type'] = "mail";
+        $json['email'] = $user->email;
+
+        $meta = new Meta;
+        $meta->term_id = $term->id;
+        $meta->type = 'contact_type';
+        $meta->content = json_encode($json);
+        $meta->save();
+
+        $min_price = new Price;
+        $min_price->type = "min_price";
+        $min_price->term_id = $term->id;
+        $min_price->price = $request->min_price;
+        $min_price->save();
+
+        $max_price = new Price;
+        $max_price->type = "max_price";
+        $max_price->term_id = $term->id;
+        $max_price->price = $request->max_price;
+        $max_price->save();
+
+
+        $cat = PostCategory::insert(['term_id' => $term->id, 'category_id' => $request->category]);
+        Session::flash("flash_notification", [
+            "level"     => "success",
+            "message"   => "Property Created Successfully"
+        ]);
+
+        $user = User::find($user->id);
+        // $user->credits = $new_credit;
+        $user->save();
+
+        if($term){
+            return response()->json($term, 200);
+        } else {
+            return response()->json(['error' => 'Error creating property'], 422);
         }
     }
 

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PropertyController;
+use App\Http\Controllers\Api\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,12 @@ use App\Http\Controllers\Api\PropertyController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post('/list', [PropertyController::class, 'store']);
 });
 
 Route::get('/listings', [PropertyController::class, 'listings']);
 Route::get('/listing/{slug}', [PropertyController::class, 'listing']);
+Route::post('/send_otp', [RegisterController::class, 'send_otp']);
+Route::post('/verify_otp', [RegisterController::class, 'verify_otp']);
+Route::post('/user_register', [RegisterController::class, 'user_register']);
