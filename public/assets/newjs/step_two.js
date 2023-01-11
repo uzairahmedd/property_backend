@@ -145,7 +145,7 @@ function property_type(parent_cate, selected_cat = null) {
         success: function (response) {
             $('#property_type_radio').html('');
             $.each(response, function (index, value) {
-                $.each(value.parent, function (index, value_data) {
+                $.each(value.category_parent, function (index, value_data) {
                     var checked = '';
                     var name = value_data.name;
                     if (locale == 'ar') {
@@ -205,7 +205,7 @@ $(document).ready(function () {
             $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
                 '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
 
-        } else if (text.indexOf('land') > -1) {
+        } else if (text === 'land') {
             $('#land_size').html('');
             $('#built_up_area').html('');
             $('#built_up_area').html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +

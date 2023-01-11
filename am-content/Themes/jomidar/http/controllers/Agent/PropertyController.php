@@ -758,7 +758,7 @@ class PropertyController extends controller
 
     public function get_property_type(Request $request)
     {
-        $info = Category::where('type', 'parent_category')->with('parent')->where('id', $request->id)->get();
+        $info = Category::where('type', 'parent_category')->with('category_parent')->where('id', $request->id)->get();
         return $info;
     }
 

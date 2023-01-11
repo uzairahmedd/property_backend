@@ -25,6 +25,10 @@ class DataController extends controller
     public $block;
     public $min_price;
     public $max_price;
+    public $price;
+    public $room;
+    public $parent_category;
+
 
     public function agents()
     {
