@@ -211,13 +211,15 @@
                 <div class="col-12 d-flex flex-column-reverse flex-lg-row flex-md-row justify-content-end">
                     <div class="col-lg-6 col-md-8 col-sm-12 regional-street-1 d-flex align-items-end">
                         <div class="col-12 d-flex flex-lg-row flex-sm-column-reverse justify-content-end align-items-end">
-                            <div class="col-12 col-lg-6 col-md-12 col-sm-12 d-flex flex-column">
-                                <label for="" class="d-flex justify-content-end theme-text-black property_role_no">Property floor</label>
-                                <input type="number" name="property_floor" value="{{ !empty( $post_data->property_floor) ? $post_data->property_floor->content  : old("property_floor") }}" placeholder="Property floor" id="interface_val3" class="form-control street_view theme-border">
+                           @if(!empty($info->property_status_type) && $info->property_status_type->category->name == 'Rent' )
+                           <div class="col-12 col-lg-6 col-md-12 col-sm-12 d-flex flex-column">
+                                <label for="" class="d-flex justify-content-end theme-text-black property_role_no">{{__('labels.property_floor')}}</label>
+                                <input type="number" name="property_floor" value="{{ !empty( $post_data->property_floor) ? $post_data->property_floor->content  : old("property_floor") }}" placeholder="{{__('labels.property_floor')}}" id="interface_val3" class="form-control street_view theme-border">
                             </div>
+                            @endif
                             <div class="col-12 col-lg-6 col-md-12 col-sm-12 d-flex flex-column ms-5 realestate_roles">
-                                <label for="" class="d-flex justify-content-end theme-text-black">Total floors</label>
-                                <input type="number" name="total_floors" value="{{ !empty( $post_data->total_floors) ? $post_data->total_floors->content  : old("total_floors") }}" placeholder="Total floors" class="form-control theme-border">
+                                <label for="" class="d-flex justify-content-end theme-text-black">{{__('labels.total_floors')}}</label>
+                                <input type="number" name="total_floors" value="{{ !empty( $post_data->total_floors) ? $post_data->total_floors->content  : old("total_floors") }}" placeholder="{{__('labels.total_floors')}}" class="form-control theme-border">
                             </div>
                         </div>
                     </div>

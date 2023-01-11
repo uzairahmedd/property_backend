@@ -903,7 +903,7 @@ class PropertyController extends controller
         $this->term_id = decrypt($id);
         $array = [];
         $property_type = null;
-        $info = Terms::with('postcategory', 'property_type')->where('user_id', Auth::id())->findorFail($this->term_id);
+        $info = Terms::with('postcategory', 'property_type','property_status_type')->where('user_id', Auth::id())->findorFail($this->term_id);
         //if land is property type
         if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'land')) {
             return redirect()->route('agent.property.second_edit_property', $id);
@@ -924,7 +924,7 @@ class PropertyController extends controller
 
         //edit data
         $post_data = Terms::with('total_floors', 'property_floor', 'property_condition')->where('user_id', Auth::id())->where('id',  $this->term_id)->first();
-        return view('theme::newlayouts.property_dashboard.property_create_third', compact('id', 'input_options', 'post_data'));
+        return view('theme::newlayouts.property_dashboard.property_create_third', compact('id', 'input_options', 'post_data','info'));
     }
 
 

@@ -15,9 +15,9 @@ $(document).ready(function () {
     $('#home_select').hierarchySelect({
         hierarchy: false,
         search: true,
-        width: 'auto',
         initialValueSet: true,
         width: '100%',
+        height:'130px',
         onChange: function (value) {
             $('#state').val(value);
             $('.home_fade').removeClass('add_overlay');

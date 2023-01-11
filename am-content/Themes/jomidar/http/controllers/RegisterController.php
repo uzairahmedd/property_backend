@@ -417,11 +417,16 @@ class RegisterController extends controller
      */
     public function phone_register(Request $request)
     {
+        
         $validator = \Validator::make($request->all(), [
-            'phone' => 'required|numeric|unique:users,phone',
+            'phone' => 'required|numeric|digits_between:1,9|unique:users,phone',
         ]);
         if ($validator->fails()) {
             return back()->withErrors($validator->errors())->withInput();
+        }
+        if(substr($request->phone, 0, 1) == 0){
+            $message=['phone'=>'Please enter valid phone number'];
+            return back()->withErrors($message)->withInput();
         }
         //save user data
         $latest_user = DB::table('users')->latest()->first();
@@ -443,7 +448,7 @@ class RegisterController extends controller
             $user->status = 1;
             $user->avatar = 'https://ui-avatars.com/api/?size=250&background=random&name=' . $request->name;
         }
-        $user->phone = $request->phone;
+        $user->phone = '0'.$request->phone;
         $user->save();
 
         $usermeta = new Usermeta();
@@ -577,7 +582,7 @@ class RegisterController extends controller
     public function user_login(Request $request)
     {
         $validator = \Validator::make($request->all(), [
-            'phone' => 'required|numeric',
+            'phone' => 'required|numeric|digits_between:1,10',
         ]);
         if ($validator->fails()) {
             return error_response($validator->errors(), 'Validation error');
