@@ -82,6 +82,11 @@
     margin-left: 10px;
 }
 
+.hierarchy-select .dropdown-menu
+{
+    height: auto !important;
+}
+
 .search-left-arrow
 {
     position: absolute;

@@ -123,7 +123,7 @@ return [
     'email_optional' => 'Email (Optional)',
     'id' => 'Id',
     'delete_account' => 'Delete Account',
-    'list_your_property' => 'List your Property',
+    'list_your_property' => 'Advertise your Property',
     'easily_market_property' => 'You can easily market your property on our website',
     'sale' => 'Sale',
     'property_title' => 'Property title',
