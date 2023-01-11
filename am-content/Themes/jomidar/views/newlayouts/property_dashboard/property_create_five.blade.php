@@ -13,7 +13,7 @@
                     <span class="theme-text-sky ">5</span>/
                     <span class="theme-text-seondary-black">6</span>
                 </div>
-                @if(!empty($info->property_type) && $info->property_type->category->name != 'Residential land')
+                @if(!empty($info->property_type) && !str_contains('$info->property_type->category->name', 'land'))
                 <p class="mb-0 font-18 theme-text-seondary-black p-2">{{__('labels.determine_the_features')}}</p>
                 <p class="mb-3 font-14 theme-text-grey ps-2">{{__('labels.choose_more_than_one')}}</p>
                 <div class="row theme-gx-2 theme-gy-36 justify-content-end p-2">

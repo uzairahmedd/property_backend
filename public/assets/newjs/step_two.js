@@ -188,7 +188,7 @@ $(document).ready(function () {
     });
 
     function land_built_area(text, land_size_value) {
-        if (text === 'Building' || text === 'building') {
+        if (text === 'Building') {
             $('#land_size').html('');
             $('#built_up_area').html('');
             $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
@@ -197,7 +197,7 @@ $(document).ready(function () {
                 '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
         }
 
-        else if (text === 'Chalet' || text === 'chalet') {
+        else if (text === 'Chalet') {
             $('#land_size').html('');
             $('#built_up_area').html('');
             $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
@@ -205,14 +205,14 @@ $(document).ready(function () {
             $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
                 '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
 
-        } else if (text === 'Residential land' || text === 'Residential Land' || text === 'residential land' || text === 'residential Land') {
+        } else if (text.indexOf('land') > -1) {
             $('#land_size').html('');
             $('#built_up_area').html('');
             $('#built_up_area').html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
                 '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
 
 
-        } else if (text === 'Duplex' || text === 'duplex') {
+        } else if (text === 'Duplex') {
             $('#land_size').html('');
             $('#built_up_area').html('');
             $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
@@ -221,7 +221,7 @@ $(document).ready(function () {
                 '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
 
         }
-        else if (text === 'Villa' || text === 'villa') {
+        else if (text === 'Villa') {
             $('#land_size').html('');
             $('#built_up_area').html('');
             $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
@@ -230,13 +230,13 @@ $(document).ready(function () {
                 '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
 
         }
-        else if (text === 'Apartment' || text === 'apartment') {
+        else if (text === 'Apartment') {
             $('#land_size').html('');
             $('#built_up_area').html('');
             $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
                 '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
 
-        } else if (text === 'Rest House' || text === 'rest house' || text === 'Rest house' || text === 'rest House') {
+        } else if (text === 'Rest House') {
             $('#land_size').html('');
             $('#built_up_area').html('');
             $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +

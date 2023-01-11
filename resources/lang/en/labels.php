@@ -16,7 +16,7 @@ return [
     'floor' => 'Floor',
     'hotel_apartment' => 'Hotel Apartment',
     'residential_building' => 'Residential Building',
-    'residential_land' => 'Residential Land',
+    'residential_land' => 'Land',
     'rent_house' => 'Rent House',
     'chalet' => 'Chalet',
     //    'rent' => 'Rent',
