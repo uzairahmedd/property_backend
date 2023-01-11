@@ -1,5 +1,8 @@
 @extends('theme::newlayouts.app')
 @section('content')
+<script>
+    var locale = '<?php echo Session::get('locale'); ?>';
+</script>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/second-page.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/profile.css')}}">
 
@@ -10,14 +13,14 @@
             <div class="loader-logo"></div>
         </div>
     </div>
-    <div class="favorite-container col-lg-10 col-md-12" style="padding: 0px 20px 0px 70px;">
+    <div class="favorite-container col-lg-10 col-md-12">
         <div class="nav-tab">
             <nav>
                 <div class="nav nav-tabs d-flex align-items-end justify-content-end" id="nav-tab" role="tablist">
-                    <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><span>(<span class="theme-text-sky results">0</span>)</span>&nbsp; إعلاناتي</a>
+                    <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><span>(<span class="theme-text-sky results">0</span>)</span>&nbsp; {{__('labels.property')}}</a>
                 </div>
             </nav>
-            <!-- <div class="tab-content" id="nav-tabContent"> 
+            <!-- <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade" >  -->
             <div class="all-listing">
                 <div class="property-lists">
@@ -26,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <!-- </div> 
+            <!-- </div>
            </div>  -->
             <div class="row align-items-center">
                 <div class="col-lg-12">
@@ -49,5 +52,7 @@
 </div>
 @endsection
 @section('property_list_select')
+<script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{theme_asset('assets/newjs/user_list.js')}}"></script>
+
 @endsection

@@ -1,0 +1,94 @@
+.hierarchy-select
+{
+    width: 100%;
+}
+
+.hierarchy-select .dropdown-menu
+{
+    width: 100%;
+    padding: 0 !important;
+    top: -49px !important;
+}
+
+.hs-menu-inner option
+{
+    text-align: right;
+}
+
+.rtl .hs-menu-inner option
+{
+    text-align: left;
+}
+
+.dropdown-toggle::after
+{
+    display: none;
+}
+
+.hierarchy-select .hs-menu-inner a.dropdown-item
+{
+    text-align: right !important;
+}
+
+.hs-searchbox input
+{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.hierarchy-select.dropdown .hs-searchbox {
+    padding: 0!important;
+}
+
+.hierarchy-select button
+{
+    border: 0.5px solid var(--theme-blue);
+}
+
+
+.hs-menu-inner::-webkit-scrollbar {
+    width: 4px;               /* width of the entire scrollbar */
+}
+
+.hs-menu-inner::-webkit-scrollbar {
+    float: left !important;              /* width of the entire scrollbar */
+}
+
+.hs-menu-inner::-webkit-scrollbar-track {
+    background: var(--theme-white);        /* color of the tracking area */
+}
+
+.hs-menu-inner::-webkit-scrollbar-thumb {
+    background-color: var(--theme-blue);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid var(--theme-blue);  /* creates padding around scroll thumb */
+}
+
+.hs-menu-inner a.dropdown-item:active {
+    background-color: unset !important;
+}
+
+.hs-searchbox input
+{
+    border: 0;
+    padding: 0px 10px !important;
+}
+
+.hs-menu-inner .dropdown-item.active
+{
+    background-color: var(--theme-blue);
+}
+
+.rtl .hierarchy-select .hs-menu-inner a.dropdown-item
+{
+    text-align: left !important;
+}
+
+@media screen and (max-width: 576px){
+    .hierarchy-select {
+        padding: 0 !important;
+    }
+}
+
+
+

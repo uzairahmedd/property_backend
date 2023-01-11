@@ -2,10 +2,6 @@
 @section('content')
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
 <div class="add-property row-style">
-    <div class="head text-center">
-        <h1 class="font-bold theme-text-white pt-5">أدرج عقارك معنا</h1>
-        <p class="theme-text-white font-medium mb-0 mt-2">يمكنك بسهولة تسويق عقارك على موقعنا</p>
-    </div>
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here -->
     <div class="container">
@@ -21,47 +17,36 @@
                     <!-- Bedroom Section Starts Here -->
                     @foreach($input_options as $key=>$row)
                     @if($row->name == 'Bedrooms')
-                    <p class="theme-text-black font-18">غرف النوم</p>
+                    <p class="theme-text-black font-18">{{__('labels.bedroom')}}</p>
                     <div class="row gx-2 mb-4_5">
-                        <!-- @for($i=6; $i>=1; $i--)
-                        <div class="radio-container">
-                           <input type="radio" class="feature_btn" name="input_option[]"  value="1" {{ ($i == 1 ? "checked":"")}}>
-                            @if(($row->name == 'lounges' || $row->name == 'boards' || $row->name == 'Bedrooms') && $i == 1)
-                            <span class="checmark checkmark-step3 font-16 font-medium" style="margin-left: 8px;">غير متوفر</span>
-                            @else
-                            <span class="checmark checkmark-step3 font-16 font-medium" style="margin-left: 8px;">{{$i}}</span>
-                            @endif
-
-                        </div>
-                        @endfor -->
                         <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="6">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="6" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 6  ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">6</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="5">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="5" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 5  ? "checked"  :  "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">5</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="4">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="4" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 4   ? "checked"  : ""  }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">4</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="3">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="3" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 3   ? "checked"  :  ""  }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">3</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="2">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="2" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 2  ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">2</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="1">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="1" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 1  ? "checked"  : ""  }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">1</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="0" checked>
-                            <span class="checmark checkmark-step3 font-16 font-medium">استوديو</span>
+                        <div class="radio-container radio-edit-third first_one radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="0" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 0  ? ""  : "checked" }}>
+                            <span class="checmark checkmark-step3 font-16 font-medium">{{__('labels.no_avail')}}</span>
                         </div>
                     </div>
                     @endif
@@ -69,31 +54,31 @@
                     <!-- Bedroom Section Ends Here -->
                     <!-- Bathrooms Section Starts Here -->
                     @if($row->name == 'Bathrooms')
-                    <p class="theme-text-black font-18">دورات المياه</p>
+                    <p class="theme-text-black font-18">{{__('labels.bathroom')}}</p>
                     <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
                     <div class="row gx-2 mb-4_5">
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="6">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="6" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 6 ? "checked"  :  "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">6</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="5">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="5" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 5 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">5</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="4">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="4" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 4 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">4</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="3">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="3" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 3 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">3</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="2">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="2" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 2 ? "checked"  : ""}}>
                             <span class="checmark checkmark-step3 font-16 font-medium">2</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="1" checked>
+                        <div class="radio-container radio-edit-third first_one">
+                            <input type="radio" name="{{ $row->name }}" value="1" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 1 ?  ""  :  "checked" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">1</span>
                         </div>
                     </div>
@@ -101,71 +86,71 @@
                     <!-- Bathrooms Section Ends Here -->
                     <!-- lounges Section Starts Here -->
                     @if($row->name == 'lounges')
-                    <p class="theme-text-black font-18">صالات</p>
+                    <p class="theme-text-black font-18">{{__('labels.lounges')}}</p>
                     <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
                     <div class="row gx-2 mb-4_5">
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="6">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="6" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 6 ? "checked"  :  "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">6</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="5">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="5" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 5 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">5</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="4">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="4" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 4 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">4</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="3">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="3" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 3 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">3</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="2">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="2" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 2 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">2</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="1">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="1" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 1 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">1</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="0" checked>
-                            <span class="checmark checkmark-step3 font-16 font-medium">غير متوفر</span>
+                        <div class="radio-container radio-edit-third first_one">
+                            <input type="radio" name="{{ $row->name }}" value="0" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 0 ? ""  : "checked"  }}>
+                            <span class="checmark checkmark-step3 font-16 font-medium">{{__('labels.no_avail')}}</span>
                         </div>
                     </div>
                     @endif
                     <!-- lounges Section Ends Here -->
                     <!-- Boards Section Starts Here -->
                     @if($row->name == 'Boards')
-                    <p class="theme-text-black font-18">مجالس</p>
+                    <p class="theme-text-black font-18">{{__('labels.boards')}}</p>
                     <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
                     <div class="row gx-2 mb-4_5">
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="6">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="6" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 6 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">6</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="5">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="5" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 5 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">5</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="4">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="4" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 4 ? "checked"  : ""}}>
                             <span class="checmark checkmark-step3 font-16 font-medium">4</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="3">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="3" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 3 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">3</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="2">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="2" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 2 ? "checked"  :  "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">2</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="2">
+                        <div class="radio-container radio-edit-third radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="1" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 1 ? "checked"  :  "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">1</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="0" checked>
+                        <div class="radio-container radio-edit-third first_one radio-edit-third first_one">
+                            <input type="radio" name="{{ $row->name }}" value="0" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 0 ? ""  : "checked" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">غير متوفر</span>
                         </div>
                     </div>
@@ -173,31 +158,31 @@
                     <!-- Boards Section Ends Here -->
                     <!-- Parking Section Starts Here -->
                     @if($row->name == 'Parking')
-                    <p class="theme-text-black font-18">عدد المواقف</p>
+                    <p class="theme-text-black font-18">{{__('labels.position_no')}} </p>
                     <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
                     <div class="row gx-2 mb-4_5">
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="6">
+                        <div class="radio-container radio-edit-third radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="6" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 6 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">6</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="5">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="5" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 5 ? "checked"  :  "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">5</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="4">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="4" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 4 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">4</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="3">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="3" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 3 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">3</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="2">
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="2" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 2 ? "checked"  : "" }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">2</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="{{ $row->name }}" value="1" checked>
+                        <div class="radio-container radio-edit-third first_one">
+                            <input type="radio" name="{{ $row->name }}" value="1" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 1 ? ""  : "checked"  }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">1</span>
                         </div>
                     </div>
@@ -205,50 +190,44 @@
                     @endforeach
                     <!-- Parking Section Ends Here -->
                     <!-- Furnishing Section Starts Here -->
-                    <p class="theme-text-black font-18">التأثيث</p>
+                    <p class="theme-text-black font-18">{{__('labels.furnishing')}}</p>
                     <div class="row gx-2 mb-4_5">
-                        <div class="radio-container">
-                            <input type="radio" name="furnishing" value="1">
-                            <span class="checmark checkmark-step3 font-16 font-medium">غير مفروشة</span>
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="furnishing" data-val="{{ !empty($info->property_condition)  ? $info->property_condition->content : old("furnishing")}}" value="1">
+                            <span class="checmark checkmark-step3 font-16 font-medium">{{__('labels.furnished')}}</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="furnishing" value="2">
-                            <span class="checmark checkmark-step3 font-16 font-medium">نص مفروشة</span>
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="furnishing" data-val="{{ !empty($info->property_condition)  ? $info->property_condition->content : old("furnishing")}}" value="2">
+                            <span class="checmark checkmark-step3 font-16 font-medium">{{__('labels.txt_furnished')}}</span>
                         </div>
-                        <div class="radio-container">
-                            <input type="radio" name="furnishing" value="3" checked>
-                            <span class="checmark checkmark-step3 font-16 font-medium">مفروشة</span>
+                        <div class="radio-container radio-edit-third first_one">
+                            <input type="radio" name="furnishing" value="3" data-val="{{ !empty($info->property_condition)  ? $info->property_condition->content : old("furnishing")}}">
+                            <span class="checmark checkmark-step3 font-16 font-medium">{{__('labels.unfurnished')}}</span>
                         </div>
                     </div>
                     <!-- Furnishing Section Ends Here -->
 
                 </div>
-                <div class="col-12 d-flex flex-column-reverse flex-lg-row flex-md-row justify-content-end mt-5">
+                <div class="col-12 d-flex flex-column-reverse flex-lg-row flex-md-row justify-content-end">
                     <div class="col-lg-6 col-md-8 col-sm-12 regional-street-1 d-flex align-items-end">
-                        <div class="dropdown regional-drop d-flex">
-                            <button class="btn dropdown-toggle regional-drop-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                رقم دور العقار
-                            </button>
-                            <img src="http://127.0.0.1:8000/assets/images/arrow-down.svg" alt="" class="position-absolute region-drop-icon">
-                            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" style="">
-                                <li><a class="dropdown-item inter_val3" href="#">1</a></li>
-                                <li><a class="dropdown-item inter_val3" href="#">2</a></li>
-                                <li><a class="dropdown-item inter_val3" href="#">3</a></li>
-                                <li><a class="dropdown-item inter_val3" href="#">4</a></li>
-                                <li><a class="dropdown-item inter_val3" href="#">5</a></li>
-                            </ul>
-                            <p class="ps-3">دور</p>
-                        </div>
-                        <div class="position-relative d-flex flex-column align-items-end w-100">
-                            <label for="" class="font-14 theme-text-seondary-black"> أدوار العقار</label>
-                            <input type="text" name="role" placeholder="إجمالي الأدوار" id="interface_val3" class="form-control street_view theme-border">
+                        <div class="col-12 d-flex flex-lg-row flex-sm-column-reverse justify-content-end align-items-end">
+                           @if(!empty($info->property_status_type) && $info->property_status_type->category->name == 'Rent' )
+                           <div class="col-12 col-lg-6 col-md-12 col-sm-12 d-flex flex-column">
+                                <label for="" class="d-flex justify-content-end theme-text-black property_role_no">{{__('labels.property_floor')}}</label>
+                                <input type="number" name="property_floor" value="{{ !empty( $info->property_floor) ? $info->property_floor->content  : old("property_floor") }}" placeholder="{{__('labels.property_floor')}}" id="interface_val3" class="form-control street_view theme-border">
+                            </div>
+                            @endif
+                            <div class="col-12 col-lg-6 col-md-12 col-sm-12 d-flex flex-column ms-5 realestate_roles">
+                                <label for="" class="d-flex justify-content-end theme-text-black">{{__('labels.total_floors')}}</label>
+                                <input type="number" name="total_floors" value="{{ !empty( $info->total_floors) ? $info->total_floors->content  : old("total_floors") }}" placeholder="{{__('labels.total_floors')}}" class="form-control theme-border">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="d-flex justify-content-between description-btn-group">
-                <button type="submit" class="btn btn-theme">التالي</button>
-                <a href="{{ route('agent.property.second_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">السابق</a>
+                <button type="submit" class="btn btn-theme">{{__('labels.next')}}</button>
+                <a href="{{ route('agent.property.second_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">{{__('labels.previous')}}</a>
             </div>
         </form>
     </div>

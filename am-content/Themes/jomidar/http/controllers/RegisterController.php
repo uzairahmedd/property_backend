@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\UserCredentials;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Hash;
 use App\Usermeta;
 use Auth;
+use Facade\Ignition\DumpRecorder\Dump;
+use Monolog\Registry;
 
 class RegisterController extends controller
 {
@@ -167,7 +170,7 @@ class RegisterController extends controller
         if ($user->save()) {
             $otp_response = $this->send_otp($user->phone);
             if (is_array($otp_response) && str_contains($otp_response['body'], 'Send Successful')) {
-                $url = env("APP_URL") . '/Verify_OTP_page/' . encrypt($user->id);
+                $url = env("APP_URL", 'http://mychoice.sa/') . 'Verify_OTP_page/' . encrypt($user->id);
                 return success_response(['url' => $url, 'Otp send successfully']);
             }
             $user = error_response(['message' => 'OTP not Send', 'Otp error']);
@@ -218,8 +221,8 @@ class RegisterController extends controller
             ->where('id', decrypt($id))
             // ->where('is_verified', 0)
             ->first();
-        if(!$user_data){
-           abort(404);
+        if (!$user_data) {
+            abort(404);
         }
         //time diff for otp send to page reload
         $diff = Carbon::parse($user_data->updated_at)->diffInSeconds(\Carbon\Carbon::now());
@@ -255,7 +258,7 @@ class RegisterController extends controller
         }
         //time for countdown
         $user_data = DB::table('users')->where('phone', $mobile)
-            ->where('is_verified', '0')
+            // ->where('is_verified', '0')
             ->first();
         //time diff for otp send to page reload
         $diff = Carbon::parse($user_data->updated_at)->diffInSeconds(\Carbon\Carbon::now());
@@ -274,25 +277,62 @@ class RegisterController extends controller
      */
     public function verify_otp(Request $request)
     {
+
         $otp = implode("", $request->otp);
-        
         if (!empty($otp)) {
             $user_data = DB::table('users')
-                ->where(['id' => $request->user_id, 'phone' => $request->user_mobile, 'otp' => $otp])
-            //    ->where('is_verified', 0)
+                ->where(['phone' => $request->user_mobile, 'otp' => $otp])
                 ->where('updated_at', '>', Carbon::now()->subMinute(1.01))
                 ->first();
             if (!$user_data) {
                 return error_response(['otp' => 'OTP was not correct'], '');
             }
-            DB::table('users')->where(['id' => $request->user_id, 'phone' => $request->user_mobile])
+
+            DB::table('users')->where(['id' => $user_data->id, 'phone' => $request->user_mobile])
                 ->update(['is_verified' => 1, 'updated_at' => Carbon::now()]);
-            //after succefull verification user loggedin
-            $user = User::find($request->user_id);
-            Auth::login($user);
-            return success_response('Mobile number Verifed successfully');
+            //after property add
+            if (isset($request->user_id)) {
+                $url = env("APP_URL", 'http://mychoice.sa/');
+
+                return success_response($url, 'Mobile number Verifed successfully');
+            }
+            //after succefull verification 
+            $url = env("APP_URL", 'http://mychoice.sa/') . 'select-owner/' . encrypt($user_data->id);
+
+            return success_response($url, 'Mobile number Verifed successfully');
         }
-        return error_response(['otp' => 'OTP Required'], '');
+        return error_response(['otp' => 'OTP Required'], 'validation error');
+    }
+
+    /**
+     *User owner ship page
+     * @return @page.
+     */
+    public function select_owner($id)
+    {
+        $user_credentials = DB::table('user_credentials')->where('user_id', decrypt($id))->first();
+        if (!empty($user_credentials)) {
+            abort(404);
+        }
+        $user = DB::table('users')
+            ->where('id', decrypt($id))
+            ->first();
+        return view('theme::newlayouts.pages.select_owner', compact('user'));
+    }
+
+    /**
+     *User phone verification page
+     * @return @page.
+     */
+    public function phone_verification($id = null)
+    {
+        $user = '';
+        if (!empty($id)) {
+            $user = DB::table('users')
+                ->where('id', decrypt($id))
+                ->first();
+        }
+        return view('theme::newlayouts.pages.post_property', compact('user'));
     }
 
     /**
@@ -303,7 +343,6 @@ class RegisterController extends controller
     {
         $user_data = DB::table('users')
             ->where('id', decrypt($id))
-            ->where('is_verified', 0)
             ->first();
         return view('theme::newlayouts.pages.phone_no', compact('user_data'));
     }
@@ -322,7 +361,7 @@ class RegisterController extends controller
         }
         $otp_response = $this->update_send_otp($request->all());
         if (is_array($otp_response) && str_contains($otp_response['body'], 'Send Successful')) {
-            $url = env("APP_URL") . '/Verify_OTP_page/' . $request->user_id;
+            $url = env("APP_URL", 'http://mychoice.sa/') . 'Verify_OTP_page/' . $request->user_id;
             return success_response(['url' => $url, 'Otp send successfully']);
         }
         return error_response(['phone' => 'OTP not Send', 'Otp error']);
@@ -370,5 +409,194 @@ class RegisterController extends controller
         }
         $response['otp'] = $otp;
         return $response;
+    }
+
+    /**
+     * Registration via phone number
+     * @return @response
+     */
+    public function phone_register(Request $request)
+    {
+        
+        $validator = \Validator::make($request->all(), [
+            'phone' => 'required|numeric|digits_between:1,9|unique:users,phone',
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors())->withInput();
+        }
+        if(substr($request->phone, 0, 1) == 0){
+            $message=['phone'=>'Please enter valid phone number'];
+            return back()->withErrors($message)->withInput();
+        }
+        //save user data
+        $latest_user = DB::table('users')->latest()->first();
+        $slug_id = $latest_user->id + 1;
+        $slug = 'User' . $slug_id;
+
+        $user = '';
+        if (!empty($request->id)) {
+            $user = User::where('id', decrypt($request->id))->first();
+        }
+
+        if (empty($user)) {
+            $user = new User();
+            $user->role_id = 2;
+            $user['slug'] = $slug;
+            $user['name'] = $slug;
+            $user['email'] = $slug . '@khiaratee.com';
+            $user['password'] = Hash::make($slug);
+            $user->status = 1;
+            $user->avatar = 'https://ui-avatars.com/api/?size=250&background=random&name=' . $request->name;
+        }
+        $user->phone = '0'.$request->phone;
+        $user->save();
+
+        $usermeta = new Usermeta();
+        $usermeta->user_id = $user->id;
+        $usermeta->type = 'credit';
+        $usermeta->content = 0;
+        $usermeta->save();
+
+        $data = [
+            'address' => null,
+            'phone' => $user->phone,
+            'description' => null,
+            'facebook' => null,
+            'twitter' => null,
+            'youtube' => null,
+            'pinterest' => null,
+            'linkedin' => null,
+            'instagram' => null,
+            'whatsapp' => null,
+            'service_area' => null,
+            'tax_number' => null,
+            'license' => null
+        ];
+
+        $usermeta = new Usermeta();
+        $usermeta->user_id = $user->id;
+        $usermeta->type = 'content';
+        $usermeta->content = json_encode($data);
+        $usermeta->save();
+
+        $user = $this->otp_process($user);
+
+        return $user;
+    }
+
+
+    /**
+     * Send otp using api.
+     */
+    public function otp_process($user)
+    {
+        //send otp on registration
+        if ($user->save()) {
+            $otp_response = $this->send_otp($user->phone);
+            if (is_array($otp_response) && str_contains($otp_response['body'], 'Send Successful')) {
+                $url = env("APP_URL", 'http://mychoice.sa/') . 'otp-processing-page/' . encrypt($user->id);
+                return redirect($url);
+            }
+            return back()->withErrors(['phone' => 'OTP not Send'])->withInput();
+        } else {
+            return back()->withErrors(['phone' => 'Something went wrong.'])->withInput();
+        }
+        return $user;
+    }
+
+    /**
+     *verify otp page
+     * @return @view.
+     */
+    public function otpProperty($id)
+    {
+        $user_data = DB::table('users')
+            ->where('id', decrypt($id))
+            ->first();
+        if (!$user_data) {
+            abort(404);
+        }
+        //time diff for otp send to page reload
+        $diff = Carbon::parse($user_data->updated_at)->diffInSeconds(\Carbon\Carbon::now());
+        $time = 60 - $diff;
+        //if time is in negative of greater then otp code
+        if ($time < 0) {
+            $time = 0;
+        }
+        return view('theme::newlayouts.pages.otp_property', compact('user_data', 'time'));
+    }
+
+    /**
+     *Store data of owner selection page
+     * @return @Response.
+     */
+    public function add_user_id(Request $request)
+    {
+        //validation of owner id's
+        if ($request->status == '2' && empty($request->account_select)) {
+            $messsage = ['message' => 'Please select broker account type'];
+            return error_response($messsage, 'Validation error');
+        }
+
+        if ($request->status == '2' && $request->account_select == '4' && empty($request->rega_number)) {
+            $messsage = ['message' => 'Please give a valid REGA advertisement number'];
+            return error_response($messsage, 'Validation error');
+        }
+
+        if ($request->status == '2' && $request->account_select == '5' && empty($request->cr_number)) {
+            $messsage = ['message' => 'Please give a valid CR number'];
+            return error_response($messsage, 'Validation error');
+        }
+
+        if ($request->status == '2' && $request->account_select == '5' && empty($request->rega_number)) {
+            $messsage = ['message' => 'Please give a valid REGA advertisement number'];
+            return error_response($messsage, 'Validation error');
+        }
+
+        if ($request->status == '3' && empty($request->cr_number)) {
+            $messsage = ['message' => 'Please give a valid CR number'];
+            return error_response($messsage, 'Validation error');
+        }
+        $advertiser_id = null;
+        if ($request->status == '1') {
+            $advertiser_id = rand(1000000000, 9999999999);
+        }
+
+        $user = User::find(decrypt($request->id));
+        $user_data = new UserCredentials;
+        $user_data->user_id = $user->id;
+        $user_data->account_type = $request->status;
+        $user_data->sub_account_type = $request->account_select;
+        $user_data->advertiser_id = $advertiser_id;
+        $user_data->cr_number = $request->cr_number;
+        $user_data->rega_number = $request->rega_number;
+
+        $user_data->save();
+        Auth::login($user);
+
+        $url = env("APP_URL", 'http://mychoice.sa/') . 'agent/profile/settings';
+        return success_response(['url' => $url, 'User Account created successfully']);
+    }
+
+
+    public function user_login(Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            'phone' => 'required|numeric|digits_between:1,10',
+        ]);
+        if ($validator->fails()) {
+            return error_response($validator->errors(), 'Validation error');
+        }
+
+        $user = DB::table('users')->where('phone', $request->phone)->where('status',1)->first();
+        if (!empty($user)) {
+            $user = User::find($user->id);
+            Auth::login($user);
+
+            $url = env("APP_URL", 'http://mychoice.sa/') . 'agent/profile/settings';
+            return success_response(['url' => $url, 'User Account created successfully']);
+        }
+        $messsage = ['phone' => 'User does not exist!. Please make an account'];
+        return error_response($messsage, '');
     }
 }

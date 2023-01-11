@@ -47,7 +47,6 @@
                 '<div class="selectstyle ss_dib ' + setting.theme + '" style="width:' + parseInt(setting.width) + 'px;">' +
                 '<div id="select_style" class="ss_button" style="width:' + parseInt(setting.width) + 'px;' + style + '">' +
                 '<div class="ss_dib ss_text" id="select_style_text" value="vl" style="margin-right:10px;width:' + (parseInt(setting.width) - 20) + 'px;position:relative;">' + placeholder + '</div>' +
-                // '<div class="ss_dib ss_image"></div>' +
                 '</div>';
             if (search == "true") {
                 html += '<ul id="select_style_ul" sid="' + id + '" class="ss_ulsearch" style="max-height:' + setting.height + 'px;width:' + (parseInt(setting.width) + 20) + 'px; overflow-x: hidden;"><div class="search" id="ss_search"><input type="text" placeholder="يبحث"></div><ul style="max-height:' + (parseInt(setting.height) - 53) + 'px;width:' + (parseInt(setting.width) + 20) + 'px; overflow-y: auto;" class="ss_ul">' + html_op + '</ul></ul>';
@@ -83,14 +82,9 @@
             ul.show();
             var height = ul.height();
             var offset = $(this).offset();
-            if (offset.top + height > $(window).height()) {
-                ul.css({
-                    // marginTop: -(((offset.top+height) - $(window).height()) + 100)
-                });
-            }
         });
         $("body").delegate("ul#select_style_ul li", "click", function (e) {
-            $('.overlay').css('opacity', 0);
+            $('.home_fade').removeClass('add_overlay');
             var txt = $(this).data('title'),
                 vl = $(this).attr('value');
             $(this).parents('ul#select_style_ul').hide();
@@ -104,19 +98,3 @@
 
     }
 })(jQuery);
-
-$(document).ready(function (event) {
-
-    $('.search-input-bar').click(function () {
-        $('.overlay').css('opacity', 0.2);
-        $('.overlay').css('display', 'block');
-        $('.search-input-bar').css('z-index', '9');
-    });
-
-    $('.overlay').click(function (event) {
-        $('.overlay').css('opacity', 0);
-        $('.overlay').css('display', 'none');
-        $("#select_style_ul").css('display', 'none');
-        event.stopPropagation();
-    });
-});

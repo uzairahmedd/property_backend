@@ -7,11 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Terms;
 use App\Options;
 use App\Category;
+use App\Models\City;
 use App\Models\Review;
 use CentralApps\MortgageCalculator\Calculator;
 use Auth;
 use Cart;
 use Amcoders\Plugin\sendmail\Helper\Propertymailsend;
+use App\Models\District;
 use App\Models\User;
 use DB;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -20,6 +22,7 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\JsonLdMulti;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class PropertyController extends controller
 {
@@ -81,6 +84,12 @@ class PropertyController extends controller
     }
 
 
+    public function verify_user()
+    {
+        return view('theme::newlayouts.pages.verify_user');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -94,7 +103,7 @@ class PropertyController extends controller
             ['type', 'property'],
             ['status', 1],
             ['slug', $slug]
-        ])->with('virtual_tour', 'post_preview', 'streets', 'street_info_one', 'street_info_two', 'role', 'price', 'area', 'electricity_facility', 'water_facility', 'post_city', 'user', 'description', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->withCount('reviews')->first();
+        ])->with('depth', 'length', 'virtual_tour', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'post_preview', 'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->withCount('reviews')->first();
 
         $features = [];
         foreach ($property->postcategory as $key => $value) {
@@ -128,10 +137,10 @@ class PropertyController extends controller
 
         if ($property) {
             SEOMeta::setTitle($property->title);
-            SEOMeta::setDescription($property->description->content ?? '');
+            // SEOMeta::setDescription($property->description->content ?? '');
             SEOMeta::addMeta('article:published_time', $property->updated_at->format('Y-m-d'), 'property');
 
-            OpenGraph::setDescription($property->description->content ?? '');
+            // OpenGraph::setDescription($property->description->content ?? '');
             OpenGraph::setTitle($property->title);
 
 
@@ -144,13 +153,21 @@ class PropertyController extends controller
 
 
             JsonLd::setTitle($property->title);
-            JsonLd::setDescription($property->description->content ?? '');
+            // JsonLd::setDescription($property->description->content ?? '');
             JsonLd::setType('Property');
 
             JsonLdMulti::setTitle($property->title);
-            JsonLdMulti::setDescription($property->description->content ?? '');
+            // JsonLdMulti::setDescription($property->description->content ?? '');
             JsonLdMulti::setType('Property');
-            return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features', 'property_type_nature'));
+            $street_width = '';
+            $street_face = '';
+            if (!empty($property->meter)) {
+                $street_width = explode(',', $property->meter->content);
+            }
+            if (!empty($property->interface)) {
+                $street_face = explode(',', $property->interface->content);
+            }
+            return view('theme::newlayouts.pages.property_detail', compact('property', 'path', 'features', 'property_type_nature', 'street_width', 'street_face'));
         } else {
             return abort(404);
         }
@@ -327,8 +344,48 @@ class PropertyController extends controller
 
 
         $category = $request->category;
-        return view('theme::newlayouts.pages.property_lists', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
-//         return view('view::property.list', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
+        return view('view::property.list', compact('category', 'state', 'min_price', 'max_price', 'status', 'location', 'statuses', 'categories', 'states', 'badroom', 'bathroom', 'floor', 'block', 'input_array', 'src'));
+    }
+
+    public function list_page(Request $request)
+    {
+      
+        $seo = Options::where('key', 'seo')->first();
+        $seo = json_decode($seo->value);
+
+        SEOMeta::setTitle('Property list');
+        SEOMeta::setDescription($seo->description);
+
+
+        OpenGraph::setDescription($seo->description);
+        OpenGraph::setTitle('Property list');
+        OpenGraph::addProperty('keywords', $seo->tags);
+
+        TwitterCard::setTitle('Property list');
+        TwitterCard::setSite($seo->twitterTitle);
+
+        JsonLd::setTitle('Property list');
+        JsonLd::setDescription($seo->description);
+        JsonLd::addImage(asset(content('header', 'logo')));
+
+
+
+        SEOTools::setTitle('Property list');
+        SEOTools::setDescription($seo->description);
+        SEOTools::setCanonical($seo->canonical);
+        SEOTools::opengraph()->addProperty('keywords', $seo->tags);
+        SEOTools::twitter()->setSite($seo->twitterTitle);
+        SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
+
+        $status = $request->status ?? null;
+        $state = $request->state ?? null;
+        $parent_category = $request->parent_category ?? null;
+        $category = $request->category ?? null;
+
+        $statuses = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
+        $cities = City::where('featured', 1)->get();
+        $categories = Category::where('type', 'category')->with('icon')->where('featured', 1)->get();
+        return view('theme::newlayouts.pages.property_lists', compact('category', 'state', 'status', 'statuses', 'categories', 'cities', 'parent_category'));
     }
 
 
@@ -336,6 +393,11 @@ class PropertyController extends controller
     {
         return view('theme::newlayouts.pages.property_auction');
     }
+
+    // public function phone_verification()
+    // {
+    //     return view('theme::newlayouts.pages.post_property');
+    // }
 
     // public function userboard_profile()
     // {
@@ -347,15 +409,26 @@ class PropertyController extends controller
         return view('theme::newlayouts.user_dashboard.favorite');
     }
 
+    public function forgotLogin()
+    {
+        return view('theme::newlayouts.pages.forgot');
+    }
+
     public function userboard_auction()
     {
         return view('theme::newlayouts.user_dashboard.auction');
     }
 
-    public function userboard_account()
-    {
-        return view('theme::newlayouts.user_dashboard.account');
-    }
+    //    public function account_id()
+    //    {
+    //        $id = User::where('id')->get();
+    //        return view('account',['ids' => $id]);
+    //    }
+
+    // public function userboard_account()
+    // {
+    //     return view('theme::newlayouts.user_dashboard.account');
+    // }
 
     // public function step_one()
     // {
@@ -410,6 +483,21 @@ class PropertyController extends controller
     public function phone_no()
     {
         return view('theme::newlayouts.pages.phone_no');
+    }
+
+    public function postProperty()
+    {
+        return view('theme::newlayouts.pages.post_property');
+    }
+
+    public function otpProperty()
+    {
+        return view('theme::newlayouts.pages.otp_property');
+    }
+
+    public function selectOwner()
+    {
+        return view('theme::newlayouts.pages.select_owner');
     }
 
     public function map(Request $request)

@@ -50,9 +50,9 @@ class User extends Authenticatable
     public static function getpermissionGroups()
     {
         $permission_groups = DB::table('permissions')
-        ->select('group_name as name')
-        ->groupBy('group_name')
-        ->get();
+            ->select('group_name as name')
+            ->groupBy('group_name')
+            ->get();
         return $permission_groups;
     }
 
@@ -63,9 +63,9 @@ class User extends Authenticatable
     public static function getpermissionsByGroupName($group_name)
     {
         $permissions = DB::table('permissions')
-        ->select('name', 'id')
-        ->where('group_name', $group_name)
-        ->get();
+            ->select('name', 'id')
+            ->where('group_name', $group_name)
+            ->get();
         return $permissions;
     }
 
@@ -78,8 +78,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Terms');
     }
 
-    public function user_session(){
-        return $this->hasOne('App\Models\Session')->select('user_id','ip_address','last_activity');
+    public function user_session()
+    {
+        return $this->hasOne('App\Models\Session')->select('user_id', 'ip_address', 'last_activity');
     }
 
     public static function roleHasPermissions($role, $permissions)
@@ -96,31 +97,36 @@ class User extends Authenticatable
 
     public function usermeta()
     {
-        return $this->hasOne('App\Usermeta')->where('type','content');
+        return $this->hasOne('App\Usermeta')->where('type', 'content');
     }
 
     public function credit()
     {
-        return $this->hasOne('App\Usermeta')->where('type','credit');
+        return $this->hasOne('App\Usermeta')->where('type', 'credit');
     }
 
     public function property()
     {
-        return $this->hasMany('App\Terms','user_id','id')->where('type','property')->whereHas('min_price')->whereHas('max_price')->wherehas('post_city')->with('post_preview','min_price','max_price','post_city','post_state','user','featured_option');
+        return $this->hasMany('App\Terms', 'user_id', 'id')->where('type', 'property')->whereHas('min_price')->whereHas('max_price')->wherehas('post_city')->with('post_preview', 'min_price', 'max_price', 'post_city', 'post_state', 'user', 'featured_option');
     }
 
     public function favourite_properties()
     {
-        return $this->belongsToMany('App\Terms')->withTimestamps()->with('post_city','property_type');
+        return $this->belongsToMany('App\Terms')->withTimestamps()->with('post_city', 'property_type');
+    }
+
+    public function user_favourite_properties()
+    {
+        return $this->belongsToMany('App\Terms')->where('status', 1)->withTimestamps()->with('landarea', 'post_new_city', 'post_preview', 'post_district', 'price', 'user', 'option_data', 'property_status_type');
     }
 
     public function agency()
     {
-        return $this->hasOne('App\Category')->where('type','agency');
+        return $this->hasOne('App\Category')->where('type', 'agency');
     }
 
     public function agencyPackage()
     {
-        return $this->terms->where('type','agency_package');
+        return $this->terms->where('type', 'agency_package');
     }
 }

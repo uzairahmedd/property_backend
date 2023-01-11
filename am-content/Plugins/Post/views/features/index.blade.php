@@ -44,8 +44,10 @@
 									<label class="custom-control-label checkAll" for="customCheck12"></label>
 								</div>
 							</th>
-							<th class="am-title"><i class="far fa-image"></i></th>
+							<!-- <th class="am-title"><i class="far fa-image"></i></th> -->
 							<th class="am-title">{{ __('Title') }}</th>
+							<th class="am-title">{{ __('Arabic Title') }}</th>
+							<th class="am-title">{{ __('featured') }}</th>
 							<th class="am-date">{{ __('Date') }}</th>
 						</tr>
 					</thead>
@@ -58,14 +60,24 @@
 									<label class="custom-control-label" for="customCheck{{ $post->id }}"></label>
 								</div>
 							</th>
-							<td>
+							<!-- <td>
 								<i class="{{ $post->icon->content ?? '' }}"></i>
-							</td>
+							</td> -->
 							<td>
 								{{ $post->name }}
 								<div class="hover">
 									<a href="{{ route('admin.feature.edit',$post->id) }}">{{ __('Edit') }}</a>
 								</div>
+							</td>
+							<td>
+								{{ $post->ar_name }}
+							</td>
+							<td>
+								@if($post->featured==1)
+								<span class="badge badge-success">{{ __('Yes') }}</span>
+								@else
+								<span class="badge badge-danger">{{ __('No') }}</span>
+								@endif
 							</td>
 							<td>{{ __('Last Modified') }}
 								<div class="date">
@@ -84,8 +96,10 @@
 								<label class="custom-control-label checkAll" for="customCheck12"></label>
 							</div>
 						</th>
-						<th class="am-title"><i class="far fa-image"></i></th>
+						<!-- <th class="am-title"><i class="far fa-image"></i></th> -->
 						<th class="am-title">{{ __('Title') }}</th>
+						<th class="am-title">{{ __('Arabic Title') }}</th>
+						<th class="am-title">{{ __('featured') }}</th>
 						<th class="am-date">{{ __('Date') }}</th>
 					</tr>
 				</tfoot>

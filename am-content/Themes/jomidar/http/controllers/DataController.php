@@ -131,16 +131,16 @@ class DataController extends controller
         $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('min_price')
             ->whereHas('max_price')->whereHas('post_city')
             ->with('floor_plans', 'post_preview', 'min_price', 'max_price', 'post_city', 'post_state', 'user', 'featured_option', 'latitude', 'longitude', 'property_status_type')->whereHas('post_state', function ($q) {
-            if (!empty($this->state)) {
-                return $q->where('category_id', $this->state);
-            }
-            return $q;
-        })->whereHas('property_status_type', function ($q) {
-            if (!empty($this->status)) {
-                return $q->where('category_id', $this->status);
-            }
-            return $q;
-        });
+                if (!empty($this->state)) {
+                    return $q->where('category_id', $this->state);
+                }
+                return $q;
+            })->whereHas('property_status_type', function ($q) {
+                if (!empty($this->status)) {
+                    return $q->where('category_id', $this->status);
+                }
+                return $q;
+            });
 
         if (!empty($request->category)) {
             $posts = $posts->whereHas('category', function ($q) {
@@ -259,24 +259,21 @@ class DataController extends controller
         return response()->json($posts);
     }
 
-   
-    public function get_properties_data(Request $request, $collection = false)
-    {
 
+    public function get_properties_data(Request $request)
+    {
+        
         $this->state = $request->state;
         $this->status = $request->status;
         $this->category = $request->category;
+        $this->parent_category = $request->parent_category;
         $this->price = $request->price;
-        // $this->max_price = $request->max_price;
-
-        $this->badroom = $request->badroom[16] ?? null;
-        $this->bathroom = $request->bathroom[17] ?? null;
-        $this->floor = $request->floor[18] ?? null;
-        $this->block = $request->block[15] ?? null;
-
-        $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('price')->whereHas('post_city')->with('area', 'post_preview', 'price', 'post_city', 'user', 'featured_option', 'property_status_type')->whereHas('post_city', function ($q) {
+        $this->room = $request->room;
+        $this->min_price = $request->min_price ?? 0;
+        $this->max_price = $request->max_price ?? 0;
+        $posts = Terms::where('type', 'property')->where('status', 1)->with('parentcategory', 'category', 'landarea', 'post_preview', 'price', 'post_district', 'user', 'property_status_type', 'option_data','post_new_city')->whereHas('post_new_city', function ($q) {
             if (!empty($this->state)) {
-                return $q->where('category_id', $this->state);
+                return $q->where('city_id', $this->state);
             }
             return $q;
         })->whereHas('property_status_type', function ($q) {
@@ -284,120 +281,39 @@ class DataController extends controller
                 return $q->where('category_id', $this->status);
             }
             return $q;
-        });
-
-        if (!empty($request->category)) {
+        })
+            ->whereHas('option_data', function ($q) {
+                if (!empty($this->room)) {
+                    $my_options = explode(',', $this->room);
+                    return $q->whereIn('value', $my_options);
+                }
+                return $q;
+            });
+        if (!empty($this->parent_category)) {
+            $posts = $posts->whereHas('parentcategory', function ($q) {
+                return $q->where('category_id', $this->parent_category);
+            });
+        }
+        if (!empty($this->category)) {
             $posts = $posts->whereHas('category', function ($q) {
-                return $q->where('category_id', $this->category);
+                $my_categories = explode(',', $this->category);
+                return $q->where('category_id', $my_categories);
             });
         }
 
-        if (!empty($request->price)) {
-            $posts = $posts->whereHas('price', function ($q) {
-                return $q->where('price', '=', $this->price);
-            });
-        }
+       if (!empty($this->min_price) || !empty($this->max_price)) {
+           $posts = $posts->whereHas('price', function ($q) {
 
-        if (!empty($request->src)) {
-            $posts = $posts->where('title', 'LIKE', '%' . $request->src . '%');
-        }
+               return $q->whereBetween('price', [$this->min_price, $this->max_price]);
+           });
+       }
 
 
-        if (!empty($this->block) && !empty($this->badroom) && !empty($this->bathroom) && !empty($this->floor)) {
-
-            $data = $posts->whereHas('option_data', function ($q) {
-                $data = $q->where('category_id', 16);
-                return $data->where('value', '>=', $this->badroom);
-            })
-                ->whereHas('option_data', function ($q) {
-                    $data = $q->where('category_id', 17);
-                    return $data->where('value', '>=', $this->bathroom);
-                })
-                ->whereHas('option_data', function ($q) {
-                    $data = $q->where('category_id', 18);
-                    return $data->where('value', '>=', $this->floor);
-                })
-                ->whereHas('option_data', function ($q) {
-                    $data = $q->where('category_id', 15);
-                    return $data->where('value', '>=', $this->block);
-                })
-
-                ->latest()->paginate(30);
-
-            return response()->json($data);
-        }
-        if (!empty($this->badroom) && !empty($this->bathroom) && !empty($this->floor)) {
-
-            $data = $posts->whereHas('option_data', function ($q) {
-                $data = $q->where('category_id', 16);
-                return $data->where('value', '>=', $this->badroom);
-            })
-                ->whereHas('option_data', function ($q) {
-                    $data = $q->where('category_id', 17);
-                    return $data->where('value', '>=', $this->bathroom);
-                })
-                ->whereHas('option_data', function ($q) {
-                    $data = $q->where('category_id', 18);
-                    return $data->where('value', '>=', $this->floor);
-                })
-
-                ->latest()->paginate(30);
-
-
-            return response()->json($data);
-        }
-        if (!empty($this->bathroom) && !empty($this->floor)) {
-
-            $data = $posts->whereHas('option_data', function ($q) {
-                $data = $q->where('category_id', 17);
-                return $data->where('value', '>=', $this->bathroom);
-            })
-                ->whereHas('option_data', function ($q) {
-                    $data = $q->where('category_id', 18);
-                    return $data->where('value', '>=', $this->floor);
-                })
-                ->latest()->paginate(30);
-            return response()->json($data);
-        }
-        if (!empty($bathroom)) {
-
-            $data = $posts->whereHas('option_data', function ($q) {
-                $data = $q->where('category_id', 17);
-                return $data->where('value', '>=', $this->bathroom);
-            })
-                ->latest()->paginate(30);
-
-
-            return response()->json($data);
-        }
-
-        if (!empty($this->floor)) {
-
-            $data = $posts->whereHas('option_data', function ($q) {
-                $data = $q->where('category_id', 18);
-                return $data->where('value', '>=', $this->floor);
-            })
-                ->latest()->paginate(30);
-
-            return response()->json($data);
-        }
-
-        if (!empty($this->block)) {
-            $data = $posts->whereHas('option_data', function ($q) {
-                $data = $q->where('category_id', 15);
-                return $data->where('value', '>=', $this->block);
-            })
-                ->latest()->paginate(30);
-
-            return response()->json($data);
-        }
-
-        if ($collection) {
-            return PropertyResource::collection($posts->get());
-        }
         $posts = $posts->latest()->paginate(30);
         return response()->json($posts);
     }
+
+
 
     public function get_projects(Request $request)
     {

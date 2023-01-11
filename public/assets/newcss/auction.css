@@ -1,0 +1,11 @@
+.auction-icon img {
+    position: absolute;
+    top: 19px;
+    left: 25px;
+    width: 10px;
+    max-width: 100%;
+}
+
+.rtl .auction-icon img {
+    right: 7px !important;
+}

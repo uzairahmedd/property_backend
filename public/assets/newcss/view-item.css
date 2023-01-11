@@ -31,11 +31,22 @@
     left: 8px;
 }
 
+.detail
+{
+    display: flex !important;
+    justify-content: end !important;
+    flex-direction: row !important;
+    align-items: end !important;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
 .item-header .breadcrumb-item+.breadcrumb-item::before {
     content: '<';
     color: var(--theme-seondary-black);
     font-weight: bold;
 }
+
 
 .item-header .breadcrumb-item {
     font-size: 14px;
@@ -64,6 +75,61 @@
 .item-header .detail .icon img
 {
     margin-left: 12px;
+}
+
+.detail-book-btn
+{
+    margin-right: 0 !important;
+}
+
+.sqm-rtl
+{
+    direction: rtl;
+}
+
+.meter-rtl
+{
+    direction: rtl;
+}
+
+.properties-of-amineties
+{
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+.property-list-feature .sqm-ltr-square
+{
+    direction: rtl;
+}
+
+
+
+
+.contact-btn {
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    height: 41px;
+    font-size: 16px;
+}
+.street-information-detail p
+{
+    padding: 0 5px;
+}
+
+.text-bold
+{
+    font-weight: bold;
+}
+.horizontal-line {
+    width: 1px;
+    height: 24px;
+    background: #ddd;
+}
+
+.detail-txt-left
+{
+    direction: ltr;
 }
 
 .carousel-single-item
@@ -178,6 +244,75 @@
 
 .carousel-indicators .active {
     background: #292071;
+}
+
+#show-more-content{
+
+}
+
+#show-more {
+    text-align: right;
+}
+
+.rtl .basic-property-info .text-end {
+    text-align: right!important;
+}
+
+#show-more-content p
+{
+    text-align: right;
+}
+
+#show-more-content ul li
+{
+    text-align: right;
+}
+
+#show-less {
+    text-align: right;
+    margin-top: -18px;
+}
+
+.detail-heading {
+    text-align: right;
+}
+
+.detail-heading {
+    text-align: right;
+}
+
+.detail-txt-left {
+    text-align: right !important;
+    margin: 0;
+    padding: 0;
+}
+
+.detail-txt-left span {
+    margin-right: -10px;
+}
+
+.detail-txt-right {
+    text-align: right!important;
+}
+
+.land-area-txt
+{
+    /* margin-left: 41px; */
+    text-align: right;
+}
+
+.street-information-detail p {
+    direction: rtl;
+}
+
+.detail-book-btns
+{
+    margin-right: 0 !important;
+}
+
+.prop-description-detail p
+{
+    text-align: right;
 }
 
 

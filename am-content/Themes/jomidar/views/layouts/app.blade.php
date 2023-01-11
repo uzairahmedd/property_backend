@@ -77,7 +77,9 @@
     <script src="{{ theme_asset('assets/js/helper.js') }}"></script>
     <script src="{{ theme_asset('assets/js/login.js') }}"></script>
     @stack('js')
+
     <script src="{{ theme_asset('assets/js/script.js') }}"></script>
     {{ google_analytics() }}
+
 </body>
 </html>

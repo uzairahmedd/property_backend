@@ -11,8 +11,12 @@
     margin-bottom: 12px;
     padding-right: 1.5rem;
 }
-.side-bar .sideBar-links img {
+.location_property{
+    direction: ltr;
+}
+.side-bar .sideBar-links i {
     margin-left: 1.5rem;
+    font-size: 18px;
 }
 .main-content{
     padding-top: 67px;

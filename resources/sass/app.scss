@@ -6,3 +6,250 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+//success tick mark finish property step
+
+%flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+$skylight: rgb(68, 165, 243);
+$skydark: rgb(25, 119, 209);
+$white: rgb(238, 238, 239);
+
+$a-duration: 3.2s;
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    @extend %flex-center;
+    height: 100vh;
+    overflow: hidden;
+
+    .box-wrapper {
+        position: relative;
+        margin-top: 50px;
+        width: 300px;
+        height: 284px;
+        animation: rotate-box $a-duration infinite;
+
+        .box-front,
+        .box-back {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 30px;
+        }
+
+        .box-front {
+            position: fixed;
+            background: $skylight;
+            overflow: hidden;
+
+            .check {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: transparent;
+                transform: rotate(225deg);
+
+                &::before {
+                    content: '';
+                    display: block;
+                    position: relative;
+                    margin-top: 75px;
+                    margin-left: 85px;
+                    border: solid transparent; //Transparent instead of #fff cause of 1 px white visible bug
+                    border-right-width: 0;
+                    border-top-width: 0;
+                    animation: check-mark-animation $a-duration infinite;
+                }
+
+                &::after {
+                    content: '';
+                    display: block;
+                    position: relative;
+                    margin-top: 0px;
+                    margin-left: 85px;
+                    background: rgba(0, 0, 0, .1);
+                    background: linear-gradient(to bottom, rgba(0, 0, 0, .3) 0%, rgba(0, 0, 0, .1) 12%, rgba(0, 0, 0, 0) 77%, rgba(0, 0, 0, 0) 100%);
+                    width: 198px;
+                    height: 155px;
+                    animation: check-m-shadow $a-duration infinite;
+                }
+            }
+        }
+
+        .box-back {
+            position: absolute;
+            background: $skydark;
+            animation: move-back-box $a-duration infinite;
+            overflow: hidden;
+            z-index: -1;
+
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                -webkit-transform: rotate(225deg);
+                transform: rotate(225deg) translate(-53px, 76px);
+                background: rgba(0, 0, 0, .1);
+                background: linear-gradient(to bottom, rgba(0, 0, 0, .2) 0%, rgba(0, 0, 0, 0) 100%);
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 45px;
+                animation: front-box-shadow $a-duration infinite;
+            }
+        }
+    }
+}
+
+@keyframes rotate-box {
+
+    0% {
+        transform: rotate(0) translateX(0);
+        width: 300px;
+    }
+
+    15.5% {
+        transform: rotate(90deg) translateX(-150px);
+        width: 347px;
+    }
+
+    18.5% {
+        transform: rotate(90deg) translateX(-150px);
+    }
+
+    22% {
+        transform: rotate(90deg) translateX(70px);
+    }
+
+    32% {
+        transform: rotate(90deg) translateX(0);
+        animation-timing-function: ease-out;
+    }
+
+    100% {
+        transform: rotate(90deg) translateX(0);
+        width: 347px;
+    }
+}
+
+@keyframes move-back-box {
+
+    0% {
+        transform: translate(0);
+    }
+
+    22% {
+        transform: translate(0);
+    }
+
+    45% {
+        transform: translate(-50px, -50px);
+        animation-timing-function: ease-out;
+    }
+
+    100% {
+        transform: translate(-50px, -50px);
+    }
+}
+
+@keyframes check-mark-animation {
+
+    0% {
+        width: 0;
+        height: 0;
+    }
+
+    21.665% {
+        height: 0;
+        border-bottom-width: 0;
+        border-left-width: 0;
+    }
+
+    21.666% {
+        border-bottom-width: 30px;
+        border-left-width: 30px;
+        border-color: #fff; //Fix 1px white bug
+        height: 100px;
+    }
+
+    22% {
+        width: 0;
+        animation-timing-function: ease-out;
+    }
+
+    45% {
+        width: 198px;
+        animation-timing-function: ease-out;
+    }
+
+    100% {
+        width: 198px;
+        height: 100px;
+        border-bottom-width: 30px;
+        border-left-width: 30px;
+        border-color: #fff;
+    }
+}
+
+@keyframes check-m-shadow {
+
+    0% {
+        width: 0;
+        height: 0;
+    }
+
+    22% {
+        width: 0;
+        height: 0;
+        animation-timing-function: ease-out;
+    }
+
+    45% {
+        width: 198px;
+        height: 155px;
+        animation-timing-function: ease-out;
+    }
+
+    100% {
+        width: 198px;
+        height: 155px;
+    }
+}
+
+@keyframes front-box-shadow {
+
+    0% {
+        visibility: hidden;
+    }
+
+    21.9999% {
+        visibility: hidden;
+    }
+
+    22% {
+        visibility: visible;
+    }
+
+    100% {
+        visibility: visible;
+    }
+}
+
+
+

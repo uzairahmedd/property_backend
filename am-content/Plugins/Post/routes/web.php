@@ -21,10 +21,15 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 
 		Route::get('locations/states', 'LocationController@States')->name('states.index');
 		Route::get('locations/states/create', 'LocationController@StatesCreate')->name('states.create');
-
+       
+		Route::get('locations/district', 'LocationController@district')->name('district.index');
+		Route::get('locations/district/create', 'LocationController@districtCreate')->name('district.create');
+		Route::post('locations/district/destroy', 'LocationController@districtdestroy')->name('district.destroy');
 
 		Route::get('locations/cities', 'LocationController@Cities')->name('cities.index');
 		Route::get('locations/cities/create', 'LocationController@CitiesCreate')->name('cities.create');
+		Route::get('locations/cities/edit/{id}', 'LocationController@Citiesedit')->name('cities.edit');
+		Route::post('locations/cities/destroy', 'LocationController@Citiesdestroy')->name('cities.destroy');
 
 
 
@@ -55,6 +60,8 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::resource('property', 'PropertyController');
 		Route::post('properties/destroy', 'PropertyController@destroy')->name('properties.destroy');
 		Route::post('properties/user', 'PropertyController@findUser')->name('properties.findUser');
+			//property type
+	    Route::get('property_type/{id}', 'PropertyController@property_type')->name('properties.type');
 
 	});
 

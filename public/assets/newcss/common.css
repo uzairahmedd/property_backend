@@ -19,6 +19,14 @@
     src: url(/assets/newfont/Tajawal-Bold.ttf);
 }
 
+.ltr {
+    direction: ltr;
+}
+
+.rtl {
+    direction: rtl;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -37,6 +45,12 @@
     --theme-red: #FF0000;
 }
 /* Margins */
+
+ul li:focus-visible
+{
+    outline: none;
+}
+
 .mb-4_5{
     margin-bottom: 38px;
 }
@@ -84,6 +98,12 @@
     background: var(--theme-grey);
 }
 
+select option
+{
+    text-align: right;
+    padding: 10px;
+}
+
 .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus-visible
 {
     border: none;
@@ -94,8 +114,6 @@
     border: none;
     outline: none;
 }
-
-
 
 /* Palette */
 .theme-text-white {
@@ -187,8 +205,8 @@ button a
 }
 
 .btn-theme, .btn-theme-secondary {
-    width: 316px;
-    height: 61px;
+    /*width: 316px;*/
+    /*height: 61px;*/
     max-width: 100%;
     font-family: TajawalBold;
     font-size: 16px;
@@ -263,7 +281,61 @@ button a
 }
 
 .contact-modal .modal-body {
-    padding: 67px 36px 57px;
+    padding: 50px 36px 10px;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.google-btn {
+    background: #fff;
+    border: solid 2px rgb(245 239 239);
+    border-radius: 8px;
+    font-weight: bold;
+    display: flex;
+    padding: 10px 10px;
+    flex: auto;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}
+
+.fb-btn {
+    background: #fff;
+    border: solid 2px rgb(69, 69, 185);
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.social-login img {
+    width: 24px;
+}
+
+.social-login img {
+    width: 24px;
+}
+
+.subtitle {
+    text-align: center;
+    font-weight: bold;
+}
+
+.or {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid rgb(245 239 239);
+    line-height: 0.1em;
+    margin: 25px 0;
+}
+
+.or span {
+    background: #fff;
+    padding: 0 10px;
 }
 
 .contact-modal h1 {
@@ -271,7 +343,11 @@ button a
 }
 
 .send-modal .modal-body {
-    padding: 67px 55px 57px;
+    padding: 50px 36px 10px;
+}
+
+.terms-check{
+    border-radius: 5px;
 }
 
 .send-modal h1 {
@@ -288,8 +364,9 @@ button a
 }
 
 .contact-modal .mesg {
-    top: 66px;
+    top: 123px;
     left: 0;
+    margin-left: 55px;
 }
 
 .send-modal .mesg {
@@ -431,13 +508,28 @@ button a
 }
 
 .signup-modal .mesg {
-    top: 160px;
+    top: 275px;
     left: 0;
+    margin-left: 55px;
 }
 
 
 /* COntact Modal ends here */
 
+
+/*sidebar active css*/
+
+.sidebar-active
+{
+    color: var(--theme-white) !important;
+    background: var(--theme-sky);
+}
+
+.sidebar-inactive
+{
+    color: var(--theme-blue) !important;
+    background: var(--theme-grey-light);
+}
 
 /* Owl Carosuel Styling starts Here */
 
@@ -475,12 +567,26 @@ button a
     padding: 0 80px;
 }
 
+body::-webkit-scrollbar {
+    width: 8px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--theme-white);        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--theme-blue);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid var(--theme-blue);  /* creates padding around scroll thumb */
+}
+
 /* Container */
 .home .navbar {
     background: rgba(255, 255, 255, 0.95);
     box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
     padding: 34px 80px 22px 80px;
-    margin-top: -35px;
+    margin-top: -14px;
 }
 
 .navbar-toggler {
@@ -653,9 +759,43 @@ button a
     color: red;
 }
 
+/*Editor textarea css*/
+
+.ck-editor__editable
+{
+    height: 50vh;
+}
+
+.ck.ck-editor {
+    width: 100%;
+    margin-top: 10px;
+    direction: rtl;
+}
+
+.ck.ck-dropdown .ck-button.ck-dropdown__button {
+    direction: ltr;
+}
+
+.ck-blurred.ck.ck-content.ck-editor__editable
+{
+    text-align: right;
+}
+
+.ck-placeholder
+{
+    direction: rtl;
+}
+
+.ck-editor__editable_inline.ck-blurred[dir]
+{
+    text-align: right;
+    direction: rtl;
+}
+
 /*Property Crousel Css*/
 .single-property-list
 {
+    /*z-index: -1;*/
     padding: 20px 10px 20px 10px !important;
 }
 
@@ -665,6 +805,163 @@ button a
     border: 1px solid #e5e5e6;
     overflow: hidden;
     background: #fff;
+}
+
+.resend-txt button
+{
+    font-weight: 600;
+}
+
+.modify-txt a
+{
+    font-weight: 600;
+}
+
+.after-sign-in button
+{
+    font-size: 18px;
+}
+
+/*Property Add Shine Button CSS Start*/
+
+.add-btn {
+    background: radial-gradient(102.59% 309.05% at 11.74% 193.12%, #CF57BB 0.07%, #292071 51.14%, #2894CF 100%);
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    font-size: 18px;
+    padding: 12px;
+    padding-left: 28px;
+    border: none;
+    margin-left: 40px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+}
+
+.add-btn {
+    background: radial-gradient(102.59% 309.05% at 11.74% 193.12%, #CF57BB 0.07%, #292071 51.14%, #2894CF 100%);
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    font-size: 18px;
+    color: #fff;
+    overflow: hidden;
+}
+
+.add-btn:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.add-btn:before {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    top: -180px;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background-color: #fff;
+    animation: shiny-btn1 3s ease-in-out infinite;
+}
+
+.add-btn:hover{
+    opacity: .7;
+}
+
+.add-btn:active{
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+@-webkit-keyframes shiny-btn1 {
+    0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
+    80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
+    81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
+    100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
+}
+
+/*Sale and Rent button*/
+
+.chip {
+    background: radial-gradient(102.59% 309.05% at 11.74% 193.12%, #CF57BB 0.07%, #292071 51.14%, #2894CF 100%);
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    font-size: 18px;
+    padding: 12px;
+    padding-left: 28px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+}
+
+.chip {
+    background: radial-gradient(102.59% 309.05% at 11.74% 193.12%, #CF57BB 0.07%, #292071 51.14%, #2894CF 100%);
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    color: var(--theme-white) !important;
+    font-size: 18px;
+    overflow: hidden;
+}
+
+.chip:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.chip:before {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    top: -180px;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background-color: #fff;
+    animation: shiny-btn1 3s ease-in-out infinite;
+}
+
+.modal-width
+{
+    width: 55%;
+    max-width: 100%;
+}
+
+.modal-logo
+{
+    padding: 0px 0px 10px 0px;
+    width: 40%;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.chip:hover{
+    opacity: .7;
+}
+
+.chip:active{
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+@-webkit-keyframes shiny-btn1 {
+    0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
+    80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
+    81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
+    100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
 }
 
 
@@ -690,9 +987,15 @@ button a
     {
         display: none;
     }
+
+
 }
 
 @media screen and (max-width:992px) {
+
+    .modal-width {
+        width: 54%;
+    }
     .container {
         padding: 0 24px;
     }
@@ -723,11 +1026,24 @@ button a
     /*.dropdown-select.wide {*/
     /*    width: auto;*/
     /*}*/
-
+    .modal-width {
+        width: 68%;
+    }
     /*.looking-for input[type='search'] {*/
     /*    text-align: right;*/
     /*    width: auto;*/
     /*}*/
+    .header-top-right-section {
+        border: 2px solid #286BAD;
+        border-radius: 5px;
+        padding: 0px 12px;
+    }
+
+    .lang-txt i {
+        padding-right: 5px;
+    }
+
+
 
     .dropdown-select.wide {
         left: 60px;
@@ -806,9 +1122,14 @@ button a
     {
         display: none;
     }
+
 }
 
 @media screen and (max-width:576px) {
+
+    .modal-width {
+        width: 100%;
+    }
     .dropdown-select .list {
         width: 215px;
     }
@@ -913,8 +1234,34 @@ button a
     .home .navbar {
         padding: 25px 0px 20px 0px;
     }
+    #contactModal h1
+    {
+        margin-bottom: 30px !important;
+        font-size: 16px;
+    }
+    #login_modal h1
+    {
+        margin-bottom: 30px !important;
+        font-size: 16px;
+    }
 }
 
 .error{
     color: red;
+}
+#lang{
+    cursor: pointer;
+}
+
+#nav-home-tab
+{
+    font-weight: bold;
+}
+
+.favorite-container .nav-link.active
+{
+    background-color: unset;
+}
+.download-app{
+    cursor: pointer;
 }

@@ -34,7 +34,7 @@ class OptionTableSeeder extends Seeder
 
       Options::create([
         'key'=>'seo',
-        'value'=>'{"title":"LPress","description":null,"canonical":null,"tags":null,"twitterTitle":null}',
+        'value'=>'{"title":"MyChoice خياراتي","description":null,"canonical":null,"tags":null,"twitterTitle":null}',
       ]);
 
       Options::create([
@@ -76,16 +76,16 @@ class OptionTableSeeder extends Seeder
         array('id' => '5','name' => 'Chalet','slug' => 'chalet','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:49','updated_at' => '2020-12-31 08:09:49'),
         array('id' => '6','name' => 'Building','slug' => 'building','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:09:13','updated_at' => '2020-12-31 08:09:32'),
         array('id' => '14','name' => 'USD','slug' => '$','type' => 'currency','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:16:50','updated_at' => '2020-12-31 08:16:50'),
-        array('id' => '15','name' => 'Number of Blocks','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '0','created_at' => '2020-12-31 08:17:53','updated_at' => '2021-01-11 04:44:10'),
+        // array('id' => '15','name' => 'Number of Blocks','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '0','created_at' => '2020-12-31 08:17:53','updated_at' => '2021-01-11 04:44:10'),
         array('id' => '16','name' => 'Bedrooms','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '0','created_at' => '2020-12-31 08:19:37','updated_at' => '2020-12-31 08:19:37'),
         array('id' => '17','name' => 'Bathrooms','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '0','created_at' => '2020-12-31 08:20:11','updated_at' => '2020-12-31 08:20:11'),
         array('id' => '18','name' => 'lounges','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:21:03','updated_at' => '2021-01-10 18:23:13'),
         array('id' => '19','name' => 'Riyadh','slug' => 'riyadh','type' => 'states','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:24:25','updated_at' => '2020-12-31 08:24:25'),
         array('id' => '20','name' => 'Madina','slug' => 'madina','type' => 'states','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:25:23','updated_at' => '2020-12-31 08:25:23'),
-        array('id' => '21','name' => 'Dhaka','slug' => 'dhaka','type' => 'cities','p_id' => '19','featured' => '0','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:27:36','updated_at' => '2020-12-31 08:27:36'),
-        array('id' => '22','name' => 'Faridpur','slug' => 'faridpur','type' => 'cities','p_id' => '19','featured' => '0','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:28:31','updated_at' => '2020-12-31 08:28:31'),
-        array('id' => '23','name' => 'Chattogram','slug' => 'chattogram','type' => 'cities','p_id' => '20','featured' => '0','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:29:17','updated_at' => '2020-12-31 08:29:17'),
-        array('id' => '24','name' => 'Cox\'s Bazar','slug' => 'coxs-bazar','type' => 'cities','p_id' => '20','featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:30:51','updated_at' => '2020-12-31 08:30:51'),
+        array('id' => '21','name' => 'Dhaka','slug' => 'dhaka','type' => 'neighborhood','p_id' => '19','featured' => '0','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:27:36','updated_at' => '2020-12-31 08:27:36'),
+        array('id' => '22','name' => 'Faridpur','slug' => 'faridpur','type' => 'neighborhood','p_id' => '19','featured' => '0','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:28:31','updated_at' => '2020-12-31 08:28:31'),
+        array('id' => '23','name' => 'Chattogram','slug' => 'chattogram','type' => 'neighborhood','p_id' => '20','featured' => '0','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:29:17','updated_at' => '2020-12-31 08:29:17'),
+        array('id' => '24','name' => 'Cox\'s Bazar','slug' => 'coxs-bazar','type' => 'neighborhood','p_id' => '20','featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:30:51','updated_at' => '2020-12-31 08:30:51'),
         array('id' => '26','name' => 'Sale','slug' => 'sale','type' => 'status','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2021-01-10 08:46:34','updated_at' => '2021-01-10 08:46:34'),
         array('id' => '27','name' => 'Rent','slug' => 'rent','type' => 'status','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2021-01-10 08:46:39','updated_at' => '2021-01-10 08:46:39'),
         array('id' => '29','name' => 'Projects','slug' => 'projects','type' => 'status','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2021-01-10 13:26:59','updated_at' => '2021-01-10 13:26:59'),
@@ -122,115 +122,115 @@ class OptionTableSeeder extends Seeder
         array('id' => '66','name' => 'Rest House','slug' => 'rest-house','type' => 'category','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:08:20','updated_at' => '2020-12-31 08:09:18'),
         array('id' => '67','name' => 'Parking','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 09:21:03','updated_at' => '2021-01-10 18:24:13'),
         array('id' => '68','name' => 'Board','slug' => 'number','type' => 'option','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2020-12-31 08:26:03','updated_at' => '2021-01-10 18:22:13'),
-
+        array('id' => '69','name' => 'Auctions','slug' => 'auction','type' => 'status','p_id' => NULL,'featured' => '1','user_id' => '1','status' => '1','created_at' => '2021-01-10 08:46:34','updated_at' => '2021-01-10 08:46:34'),
       );
 
       Category::insert($categories);
 
-      $categorymetas = array(
-        array('id' => '1','category_id' => '1','type' => 'credit_charge','content' => '100','created_at' => '2020-12-31 08:07:41','updated_at' => '2020-12-31 08:07:41'),
-        array('id' => '2','category_id' => '1','type' => 'excerpt','content' => 'apartment','created_at' => '2020-12-31 08:07:41','updated_at' => '2020-12-31 08:07:41'),
-        array('id' => '3','category_id' => '2','type' => 'credit_charge','content' => '150','created_at' => '2020-12-31 08:08:00','updated_at' => '2020-12-31 08:08:00'),
-        array('id' => '4','category_id' => '2','type' => 'excerpt','content' => 'villa','created_at' => '2020-12-31 08:08:00','updated_at' => '2020-12-31 08:08:00'),
-        array('id' => '5','category_id' => '3','type' => 'credit_charge','content' => '120','created_at' => '2020-12-31 08:08:14','updated_at' => '2020-12-31 08:08:14'),
-        array('id' => '6','category_id' => '3','type' => 'excerpt','content' => 'House','created_at' => '2020-12-31 08:08:14','updated_at' => '2020-12-31 08:08:14'),
-        array('id' => '7','category_id' => '4','type' => 'credit_charge','content' => '120','created_at' => '2020-12-31 08:08:30','updated_at' => '2020-12-31 08:08:30'),
-        array('id' => '8','category_id' => '4','type' => 'excerpt','content' => 'Condo','created_at' => '2020-12-31 08:08:30','updated_at' => '2020-12-31 08:08:30'),
-        array('id' => '9','category_id' => '5','type' => 'credit_charge','content' => '100','created_at' => '2020-12-31 08:08:49','updated_at' => '2020-12-31 08:08:49'),
-        array('id' => '10','category_id' => '5','type' => 'excerpt','content' => 'land','created_at' => '2020-12-31 08:08:49','updated_at' => '2020-12-31 08:08:49'),
-        array('id' => '11','category_id' => '6','type' => 'credit_charge','content' => '120','created_at' => '2020-12-31 08:09:13','updated_at' => '2020-12-31 08:09:13'),
-        array('id' => '12','category_id' => '6','type' => 'excerpt','content' => 'Commercial Property','created_at' => '2020-12-31 08:09:13','updated_at' => '2020-12-31 08:09:37'),
-        array('id' => '13','category_id' => '14','type' => 'position','content' => 'left','created_at' => '2020-12-31 08:16:50','updated_at' => '2020-12-31 08:16:50'),
-        array('id' => '14','category_id' => '19','type' => 'preview','content' => $base_url.'/21/01/10012116102894065ffb10fe25db5.webp','created_at' => '2020-12-31 08:24:25','updated_at' => '2021-01-10 14:37:13'),
-        array('id' => '15','category_id' => '19','type' => 'mapinfo','content' => '{"latitude":"23.8103","longitude":"90.4125","zoom":"10"}','created_at' => '2020-12-31 08:24:25','updated_at' => '2020-12-31 08:24:25'),
-        array('id' => '16','category_id' => '20','type' => 'preview','content' => $base_url.'/21/01/10012116102894135ffb11055db3b.webp','created_at' => '2020-12-31 08:25:23','updated_at' => '2021-01-10 14:36:58'),
-        array('id' => '17','category_id' => '20','type' => 'mapinfo','content' => '{"latitude":"22.3569","longitude":"91.7832","zoom":"10"}','created_at' => '2020-12-31 08:25:23','updated_at' => '2020-12-31 08:25:23'),
-        array('id' => '18','category_id' => '21','type' => 'preview','content' => '','created_at' => '2020-12-31 08:27:36','updated_at' => '2020-12-31 08:27:36'),
-        array('id' => '19','category_id' => '21','type' => 'mapinfo','content' => '{"latitude":"23.8103","longitude":"90.4125","zoom":"10"}','created_at' => '2020-12-31 08:27:36','updated_at' => '2020-12-31 08:27:36'),
-        array('id' => '20','category_id' => '22','type' => 'preview','content' => '','created_at' => '2020-12-31 08:28:31','updated_at' => '2020-12-31 08:28:31'),
-        array('id' => '21','category_id' => '22','type' => 'mapinfo','content' => '{"latitude":"23.6019","longitude":"89.8333","zoom":"10"}','created_at' => '2020-12-31 08:28:31','updated_at' => '2020-12-31 08:28:31'),
-        array('id' => '22','category_id' => '23','type' => 'preview','content' => '','created_at' => '2020-12-31 08:29:17','updated_at' => '2020-12-31 08:29:17'),
-        array('id' => '23','category_id' => '23','type' => 'mapinfo','content' => '{"latitude":"22.3569","longitude":"91.7282","zoom":"10"}','created_at' => '2020-12-31 08:29:17','updated_at' => '2020-12-31 08:29:17'),
-        array('id' => '24','category_id' => '24','type' => 'preview','content' => '','created_at' => '2020-12-31 08:30:51','updated_at' => '2020-12-31 08:30:51'),
-        array('id' => '25','category_id' => '24','type' => 'mapinfo','content' => '{"latitude":"21.4272","longitude":"92.0058","zoom":"10"}','created_at' => '2020-12-31 08:30:51','updated_at' => '2020-12-31 08:30:51'),
-        array('id' => '26','category_id' => '31','type' => 'preview','content' => $base_url.'/21/01/10012116102905585ffb157edfcf8.webp','created_at' => '2021-01-10 14:56:28','updated_at' => '2021-01-10 14:56:28'),
-        array('id' => '27','category_id' => '31','type' => 'mapinfo','content' => '{"latitude":"24.3745","longitude":"88.6042","zoom":"10"}','created_at' => '2021-01-10 14:56:28','updated_at' => '2021-01-10 14:56:28'),
-        array('id' => '28','category_id' => '32','type' => 'preview','content' => $base_url.'/21/01/10012116102905605ffb158005816.webp','created_at' => '2021-01-10 14:57:58','updated_at' => '2021-01-10 14:57:58'),
-        array('id' => '29','category_id' => '32','type' => 'mapinfo','content' => '{"latitude":"23.1778","longitude":"89.1801","zoom":"10"}','created_at' => '2021-01-10 14:57:58','updated_at' => '2021-01-10 14:57:58'),
-        array('id' => '30','category_id' => '33','type' => 'preview','content' => $base_url.'/21/01/10012116102905595ffb157f46dcc.webp','created_at' => '2021-01-10 14:59:05','updated_at' => '2021-01-10 14:59:05'),
-        array('id' => '31','category_id' => '33','type' => 'mapinfo','content' => '{"latitude":"22.8456","longitude":"89.5403","zoom":"10"}','created_at' => '2021-01-10 14:59:05','updated_at' => '2021-01-10 14:59:05'),
-        array('id' => '32','category_id' => '34','type' => 'preview','content' => $base_url.'/21/01/10012116102905595ffb157fa23a5.webp','created_at' => '2021-01-10 15:02:50','updated_at' => '2021-01-10 15:04:15'),
-        array('id' => '33','category_id' => '34','type' => 'mapinfo','content' => '{"latitude":"24.8949","longitude":"91.8687","zoom":"10"}','created_at' => '2021-01-10 15:02:50','updated_at' => '2021-01-10 15:02:50'),
-        array('id' => '34','category_id' => '35','type' => 'icon','content' => 'fas fa-wifi','created_at' => '2021-01-10 17:53:51','updated_at' => '2021-01-10 17:53:51'),
-        array('id' => '35','category_id' => '36','type' => 'icon','content' => 'fas fa-swimmer','created_at' => '2021-01-10 17:54:12','updated_at' => '2021-01-10 17:54:12'),
-        array('id' => '36','category_id' => '37','type' => 'icon','content' => 'fas fa-car-side','created_at' => '2021-01-10 17:54:37','updated_at' => '2021-01-10 17:54:37'),
-        array('id' => '37','category_id' => '38','type' => 'icon','content' => 'fas fa-user-secret','created_at' => '2021-01-10 17:54:57','updated_at' => '2021-01-10 17:54:57'),
-        array('id' => '38','category_id' => '39','type' => 'icon','content' => 'fas fa-hand-holding-heart','created_at' => '2021-01-10 17:55:39','updated_at' => '2021-01-10 17:55:39'),
-        array('id' => '39','category_id' => '40','type' => 'icon','content' => 'fas fa-archway','created_at' => '2021-01-10 17:56:00','updated_at' => '2021-01-10 17:56:00'),
-        array('id' => '40','category_id' => '41','type' => 'icon','content' => 'far fa-hospital','created_at' => '2021-01-10 18:01:58','updated_at' => '2021-01-10 18:01:58'),
-        array('id' => '41','category_id' => '42','type' => 'icon','content' => 'fas fa-shopping-cart','created_at' => '2021-01-10 18:02:45','updated_at' => '2021-01-10 18:02:45'),
-        array('id' => '42','category_id' => '43','type' => 'icon','content' => 'fas fa-school','created_at' => '2021-01-10 18:03:04','updated_at' => '2021-01-10 18:03:04'),
-        array('id' => '43','category_id' => '44','type' => 'icon','content' => 'fas fa-align-center','created_at' => '2021-01-10 18:03:20','updated_at' => '2021-01-10 18:03:20'),
-        array('id' => '44','category_id' => '45','type' => 'icon','content' => 'fas fa-hand-holding-heart','created_at' => '2021-01-10 18:04:00','updated_at' => '2021-01-10 18:04:00'),
-        array('id' => '45','category_id' => '46','type' => 'icon','content' => 'fab fa-angrycreative','created_at' => '2021-01-10 18:04:23','updated_at' => '2021-01-10 18:04:23'),
-        array('id' => '46','category_id' => '47','type' => 'icon','content' => 'fas fa-train','created_at' => '2021-01-10 18:04:35','updated_at' => '2021-01-10 18:04:35'),
-        array('id' => '47','category_id' => '48','type' => 'icon','content' => 'fas fa-bus','created_at' => '2021-01-10 18:04:50','updated_at' => '2021-01-10 18:04:50'),
-        array('id' => '48','category_id' => '49','type' => 'icon','content' => 'fas fa-umbrella-beach','created_at' => '2021-01-10 18:05:05','updated_at' => '2021-01-10 18:05:05'),
-        array('id' => '49','category_id' => '50','type' => 'icon','content' => 'fas fa-luggage-cart','created_at' => '2021-01-10 18:05:24','updated_at' => '2021-01-10 18:05:24'),
-        array('id' => '50','category_id' => '51','type' => 'icon','content' => 'fas fa-money-bill','created_at' => '2021-01-10 18:05:40','updated_at' => '2021-01-10 18:05:40'),
-        array('id' => '51','category_id' => '17','type' => 'preview','content' => $base_url.'/21/01/11012116103399535ffbd67132cff.webp','created_at' => '2021-01-11 04:39:26','updated_at' => '2021-01-11 04:39:26'),
-        array('id' => '52','category_id' => '16','type' => 'preview','content' => $base_url.'/21/01/11012116103399535ffbd671f06e5.webp','created_at' => '2021-01-11 04:39:50','updated_at' => '2021-01-11 04:39:50'),
-        array('id' => '53','category_id' => '15','type' => 'preview','content' => $base_url.'/21/01/11012116103399535ffbd671f06e5.webp','created_at' => '2021-01-11 04:44:08','updated_at' => '2021-01-11 04:44:08'),
-        array('id' => '54','category_id' => '52','type' => 'credit','content' => NULL,'created_at' => '2021-01-11 14:53:21','updated_at' => '2021-01-11 14:53:21'),
-        array('id' => '55','category_id' => '52','type' => 'preview','content' => $base_url.'/21/01/11012116103778575ffc6a81e5911.webp','created_at' => '2021-01-11 14:53:21','updated_at' => '2021-01-11 15:11:04'),
-        array('id' => '56','category_id' => '52','type' => 'content','content' => '{"address":"Dhaka, Savar","phone":"096545345345","description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.","facebook":"#","twitter":"#","youtube":"#","pinterest":"#","linkedin":"#","instagram":"#","whatsapp":"2342342342342","service_area":"Dhaka, Khulna, Savar","tax_number":"35235325353","license":"32432523532532","email":"support@email.com"}','created_at' => '2021-01-11 14:53:21','updated_at' => '2021-01-11 14:53:21'),
-        array('id' => '57','category_id' => '53','type' => 'credit','content' => NULL,'created_at' => '2021-01-11 15:23:26','updated_at' => '2021-01-11 15:23:26'),
-        array('id' => '58','category_id' => '53','type' => 'preview','content' => $base_url.'/21/01/11012116103785955ffc6d635efd4.webp','created_at' => '2021-01-11 15:23:26','updated_at' => '2021-01-11 15:23:26'),
-        array('id' => '59','category_id' => '53','type' => 'content','content' => '{"address":"Agrabad, Chittagong","phone":"045345345345345","description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.","facebook":"#","twitter":"#","youtube":"#","pinterest":"#","linkedin":"#","instagram":"#","whatsapp":"547457457457","service_area":"Naogaon, Dhaka, Kirtipur","tax_number":"43653463463463","license":"353456345353535","email":"support@morden.com"}','created_at' => '2021-01-11 15:23:26','updated_at' => '2021-01-11 15:23:26'),
-        array('id' => '60','category_id' => '54','type' => 'credit','content' => NULL,'created_at' => '2021-01-11 15:31:19','updated_at' => '2021-01-11 15:31:19'),
-        array('id' => '61','category_id' => '54','type' => 'preview','content' => $base_url.'/21/01/11012116103785945ffc6d62d6210.webp','created_at' => '2021-01-11 15:31:19','updated_at' => '2021-01-11 15:31:19'),
-        array('id' => '62','category_id' => '54','type' => 'content','content' => '{"address":"Naogaon, Kirtipur","phone":"034324324324324","description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.","facebook":"#","twitter":"#","youtube":"#","pinterest":"#","linkedin":"#","instagram":"#","whatsapp":"#","service_area":"Naogaon, Kirtipur, Mohadebpur","tax_number":"345435345325325","license":"3532532532532532523","email":"support@company.com"}','created_at' => '2021-01-11 15:31:19','updated_at' => '2021-01-11 15:31:19'),
-        array('id' => '69','category_id' => '61','type' => 'lang','content' => '{"lang_name":"English","lang_position":"LTR"}','created_at' => '2021-01-18 09:22:05','updated_at' => '2021-01-18 09:22:05'),
-        array('id' => '70','category_id' => '62','type' => 'lang','content' => '{"lang_name":"Arabic","lang_position":"RTL"}','created_at' => '2021-01-18 09:22:14','updated_at' => '2021-01-18 09:22:14'),
-        array('id' => '71','category_id' => '63','type' => 'position','content' => 'right','created_at' => '2020-12-31 08:16:50','updated_at' => '2020-12-31 08:16:50'),
-      );
+//      $categorymetas = array(
+//        array('id' => '1','category_id' => '1','type' => 'credit_charge','content' => '100','created_at' => '2020-12-31 08:07:41','updated_at' => '2020-12-31 08:07:41'),
+//        array('id' => '2','category_id' => '1','type' => 'excerpt','content' => 'apartment','created_at' => '2020-12-31 08:07:41','updated_at' => '2020-12-31 08:07:41'),
+//        array('id' => '3','category_id' => '2','type' => 'credit_charge','content' => '150','created_at' => '2020-12-31 08:08:00','updated_at' => '2020-12-31 08:08:00'),
+//        array('id' => '4','category_id' => '2','type' => 'excerpt','content' => 'villa','created_at' => '2020-12-31 08:08:00','updated_at' => '2020-12-31 08:08:00'),
+//        array('id' => '5','category_id' => '3','type' => 'credit_charge','content' => '120','created_at' => '2020-12-31 08:08:14','updated_at' => '2020-12-31 08:08:14'),
+//        array('id' => '6','category_id' => '3','type' => 'excerpt','content' => 'House','created_at' => '2020-12-31 08:08:14','updated_at' => '2020-12-31 08:08:14'),
+//        array('id' => '7','category_id' => '4','type' => 'credit_charge','content' => '120','created_at' => '2020-12-31 08:08:30','updated_at' => '2020-12-31 08:08:30'),
+//        array('id' => '8','category_id' => '4','type' => 'excerpt','content' => 'Condo','created_at' => '2020-12-31 08:08:30','updated_at' => '2020-12-31 08:08:30'),
+//        array('id' => '9','category_id' => '5','type' => 'credit_charge','content' => '100','created_at' => '2020-12-31 08:08:49','updated_at' => '2020-12-31 08:08:49'),
+//        array('id' => '10','category_id' => '5','type' => 'excerpt','content' => 'land','created_at' => '2020-12-31 08:08:49','updated_at' => '2020-12-31 08:08:49'),
+//        array('id' => '11','category_id' => '6','type' => 'credit_charge','content' => '120','created_at' => '2020-12-31 08:09:13','updated_at' => '2020-12-31 08:09:13'),
+//        array('id' => '12','category_id' => '6','type' => 'excerpt','content' => 'Commercial Property','created_at' => '2020-12-31 08:09:13','updated_at' => '2020-12-31 08:09:37'),
+//        array('id' => '13','category_id' => '14','type' => 'position','content' => 'left','created_at' => '2020-12-31 08:16:50','updated_at' => '2020-12-31 08:16:50'),
+//        array('id' => '14','category_id' => '19','type' => 'preview','content' => $base_url.'/21/01/10012116102894065ffb10fe25db5.webp','created_at' => '2020-12-31 08:24:25','updated_at' => '2021-01-10 14:37:13'),
+//        array('id' => '15','category_id' => '19','type' => 'mapinfo','content' => '{"latitude":"23.8103","longitude":"90.4125","zoom":"10"}','created_at' => '2020-12-31 08:24:25','updated_at' => '2020-12-31 08:24:25'),
+//        array('id' => '16','category_id' => '20','type' => 'preview','content' => $base_url.'/21/01/10012116102894135ffb11055db3b.webp','created_at' => '2020-12-31 08:25:23','updated_at' => '2021-01-10 14:36:58'),
+//        array('id' => '17','category_id' => '20','type' => 'mapinfo','content' => '{"latitude":"22.3569","longitude":"91.7832","zoom":"10"}','created_at' => '2020-12-31 08:25:23','updated_at' => '2020-12-31 08:25:23'),
+//        array('id' => '18','category_id' => '21','type' => 'preview','content' => '','created_at' => '2020-12-31 08:27:36','updated_at' => '2020-12-31 08:27:36'),
+//        array('id' => '19','category_id' => '21','type' => 'mapinfo','content' => '{"latitude":"23.8103","longitude":"90.4125","zoom":"10"}','created_at' => '2020-12-31 08:27:36','updated_at' => '2020-12-31 08:27:36'),
+//        array('id' => '20','category_id' => '22','type' => 'preview','content' => '','created_at' => '2020-12-31 08:28:31','updated_at' => '2020-12-31 08:28:31'),
+//        array('id' => '21','category_id' => '22','type' => 'mapinfo','content' => '{"latitude":"23.6019","longitude":"89.8333","zoom":"10"}','created_at' => '2020-12-31 08:28:31','updated_at' => '2020-12-31 08:28:31'),
+//        array('id' => '22','category_id' => '23','type' => 'preview','content' => '','created_at' => '2020-12-31 08:29:17','updated_at' => '2020-12-31 08:29:17'),
+//        array('id' => '23','category_id' => '23','type' => 'mapinfo','content' => '{"latitude":"22.3569","longitude":"91.7282","zoom":"10"}','created_at' => '2020-12-31 08:29:17','updated_at' => '2020-12-31 08:29:17'),
+//        array('id' => '24','category_id' => '24','type' => 'preview','content' => '','created_at' => '2020-12-31 08:30:51','updated_at' => '2020-12-31 08:30:51'),
+//        array('id' => '25','category_id' => '24','type' => 'mapinfo','content' => '{"latitude":"21.4272","longitude":"92.0058","zoom":"10"}','created_at' => '2020-12-31 08:30:51','updated_at' => '2020-12-31 08:30:51'),
+//        array('id' => '26','category_id' => '31','type' => 'preview','content' => $base_url.'/21/01/10012116102905585ffb157edfcf8.webp','created_at' => '2021-01-10 14:56:28','updated_at' => '2021-01-10 14:56:28'),
+//        array('id' => '27','category_id' => '31','type' => 'mapinfo','content' => '{"latitude":"24.3745","longitude":"88.6042","zoom":"10"}','created_at' => '2021-01-10 14:56:28','updated_at' => '2021-01-10 14:56:28'),
+//        array('id' => '28','category_id' => '32','type' => 'preview','content' => $base_url.'/21/01/10012116102905605ffb158005816.webp','created_at' => '2021-01-10 14:57:58','updated_at' => '2021-01-10 14:57:58'),
+//        array('id' => '29','category_id' => '32','type' => 'mapinfo','content' => '{"latitude":"23.1778","longitude":"89.1801","zoom":"10"}','created_at' => '2021-01-10 14:57:58','updated_at' => '2021-01-10 14:57:58'),
+//        array('id' => '30','category_id' => '33','type' => 'preview','content' => $base_url.'/21/01/10012116102905595ffb157f46dcc.webp','created_at' => '2021-01-10 14:59:05','updated_at' => '2021-01-10 14:59:05'),
+//        array('id' => '31','category_id' => '33','type' => 'mapinfo','content' => '{"latitude":"22.8456","longitude":"89.5403","zoom":"10"}','created_at' => '2021-01-10 14:59:05','updated_at' => '2021-01-10 14:59:05'),
+//        array('id' => '32','category_id' => '34','type' => 'preview','content' => $base_url.'/21/01/10012116102905595ffb157fa23a5.webp','created_at' => '2021-01-10 15:02:50','updated_at' => '2021-01-10 15:04:15'),
+//        array('id' => '33','category_id' => '34','type' => 'mapinfo','content' => '{"latitude":"24.8949","longitude":"91.8687","zoom":"10"}','created_at' => '2021-01-10 15:02:50','updated_at' => '2021-01-10 15:02:50'),
+//        array('id' => '34','category_id' => '35','type' => 'icon','content' => 'fas fa-wifi','created_at' => '2021-01-10 17:53:51','updated_at' => '2021-01-10 17:53:51'),
+//        array('id' => '35','category_id' => '36','type' => 'icon','content' => 'fas fa-swimmer','created_at' => '2021-01-10 17:54:12','updated_at' => '2021-01-10 17:54:12'),
+//        array('id' => '36','category_id' => '37','type' => 'icon','content' => 'fas fa-car-side','created_at' => '2021-01-10 17:54:37','updated_at' => '2021-01-10 17:54:37'),
+//        array('id' => '37','category_id' => '38','type' => 'icon','content' => 'fas fa-user-secret','created_at' => '2021-01-10 17:54:57','updated_at' => '2021-01-10 17:54:57'),
+//        array('id' => '38','category_id' => '39','type' => 'icon','content' => 'fas fa-hand-holding-heart','created_at' => '2021-01-10 17:55:39','updated_at' => '2021-01-10 17:55:39'),
+//        array('id' => '39','category_id' => '40','type' => 'icon','content' => 'fas fa-archway','created_at' => '2021-01-10 17:56:00','updated_at' => '2021-01-10 17:56:00'),
+//        array('id' => '40','category_id' => '41','type' => 'icon','content' => 'far fa-hospital','created_at' => '2021-01-10 18:01:58','updated_at' => '2021-01-10 18:01:58'),
+//        array('id' => '41','category_id' => '42','type' => 'icon','content' => 'fas fa-shopping-cart','created_at' => '2021-01-10 18:02:45','updated_at' => '2021-01-10 18:02:45'),
+//        array('id' => '42','category_id' => '43','type' => 'icon','content' => 'fas fa-school','created_at' => '2021-01-10 18:03:04','updated_at' => '2021-01-10 18:03:04'),
+//        array('id' => '43','category_id' => '44','type' => 'icon','content' => 'fas fa-align-center','created_at' => '2021-01-10 18:03:20','updated_at' => '2021-01-10 18:03:20'),
+//        array('id' => '44','category_id' => '45','type' => 'icon','content' => 'fas fa-hand-holding-heart','created_at' => '2021-01-10 18:04:00','updated_at' => '2021-01-10 18:04:00'),
+//        array('id' => '45','category_id' => '46','type' => 'icon','content' => 'fab fa-angrycreative','created_at' => '2021-01-10 18:04:23','updated_at' => '2021-01-10 18:04:23'),
+//        array('id' => '46','category_id' => '47','type' => 'icon','content' => 'fas fa-train','created_at' => '2021-01-10 18:04:35','updated_at' => '2021-01-10 18:04:35'),
+//        array('id' => '47','category_id' => '48','type' => 'icon','content' => 'fas fa-bus','created_at' => '2021-01-10 18:04:50','updated_at' => '2021-01-10 18:04:50'),
+//        array('id' => '48','category_id' => '49','type' => 'icon','content' => 'fas fa-umbrella-beach','created_at' => '2021-01-10 18:05:05','updated_at' => '2021-01-10 18:05:05'),
+//        array('id' => '49','category_id' => '50','type' => 'icon','content' => 'fas fa-luggage-cart','created_at' => '2021-01-10 18:05:24','updated_at' => '2021-01-10 18:05:24'),
+//        array('id' => '50','category_id' => '51','type' => 'icon','content' => 'fas fa-money-bill','created_at' => '2021-01-10 18:05:40','updated_at' => '2021-01-10 18:05:40'),
+//        array('id' => '51','category_id' => '17','type' => 'preview','content' => $base_url.'/21/01/11012116103399535ffbd67132cff.webp','created_at' => '2021-01-11 04:39:26','updated_at' => '2021-01-11 04:39:26'),
+//        array('id' => '52','category_id' => '16','type' => 'preview','content' => $base_url.'/21/01/11012116103399535ffbd671f06e5.webp','created_at' => '2021-01-11 04:39:50','updated_at' => '2021-01-11 04:39:50'),
+//        array('id' => '53','category_id' => '15','type' => 'preview','content' => $base_url.'/21/01/11012116103399535ffbd671f06e5.webp','created_at' => '2021-01-11 04:44:08','updated_at' => '2021-01-11 04:44:08'),
+//        array('id' => '54','category_id' => '52','type' => 'credit','content' => NULL,'created_at' => '2021-01-11 14:53:21','updated_at' => '2021-01-11 14:53:21'),
+//        array('id' => '55','category_id' => '52','type' => 'preview','content' => $base_url.'/21/01/11012116103778575ffc6a81e5911.webp','created_at' => '2021-01-11 14:53:21','updated_at' => '2021-01-11 15:11:04'),
+//        array('id' => '56','category_id' => '52','type' => 'content','content' => '{"address":"Dhaka, Savar","phone":"096545345345","description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.","facebook":"#","twitter":"#","youtube":"#","pinterest":"#","linkedin":"#","instagram":"#","whatsapp":"2342342342342","service_area":"Dhaka, Khulna, Savar","tax_number":"35235325353","license":"32432523532532","email":"support@email.com"}','created_at' => '2021-01-11 14:53:21','updated_at' => '2021-01-11 14:53:21'),
+//        array('id' => '57','category_id' => '53','type' => 'credit','content' => NULL,'created_at' => '2021-01-11 15:23:26','updated_at' => '2021-01-11 15:23:26'),
+//        array('id' => '58','category_id' => '53','type' => 'preview','content' => $base_url.'/21/01/11012116103785955ffc6d635efd4.webp','created_at' => '2021-01-11 15:23:26','updated_at' => '2021-01-11 15:23:26'),
+//        array('id' => '59','category_id' => '53','type' => 'content','content' => '{"address":"Agrabad, Chittagong","phone":"045345345345345","description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.","facebook":"#","twitter":"#","youtube":"#","pinterest":"#","linkedin":"#","instagram":"#","whatsapp":"547457457457","service_area":"Naogaon, Dhaka, Kirtipur","tax_number":"43653463463463","license":"353456345353535","email":"support@morden.com"}','created_at' => '2021-01-11 15:23:26','updated_at' => '2021-01-11 15:23:26'),
+//        array('id' => '60','category_id' => '54','type' => 'credit','content' => NULL,'created_at' => '2021-01-11 15:31:19','updated_at' => '2021-01-11 15:31:19'),
+//        array('id' => '61','category_id' => '54','type' => 'preview','content' => $base_url.'/21/01/11012116103785945ffc6d62d6210.webp','created_at' => '2021-01-11 15:31:19','updated_at' => '2021-01-11 15:31:19'),
+//        array('id' => '62','category_id' => '54','type' => 'content','content' => '{"address":"Naogaon, Kirtipur","phone":"034324324324324","description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.","facebook":"#","twitter":"#","youtube":"#","pinterest":"#","linkedin":"#","instagram":"#","whatsapp":"#","service_area":"Naogaon, Kirtipur, Mohadebpur","tax_number":"345435345325325","license":"3532532532532532523","email":"support@company.com"}','created_at' => '2021-01-11 15:31:19','updated_at' => '2021-01-11 15:31:19'),
+//        array('id' => '69','category_id' => '61','type' => 'lang','content' => '{"lang_name":"English","lang_position":"LTR"}','created_at' => '2021-01-18 09:22:05','updated_at' => '2021-01-18 09:22:05'),
+//        array('id' => '70','category_id' => '62','type' => 'lang','content' => '{"lang_name":"Arabic","lang_position":"RTL"}','created_at' => '2021-01-18 09:22:14','updated_at' => '2021-01-18 09:22:14'),
+//        array('id' => '71','category_id' => '63','type' => 'position','content' => 'right','created_at' => '2020-12-31 08:16:50','updated_at' => '2020-12-31 08:16:50'),
+//      );
+//
+//     Categorymeta::insert($categorymetas);
 
-     Categorymeta::insert($categorymetas);
+//     $categoryusers = array(
+//      array('category_id' => '52','user_id' => '2'),
+//      array('category_id' => '52','user_id' => '3'),
+//      array('category_id' => '52','user_id' => '4'),
+//      array('category_id' => '53','user_id' => '2'),
+//      array('category_id' => '53','user_id' => '3'),
+//      array('category_id' => '53','user_id' => '4'),
+//      array('category_id' => '54','user_id' => '2'),
+//      array('category_id' => '54','user_id' => '3'),
+//      array('category_id' => '54','user_id' => '4')
+//    );
+//
+//    Categoryuser::insert($categoryusers);
 
-     $categoryusers = array(
-      array('category_id' => '52','user_id' => '2'),
-      array('category_id' => '52','user_id' => '3'),
-      array('category_id' => '52','user_id' => '4'),
-      array('category_id' => '53','user_id' => '2'),
-      array('category_id' => '53','user_id' => '3'),
-      array('category_id' => '53','user_id' => '4'),
-      array('category_id' => '54','user_id' => '2'),
-      array('category_id' => '54','user_id' => '3'),
-      array('category_id' => '54','user_id' => '4')
-    );
-
-    Categoryuser::insert($categoryusers);
-
-     $categoryrelations = array(
-      array('parent_id' => '18','child_id' => '4'),
-      array('parent_id' => '17','child_id' => '1'),
-      array('parent_id' => '17','child_id' => '2'),
-      array('parent_id' => '17','child_id' => '3'),
-      array('parent_id' => '17','child_id' => '4'),
-      array('parent_id' => '17','child_id' => '5'),
-      array('parent_id' => '17','child_id' => '6'),
-      array('parent_id' => '16','child_id' => '1'),
-      array('parent_id' => '16','child_id' => '2'),
-      array('parent_id' => '16','child_id' => '3'),
-      array('parent_id' => '16','child_id' => '4'),
-      array('parent_id' => '16','child_id' => '5'),
-      array('parent_id' => '16','child_id' => '6'),
-      array('parent_id' => '15','child_id' => '6')
-    );
-
-
-
-     Categoryrelation::insert($categoryrelations);
+//     $categoryrelations = array(
+//      array('parent_id' => '18','child_id' => '4'),
+//      array('parent_id' => '17','child_id' => '1'),
+//      array('parent_id' => '17','child_id' => '2'),
+//      array('parent_id' => '17','child_id' => '3'),
+//      array('parent_id' => '17','child_id' => '4'),
+//      array('parent_id' => '17','child_id' => '5'),
+//      array('parent_id' => '17','child_id' => '6'),
+//      array('parent_id' => '16','child_id' => '1'),
+//      array('parent_id' => '16','child_id' => '2'),
+//      array('parent_id' => '16','child_id' => '3'),
+//      array('parent_id' => '16','child_id' => '4'),
+//      array('parent_id' => '16','child_id' => '5'),
+//      array('parent_id' => '16','child_id' => '6'),
+//      array('parent_id' => '15','child_id' => '6')
+//    );
+//
+//
+//
+//     Categoryrelation::insert($categoryrelations);
 
 
      $customizers = array(

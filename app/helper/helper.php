@@ -121,6 +121,17 @@ function amount_format($amount, $array = false)
 	}
 }
 
+
+function new_amount_format($amount)
+{
+     
+	$format ="ر.س ".number_format($amount, 2);
+	if(Session::has('locale') && Session::get('locale') == 'en'){
+		$format ="SAR ".number_format($amount, 2);
+	}
+	
+	return $format;
+}
 function amount_calculation($amount)
 {
 	$default_currency = default_currency();
@@ -629,3 +640,16 @@ function success_response($data = null, $message = null)
 
         return $output;
     }
+
+	 function generate_unique_id($data=null,$id_starts){
+        if ($data) {
+            $orderNr = $data->unique_id;
+            $removed1char = substr($orderNr, 1);
+            $unique_id = $stpad = str_pad($removed1char + 1, 6, $id_starts, STR_PAD_LEFT);
+        } else {
+            $unique_id = str_pad(1, 6, $id_starts, STR_PAD_LEFT);
+        }
+
+        return $unique_id;
+    }
+

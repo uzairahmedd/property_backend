@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Terms;
 use App\Category;
+use App;
+use App\Models\City;
 use Session;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
@@ -54,7 +56,6 @@ class WelcomeController extends controller
             SEOTools::opengraph()->addProperty('keywords', $seo->tags);
             SEOTools::twitter()->setSite($seo->twitterTitle);
             SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
-            $data = get_currency_info();
             $status = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
             $categories = Category::where('type', 'category')->inRandomOrder()->get();
             $states = Category::where('type', 'states')->with('childrenCategories')->get();
@@ -101,19 +102,18 @@ class WelcomeController extends controller
             SEOTools::opengraph()->addProperty('keywords', $seo->tags);
             SEOTools::twitter()->setSite($seo->twitterTitle);
             SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
-            $data = get_currency_info();
             $status = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
-            $categories = Category::where('type', 'category')->inRandomOrder()->get();
-            $states = Category::where('type', 'states')->with('childrenCategories')->get();
-            //for home rent and sell properties
+            $cities = City::where('featured', 1)->get();
             $status_properties = $this->status_property($status);
-            return view('theme::newlayouts.pages.home', compact('status', 'categories', 'states', 'status_properties'));
+            $property_nature = Category::where('type', 'parent_category')->where('featured', 1)->get();
+            $property_type = Category::where('type', 'category')->where('featured', 1)->with('child','icon')->get();
+            return view('theme::newlayouts.pages.home', compact('status', 'cities', 'status_properties','property_type','property_nature'));
         } catch (\Exception $e) {
             return redirect()->route('install');
         }
     }
 
-   
+
     /**
      * Make data for rent and sales properties
      *
@@ -144,7 +144,7 @@ class WelcomeController extends controller
     {
         $this->status = $request;
 
-        $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('price')->whereHas('post_city')->with('description','area','post_preview', 'price', 'post_city', 'property_status_type')
+        $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('price')->whereHas('post_new_city')->with('post_preview', 'price', 'post_district','post_new_city', 'property_status_type')
             ->whereHas('property_status_type', function ($q) {
                 if (!empty($this->status)) {
                     return $q->where('category_id', $this->status);
@@ -175,7 +175,7 @@ class WelcomeController extends controller
         return $posts;
     }
 
-    
+
     public function change_currency(Request $request)
     {
         $put_curryncy = Category::where('type', 'currency')->with('position')->findorFail($request->currency);
@@ -187,5 +187,16 @@ class WelcomeController extends controller
         $info['position'] = $put_curryncy->position->content;
         Session::put('currency_info', $info);
         return back();
+    }
+
+    /**
+     *Change language of pages
+     * @return response.
+     */
+    public function change(Request $request)
+    {
+        App::setLocale($request->lang);
+        session()->put('locale', $request->lang);
+        return $respons = ['status' => 'success'];
     }
 }

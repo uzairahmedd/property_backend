@@ -1,82 +1,3 @@
-
-/*-----------------------------
-    Properties Data Get for rent properties
---------------------------------*/
-// Rent_properties();
-// Sell_properties();
-// function Rent_properties()
-// {
-//     var url = $('#rent_properties').val();
-//     var rent_status=$('#rent_status').val();
-//     $.ajax({
-//         type: 'get',
-//         url: url,
-//         data: {'status':rent_status},
-//         dataType: 'json',
-//         // beforeSend: function(){
-//         //     before_render_list_col_4('#latest_data',3);
-//         // },
-//         success: function(response){
-//             console.log(response);
-//             render_list_carousal('#rent_feature',response);
-
-//         }
-//     })
-// }
-
-
-// function render_list_carousal(target,data){
-//     console.log(data);
-//     console.log('dsa');
-//     var base_url = $('#base_url').val();
-//     $(target).html('');
-//     console.log(data.length);
-//     $.each(data, function(index, value){
-//         if(value.post_preview != null)
-//         {
-//             var image = value.post_preview.media.url;
-//         }else{
-//             var image = base_url+'/uploads/default.png';
-//         }
-
-//         var asset_url = $('#base_url').val();
-//         var title=str_limit(value.title,20,true);
-//         var location = str_limit(value.post_city.value,35,true);
-//         $(target).append('<div class="listing"><div class="list" style="background: url(/assets/images/list.png);  background-size: cover; background-repeat: no-repeat;  border-radius: 8px;"> <div class="content d-flex justify-content-between"><div class="d-flex flex-column align-items-start theme-text-white"><div class="sale theme-bg-sky"><span class="font-medium">للبيع</span></div><div class="sale theme-bg-blue"><span class="font-medium">متاح</span> </div> </div><div class="fav-elipse d-flex align-items-center justify-content-center"><img src="{{theme_asset("assets/images/heart.svg")}}" alt=""></div></div><div class="price theme-text-white d-flex align-items-center justify-content-center"><span class="font-bold">'+value.min_price.price+' - '+value.max_price.price+' مليون ر.س</span></div></div><div class="mt-3"><a href="'+asset_url+'property/'+value.slug+'"><h3 class="font-medium theme-text-blue">'+title+'</h3> </a><div class="d-flex align-items-start justify-content-end pt-2"><p class="mb-0 theme-text-seondary-black me-2">'+location+'</p><img src="{{theme_asset("assets/images/location.png")}}" alt=""></div></div></div>');
-//     });
-// }
-
-// function Sell_properties()
-// {
-//     var url = $('#sell_properties').val();
-//     var sell_status=$('#sale_status').val();
-//     console.log(rent_status);
-//     $.ajax({
-//         type: 'get',
-//         url: url,
-//         data: {'status':sell_status},
-//         dataType: 'json',
-//         // beforeSend: function(){
-//         //     before_render_list_col_4('#latest_data',3);
-//         // },
-//         success: function(response){
-//             console.log(response);
-//             // var asset_url = $('#base_url').val();
-//             // render_list_col_4('#latest_data',response.data);
-
-//         }
-//     })
-// }
-
-
-// /*----------------------
-//         Content Limit
-//     --------------------------*/
-//     function str_limit(text, count, insertDots){
-//         return text.slice(0, count) + (((text.length > count) && insertDots) ? "..." : "");
-//      }
-
-
 // jquery for selection dropdown End
 
 (function ($) {
@@ -119,6 +40,49 @@
         })
     });
 
+     /*----------------------------
+            Login Form Submit
+        -------------------------------*/
+        $('#phone_login_form').on('submit', function (e) {
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: this.action,
+                data: new FormData(this),
+                dataType: 'json',
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function () {
+                    $('.basicbtn').attr('disabled', '');
+                    $('.basicbtn').html('Please Wait...');
+                },
+                success: function (data) {
+                    $('.basicbtn').removeAttr('disabled');
+                    $('.basicbtn').html('Login');
+                   
+                    if (data.status == 'success') {
+                        console.log(data);
+                        window.location.href = data.data['url'];
+                    }
+                    //for error page
+                    else if (data.status == 'error') {
+                        if (data.data['phone']) {
+                            $('#phone_login_error_msg').html('<span class="error">' + data.data['phone'] + '</span>');
+                        }
+                        setTimeout(function () {
+                            $('#phone_login_error_msg').html('<span class="error"></span>');
+                        }, 10000);
+                    }
+                }
+            })
+        });
+
     /*----------------------------
             Register Form Submit
         -------------------------------*/
@@ -144,7 +108,6 @@
             success: function (data) {
                 $('.basicbtn').removeAttr('disabled');
                 $('.basicbtn').html('Register');
-                console.log(data);
                 //for success page
                 if (data.status == 'success') {
                     window.location.href = data.data['url'];
@@ -203,7 +166,7 @@
                 $("#submit_otp i").removeClass('fa fa-spinner fa-spin ');
                 if (response.status == 'success') {
 
-                    window.location.href = baseurl;
+                    window.location.href = response.data;
 
                 }
                 if (response.status == 'error') {
@@ -233,7 +196,6 @@
             url: url,
             type: 'GET',
             success: function (response) {
-                console.log(response);
                 $("#resend_otp").prop('disabled', false);
                 $("#resend_otp i").removeClass('fa fa-spinner fa-spin ');
 
@@ -244,6 +206,9 @@
                     timer.start(1000);
                     $('#otp_notification').text('OTP send successfully!');
                     $('#otp').val(response.otp);
+                    setTimeout(function () {
+                        $('#otp_notification').html('');
+                    }, 1000);
 
                 }
                 if (response.header_code != 200) {
@@ -252,7 +217,6 @@
             }
         });
     });
-
 
 
     //update phone
@@ -275,7 +239,6 @@
                 $("#update_phone_btn").prop('disabled', false);
                 $("#update_phone_btn i").removeClass('fa fa-spinner fa-spin ');
                 if (response.status == 'success') {
-
                     window.location.href = response.data['url'];
 
                 }
@@ -291,5 +254,103 @@
         });
     });
 
+
+    
+     /*----------------------------
+            owner id data form submit
+        -------------------------------*/
+        $('#owner_data_form').on('submit', function (e) {
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: this.action,
+                data: new FormData(this),
+                dataType: 'json',
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function () {
+                    $('#btn_owner').attr('disabled', '');
+                },
+                success: function (data) {
+                    $('#btn_owner').removeAttr('disabled');
+                    if (data.status == 'success') {
+                        window.location.href = data.data['url'];
+                    }
+                    //for error page
+                    else if (data.status == 'error') {
+                        if (data.data['message']) {
+                            $('#owner_errors_msg').html('<span class="error">' + data.data['message'] + '</span>');
+                        }
+                        setTimeout(function () {
+                            $('#owner_errors_msg').html('<span class="error"></span>');
+                        }, 10000);
+                    }
+                }
+            })
+        });
+
 })(jQuery);
 
+
+// RTL LTR
+$(document).ready(function () {
+
+    // Download App Dropdown
+    $('.download-app').click(function (e) {
+        $('.home_fade').addClass('add_overlay');
+    });
+
+    $('.overlay').click(function (event) {
+        $('.home_fade').removeClass('add_overlay');
+        $(".drop-download-app").removeClass("show");
+    });
+
+
+    let baseUrl = $('#base_url').val();
+
+    $("#lang").click(function () {
+        if ($('#lang').text() == 'English') {
+            var url = 'lang/change/' + "?lang=" + 'en';
+
+            $.ajax({
+                type: "get",
+                url: baseUrl + url,
+                success: function (data) {
+                    $('#lang').text('عربي');
+                    //for success
+                    if (data.status == 'success') {
+                        self.location.reload();
+                    }
+                }
+            });
+
+        } else if ($('#lang').text() == 'عربي') {
+            var url = 'lang/change/' + "?lang=" + 'ar';
+
+            $.ajax({
+                type: "get",
+                url: baseUrl + url,
+                success: function (data) {
+                    $('#lang').text('English');
+                    //for success
+                    if (data.status == 'success') {
+                        self.location.reload();
+                    }
+                }
+            });
+        }
+    });
+});
+
+// Scroll To Top
+function scrollToTop() {
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+}

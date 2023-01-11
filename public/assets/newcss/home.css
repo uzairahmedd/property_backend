@@ -73,7 +73,7 @@
 /* Verified */
 
 .mb-4_5 {
-    margin-bottom: 38px;
+    margin-bottom: 20px;
 }
 
 /* Border Radius */
@@ -99,7 +99,7 @@
 /* Property Listing Start*/
 .chip {
     padding: 6px 16px;
-    border: 1px solid var(--theme-secondary);
+    /*border: 1px solid var(--theme-secondary);*/
     border-radius: 8px;
     font-size: 16px;
 }
@@ -126,6 +126,32 @@
 
 .listing {
     text-align: end;
+    border-radius: 8px;
+    border: 1px solid #e5e5e6;
+    overflow: hidden;
+    background: #fff;
+}
+
+.home-listing-detail
+{
+    padding: 0px 10px 10px 10px;
+}
+
+.property-listing-content i.en-arrow
+{
+    display: none;
+}
+
+.property-listing-content i.ar-arrow
+{
+    display: block;
+}
+
+.property-listing-content a
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .listing h3 {
@@ -135,6 +161,7 @@
 .listing p {
     font-size: 14px;
     opacity: 0.5;
+    padding-left: 5px;
 }
 
 .list {
@@ -345,12 +372,27 @@
     -moz-opacity: 0.7;
     opacity: .80;
     filter: alpha(opacity=80);
-    /* Transitions */
+    -webkit-transition: opacity 1s ease-in-out;
+}
+/* .overlay {
+    display: none;
+    background-color: #444;
+    -moz-opacity: 0.7;
+    opacity: .80;
+    filter: alpha(opacity=80);
     -webkit-transition: opacity 1s ease-in-out;
     -moz-transition: opacity 1s ease-in-out;
     -ms-transition: opacity 1s ease-in-out;
     -o-transition: opacity 1s ease-in-out;
-}
+    transition: 0.5s;
+    height: 100%;
+    width: 0;
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+} */
 
 .remove-scrolling {
     height: 100%;
@@ -776,6 +818,13 @@ room-dropdown-toggle::after
     outline: none;
 }
 
+.rental-toggle-icon img {
+    position: absolute;
+    top: 10px;
+    width: 10px;
+    max-width: 100%;
+}
+
 
 /* Dropdown Rent Button CSS End */
 
@@ -813,9 +862,82 @@ room-dropdown-toggle::after
     margin-left: 24px;
 }
 
+/*download app dropdown css*/
 
+#download-app::after
+{
+    display: none !important;
+    margin: 0;
+    padding: 0;
+}
 
+.drop-download-app
+{
+    width: 335px;
+    height: 250px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 18px rgba(41, 32, 113, 0.15);
+    border-radius: 8px;
+}
 
+.drop-download-app::before {
+    background-color: #ffffff;
+    content: "";
+    height: 20px;
+    left: 0;
+    margin: 0 15px;
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    top: -8px;
+    width: 13px;
+    opacity: 0.95;
+    border-radius: 2px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.drop-download-app h3
+{
+    font-weight: 700;
+    font-size: 30px;
+    text-align: right;
+    letter-spacing: -0.3px;
+    padding: 20px 10px;
+}
+
+.drop-download-app p {
+    font-weight: 500;
+    font-size: 16px;
+    text-align: right;
+    letter-spacing: -0.3px;
+    padding: 0 20px 0px 10px;
+}
+
+.drop-google-img img
+{
+    width: 150px;
+    max-width: 100%;
+}
+
+.drop-apple-img img
+{
+    width: 150px;
+    max-width: 100%;
+}
+
+.lang-txt i
+{
+    padding-right: 5px;
+}
+
+.nav-icons
+{
+    padding-left: 10px;
+}
 
 /*Home page responsiveness Start From Here*/
 
@@ -853,6 +975,13 @@ room-dropdown-toggle::after
 
 @media screen and (max-width: 992px) {
 
+    .navbar-nav .dropdown-menu {
+        position: absolute;
+    }
+    .owl-home-carousel
+    {
+        direction: rtl !important;
+    }
     .looking-for
     {
         width: 720px;
@@ -889,6 +1018,16 @@ room-dropdown-toggle::after
     }
 }
 
+@media screen and (max-width: 930px) {
+    .drop-download-app{
+        margin-left: -180px;
+    }
+    .drop-download-app::before {
+        left: unset;
+        right: 0;
+    }
+}
+
 @media screen and (max-width: 768px) {
 
     /*.dropdown-select.wide {*/
@@ -898,6 +1037,11 @@ room-dropdown-toggle::after
     /*    text-align: right;*/
     /*    width: auto;*/
     /*}*/
+
+    .add-btn
+    {
+        margin: 1rem 0 !important;
+    }
 
     .looking-for {
         width: 580px;
@@ -966,6 +1110,10 @@ room-dropdown-toggle::after
     .mini-footer .social-links img {
         margin-right: 22px;
     }
+
+    .owl-home-carousel {
+        direction: ltr !important;
+    }
 }
 
 
@@ -1018,6 +1166,29 @@ room-dropdown-toggle::after
 }
 
 @media screen and (max-width: 576px) {
+
+    .drop-download-app {
+        width: 258px;
+        height: 326px;
+    }
+
+    .drop-google-img img {
+        width: 200px;
+        max-width: 100%;
+    }
+    .drop-apple-img img {
+        width: 200px;
+        max-width: 100%;
+    }
+    .drop-download-app
+    {
+        margin-left: -53px;
+        margin-top: 20px !important;
+    }
+    .drop-download-app::before {
+        left: unset;
+        right: 102px;
+    }
     .font-lg-18 {
         font-size: 16px;
     }
@@ -1265,7 +1436,8 @@ room-dropdown-toggle::after
     }
 
     .home .navbar {
-        padding: 25px 0px 20px 0px;
+        margin: 0px 0px 0px 0px;
+        padding: 0 10px 20px;
     }
 }
 
@@ -1472,6 +1644,7 @@ span.directorist-select__selected-list--item:first-letter {
     text-transform: capitalize;
 }
 
+
 /* Directorist Error */
 .directorist-select__container.directorist-error .directorist-select__label {
     border-color: rgb(199, 6, 6) !important;
@@ -1652,6 +1825,15 @@ span.directorist-select__selected-list--item:first-letter {
     color: black;
 }
 
+.owl-home-carousel
+{
+    direction: rtl;
+}
+.home-listing-detail
+{
+    direction: ltr;
+}
+
 .new-rent-dropdown::before {
     background-color: #ffffff;
     content: "";
@@ -1684,6 +1866,11 @@ span.directorist-select__selected-list--item:first-letter {
     z-index: 1000;
 }
 
+.hs-menu-inner
+{
+    background-color: white;
+}
+
 .buy-rent-pan {
     padding: 0px 14px;
     text-align: center;
@@ -1700,7 +1887,32 @@ span.directorist-select__selected-list--item:first-letter {
     border-radius: 25px;
 }
 
+@media screen and (max-width: 576px) {
+    .hierarchy-select .dropdown-menu
+    {
+        margin-left: -10px !important;
+    }
+
+    .cities-form-control
+    {
+        border-right: none;
+        padding-right: 0;
+        padding-top: 15px;
+        margin-left: 0;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #C9C9C9 !important;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .hierarchy-select
+    {
+        padding: 0 10px;
+    }
+}
+
 @media screen and (max-width: 336px) {
+
     .rent-box {
         width: 94px;
         max-width: 100%;
@@ -1736,14 +1948,14 @@ span.directorist-select__selected-list--item:first-letter {
         width: 240px;
     }
 
-    ..list-rent-dropdown
+    .list-rent-dropdown
     {
         width: 270px;
     }
 }
 
 @media screen and (max-width: 280px) {
-    ..list-rent-dropdown
+    .list-rent-dropdown
     {
         width: 240px;
     }
@@ -1753,6 +1965,18 @@ span.directorist-select__selected-list--item:first-letter {
     opacity: 0.2;
     display:block;
 }
+
+/*.property-sale .owl-stage-outer*/
+/*{*/
+/*    display: flex;*/
+/*    justify-content: end;*/
+/*}*/
+
+/*.property-rent .owl-stage-outer*/
+/*{*/
+/*    display: flex;*/
+/*    justify-content: end;*/
+/*}*/
 
 
 

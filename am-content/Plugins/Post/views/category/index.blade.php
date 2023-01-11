@@ -44,8 +44,10 @@
 									<label class="custom-control-label checkAll" for="customCheck12"></label>
 								</div>
 							</th>
+							<th class="am-title">{{ __('icon') }}</th>
 							<th class="am-title">{{ __('Title') }}</th>
-							<th class="am-title">{{ __('Credit Charge') }}</th>
+							<th class="am-title">{{ __('Arabic title') }}</th>
+							<th class="am-title">{{ __('Property type') }}</th>
 							<th class="am-title">{{ __('Featured') }}</th>
 							<th class="am-date">{{ __('Date') }}</th>
 						</tr>
@@ -60,12 +62,23 @@
 								</div>
 							</th>
 							<td>
+								<span><i class="{{!empty($post->icon) ? $post->icon->content : ''}}"></i></span>
+							</td>
+							<td>
 								{{ $post->name }}
 								<div class="hover">
 									<a href="{{ route('admin.category.edit',$post->id) }}">{{ __('Edit') }}</a>
 								</div>
 							</td>
-							<td>{{ $post->creditcharge->content ?? '' }}</td>
+							<td>
+								{{ $post->ar_name }}
+							</td>
+							<td>
+								@foreach($post->child_name as $name_type)
+								<span class="badge badge-primary">{{$name_type->name}}</span>
+								@endforeach
+							</td>
+							<!-- <td>{{ $post->creditcharge->content ?? '' }}</td> -->
 
 							@if($post->featured==1)
 							<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
@@ -89,8 +102,10 @@
 								<label class="custom-control-label checkAll" for="customCheck12"></label>
 							</div>
 						</th>
+						<th class="am-title">{{ __('Icon') }}</th>
 						<th class="am-title">{{ __('Title') }}</th>
-						<th class="am-title">{{ __('Credit Charge') }}</th>
+						<th class="am-title">{{ __('Arabic title') }}</th>
+						<th class="am-title">{{ __('Property type') }}</th>
 						<th class="am-title">{{ __('Featured') }}</th>
 						<th class="am-date">{{ __('Date') }}</th>
 					</tr>

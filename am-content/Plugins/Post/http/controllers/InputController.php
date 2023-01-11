@@ -23,10 +23,10 @@ class InputController extends controller
             abort(401);
         }
         if ($request->src) {
-            $posts=Category::where('type','option')->where($request->type,'LIKE','%'.$request->src.'%')->latest()->paginate(20);  
+            $posts=Category::where('type','option')->with('preview')->where($request->type,'LIKE','%'.$request->src.'%')->latest()->paginate(20);  
         }
         else{
-            $posts=Category::where('type','option')->latest()->paginate(20);  
+            $posts=Category::where('type','option')->with('preview')->latest()->paginate(20);  
         }
         $src=$request->src;
         return view('plugin::input.index',compact('posts','src'));
@@ -46,13 +46,13 @@ class InputController extends controller
          return view('plugin::input.create');
     }
 
-    /**
+     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function old_store(Request $request)
     {
          $validatedData = $request->validate([
             'title' => 'required|max:50',
@@ -64,6 +64,48 @@ class InputController extends controller
         $post->type='option';
         $post->user_id=Auth::id();
         $post->status=$request->required;
+        $post->featured=$request->featured;
+        $post->save();
+
+        if ($request->child) {
+            $childs=[];
+            foreach ($request->child as $key => $row) {
+                $data['parent_id']=$post->id;
+                $data['child_id']=$row;
+
+                array_push($childs, $data);
+            }
+
+            Categoryrelation::insert($childs);
+        }
+        if(!empty($request->preview)){
+            $meta=new Categorymeta;
+            $meta->category_id=$post->id;
+            $meta->type="preview";
+            $meta->content=$request->preview;
+            $meta->save();
+        } 
+        return response()->json(['Input Feild Created']);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+         $validatedData = $request->validate([
+            'title' => 'required|max:50',
+            'ar_title' => 'required|max:50',
+        ]);
+
+        $post= new Category;
+        $post->name=$request->title;
+        $post->ar_name=$request->ar_title;
+        $post->type='option';
+        $post->user_id=Auth::id();
         $post->featured=$request->featured;
         $post->save();
 
@@ -113,14 +155,14 @@ class InputController extends controller
          return view('plugin::input.edit',compact('info','categories','childs'));
     }
 
-    /**
+     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function old_update(Request $request, $id)
     {
         $validatedData = $request->validate([
             'title' => 'required|max:50',
@@ -130,6 +172,53 @@ class InputController extends controller
         $post->name=$request->title;
         $post->slug=$request->input_type;
         $post->status=$request->required;
+        $post->featured=$request->featured;
+        $post->save();
+
+        if ($request->child) {
+            $childs=[];
+            foreach ($request->child as $key => $row) {
+                $data['parent_id']=$post->id;
+                $data['child_id']=$row;
+
+                array_push($childs, $data);
+            }
+            Categoryrelation::where('parent_id',$id)->delete();
+            Categoryrelation::insert($childs);
+        }
+
+        if(!empty($request->preview)){
+            $meta=Categorymeta::where('category_id',$id)->where('type','preview')->first();
+            if(empty($meta)){
+                $meta=new Categorymeta;
+                $meta->category_id=$id;
+                $meta->type="preview";
+            }
+            $meta->content=$request->preview;
+            $meta->save();
+        }
+
+        return response()->json(['Input Feild Updated']);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+       
+        $validatedData = $request->validate([
+            'title' => 'required|max:50',
+            'ar_title' => 'required|max:50',
+        ]);
+
+        $post=  Category::where('type','option')->findorFail($id);
+        $post->name=$request->title;
+        $post->ar_name=$request->ar_title;
         $post->featured=$request->featured;
         $post->save();
 

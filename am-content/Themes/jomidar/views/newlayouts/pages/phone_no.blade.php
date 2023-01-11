@@ -9,19 +9,18 @@
                     <div class="d-flex flex-wrap justify-content-center">
                         <div class="col-10 col-sm-8 col-md-7 text-center">
                             <img src="{{theme_asset('assets/images/Sign-in.png')}}" alt="">
-                            <h1 class="font-24 font-medium theme-text-seondary-black">تعديل رقم الهاتف</h1>
+                            <h1 class="font-24 font-medium theme-text-seondary-black">{{__('labels.modify_number')}}</h1>
                             <form id="update_phone">
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{encrypt($user_data->id)}}">
                                 <div class="mb-4_5 position-relative">
-                                    <input type="phone" class="form-control font-medium font-16" name="phone" value="{{$user_data->phone}}" placeholder="مثلا 5515151181">
-                                    <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black">رقم
-                                        الجوال</label>
+                                    <input type="phone" class="form-control font-medium font-16" name="phone" value="{{$user_data->phone}}" placeholder="0559851174">
+                                    <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black">{{__('labels.mobile_number')}}</label>
                                 </div>
                                 <span id="phone_error"></span>
                                 <div class="px-3">
                                     <button type="submit" id="update_phone_btn" class="chat-btn theme-bg-sky theme-text-white border-0 font-bold font-16">
-                                        التالي
+                                        {{__('labels.save')}}
                                         <i class=""></i> </button>
                                 </div>
                             </form>

@@ -185,8 +185,9 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::get('review/data', 'DataController@review')->name('review.data');
 	Route::post('mailchamp', 'MailchampController@store')->name('mailchamp.store');
 	Route::get('property/{slug}', 'PropertyController@show')->name('property.show');
+	Route::get('forgotlogin', 'PropertyController@forgotLogin');
 	Route::get('project/{slug}', 'PropertyController@project_view');
-	Route::get('list', 'PropertyController@list')->name('list');
+	Route::get('list', 'PropertyController@list_page')->name('list');
 	Route::get('project', 'PropertyController@project');
 	Route::get('map', 'PropertyController@map')->name('map');
 	Route::get('state/{slug}', 'PropertyController@city');
@@ -218,8 +219,9 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::get('change_currency', 'WelcomeController@change_currency')->name('change_currency');
 	Route::post('user/register', 'RegisterController@register')->name('user.register');
 	Route::get('contact', 'ContactController@index')->name('contact.index');
-	//new register 
+	//new register
 	Route::post('user/user_register', 'RegisterController@user_register')->name('user_register');
+	Route::post('user/user_login', 'RegisterController@user_login')->name('user_login');
 	Route::get('Verify_OTP_page/{id}', 'RegisterController@Verify_OTP_page');
 	Route::post('verify_otp', 'RegisterController@verify_otp');
 	Route::get('resend_otp/{mobile}', 'RegisterController@send_otp');
@@ -229,6 +231,13 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::post('modify_phone', 'RegisterController@modify_phone');
 	//detail page
 	Route::get('property-detail/{slug}', 'PropertyController@detail')->name('property.detail');
+	Route::get('change_title', 'RegisterController@change_title');
+	//user phone number verification page
+	Route::get('user-phone/verification/{id?}','RegisterController@phone_verification')->name('phone_verification');
+	Route::post('user/phone_register', 'RegisterController@phone_register')->name('phone_register');
+	Route::get('otp-processing-page/{id}','RegisterController@otpProperty')->name('otp_processing_page');
+	Route::get('select-owner/{id}','RegisterController@select_owner')->name('select_owner');
+	Route::post('user/add_user_id', 'RegisterController@add_user_id')->name('add_user_id');
 });
 
 //    Latest Khiaratee Theme Routes Start
@@ -238,9 +247,8 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	// Route::get('property_detail', 'PropertyController@property_detail')->name('property_detail');
 	Route::get('property_auction', 'PropertyController@property_auction')->name('property_auction');
 	// Route::get('my_profile', 'PropertyController@userboard_profile')->name('userboard_profile');
-	Route::get('favorite', 'PropertyController@userboard_favorite')->name('userboard_favorite');
 	Route::get('auction', 'PropertyController@userboard_auction')->name('userboard_auction');
-	Route::get('account', 'PropertyController@userboard_account')->name('userboard_account');
+	// Route::get('account', 'PropertyController@userboard_account')->name('userboard_account');
 	Route::get('step_one', 'PropertyController@step_one')->name('step_one');
 	Route::get('step_two', 'PropertyController@step_two')->name('step_two');
 	Route::get('step_three', 'PropertyController@step_three')->name('step_three');
@@ -252,7 +260,13 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::get('terms_and_conditions', 'PropertyController@terms_of_use')->name('terms_and_conditions');
 	// Route::get('otp','PropertyController@otp')->name('otp');
 	// Route::get('phone_no','PropertyController@phone_no')->name('phone_no');
+    Route::get('post_property','PropertyController@postProperty')->name('post_property');
+    Route::get('otp_property','PropertyController@otpProperty')->name('otp_property');
+    Route::get('select_owner','PropertyController@selectOwner')->name('select_owner');
+    Route::get('verify_user','PropertyController@verify_user');
 });
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -270,26 +284,36 @@ Route::group(['as' => 'agent.', 'prefix', 'namespace' => 'App\Http\Controllers\A
 
 Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Theme\jomidar\http\controllers\Agent', 'middleware' => ['web', 'auth']], function () {
 
+    Route::get('account/delete/{id}', 'PropertyController@delete_account');
 	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 	Route::resource('property', 'PropertyController');
 	//new property design routes for create
-	Route::post('create_property', 'PropertyController@add_property')->name('property.store_property');
-	Route::get('edit-two/property/{id}', 'PropertyController@edit_two_property')->name('property.second_edit_property');
+	Route::get('create_property/{id?}', 'PropertyController@create_property')->name('property.create_property');
+	Route::post('add_property', 'PropertyController@add_property')->name('property.store_property');
+	Route::get('Basic-details/property/{id}', 'PropertyController@edit_two_property')->name('property.second_edit_property');
 	Route::put('update-second/property/{id}', 'PropertyController@update_two_property')->name('property.second_update_property');
-	Route::get('edit-third/property/{id}', 'PropertyController@edit_third_property')->name('property.third_edit_property');
+	Route::get('Additional-details/property/{id}', 'PropertyController@edit_third_property')->name('property.third_edit_property');
 	Route::put('update-third/property/{id}', 'PropertyController@update_third_property')->name('property.third_update_property');
-	Route::get('edit-forth/property/{id}', 'PropertyController@edit_forth_property')->name('property.forth_edit_property');
+	Route::get('property-images/property/{id}', 'PropertyController@edit_forth_property')->name('property.forth_edit_property');
 	Route::put('update-forth/property/{id}', 'PropertyController@update_forth_property')->name('property.forth_update_property');
-	Route::get('edit-five/property/{id}', 'PropertyController@edit_five_property')->name('property.five_edit_property');
+	Route::get('Feature-details/property/{id}', 'PropertyController@edit_five_property')->name('property.five_edit_property');
 	Route::put('update-five/property/{id}', 'PropertyController@update_five_property')->name('property.five_update_property');
-	Route::get('edit-six/property/{id}', 'PropertyController@edit_six_property')->name('property.six_edit_property');
+	Route::get('Property-docs/property/{id}', 'PropertyController@edit_six_property')->name('property.six_edit_property');
 	Route::put('update-six/property/{id}', 'PropertyController@update_six_property')->name('property.six_update_property');
-	Route::get('finish/property/{id}', 'PropertyController@finish_property')->name('property.finish_property');
-    //property list
+	Route::get('process-complete/property/{id}', 'PropertyController@finish_property')->name('property.finish_property');
+	//property list
 	Route::get('property-list', 'PropertyController@property_list')->name('property.property_list');
 	Route::get('get_user_properties', 'PropertyController@get_user_properties');
-
-
+    Route::get('favorite-property-list', 'FavouriteController@user_favorites')->name('property.userboard_favorite');
+    Route::get('user_favorite_properties', 'FavouriteController@get_favorite_properties');
+	//delete property
+	Route::get('delete_property/{id}', 'PropertyController@delete_property');
+	//agent accounts
+	Route::get('account', 'PropertyController@userboard_account')->name('profile.account');
+	//get property type
+	Route::get('get_property_type', 'PropertyController@get_property_type');
+	//get distric
+	Route::get('get_district','PropertyController@info')->name('property.district');
 	Route::post('contact_type/{id}', 'PropertyController@contact_type')->name('contact_type');
 	Route::post('floor-plan/{id}', 'PropertyController@floor_plan_store')->name('floor.store');
 	Route::get('floor-plan/delete/{id}', 'PropertyController@floor_plan_delete')->name('floor.delete');
@@ -341,3 +365,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Auth', 'middleware' => 'web']
 	Route::get('login/{provider}', 'LoginController@redirectToProvider');
 	Route::get('login/{provider}/callback', 'LoginController@handleProviderCallback');
 });
+
+
+
+//Route::post('property/favourite_property', 'PropertyController@favourite_property')->name('favourite_property');
