@@ -255,7 +255,7 @@ class PropertyController extends controller
     // listings
     public function listings(Request $request){
         $data_crtl = new DataController();
-        return $data_crtl->get_properties($request, true);
+        return $data_crtl->get_properties_data($request, true);
     }
 
     // listing details
