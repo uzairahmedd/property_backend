@@ -103,12 +103,12 @@ class WelcomeController extends controller
             SEOTools::twitter()->setSite($seo->twitterTitle);
             SEOTools::jsonLd()->addImage(asset(content('header', 'logo')));
             $status = Category::where('type', 'status')->where('featured', 1)->inRandomOrder()->get();
-            $categories = Category::where('type', 'category')->inRandomOrder()->get();
-            $states = City::get();
+            $cities = City::where('featured', 1)->get();
             $status_properties = $this->status_property($status);
-            $property_nature = Category::where('type', 'parent_category')->get();
-            $property_type = Category::where('type', 'category')->with('child','icon')->get();
-            return view('theme::newlayouts.pages.home', compact('status', 'categories', 'states', 'status_properties','property_type','property_nature'));
+            $property_nature = Category::where('type', 'parent_category')->where('featured', 1)->get();
+            $residential_category=Category::where('type', 'parent_category')->with('category_parent')->where('featured', 1)->where('name', 'Residential')->get();
+            $commercial_category=Category::where('type', 'parent_category')->with('category_parent')->where('featured', 1)->where('name', 'Commercial')->get();
+            return view('theme::newlayouts.pages.home', compact('status', 'cities', 'status_properties','residential_category','commercial_category','property_nature'));
         } catch (\Exception $e) {
             return redirect()->route('install');
         }

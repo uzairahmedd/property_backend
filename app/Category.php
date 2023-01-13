@@ -19,12 +19,26 @@ class Category extends Model
        return $this->belongsToMany(Category::class,'categoryrelations','parent_id','child_id');
 	}
 
+	// public function residential_child()
+	// {
+    //    return $this->belongsToMany(Category::class,'categoryrelations','parent_id','child_id')->where('id',65);
+	// }
+
 	public function parent()
 	{
        return $this->belongsToMany(Category::class,'categoryrelations','child_id','parent_id');
 	}
 
 
+	public function category_parent()
+	{
+       return $this->belongsToMany(Category::class,'categoryrelations','child_id','parent_id')->with('icon')->where('featured', 1);
+	}
+
+	public function child_name()
+	{
+       return $this->belongsToMany(Category::class,'categoryrelations','parent_id','child_id')->with('categories');
+	}
 	public function categories()
 	{
 		return $this->hasMany(Category::class,'p_id','id');

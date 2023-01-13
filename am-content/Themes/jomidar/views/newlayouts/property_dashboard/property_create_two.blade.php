@@ -50,7 +50,7 @@
                     <div class="col-12 justify-content-end property_types row theme-gx-3 mb-4_5" id="property_type_radio">
                         @foreach($child_category as $row)
                         <div class="radio-container radio-edit-two property_radio">
-                            <input type="radio" name="category" class="type_categpry" value="{{$row->id}}" data-val="{{ !empty($array) ? $array['category'] : old('category') }}" data-name="{{$row->name}}">
+                            <input type="radio" name="category" class="type_categpry" onclick="land_triger(this)" data-landarea="{{$row->land_area}}"  data-build="{{$row->buildup_area}}" value="{{$row->id}}" data-val="{{ !empty($array) ? $array['category'] : old('category') }}" data-name="{{$row->name}}">
                             <span class="checmark font-16 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
                         </div>
                         @endforeach
@@ -131,9 +131,9 @@
                         </div>
                         <div class="col-lg-6 col-md-12 d-flex add-address justify-content-end">
                             <div class="col-lg-8 col-md-10 col-sm-12 d-flex flex-column align-items-end">
-                                <label for="value" class="font-18 theme-text-seondary-black">{{__('labels.rental_value')}} {{ !empty($post_data->property_status_type) && $post_data->property_status_type->category->name == 'Rent'  ? __('labels.year') : '' }}</label>
+                                <label for="value" class="font-18 theme-text-seondary-black"> {{ !empty($post_data->property_status_type) && $post_data->property_status_type->category->name == 'Rent'  ? __('labels.rental_value') : __('labels.Sale_value') }}</label>
                                 <div class="position-relative d-flex align-items-center w-100">
-                                    <input type="text" id="value" value="{{ !empty($post_data->price) ? $post_data->price->price  : old('price') }}" name="price" placeholder="{{__('labels.rental_value')}} {{ !empty($post_data->property_status_type) && $post_data->property_status_type->category->name == 'Rent'  ? __('labels.year') : '' }}" class="form-control theme-border w-100">
+                                    <input type="text" id="value" value="{{ !empty($post_data->price) ? $post_data->price->price  : old('price') }}" name="price" placeholder="{{ !empty($post_data->property_status_type) && $post_data->property_status_type->category->name == 'Rent'  ? __('labels.rental_value') : __('labels.Sale_value')  }}" class="form-control theme-border w-100">
                                     <span class="font-14 font-medium position-absolute theme-text-blue price-unit">{{__('labels.sar')}}</span>
                                 </div>
                                 @if($errors->has('price'))
@@ -182,8 +182,8 @@
     }
     $("#yearpicker").yearpicker({
         year: year,
-        startYear: 2012,
-        endYear: 2030
+        startYear: 1975,
+        endYear: 2023
     });
 </script>
 @endsection

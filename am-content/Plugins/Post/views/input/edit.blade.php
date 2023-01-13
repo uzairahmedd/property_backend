@@ -2,6 +2,11 @@
 
 @section('style')
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/select2.min.css') }}">
+<style>
+    .select2 .select2-container .select2-container--default{
+        width: none !important;
+    }
+</style>
 @endsection
 
 @section('content')

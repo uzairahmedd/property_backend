@@ -35,7 +35,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="single-area">
+			<input type="hidden" name="featured" value="1">
+			<!-- <div class="single-area">
 				<div class="card">
 					<div class="card-body">
 						<h5>{{ __('Is Featured') }}</h5>
@@ -46,7 +47,7 @@
 						</select>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</form>
 </div>

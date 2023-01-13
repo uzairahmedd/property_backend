@@ -381,7 +381,7 @@
                         <h3 class="font-16 text-bold">{{ $property->property_age->content }}</h3>
                     </div>
                     <div class="col-6 detail-txt-left">
-                        <span class="font-16 theme-text-seondary-black">{{__("labels.building_age")}}</span>
+                        <span class="font-16 theme-text-seondary-black">{{__("labels.building_year")}}</span>
                     </div>
                 </div>
                 @endif
