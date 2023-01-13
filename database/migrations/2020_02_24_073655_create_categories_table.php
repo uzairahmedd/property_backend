@@ -24,8 +24,8 @@ class CreateCategoriesTable extends Migration
             $table->double('featured')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->integer('status')->default(1);
-            $table->integer('land_arae')->nullable();
-            $table->integer('buildup_arae')->nullable();
+            $table->string('land_arae')->nullable();
+            $table->string('buildup_arae')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')
