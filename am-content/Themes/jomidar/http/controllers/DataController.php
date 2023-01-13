@@ -264,7 +264,7 @@ class DataController extends controller
     }
 
 
-    public function get_properties_data(Request $request)
+    public function get_properties_data(Request $request, $collection = false)
     {
         
         $this->state = $request->state;
@@ -312,7 +312,9 @@ class DataController extends controller
            });
        }
 
-
+        if ($collection) {
+            return PropertyResource::collection($posts->get());
+        }
         $posts = $posts->latest()->paginate(30);
         return response()->json($posts);
     }
