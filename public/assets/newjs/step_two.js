@@ -207,7 +207,7 @@ $(document).ready(function () {
     //by default
     var land_size_value = '';
     var built_up_value = '';
-    // setTimeout(function () {
+    setTimeout(function () {
         if ($('#land_size_area').val() != '') {
             land_size_value = $('#land_size_area').val();
         }
@@ -218,7 +218,7 @@ $(document).ready(function () {
         var land = $("input:radio[name=category]:checked").data('landarea');
         var name = $("input:radio[name=category]:checked").data('name');
         land_built_area_new(name,land,build, land_size_value, built_up_value);
-    // }, 1500);
+    }, 1000);
 
     
    
