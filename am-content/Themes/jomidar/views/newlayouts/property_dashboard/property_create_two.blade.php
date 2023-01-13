@@ -50,7 +50,7 @@
                     <div class="col-12 justify-content-end property_types row theme-gx-3 mb-4_5" id="property_type_radio">
                         @foreach($child_category as $row)
                         <div class="radio-container radio-edit-two property_radio">
-                            <input type="radio" name="category" class="type_categpry" value="{{$row->id}}" data-val="{{ !empty($array) ? $array['category'] : old('category') }}" data-name="{{$row->name}}">
+                            <input type="radio" name="category" class="type_categpry" onclick="land_triger(this)" data-landarea="{{$row->land_area}}"  data-build="{{$row->buildup_area}}" value="{{$row->id}}" data-val="{{ !empty($array) ? $array['category'] : old('category') }}" data-name="{{$row->name}}">
                             <span class="checmark font-16 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
                         </div>
                         @endforeach

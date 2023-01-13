@@ -91,10 +91,12 @@ class CategoryController extends Controller
    */
   public function store(Request $request)
   {
+   
     $validatedData = $request->validate([
       'name' => 'required|max:100',
       'ar_name' => 'required|max:100',
     ]);
+
     $slug = Str::slug($request->name);
     $post = new Category;
     $post->name = $request->name;
@@ -102,6 +104,8 @@ class CategoryController extends Controller
     $post->slug = $slug;
     $post->type = 'category';
     $post->user_id = Auth::id();
+    $post->land_area=!isset($request->land_area) ? 0 :$request->land_area;
+    $post->buildup_area=!isset($request->buildup_area) ? 0 :$request->buildup_area;
     $post->featured = $request->featured;
     $post->save();
 
@@ -228,6 +232,8 @@ class CategoryController extends Controller
     $post->ar_name = $request->ar_name;
     $post->slug = $slug;
     $post->featured = $request->featured;
+    $post->land_area=!isset($request->land_area) ? 0 :$request->land_area;
+    $post->buildup_area=!isset($request->buildup_area) ? 0 :$request->buildup_area;
     $post->save();
 
     $meta = Categorymeta::where('type', 'icon')->where('category_id', $id)->first();

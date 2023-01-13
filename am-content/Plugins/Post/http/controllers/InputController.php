@@ -23,10 +23,10 @@ class InputController extends controller
             abort(401);
         }
         if ($request->src) {
-            $posts=Category::where('type','option')->with('preview')->where($request->type,'LIKE','%'.$request->src.'%')->latest()->paginate(20);  
+            $posts=Category::where('type','option')->with('child_name','preview')->where($request->type,'LIKE','%'.$request->src.'%')->latest()->paginate(20);  
         }
         else{
-            $posts=Category::where('type','option')->with('preview')->latest()->paginate(20);  
+            $posts=Category::where('type','option')->with('child_name','preview')->latest()->paginate(20);  
         }
         $src=$request->src;
         return view('plugin::input.index',compact('posts','src'));

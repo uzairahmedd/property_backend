@@ -166,7 +166,7 @@ return [
     'property_value' => 'Property Value',
     'year'=>'(yearly)',
     'rental_value' => 'Rental price annualy',
-    'Sale_value'=>'Price',
+    'Sale_value'=>'Property price',
     'land_size' => 'Land area',
     'land_area' => 'Land Area',
     'area_in_square_m'=>'Area in Square Meter',

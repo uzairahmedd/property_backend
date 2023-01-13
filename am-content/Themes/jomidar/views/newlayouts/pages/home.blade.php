@@ -97,31 +97,27 @@
                                     </nav>
                                     <div class="tab-content" id="nav-tabContent">
                                         <div class="tab-pane fade show active" id="nav-residential" role="tabpanel" aria-labelledby="nav-home-tab">
+                                            @if(!empty($residential_category[0]->category_parent))
                                             <div class="d-flex justify-content-between resident-centent">
                                                 <div class="resident-pans">
-                                                    @foreach($property_type as $key=>$value)
-                                                    @if($key < 4) @foreach($value->child as $child)
-                                                        @if($child->name == 'Residential')
-                                                        <li class="resident-pan" value="{{$value->id}}">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}<i class="fa-solid {{ !empty($value->icon) ? $value->icon->content : 'fas fa-home'}}"></i>
-                                                        </li>
-                                                        @endif
-                                                        @endforeach
-                                                        @endif
-                                                        @endforeach
-                                                </div>
-                                                <div class="resident-pans">
-                                                    @foreach($property_type as $key=>$value)
-                                                    @if($key >= 4)
-                                                    @foreach($value->child as $child)
-                                                    @if($child->name == 'Residential')
-                                                    <li class="resident-pan" value="{{$value->id}}">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}<i class="fa-solid {{$value->icon->content}}"></i>
+                                                    @php $count=count($residential_category[0]->category_parent); $round_cat=round($count/2); @endphp
+                                                    @foreach($residential_category[0]->category_parent as $key=>$child)
+                                                    @if($key >= $round_cat)
+                                                    <li class="resident-pan" value="{{$child->id}}">{{ Session::get('locale') == 'ar' ? $child->ar_name : $child->name}}<i class="fa-solid {{ !empty($child->icon) ? $child->icon->content : 'fas fa-home'}}"></i>
                                                     </li>
                                                     @endif
                                                     @endforeach
-                                                    @endif
-                                                    @endforeach
+                                                </div>
+                                                <div class="resident-pans">
+
+                                                    @foreach($residential_category[0]->category_parent as $key=>$child)
+                                                    @if($key < $round_cat) <li class="resident-pan" value="{{$child->id}}">{{ Session::get('locale') == 'ar' ? $child->ar_name : $child->name}}<i class="fa-solid {{$child->icon->content}}"></i>
+                                                        </li>
+                                                        @endif
+                                                        @endforeach
                                                 </div>
                                             </div>
+                                            @endif
                                             <div class="d-flex justify-content-between mt-2">
                                                 <button class="complete-btn"><a href="">{{__('labels.apply')}}</a>
                                                 </button>
@@ -130,31 +126,27 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="nav-commercial" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                            @if(!empty($commercial_category[0]->category_parent))
                                             <div class="d-flex justify-content-between resident-centent">
                                                 <div class="resident-pans">
-                                                    @foreach($property_type as $key=>$value)
-                                                    @if($key < 12) @foreach($value->child as $child)
-                                                        @if($child->name == 'Commercial')
-                                                        <li class="resident-pan" value="{{$value->id}}">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}<i class="fa-solid {{$value->icon->content}}"></i>
-                                                        </li>
-                                                        @endif
-                                                        @endforeach
-                                                        @endif
-                                                        @endforeach
-                                                </div>
-                                                <div class="resident-pans">
-                                                    @foreach($property_type as $key=>$value)
-                                                    @if($key >= 12)
-                                                    @foreach($value->child as $child)
-                                                    @if($child->name == 'Commercial')
-                                                    <li class="resident-pan" value="{{$value->id}}">{{ Session::get('locale') == 'ar' ? $value->ar_name : $value->name}}<i class="fa-solid {{$value->icon->content}}"></i>
+                                                    @php $comercial_count=count($commercial_category[0]->category_parent); $commercial_round_cat=round($comercial_count/2); @endphp
+                                                    @foreach($commercial_category[0]->category_parent as $key=>$child)
+                                                    @if($key >= $commercial_round_cat)
+                                                    <li class="resident-pan" value="{{$child->id}}">{{ Session::get('locale') == 'ar' ? $child->ar_name : $child->name}}<i class="fa-solid {{$child->icon->content}}"></i>
                                                     </li>
                                                     @endif
                                                     @endforeach
-                                                    @endif
-                                                    @endforeach
+                                                </div>
+                                                <div class="resident-pans">
+                                                    @php $comercial_count=count($commercial_category[0]->category_parent); $commercial_round_cat=round($comercial_count/2); @endphp
+                                                    @foreach($commercial_category[0]->category_parent as $key=>$child)
+                                                    @if($key < $commercial_round_cat) <li class="resident-pan" value="{{$child->id}}">{{ Session::get('locale') == 'ar' ? $child->ar_name : $child->name}}<i class="fa-solid {{$child->icon->content}}"></i>
+                                                        </li>
+                                                        @endif
+                                                        @endforeach
                                                 </div>
                                             </div>
+                                            @endif
                                             <div class="d-flex justify-content-between mt-2">
                                                 <button class="complete-btn"><a href="">{{__('labels.apply')}}</a>
                                                 </button>

@@ -2,7 +2,7 @@
 
 @section('content')
 @include('layouts.backend.partials.headersection',['title'=>'Categories'])
-<div class="card"  >
+<div class="card">
 	<div class="card-body">
 		<div class="row mb-30">
 			<div class="col-lg-6">
@@ -33,66 +33,79 @@
 						<input type="text" id="data_search" class="form-control" placeholder="Enter Value">
 					</div>
 				</div>
-			</div>
-			<div class="table-responsive custom-table">
-				<table class="table text-left">
-					<thead>
-						<tr>
-							<th class="am-select">
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input checkAll" id="customCheck12">
-									<label class="custom-control-label checkAll" for="customCheck12"></label>
-								</div>
-							</th>
-							<th class="am-title">{{ __('icon') }}</th>
-							<th class="am-title">{{ __('Title') }}</th>
-							<th class="am-title">{{ __('Arabic title') }}</th>
-							<th class="am-title">{{ __('Property type') }}</th>
-							<th class="am-title">{{ __('Featured') }}</th>
-							<th class="am-date">{{ __('Date') }}</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($posts as $post)
-						<tr>
-							<th>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" name="ids[]" class="custom-control-input" id="customCheck{{ $post->id }}" value="{{ $post->id }}">
-									<label class="custom-control-label" for="customCheck{{ $post->id }}"></label>
-								</div>
-							</th>
-							<td>
-								<span><i class="{{!empty($post->icon) ? $post->icon->content : ''}}"></i></span>
-							</td>
-							<td>
-								{{ $post->name }}
-								<div class="hover">
-									<a href="{{ route('admin.category.edit',$post->id) }}">{{ __('Edit') }}</a>
-								</div>
-							</td>
-							<td>
-								{{ $post->ar_name }}
-							</td>
-							<td>
-								@foreach($post->child_name as $name_type)
-								<span class="badge badge-primary">{{$name_type->name}}</span>
-								@endforeach
-							</td>
-							<!-- <td>{{ $post->creditcharge->content ?? '' }}</td> -->
+		</div>
+		<div class="table-responsive custom-table">
+			<table class="table text-left">
+				<thead>
+					<tr>
+						<th class="am-select">
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input checkAll" id="customCheck12">
+								<label class="custom-control-label checkAll" for="customCheck12"></label>
+							</div>
+						</th>
+						<th class="am-title">{{ __('icon') }}</th>
+						<th class="am-title">{{ __('Title') }}</th>
+						<th class="am-title">{{ __('Arabic title') }}</th>
+						<th class="am-title">{{ __('Property type') }}</th>
+						<th class="am-title">{{ __('Land Area') }}</th>
+						<th class="am-title">{{ __('Build-up Area') }}</th>
+						<th class="am-title">{{ __('Featured') }}</th>
+						<th class="am-date">{{ __('Date') }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($posts as $post)
+					<tr>
+						<th>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" name="ids[]" class="custom-control-input" id="customCheck{{ $post->id }}" value="{{ $post->id }}">
+								<label class="custom-control-label" for="customCheck{{ $post->id }}"></label>
+							</div>
+						</th>
+						<td>
+							<span><i class="{{!empty($post->icon) ? $post->icon->content : ''}}"></i></span>
+						</td>
+						<td>
+							{{ $post->name }}
+							<div class="hover">
+								<a href="{{ route('admin.category.edit',$post->id) }}">{{ __('Edit') }}</a>
+							</div>
+						</td>
+						<td>
+							{{ $post->ar_name }}
+						</td>
+						<td>
+							@foreach($post->child_name as $name_type)
+							<span class="badge badge-primary">{{$name_type->name}}</span>
+							@endforeach
+						</td>
 
-							@if($post->featured==1)
-							<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
-							@else
-							<td><span class="badge badge-danger">{{ __('No') }}</span></td>
-							@endif
-							<td>{{ __('Last Modified') }}
-								<div class="date">
-									{{ $post->updated_at->diffForHumans() }}
-								</div>
-							</td>
-						</tr>
-						@endforeach
-					</tbody>
+						@if($post->land_area==1)
+						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						@endif
+
+						@if($post->buildup_area==1)
+						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						@endif
+
+						@if($post->featured==1)
+						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						@endif
+						<td>{{ __('Last Modified') }}
+							<div class="date">
+								{{ $post->updated_at->diffForHumans() }}
+							</div>
+						</td>
+					</tr>
+					@endforeach
+				</tbody>
 				</form>
 				<tfoot>
 					<tr>
@@ -106,6 +119,8 @@
 						<th class="am-title">{{ __('Title') }}</th>
 						<th class="am-title">{{ __('Arabic title') }}</th>
 						<th class="am-title">{{ __('Property type') }}</th>
+						<th class="am-title">{{ __('Land Area') }}</th>
+						<th class="am-title">{{ __('Build-up Area') }}</th>
 						<th class="am-title">{{ __('Featured') }}</th>
 						<th class="am-date">{{ __('Date') }}</th>
 					</tr>
@@ -123,7 +138,7 @@
 <script type="text/javascript">
 	"use strict";
 	//response will assign this function
-	function success(res){
+	function success(res) {
 		location.reload();
 	}
 </script>

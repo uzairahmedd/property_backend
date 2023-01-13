@@ -249,7 +249,7 @@ return [
     'owner' => 'مالك',
     'commissioner' => 'مفوض',
     'rental_value' => 'الايجار السنوي',
-    'Sale_value'=>'السعر',
+    'Sale_value'=>'سعر العقار',
     'sar' => 'ر.س',
     'electricity_meter_is_there' => 'هل يوجد عداد كهرباء',
     'water_meter_is_there' => 'هل يوجد عداد ماء',
