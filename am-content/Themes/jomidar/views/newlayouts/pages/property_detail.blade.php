@@ -181,7 +181,9 @@
                         <div id="show-more"><a href="javascript:void(0)" class="font-weight-bold theme-text-sky">{{__('labels.show_more')}}</a></div>
                     </div>
                     <div id="show-more-content">
+                        @if(!empty($property->builtarea))
                         <p class="mb-1">{{__('labels.built_up_area')}}: <span>{{$property->builtarea->content}} {{__('labels.sqm')}}</span></p>
+                        @endif
                         @if($property->option_data)
                         @foreach ($property->option_data as $value)
                         @if( $value->value != 0)
