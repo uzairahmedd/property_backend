@@ -17,7 +17,7 @@ use App\Http\Controllers\Api\RegisterController;
 */
 
 // Route::middleware('auth:sanctum')->group(function(){
-//     Route::post('/list', [PropertyController::class, 'store']);
+    Route::post('/list', [PropertyController::class, 'store']);
 // });
 
 Route::get('/listings', [PropertyController::class, 'listings']);
