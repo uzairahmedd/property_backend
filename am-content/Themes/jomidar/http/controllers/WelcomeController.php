@@ -72,6 +72,7 @@ class WelcomeController extends controller
      */
     public function new_home()
     {
+        phpinfo();
         try {
             \DB::select('SHOW TABLES');
             $seo = Options::where('key', 'seo')->first();
