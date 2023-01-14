@@ -266,7 +266,7 @@ class DataController extends controller
 
     public function get_properties_data(Request $request, $collection = false)
     {
-        
+
         $this->state = $request->state;
         $this->status = $request->status;
         $this->category = $request->category;
@@ -275,42 +275,46 @@ class DataController extends controller
         $this->room = $request->room;
         $this->min_price = $request->min_price ?? 0;
         $this->max_price = $request->max_price ?? 0;
-        $posts = Terms::where('type', 'property')->where('status', 1)->with('parentcategory', 'category', 'landarea', 'post_preview', 'price', 'post_district', 'user', 'property_status_type', 'option_data','post_new_city')->whereHas('post_new_city', function ($q) {
-            if (!empty($this->state)) {
+        $posts = Terms::where('type', 'property')->where('status', 1)->with('parentcategory', 'category', 'landarea', 'post_preview', 'price', 'post_district', 'user', 'property_status_type', 'option_data', 'post_new_city');
+        //search city   
+        if (!empty($this->state)) {
+            $posts = $posts->whereHas('post_new_city', function ($q) {
                 return $q->where('city_id', $this->state);
-            }
-            return $q;
-        })->whereHas('property_status_type', function ($q) {
-            if (!empty($this->status)) {
-                return $q->where('category_id', $this->status);
-            }
-            return $q;
-        })
-            ->whereHas('option_data', function ($q) {
-                if (!empty($this->room)) {
-                    $my_options = explode(',', $this->room);
-                    return $q->whereIn('value', $my_options);
-                }
-                return $q;
             });
+        }
+        //search status rent or sale
+        if (!empty($this->status)) {
+            $posts = $posts->whereHas('property_status_type', function ($q) {
+                return $q->where('category_id', $this->status);
+            });
+        }
+        //search rooms
+        if (!empty($this->room)) {
+            $posts = $posts->whereHas('option_data', function ($q) {
+                $my_options = explode(',', $this->room);
+                return $q->whereIn('value', $my_options);
+            });
+        }
+        //search commercial or residential
         if (!empty($this->parent_category)) {
             $posts = $posts->whereHas('parentcategory', function ($q) {
                 return $q->where('category_id', $this->parent_category);
             });
         }
+        //search type of property
         if (!empty($this->category)) {
             $posts = $posts->whereHas('category', function ($q) {
                 $my_categories = explode(',', $this->category);
-                return $q->where('category_id', $my_categories);
+                return $q->whereIn('category_id', $my_categories);
             });
         }
+        //search price
+        if (!empty($this->min_price) || !empty($this->max_price)) {
+            $posts = $posts->whereHas('price', function ($q) {
 
-       if (!empty($this->min_price) || !empty($this->max_price)) {
-           $posts = $posts->whereHas('price', function ($q) {
-
-               return $q->whereBetween('price', [$this->min_price, $this->max_price]);
-           });
-       }
+                return $q->whereBetween('price', [$this->min_price, $this->max_price]);
+            });
+        }
 
         if ($collection) {
             return PropertyResource::collection($posts->get());

@@ -613,6 +613,8 @@ element.style {
 }
 
 .type-dropdown .type-dropdown-content {
+    max-height: 250px;
+    overflow-y: auto;
     width: 100%;
     display: inline-flex;
     flex-direction: row-reverse;

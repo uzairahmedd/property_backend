@@ -19,6 +19,7 @@ use App\Options;
 
 class WelcomeController extends controller
 {
+    public $status;
     /**
      * Display a listing of the resource.
      *
@@ -106,9 +107,9 @@ class WelcomeController extends controller
             $cities = City::where('featured', 1)->get();
             $status_properties = $this->status_property($status);
             $property_nature = Category::where('type', 'parent_category')->where('featured', 1)->get();
-            $residential_category=Category::where('type', 'parent_category')->with('category_parent')->where('featured', 1)->where('name', 'Residential')->get();
-            $commercial_category=Category::where('type', 'parent_category')->with('category_parent')->where('featured', 1)->where('name', 'Commercial')->get();
-            return view('theme::newlayouts.pages.home', compact('status', 'cities', 'status_properties','residential_category','commercial_category','property_nature'));
+            $residential_category = Category::where('type', 'parent_category')->with('category_parent')->where('featured', 1)->where('name', 'Residential')->get();
+            $commercial_category = Category::where('type', 'parent_category')->with('category_parent')->where('featured', 1)->where('name', 'Commercial')->get();
+            return view('theme::newlayouts.pages.home', compact('status', 'cities', 'status_properties', 'residential_category', 'commercial_category', 'property_nature'));
         } catch (\Exception $e) {
             return redirect()->route('install');
         }
@@ -122,21 +123,21 @@ class WelcomeController extends controller
      */
     public function status_property($status)
     {
-        $data=[];
+        $data = [];
         foreach ($status as $status_data) {
             if ($status_data->name == 'Rent') {
                 $rent_property = $this->get_status_property($status_data->id);
-                $data['rent_property']= $rent_property ;
+                $data['rent_property'] = $rent_property;
             }
             if ($status_data->name == 'Sale') {
                 $sale_property = $this->get_status_property($status_data->id);
-                $data['sell_property']= $sale_property ;
+                $data['sell_property'] = $sale_property;
             }
         }
         return $data;
     }
 
-     /**
+    /**
      * return status properties
      *
      * @return data
@@ -145,13 +146,12 @@ class WelcomeController extends controller
     {
         $this->status = $request;
 
-        $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('price')->whereHas('post_new_city')->with('post_preview', 'price', 'post_district','post_new_city', 'property_status_type')
-            ->whereHas('property_status_type', function ($q) {
-                if (!empty($this->status)) {
-                    return $q->where('category_id', $this->status);
-                }
-                return $q;
+        $posts = Terms::where('type', 'property')->where('status', 1)->with('post_preview', 'price', 'post_district', 'post_new_city', 'property_status_type');
+        if (!empty($this->status)) {
+            $posts = $posts->whereHas('property_status_type', function ($q) {
+                return $q->where('category_id', $this->status);
             });
+        }
         $posts = $posts->latest()->get();
         return $posts;
     }
@@ -165,7 +165,7 @@ class WelcomeController extends controller
     {
         $this->status = $request;
 
-        $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('min_price')->whereHas('max_price')->whereHas('post_city')->with('post_preview', 'min_price', 'max_price', 'post_city','property_status_type')
+        $posts = Terms::where('type', 'property')->where('status', 1)->whereHas('min_price')->whereHas('max_price')->whereHas('post_city')->with('post_preview', 'min_price', 'max_price', 'post_city', 'property_status_type')
             ->whereHas('property_status_type', function ($q) {
                 if (!empty($this->status)) {
                     return $q->where('category_id', $this->status);

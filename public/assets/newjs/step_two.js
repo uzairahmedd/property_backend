@@ -218,7 +218,7 @@ $(document).ready(function () {
         var land = $("input:radio[name=category]:checked").data('landarea');
         var name = $("input:radio[name=category]:checked").data('name');
         land_built_area_new(name,land,build, land_size_value, built_up_value);
-    }, 1000);
+    }, 1500);
 
     
    
