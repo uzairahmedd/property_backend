@@ -1,3 +1,5 @@
+var land_size_value;
+var built_up_value;
 //for by default electricity
 $("input[name=electricity_facility][value=0]").prop('checked', true);
 $("input[name=water_facility][value=0]").prop('checked', true);
@@ -27,7 +29,7 @@ if ($('#ready').data('isready') != '') {
 }
 
 //for street dropdowns
-if (interface != '' || meter!='') {
+if (interface != '' || meter != '') {
     var old_count = $('.street_sdropdown').data('streets');
     var interface_array = interface.split(',');
     var meter_array = meter.split(',');
@@ -134,43 +136,43 @@ function property_type_triger(elem) {
 };
 
 function land_triger(elem) {
-    var land_area=$(elem).data('landarea');
-    var build_area=$(elem).data('build');
-    var name=$(elem).data('name');
-    land_built_area_new(name,land_area,build_area);
+    var land_area = $(elem).data('landarea');
+    var build_area = $(elem).data('build');
+    var name = $(elem).data('name');
+    land_built_area_new(name, land_area, build_area);
 };
 
-function land_built_area_new(name=null,land_check,build_check,land_size_value=null,built_up_value=null) {
+function land_built_area_new(name = null, land_check, build_check, land_size_value = null, built_up_value = null) {
     var built_up_areaa = $('#built_up_areaa').text();
     var land_areaa = $('#land_areaa').text();
     var area_in_square_m = $('#area_in_square_m').text();
-   
-   var  target_id='#land_size';
-     if(name == 'land'){
+
+    var target_id = '#land_size';
+    if (name == 'land') {
         $('#land_size').html('');
-        target_id='#built_up_area';
-     }
-      
+        target_id = '#built_up_area';
+    }
+
     if (build_check === 1) {
         $('#built_up_area').html('');
         $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
             '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
 
     }
-    else if(build_check == 0){
+    else if (build_check == 0) {
         $('#built_up_area').html('');
     }
 
-    if(land_check == 1){
+    if (land_check == 1) {
         $(target_id).html('');
         $(target_id).html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
             '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
     }
-    else if(land_check == 0){
+    else if (land_check == 0) {
         $(target_id).html('');
     }
-   
-    
+
+
 }
 
 //to get property type
@@ -194,9 +196,20 @@ function property_type(parent_cate, selected_cat = null) {
                     if (value_data.id == selected_cat && selected_cat != null) {
                         checked = 'checked';
                     }
-                    $('#property_type_radio').append('<div class="radio-container radio-edit-two property_radio"><input type="radio"  onclick="land_triger(this)" data-landarea="'+value_data.land_area+'"  data-build="'+value_data.buildup_area+'" name="category" ' + checked + ' data-name="' + value_data.name + '" value="' + value_data.id + '"><span class="checmark font-16 font-medium">' + name + '</span> </div>');
+                    $('#property_type_radio').append('<div class="radio-container radio-edit-two property_radio"><input type="radio"  onclick="land_triger(this)" data-landarea="' + value_data.land_area + '"  data-build="' + value_data.buildup_area + '" name="category" ' + checked + ' data-name="' + value_data.name + '" value="' + value_data.id + '"><span class="checmark font-16 font-medium">' + name + '</span> </div>');
                 });
             });
+
+            if ($('#land_size_area').val() != '') {
+                land_size_value = $('#land_size_area').val();
+            }
+            if ($('#built_area').val() != '') {
+                built_up_value = $('#built_area').val();
+            }
+            var build = $("input:radio[name=category]:checked").data('build');
+            var land = $("input:radio[name=category]:checked").data('landarea');
+            var name = $("input:radio[name=category]:checked").data('name');
+            land_built_area_new(name, land, build, land_size_value, built_up_value);
 
         }
     });
@@ -205,81 +218,17 @@ function property_type(parent_cate, selected_cat = null) {
 
 $(document).ready(function () {
     //by default
-    var land_size_value = '';
-    var built_up_value = '';
-    setTimeout(function () {
-        if ($('#land_size_area').val() != '') {
-            land_size_value = $('#land_size_area').val();
-        }
-        if ($('#built_area').val() != '') {
-            built_up_value = $('#built_area').val();
-        }
-        var build = $("input:radio[name=category]:checked").data('build');
-        var land = $("input:radio[name=category]:checked").data('landarea');
-        var name = $("input:radio[name=category]:checked").data('name');
-        land_built_area_new(name,land,build, land_size_value, built_up_value);
-    }, 1500);
+    // setTimeout(function () {
+    if ($('#land_size_area').val() != '') {
+        land_size_value = $('#land_size_area').val();
+    }
+    if ($('#built_area').val() != '') {
+        built_up_value = $('#built_area').val();
+    }
+    var build = $("input:radio[name=category]:checked").data('build');
+    var land = $("input:radio[name=category]:checked").data('landarea');
+    var name = $("input:radio[name=category]:checked").data('name');
+    land_built_area_new(name, land, build, land_size_value, built_up_value);
+    // }, 1500);
 
-    
-   
-
-    // function land_built_area(text, land_size_value) {
-    //     if (text === 'Building') {
-    //         $('#land_size').html('');
-    //         $('#built_up_area').html('');
-    //         $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
-    //             '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
-    //         $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
-    //             '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
-    //     }
-
-    //     else if (text === 'Chalet') {
-    //         $('#land_size').html('');
-    //         $('#built_up_area').html('');
-    //         $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
-    //             '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
-    //         $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
-    //             '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
-
-    //     } else if (text === 'land') {
-    //         $('#land_size').html('');
-    //         $('#built_up_area').html('');
-    //         $('#built_up_area').html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
-    //             '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
-
-
-    //     } else if (text === 'Duplex') {
-    //         $('#land_size').html('');
-    //         $('#built_up_area').html('');
-    //         $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
-    //             '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
-    //         $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
-    //             '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
-
-    //     }
-    //     else if (text === 'Villa') {
-    //         $('#land_size').html('');
-    //         $('#built_up_area').html('');
-    //         $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
-    //             '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
-    //         $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
-    //             '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
-
-    //     }
-    //     else if (text === 'Apartment') {
-    //         $('#land_size').html('');
-    //         $('#built_up_area').html('');
-    //         $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
-    //             '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
-
-    //     } else if (text === 'Rest House') {
-    //         $('#land_size').html('');
-    //         $('#built_up_area').html('');
-    //         $('#land_size').html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
-    //             '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
-    //         $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
-    //             '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
-
-    //     }
-    // };
 });
