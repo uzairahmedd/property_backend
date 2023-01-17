@@ -74,7 +74,7 @@ return [
     'ads_sale' => 'Ads for Sale',
     'ads_rent' => 'Ads for Rent',
     'privacy_term' => 'Privacy Terms',
-    //    'term_use' => 'Terms of Use',
+    'term_use' => 'Terms of Use',
     'terms_of_advertising' => 'Terms of advertising',
     'complain' => 'Complaints',
     'real_estate_licensed' => 'Your property is our priority',
