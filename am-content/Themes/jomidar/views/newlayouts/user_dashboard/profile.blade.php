@@ -12,7 +12,7 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                     <span class="font-16 theme-text-sky">{{__('labels.mobile_number')}}</span>
                     <div class="d-flex align-items-center">
                         <img src="{{asset('assets/images/tick-verified.png')}}" alt="">
-                        <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ $info->phone ?? 'N/A' }}</h3>
+                        <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->phone ?? 'N/A' }}</h3>
                     </div>
                 </div>
                 <div class="d-flex flex-column align-items-end mb-3 mb-lg-0">
