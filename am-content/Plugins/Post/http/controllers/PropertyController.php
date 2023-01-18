@@ -631,11 +631,11 @@ class PropertyController extends controller
     public function get_property_condition($conditon)
     {
         if (!empty($conditon)) {
-            if ($conditon->content == 1) {
+            if ($conditon->content == 3) {
                 return 'unfurnished';
             } elseif ($conditon->content == 2) {
                 return 'semi-furnished';
-            } elseif ($conditon->content == 3) {
+            } elseif ($conditon->content == 1) {
                 return 'furnished';
             }
         } else {
