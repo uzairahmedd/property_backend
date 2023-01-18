@@ -60,6 +60,10 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::resource('property', 'PropertyController');
 		Route::post('properties/destroy', 'PropertyController@destroy')->name('properties.destroy');
 		Route::post('properties/user', 'PropertyController@findUser')->name('properties.findUser');
+		//download csv
+		Route::get('download-csv', 'PropertyController@csv_page')->name('property.csv_page');
+		Route::get('download-csv-type/{id}', 'PropertyController@show_csv_specified')->name('property.csv_page_type');
+		Route::get('get_property_data/{id}', 'PropertyController@get_property_data');
 			//property type
 	    Route::get('property_type/{id}', 'PropertyController@property_type')->name('properties.type');
 

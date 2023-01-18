@@ -649,8 +649,7 @@ class PropertyController extends controller
 
         //store & update title and slug
         $term = Terms::where('user_id', Auth::id())->where('id', $request->term_id)->first();
-        $unique_id = generate_unique_id($term, '5');
-
+        $unique_id = generate_unique_id();
         if (empty($term)) {
             $term = new Terms;
             $term->user_id = Auth::id();
@@ -1381,7 +1380,7 @@ class PropertyController extends controller
         $posts = Terms::where('type', 'property')->where('status', 1)
             ->where('user_id', Auth::id())
             ->with('landarea', 'post_new_city', 'post_preview', 'post_district', 'price', 'user', 'option_data', 'property_status_type')
-            ->latest()->paginate(1000);
+            ->latest()->paginate(20);
         return response()->json($posts);
     }
 

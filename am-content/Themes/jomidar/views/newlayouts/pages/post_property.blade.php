@@ -11,7 +11,7 @@
             @csrf
             <input type="hidden" name='id' value="{{!empty($user) ? encrypt($user->id) : ''}}">
             <div class="phone-div form-group">
-                <input id="phone" name="phone" type="tel" value="{{!empty($user) ? $user->phone : old('phone')}}" class="form-control" placeholder="559851174">
+                <input id="phone" name="phone" type="tel" value="{{!empty($user) ? ltrim($user->phone, '0') : old('phone')}}" class="form-control" placeholder="559851174">
             </div>
             @if($errors->has('phone'))
             <div class="error d-flex justify-content-end pt-1">{{ $errors->first('phone') }}</div>

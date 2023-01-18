@@ -404,13 +404,42 @@ $(function () {
 $(function () {
 	$("#property_type").on("change", function (e) {
 		e.preventDefault();
-		var text=$(this).find('option:selected').text();
-       if(text.indexOf('land') > -1 || text.indexOf('Land') > -1){
-        $('#features').addClass('hiden');
-	   }
-	   else{
-		$('#features').removeClass('hiden');
-	   }
+		var text = $(this).find('option:selected').text();
+		if (text.indexOf('land') > -1 || text.indexOf('Land') > -1) {
+			$('#features').addClass('hiden');
+		}
+		else {
+			$('#features').removeClass('hiden');
+		}
 	});
 });
+
+//for csv property data view
+function get_property_data(elem) {
+	$('#main_contend').html('');
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+	var id = $(elem).data('value');
+	var url = '/admin/real-state/get_property_data/' + id;
+	$.ajax({
+		type: 'get',
+		url: url,
+		dataType: 'json',
+		contentType: false,
+		cache: false,
+		processData: false,
+		success: function (response) {
+			$('#property_data_modal').modal('show');
+
+			$.each(response, function (index, value) {
+			 console.log();
+			 $('#main_contend').append('<div class="row"><label><b>'+index+': </b><span>'+value+'</span></label></div>');
+			});
+
+		}
+	});
+}
 

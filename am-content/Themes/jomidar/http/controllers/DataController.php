@@ -319,7 +319,7 @@ class DataController extends controller
         if ($collection) {
             return PropertyResource::collection($posts->get());
         }
-        $posts = $posts->latest()->paginate(30);
+        $posts = $posts->latest()->paginate(16);
         return response()->json($posts);
     }
 

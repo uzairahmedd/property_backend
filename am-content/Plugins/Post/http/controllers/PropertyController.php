@@ -20,6 +20,8 @@ class PropertyController extends controller
 {
     protected $term_id;
     protected $property_type;
+    public $email;
+    public $name;
 
     /**
      * Display a listing of the resource.
@@ -395,5 +397,249 @@ class PropertyController extends controller
         }
 
         return response()->json(['Success']);
+    }
+
+    public function csv_page(Request $request, $type = "all")
+    {
+        if (!Auth()->user()->can('Properties.list')) {
+            abort(401);
+        }
+
+        if ($request->src && ($request->type == 'email')) {
+            $this->email = $request->src;
+            $posts = Terms::where('type', 'property')->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
+                ->whereHas('user', function ($q) {
+                    return $q->where('email', $this->email);
+                })->latest()->paginate(25);
+        } elseif ($request->src && ($request->type == 'name')) {
+            $this->name = $request->src;
+            $posts = Terms::where('type', 'property')->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
+                ->whereHas('user', function ($q) {
+                    return $q->where('name', $this->name);
+                })->latest()->paginate(25);
+        } else {
+            $posts = Terms::where('type', 'property')->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')->latest()->paginate(25);
+        }
+        $totals = Terms::where('type', 'property')->count();
+        $actives = Terms::where([
+            ['type', 'property'],
+            ['status', 1],
+        ])->count();
+        $incomplete = Terms::where([
+            ['type', 'property'],
+            ['status', 2],
+        ])->count();
+        $trash = Terms::where([
+            ['type', 'property'],
+            ['status', 0],
+        ])->count();
+        $pendings = Terms::where([
+            ['type', 'property'],
+            ['status', 3],
+        ])->count();
+        $rejected = Terms::where([
+            ['type', 'property'],
+            ['status', 4],
+        ])->count();
+        return view('plugin::properties.csv_page', compact('type', 'posts', 'totals', 'pendings', 'actives', 'incomplete', 'trash', 'pendings', 'request', 'rejected'));
+    }
+
+    /* Display the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+    public function show_csv_specified(Request $request, $id)
+    {
+        if (!Auth()->user()->can('Properties.list')) {
+            abort(401);
+        }
+
+        if ($request->src && ($request->type == 'email')) {
+            $this->email = $request->src;
+            $posts = Terms::where('type', 'property')->where('status', $id)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
+                ->whereHas('user', function ($q) {
+                    return $q->where('email', $this->email);
+                })->latest()->paginate(25);
+        } elseif ($request->src && ($request->type == 'name')) {
+            $this->name = $request->src;
+            $posts = Terms::where('type', 'property')->where('status', $id)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
+                ->whereHas('user', function ($q) {
+                    return $q->where('name', $this->name);
+                })->latest()->paginate(25);
+        } else {
+            $posts = Terms::where('type', 'property')->where('status', $id)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')->latest()->paginate(25);
+        }
+        $totals = Terms::where('type', 'property')->where('status', $id)->count();
+        $actives = Terms::where([
+            ['type', 'property'],
+            ['status', 1],
+        ])->count();
+        $incomplete = Terms::where([
+            ['type', 'property'],
+            ['status', 2],
+        ])->count();
+        $trash = Terms::where([
+            ['type', 'property'],
+            ['status', 0],
+        ])->count();
+        $pendings = Terms::where([
+            ['type', 'property'],
+            ['status', 3],
+        ])->count();
+        $rejected = Terms::where([
+            ['type', 'property'],
+            ['status', 4],
+        ])->count();
+        $type = $id;
+        return view('plugin::properties.csv_page', compact('type', 'posts', 'totals', 'pendings', 'actives', 'incomplete', 'trash', 'pendings', 'request', 'rejected'));
+    }
+
+    //display modal box specif id data of property
+    public function get_property_data($id)
+    {
+        $posts = Terms::where('type', 'property')->where('id', $id)
+            ->with('parentcategory', 'depth', 'length', 'virtual_tour', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'option_data', 'property_status_type', 'postcategory', 'property_condition')
+            ->first();
+
+        $final_data = $this->property_data_making($posts);
+
+        return response()->json($final_data);
+    }
+
+    public function property_data_making($posts)
+    {
+
+        return [
+            'Ad_Id' => $posts->unique_id,
+            'Advertiser_character' => 'discussable',
+            'Advertiser_name' => $posts->user->name,
+            "Advertiser_mobile_number" => $posts->user->phone,
+            "The_main_type_of_ad" => 'Offer',
+            "Ad_description" => $this->add_descruption($posts),
+            "Ad_subtype" => !empty($posts->property_status_type) ? $posts->property_status_type->category->name : 'N/A',
+            "Advertisement_publication_date" => date('d-m-Y', strtotime($posts->created_at)),
+            "Ad_update_date" => date('d-m-Y', strtotime($posts->updated_at)),
+            "Ad_expiration" => 'discussable',
+            "Ad_status" => $this->get_status($posts->status),
+            "Ad_Views" => 'discussable',
+            "District_Name" => !empty($posts->post_district) ? $posts->post_district->district->name : 'N/A',
+            'City_Name' => !empty($posts->post_new_city) ? $posts->post_new_city->city->name : 'N/A',
+            'Neighbourhood_Name' => 'N/A',
+            'Street_Name' => 'discussable',
+            'Longitude' => 'discussable',
+            "Lattitude" => 'discussable',
+            'Furnished' => $this->get_property_condition($posts->property_condition),
+            'Kitchen' => 'N/A',
+            'Air_Condition' => 'N/A',
+            'facilities' => $this->get_features($posts),
+            "Using_For" => !empty($posts->parentcategory) ? Category::where('id', $posts->parentcategory->category_id)->first('name')->name : 'N/A',
+            'Property_Type' => !empty($posts->property_type) ? $posts->property_type->category->name : 'N/A',
+            'The_Space' => (!empty($posts->builtarea) ? "Built-up area in SQM: " . $posts->builtarea->content : 'N/A') . ', ' . (!empty($posts->landarea) ?  "Land area in SQM: " . $posts->landarea->content : 'N/A'),
+            'Land_Number' =>  'N/A',
+            "Plan_Number" =>  'N/A',
+            'Number_Of_Units' =>  'N/A',
+            'Floor_Number' => !empty($posts->property_floor) ? $posts->property_floor->content : 'N/A',
+            'Unit_Number' => 'N/A',
+            "Rooms_Number" => $this->get_rooms_number($posts),
+            "Rooms_Type" => $this->get_rooms_type($posts),
+            // 'Real_Estate_Facade' => $posts->id,
+            // 'Street_Width' => $posts->slug,
+            "Construction_Date" => !empty($posts->property_age) ? $posts->property_age->content : 'N/A',
+            "Rental_Price" => !empty($posts->property_status_type) && $posts->property_status_type->category->name == "Rent" ? $posts->price->price : 'N/A',
+            'Selling_Price' => !empty($posts->property_status_type) && $posts->property_status_type->category->name == "Sell" ? $posts->price->price : 'N/A',
+            'Selling_Meter_Price' => 'N/A',
+            "Property limits and lenghts" => (!empty($posts->length) ? 'length in SQM: ' . $posts->length->content : 'N/A') . ', ' . (!empty($posts->depth) ? "Width in SQM" . $posts->depth->content : 'N/A'),
+            // "Is there a mortgage or restriction that prevents or limits the use of the property" => 
+            // "Rights and obligations over real estate that are not documented in the real estate document" => '',
+            // "Information that may affect the property" => '',
+            // "Property disputes" => '',
+            // "Availability of elevators" => '',
+            // "Number of elevators" => '',
+            // "Availability of Parking" => '',
+            // "Number of parking" => '',
+            // "Advertiser category" => '',
+            "Advertiser license number" => 'discussable',
+            "Advertiser's email" => $posts->user->email,
+            "Advertiser registration number" => 'discussable',
+            "Authorization number" => 'discussable',
+        ];
+    }
+
+    public  function get_rooms_type($posts)
+    {
+        $rooms_type = [];
+        foreach ($posts->option_data as $key => $value) {
+
+            if ($value->category->name != 'Parking') {
+                array_push($rooms_type, $value->category->name );
+            }
+        }
+       
+        return  $rooms_type;
+    }
+
+    public  function get_rooms_number($posts)
+    {
+        $no_rooms = [];
+        foreach ($posts->option_data as $key => $value) {
+
+            if ($value->category->name != 'Parking') {
+                $name =$value->category->name .':'. $value->value;
+                array_push($no_rooms,    $name );
+            }
+        }
+       
+        return  $no_rooms;
+    }
+    public  function get_features($data)
+    {
+        $features = [];
+        foreach ($data->postcategory as $key => $value) {
+
+            if ($value->type == 'features') {
+                $name = Category::where([
+                    ['id', $value->category_id]
+                ])->first();
+                array_push($features, !empty($name) ? $name->name : '');
+            }
+        }
+        return  $features;
+    }
+    public function add_descruption($posts)
+    {
+        return 'description';
+    }
+
+    public function get_status($id)
+    {
+        if ($id == 1) {
+            return 'Published';
+        } elseif ($id == 2) {
+            return 'Incomplete';
+        } elseif ($id == 3) {
+            return 'Pending';
+        } elseif ($id == 4) {
+            return 'Rejected';
+        } elseif ($id == 0) {
+            return 'Trash';
+        } else {
+            return 'N/A';
+        }
+    }
+
+    public function get_property_condition($conditon)
+    {
+        if (!empty($conditon)) {
+            if ($conditon->content == 1) {
+                return 'unfurnished';
+            } elseif ($conditon->content == 2) {
+                return 'semi-furnished';
+            } elseif ($conditon->content == 3) {
+                return 'furnished';
+            }
+        } else {
+            return 'N/A';
+        }
     }
 }
