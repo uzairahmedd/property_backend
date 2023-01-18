@@ -342,7 +342,7 @@
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right">
                         @if(isset($property->property_condition->content) && $property->property_condition->content == 1 )
-                        <h3 class="font-16 text-bold">{{__('labels.furnishing')}}</h3>
+                        <h3 class="font-16 text-bold">{{__('labels.furnished')}}</h3>
                         @elseif(isset($property->property_condition->content) && $property->property_condition->content == 2 )
                         <h3 class="font-16 text-bold">{{__('labels.txt_furnished')}}</h3>
                         @elseif(isset($property->property_condition->content) && $property->property_condition->content == 3 )
