@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 
 @section('content')
-@include('layouts.backend.partials.headersection',['title'=>'Properties List'])
+@include('layouts.backend.partials.headersection',['title'=>'Download CSV of property'])
 <div class="card">
     <div class="card-body">
         <div class="row mb-2">
@@ -76,7 +76,7 @@
                             <th class="am-title">{{ __('Main type') }}</th>
                             <th class="am-title">{{ __('Subtype') }}</th>
                             <th class="am-date">{{ __('publication date') }}</th>
-                            <th class="am-title">{{ __('Update date') }}</th>
+                            <!-- <th class="am-title">{{ __('Update date') }}</th> -->
                             <th class="am-title">{{ __('Expiration') }}</th>
                             <th class="am-title">{{ __('Status') }}</th>
                             <th class="am-title">{{ __('District') }}</th>
@@ -101,7 +101,7 @@
                             <td>Offer</td>
                             <td>{{!empty($row->property_status_type) ? $row->property_status_type->category->name : 'N/A'}}</td>
                             <td><div class="scrollable">{{ $row->created_at }}</div></td>
-                            <td><div class="scrollable">{{ $row->updated_at }}</div></td>
+                            <!-- <td><div class="scrollable">{{ $row->updated_at }}</div></td> -->
                             <td> {{date('d-m-Y', strtotime( $row->created_at->addMonths(3)))}} </td>
                             <td>
                                 @if($row->status==1)
@@ -147,7 +147,7 @@
                             <th class="am-title">{{ __('Main type') }}</th>
                             <th class="am-title">{{ __('Subtype') }}</th>
                             <th class="am-date">{{ __('publication date') }}</th>
-                            <th class="am-title">{{ __('Update date') }}</th>
+                            <!-- <th class="am-title">{{ __('Update date') }}</th> -->
                             <th class="am-title">{{ __('Expiration') }}</th>
                             <th class="am-title">{{ __('Status') }}</th>
                             <th class="am-title">{{ __('District') }}</th>
