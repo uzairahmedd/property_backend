@@ -68,6 +68,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th class="am-title">{{ __('Id') }}</th>
                             <th class="am-title">{{ __('Ad Id') }}</th>
                             <th class="am-title">{{ __('Name') }}</th>
                             <th class="am-date">{{ __('Mobile number') }}</th>
@@ -92,8 +93,8 @@
                     <tbody>
                         @foreach($posts as $row)
                         <tr id="row{{  $row->id }}">
-                            <td>{{ $row->unique_id }}
-                            </td>
+                            <td>{{ $row->id }}</td>
+                            <td>{{ $row->unique_id }}</td>
                             <td><a href="{{ route('admin.users.edit',$row->user->id) }}">{{ $row->user->name }}</a></td>
                             <td>{{$row->user->phone}}</td>
                             <td>{{$row->user->email}}</td>
@@ -101,7 +102,7 @@
                             <td>{{!empty($row->property_status_type) ? $row->property_status_type->category->name : 'N/A'}}</td>
                             <td><div class="scrollable">{{ $row->created_at }}</div></td>
                             <td><div class="scrollable">{{ $row->updated_at }}</div></td>
-                            <td> N/A </td>
+                            <td> {{date('d-m-Y', strtotime( $row->created_at->addMonths(3)))}} </td>
                             <td>
                                 @if($row->status==1)
                                 <span class="badge badge-success">{{ __('Published') }}</span>
@@ -138,6 +139,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th class="am-title">{{ __('Id') }}</th>
                             <th class="am-title">{{ __('Ad Id') }}</th>
                             <th class="am-title">{{ __('Name') }}</th>
                             <th class="am-date">{{ __('Mobile number') }}</th>

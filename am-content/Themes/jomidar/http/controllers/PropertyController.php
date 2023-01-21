@@ -98,13 +98,13 @@ class PropertyController extends controller
     public function detail(Request $request, $slug)
     {
         $path = $request->path();
-
         $property = Terms::where([
             ['type', 'property'],
             ['status', 1],
             ['slug', $slug]
         ])->with('depth', 'length', 'virtual_tour', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'post_preview', 'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition')->withCount('reviews')->first();
-
+        //views count
+        $property->increment('count',1);
         $features = [];
         foreach ($property->postcategory as $key => $value) {
 

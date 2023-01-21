@@ -1265,3 +1265,6 @@ body::-webkit-scrollbar-thumb {
 .download-app{
     cursor: pointer;
 }
+.none {
+    display: none;
+}

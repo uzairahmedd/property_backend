@@ -63,7 +63,7 @@
                         @endif
                     </li>
                     <li class="d-flex mb-3 mb-sm-0">
-                        <span><span class="theme-text-blue font-bold">{{ $property->reviews_count }}</span> {{__('labels.reviews')}}</span>
+                        <span><span class="theme-text-blue font-bold">{{ $property->count }}</span> {{__('labels.views')}}</span>
                     </li>
                 </ul>
             </div>
@@ -510,6 +510,5 @@
 @push('js')
 <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{ theme_asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-<script src="{{ theme_asset('assets/js/property.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&callback=initialize&libraries=&v=weekly" defer></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&callback=initialize&libraries=&v=weekly" defer></script> -->
 @endpush

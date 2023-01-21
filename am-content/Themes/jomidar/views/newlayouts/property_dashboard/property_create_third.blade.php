@@ -187,6 +187,36 @@
                         </div>
                     </div>
                     @endif
+                    @if($row->name == 'Elevators')
+                    <p class="theme-text-black font-18">{{__('labels.elevator_no')}} </p>
+                    <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
+                    <div class="row gx-2 mb-4_5">
+                        <div class="radio-container radio-edit-third radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="6" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 6 ? "checked"  : "" }}>
+                            <span class="checmark checkmark-step3 font-16 font-medium">6</span>
+                        </div>
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="5" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 5 ? "checked"  :  "" }}>
+                            <span class="checmark checkmark-step3 font-16 font-medium">5</span>
+                        </div>
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="4" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 4 ? "checked"  : "" }}>
+                            <span class="checmark checkmark-step3 font-16 font-medium">4</span>
+                        </div>
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="3" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 3 ? "checked"  : "" }}>
+                            <span class="checmark checkmark-step3 font-16 font-medium">3</span>
+                        </div>
+                        <div class="radio-container radio-edit-third">
+                            <input type="radio" name="{{ $row->name }}" value="2" {{ !empty($row->post_category_option)  && $row->post_category_option->value == 2 ? "checked"  : "" }}>
+                            <span class="checmark checkmark-step3 font-16 font-medium">2</span>
+                        </div>
+                        <div class="radio-container radio-edit-third first_one">
+                            <input type="radio" name="{{ $row->name }}" value="1" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 1 ? ""  : "checked"  }}>
+                            <span class="checmark checkmark-step3 font-16 font-medium">1</span>
+                        </div>
+                    </div>
+                    @endif
                     @endforeach
                     <!-- Parking Section Ends Here -->
                     <!-- Furnishing Section Starts Here -->

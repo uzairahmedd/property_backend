@@ -571,8 +571,17 @@ function properties_list(target, data) {
             image = base_url + 'uploads/default.png';
         }
 
-        if (value.property_status_type != null) {
+        if (value.property_status_type != null && value.property_status_type.category.name=='Sale') {
+            status = 'Buy';
+            if (locale == 'ar') {
+                status = value.property_status_type.category.ar_name;
+            }
+        }
+        if (value.property_status_type != null && value.property_status_type.category.name=='Rent') {
             status = value.property_status_type.category.name;
+            if (locale == 'ar') {
+                status =value.property_status_type.category.ar_name;
+            }
         }
         if (value.user.usermeta != null) {
             user_data = JSON.parse(value.user.usermeta.content);

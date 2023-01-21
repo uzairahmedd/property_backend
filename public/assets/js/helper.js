@@ -278,7 +278,7 @@ function small(s, size = "small") {
 /*-------------------------
 		Review Data Get
 	----------------------------*/
-review();
+// review();
 function review() {
 	var url = $("#review_url").val();
 	$.ajax({

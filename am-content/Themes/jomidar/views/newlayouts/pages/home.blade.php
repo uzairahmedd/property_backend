@@ -216,7 +216,7 @@
             <div class="d-flex align-items-center gap-3">
                 <h2 class="mb-0 font-medium theme-text-blue">{{__('labels.recently_add')}}</h2>
                 <div class="chip font-medium theme-text-secondary">
-                    <span>{{__('labels.sale')}}</span>
+                    <span>{{__('labels.sale_slider')}}</span>
                 </div>
             </div>
         </div>
@@ -323,7 +323,7 @@
                         <div class="content d-flex justify-content-between">
                             <div class="d-flex flex-column align-items-start theme-text-white">
                                 <div class="sale theme-bg-sky">
-                                    <span class="font-medium">للايجار</span>
+                                    <span class="font-medium">{{__('labels.rent')}}</span>
                                 </div>
                                 <!-- <div class="sale theme-bg-blue">
                                                                 <span class="font-medium">متاح</span>

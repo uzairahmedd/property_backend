@@ -567,11 +567,8 @@ class RegisterController extends controller
             $messsage = ['message' => 'Please give a valid CR number'];
             return error_response($messsage, 'Validation error');
         }
-        $advertiser_id = null;
-        if ($request->status == '1') {
-            $advertiser_id = rand(1000000000, 9999999999);
-        }
 
+        $advertiser_id = rand(1000000000, 9999999999);
         $user = User::find(decrypt($request->id));
         DB::table('users')->where('id', $user->id)->update(['status' => 1]);
         $user_data = new UserCredentials;
