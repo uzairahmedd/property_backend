@@ -690,7 +690,7 @@ class PropertyController extends controller
     }
     public function add_descruption($posts)
     {
-        $description = $posts->property_type->category->name . ' for ' . $posts->property_status_type->category->name . ' in, ' .
+        $description = (!empty($posts->property_type) ? $posts->property_type->category->name :'Property') . ' for ' . (!empty($posts->property_status_type->category) ? $posts->property_status_type->category->name : '') . ' in, ' .
             $posts->post_district->district->name . ', ' .  $posts->post_new_city->city->name . '.';
         if (!empty($posts->landarea)) {
             $description .= $posts->property_type->category->name . " have land-area " . $posts->landarea->content . ' sqm';

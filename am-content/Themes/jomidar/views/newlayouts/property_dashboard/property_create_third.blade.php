@@ -215,6 +215,10 @@
                             <input type="radio" name="{{ $row->name }}" value="1" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 1 ? ""  : "checked"  }}>
                             <span class="checmark checkmark-step3 font-16 font-medium">1</span>
                         </div>
+                        <div class="radio-container radio-edit-third first_one radio-edit-third first_one">
+                            <input type="radio" name="{{ $row->name }}" value="0" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 0 ? ""  : "checked" }}>
+                            <span class="checmark checkmark-step3 font-16 font-medium">غير متوفر</span>
+                        </div>
                     </div>
                     @endif
                     @endforeach
