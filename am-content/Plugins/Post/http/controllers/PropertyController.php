@@ -707,9 +707,9 @@ class PropertyController extends controller
             }
         }
 
-        $description .= $posts->property_type->category->name . ' has ' . ($posts->electricity_facility->content == 0 ? 'electricity connection' : "no electricity connection ") . 'and ' . ($posts->water_facility->content == 0 ? 'have water connection. ' : 'no water connection. ');
-        $description .= $posts->property_type->category->name . ' built year is ' . (!empty($posts->property_age) ? $posts->property_age->content : ' N/A ');
-        $description .= '. ' . $posts->property_type->category->name . ' price is ' . $posts->price->price . ' sar';
+        $description .= !empty($posts->property_type) ? $posts->property_type->category->name :'Property' . ' has ' . ($posts->electricity_facility->content == 0 ? 'electricity connection' : "no electricity connection ") . 'and ' . ($posts->water_facility->content == 0 ? 'have water connection. ' : 'no water connection. ');
+        $description .= !empty($posts->property_type) ? $posts->property_type->category->name :'Property' . ' built year is ' . (!empty($posts->property_age) ? $posts->property_age->content : ' N/A ');
+        $description .= '. ' . !empty($posts->property_type) ? $posts->property_type->category->name :'Property' . ' price is ' . $posts->price->price . ' sar';
         return $description;
     }
 
