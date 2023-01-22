@@ -496,20 +496,18 @@ class PropertyController extends controller
         return view('plugin::properties.csv_page', compact('type', 'posts', 'totals', 'pendings', 'actives', 'incomplete', 'trash', 'pendings', 'request', 'rejected'));
     }
 
-    public function get_user_id($id)
-    {
-        $user_id = DB::table('user_credentials')->where('user_id', $id)->first();
-        return $user_id;
-    }
+    // public function get_user_id($id)
+    // {
+    //     $user_id = DB::table('user_credentials')->where('user_id', $id)->first();
+    //     return $user_id;
+    // }
 
     //display modal box specif id data of property
     public function get_property_data($id)
     {
         $posts = Terms::where('type', 'property')->where('id', $id)
-            ->with('rules', 'parentcategory', 'depth', 'length', 'virtual_tour', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'option_data', 'property_status_type', 'postcategory', 'property_condition')
+            ->with('rules', 'parentcategory', 'depth', 'length', 'property_age', 'meter', 'property_floor', 'post_new_city', 'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'option_data', 'property_status_type', 'postcategory', 'property_condition')
             ->first();
-        $user_id_data = $this->get_user_id($posts->user->id);
-        $posts['credentials'] = $user_id_data;
         $final_data = $this->property_data_making($posts);
 
         return response()->json($final_data);
@@ -517,7 +515,6 @@ class PropertyController extends controller
 
     public function property_data_making($posts)
     {
-
         return [
             'Ad_Id' => $posts->unique_id,
             'Advertiser_character' => $this->advertiser_character($posts),
@@ -543,7 +540,7 @@ class PropertyController extends controller
             'facilities' => $this->get_features($posts),
             "Using_For" => !empty($posts->parentcategory) ? Category::where('id', $posts->parentcategory->category_id)->first('name')->name : 'N/A',
             'Property_Type' => !empty($posts->property_type) ? $posts->property_type->category->name : 'N/A',
-            'The_Space' => (!empty($posts->builtarea) ? "Built-up area in SQM: " . $posts->builtarea->content : 'N/A') . ', ' . (!empty($posts->landarea) ?  "Land area in SQM: " . $posts->landarea->content : 'N/A'),
+            'The_Space' => (!empty($posts->builtarea) ? "Built-up area in SQM: " . $posts->builtarea->content . ',' : ' ') . ' ' . (!empty($posts->landarea) ?  "Land area in SQM: " . $posts->landarea->content : 'N/A'),
             'Land_Number' =>  'N/A',
             "Plan_Number" =>  'N/A',
             'Number_Of_Units' =>  'N/A',
@@ -557,7 +554,7 @@ class PropertyController extends controller
             "Rental_Price" => !empty($posts->property_status_type) && $posts->property_status_type->category->name == "Rent" ? $posts->price->price . ' SAR' : 'N/A',
             'Selling_Price' => !empty($posts->property_status_type) && $posts->property_status_type->category->name == "Sale" ? $posts->price->price . ' SAR' : 'N/A',
             'Selling_Meter_Price' => 'N/A',
-            "Property limits and lenghts" => (!empty($posts->length) ? 'length in SQM: ' . $posts->length->content : 'N/A') . ', ' . (!empty($posts->depth) ? "Width in SQM" . $posts->depth->content : 'N/A'),
+            "Property limits and lenghts" => (!empty($posts->length) && !empty($posts->length->content) ? 'length in SQM: ' . $posts->length->content . ',' : ' ') . ' ' . (!empty($posts->depth) && !empty($posts->depth->content) ? "Width in SQM" . $posts->depth->content : 'N/A'),
             "Is there a mortgage or restriction that prevents or limits the use of the property" => $this->get_rule_type(!empty($posts->rules) && Str::contains($posts->rules->content, '1') ? '1' : '0'),
             "Rights and obligations over real estate that are not documented in the real estate document" => $this->get_rule_type(!empty($posts->rules) && Str::contains($posts->rules->content, '2') ? '2' : '0'),
             "Information that may affect the property" => $this->get_rule_type(!empty($posts->rules) && Str::contains($posts->rules->content, '3') ? '3' : '0'),
@@ -567,7 +564,7 @@ class PropertyController extends controller
             "Availability of Parking" => $this->get_features_type($posts, 'Parking'),
             "Number of parking" => $this->get_option_number($posts, 'Parking'),
             "Advertiser category" => $this->advertiser_category($posts),
-            "Advertiser license number" => !empty($posts->credentials) && !empty($posts->credentials->rega_number)  ? $posts->credentials->rega_number : 'N/A',
+            "Advertiser license number" => !empty($posts->user->user_credentials) && !empty($posts->user->user_credentials->rega_number)  ? $posts->user->user_credentials->rega_number : 'N/A',
             "Advertiser's email" => $posts->user->email,
             "Advertiser registration number" => 'N/A',
             "Authorization number" => 'N/A',
@@ -585,7 +582,11 @@ class PropertyController extends controller
                 array_push($width_type, 'street ' . $count . ', ' . $value . ' meter');
             }
 
-            return  $width_type;
+            if (!empty($width_type)) {
+                return implode(',', $width_type);
+            } else {
+                return 'N/A';
+            }
         } else {
             return 'N/A';
         }
@@ -602,10 +603,10 @@ class PropertyController extends controller
     public function advertiser_category($posts)
     {
 
-        if (!empty($posts->credentials)) {
-            if ($posts->credentials->sub_account_type == '4') {
+        if (!empty($posts->user->user_credentials)) {
+            if ($posts->user->user_credentials->sub_account_type == '4') {
                 return 'Individual Broker';
-            } elseif ($posts->credentials->sub_account_type == '5') {
+            } elseif ($posts->user->user_credentials->sub_account_type == '5') {
                 return 'Company';
             } else {
                 return 'N/A';
@@ -617,12 +618,12 @@ class PropertyController extends controller
     public function advertiser_character($posts)
     {
 
-        if (!empty($posts->credentials)) {
-            if ($posts->credentials->account_type == '1') {
+        if (!empty($posts->user->user_credentials)) {
+            if ($posts->user->user_credentials->account_type == '1') {
                 return 'Owner';
-            } elseif ($posts->credentials->account_type == '2') {
+            } elseif ($posts->user->user_credentials->account_type == '2') {
                 return 'Broker';
-            } elseif ($posts->credentials->account_type == '3') {
+            } elseif ($posts->user->user_credentials->account_type == '3') {
                 return 'Developer';
             }
         } else {
@@ -639,21 +640,28 @@ class PropertyController extends controller
             }
         }
 
-        return  $rooms_type;
+        if (!empty($rooms_type)) {
+            return implode(',', $rooms_type);
+        } else {
+            return 'N/A';
+        }
     }
 
     public  function get_option_number($posts, $type_name)
     {
-        $no_rooms = [];
+        $no_rooms = '';
         foreach ($posts->option_data as $key => $value) {
 
             if ($value->category->name == $type_name) {
                 $name = $value->category->name . ':' . $value->value;
-                array_push($no_rooms,    $name);
+                $no_rooms = $name;
             }
         }
-
-        return  $no_rooms;
+        if (!empty($no_rooms)) {
+            return $no_rooms;
+        } else {
+            return 'N/A';
+        }
     }
 
     public  function get_features_type($data, $feature_name)
@@ -683,10 +691,14 @@ class PropertyController extends controller
                 $name = Category::where([
                     ['id', $value->category_id]
                 ])->first();
-                array_push($features, !empty($name) ? $name->name : '');
+                array_push($features, $name->name);
             }
         }
-        return  $features;
+        if (!empty($features)) {
+            return implode(',', $features);
+        } else {
+            return 'N/A';
+        }
     }
     public function add_descruption($posts)
     {
@@ -743,5 +755,92 @@ class PropertyController extends controller
         } else {
             return 'N/A';
         }
+    }
+
+    public function exportCSV(Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            'from_date' => 'required',
+            'to_date' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors())->withInput();
+        }
+
+        $from = date($request->from_date);
+        $to = date($request->to_date);
+        $fileName = $request->from_date . 'to' . $request->to_date . '.csv';
+        $tasks = Terms::where('type', 'property')
+            ->whereDate('created_at', '>=', $from)
+            ->whereDate('created_at', '<=', $to)
+            ->with('rules', 'parentcategory', 'depth', 'length', 'interface', 'property_age', 'meter', 'property_floor', 'post_new_city', 'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'option_data', 'property_status_type', 'postcategory', 'property_condition')
+            ->get();
+
+        if ($tasks->isEmpty()) {
+            $msssage = ['message' => 'No recordsfound'];
+            return back()->withErrors($msssage)->withInput();
+        }
+        foreach ($tasks as $data_properties) {
+            $final_data[] = $this->property_data_making($data_properties);
+        }
+
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+        $coulmns_array = [];
+        foreach ($final_data[0] as $key => $test) {
+            $coulmns[] = $key;
+        }
+        $coulmns_array = $coulmns;
+        $callback = function () use ($tasks, $coulmns_array, $final_data) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $coulmns_array);
+            foreach ($final_data as $data_properties) {
+                $array = $this->array_data($data_properties);
+                fputcsv($file, $array);
+            }
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function array_data($data)
+    {
+        return array(
+            $data['Ad_Id'], $data['Advertiser_character'], $data['Advertiser_name'], $data['Advertiser_mobile_number'],
+            $data['The_main_type_of_ad'], $data['Ad_description'], $data['Ad_subtype'], $data['Advertisement_publication_date'], $data['Ad_update_date'], $data['Ad_expiration'], $data['Ad_status'],
+            $data['Ad_Views'], $data['District_Name'], $data['City_Name'], $data['Neighbourhood_Name'],
+            $data['Street_Name'], $data['Longitude'], $data['Lattitude'], $data['Furnished'], $data['Kitchen'], $data['Air_Condition'],
+            $data['facilities'], // 'facilities',
+            $data['Using_For'], $data['Property_Type'],
+            $data['The_Space'], $data['Land_Number'], $data['Plan_Number'], $data['Number_Of_Units'], $data['Floor_Number'],
+            $data['Unit_Number'],
+            $data['Rooms_Number'], // 'rooms_number', 
+            $data['Rooms_Type'], // 'rooms_type',  
+            $data['Real_Estate_Facade'],
+            $data['Street_Width'], //'Street_Width', 
+            $data['Construction_Date'],
+            $data['Rental_Price'],
+            $data['Selling_Price'],
+            $data['Selling_Meter_Price'],
+            $data['Property limits and lenghts'],
+            $data['Is there a mortgage or restriction that prevents or limits the use of the property'], $data['Rights and obligations over real estate that are not documented in the real estate document'],
+            $data['Information that may affect the property'], $data['Property disputes'],
+            $data['Availability of elevators'],
+            $data['Number of elevators'], //'Number of elevators', 
+            $data['Availability of Parking'],
+            $data['Number of parking'], // 'Number of parking', 
+            $data['Advertiser category'],
+            $data['Advertiser license number'],
+            $data["Advertiser's email"],
+            $data['Advertiser registration number'],
+            $data['Authorization number']
+
+        );
     }
 }

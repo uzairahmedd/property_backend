@@ -5,7 +5,7 @@
 <div class="card">
     <div class="card-body">
         <div class="row mb-2">
-            <div class="col-lg-10">
+            <div class="col-lg-12">
                 <div class="">
                     <a href="{{ route('admin.property.csv_page') }}" class="mr-2 btn btn-outline-primary @if($type=='all') active @endif">{{ __('Total') }} ({{ $totals }})</a>
 
@@ -19,10 +19,26 @@
                     <a href="{{ route('admin.property.csv_page_type',0) }}" class="mr-2 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{ __('Trash') }} ({{ $trash }})</a>
                 </div>
             </div>
-            <!-- <div class="col-lg-2">
-                <a href="{{ route('admin.property.create') }}" class="btn btn-outline-primary add-property-btn">{{ __('Add') }}</a>
-			</div> -->
         </div>
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        <div style="color: red;">{{$error}}</div>
+        @endforeach
+        @endif
+        <form method="post" action="{{ route('admin.properties.csv_download') }}">
+            @csrf
+            <div class="row mb-2">
+                <div class="col-lg-6">
+                    <input type="text"  id="main_date" name="daterange" class="form-control" value="" placeholder="please select daterange" />
+                    <input type="hidden" name="from_date" id="from_date">
+                    <input type="hidden" name="to_date" id="to_date">
+                </div>
+                <div class="col-lg-6">
+                    <button type="submit" class="btn btn-success btn-sm">Export csv file</button>
+                </div>
+            </div>
+        </form>
+        <!-- </div> -->
         <br>
         <div class="float-right">
             <form>
@@ -100,7 +116,9 @@
                             <td>{{$row->user->email}}</td>
                             <td>Offer</td>
                             <td>{{!empty($row->property_status_type) ? $row->property_status_type->category->name : 'N/A'}}</td>
-                            <td><div class="scrollable">{{ $row->created_at }}</div></td>
+                            <td>
+                                <div class="scrollable">{{ $row->created_at }}</div>
+                            </td>
                             <!-- <td><div class="scrollable">{{ $row->updated_at }}</div></td> -->
                             <td> {{date('d-m-Y', strtotime( $row->created_at->addMonths(3)))}} </td>
                             <td>
@@ -122,7 +140,9 @@
                             <td>{{ !empty($row->post_new_city) ? $row->post_new_city->city->name : 'N/A'}}</td>
                             <td>{{ !empty($row->parentcategory) ? App\Category::where('id',$row->parentcategory->category_id)->first('name')->name : 'N/A' }}</td>
                             <td>{{ !empty($row->property_type) ? $row->property_type->category->name : 'N/A' }}</td>
-                            <td><div class=scrollable><span>Built-up area: {{ !empty($row->builtarea) ? $row->builtarea->content : 'N/A' }}</span><span> Land area: {{ !empty($row->landarea) ? $row->landarea->content : 'N/A' }} </span></div></td>
+                            <td>
+                                <div class=scrollable><span>Built-up area: {{ !empty($row->builtarea) ? $row->builtarea->content : 'N/A' }}</span><span> Land area: {{ !empty($row->landarea) ? $row->landarea->content : 'N/A' }} </span></div>
+                            </td>
                             @if(!empty($row->property_status_type) && $row->property_status_type->category->name == "Sale")
                             <td>{{!empty($row->price) ? $row->price->price : 'N/A' }}</td>
                             @else
@@ -169,27 +189,46 @@
 </div>
 <!-- Modal  -->
 <div class="modal fade" id="property_data_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">CSV file data</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <div id="main_contend">
-      
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">CSV file data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="main_contend">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 @endsection
 
 @section('script')
+
 <script src="{{ asset('admin/js/form.js') }}"></script>
+
+<script>
+    "use strict";
+    $(function() {
+        $('input[name="daterange"]').daterangepicker({
+            opens: 'left',
+            maxDate: moment(),
+            autoUpdateInput: false,
+            locale: {
+                cancelLabel: 'Clear'
+            }
+        }, function(start, end, label) {
+            $('#from_date').val(start.format('YYYY-MM-DD'));
+            $('#to_date').val(end.format('YYYY-MM-DD'));
+            $('#main_date').val(start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+        });
+    });
+</script>
 @endsection

@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin/assets/css/fontawesome.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin/assets/css/selectric.css') }}">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <!-- <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap-datepicker.min.css') }}"> -->
   @yield('style')
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
@@ -46,7 +48,9 @@
 <script src="{{ asset('admin/assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('admin/assets/js/jquery.nicescroll.min.js') }}"></script>
 <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
-
+<!-- <script src="{{ asset('admin/assets/js/bootstrap-datepicker.min.js') }}"></script> -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <!-- Template JS File -->
 <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
 <script src="{{ asset('admin/assets/js/custom.js') }}"></script>

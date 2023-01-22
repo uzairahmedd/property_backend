@@ -99,6 +99,11 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Usermeta')->where('type', 'content');
     }
+    
+    public function user_credentials()
+    {
+        return $this->hasOne('App\Models\UserCredential','user_id', 'id');
+    }
 
     public function credit()
     {

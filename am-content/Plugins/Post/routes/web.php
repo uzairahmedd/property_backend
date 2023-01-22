@@ -66,6 +66,7 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::get('get_property_data/{id}', 'PropertyController@get_property_data');
 			//property type
 	    Route::get('property_type/{id}', 'PropertyController@property_type')->name('properties.type');
+		Route::post('/export-csv', 'PropertyController@exportCSV')->name('properties.csv_download');
 
 	});
 
