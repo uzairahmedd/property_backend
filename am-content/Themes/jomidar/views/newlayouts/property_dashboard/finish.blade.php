@@ -32,6 +32,11 @@
                     <path class="check-spinner__worm-b" d="M 17.473 17.473 C 25.797 9.15 37.297 4 50 4 C 75.4 4 96 24.6 96 50 C 96 75.4 75.4 96 50 96 C 24.6 96 4 75.4 4 50 C 4 44.253 6.909 36.33 12.5 35 C 21.269 32.913 35 50 35 50 L 45 60 L 65 40" fill="none" stroke="url(#cs-grad-2b)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0 0 72.2 341.3" />
                 </svg>
                 <p class="col-7 text-center font-18 theme-text-seondary-black ads-p">{{__('labels.property_published')}}</p>
+                <div class="col-7 note-txt" style="">
+                    <p class="font-18 p-0 m-0"><b>{{__('labels.note')}}</b>
+                        {{__('labels.note_text_property_finish')}}
+                    </p>
+                </div>
                 <div class="d-flex align-items-center mb-4_5 advertise-document">
                     <img src="{{asset('assets/images/tick-verified.png')}}" alt="">
                     <span class="font-16 font-medium theme-text-sky mb-0 ms-2">{{__('labels.advertisement_document')}}</span>

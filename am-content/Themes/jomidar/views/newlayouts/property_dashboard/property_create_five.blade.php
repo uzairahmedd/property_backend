@@ -17,12 +17,70 @@
                 <p class="mb-0 font-18 theme-text-seondary-black p-2">{{__('labels.determine_the_features')}}</p>
                 <p class="mb-3 font-14 theme-text-grey ps-2">{{__('labels.choose_more_than_one')}}</p>
                 <div class="row theme-gx-2 theme-gy-36 justify-content-end p-2">
-                    @foreach(App\Category::where('type','feature')->get() as $row)
-                    <div class="radio-container checkbox-step5 mb-3">
-                        <input name="features[]" type="checkbox" value="{{ $row->id }}" @if(in_array($row->id, $features_array)) checked @endif >
-                        <span class="checmark step font-14 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
+
+                    <div class="checkbox-div m-0 p-0">
+                        <checkbox-section>
+                            <input id='one' type='checkbox' />
+                            <label for='one'>
+                                <span></span>
+                                شرفة
+                                <ins><i>شرفة</i></ins>
+                            </label>
+                        </checkbox-section>
+
+                        <checkbox-section>
+                            <input id='two' type='checkbox' />
+                            <label for='two'>
+                                <span></span>
+                                مركز اللياقة البدنية
+                                <ins><i>مركز اللياقة البدنية</i></ins>
+                            </label>
+                        </checkbox-section>
+
+                        <checkbox-section>
+                            <input id='three' type='checkbox' />
+                            <label for='three'>
+                                <span></span>
+                                حماية
+                                <ins><i>حماية</i></ins>
+                            </label>
+                        </checkbox-section>
+
+                        <checkbox-section>
+                            <input id='four' type='checkbox' />
+                            <label for='four'>
+                                <span></span>
+                                موقف سيارات
+                                <ins><i>موقف سيارات</i></ins>
+                            </label>
+                        </checkbox-section>
+
+                        <checkbox-section>
+                            <input id='five' type='checkbox' />
+                            <label for='five'>
+                                <span></span>
+                                حمام السباحة
+                                <ins><i>حمام السباحة</i></ins>
+                            </label>
+                        </checkbox-section>
+
+                        <checkbox-section>
+                            <input id='six' type='checkbox' />
+                            <label for='six'>
+                                <span></span>
+                                واي فاي
+                                <ins><i>واي فاي</i></ins>
+                            </label>
+                        </checkbox-section>
+
                     </div>
-                    @endforeach
+
+{{--                    @foreach(App\Category::where('type','feature')->get() as $row)--}}
+{{--                    <div class="radio-container checkbox-step5 mb-3">--}}
+{{--                        <input name="features[]" type="checkbox" value="{{ $row->id }}" @if(in_array($row->id, $features_array)) checked @endif >--}}
+{{--                        <span class="checmark step font-14 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>--}}
+{{--                    </div>--}}
+{{--                    @endforeach--}}
                 </div>
                 @endif
                 <span class="font-24 d-flex justify-content-end py-3 px-2 font-weight-bold">{{__('labels.border_length')}}</span>
