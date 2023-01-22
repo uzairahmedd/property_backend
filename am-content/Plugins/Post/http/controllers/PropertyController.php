@@ -540,7 +540,7 @@ class PropertyController extends controller
             'facilities' => $this->get_features($posts),
             "Using_For" => !empty($posts->parentcategory) ? Category::where('id', $posts->parentcategory->category_id)->first('name')->name : 'N/A',
             'Property_Type' => !empty($posts->property_type) ? $posts->property_type->category->name : 'N/A',
-            'The_Space' => (!empty($posts->builtarea) ? "Built-up area in SQM: " . $posts->builtarea->content . ',' : ' ') . ' ' . (!empty($posts->landarea) ?  "Land area in SQM: " . $posts->landarea->content : 'N/A'),
+            'The_Space' => (!empty($posts->builtarea) ? "Built-up area in SQM: " . $posts->builtarea->content . ',' : ' ') . ' ' . (!empty($posts->landarea) ?  "Land area in SQM: " . $posts->landarea->content : ' '),
             'Land_Number' =>  'N/A',
             "Plan_Number" =>  'N/A',
             'Number_Of_Units' =>  'N/A',
@@ -554,7 +554,7 @@ class PropertyController extends controller
             "Rental_Price" => !empty($posts->property_status_type) && $posts->property_status_type->category->name == "Rent" ? $posts->price->price . ' SAR' : 'N/A',
             'Selling_Price' => !empty($posts->property_status_type) && $posts->property_status_type->category->name == "Sale" ? $posts->price->price . ' SAR' : 'N/A',
             'Selling_Meter_Price' => 'N/A',
-            "Property limits and lenghts" => (!empty($posts->length) && !empty($posts->length->content) ? 'length in SQM: ' . $posts->length->content . ',' : ' ') . ' ' . (!empty($posts->depth) && !empty($posts->depth->content) ? "Width in SQM" . $posts->depth->content : 'N/A'),
+            "Property limits and lenghts" => (!empty($posts->length) && !empty($posts->length->content) ? 'length in SQM: ' . $posts->length->content . ',' : ' ') . ' ' . (!empty($posts->depth) && !empty($posts->depth->content) ? "Width in SQM: " . $posts->depth->content : 'N/A'),
             "Is there a mortgage or restriction that prevents or limits the use of the property" => $this->get_rule_type(!empty($posts->rules) && Str::contains($posts->rules->content, '1') ? '1' : '0'),
             "Rights and obligations over real estate that are not documented in the real estate document" => $this->get_rule_type(!empty($posts->rules) && Str::contains($posts->rules->content, '2') ? '2' : '0'),
             "Information that may affect the property" => $this->get_rule_type(!empty($posts->rules) && Str::contains($posts->rules->content, '3') ? '3' : '0'),
@@ -777,7 +777,7 @@ class PropertyController extends controller
             ->get();
 
         if ($tasks->isEmpty()) {
-            $msssage = ['message' => 'No recordsfound'];
+            $msssage = ['message' => 'No record found'];
             return back()->withErrors($msssage)->withInput();
         }
         foreach ($tasks as $data_properties) {

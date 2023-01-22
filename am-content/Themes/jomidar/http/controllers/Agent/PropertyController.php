@@ -820,6 +820,10 @@ class PropertyController extends controller
             $message = ['meter' => 'please provide all meter/interface details'];
             return back()->withErrors($message)->withInput();
         }
+       //del already exist area
+        Meta::where('term_id', $term_id)->where('type', 'landarea')->delete();
+        Meta::where('term_id', $term_id)->where('type', 'builtarea')->delete();
+
         //price store & update
         $price = Price::where('term_id', $term_id)->where('type', 'price')->first();
         if (empty($price)) {

@@ -29,7 +29,7 @@
             @csrf
             <div class="row mb-2">
                 <div class="col-lg-6">
-                    <input type="text"  id="main_date" name="daterange" class="form-control" value="" placeholder="please select daterange" />
+                    <input type="text"  id="main_date" name="daterange" class="form-control" value="" placeholder="Please select daterange" />
                     <input type="hidden" name="from_date" id="from_date">
                     <input type="hidden" name="to_date" id="to_date">
                 </div>
