@@ -168,7 +168,7 @@
                     <div class="prop-description-detail mt-0 pt-0">
                         <p class="theme-text-seondary-black font-16 text-end mb-2">
                         <p class="mb-1">
-                            <span>{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : $property->property_type->category->name}}</span>
+                            <span>{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : (!empty($property->property_type) ? $property->property_type->category->name : '')}}</span>
                             {{__('labels.for')}}
                             <span>{{ Session::get('locale') == 'ar' && !empty($property->property_status_type) ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}} </span>{{__('labels.in')}}
                             <span>
@@ -193,10 +193,10 @@
                         @endif
                         @endforeach
                         @endif
-                        <p class="mb-1">{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : $property->property_type->category->name}}
+                        <p class="mb-1">{{ Session::get('locale') == 'ar' && !empty($property->property_type) ? $property->property_type->category->ar_name : (!empty($property->property_type) ? $property->property_type->category->name : '')}}
                             {{__('labels.has')}}
-                            <span>{{ $property->electricity_facility->content == 0 ? __('labels.electricity') : __('labels.no_electricity') }}</span>
-                            {{__('labels.and')}} <span>{{ $property->water_facility->content == 0 ? __('labels.water') : __('labels.no_water') }}</span>
+                            <span>{{ !empty($property->electricity_facility) && $property->electricity_facility->content == 0 ? __('labels.electricity') : __('labels.no_electricity') }}</span>
+                            {{__('labels.and')}} <span>{{ !empty($property->water_facility) && $property->water_facility->content == 0 ? __('labels.water') : __('labels.no_water') }}</span>
                             {{__('labels.connections')}}
                         </p>
                         <p class="mb-1">{{__('labels.building_year')}}:
@@ -210,7 +210,7 @@
                             @endforeach
                         </ul>
                         @endif
-                        <p class="mb-1">{{__('labels.price')}}: <span>{{$property->price->price}} {{__('labels.sar')}}</span></p>
+                        <p class="mb-1">{{__('labels.price')}}: <span>{{!empty($property->price) ? $property->price->price : 'N/A'}} {{__('labels.sar')}}</span></p>
                         </p>
                         <div id="show-less"><a href="javascript:void(0)" class="font-weight-bold theme-text-sky">{{__('labels.show_less')}}</a></div>
                     </div>
@@ -242,7 +242,7 @@
 
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start detail-txt-right">
-                            <h3 class="font-16 text-bold">{{ $property->electricity_facility->content == 0 ? __('labels.yes') : __('labels.no') }}</h3>
+                            <h3 class="font-16 text-bold">{{ !empty($property->electricity_facility) && $property->electricity_facility->content == 0 ? __('labels.yes') : __('labels.no') }}</h3>
                         </div>
                         <div class="col-6 detail-txt-left">
                             <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.electricity_meter_is_there')}}</span>
@@ -251,7 +251,7 @@
 
                     <div class="row w-100 mb-3">
                         <div class="col-6 text-start detail-txt-right">
-                            <h3 class="font-16 text-bold">{{ $property->water_facility->content == 0 ? __('labels.yes') : __('labels.no') }}</h3>
+                            <h3 class="font-16 text-bold">{{!empty($property->water_facility) && $property->water_facility->content == 0 ? __('labels.yes') : __('labels.no') }}</h3>
                         </div>
                         <div class="col-6 detail-txt-left">
                             <span class="font-16 theme-text-seondary-black b-info-txt">{{__('labels.water_meter_is_there')}}</span>
