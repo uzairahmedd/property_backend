@@ -551,8 +551,8 @@ class PropertyController extends controller
             'Real_Estate_Facade' => 'N/A',
             'Street_Width' => $this->get_street_widths($posts),
             "Construction_Date" => !empty($posts->property_age) ? $posts->property_age->content : 'N/A',
-            "Rental_Price" => !empty($posts->property_status_type) && $posts->property_status_type->category->name == "Rent" ? $posts->price->price . ' SAR' : 'N/A',
-            'Selling_Price' => !empty($posts->property_status_type) && $posts->property_status_type->category->name == "Sale" ? $posts->price->price . ' SAR' : 'N/A',
+            "Rental_Price" => !empty($posts->property_status_type) && !empty($posts->price) && $posts->property_status_type->category->name == "Rent" ? $posts->price->price . ' SAR' : 'N/A',
+            'Selling_Price' => !empty($posts->property_status_type) && !empty($posts->price) && $posts->property_status_type->category->name == "Sale" ? $posts->price->price . ' SAR' : 'N/A',
             'Selling_Meter_Price' => 'N/A',
             "Property limits and lenghts" => (!empty($posts->length) && !empty($posts->length->content) ? 'length in SQM: ' . $posts->length->content . ',' : ' ') . ' ' . (!empty($posts->depth) && !empty($posts->depth->content) ? "Width in SQM: " . $posts->depth->content : 'N/A'),
             "Is there a mortgage or restriction that prevents or limits the use of the property" => $this->get_rule_type(!empty($posts->rules) && Str::contains($posts->rules->content, '1') ? '1' : '0'),
@@ -593,7 +593,6 @@ class PropertyController extends controller
     }
     public function get_rule_type($rule_id)
     {
-
         if (!empty($rule_id != '0')) {
             return 'Yes';
         } else {
@@ -702,7 +701,8 @@ class PropertyController extends controller
     }
     public function add_descruption($posts)
     {
-        $description = $posts->property_type->category->name . ' for ' . $posts->property_status_type->category->name . ' in, ' .
+        // dd($posts->property_type);
+        $description = (!empty($posts->property_type) ? $posts->property_type->category->name : 'Property') . ' for ' . $posts->property_status_type->category->name . ' in, ' .
             $posts->post_district->district->name . ', ' .  $posts->post_new_city->city->name . '.';
         if (!empty($posts->landarea)) {
             $description .= $posts->property_type->category->name . " have land-area " . $posts->landarea->content . ' sqm';
@@ -719,9 +719,9 @@ class PropertyController extends controller
             }
         }
 
-        $description .= $posts->property_type->category->name . ' has ' . ($posts->electricity_facility->content == 0 ? 'electricity connection' : "no electricity connection ") . 'and ' . ($posts->water_facility->content == 0 ? 'have water connection. ' : 'no water connection. ');
-        $description .= $posts->property_type->category->name . ' built year is ' . (!empty($posts->property_age) ? $posts->property_age->content : ' N/A ');
-        $description .= '. ' . $posts->property_type->category->name . ' price is ' . $posts->price->price . ' SAR';
+        $description .= (!empty($posts->property_type) ? $posts->property_type->category->name : 'Property') . ' has ' . (!empty($posts->electricity_facility) && $posts->electricity_facility->content == 0 ? 'electricity connection' : "no electricity connection ") . 'and ' . (!empty($posts->water_facility) && $posts->water_facility->content == 0 ? 'have water connection. ' : 'no water connection. ');
+        $description .= (!empty($posts->property_type) ? $posts->property_type->category->name : 'Property') . ' built year is ' . (!empty($posts->property_age) ? $posts->property_age->content : ' N/A ');
+        $description .= '. ' . (!empty($posts->property_type) ? $posts->property_type->category->name : 'Property') . ' price is ' . (!empty($posts->price) ? $posts->price->price . ' SAR' :'');
         return $description;
     }
 
