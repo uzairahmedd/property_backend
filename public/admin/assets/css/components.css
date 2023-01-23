@@ -1719,3 +1719,15 @@ tr:first-child > td > .fc-day-grid-event {
     display: block; }
     .wizard-steps .wizard-step {
       margin-bottom: 50px; } }
+
+      /* tabel cell scrollable */
+      div.scrollable {
+        width: 140px;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: auto;
+    }
+    #main_contend{
+      padding-left: 20px;
+    }

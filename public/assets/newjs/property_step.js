@@ -9,6 +9,22 @@ $(document).ready(function (event) {
         });
         e.preventDefault();
     });
+
+    var $tbl = $('#tick_div');
+    var $bodychk = $tbl.find('.checkbox-div input:checkbox');
+
+    $(function () {
+        $bodychk.on('change', function () {
+            if($(this).is(':checked')) {
+                $(this).closest('checkbox-section').addClass('bg-checkbox');
+            }
+            else {
+                $(this).closest('checkbox-section').removeClass('bg-checkbox');
+            }
+        });
+    });
+
+
 });
 
 $(document).ready(function (event) {
@@ -239,6 +255,9 @@ window.addEventListener("DOMContentLoaded",() => {
         });
     }
 });
+
+
+
 
 
 

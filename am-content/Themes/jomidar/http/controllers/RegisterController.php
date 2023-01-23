@@ -417,15 +417,25 @@ class RegisterController extends controller
      */
     public function phone_register(Request $request)
     {
-        
+
         $validator = \Validator::make($request->all(), [
-            'phone' => 'required|numeric|digits_between:1,9|unique:users,phone',
+            'phone' => 'required|numeric|digits_between:1,9',
         ]);
         if ($validator->fails()) {
             return back()->withErrors($validator->errors())->withInput();
         }
-        if(substr($request->phone, 0, 1) == 0){
-            $message=['phone'=>'Please enter valid phone number'];
+        if (substr($request->phone, 0, 1) == 0) {
+            $message = ['phone' => 'Please enter valid phone number'];
+            return back()->withErrors($message)->withInput();
+        }
+        //for already exist phone number
+        $update_phone = '0' . $request->phone;
+        $already_phone = DB::table('users')->where('phone', $update_phone)->first();
+        if (isset($request->id)) {
+            $already_phone = DB::table('users')->where('phone', $update_phone)->where('id', '!=', decrypt($request->id))->first();
+        }
+        if (!empty($already_phone)) {
+            $message = ['phone' => 'Phone number already exist!'];
             return back()->withErrors($message)->withInput();
         }
         //save user data
@@ -445,10 +455,10 @@ class RegisterController extends controller
             $user['name'] = $slug;
             $user['email'] = $slug . '@khiaratee.com';
             $user['password'] = Hash::make($slug);
-            $user->status = 1;
+            $user->status = 0;
             $user->avatar = 'https://ui-avatars.com/api/?size=250&background=random&name=' . $request->name;
         }
-        $user->phone = '0'.$request->phone;
+        $user->phone = $update_phone;
         $user->save();
 
         $usermeta = new Usermeta();
@@ -557,12 +567,10 @@ class RegisterController extends controller
             $messsage = ['message' => 'Please give a valid CR number'];
             return error_response($messsage, 'Validation error');
         }
-        $advertiser_id = null;
-        if ($request->status == '1') {
-            $advertiser_id = rand(1000000000, 9999999999);
-        }
 
+        $advertiser_id = rand(1000000000, 9999999999);
         $user = User::find(decrypt($request->id));
+        DB::table('users')->where('id', $user->id)->update(['status' => 1]);
         $user_data = new UserCredentials;
         $user_data->user_id = $user->id;
         $user_data->account_type = $request->status;
@@ -588,7 +596,7 @@ class RegisterController extends controller
             return error_response($validator->errors(), 'Validation error');
         }
 
-        $user = DB::table('users')->where('phone', $request->phone)->where('status',1)->first();
+        $user = DB::table('users')->where('phone', $request->phone)->where('status', 1)->where('is_verified', 1)->first();
         if (!empty($user)) {
             $user = User::find($user->id);
             Auth::login($user);
@@ -596,7 +604,7 @@ class RegisterController extends controller
             $url = env("APP_URL", 'http://mychoice.sa/') . 'agent/profile/settings';
             return success_response(['url' => $url, 'User Account created successfully']);
         }
-        $messsage = ['phone' => 'User does not exist!. Please make an account'];
+        $messsage = ['phone' => 'User does not exist!'];
         return error_response($messsage, '');
     }
 }

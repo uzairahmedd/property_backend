@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 @section('style')
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/select2.min.css') }}">
-<link rel="stylesheet" href="{{ asset('admin/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('admin/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css') }}" />
 @endsection
 @section('content')
 <div class="row">
@@ -42,6 +42,16 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="row">
+                        <div class="col-6 item form-group">
+                            <input type="checkbox" name="land_area" value="1"  @if($info->land_area==1) checked @endif id="land_area">
+                            <label for="land_area">land area</label>
+                        </div>
+                        <div class="col-6 item form-group">
+                            <input type="checkbox" name="buildup_area" value="1" @if($info->buildup_area==1) checked @endif id="buildup_area">
+                            <label for="buildup_area">Build-up area</label>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -64,24 +74,24 @@
 @endsection
 
 @section('script')
-<script  src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
-<script  src="{{ asset('admin/bootstrap-iconpicker/js/iconset/fontawesome5-3-1.min.js') }}"></script>
-<script  src="{{ asset('admin/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js') }}"></script>
+<script src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('admin/bootstrap-iconpicker/js/iconset/fontawesome5-3-1.min.js') }}"></script>
+<script src="{{ asset('admin/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js') }}"></script>
 <script src="{{ asset('admin/js/select2.min.js') }}"></script>
 <script src="{{ asset('admin/js/form.js') }}"></script>
 <script>
     "use strict";
-    (function ($) {
-      $('#target').on('change', function(e) {
+    (function($) {
+        $('#target').on('change', function(e) {
 
-        $('#icon').val(e.icon)
-      });
+            $('#icon').val(e.icon)
+        });
 
     })(jQuery);
 
-     //success response will assign here
-  function success(res){
-    location.reload()
-  }
+    //success response will assign here
+    function success(res) {
+        location.reload()
+    }
 </script>
 @endsection

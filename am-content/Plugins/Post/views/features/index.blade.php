@@ -47,6 +47,7 @@
 							<!-- <th class="am-title"><i class="far fa-image"></i></th> -->
 							<th class="am-title">{{ __('Title') }}</th>
 							<th class="am-title">{{ __('Arabic Title') }}</th>
+							<th class="am-title">{{ __('featured') }}</th>
 							<th class="am-date">{{ __('Date') }}</th>
 						</tr>
 					</thead>
@@ -71,6 +72,13 @@
 							<td>
 								{{ $post->ar_name }}
 							</td>
+							<td>
+								@if($post->featured==1)
+								<span class="badge badge-success">{{ __('Yes') }}</span>
+								@else
+								<span class="badge badge-danger">{{ __('No') }}</span>
+								@endif
+							</td>
 							<td>{{ __('Last Modified') }}
 								<div class="date">
 									{{ $post->updated_at->diffForHumans() }}
@@ -91,6 +99,7 @@
 						<!-- <th class="am-title"><i class="far fa-image"></i></th> -->
 						<th class="am-title">{{ __('Title') }}</th>
 						<th class="am-title">{{ __('Arabic Title') }}</th>
+						<th class="am-title">{{ __('featured') }}</th>
 						<th class="am-date">{{ __('Date') }}</th>
 					</tr>
 				</tfoot>

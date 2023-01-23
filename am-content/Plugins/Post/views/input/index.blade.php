@@ -47,7 +47,7 @@
 				@endcan
 			</div>
 			<div class="table-responsive custom-table">
-				<table class="table">
+				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th class="am-select">
@@ -59,6 +59,7 @@
 							<th class="am-title"><i class="far fa-image"></i></th>
 							<th class="am-title">{{ __('Name') }}</th>
 							<th class="am-title">{{ __('Arabic Name') }}</th>
+							<th class="am-title">{{ __('Category') }}</th>
 							<th class="am-title">{{ __('Is Featured') }}</th>
 							<th class="am-date">{{ __('Last Update') }}</th>
 						</tr>
@@ -85,6 +86,11 @@
 							<td>
 								{{ $row->ar_name }}
 							</td>
+							<td>
+							@foreach($row->child_name as $name_type)
+							<span class="badge badge-primary">{{$name_type->name}}</span>
+							@endforeach
+						</td>
 							<td>
 								@if($row->featured==1)
 								<span class="badge badge-success">{{ __('Yes') }}</span>

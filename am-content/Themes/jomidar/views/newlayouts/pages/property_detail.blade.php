@@ -63,7 +63,7 @@
                         @endif
                     </li>
                     <li class="d-flex mb-3 mb-sm-0">
-                        <span><span class="theme-text-blue font-bold">{{ $property->reviews_count }}</span> {{__('labels.reviews')}}</span>
+                        <span><span class="theme-text-blue font-bold">{{ $property->count }}</span> {{__('labels.views')}}</span>
                     </li>
                 </ul>
             </div>
@@ -181,7 +181,9 @@
                         <div id="show-more"><a href="javascript:void(0)" class="font-weight-bold theme-text-sky">{{__('labels.show_more')}}</a></div>
                     </div>
                     <div id="show-more-content">
+                        @if(!empty($property->builtarea))
                         <p class="mb-1">{{__('labels.built_up_area')}}: <span>{{$property->builtarea->content}} {{__('labels.sqm')}}</span></p>
+                        @endif
                         @if($property->option_data)
                         @foreach ($property->option_data as $value)
                         @if( $value->value != 0)
@@ -339,11 +341,11 @@
                 @if(isset($property->property_condition))
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right">
-                        @if(isset($property->property_condition->content) && $property->property_condition->content == 3 )
-                        <h3 class="font-16 text-bold">{{__('labels.furnishing')}}</h3>
+                        @if(isset($property->property_condition->content) && $property->property_condition->content == 1 )
+                        <h3 class="font-16 text-bold">{{__('labels.furnished')}}</h3>
                         @elseif(isset($property->property_condition->content) && $property->property_condition->content == 2 )
                         <h3 class="font-16 text-bold">{{__('labels.txt_furnished')}}</h3>
-                        @elseif(isset($property->property_condition->content) && $property->property_condition->content == 1 )
+                        @elseif(isset($property->property_condition->content) && $property->property_condition->content == 3 )
                         <h3 class="font-16 text-bold">{{__('labels.unfurnished')}}</h3>
                         @endif
 
@@ -381,7 +383,7 @@
                         <h3 class="font-16 text-bold">{{ $property->property_age->content }}</h3>
                     </div>
                     <div class="col-6 detail-txt-left">
-                        <span class="font-16 theme-text-seondary-black">{{__("labels.building_age")}}</span>
+                        <span class="font-16 theme-text-seondary-black">{{__("labels.building_year")}}</span>
                     </div>
                 </div>
                 @endif
@@ -508,6 +510,5 @@
 @push('js')
 <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{ theme_asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-<script src="{{ theme_asset('assets/js/property.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&callback=initialize&libraries=&v=weekly" defer></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&callback=initialize&libraries=&v=weekly" defer></script> -->
 @endpush

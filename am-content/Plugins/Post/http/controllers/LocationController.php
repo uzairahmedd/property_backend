@@ -106,7 +106,9 @@ class LocationController extends Controller
     if (!Auth()->user()->can('district.list')) {
       abort(401);
     }
-    $posts = District::latest()->paginate(100);
+    $posts = District::leftJoin('cities', function($join) {
+      $join->on('districts.p_id', '=', 'cities.id');
+    })->select('districts.*','cities.name as city_name','cities.ar_name as arabic_name')->orderBy('cities.id', 'ASC')->paginate(100);
     return view('plugin::location.district.index', compact('posts'));
   }
 

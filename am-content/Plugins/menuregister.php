@@ -61,6 +61,9 @@ function RegisterAdminMenuBar()
 			if (Auth()->user()->can('Properties.list')) {
 				$property['Properties'] = route('admin.property.index');	
 			}
+			if (Auth()->user()->can('Properties.list')) {
+				$property['Download CSV'] = route('admin.property.csv_page');	
+			}
 			// if (Auth()->user()->can('project.list')) {
 			// 	$property['Projects'] = route('admin.project.index');	
 			// }
@@ -94,6 +97,7 @@ function RegisterAdminMenuBar()
 			);
 		   }
 		}
+
 
 		// if(Amcoders\Plugin\Plugin::is_active('plan'))
 		// {

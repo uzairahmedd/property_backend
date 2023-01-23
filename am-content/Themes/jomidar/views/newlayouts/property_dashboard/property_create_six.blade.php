@@ -53,6 +53,13 @@
                             <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox3" value="3" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '3') ? "checked"  : old("rule") }}>
                         </div>
                     </div>
+                    <div class="document theme-gx-32 d-flex justify-content-end align-items-end">
+                        <div class="col-12 mb-3 d-flex align-items-center justify-content-end terms-check">
+                            <a class="form-check-label check-box-terms" for="inlineCheckbox4">{{__("labels.Property_disputes")}}</a>
+                            <span class="theme-text-seondary-black font-16 ms-1"> </span>
+                            <input class="form-check-input" name="rule[]" type="checkbox" id="inlineCheckbox4" value="4" {{ !empty( $post_data->rules) && str_contains($post_data->rules->content, '4') ? "checked"  : old("rule") }}>
+                        </div>
+                    </div>
                 </div>
 
             </div>

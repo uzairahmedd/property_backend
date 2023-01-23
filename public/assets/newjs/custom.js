@@ -73,10 +73,10 @@
                     //for error page
                     else if (data.status == 'error') {
                         if (data.data['phone']) {
-                            $('#phone_login_error_msg').html('<span class="error">' + data.data['phone'] + '</span>');
+                            $('#phone_login_error_msg').text( data.data['phone'] );
                         }
                         setTimeout(function () {
-                            $('#phone_login_error_msg').html('<span class="error"></span>');
+                            $('#phone_login_error_msg').text('');
                         }, 10000);
                     }
                 }

@@ -646,7 +646,8 @@
     flex-wrap: wrap;
 }
 
-checkbox-section{
+.div-check
+{
     display: flex;
     justify-content: end;
     align-items: end;
@@ -655,7 +656,20 @@ checkbox-section{
     color: white;
     border-radius: 5px;
     padding: 0 10px;
-    border: 2px solid #e7e7e8;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.bg-checkbox{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    flex-direction: column;
+    background-color: transparent;
+    color: white;
+    border-radius: 5px;
+    padding: 0 10px;
     margin-right: 10px;
     margin-bottom: 10px;
     cursor: pointer;
@@ -705,7 +719,7 @@ input[type='checkbox'] + label > span{
     width: 1em;
     height: 1em;
     background: transparent;
-    border: 2px solid var(--theme-blue);
+    border: 2px solid var(--theme-blue) !important;
     border-radius: 2px;
     cursor: pointer;
     transition: all 250ms cubic-bezier(.4,.0,.23,1);

@@ -66,6 +66,10 @@
 <script src="{{ asset('admin/js/form.js') }}"></script>
 <script>
     "use strict";
+     //success response will assign here
+     function success(res) {
+            location.reload()
+        }
     (function ($) {
       $('#target').on('change', function(e) {
 

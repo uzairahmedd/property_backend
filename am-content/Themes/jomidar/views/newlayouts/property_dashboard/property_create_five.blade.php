@@ -13,14 +13,13 @@
                     <span class="theme-text-sky ">5</span>/
                     <span class="theme-text-seondary-black">6</span>
                 </div>
-                @if(!empty($info->property_type) && $info->property_type->category->name != 'Residential land')
+                @if(!empty($info->property_type) && !str_contains('$info->property_type->category->name', 'land'))
                 <p class="mb-0 font-18 theme-text-seondary-black p-2">{{__('labels.determine_the_features')}}</p>
                 <p class="mb-3 font-14 theme-text-grey ps-2">{{__('labels.choose_more_than_one')}}</p>
-                <div class="row theme-gx-2 theme-gy-36 justify-content-end p-2">
-
+                <div class="row theme-gx-2 theme-gy-36 justify-content-end p-2" id="tick_div">
                     <div class="checkbox-div m-0 p-0">
-                        <checkbox-section>
-                            <input id='one' type='checkbox' />
+                        <checkbox-section class="div-check">
+                            <input class="tick-check" onclick="tick_click(this)" id='one' type='checkbox' />
                             <label for='one'>
                                 <span></span>
                                 شرفة
@@ -28,8 +27,8 @@
                             </label>
                         </checkbox-section>
 
-                        <checkbox-section>
-                            <input id='two' type='checkbox' />
+                        <checkbox-section class="div-check">
+                            <input class="tick-check" id='two' type='checkbox' />
                             <label for='two'>
                                 <span></span>
                                 مركز اللياقة البدنية
@@ -37,8 +36,8 @@
                             </label>
                         </checkbox-section>
 
-                        <checkbox-section>
-                            <input id='three' type='checkbox' />
+                        <checkbox-section class="div-check">
+                            <input class="tick-check" id='three' type='checkbox' />
                             <label for='three'>
                                 <span></span>
                                 حماية
@@ -46,8 +45,8 @@
                             </label>
                         </checkbox-section>
 
-                        <checkbox-section>
-                            <input id='four' type='checkbox' />
+                        <checkbox-section class="div-check">
+                            <input class="tick-check" id='four' type='checkbox' />
                             <label for='four'>
                                 <span></span>
                                 موقف سيارات
@@ -55,8 +54,8 @@
                             </label>
                         </checkbox-section>
 
-                        <checkbox-section>
-                            <input id='five' type='checkbox' />
+                        <checkbox-section class="div-check">
+                            <input class="tick-check" id='five' type='checkbox' />
                             <label for='five'>
                                 <span></span>
                                 حمام السباحة
@@ -64,15 +63,14 @@
                             </label>
                         </checkbox-section>
 
-                        <checkbox-section>
-                            <input id='six' type='checkbox' />
+                        <checkbox-section class="div-check">
+                            <input class="tick-check" id='six' type='checkbox' />
                             <label for='six'>
                                 <span></span>
                                 واي فاي
                                 <ins><i>واي فاي</i></ins>
                             </label>
                         </checkbox-section>
-
                     </div>
 
 {{--                    @foreach(App\Category::where('type','feature')->get() as $row)--}}
