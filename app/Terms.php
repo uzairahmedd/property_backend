@@ -89,7 +89,7 @@ class Terms extends Model
 
 	public function user()
 	{
-		return $this->belongsTo('App\Models\User')->select('slug', 'name', 'id', 'email', 'avatar','phone')->with('usermeta');
+		return $this->belongsTo('App\Models\User')->select('slug', 'name', 'id', 'email', 'avatar','phone')->with('usermeta','user_credentials');
 	}
 
 	public function medias()

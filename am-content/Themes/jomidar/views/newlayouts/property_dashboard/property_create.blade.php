@@ -29,7 +29,7 @@
                             @if( $status->name =='Sale')
                             <div class="radio-container radio-sale-one">
                                 <input type="radio" name="status" id="create_status1" value="{{ $status->id }}" {{ $post_data != '' && $post_data->property_status_type->category_id == $status->id ? "checked" : (old("status") == $status->id ? "checked" : '') }}>
-                                <span class="checmark font-16 font-medium">{{__('labels.sale')}}</span>
+                                <span class="checmark font-16 font-medium">{{__('labels.sale_slider')}}</span>
                             </div>
                             @elseif($status->name =='Rent')
                             <div class="radio-container radio-rent-one">
