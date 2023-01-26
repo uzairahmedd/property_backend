@@ -1,10 +1,25 @@
 @extends('theme::newlayouts.app')
 @section('content')
+<style>
+    #location {
+        cursor: pointer;
+    }
+    #map {
+        position: absolute;
+        right: 6px;
+        top: 0;
+        /* bottom: 0; */
+        width: 99%;
+        height: 100%;
+    }
+</style>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/create-property.css')}}">
 <script>
     var locale = '<?php echo Session::get('locale'); ?>';
 </script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
 <div class="add-property row-style">
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here start -->
@@ -82,7 +97,7 @@
                             <label for="location" class="theme-text-seondary-black">{{__('labels.address_property')}}
                             </label>
                             <div class="position-relative d-flex justify-content-end align-items-center w-100">
-                                <input type="text" name="location" value="{{ $post_data != '' ? $post_data->district->value  : old('location') }}" id="location" placeholder="{{__('labels.address_property')}}" class="form-control theme-border">
+                                <input type="text" autocomplete="off" name="location" value="{{ $post_data != '' ? $post_data->district->value  : old('location') }}" id="location" placeholder="{{__('labels.address_property')}}" class="form-control theme-border">
                                 <img src="{{asset('assets/images/location.png')}}" alt="" class="position-absolute input-icon">
                             </div>
                             @if($errors->has('location'))
@@ -149,4 +164,89 @@
 @endsection
 @section('property_create')
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoicmFrYW5vbmxpbmUiLCJhIjoiY2xjeGpsMmdxMG05ajN2cXJocm5mazV3diJ9.puFe2Kj4KfE5v9Ky20ohYg';
+    const map = new mapboxgl.Map({
+        container: 'map', // Container ID
+        style: 'mapbox://styles/mapbox/streets-v12', // Map style to use
+        center: [46.738586, 24.774265], // Starting position [lng, lat]
+        zoom: 12 // Starting zoom level
+    });
+
+    const marker = new mapboxgl.Marker({
+            draggable: true,
+        }) // Initialize a new marker
+        .setLngLat([46.738586, 24.774265]) // Marker [lng, lat] coordinates
+        .addTo(map); // Add the marker to the map
+
+    function onDragEnd() {
+        const lngLat = marker.getLngLat();
+        $('.mapboxgl-ctrl-geocoder--input').val('');
+        $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
+    }
+
+    marker.on('dragend', onDragEnd);
+
+
+
+    const geocoder = new MapboxGeocoder({
+        // Initialize the geocoder
+        accessToken: mapboxgl.accessToken, // Set the access token
+        mapboxgl: mapboxgl, // Set the mapbox-gl instance
+        marker: true, // Do not use the default marker style
+        placeholder: 'Search for places in KSA', // Placeholder text for the search bar
+        // bbox: [-122.30937, 37.84214, -122.23715, 37.89838], // Boundary for Berkeley
+        // proximity: {
+        //     longitude: 46.738586,
+        //     latitude: 24.774265
+        // } // Coordinates of UC Berkeley
+    });
+
+    // Add the geocoder to the map
+    map.addControl(geocoder);
+
+
+    // After the map style has loaded on the page,
+    // add a source layer and default styling for a single point
+    map.on('load', () => {
+        map.resize();
+        map.addSource('single-point', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': []
+            }
+        });
+
+        map.addLayer({
+            'id': 'point',
+            'source': 'single-point',
+            'type': 'circle',
+            'paint': {
+                'circle-radius': 10,
+                'circle-color': '#1da1f2'
+            }
+        });
+
+        // Listen for the `result` event from the Geocoder // `result` event is triggered when a user makes a selection
+        //  Add a marker at the result's coordinates
+        geocoder.on('result', (event) => {
+            map.getSource('single-point').setData(event.result.geometry);
+            var marker = new mapboxgl.Marker({
+                    draggable: true,
+                    color: "#1da1f2"
+                })
+                .setLngLat(event.result.center)
+                .addTo(map)
+
+            marker.on('dragend', function(e) {
+                var lngLat = e.target.getLngLat();
+                $('.mapboxgl-ctrl-geocoder--input').val('');
+                $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
+            })
+
+        });
+
+    });
+</script>
 @endsection

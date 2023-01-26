@@ -4,6 +4,10 @@
     .none {
         display: none;
     }
+
+    #map {
+        height: 500px;
+    }
 </style>
 <link rel="stylesheet" href="{{ theme_asset('assets/css/fontawesome-all.min.css') }}">
 <link rel="stylesheet" href="{{ theme_asset('assets/css/magnific-popup.css') }}">
@@ -121,7 +125,7 @@
                     <div class="d-flex align-items-start justify-content-end mb-4">
                         <p class="mb-0 theme-text-seondary-black me-2">
                             <!-- {{$property->post_district->value}} -->
-                              {{ Session::get('locale') == 'ar' ? $property->post_district->district->ar_name : $property->post_district->district->name }}
+                            {{ Session::get('locale') == 'ar' ? $property->post_district->district->ar_name : $property->post_district->district->name }}
                             , {{ Session::get('locale') == 'ar' ? $property->post_new_city->city->ar_name : $property->post_new_city->city->name }}
                         </p>
                         <img src="{{theme_asset('assets/images/location.png')}}" alt="">
@@ -173,7 +177,7 @@
                             <span>{{ Session::get('locale') == 'ar' && !empty($property->property_status_type) ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}} </span>{{__('labels.in')}}
                             <span>
                                 <!-- {{$property->post_district->value}} -->
-                              {{ Session::get('locale') == 'ar' ? $property->post_district->district->ar_name : $property->post_district->district->name }} , {{ Session::get('locale') == 'ar' ? $property->post_new_city->city->ar_name : $property->post_new_city->city->name }}</span>
+                                {{ Session::get('locale') == 'ar' ? $property->post_district->district->ar_name : $property->post_district->district->name }} , {{ Session::get('locale') == 'ar' ? $property->post_new_city->city->ar_name : $property->post_new_city->city->name }}</span>
                         </p>
                         @if(!empty($property->landarea))
                         <p class="mb-1 land-area-txt">{{__('labels.land_area')}}: <span>{{$property->landarea->content}} {{__('labels.sqm')}}</span></p>
@@ -429,7 +433,9 @@
                 @isset($property->post_district->value)
                 <div class="theme-bg-secondary text-center mb-0 pb-0 position-relative mt-3">
                     <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">اسم الحي</h3>
-                    <iframe id="gmap_canvas" width="100%" height="400" src="https://maps.google.com/maps?q={{ $property->post_district->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                    <input type="hidden" id="map_coordinates" value="{{$property->post_district->value}}">
+                    <div id="map"></div>
+                    <!-- <iframe id="gmap_canvas" width="100%" height="400" src="https://maps.google.com/maps?q={{ $property->post_district->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe> -->
                 </div>
                 @endif
                 @if(!empty($property->virtual_tour->content) && isset($property->virtual_tour))
@@ -510,5 +516,58 @@
 @push('js')
 <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{ theme_asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&callback=initialize&libraries=&v=weekly" defer></script> -->
+<script>
+    var coordinates = $('#map_coordinates').val();
+    var array = coordinates.split(',');
+    mapboxgl.accessToken = 'pk.eyJ1IjoicmFrYW5vbmxpbmUiLCJhIjoiY2xjeGpsMmdxMG05ajN2cXJocm5mazV3diJ9.puFe2Kj4KfE5v9Ky20ohYg';
+    const map = new mapboxgl.Map({
+        container: 'map', // Container ID
+        style: 'mapbox://styles/mapbox/streets-v12', // Map style to use
+        center: [array[0], array[1]], // Starting position [lng, lat]
+        zoom: 13, // Starting zoom level
+        interactive: true,
+    });
+
+    const marker = new mapboxgl.Marker({
+            draggable: true,
+        }) // Initialize a new marker
+        .setLngLat([array[0], array[1]]) // Marker [lng, lat] coordinates
+        .addTo(map); // Add the marker to the map
+
+
+
+
+    map.on("load", () => {
+        map.addSource("mine", {
+            type: "geojson",
+            data: {
+                type: "FeatureCollection",
+                features: [{
+                    type: "Feature",
+                    geometry: {
+                        type: "Point",
+                        coordinates: [array[0], array[1]],
+                    }
+                }]
+            }
+        });
+
+        map.addLayer({
+            id: "mylayer",
+            source: "mine",
+            type: "circle",
+            paint: {
+                // Make circles larger as the user zooms from z12 to z22.
+                "circle-radius": 100,
+                // Color circles by ethnicity, using a `match` expression.
+                "circle-color": "#1da1f2",
+                "circle-stroke-color": "green",
+                "circle-opacity": 0.2,
+                "circle-stroke-opacity": 0.5,
+                "circle-stroke-width": 5
+            }
+        });
+    });
+</script>
+
 @endpush

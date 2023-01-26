@@ -1,5 +1,87 @@
 @extends('theme::newlayouts.app')
 @section('content')
+<style>
+    input[type='checkbox'] {
+        height: 0;
+        width: 0;
+    }
+
+    input[type='checkbox']+label {
+        position: relative;
+        display: flex;
+        font-size: 16px;
+        font-weight: 600;
+        margin: .6em 0;
+        align-items: center;
+        color: var(--theme-blue) !important;
+        transition: color 250ms cubic-bezier(.4, .0, .23, 1);
+    }
+
+    input[type='checkbox']+label>ins {
+        position: absolute;
+        display: block;
+        bottom: 0;
+        left: 24px;
+        height: 0;
+        width: 100%;
+        overflow: hidden;
+        text-decoration: none;
+        transition: height 300ms cubic-bezier(.4, .0, .23, 1);
+    }
+
+    input[type='checkbox']+label>ins>i {
+        position: absolute;
+        bottom: 0;
+        font-style: normal;
+        color: var(--theme-blue);
+    }
+
+    input[type='checkbox']+label>span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 0.5rem;
+        width: 1em;
+        height: 1em;
+        background: transparent;
+        border: 2px solid var(--theme-blue) !important;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all 250ms cubic-bezier(.4, .0, .23, 1);
+    }
+
+    input[type='checkbox']+label:hover,
+    input[type='checkbox']:focus+label {
+        color: var(--theme-sky);
+    }
+
+    input[type='checkbox']+label:hover>span,
+    input[type='checkbox']:focus+label>span {
+        background: rgba(255, 255, 255, .1);
+    }
+
+    input[type='checkbox']:checked+label>ins {
+        height: 100%;
+    }
+
+    input[type='checkbox']:checked+label>span {
+        border: .5em solid white;
+        animation: shrink-bounce 200ms cubic-bezier(.4, .0, .23, 1);
+    }
+
+    input[type='checkbox']:checked+label>span:before {
+        content: "";
+        position: absolute;
+        top: 0.5em;
+        font-size: 25px;
+        left: 0.1em;
+        border-right: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+        transform: rotate(45deg);
+        transform-origin: 0% 100%;
+        animation: checkbox-check 125ms 250ms cubic-bezier(.4, .0, .23, 1) forwards;
+    }
+</style>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
 <div class="add-property row-style">
     @include('theme::newlayouts.partials.user_header')
@@ -17,68 +99,15 @@
                 <p class="mb-0 font-18 theme-text-seondary-black p-2">{{__('labels.determine_the_features')}}</p>
                 <p class="mb-3 font-14 theme-text-grey ps-2">{{__('labels.choose_more_than_one')}}</p>
                 <div class="row theme-gx-2 theme-gy-36 justify-content-end p-2" id="tick_div">
-                    <div class="checkbox-div m-0 p-0">
-                        <checkbox-section class="div-check">
-                            <input class="tick-check" onclick="tick_click(this)" id='one' type='checkbox' />
-                            <label for='one'>
+                    @foreach(App\Category::where('type','feature')->get() as $row)
+                    <checkbox-section class="div-check checkbox-div">
+                            <input class="tick-check" name="features[]" id='id_{{$row->name}}' type='checkbox' value="{{ $row->id }}" @if(in_array($row->id, $features_array)) checked @endif />
+                            <label for='id_{{$row->name}}'>
                                 <span></span>
-                                شرفة
-                                <ins><i>شرفة</i></ins>
+                            {{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}
                             </label>
                         </checkbox-section>
-
-                        <checkbox-section class="div-check">
-                            <input class="tick-check" id='two' type='checkbox' />
-                            <label for='two'>
-                                <span></span>
-                                مركز اللياقة البدنية
-                                <ins><i>مركز اللياقة البدنية</i></ins>
-                            </label>
-                        </checkbox-section>
-
-                        <checkbox-section class="div-check">
-                            <input class="tick-check" id='three' type='checkbox' />
-                            <label for='three'>
-                                <span></span>
-                                حماية
-                                <ins><i>حماية</i></ins>
-                            </label>
-                        </checkbox-section>
-
-                        <checkbox-section class="div-check">
-                            <input class="tick-check" id='four' type='checkbox' />
-                            <label for='four'>
-                                <span></span>
-                                موقف سيارات
-                                <ins><i>موقف سيارات</i></ins>
-                            </label>
-                        </checkbox-section>
-
-                        <checkbox-section class="div-check">
-                            <input class="tick-check" id='five' type='checkbox' />
-                            <label for='five'>
-                                <span></span>
-                                حمام السباحة
-                                <ins><i>حمام السباحة</i></ins>
-                            </label>
-                        </checkbox-section>
-
-                        <checkbox-section class="div-check">
-                            <input class="tick-check" id='six' type='checkbox' />
-                            <label for='six'>
-                                <span></span>
-                                واي فاي
-                                <ins><i>واي فاي</i></ins>
-                            </label>
-                        </checkbox-section>
-                    </div>
-
-{{--                    @foreach(App\Category::where('type','feature')->get() as $row)--}}
-{{--                    <div class="radio-container checkbox-step5 mb-3">--}}
-{{--                        <input name="features[]" type="checkbox" value="{{ $row->id }}" @if(in_array($row->id, $features_array)) checked @endif >--}}
-{{--                        <span class="checmark step font-14 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>--}}
-{{--                    </div>--}}
-{{--                    @endforeach--}}
+                    @endforeach
                 </div>
                 @endif
                 <span class="font-24 d-flex justify-content-end py-3 px-2 font-weight-bold">{{__('labels.border_length')}}</span>
@@ -121,9 +150,9 @@
                 <p class="pb-0 mb-0">{{__('labels.price')}}: <span>{{$info->price->price}} {{__('labels.sar')}}</span></p>
             </div>
             <div class="d-flex justify-content-between description-btn-group">
-        <button class="btn btn-theme">{{__('labels.next')}}</button>
-        <a href="{{ route('agent.property.forth_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">{{__('labels.previous')}}</a>
-    </div>
+                <button class="btn btn-theme">{{__('labels.next')}}</button>
+                <a href="{{ route('agent.property.forth_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">{{__('labels.previous')}}</a>
+            </div>
     </div>
     </form>
 </div>

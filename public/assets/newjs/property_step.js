@@ -1,21 +1,30 @@
 // Property Step Js Start
 $(document).ready(function (event) {
-    $('.inter_val').click(function (e) {
-        $(".inter_val").removeClass('selected');
-        $(this).addClass('selected');
-        var drop_text = $(".inter_val.selected").text();
-        $("#interface_val").val(function () {
-            return this.value + ' ' + drop_text;
-        });
-        e.preventDefault();
-    });
+    // $('.inter_val').click(function (e) {
+    //     $(".inter_val").removeClass('selected');
+    //     $(this).addClass('selected');
+    //     var drop_text = $(".inter_val.selected").text();
+    //     $("#interface_val").val(function () {
+    //         return this.value + ' ' + drop_text;
+    //     });
+    //     e.preventDefault();
+    // });
+
+    //on by default
+
+    if ($('#tick_div').find('.checkbox-div input:checkbox').is(':checked')) {
+        $('#tick_div').find('.checkbox-div input:checked ').parent().addClass('bg-checkbox');
+    }
+    else {
+        $('#tick_div').find('.checkbox-div input:checked ').parent().removeClass('bg-checkbox');
+    }
 
     var $tbl = $('#tick_div');
     var $bodychk = $tbl.find('.checkbox-div input:checkbox');
 
     $(function () {
         $bodychk.on('change', function () {
-            if($(this).is(':checked')) {
+            if ($(this).is(':checked')) {
                 $(this).closest('checkbox-section').addClass('bg-checkbox');
             }
             else {
@@ -27,31 +36,32 @@ $(document).ready(function (event) {
 
 });
 
-$(document).ready(function (event) {
-    $('.inter_val2').click(function (e) {
-        $(".inter_val2").removeClass('selected');
-        $(this).addClass('selected');
-        var drop_text = $(".inter_val2.selected").text();
-        $("#interface_val2").val(function () {
-            return this.value + ' ' + drop_text;
-        });
-        e.preventDefault();
-    });
-});
+// $(document).ready(function (event) {
+//     $('.inter_val2').click(function (e) {
+//         $(".inter_val2").removeClass('selected');
+//         $(this).addClass('selected');
+//         var drop_text = $(".inter_val2.selected").text();
+//         $("#interface_val2").val(function () {
+//             return this.value + ' ' + drop_text;
+//         });
+//         e.preventDefault();
+//     });
+// });
 
-$(document).ready(function (event) {
-    $('.inter_val3').click(function (e) {
-        $(".inter_val3").removeClass('selected');
-        $(this).addClass('selected');
-        var drop_text = $(".inter_val3.selected").text();
-        $("#interface_val3").val(function () {
-            return this.value + ' ' + drop_text;
+// $(document).ready(function (event) {
+//     $('.inter_val3').click(function (e) {
+//         $(".inter_val3").removeClass('selected');
+//         $(this).addClass('selected');
+//         var drop_text = $(".inter_val3.selected").text();
+//         $("#interface_val3").val(function () {
+//             return this.value + ' ' + drop_text;
 
-        });
-        e.preventDefault();
-    });
-});
+//         });
+//         e.preventDefault();
+//     });
+// });
 // Property Step Js End
+//sidebar active
 $(document).ready(function () {
     var parts = $(location).attr("href").split('/');
     var lastSegment = parts.pop() || parts.pop();  // handle potential trailing slash
@@ -68,6 +78,7 @@ $(document).ready(function () {
 });
 
 
+//cities slection
 $(document).ready(function () {
     $('#cities').hierarchySelect({
         hierarchy: false,
@@ -120,7 +131,7 @@ $(document).ready(function () {
 //     get_already_select_district(city_id, district_id);
 
 // }
-
+//distrcits slection
 function get_already_select_district(city_id, district_id = null) {
     var select_district = $('#please_select_district').text();
     var baseurl = $('#base_url').val();
@@ -206,7 +217,7 @@ function tooltip(btn, tool) {
 
 
 // for restarting the animation
-window.addEventListener("DOMContentLoaded",() => {
+window.addEventListener("DOMContentLoaded", () => {
     const replay = document.getElementById("replay");
     let resetTimeout = null;
     let btnTimeout = null;
@@ -236,7 +247,7 @@ window.addEventListener("DOMContentLoaded",() => {
         // hide the button at start
         tempHideBtn(replay);
 
-        replay.addEventListener("click",function() {
+        replay.addEventListener("click", function () {
             // kill the animations
             spinnerEls.forEach(e => {
                 e.style.animation = "none";
@@ -255,6 +266,111 @@ window.addEventListener("DOMContentLoaded",() => {
         });
     }
 });
+
+//ope map modal box
+$("#location").click(function () {
+    $("#map_modal").modal("show");
+    setTimeout(function () {
+        map.resize();
+    }, 500);
+})
+
+
+
+    //save coordinates
+$("#save_coordinates").click(function() {
+    $('#location').val('');
+    var coordinates = $('.mapboxgl-ctrl-geocoder--input').val();
+    $('#location').val(coordinates);
+    $("#map_modal").modal("hide");
+})
+   
+/// ******* ADress Add Driver ******//
+// var isGoogleAPIEnable = 1;
+// var googleURL = 'https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyD8jBzTek9k4TI77XXdBaE9_-FDT0lNFaY&callback=CreateMapAD';
+// var locationpickerURL = "/assets/js/locationpicker.jquery.min.js";
+// var latLong = {
+//     latitude: 24.774265,
+//     longitude: 46.738586
+// };
+
+// function CreateMapAD() {
+//     if (isGoogleAPIEnable == 1) {
+//         $('#GoogleMap').locationpicker({
+//             location: latLong,
+//             zoom: 10,
+//             radius: 0,
+//             inputBinding: {
+//                 streetName: $('#hdnStreet'),
+//                 city: $('#hdnCity'),
+//                 zipcode: $('#hdnZipCode'),
+//                 district: $('#hdnDistrict'),
+//                 buildingNo: $('#hdnBuldingNumber'),
+//                 locationNameInput: $('#us3-address'),
+//                 additionalNo: $('#hdnAdditionalNumber')
+//             },
+//             enableAutocomplete: true,
+//             componentsFilter: 'country:SA'
+//         });
+//     }
+// }
+
+// $('#us6-dialog').on('shown.bs.modal', function () {
+//     if (isGoogleAPIEnable == 1) {
+//         if ($('#GoogleMap').html() == '') {
+//             $.getScript(googleURL)
+//                 .done(function (script, textStatus) {
+//                     $.getScript(locationpickerURL)
+//                         .done(function (script, textStatus) {
+//                             CreateMapAD();
+//                             SetLocationAD();
+//                             $('#GoogleMap').locationpicker('autosize');
+//                         })
+//                 })
+//         }
+//     }
+// });
+
+// var isManualEdit = false;
+
+// function setNewAddress() {
+//     isManualEdit = false;
+//     var completeAddress = $('#hdnBuldingNumber').val()
+//         + ($('#hdnStreet').val() != "" && $('#hdnStreet').val() != "None" ? ((', ') + $('#hdnStreet').val()) : "")
+//         + ($('#hdnDistrict').val() != "" && $('#hdnDistrict').val() != "None" ? ((', ') + $('#hdnDistrict').val()) : "")
+//         + ($('#hdnZipCode').val() != "" && $('#hdnZipCode').val() != "None" ? (', ' + $('#hdnZipCode').val()) : "")
+//         + ($('#hdnAdditionalNumber').val() != "" && $('#hdnAdditionalNumber').val() != "None" ? (', ' + $('#hdnAdditionalNumber').val()) : "");
+
+//     // $('#DriverHomeAddressCity').val($('#hdnCity').val());
+//     $('#DriverHomeAddress').val(completeAddress);
+//     $('#us6-dialog').modal('hide');
+//     //alert(completeAddress);
+// }
+
+// function SetLocationAD() {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(function (p) {
+//             latLong = {
+//                 latitude: p.coords.latitude,
+//                 longitude: p.coords.longitude
+//             };
+
+//             CreateMapAD();
+//         }, function (error) {
+//             if (error.code == 1) {
+//                 $('#ErrorMessageLocation').show();
+//             }
+//         }, {
+//             enableHighAccuracy: true,
+//             timeout: 10000
+//         });
+//     }
+// }
+
+
+
+
+
 
 
 

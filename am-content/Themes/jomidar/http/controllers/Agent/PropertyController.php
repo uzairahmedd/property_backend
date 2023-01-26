@@ -1074,7 +1074,6 @@ class PropertyController extends controller
      */
     public function update_five_property(Request $request, $id)
     {
-    
         $term_id = decrypt($id);
         $category = [];
         foreach ($request->features ?? [] as $key => $value) {
