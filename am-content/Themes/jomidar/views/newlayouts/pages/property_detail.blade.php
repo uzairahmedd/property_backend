@@ -561,7 +561,7 @@
                 "circle-radius": 100,
                 // Color circles by ethnicity, using a `match` expression.
                 "circle-color": "#1da1f2",
-                "circle-stroke-color": "green",
+                "circle-stroke-color": "red",
                 "circle-opacity": 0.2,
                 "circle-stroke-opacity": 0.5,
                 "circle-stroke-width": 5
