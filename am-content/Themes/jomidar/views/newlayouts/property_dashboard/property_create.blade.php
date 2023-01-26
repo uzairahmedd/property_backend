@@ -185,15 +185,17 @@
     }
 
     marker.on('dragend', onDragEnd);
-
-
+   var  placeholder='Search location in KSA';
+   if(locale == 'ar'){
+    placeholder='موقع البحث في المملكة العربية السعودية';
+   }
 
     const geocoder = new MapboxGeocoder({
         // Initialize the geocoder
         accessToken: mapboxgl.accessToken, // Set the access token
         mapboxgl: mapboxgl, // Set the mapbox-gl instance
         marker: true, // Do not use the default marker style
-        placeholder: 'Search for places in KSA', // Placeholder text for the search bar
+        placeholder: placeholder, // Placeholder text for the search bar
         // bbox: [-122.30937, 37.84214, -122.23715, 37.89838], // Boundary for Berkeley
         // proximity: {
         //     longitude: 46.738586,

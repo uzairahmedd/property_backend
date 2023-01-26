@@ -261,6 +261,8 @@ return [
     'built_up_area' => 'مساحة البناء',
     //    'yes' => 'نعم',
     //    'no' => 'لا',
+    'save_changes' => 'احفظ التغييرات',
+    'close' => 'يغلق',
     'position_no' => 'عدد المواقف',
     'elevator_no' => 'عدد المصاعد',
     'boards' => 'مجالس',

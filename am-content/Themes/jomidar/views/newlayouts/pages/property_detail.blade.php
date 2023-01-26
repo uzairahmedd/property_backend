@@ -432,7 +432,7 @@
                 @endif
                 @isset($property->post_district->value)
                 <div class="theme-bg-secondary text-center mb-0 pb-0 position-relative mt-3">
-                    <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">اسم الحي</h3>
+                    <h3 class="font-medium font-24 theme-text-white pb-2 pt-1">{{__('labels.address_property')}}</h3>
                     <input type="hidden" id="map_coordinates" value="{{$property->post_district->value}}">
                     <div id="map"></div>
                     <!-- <iframe id="gmap_canvas" width="100%" height="400" src="https://maps.google.com/maps?q={{ $property->post_district->value }}%20&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe> -->

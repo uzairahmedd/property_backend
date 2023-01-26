@@ -105,6 +105,8 @@ return [
     'account_setting' => 'Account Setting',
     'log_out' => 'Log Out',
     'save' => 'Save',
+    'save_changes' => 'Save changes',
+    'close' => 'Close',
     'share' => 'Share',
     'reviews' => 'Reviews',
     'home' => 'Home',

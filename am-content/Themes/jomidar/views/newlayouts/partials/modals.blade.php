@@ -211,7 +211,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Add Location</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">{{__('labels.address_property')}}</h5>
                 <!-- <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button> -->
@@ -229,8 +229,8 @@
                 <!-- <div id="map"></div> -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" id="save_coordinates" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('labels.close')}}</button>
+                <button type="button" id="save_coordinates" class="btn btn-primary">{{__('labels.save_changes')}}</button>
             </div>
         </div>
     </div>
