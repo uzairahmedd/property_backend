@@ -80,7 +80,8 @@ ul li:focus-visible
 }
 
 .theme-bg-secondary {
-    background: var(--theme-secondary);
+    /* background: var(--theme-secondary); */
+    background: radial-gradient(102.59% 309.05% at 11.74% 193.12%, #CF57BB 0.07%, #292071 51.14%, #2894CF 100%);
 }
 
 .theme-red {
