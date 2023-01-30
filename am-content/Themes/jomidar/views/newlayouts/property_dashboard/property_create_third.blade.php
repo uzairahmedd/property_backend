@@ -151,7 +151,7 @@
                         </div>
                         <div class="radio-container radio-edit-third first_one radio-edit-third first_one">
                             <input type="radio" name="{{ $row->name }}" value="0" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 0 ? ""  : "checked" }}>
-                            <span class="checmark checkmark-step3 font-16 font-medium">غير متوفر</span>
+                            <span class="checmark checkmark-step3 font-16 font-medium">{{__('labels.no_avail')}}</span>
                         </div>
                     </div>
                     @endif
@@ -217,7 +217,7 @@
                         </div>
                         <div class="radio-container radio-edit-third first_one radio-edit-third first_one">
                             <input type="radio" name="{{ $row->name }}" value="0" {{ !empty($row->post_category_option)  && $row->post_category_option->value != 0 ? ""  : "checked" }}>
-                            <span class="checmark checkmark-step3 font-16 font-medium">غير متوفر</span>
+                            <span class="checmark checkmark-step3 font-16 font-medium">{{__('labels.no_avail')}}</span>
                         </div>
                     </div>
                     @endif

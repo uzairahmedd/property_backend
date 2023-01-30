@@ -87,7 +87,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column align-items-end video-link">
                     <label for="" class="font-18 theme-text-seondary-black">{{__('labels.video_link_optional')}}</label>
-                    <input type="text" value="{{ !empty( $info->virtual_tour) ? $info->virtual_tour->content  : old("virtual_tour") }}" name="virtual_tour" placeholder="{{__('labels.example')}} http://youtube.be/dkdsds" class="form-control theme-border">
+                    <input type="text" value="{{ !empty( $info->virtual_tour) ? $info->virtual_tour->content  : old("virtual_tour") }}" name="virtual_tour" placeholder="{{__('labels.example')}} http://example.com" class="form-control theme-border">
                 </div>
             </div>
             <div class="d-flex justify-content-between description-btn-group">

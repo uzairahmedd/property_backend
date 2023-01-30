@@ -333,14 +333,18 @@
                 <hr class="w-100">
                 <h1 class="font-24 theme-text-blue detail-heading mb-3 text-bold">{{__('labels.additional_info')}}</h1>
                 @foreach ($property->option_data as $options_data)
+                @if($options_data->value != 0 )
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right">
-                        <h3 class="font-16 text-bold">{{ $options_data->value == 0 ? 'غير متوفر' : $options_data->value}}</h3>
+                       
+                        <h3 class="font-16 text-bold">{{$options_data->value}}</h3>
+                       
                     </div>
                     <div class="col-6 detail-txt-left">
                         <span class="font-16 theme-text-seondary-black "> {{ Session::get('locale') == 'ar' ? $options_data->category->ar_name : $options_data->category->name}}</span>
                     </div>
                 </div>
+                @endif
                 @endforeach
                 @if(isset($property->property_condition))
                 <div class="row w-100 mb-3">
