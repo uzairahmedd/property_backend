@@ -221,6 +221,7 @@
                     <div class="popup-message form-box">
                         <div class="row clearfix">
                             <div class="col-sm-12">
+                                <input type="hidden" id="default_coordinates">
                                 <div id="map" ></div>
                             </div>
                         </div>

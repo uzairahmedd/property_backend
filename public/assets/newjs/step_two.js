@@ -88,7 +88,7 @@ function generate_input(n, interface_array = null, meter_array = null) {
             '                        <div class="col-lg-6 d-flex flex-column">\n' +
             '                            <label for="" class="d-flex justify-content-end theme-text-black">' + select_facing + '</label>\n' +
             '                            <select class="form-select form-control w-100 select-face" name="interface[]" aria-label="Default select example">\n' +
-            '                                <option value="" disabled selected>' + property_nature + '</option>\n' +
+            '                                <option value="" disabled selected>' + select_facing + '</option>\n' +
             '                                <option value="East" ' + check + '>' + east + '</option>\n' +
             '                                <option value="West" ' + West_check + '>' + west + '</option>\n' +
             '                                <option value="North" ' + North_check + '>' + north + '</option>\n' +

@@ -887,16 +887,24 @@ class PropertyController extends controller
             $keys_table->save();
         }
         $check_category = Category::where('type', 'category')->where('id', $request->category)->first();
-        //if land then skip third step for facilities
+        //if land and farm then skip third step for facilities
         if (!empty($check_category) && Str::contains($check_category->name, 'land')) {
+            $this->remove_input_page_data($term_id);
             return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
         }
         if (!empty($check_category) && Str::contains($check_category->name, 'Farm')) {
+            $this->remove_input_page_data($term_id);
             return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
         }
         return redirect()->route('agent.property.third_edit_property', encrypt($term_id));
     }
 
+    public function remove_input_page_data($term_id){
+        Postcategoryoption::where('type', 'options')->where('term_id', $term_id)->delete();
+        Meta::where('term_id', $term_id)->where('type', 'property_condition')->delete();
+        Meta::where('term_id', $term_id)->where('type', 'total_floors')->delete();
+        Meta::where('term_id', $term_id)->where('type', 'property_floor')->delete();
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -909,11 +917,13 @@ class PropertyController extends controller
         $array = [];
         $property_type = null;
         $info = Terms::with('postcategory', 'property_type', 'property_status_type', 'total_floors', 'property_floor', 'property_condition')->where('user_id', Auth::id())->findorFail($this->term_id);
-        //if land is property type
+        //if land and farm is property type
         if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'land')) {
+            $this->remove_input_page_data($this->term_id);
             return redirect()->route('agent.property.second_edit_property', $id);
         }
         if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'Farm')) {
+            $this->remove_input_page_data($this->term_id);
             return redirect()->route('agent.property.second_edit_property', $id);
         }
 

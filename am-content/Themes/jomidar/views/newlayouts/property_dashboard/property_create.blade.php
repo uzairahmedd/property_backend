@@ -239,6 +239,7 @@
                 })
                 .setLngLat(event.result.center)
                 .addTo(map)
+                $('.mapboxgl-ctrl-geocoder--input').val(event.result.center[0]+ ',' +event.result.center[1]);
 
             marker.on('dragend', function(e) {
                 var lngLat = e.target.getLngLat();

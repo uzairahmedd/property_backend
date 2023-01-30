@@ -148,7 +148,7 @@ return [
     'previous' => 'Previous',
     'street-info' => 'Street Info',
     'the_property_has'=>'The property has',
-    'water'=>'water',
+    'water'=>'has water',
     'no_water'=>'no water',
     'has_electric_water'=>'has electricity and water connections',
     'street_info'=>'Streets info',

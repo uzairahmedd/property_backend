@@ -196,7 +196,7 @@ return [
     'district' => 'الحي',
     'select_facing' => 'تحديد الواجهة',
     'area_in_square_m'=>'المساحة بالمتر المربع',
-    'water'=>'ماء',
+    'water'=>'به ماء',
     'select_the_city'=>'اختر المدينة',
     'please_select_district' => 'الرجاء تحديد الحي',
     'property_description_preview' => 'عنوان الملكية ووصفها معاينة',
