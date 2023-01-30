@@ -95,11 +95,11 @@
                     <span class="theme-text-sky ">5</span>/
                     <span class="theme-text-seondary-black">6</span>
                 </div>
-                @if(!empty($info->property_type) && !str_contains('$info->property_type->category->name', 'land'))
+                @if(!empty($info->property_type) && $info->property_type->category->faatures_section == '1')
                 <p class="mb-0 font-18 theme-text-seondary-black p-2">{{__('labels.determine_the_features')}}</p>
                 <p class="mb-3 font-14 theme-text-grey ps-2">{{__('labels.choose_more_than_one')}}</p>
                 <div class="row theme-gx-2 theme-gy-36 justify-content-end p-2" id="tick_div">
-                    @foreach(App\Category::where('type','feature')->get() as $row)
+                    @foreach($categories_data as $row)
                     <checkbox-section class="div-check checkbox-div">
                             <input class="tick-check" name="features[]" id='id_{{$row->name}}' type='checkbox' value="{{ $row->id }}" @if(in_array($row->id, $features_array)) checked @endif />
                             <label for='id_{{$row->name}}'>
@@ -146,7 +146,9 @@
                 @endif
 
                 <p class="pb-0 mb-0">{{ Session::get('locale') == 'ar' && !empty($info->property_type) ? $info->property_type->category->ar_name : $info->property_type->category->name}} {{__('labels.has')}} <span>{{ $info->electricity_facility->content == 0 ? __("labels.electricity") : __("labels.no_electricity") }}</span> {{__('labels.and')}} <span>{{ $info->water_facility->content == 0 ? __("labels.water") : __("labels.no_water") }}</span> {{__('labels.connections')}}</p>
+                @if(!empty($info->property_age))
                 <p class="pb-0 mb-0"> <span>{{!empty($info->property_age) ? $info->property_age->content : 'N/A'}}</span> :{{__("labels.building_year")}}</p>
+                @endif
                 <p class="pb-0 mb-0">{{__('labels.price')}}: <span>{{$info->price->price}} {{__('labels.sar')}}</span></p>
             </div>
             <div class="d-flex justify-content-between description-btn-group">

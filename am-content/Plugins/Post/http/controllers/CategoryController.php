@@ -91,7 +91,6 @@ class CategoryController extends Controller
    */
   public function store(Request $request)
   {
-   
     $validatedData = $request->validate([
       'name' => 'required|max:100',
       'ar_name' => 'required|max:100',
@@ -106,6 +105,8 @@ class CategoryController extends Controller
     $post->user_id = Auth::id();
     $post->land_area=!isset($request->land_area) ? 0 :$request->land_area;
     $post->buildup_area=!isset($request->buildup_area) ? 0 :$request->buildup_area;
+    $post->property_age=!isset($request->property_age) ? 0 :$request->property_age;
+    $post->faatures_section=!isset($request->faatures_section) ? 0 :$request->faatures_section;
     $post->featured = $request->featured;
     $post->save();
 
@@ -234,6 +235,8 @@ class CategoryController extends Controller
     $post->featured = $request->featured;
     $post->land_area=!isset($request->land_area) ? 0 :$request->land_area;
     $post->buildup_area=!isset($request->buildup_area) ? 0 :$request->buildup_area;
+    $post->property_age=!isset($request->property_age) ? 0 :$request->property_age;
+    $post->faatures_section=!isset($request->faatures_section) ? 0 :$request->faatures_section;
     $post->save();
 
     $meta = Categorymeta::where('type', 'icon')->where('category_id', $id)->first();

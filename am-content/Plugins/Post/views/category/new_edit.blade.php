@@ -44,12 +44,22 @@
                     </div>
                     <div class="row">
                         <div class="col-6 item form-group">
-                            <input type="checkbox" name="land_area" value="1"  @if($info->land_area==1) checked @endif id="land_area">
+                            <input type="checkbox" name="land_area" value="1" @if($info->land_area==1) checked @endif id="land_area">
                             <label for="land_area">land area</label>
                         </div>
                         <div class="col-6 item form-group">
                             <input type="checkbox" name="buildup_area" value="1" @if($info->buildup_area==1) checked @endif id="buildup_area">
                             <label for="buildup_area">Build-up area</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 item form-group">
+                            <input type="checkbox" name="property_age" value="1" @if($info->property_age==1) checked @endif id="property_age">
+                            <label for="land_area">Property age</label>
+                        </div>
+                        <div class="col-6 item form-group">
+                            <input type="checkbox" name="faatures_section" value="1" @if($info->faatures_section==1) checked @endif id="faatures_section">
+                            <label for="land_area">Faatures section</label>
                         </div>
                     </div>
             </div>
