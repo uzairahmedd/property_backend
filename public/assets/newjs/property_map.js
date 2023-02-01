@@ -8,93 +8,214 @@ if ($('#coordinates_selected').val() != '') {
     map_initialiaze();
 }
 //for display
-$('#map_modal').on('hidden.bs.modal', function(e) {
+$('#map_modal').on('hidden.bs.modal', function (e) {
     map_initialiaze();
 })
 
-$("#save_coordinates").click(function() {
+$("#save_coordinates").click(function () {
     $('#location').val('');
     var coordinates = $('.mapboxgl-ctrl-geocoder--input').val();
     $('#location').val(coordinates);
     $("#map_modal").modal("hide");
 })
 
-$("#location").click(function() {
+//when user click on location inout filed
+$("#location").click(function () {
+    var city = $('#city_val').val();
+    var district = $('#district_val').val();
+    if (city == '') {
+        Sweet('error', 'Please provide city!');
+        return false;
+    }
+    if (district == '') {
+        Sweet('error', 'Please provide district!');
+        return false;
+    }
     $("#map_modal").modal("show");
-    const map = new mapboxgl.Map({
-        container: 'map', // Container ID
-        style: 'mapbox://styles/mapbox/streets-v12', // Map style to use
-        center: [46.738586, 24.774265], // Starting position [lng, lat]
-        zoom: 12 // Starting zoom level
+    //get city and dostrict
+    var city = $('#city_anchor li').find(".active").data('name');
+    var district = $('#district_inner li').find(".active").data('name');
+
+    const mapboxClient = mapboxSdk({
+        accessToken: mapboxgl.accessToken
     });
-    const marker = new mapboxgl.Marker({
-            draggable: true,
-        }) // Initialize a new marker
-        .setLngLat([46.738586, 24.774265]) // Marker [lng, lat] coordinates
-        .addTo(map); // Add the marker to the map
-    function onDragEnd() {
-        const lngLat = marker.getLngLat();
-        $('.mapboxgl-ctrl-geocoder--input').val('');
-        $('#coordinates_selected').val('');
-        $('#coordinates_selected').val(lngLat['lng'] + ',' + lngLat['lat']);
-        $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
-    }
-    marker.on('dragend', onDragEnd);
-    var placeholder = 'Search location in KSA';
-    if (locale == 'ar') {
-        placeholder = 'موقع البحث في المملكة العربية السعودية';
-    }
-    const geocoder = new MapboxGeocoder({
-        // Initialize the geocoder
-        accessToken: mapboxgl.accessToken, // Set the access token
-        mapboxgl: mapboxgl, // Set the mapbox-gl instance
-        marker: true, // Do not use the default marker style
-        placeholder: placeholder, // Placeholder text for the search bar
-    });
-    // Add the geocoder to the map
-    map.addControl(geocoder);
-    // After the map style has loaded on the page,
-    // add a source layer and default styling for a single point
-    map.on('load', () => {
-        map.resize();
-        map.addSource('single-point', {
-            'type': 'geojson',
-            'data': {
-                'type': 'FeatureCollection',
-                'features': []
+
+    mapboxClient.geocoding
+        .forwardGeocode({
+            query: district + ', ' + city,
+            autocomplete: false,
+            limit: 1
+        })
+        .send()
+        .then((response) => {
+            if (
+                !response ||
+                !response.body ||
+                !response.body.features ||
+                !response.body.features.length
+            ) {
+                console.error('Invalid response:');
+                console.error(response);
+                return;
             }
-        });
-        map.addLayer({
-            'id': 'point',
-            'source': 'single-point',
-            'type': 'circle',
-            'paint': {
-                'circle-radius': 10,
-                'circle-color': '#1da1f2'
+            const feature = response.body.features[0];
+
+            const map = new mapboxgl.Map({
+                container: 'map',
+                // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+                style: 'mapbox://styles/mapbox/streets-v12',
+                center: feature.center,
+                zoom: 10
+            });
+            // console.log(feature.center);
+            // Create a marker and add it to the map.
+            new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+            var placeholder = 'Search location in KSA';
+            if (locale == 'ar') {
+                placeholder = 'موقع البحث في المملكة العربية السعودية';
             }
-        });
-        // Listen for the `result` event from the Geocoder // `result` event is triggered when a user makes a selection
-        //  Add a marker at the result's coordinates
-        geocoder.on('result', (event) => {
-            map.getSource('single-point').setData(event.result.geometry);
-            var marker = new mapboxgl.Marker({
-                    draggable: true,
-                    color: "#1da1f2"
-                })
-                .setLngLat(event.result.center)
-                .addTo(map)
-            $('.mapboxgl-ctrl-geocoder--input').val(event.result.center[0] + ',' + event.result.center[1]);
-            $('#coordinates_selected').val('');
-            $('#coordinates_selected').val(event.result.center[0] + ',' + event.result.center[1]);
-            marker.on('dragend', function(e) {
-                var lngLat = e.target.getLngLat();
+
+            const geocoder = new MapboxGeocoder({
+                // Initialize the geocoder
+                accessToken: mapboxgl.accessToken, // Set the access token
+                mapboxgl: mapboxgl, // Set the mapbox-gl instance
+                marker: true, // Do not use the default marker style
+                placeholder: placeholder, // Placeholder text for the search bar
+            });
+            // Add the geocoder to the map
+            map.addControl(geocoder);
+            // After the map style has loaded on the page,
+            // add a source layer and default styling for a single point
+            map.on('load', () => {
+                map.resize();
+                map.addSource('single-point', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'FeatureCollection',
+                        'features': []
+                    }
+                });
+                map.addLayer({
+                    'id': 'point',
+                    'source': 'single-point',
+                    'type': 'circle',
+                    'paint': {
+                        'circle-radius': 10,
+                        'circle-color': '#1da1f2'
+                    }
+                });
+            });
+
+            const marker = new mapboxgl.Marker({
+                draggable: true,
+            }) // Initialize a new marker
+                .setLngLat(feature.center) // Marker [lng, lat] coordinates
+                .addTo(map); // Add the marker to the map
+            function onDragEnd() {
+                const lngLat = marker.getLngLat();
                 $('.mapboxgl-ctrl-geocoder--input').val('');
                 $('#coordinates_selected').val('');
                 $('#coordinates_selected').val(lngLat['lng'] + ',' + lngLat['lat']);
                 $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
-            })
+            }
+            marker.on('dragend', onDragEnd);
+
+            geocoder.on('result', (event) => {
+                map.getSource('single-point').setData(event.result.geometry);
+                var marker = new mapboxgl.Marker({
+                    draggable: true,
+                    color: "#1da1f2"
+                })
+                    .setLngLat(event.result.center)
+                    .addTo(map)
+                $('.mapboxgl-ctrl-geocoder--input').val(event.result.center[0] + ',' + event.result.center[1]);
+                $('#coordinates_selected').val('');
+                $('#coordinates_selected').val(event.result.center[0] + ',' + event.result.center[1]);
+                marker.on('dragend', function (e) {
+                    var lngLat = e.target.getLngLat();
+                    $('.mapboxgl-ctrl-geocoder--input').val('');
+                    $('#coordinates_selected').val('');
+                    $('#coordinates_selected').val(lngLat['lng'] + ',' + lngLat['lat']);
+                    $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
+                })
+            });
+
+
+            // const map = new mapboxgl.Map({
+            //     container: 'map', // Container ID
+            //     style: 'mapbox://styles/mapbox/streets-v12', // Map style to use
+            //     center: [46.738586, 24.774265], // Starting position [lng, lat]
+            //     zoom: 12 // Starting zoom level
+            // });
+            // const marker = new mapboxgl.Marker({
+            //     draggable: true,
+            // }) // Initialize a new marker
+            //     .setLngLat([46.738586, 24.774265]) // Marker [lng, lat] coordinates
+            //     .addTo(map); // Add the marker to the map
+            // function onDragEnd() {
+            //     const lngLat = marker.getLngLat();
+            //     $('.mapboxgl-ctrl-geocoder--input').val('');
+            //     $('#coordinates_selected').val('');
+            //     $('#coordinates_selected').val(lngLat['lng'] + ',' + lngLat['lat']);
+            //     $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
+            // }
+            // marker.on('dragend', onDragEnd);
+
+            // var placeholder = 'Search location in KSA';
+            // if (locale == 'ar') {
+            //     placeholder = 'موقع البحث في المملكة العربية السعودية';
+            // }
+            // const geocoder = new MapboxGeocoder({
+            //     // Initialize the geocoder
+            //     accessToken: mapboxgl.accessToken, // Set the access token
+            //     mapboxgl: mapboxgl, // Set the mapbox-gl instance
+            //     marker: true, // Do not use the default marker style
+            //     placeholder: placeholder, // Placeholder text for the search bar
+            // });
+            // // Add the geocoder to the map
+            // map.addControl(geocoder);
+            // // After the map style has loaded on the page,
+            // // add a source layer and default styling for a single point
+            // map.on('load', () => {
+            //     map.resize();
+            //     map.addSource('single-point', {
+            //         'type': 'geojson',
+            //         'data': {
+            //             'type': 'FeatureCollection',
+            //             'features': []
+            //         }
+            //     });
+            //     map.addLayer({
+            //         'id': 'point',
+            //         'source': 'single-point',
+            //         'type': 'circle',
+            //         'paint': {
+            //             'circle-radius': 10,
+            //             'circle-color': '#1da1f2'
+            //         }
+            //     });
+            // Listen for the `result` event from the Geocoder // `result` event is triggered when a user makes a selection
+            //  Add a marker at the result's coordinates
+            // geocoder.on('result', (event) => {
+            //     map.getSource('single-point').setData(event.result.geometry);
+            //     var marker = new mapboxgl.Marker({
+            //         draggable: true,
+            //         color: "#1da1f2"
+            //     })
+            //         .setLngLat(event.result.center)
+            //         .addTo(map)
+            //     $('.mapboxgl-ctrl-geocoder--input').val(event.result.center[0] + ',' + event.result.center[1]);
+            //     $('#coordinates_selected').val('');
+            //     $('#coordinates_selected').val(event.result.center[0] + ',' + event.result.center[1]);
+            //     marker.on('dragend', function (e) {
+            //         var lngLat = e.target.getLngLat();
+            //         $('.mapboxgl-ctrl-geocoder--input').val('');
+            //         $('#coordinates_selected').val('');
+            //         $('#coordinates_selected').val(lngLat['lng'] + ',' + lngLat['lat']);
+            //         $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
+            //     })
+            // });
         });
-    });
 });
 
 function map_initialiaze() {
@@ -113,8 +234,8 @@ function map_initialiaze() {
         });
 
         const marker = new mapboxgl.Marker({
-                draggable: true,
-            }) // Initialize a new marker
+            draggable: true,
+        }) // Initialize a new marker
             .setLngLat([array[0], array[1]]) // Marker [lng, lat] coordinates
             .addTo(map); // Add the marker to the map
 
