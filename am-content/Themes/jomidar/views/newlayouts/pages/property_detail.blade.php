@@ -203,10 +203,12 @@
                             {{__('labels.and')}} <span>{{ !empty($property->water_facility) && $property->water_facility->content == 0 ? __('labels.water') : __('labels.no_water') }}</span>
                             {{__('labels.connections')}}
                         </p>
+                        @if(!empty($property->property_age))
                         <p class="mb-1">{{__('labels.building_year')}}:
                             <span>{{!empty($property->property_age) ? $property->property_age->content : 'N/A'}}</span>
                         </p>
-                        @if (isset($features))
+                        @endif
+                        @if (!empty($features))
                         <p class="mb-1 text-bold">{{__('labels.property_amenities')}}</p>
                         <ul class="list-unstyled text-decoration-none properties-of-amineties mb-1">
                             @foreach ($features as $facility)
@@ -333,14 +335,18 @@
                 <hr class="w-100">
                 <h1 class="font-24 theme-text-blue detail-heading mb-3 text-bold">{{__('labels.additional_info')}}</h1>
                 @foreach ($property->option_data as $options_data)
+                @if($options_data->value != 0 )
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right">
-                        <h3 class="font-16 text-bold">{{ $options_data->value == 0 ? 'غير متوفر' : $options_data->value}}</h3>
+
+                        <h3 class="font-16 text-bold">{{$options_data->value}}</h3>
+
                     </div>
                     <div class="col-6 detail-txt-left">
                         <span class="font-16 theme-text-seondary-black "> {{ Session::get('locale') == 'ar' ? $options_data->category->ar_name : $options_data->category->name}}</span>
                     </div>
                 </div>
+                @endif
                 @endforeach
                 @if(isset($property->property_condition))
                 <div class="row w-100 mb-3">
@@ -416,18 +422,15 @@
 
                 @endif
                 <hr class="w-100">
+                @if (!empty($features))
                 <h1 class="font-24 theme-text-blue mb-3 mt-2 detail-heading text-bold">{{__('labels.property_features')}}</h1>
                 <div class="tags d-flex flex-wrap justify-content-end prop-feature">
-                    @if (isset($features))
+
                     @foreach ($features as $facility)
                     <div class="tag d-flex justify-content-center align-items-center mb-2">
                         <h3 class="font-16 font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ?  $facility->ar_name : $facility->name}}</h3>
                     </div>
                     @endforeach
-                </div>
-                @else
-                <div class="col-6 text-start detail-txt-right">
-                    <h3 class="font-16 font-medium text-right theme-text-blue">No data avaialable</h3>
                 </div>
                 @endif
                 @isset($property->post_district->value)
@@ -520,6 +523,11 @@
     var coordinates = $('#map_coordinates').val();
     var array = coordinates.split(',');
     mapboxgl.accessToken = 'pk.eyJ1IjoicmFrYW5vbmxpbmUiLCJhIjoiY2xjeGpsMmdxMG05ajN2cXJocm5mazV3diJ9.puFe2Kj4KfE5v9Ky20ohYg';
+    mapboxgl.setRTLTextPlugin(
+        'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js',
+        null,
+        true // Lazy load the plugin
+    );
     const map = new mapboxgl.Map({
         container: 'map', // Container ID
         style: 'mapbox://styles/mapbox/streets-v12', // Map style to use

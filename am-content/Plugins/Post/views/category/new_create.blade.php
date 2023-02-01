@@ -42,6 +42,16 @@
               <label for="buildup_area">Build-up area</label>
             </div>
           </div>
+          <div class="row">
+            <div class="col-6 item form-group">
+              <input type="checkbox" name="property_age" value="1" id="property_age">
+              <label for="buildup_area">Property age</label>
+            </div>
+            <div class="col-6 item form-group">
+              <input type="checkbox" name="faatures_section" value="1" id="faatures_section">
+              <label for="buildup_area">Faatures section</label>
+            </div>
+          </div>
       </div>
     </div>
   </div>

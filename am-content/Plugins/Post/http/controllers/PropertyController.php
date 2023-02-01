@@ -408,39 +408,44 @@ class PropertyController extends controller
 
         if ($request->src && ($request->type == 'email')) {
             $this->email = $request->src;
-            $posts = Terms::where('type', 'property')->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
+            $posts = Terms::where('type', 'property')->where('resource',0)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
                 ->whereHas('user', function ($q) {
                     return $q->where('email', $this->email);
                 })->latest()->paginate(25);
         } elseif ($request->src && ($request->type == 'name')) {
             $this->name = $request->src;
-            $posts = Terms::where('type', 'property')->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
+            $posts = Terms::where('type', 'property')->where('resource',0)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
                 ->whereHas('user', function ($q) {
                     return $q->where('name', $this->name);
                 })->latest()->paginate(25);
         } else {
-            $posts = Terms::where('type', 'property')->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')->latest()->paginate(25);
+            $posts = Terms::where('type', 'property')->where('resource',0)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')->latest()->paginate(25);
         }
-        $totals = Terms::where('type', 'property')->count();
+        $totals = Terms::where('type', 'property')->where('resource',0)->count();
         $actives = Terms::where([
             ['type', 'property'],
             ['status', 1],
+            ['resource', 0],
         ])->count();
         $incomplete = Terms::where([
             ['type', 'property'],
             ['status', 2],
+            ['resource', 0],
         ])->count();
         $trash = Terms::where([
             ['type', 'property'],
             ['status', 0],
+            ['resource', 0],
         ])->count();
         $pendings = Terms::where([
             ['type', 'property'],
             ['status', 3],
+            ['resource', 0],
         ])->count();
         $rejected = Terms::where([
             ['type', 'property'],
             ['status', 4],
+            ['resource', 0],
         ])->count();
         return view('plugin::properties.csv_page', compact('type', 'posts', 'totals', 'pendings', 'actives', 'incomplete', 'trash', 'pendings', 'request', 'rejected'));
     }
@@ -458,39 +463,44 @@ class PropertyController extends controller
 
         if ($request->src && ($request->type == 'email')) {
             $this->email = $request->src;
-            $posts = Terms::where('type', 'property')->where('status', $id)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
+            $posts = Terms::where('type', 'property')->where('resource',0)->where('status', $id)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
                 ->whereHas('user', function ($q) {
                     return $q->where('email', $this->email);
                 })->latest()->paginate(25);
         } elseif ($request->src && ($request->type == 'name')) {
             $this->name = $request->src;
-            $posts = Terms::where('type', 'property')->where('status', $id)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
+            $posts = Terms::where('type', 'property')->where('resource',0)->where('status', $id)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
                 ->whereHas('user', function ($q) {
                     return $q->where('name', $this->name);
                 })->latest()->paginate(25);
         } else {
-            $posts = Terms::where('type', 'property')->where('status', $id)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')->latest()->paginate(25);
+            $posts = Terms::where('type', 'property')->where('resource',0)->where('status', $id)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')->latest()->paginate(25);
         }
-        $totals = Terms::where('type', 'property')->where('status', $id)->count();
+        $totals = Terms::where('type', 'property')->where('resource',0)->where('status', $id)->count();
         $actives = Terms::where([
             ['type', 'property'],
             ['status', 1],
+            ['resource', 0],
         ])->count();
         $incomplete = Terms::where([
             ['type', 'property'],
             ['status', 2],
+            ['resource', 0],
         ])->count();
         $trash = Terms::where([
             ['type', 'property'],
             ['status', 0],
+            ['resource', 0],
         ])->count();
         $pendings = Terms::where([
             ['type', 'property'],
             ['status', 3],
+            ['resource', 0],
         ])->count();
         $rejected = Terms::where([
             ['type', 'property'],
             ['status', 4],
+            ['resource', 0],
         ])->count();
         $type = $id;
         return view('plugin::properties.csv_page', compact('type', 'posts', 'totals', 'pendings', 'actives', 'incomplete', 'trash', 'pendings', 'request', 'rejected'));
@@ -505,7 +515,7 @@ class PropertyController extends controller
     //display modal box specif id data of property
     public function get_property_data($id)
     {
-        $posts = Terms::where('type', 'property')->where('id', $id)
+        $posts = Terms::where('type', 'property')->where('resource',0)->where('id', $id)
             ->with('rules', 'parentcategory', 'depth', 'length', 'property_age', 'meter', 'property_floor', 'post_new_city', 'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'option_data', 'property_status_type','property_type', 'postcategory', 'property_condition')
             ->first();
         $final_data = $this->property_data_making($posts);
@@ -532,8 +542,8 @@ class PropertyController extends controller
             'City_Name' => !empty($posts->post_new_city) ? $posts->post_new_city->city->name : 'N/A',
             'Neighbourhood_Name' => !empty($posts->post_district) ? $posts->post_district->district->name : 'N/A',
             'Street_Name' => 'N/A',
-            'Longitude' => 'N/A',
-            "Lattitude" => 'N/A',
+            'Longitude' => !empty($posts->post_district) && !empty($posts->post_district->value)  ? $this->get_coordinate($posts->post_district->value,0) : 'N/A',
+            "Lattitude" => !empty($posts->post_district) && !empty($posts->post_district->value)  ? $this->get_coordinate($posts->post_district->value,1) : 'N/A',
             'Furnished' => $this->get_property_condition($posts->property_condition),
             'Kitchen' => $this->get_features_type($posts, 'Kitchen'),
             'Air_Condition' => $this->get_features_type($posts, 'Air Conditioned'),
@@ -571,6 +581,10 @@ class PropertyController extends controller
         ];
     }
 
+    public function get_coordinate($coordinates,$key){
+         $data=explode(',',$coordinates);
+         return $data[$key];
+    }
     public function get_street_widths($posts)
     {
         if (!empty($posts->meter) && !empty($posts->meter->content)) {
@@ -771,6 +785,7 @@ class PropertyController extends controller
         $to = date($request->to_date);
         $fileName = $request->from_date . 'to' . $request->to_date . '.csv';
         $tasks = Terms::where('type', 'property')
+            ->where('resource',0)
             ->whereDate('created_at', '>=', $from)
             ->whereDate('created_at', '<=', $to)
             ->with('rules', 'parentcategory', 'depth', 'length', 'interface', 'property_age', 'meter', 'property_floor', 'post_new_city', 'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'option_data', 'property_status_type', 'postcategory','property_type', 'property_condition')

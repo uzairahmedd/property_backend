@@ -88,7 +88,7 @@ function generate_input(n, interface_array = null, meter_array = null) {
             '                        <div class="col-lg-6 d-flex flex-column">\n' +
             '                            <label for="" class="d-flex justify-content-end theme-text-black">' + select_facing + '</label>\n' +
             '                            <select class="form-select form-control w-100 select-face" name="interface[]" aria-label="Default select example">\n' +
-            '                                <option value="" disabled selected>' + property_nature + '</option>\n' +
+            '                                <option value="" disabled selected>' + select_facing + '</option>\n' +
             '                                <option value="East" ' + check + '>' + east + '</option>\n' +
             '                                <option value="West" ' + West_check + '>' + west + '</option>\n' +
             '                                <option value="North" ' + North_check + '>' + north + '</option>\n' +
@@ -129,6 +129,7 @@ if ($('.type_categpry').data('val') != '') {
 
 }
 
+
 //for by default
 function property_type_triger(elem) {
     var parent_cate = $(elem).val();
@@ -136,9 +137,19 @@ function property_type_triger(elem) {
 };
 
 function land_triger(elem) {
+    //for non property age inputs
+    $('input[name="ready"]').removeAttr("disabled", "disabled");
+    //end for non property age inputs
     var land_area = $(elem).data('landarea');
     var build_area = $(elem).data('build');
     var name = $(elem).data('name');
+    //for age of property
+    var age = $(elem).data("age");
+    if (age == '1') {
+        $('.built-up-year').removeClass('hide');
+    } else if(age == '0') {
+        $('.built-up-year').addClass('hide');
+    }
     land_built_area_new(name, land_area, build_area);
 };
 
@@ -148,7 +159,8 @@ function land_built_area_new(name = null, land_check, build_check, land_size_val
     var area_in_square_m = $('#area_in_square_m').text();
 
     var target_id = '#land_size';
-    if (name == 'land') {
+    if (name == 'land' || name == 'Farm') {
+        $('input[name="ready"]').attr("disabled", "disabled");
         $('#land_size').html('');
         target_id = '#built_up_area';
     }
@@ -156,7 +168,7 @@ function land_built_area_new(name = null, land_check, build_check, land_size_val
     if (build_check === 1) {
         $('#built_up_area').html('');
         $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
-            '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
+            '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border"><span class="error area_error"></span>');
 
     }
     else if (build_check == 0) {
@@ -166,7 +178,7 @@ function land_built_area_new(name = null, land_check, build_check, land_size_val
     if (land_check == 1) {
         $(target_id).html('');
         $(target_id).html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
-            '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
+            '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border"><span class="error land_error"></span>');
     }
     else if (land_check == 0) {
         $(target_id).html('');
@@ -196,7 +208,7 @@ function property_type(parent_cate, selected_cat = null) {
                     if (value_data.id == selected_cat && selected_cat != null) {
                         checked = 'checked';
                     }
-                    $('#property_type_radio').append('<div class="radio-container radio-edit-two property_radio"><input type="radio"  onclick="land_triger(this)" data-landarea="' + value_data.land_area + '"  data-build="' + value_data.buildup_area + '" name="category" ' + checked + ' data-name="' + value_data.name + '" value="' + value_data.id + '"><span class="checmark font-16 font-medium">' + name + '</span> </div>');
+                    $('#property_type_radio').append('<div class="radio-container radio-edit-two property_radio"><input type="radio" class="type_categpry"  onclick="land_triger(this)" data-age="' + value_data.property_age + '" data-landarea="' + value_data.land_area + '"  data-build="' + value_data.buildup_area + '" name="category" ' + checked + ' data-name="' + value_data.name + '" value="' + value_data.id + '"><span class="checmark font-16 font-medium">' + name + '</span> </div>');
                 });
             });
 
@@ -206,14 +218,23 @@ function property_type(parent_cate, selected_cat = null) {
             if ($('#built_area').val() != '') {
                 built_up_value = $('#built_area').val();
             }
+            //for land and built up area
             var build = $("input:radio[name=category]:checked").data('build');
             var land = $("input:radio[name=category]:checked").data('landarea');
             var name = $("input:radio[name=category]:checked").data('name');
             land_built_area_new(name, land, build, land_size_value, built_up_value);
+            //for property age by default on selection
+            var age = $("input:radio[name=category]:checked").data('age');
+            if (age == '1') {
+                $('.built-up-year').removeClass('hide');
+            } else if(age == '0') {
+                $('.built-up-year').addClass('hide');
+            }
 
         }
     });
 }
+
 
 
 $(document).ready(function () {
@@ -231,4 +252,34 @@ $(document).ready(function () {
     land_built_area_new(name, land, build, land_size_value, built_up_value);
     // }, 1500);
 
+});
+
+
+
+
+//form submit validations
+$("#second_form_btn").click(function () {
+    event.preventDefault();
+    if ($('#builtarea').val() == '') {
+        $('.area_error').text('Please provide built-up area');
+        setTimeout(function () {
+            $('.area_error').text('');
+        }, 5000);
+        return false;
+    }
+    if ($('#land_size_area').val() == '') {
+        $('.land_error').text('Please provide land area');
+        setTimeout(function () {
+            $('.land_error').text('');
+        }, 5000);
+        return false;
+    }
+    if ($('#yearpicker').val() == '' && $('input[name="ready"]:checked').val() == '1' && $('input[name="ready"]').prop('disabled') == false) {
+        $('.year_picker_error').text('Please provide Property year');
+        setTimeout(function () {
+            $('.year_picker_error').text('');
+        }, 5000);
+        return false;
+    }
+    $("#second_form").submit();
 });

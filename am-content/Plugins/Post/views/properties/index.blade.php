@@ -77,6 +77,7 @@
 							<th class="am-title"><i class="far fa-image"></i></th>
 							<th class="am-title">{{ __('Name') }}</th>
 							<th class="am-title">{{ __('Created By') }}</th>
+							<th class="am-title">{{ __('Resource') }}</th>
 							<th class="am-title">{{ __('Status') }}</th>
 							<th class="am-date">{{ __('Last Update') }}</th>
 						</tr>
@@ -97,6 +98,13 @@
 								</div>
 							</td>
 							<td><a href="{{ route('admin.users.edit',$row->user->id) }}">{{ $row->user->name }}</a></td>
+							<td>
+								@if($row->resource==1)
+								<span class="badge badge-success">App</span>
+								@else
+								<span class="badge badge-primary">Web</span>
+								@endif
+							</td>
 							<td>
 								@if($row->status==1)
 								<span class="badge badge-success">{{ __('Published') }}</span>
@@ -127,6 +135,7 @@
 							<th class="am-title"><i class="far fa-image"></i></th>
 							<th class="am-title">{{ __('Name') }}</th>
 							<th class="am-title">{{ __('Created By') }}</th>
+							<th class="am-title">{{ __('Resource') }}</th>
 							<th class="am-title">{{ __('Status') }}</th>
 							<th class="am-date">{{ __('Last Update') }}</th>
 						</tr>

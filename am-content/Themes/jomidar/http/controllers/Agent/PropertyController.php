@@ -618,15 +618,15 @@ class PropertyController extends controller
      */
     public function create_property($id = null)
     {
-        $cities=City::where('featured', 1)->get();
+        $cities = City::where('featured', 1)->get();
         //new design khiaratee
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
         //for edit
         $post_data = '';
         if (isset($id)) {
-            $post_data = Terms::with('district', 'property_status_type','saudi_post_city')->where('user_id', Auth::id())->findorFail($id);
+            $post_data = Terms::with('district', 'property_status_type', 'saudi_post_city')->where('user_id', Auth::id())->findorFail($id);
         }
-        return view('theme::newlayouts.property_dashboard.property_create', compact('cities','status_category', 'id', 'post_data'));
+        return view('theme::newlayouts.property_dashboard.property_create', compact('cities', 'status_category', 'id', 'post_data'));
     }
 
     /**
@@ -739,7 +739,7 @@ class PropertyController extends controller
         $parent_category = Category::where('type', 'parent_category')->get();
         $child_category =  Category::where('type', 'category')->where('featured', 1)->limit(8)->get();
         //for edit
-        $post_data = Terms::with('property_age', 'landarea', 'builtarea', 'interface', 'meter', 'ready', 'price', 'electricity_facility', 'water_facility', 'streets', 'postcategory','property_status_type')->where('user_id', Auth::id())->where('id', decrypt($id))->first();
+        $post_data = Terms::with('property_age', 'landarea', 'builtarea', 'interface', 'meter', 'ready', 'price', 'electricity_facility', 'water_facility', 'streets', 'postcategory', 'property_status_type')->where('user_id', Auth::id())->where('id', decrypt($id))->first();
         $array = [];
         $interface_array = [];
         foreach ($post_data->postcategory as $key => $value) {
@@ -750,7 +750,7 @@ class PropertyController extends controller
                 $array[$value->type] = $value->category_id;
             }
         }
-      
+
         return view('theme::newlayouts.property_dashboard.property_create_two', compact('id', 'parent_category', 'child_category', 'post_data', 'array'));
     }
 
@@ -772,14 +772,14 @@ class PropertyController extends controller
             'category' => 'required',
             'price' => 'required|numeric',
             'streets' => 'required',
-            'ready' => 'required',
+            // 'ready' => 'required',
         ], [
             'parent_category.required' => 'Please select property nature',
             'category.required' => 'Please select property type',
             'price.required' => 'Property price is required',
             'price.numeric' => 'Property price is only in digits',
             'streets.required' => 'Number of streets are required',
-            'ready.required' => 'Please provide property year',
+            // 'ready.required' => 'Please provide property year',
 
         ]);
     }
@@ -810,7 +810,7 @@ class PropertyController extends controller
             return back()->withErrors($message)->withInput();
         }
 
-        if ($request->ready == '1' && empty($request->property_age)) {
+        if (array_key_exists('ready', $request->all()) && $request->ready == '1' && empty($request->property_age)) {
             $message = ['property_age' => 'please provide property year'];
             return back()->withErrors($message)->withInput();
         }
@@ -820,10 +820,6 @@ class PropertyController extends controller
             $message = ['meter' => 'please provide all meter/interface details'];
             return back()->withErrors($message)->withInput();
         }
-       //del already exist area
-        Meta::where('term_id', $term_id)->where('type', 'landarea')->delete();
-        Meta::where('term_id', $term_id)->where('type', 'builtarea')->delete();
-
         //price store & update
         $price = Price::where('term_id', $term_id)->where('type', 'price')->first();
         if (empty($price)) {
@@ -865,11 +861,13 @@ class PropertyController extends controller
             }
             $property_age->content = $request->property_age;
             $property_age->save();
-        } elseif (!empty($property_age)) {
-            Meta::where('type', 'property_age')->where('term_id', $term_id)->delete();
+        } else {
+            Meta::where('term_id', $term_id)->where('type', 'property_age')->delete();
         }
 
-
+        //del already exist area
+        Meta::where('term_id', $term_id)->where('type', 'landarea')->delete();
+        Meta::where('term_id', $term_id)->where('type', 'builtarea')->delete();
         //street info ,slectricity and water flag store and update
         $interface = implode(',',  $request->interface);
         $meter = implode(',',  $request->meter);
@@ -889,13 +887,24 @@ class PropertyController extends controller
             $keys_table->save();
         }
         $check_category = Category::where('type', 'category')->where('id', $request->category)->first();
-        //if land then skip third step for facilities
+        //if land and farm then skip third step for facilities
         if (!empty($check_category) && Str::contains($check_category->name, 'land')) {
+            $this->remove_input_page_data($term_id);
+            return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
+        }
+        if (!empty($check_category) && Str::contains($check_category->name, 'Farm')) {
+            $this->remove_input_page_data($term_id);
             return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
         }
         return redirect()->route('agent.property.third_edit_property', encrypt($term_id));
     }
 
+    public function remove_input_page_data($term_id){
+        Postcategoryoption::where('type', 'options')->where('term_id', $term_id)->delete();
+        Meta::where('term_id', $term_id)->where('type', 'property_condition')->delete();
+        Meta::where('term_id', $term_id)->where('type', 'total_floors')->delete();
+        Meta::where('term_id', $term_id)->where('type', 'property_floor')->delete();
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -907,9 +916,14 @@ class PropertyController extends controller
         $this->term_id = decrypt($id);
         $array = [];
         $property_type = null;
-        $info = Terms::with('postcategory', 'property_type','property_status_type','total_floors', 'property_floor', 'property_condition')->where('user_id', Auth::id())->findorFail($this->term_id);
-        //if land is property type
+        $info = Terms::with('postcategory', 'property_type', 'property_status_type', 'total_floors', 'property_floor', 'property_condition')->where('user_id', Auth::id())->findorFail($this->term_id);
+        //if land and farm is property type
         if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'land')) {
+            $this->remove_input_page_data($this->term_id);
+            return redirect()->route('agent.property.second_edit_property', $id);
+        }
+        if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'Farm')) {
+            $this->remove_input_page_data($this->term_id);
             return redirect()->route('agent.property.second_edit_property', $id);
         }
 
@@ -926,7 +940,7 @@ class PropertyController extends controller
             return $q->where('term_id', $this->term_id);
         }])->get();
 
-        return view('theme::newlayouts.property_dashboard.property_create_third', compact('id', 'input_options','info'));
+        return view('theme::newlayouts.property_dashboard.property_create_third', compact('id', 'input_options', 'info'));
     }
 
 
@@ -1022,13 +1036,13 @@ class PropertyController extends controller
             return back()->withErrors($validator->errors())->withInput();
         }
         if ($request->hasfile('media'))
-        foreach ($request->file('media') as $image) {
-            $ext = $image->getClientOriginalExtension();
-            if($ext == 'jfif'){
-                return back()->withErrors(['error'=>'PLease provide jpg/png images'])->withInput();
+            foreach ($request->file('media') as $image) {
+                $ext = $image->getClientOriginalExtension();
+                if ($ext == 'jfif') {
+                    return back()->withErrors(['error' => 'PLease provide jpg/png images'])->withInput();
+                }
             }
-        }
-        
+
         $term_id = decrypt($id);
         //store and update virtual rour video
         $virtual_tour = Meta::where('term_id', $term_id)->where('type', 'virtual_tour')->first();
@@ -1056,13 +1070,13 @@ class PropertyController extends controller
     public function edit_five_property($id)
     {
         $term_id = decrypt($id);
-        $info = Terms::with('post_district','post_new_city','length','depth','property_type', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor',  'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility',  'property_status_type', 'postcategory', 'property_condition', 'option_data')->where('user_id', Auth::id())->findorFail($term_id);
-        $categories_data=Category::where('type','feature')->where('featured', 1)->get();
+        $info = Terms::with('post_district', 'post_new_city', 'length', 'depth', 'property_type', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor',  'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility',  'property_status_type', 'postcategory', 'property_condition', 'option_data')->where('user_id', Auth::id())->findorFail($term_id);
+        $categories_data = Category::where('type', 'feature')->where('featured', 1)->get();
         $features_array = [];
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
         }
-        return view('theme::newlayouts.property_dashboard.property_create_five', compact('id', 'features_array', 'info','categories_data'));
+        return view('theme::newlayouts.property_dashboard.property_create_five', compact('id', 'features_array', 'info', 'categories_data'));
     }
 
     /**
@@ -1088,7 +1102,7 @@ class PropertyController extends controller
         Postcategory::insert($category);
 
         //length and depth
-        $data=$request->all();
+        $data = $request->all();
         unset($data['_token'], $data['_method'], $data['features']);
         foreach ($data as $key => $value) {
             $keys_table = '';
@@ -1115,8 +1129,8 @@ class PropertyController extends controller
     {
         $term_id = decrypt($id);
         $post_data = Terms::with('rules', 'id_number', 'instrument_number')->where('user_id', Auth::id())->findorFail($term_id);
-        $user_id=UserCredentials::where('user_id', Auth::id())->first();
-        return view('theme::newlayouts.property_dashboard.property_create_six', compact('id', 'post_data','user_id'));
+        $user_id = UserCredentials::where('user_id', Auth::id())->first();
+        return view('theme::newlayouts.property_dashboard.property_create_six', compact('id', 'post_data', 'user_id'));
     }
 
     /**
@@ -1181,7 +1195,7 @@ class PropertyController extends controller
 
         if ($request->hasfile('media')) {
             foreach ($request->file('media') as $image) {
-              
+
                 $name = uniqid() . date('dmy') . time() . "." . $image->getClientOriginalExtension();
                 $ext = $image->getClientOriginalExtension();
 

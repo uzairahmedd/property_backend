@@ -25,6 +25,7 @@ class CreateTermsTable extends Migration
             $table->string('type')->default(0);
             $table->double('count')->default(0);
             $table->integer('featured')->default(0);
+            $table->integer('resource')->default(0);
             $table->timestamps();
             $table->foreign('user_id')
             ->references('id')->on('users')
