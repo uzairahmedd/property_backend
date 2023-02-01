@@ -960,3 +960,21 @@ h1{
 #cke_description, #cke_ar_description{
     width: 100%;
 }
+
+#location {
+    cursor: pointer;
+}
+
+#map {
+    position: absolute;
+    right: 6px;
+    top: 0;
+    width: 99%;
+    height: 100%;
+}
+#map_display {
+    position: absolute;
+    top: 0;
+    width: 99%;
+    height: 100%;
+}
