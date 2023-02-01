@@ -173,7 +173,7 @@ class RegisterController extends controller
                 $response['time'] = 0;
             }
             $response['otp'] = $otp;
-            return $response;
+            return success_response($response, 'OTP sent successfully');
         } else {
             return error_response([], "User doesn't exist");
         }
