@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/list', [PropertyController::class, 'store']);
 });
 
+Route::get('/categories', [PropertyController::class, 'categories']);
 Route::get('/listings', [PropertyController::class, 'listings']);
 Route::get('/listing/{slug}', [PropertyController::class, 'listing']);
 Route::post('/send_otp', [RegisterController::class, 'send_otp']);
