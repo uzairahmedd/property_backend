@@ -81,6 +81,7 @@ class PropertyController extends controller
 
         $term = new Terms;
         $term->title = $request->title;
+        $term->resource = 1;
         $term->slug = $slug;
         $term->user_id = $user->id;
         $term->status = 3;
