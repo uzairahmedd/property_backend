@@ -128,8 +128,8 @@ $("#location").click(function () {
                     color: "#1da1f2"
                 })
                     .setLngLat(event.result.center)
-                    .addTo(map)
-                $('.mapboxgl-ctrl-geocoder--input').val(event.result.center[0] + ',' + event.result.center[1]);
+                    .addTo(map)   
+                // $('.mapboxgl-ctrl-geocoder--input').val(event.result.center[0] + ',' + event.result.center[1]);
                 $('#coordinates_selected').val('');
                 $('#coordinates_selected').val(event.result.center[0] + ',' + event.result.center[1]);
                 marker.on('dragend', function (e) {
@@ -137,7 +137,8 @@ $("#location").click(function () {
                     $('.mapboxgl-ctrl-geocoder--input').val('');
                     $('#coordinates_selected').val('');
                     $('#coordinates_selected').val(lngLat['lng'] + ',' + lngLat['lat']);
-                    $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
+                    $('.mapboxgl-ctrl-geocoder--input').val(event.result.place_name);
+                    // $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
                 })
             });
         });
