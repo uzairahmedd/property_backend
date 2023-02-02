@@ -1,18 +1,5 @@
 @extends('theme::newlayouts.app')
 @section('content')
-<style>
-    #location {
-        cursor: pointer;
-    }
-
-    #map {
-        position: absolute;
-        right: 6px;
-        top: 0;
-        width: 99%;
-        height: 100%;
-    }
-</style>
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/property_step.css')}}">
 <link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/create-property.css')}}">
 <script>
@@ -60,96 +47,108 @@
                             @endif
                         </div>
                     </div>
-
-                    <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
-                        <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop prop-title-en">
-                            <div>
-                                <button onclick="return false" class="fa fa-question-circle mt-1 tooltip_btn" type="btn" style="font-size: 1rem;" aria-hidden="true">
-                                    <span>{{__('labels.tooltip_google')}}</span>
-                                </button>
-                                <label for="english_title" class="theme-text-seondary-black">{{__('labels.property_title_en')}}</label>
+                    <div class="col-12 d-flex justify-content-end mt-n3 pb-1 font-medium">
+                        <div class="col-4 flex-lg-row justify-content-evenly">
+                            <div class="text-center mb-0 pb-0 position-relative mt-3" style="height: 180px;">
+                                <input type="hidden" id="coordinates_selected" value="{{!empty( $post_data->district) ? $post_data->district->value : ''}}">
+                                <div id="map_display"></div>
                             </div>
-                            <div class="position-relative d-flex justify-content-end align-items-center w-100">
-                                <input type="text" value="{{ $post_data != '' ? $post_data->title : old('title')}}" name="title" id="english_title" placeholder="{{__('labels.property_title_en')}}" class="form-control theme-border">
-                            </div>
-                            @if($errors->has('title'))
-                            <div class="error pt-1">{{ $errors->first('title') }}</div>
-                            @endif
                         </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address ps-0 pt-sm-0 prop-title-ar">
-                            <div>
-                                <button onclick="return false" class="fa fa-question-circle mt-1 tooltip_btn" type="btn" style="font-size: 1rem;" aria-hidden="true">
-                                    <span>{{__('labels.tooltip_google')}}</span>
-                                </button>
-                                <label for="ar_title" class="theme-text-seondary-black property_title_ar">{{__('labels.property_title_ar')}}</label>
-                            </div>
-
-                            <div class="position-relative d-flex justify-content-end align-items-center w-100">
-                                <input type="text" value="{{ $post_data != '' ? $post_data->ar_title : old('ar_title')}}" name="ar_title" id="ar_title" placeholder="{{__('labels.property_title_ar')}}" class="form-control theme-border property_title_ar">
-                            </div>
-                            @if($errors->has('ar_title'))
-                            <div class="error pt-1">{{ $errors->first('ar_title') }}</div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
-                        <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address">
-                            <label for="location" class="theme-text-seondary-black">{{__('labels.address_property')}}
-                            </label>
-                            <div class="position-relative d-flex justify-content-end align-items-center w-100">
-                                <input type="text" autocomplete="off" name="location" value="{{ $post_data != '' ? $post_data->district->value  : old('location') }}" id="location" placeholder="{{__('labels.address_property')}}" class="form-control theme-border">
-                                <img src="{{asset('assets/images/location.png')}}" alt="" class="position-absolute input-icon">
-                            </div>
-                            @if($errors->has('location'))
-                            <div class="error pt-1">{{ $errors->first('location') }}</div>
-                            @endif
-                        </div>
-                        <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop">
-                            <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>
-                            <label for="district" class="theme-text-seondary-black">{{__('labels.district')}}</label>
-                            <div class="position-relative d-flex justify-content-end align-items-center w-100">
-                                <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
-                                <div class="dropdown hierarchy-select" id="districts">
-                                    <button type="button" class="dropdown-toggle form-control cities-form-control" id="districts_dropdown-button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                                    <ul class="dropdown-menu" aria-labelledby="districts_dropdown-button">
-                                        <div class="hs-searchbox">
-                                            <input id="placeholder_box_district" type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.search_district')}}">
-                                        </div>
-                                        <div class="hs-menu-inner" id="district_inner">
-                                        </div>
-                                    </ul>
-                                    <input type="hidden" id="district_val" name="district" readonly="readonly" aria-hidden="true" type="text" value="{{$post_data != '' ?  $post_data->district->district_id : old('district')}}" />
+                        <div class="col-8  flex-lg-row justify-content-evenly">
+                            <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
+                                <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop prop-title-en">
+                                    <div>
+                                        <button onclick="return false" class="fa fa-question-circle mt-1 tooltip_btn" type="btn" style="font-size: 1rem;" aria-hidden="true">
+                                            <span>{{__('labels.tooltip_google')}}</span>
+                                        </button>
+                                        <label for="english_title" class="theme-text-seondary-black">{{__('labels.property_title_en')}}</label>
+                                    </div>
+                                    <div class="position-relative d-flex justify-content-end align-items-center w-100">
+                                        <input type="text" value="{{ $post_data != '' ? $post_data->title : old('title')}}" name="title" id="english_title" placeholder="{{__('labels.property_title_en')}}" class="form-control theme-border">
+                                    </div>
+                                    @if($errors->has('title'))
+                                    <div class="error pt-1">{{ $errors->first('title') }}</div>
+                                    @endif
                                 </div>
-                                <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>
-                            </div>
-                            @if($errors->has('district'))
-                            <div class="error pt-1">{{ $errors->first('district') }}</div>
-                            @endif
-                        </div>
-                        <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end">
-                            <label for="cities" class="theme-text-seondary-black">{{__('labels.city')}}</label>
-                            <div class="position-relative d-flex justify-content-end align-items-center w-100">
-                                <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
-                                <div class="dropdown hierarchy-select" id="cities">
-                                    <button type="button" class="dropdown-toggle form-control cities-form-control" id="cities_dropdown-button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                                    <ul class="dropdown-menu" aria-labelledby="cities_dropdown-button">
-                                        <div class="hs-searchbox">
-                                            <input type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.search_cities')}}">
-                                        </div>
-                                        <div class="hs-menu-inner">
-                                            <li><a class="dropdown-item" data-value="" data-default-selected="" href="#">{{__('labels.select_city')}}</a></li>
-                                            @foreach($cities as $row)
-                                            <li><a class="dropdown-item" class="dropdown-item" data-value="{{ $row->id }}" href="#">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</a></li>
-                                            @endforeach
-                                        </div>
-                                    </ul>
-                                    <input type="hidden" id="city_val" name="city" readonly="readonly" aria-hidden="true" type="text" value="{{ $post_data != '' && !empty($post_data->saudi_post_city) ? $post_data->saudi_post_city->city_id : old('city')}}" />
+                                <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address ps-0 pt-sm-0 prop-title-ar">
+                                    <div>
+                                        <button onclick="return false" class="fa fa-question-circle mt-1 tooltip_btn" type="btn" style="font-size: 1rem;" aria-hidden="true">
+                                            <span>{{__('labels.tooltip_google')}}</span>
+                                        </button>
+                                        <label for="ar_title" class="theme-text-seondary-black property_title_ar">{{__('labels.property_title_ar')}}</label>
+                                    </div>
+
+                                    <div class="position-relative d-flex justify-content-end align-items-center w-100">
+                                        <input type="text" value="{{ $post_data != '' ? $post_data->ar_title : old('ar_title')}}" name="ar_title" id="ar_title" placeholder="{{__('labels.property_title_ar')}}" class="form-control theme-border property_title_ar">
+                                    </div>
+                                    @if($errors->has('ar_title'))
+                                    <div class="error pt-1">{{ $errors->first('ar_title') }}</div>
+                                    @endif
                                 </div>
                             </div>
-                            @if($errors->has('city'))
-                            <div class="error pt-1">{{ $errors->first('city') }}</div>
-                            @endif
+                            <div class="col-12 mt-4 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
+                                <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end property_address">
+                                    <label for="location" class="theme-text-seondary-black">{{__('labels.address_property')}}
+                                    </label>
+                                    <div class="position-relative d-flex justify-content-end align-items-center w-100">
+                                        <input type="text" autocomplete="off" name="location" value="{{ $post_data != '' ? $post_data->district->value  : old('location') }}" id="location" placeholder="{{__('labels.address_property')}}" class="form-control theme-border">
+                                        <img src="{{asset('assets/images/location.png')}}" alt="" class="position-absolute input-icon">
+                                    </div>
+                                    @if($errors->has('location'))
+                                    <div class="error pt-1">{{ $errors->first('location') }}</div>
+                                    @endif
+                                </div>
+                                <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop">
+                                    <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>
+                                    <label for="district" class="theme-text-seondary-black">{{__('labels.district')}}</label>
+                                    <div class="position-relative d-flex justify-content-end align-items-center w-100">
+                                        <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
+                                        <div class="dropdown hierarchy-select" id="districts">
+                                            <button type="button" class="dropdown-toggle form-control cities-form-control" id="districts_dropdown-button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                            <ul class="dropdown-menu" aria-labelledby="districts_dropdown-button">
+                                                <div class="hs-searchbox">
+                                                    <input id="placeholder_box_district" type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.search_district')}}">
+                                                </div>
+                                                <div class="hs-menu-inner" id="district_inner">
+                                                </div>
+                                            </ul>
+                                            <input type="hidden" id="district_val" name="district" readonly="readonly" aria-hidden="true" type="text" value="{{$post_data != '' ?  $post_data->district->district_id : old('district')}}" />
+                                        </div>
+                                        <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>
+                                    </div>
+                                    <div class="error district_eerror"></div>
+                                    @if($errors->has('district'))
+                                    <div class="error pt-1">{{ $errors->first('district') }}</div>
+                                    @endif
+                                </div>
+                                <div class="col-lg-4 col-md-12 col-sm-12 d-flex flex-column align-items-end">
+                                    <label for="cities" class="theme-text-seondary-black">{{__('labels.city')}}</label>
+                                    <div class="position-relative d-flex justify-content-end align-items-center w-100">
+                                        <img src="{{asset('assets/images/arrow-down.svg')}}" alt="" class="position-absolute input-drop-icon">
+                                        <div class="dropdown hierarchy-select" id="cities">
+                                            <button type="button" class="dropdown-toggle form-control cities-form-control" id="cities_dropdown-button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                            <ul class="dropdown-menu" aria-labelledby="cities_dropdown-button">
+                                                <div class="hs-searchbox">
+                                                    <input type="text" class="form-control" autocomplete="off" placeholder="{{__('labels.search_cities')}}">
+                                                </div>
+                                                <div class="hs-menu-inner" id='city_anchor'>
+                                                    <li><a class="dropdown-item" data-value="" data-default-selected="" href="#">{{__('labels.select_city')}}</a></li>
+                                                    @foreach($cities as $row)
+                                                    <li><a class="dropdown-item" data-value="{{ $row->id }}" data-name="{{$row->name}}" href='#'>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</a></li>
+                                                    @endforeach
+                                                </div>
+                                            </ul>
+                                            <input type="hidden" id="city_val" name="city" readonly="readonly" aria-hidden="true" type="text" value="{{ $post_data != '' && !empty($post_data->saudi_post_city) ? $post_data->saudi_post_city->city_id : old('city')}}" />
+                                        </div>
+                                    </div>
+                                    <div class="error city_eerror"></div>
+                                    @if($errors->has('city'))
+                                    <div class="error pt-1">{{ $errors->first('city') }}</div>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -163,98 +162,8 @@
 </div>
 @endsection
 @section('property_create')
+<script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
+<script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
-<script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoicmFrYW5vbmxpbmUiLCJhIjoiY2xjeGpsMmdxMG05ajN2cXJocm5mazV3diJ9.puFe2Kj4KfE5v9Ky20ohYg';
-    mapboxgl.setRTLTextPlugin(
-        'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js',
-        null,
-        true // Lazy load the plugin
-    );
-    const map = new mapboxgl.Map({
-        container: 'map', // Container ID
-        style: 'mapbox://styles/mapbox/streets-v12', // Map style to use
-        center: [46.738586, 24.774265], // Starting position [lng, lat]
-        zoom: 12 // Starting zoom level
-    });
-
-    const marker = new mapboxgl.Marker({
-            draggable: true,
-        }) // Initialize a new marker
-        .setLngLat([46.738586, 24.774265]) // Marker [lng, lat] coordinates
-        .addTo(map); // Add the marker to the map
-
-    function onDragEnd() {
-        const lngLat = marker.getLngLat();
-        $('.mapboxgl-ctrl-geocoder--input').val('');
-        $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
-    }
-
-    marker.on('dragend', onDragEnd);
-    var placeholder = 'Search location in KSA';
-    if (locale == 'ar') {
-        placeholder = 'موقع البحث في المملكة العربية السعودية';
-    }
-
-    const geocoder = new MapboxGeocoder({
-        // Initialize the geocoder
-        accessToken: mapboxgl.accessToken, // Set the access token
-        mapboxgl: mapboxgl, // Set the mapbox-gl instance
-        marker: true, // Do not use the default marker style
-        placeholder: placeholder, // Placeholder text for the search bar
-        // bbox: [-122.30937, 37.84214, -122.23715, 37.89838], // Boundary for Berkeley
-        // proximity: {
-        //     longitude: 46.738586,
-        //     latitude: 24.774265
-        // } // Coordinates of UC Berkeley
-    });
-
-    // Add the geocoder to the map
-    map.addControl(geocoder);
-
-
-    // After the map style has loaded on the page,
-    // add a source layer and default styling for a single point
-    map.on('load', () => {
-        map.resize();
-        map.addSource('single-point', {
-            'type': 'geojson',
-            'data': {
-                'type': 'FeatureCollection',
-                'features': []
-            }
-        });
-
-        map.addLayer({
-            'id': 'point',
-            'source': 'single-point',
-            'type': 'circle',
-            'paint': {
-                'circle-radius': 10,
-                'circle-color': '#1da1f2'
-            }
-        });
-
-        // Listen for the `result` event from the Geocoder // `result` event is triggered when a user makes a selection
-        //  Add a marker at the result's coordinates
-        geocoder.on('result', (event) => {
-            map.getSource('single-point').setData(event.result.geometry);
-            var marker = new mapboxgl.Marker({
-                    draggable: true,
-                    color: "#1da1f2"
-                })
-                .setLngLat(event.result.center)
-                .addTo(map)
-            $('.mapboxgl-ctrl-geocoder--input').val(event.result.center[0] + ',' + event.result.center[1]);
-
-            marker.on('dragend', function(e) {
-                var lngLat = e.target.getLngLat();
-                $('.mapboxgl-ctrl-geocoder--input').val('');
-                $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
-            })
-
-        });
-
-    });
-</script>
+<script src="{{theme_asset('assets/newjs/property_map.js')}}"></script>
 @endsection

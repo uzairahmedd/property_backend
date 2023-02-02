@@ -150,7 +150,7 @@ function get_already_select_district(city_id, district_id = null) {
                 if (locale == 'ar') {
                     name = value.ar_name;
                 }
-                $('#district_inner').append('<li><a class="dropdown-item" class="dropdown-item" data-value=' + value.id + '  href="#">' + name + '</a></li>');
+                $('#district_inner').append('<li><a class="dropdown-item" class="dropdown-item" data-name="'+value.name+'"  data-value=' + value.id + '  href="#">' + name + '</a></li>');
             });
 
         }
@@ -267,23 +267,6 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-//ope map modal box
-$("#location").click(function () {
-    $("#map_modal").modal("show");
-    setTimeout(function () {
-        map.resize();
-    }, 500);
-})
-
-
-
-    //save coordinates
-$("#save_coordinates").click(function() {
-    $('#location').val('');
-    var coordinates = $('.mapboxgl-ctrl-geocoder--input').val();
-    $('#location').val(coordinates);
-    $("#map_modal").modal("hide");
-})
    
 /// ******* ADress Add Driver ******//
 // var isGoogleAPIEnable = 1;
