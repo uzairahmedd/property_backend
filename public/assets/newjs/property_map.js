@@ -14,7 +14,7 @@ $('#map_modal').on('hidden.bs.modal', function (e) {
 
 $("#save_coordinates").click(function () {
     $('#location').val('');
-    var coordinates = $('.mapboxgl-ctrl-geocoder--input').val();
+    var coordinates = $('#coordinates_selected').val();
     $('#location').val(coordinates);
     $("#map_modal").modal("hide");
 })
