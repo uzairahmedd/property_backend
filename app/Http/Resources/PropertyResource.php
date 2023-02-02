@@ -36,7 +36,7 @@ class PropertyResource extends JsonResource
                 "info" => isset($this->user->usermeta) && isset($this->user->usermeta->content) ? $this->user->usermeta->content : '',
                 "avatar" => $this->user["avatar"],
             ],
-            "coordinates" => $this->post_district->district->value ?? '',
+            "coordinates" => $this->post_district->value ?? '',
             "features" => $this->features,
             "bedrooms" => $this->option_data->where('category.name', 'Bedrooms')->last()->value ?? 0,
             "bathrooms" => $this->option_data->where('category.name', 'Bathrooms')->last()->value ?? 0,
