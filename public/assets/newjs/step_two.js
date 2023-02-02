@@ -147,17 +147,16 @@ function land_triger(elem) {
     var age = $(elem).data("age");
     if (age == '1') {
         $('.built-up-year').removeClass('hide');
-    } else if(age == '0') {
+    } else if (age == '0') {
         $('.built-up-year').addClass('hide');
     }
     land_built_area_new(name, land_area, build_area);
 };
 
-function land_built_area_new(name = null, land_check, build_check, land_size_value = null, built_up_value = null) {
+function land_built_area_new(name = '', land_check, build_check, land_size_value = '', built_up_value = '') {
     var built_up_areaa = $('#built_up_areaa').text();
     var land_areaa = $('#land_areaa').text();
     var area_in_square_m = $('#area_in_square_m').text();
-
     var target_id = '#land_size';
     if (name == 'land' || name == 'Farm') {
         $('input[name="ready"]').attr("disabled", "disabled");
@@ -167,8 +166,8 @@ function land_built_area_new(name = null, land_check, build_check, land_size_val
 
     if (build_check === 1) {
         $('#built_up_area').html('');
-        $('#built_up_area').html('<label for="builtarea" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
-            '  <input type="number" id="builtarea" step="any" value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border"><span class="error area_error"></span>');
+        $('#built_up_area').html('<label for="built_area" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
+            '<input type="text" id="built_area"  value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border"><span class="error area_error"></span>');
 
     }
     else if (build_check == 0) {
@@ -178,7 +177,7 @@ function land_built_area_new(name = null, land_check, build_check, land_size_val
     if (land_check == 1) {
         $(target_id).html('');
         $(target_id).html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
-            '  <input type="number" id="land_size_area" step="any" value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border"><span class="error land_error"></span>');
+            '  <input type="text" id="land_size_area"  value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border"><span class="error land_error"></span>');
     }
     else if (land_check == 0) {
         $(target_id).html('');
@@ -227,7 +226,7 @@ function property_type(parent_cate, selected_cat = null) {
             var age = $("input:radio[name=category]:checked").data('age');
             if (age == '1') {
                 $('.built-up-year').removeClass('hide');
-            } else if(age == '0') {
+            } else if (age == '0') {
                 $('.built-up-year').addClass('hide');
             }
 
@@ -260,20 +259,55 @@ $(document).ready(function () {
 //form submit validations
 $("#second_form_btn").click(function () {
     event.preventDefault();
-    if ($('#builtarea').val() == '') {
+    //for property nature
+    if (!$("input[name='parent_category']").is(':checked')) {
+        $('.nature_error').text('Please provide proeprty nature');
+        setTimeout(function () {
+            $('.nature_error').text('');
+        }, 5000);
+        return false;
+    }
+    //for built up area
+    if ($('#built_area').val() == '' || $('#built_area').val() == 'undefined') {
         $('.area_error').text('Please provide built-up area');
         setTimeout(function () {
             $('.area_error').text('');
         }, 5000);
         return false;
     }
-    if ($('#land_size_area').val() == '') {
+    //for built up area numeric
+    var inputVal = $("#built_area").val();
+    if (inputVal != undefined) {
+        var built_area_numeric = $.isNumeric(inputVal);
+        if (built_area_numeric == false) {
+            $('.area_error').text('Please provide numeric value');
+            setTimeout(function () {
+                $('.area_error').text('');
+            }, 5000);
+            return false;
+        }
+    }
+    //for land area
+    if ($('#land_size_area').val() == '' || $('#land_size_area').val() == 'undefined') {
         $('.land_error').text('Please provide land area');
         setTimeout(function () {
             $('.land_error').text('');
         }, 5000);
         return false;
     }
+    //for land area numeric
+    var landVal = $("#land_size_area").val();
+    if (landVal != undefined) {
+        var land_area_numeric = $.isNumeric(landVal);
+        if (land_area_numeric == false) {
+            $('.land_error').text('Please provide numeric value');
+            setTimeout(function () {
+                $('.land_error').text('');
+            }, 5000);
+            return false;
+        }
+    }
+    //for date year
     if ($('#yearpicker').val() == '' && $('input[name="ready"]:checked').val() == '1' && $('input[name="ready"]').prop('disabled') == false) {
         $('.year_picker_error').text('Please provide Property year');
         setTimeout(function () {
@@ -283,3 +317,5 @@ $("#second_form_btn").click(function () {
     }
     $("#second_form").submit();
 });
+
+

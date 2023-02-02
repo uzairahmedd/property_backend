@@ -43,6 +43,7 @@
                         </div>
                         @endforeach
                     </div>
+                    <div class="error nature_error"></div>
                     @if($errors->has('parent_category'))
                     <div class="error">{{ $errors->first('parent_category') }}</div>
                     @endif
@@ -54,24 +55,26 @@
                             <span class="checmark font-16 font-medium">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</span>
                         </div>
                         @endforeach
-                        @if($errors->has('category'))
-                        <div class="error">{{ $errors->first('category') }}</div>
-                        @endif
                     </div>
+                    @if($errors->has('category'))
+                    <div class="error">{{ $errors->first('category') }}</div>
+                    @endif
                     <div class="col-12 d-flex justify-content-end built-land-both">
                         <div class="col-lg-4 d-flex flex-column align-items-end land-size" id="top_land_size">
                             <div id="land_size" class="d-flex justify-content-end align-items-end flex-column w-100">
                                 <label for="land_size_area" class="theme-text-seondary-black">{{__('labels.land_size')}}
                                 </label>
-                                <input type="number" id="land_size_area" step="any" value="{{ !empty($post_data->landarea) ? $post_data->landarea->content  : old("landarea")}}" name="landarea" placeholder="{{__('labels.area_square_meter')}}" class="form-control theme-border">
+                                <input type="text" id="land_size_area" value="{{ !empty($post_data->landarea) ? $post_data->landarea->content  : old("landarea")}}" name="landarea" placeholder="{{__('labels.area_square_meter')}}" class="form-control theme-border">
+                                <span class="error land_error"></span>
                             </div>
-                           
+
                         </div>
                         <div class="col-lg-4 d-flex flex-column  align-items-end" id="built_up_area">
                             <div class="d-flex justify-content-end align-items-end flex-column w-100">
                                 <label for="built_area" class="theme-text-seondary-black">{{__('labels.built_up_area')}}
                                 </label>
-                                <input type="number" step="any" id="built_area" value="{{ !empty($post_data->builtarea) ? $post_data->builtarea->content  : old("builtarea")}}" name="builtarea" placeholder="{{__('labels.area_square_meter')}}" class="form-control theme-border">
+                                <input type="text"  id="built_area" value="{{ !empty($post_data->builtarea) ? $post_data->builtarea->content  : old("builtarea")}}" name="builtarea" placeholder="{{__('labels.area_square_meter')}}" class="form-control theme-border">
+                                <span class="error area_error"></span>
                             </div>
                         </div>
                     </div>
@@ -84,11 +87,11 @@
                         <p class="theme-text-black font-18">{{__('labels.building_year')}}</p>
                         <div class="row theme-gx-3 mb-4_5 ready-not-ready">
                             <div class="radio-container radio-edit-two">
-                                <input type="radio"  name="ready" value="1" data-isready='{{ !empty($post_data->ready)  ? $post_data->ready->content : old("ready")  }}' id="ready">
+                                <input type="radio" name="ready" value="1" data-isready='{{ !empty($post_data->ready)  ? $post_data->ready->content : old("ready")  }}' id="ready">
                                 <span class="build-ready font-16 font-medium">{{__('labels.ready')}}</span>
                             </div>
                             <div class="radio-container not-ready-margin">
-                                <input type="radio"  name="ready" value="0" id="not_ready" {{ !empty($post_data->ready)  && $post_data->ready->content == 0 ? "checked"  : (old("ready") == 0 ? "checked" : "")}}>
+                                <input type="radio" name="ready" value="0" id="not_ready" {{ !empty($post_data->ready)  && $post_data->ready->content == 0 ? "checked"  : (old("ready") == 0 ? "checked" : "")}}>
                                 <span class="build-ready font-16 font-medium">{{__('labels.not_ready')}}</span>
                             </div>
                         </div>
@@ -98,8 +101,8 @@
                     </div>
                     <span class="error year_picker_error"></span>
                     @if($errors->has('property_age'))
-                        <span class="error">{{ $errors->first('property_age') }}</span>
-                        @endif
+                    <span class="error">{{ $errors->first('property_age') }}</span>
+                    @endif
                     <!-- property value Section Starts Here -->
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row property-value mt-3">
                         <div class="col-lg-6 col-md-12 flex-column mt-3">

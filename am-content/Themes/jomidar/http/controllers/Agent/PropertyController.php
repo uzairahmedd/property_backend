@@ -757,7 +757,7 @@ class PropertyController extends controller
 
     public function get_property_type(Request $request)
     {
-        $info = Category::where('type', 'parent_category')->with('category_parent')->where('id', $request->id)->get();
+        $info = Category::where('type', 'parent_category')->with('category_parent')->where('id', $request->id)->where('featured', 1)->get();
         return $info;
     }
 
@@ -899,7 +899,8 @@ class PropertyController extends controller
         return redirect()->route('agent.property.third_edit_property', encrypt($term_id));
     }
 
-    public function remove_input_page_data($term_id){
+    public function remove_input_page_data($term_id)
+    {
         Postcategoryoption::where('type', 'options')->where('term_id', $term_id)->delete();
         Meta::where('term_id', $term_id)->where('type', 'property_condition')->delete();
         Meta::where('term_id', $term_id)->where('type', 'total_floors')->delete();
