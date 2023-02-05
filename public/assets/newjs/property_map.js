@@ -22,19 +22,19 @@ $("#save_coordinates").click(function () {
 //when user click on location inout filed
 $("#location").click(function () {
     var city = $('#city_val').val();
-    var district = $('#district_val').val();
+    // var district = $('#district_val').val();
     if (city == '') {
         Sweet('error', 'Please provide city!');
         return false;
     }
-    if (district == '') {
-        Sweet('error', 'Please provide district!');
-        return false;
-    }
+    // if (district == '') {
+    //     Sweet('error', 'Please provide district!');
+    //     return false;
+    // }
     $("#map_modal").modal("show");
     //get city and dostrict
     var city = $('#city_anchor li').find(".active").data('name');
-    var district = $('#district_inner li').find(".active").data('name');
+    // var district = $('#district_inner li').find(".active").data('name');
 
     const mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
@@ -42,7 +42,7 @@ $("#location").click(function () {
     //open defaut map using city name and district name
     mapboxClient.geocoding
         .forwardGeocode({
-            query: district + ', ' + city,
+            query: city,
             autocomplete: false,
             limit: 1
         })

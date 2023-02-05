@@ -43,7 +43,6 @@
                         </div>
                         @endforeach
                     </div>
-                    <div class="error nature_error"></div>
                     @if($errors->has('parent_category'))
                     <div class="error">{{ $errors->first('parent_category') }}</div>
                     @endif
@@ -65,7 +64,6 @@
                                 <label for="land_size_area" class="theme-text-seondary-black">{{__('labels.land_size')}}
                                 </label>
                                 <input type="text" id="land_size_area" value="{{ !empty($post_data->landarea) ? $post_data->landarea->content  : old("landarea")}}" name="landarea" placeholder="{{__('labels.area_square_meter')}}" class="form-control theme-border">
-                                <span class="error land_error"></span>
                             </div>
 
                         </div>
@@ -74,7 +72,6 @@
                                 <label for="built_area" class="theme-text-seondary-black">{{__('labels.built_up_area')}}
                                 </label>
                                 <input type="text"  id="built_area" value="{{ !empty($post_data->builtarea) ? $post_data->builtarea->content  : old("builtarea")}}" name="builtarea" placeholder="{{__('labels.area_square_meter')}}" class="form-control theme-border">
-                                <span class="error area_error"></span>
                             </div>
                         </div>
                     </div>
@@ -96,10 +93,9 @@
                             </div>
                         </div>
                         <div id="year_calender">
-                            <input type="text" class="yearpicker form-control hidden" id='yearpicker' name="property_age" placeholder="Select a year" value="{{ !empty($post_data->property_age) ? $post_data->property_age->content : old('property_age') }}" />
+                            <input type="text" autocomplete="off" class="yearpicker form-control hidden" id='yearpicker' name="property_age" placeholder="Select a year" value="{{ !empty($post_data->property_age) ? $post_data->property_age->content : old('property_age') }}" />
                         </div>
                     </div>
-                    <span class="error year_picker_error"></span>
                     @if($errors->has('property_age'))
                     <span class="error">{{ $errors->first('property_age') }}</span>
                     @endif
@@ -177,17 +173,7 @@
 </div>
 @endsection
 @section('step_two_js')
+<script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{theme_asset('assets/newjs/yearpicker.js')}}"></script>
 <script src="{{theme_asset('assets/newjs/step_two.js')}}"></script>
-<script>
-    var year = '2022'
-    if ($('#yearpicker').val != '') {
-        year = $('#yearpicker').val();
-    }
-    $("#yearpicker").yearpicker({
-        year: year,
-        startYear: 1975,
-        endYear: 2023
-    });
-</script>
 @endsection

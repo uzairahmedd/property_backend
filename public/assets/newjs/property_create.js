@@ -78,30 +78,6 @@ $("#basicform").on('submit', function(e){
 });
 
 
-
-/*-------------------------------
-        Sweetalert Message Show
-    -----------------------------------*/
-    function Sweet(icon,title,time=3000){
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: time,
-            timerProgressBar: true,
-            onOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-        Toast.fire({
-            icon: icon,
-            title: title,
-        })
-    }
-
-
 var loadFile = function(event) {
     var output = document.getElementById('first_image');
     output.src = URL.createObjectURL(event.target.files[0]);

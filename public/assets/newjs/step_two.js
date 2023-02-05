@@ -28,6 +28,17 @@ if ($('#ready').data('isready') != '') {
     $('#year_calender input').removeClass("hidden");
 }
 
+//for yeear picker
+var year = '2022'
+if ($('#yearpicker').val != '') {
+    year = $('#yearpicker').val();
+}
+$("#yearpicker").yearpicker({
+    year: year,
+    startYear: 1975,
+    endYear: 2023
+});
+
 //for street dropdowns
 if (interface != '' || meter != '') {
     var old_count = $('.street_sdropdown').data('streets');
@@ -167,7 +178,7 @@ function land_built_area_new(name = '', land_check, build_check, land_size_value
     if (build_check === 1) {
         $('#built_up_area').html('');
         $('#built_up_area').html('<label for="built_area" class="theme-text-seondary-black">' + built_up_areaa + '</label>\n' +
-            '<input type="text" id="built_area"  value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border"><span class="error area_error"></span>');
+            '<input type="text" id="built_area"  value="' + built_up_value + '" name="builtarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
 
     }
     else if (build_check == 0) {
@@ -177,7 +188,7 @@ function land_built_area_new(name = '', land_check, build_check, land_size_value
     if (land_check == 1) {
         $(target_id).html('');
         $(target_id).html('<label for="land_size_area" class="theme-text-seondary-black">' + land_areaa + '</label>\n' +
-            '  <input type="text" id="land_size_area"  value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border"><span class="error land_error"></span>');
+            '  <input type="text" id="land_size_area"  value="' + land_size_value + '" name="landarea" placeholder="' + area_in_square_m + '" class="form-control theme-border">');
     }
     else if (land_check == 0) {
         $(target_id).html('');
@@ -261,18 +272,12 @@ $("#second_form_btn").click(function () {
     event.preventDefault();
     //for property nature
     if (!$("input[name='parent_category']").is(':checked')) {
-        $('.nature_error').text('Please provide proeprty nature');
-        setTimeout(function () {
-            $('.nature_error').text('');
-        }, 5000);
+        Sweet('error', 'Please provide proeprty nature!');
         return false;
     }
     //for built up area
     if ($('#built_area').val() == '' || $('#built_area').val() == 'undefined') {
-        $('.area_error').text('Please provide built-up area');
-        setTimeout(function () {
-            $('.area_error').text('');
-        }, 5000);
+        Sweet('error', 'Please provide built-up area!');
         return false;
     }
     //for built up area numeric
@@ -280,19 +285,13 @@ $("#second_form_btn").click(function () {
     if (inputVal != undefined) {
         var built_area_numeric = $.isNumeric(inputVal);
         if (built_area_numeric == false) {
-            $('.area_error').text('Please provide numeric value');
-            setTimeout(function () {
-                $('.area_error').text('');
-            }, 5000);
+            Sweet('error', 'Please provide numeric value!');
             return false;
         }
     }
     //for land area
     if ($('#land_size_area').val() == '' || $('#land_size_area').val() == 'undefined') {
-        $('.land_error').text('Please provide land area');
-        setTimeout(function () {
-            $('.land_error').text('');
-        }, 5000);
+        Sweet('error', 'Please provide land area!');
         return false;
     }
     //for land area numeric
@@ -300,19 +299,13 @@ $("#second_form_btn").click(function () {
     if (landVal != undefined) {
         var land_area_numeric = $.isNumeric(landVal);
         if (land_area_numeric == false) {
-            $('.land_error').text('Please provide numeric value');
-            setTimeout(function () {
-                $('.land_error').text('');
-            }, 5000);
+            Sweet('error', 'Please provide numeric value!');
             return false;
         }
     }
     //for date year
     if ($('#yearpicker').val() == '' && $('input[name="ready"]:checked').val() == '1' && $('input[name="ready"]').prop('disabled') == false) {
-        $('.year_picker_error').text('Please provide Property year');
-        setTimeout(function () {
-            $('.year_picker_error').text('');
-        }, 5000);
+        Sweet('error', 'Please provide Property year!');
         return false;
     }
     $("#second_form").submit();

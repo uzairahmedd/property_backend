@@ -1,15 +1,5 @@
 // Property Step Js Start
 $(document).ready(function (event) {
-    // $('.inter_val').click(function (e) {
-    //     $(".inter_val").removeClass('selected');
-    //     $(this).addClass('selected');
-    //     var drop_text = $(".inter_val.selected").text();
-    //     $("#interface_val").val(function () {
-    //         return this.value + ' ' + drop_text;
-    //     });
-    //     e.preventDefault();
-    // });
-
     //on by default
 
     if ($('#tick_div').find('.checkbox-div input:checkbox').is(':checked')) {
@@ -36,31 +26,6 @@ $(document).ready(function (event) {
 
 });
 
-// $(document).ready(function (event) {
-//     $('.inter_val2').click(function (e) {
-//         $(".inter_val2").removeClass('selected');
-//         $(this).addClass('selected');
-//         var drop_text = $(".inter_val2.selected").text();
-//         $("#interface_val2").val(function () {
-//             return this.value + ' ' + drop_text;
-//         });
-//         e.preventDefault();
-//     });
-// });
-
-// $(document).ready(function (event) {
-//     $('.inter_val3').click(function (e) {
-//         $(".inter_val3").removeClass('selected');
-//         $(this).addClass('selected');
-//         var drop_text = $(".inter_val3.selected").text();
-//         $("#interface_val3").val(function () {
-//             return this.value + ' ' + drop_text;
-
-//         });
-//         e.preventDefault();
-//     });
-// });
-// Property Step Js End
 //sidebar active
 $(document).ready(function () {
     var parts = $(location).attr("href").split('/');
@@ -87,7 +52,7 @@ $(document).ready(function () {
         initialValueSet: true,
         onChange: function (value) {
             $('#city_val').val(value);
-            get_already_select_district(value, null);
+            get_already_select_district(value);
         }
     });
     setTimeout(function () {
@@ -97,6 +62,11 @@ $(document).ready(function () {
             width: 'auto',
             initialValueSet: true,
             onChange: function (value) {
+                // console.log($('#term_id').val());
+                // console.log($('#district_val').val());
+                // if($('#district_val').val() != ''){
+                //     $('#district_val').val('');
+                // }
                 $('#district_val').val(value);
             }
         });
@@ -104,36 +74,12 @@ $(document).ready(function () {
 
 });
 
-
-// $(document).ready(function(){
-//     $('#district').hierarchySelect({
-//         hierarchy: false,
-//         width: 'auto',
-//         height: '160px'
-//     });
-// });
-
-
-
-//district against cities
-// $(function () {
-//     $("#cities").on("change", function (e) {
-//         e.preventDefault();
-//         var city_id = $(this).val();
-//         get_already_select_district(city_id, null);
-//     });
-// });
-
-// for edit district
-// if ($('#cities').val() != null) {
-//     var city_id = $('#cities').val();
-//     var district_id = $('#district_id').val();
-//     get_already_select_district(city_id, district_id);
-
-// }
 //distrcits slection
-function get_already_select_district(city_id, district_id = null) {
+function get_already_select_district(city_id) {
     var select_district = $('#please_select_district').text();
+    $('#districts_dropdown-button').text(select_district);
+    $('#district_inner').html('');
+    $('#district_inner').append('<li><a class="dropdown-item" data-value="" data-default-selected="" href="#">' + select_district + '</a></li>');
     var baseurl = $('#base_url').val();
     var url = baseurl + 'agent/get_district';
     $.ajax({
@@ -141,8 +87,6 @@ function get_already_select_district(city_id, district_id = null) {
         url: url,
         data: { 'id': city_id },
         success: function (response) {
-            $('#district_inner').html('');
-            $('#district_inner').append('<li><a class="dropdown-item" data-value="" data-default-selected="" href="#">' + select_district + '</a></li>');
             var name = '';
             $.each(response, function (index, value) {
                 // var select = '';
@@ -158,7 +102,7 @@ function get_already_select_district(city_id, district_id = null) {
 }
 
 
-//for furniching
+//for furnishing
 $("input[name=furnishing][value=3]").prop('checked', true);
 
 if ($("input[name=furnishing][value=3]").data('val') != '' && $("input[name=furnishing][value=3]").data('val') == '3') {
@@ -208,8 +152,6 @@ function tooltip(btn, tool) {
         open = false;
         // Quito el evento para que no gaste tantos recursos del computador.
         document.removeEventListener('click', ocultar);
-
-        console.log('Click en cualquier parte y oculto el Tooltip');
     }
 
 }
@@ -267,7 +209,28 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-   
+   /*-------------------------------
+        Sweetalert Message Show
+    -----------------------------------*/
+    function Sweet(icon,title,time=3000){
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: time,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: icon,
+            title: title,
+        })
+    }
+
 /// ******* ADress Add Driver ******//
 // var isGoogleAPIEnable = 1;
 // var googleURL = 'https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyD8jBzTek9k4TI77XXdBaE9_-FDT0lNFaY&callback=CreateMapAD';
