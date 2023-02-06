@@ -45,41 +45,35 @@ $(document).ready(function () {
 
 //cities slection
 $(document).ready(function () {
-    $('#cities').hierarchySelect({
-        hierarchy: false,
-        search: true,
-        width: 'auto',
-        initialValueSet: true,
-        onChange: function (value) {
-            $('#city_val').val(value);
-            get_already_select_district(value);
-        }
+    if ($('#city_val :selected').val() != '') {
+        var city_id = $('#city_val :selected').val();
+        get_already_select_district(city_id);
+    }
+
+    $('#city_val').on('change', function () {
+        var city_id = this.value;
+        get_already_select_district(city_id);
     });
-    setTimeout(function () {
-        $('#districts').hierarchySelect({
-            hierarchy: false,
-            search: true,
-            width: 'auto',
-            initialValueSet: true,
-            onChange: function (value) {
-                // console.log($('#term_id').val());
-                // console.log($('#district_val').val());
-                // if($('#district_val').val() != ''){
-                //     $('#district_val').val('');
-                // }
-                $('#district_val').val(value);
-            }
-        });
-    }, 2500);
+    //for default select box
+    var direction='rtl';
+     if(locale == 'en'){
+        direction='ltr';
+     }
+    $('#city_val').select2({
+        dir: direction,
+    });
+    $('#district_val').select2({
+        dir: direction,
+    });
+    
 
 });
 
 //distrcits slection
 function get_already_select_district(city_id) {
     var select_district = $('#please_select_district').text();
-    $('#districts_dropdown-button').text(select_district);
-    $('#district_inner').html('');
-    $('#district_inner').append('<li><a class="dropdown-item" data-value="" data-default-selected="" href="#">' + select_district + '</a></li>');
+    $("#district_val option").remove();
+    $('#district_val').select2().append('<option value="" selected>' + select_district + '</option>');
     var baseurl = $('#base_url').val();
     var url = baseurl + 'agent/get_district';
     $.ajax({
@@ -88,13 +82,13 @@ function get_already_select_district(city_id) {
         data: { 'id': city_id },
         success: function (response) {
             var name = '';
+            var select = $('#get_district_val').val();
             $.each(response, function (index, value) {
-                // var select = '';
                 name = value.name;
                 if (locale == 'ar') {
                     name = value.ar_name;
                 }
-                $('#district_inner').append('<li><a class="dropdown-item" class="dropdown-item" data-name="'+value.name+'"  data-value=' + value.id + '  href="#">' + name + '</a></li>');
+                $("#district_val").select2().append('<option value="' + value.id + '">' + name + '</option>').val(select).trigger('change');
             });
 
         }
@@ -209,27 +203,27 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-   /*-------------------------------
-        Sweetalert Message Show
-    -----------------------------------*/
-    function Sweet(icon,title,time=3000){
+/*-------------------------------
+     Sweetalert Message Show
+ -----------------------------------*/
+function Sweet(icon, title, time = 3000) {
 
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: time,
-            timerProgressBar: true,
-            onOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-        Toast.fire({
-            icon: icon,
-            title: title,
-        })
-    }
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: time,
+        timerProgressBar: true,
+        onOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+    Toast.fire({
+        icon: icon,
+        title: title,
+    })
+}
 
 /// ******* ADress Add Driver ******//
 // var isGoogleAPIEnable = 1;

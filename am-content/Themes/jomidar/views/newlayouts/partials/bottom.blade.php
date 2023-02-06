@@ -8,6 +8,8 @@
 <script src="{{theme_asset('assets/js/iconify.min.js') }}"></script>
 <!-- Owl Carousel -->
 <script src="{{theme_asset('assets/newjs/owl.carousel.min.js')}}"></script>
+<script src="{{ theme_asset('assets/newjs/select2.min.js') }}"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
 <!-- Selectric Js -->
 <link rel="stylesheet" href="{{ asset('admin/assets/css/selectric.css') }}">
 <!-- Font Awesome Js -->

@@ -33,9 +33,7 @@ $("#location").click(function () {
     // }
     $("#map_modal").modal("show");
     //get city and dostrict
-    var city = $('#city_anchor li').find(".active").data('name');
-    // var district = $('#district_inner li').find(".active").data('name');
-
+    var city = $('#city_val :selected').text();
     const mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
     });
