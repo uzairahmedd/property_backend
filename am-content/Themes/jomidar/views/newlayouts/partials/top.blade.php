@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{{ theme_asset('assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/selectdrop/hierarchy-select.min.css')}}">
     <link href="{{ theme_asset('assets/newcss/select2.min.css')}}" rel="stylesheet" />
-    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
     <!-- owl carousel files -->
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/owl.theme.default.css')}}">

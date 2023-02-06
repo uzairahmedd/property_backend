@@ -55,19 +55,16 @@ $(document).ready(function () {
         get_already_select_district(city_id);
     });
     //for default select box
-    var direction='rtl';
-     if(locale == 'en'){
-        direction='ltr';
-     }
+    var direction = 'rtl';
+    if (locale == 'en') {
+        direction = 'ltr';
+    }
     $('#city_val').select2({
         dir: direction,
     });
-    $('#district_val').select2({
-        dir: direction,
-    });
-    
 
 });
+
 
 //distrcits slection
 function get_already_select_district(city_id) {
@@ -88,7 +85,18 @@ function get_already_select_district(city_id) {
                 if (locale == 'ar') {
                     name = value.ar_name;
                 }
-                $("#district_val").select2().append('<option value="' + value.id + '">' + name + '</option>').val(select).trigger('change');
+                $("#district_val").select2().append('<option value="' + value.id + '">' + name + '</option>');
+                if (value.id == select) {
+                    $("#district_val").select2().val(select).trigger('change');
+                }
+            });
+
+            var direction = 'rtl';
+            if (locale == 'en') {
+                direction = 'ltr';
+            }
+            $('#district_val').select2({
+                dir: direction,
             });
 
         }
