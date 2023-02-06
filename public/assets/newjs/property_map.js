@@ -5,6 +5,9 @@ mapboxgl.setRTLTextPlugin(
     true // Lazy load the plugin
 );
 if ($('#coordinates_selected').val() != '') {
+    var coordinates = $('#coordinates_selected').val();
+    var array = coordinates.split(',');
+    on_load_map(array[0],array[1]);
     map_initialiaze();
 }
 //for display
@@ -14,35 +17,37 @@ $('#map_modal').on('hidden.bs.modal', function (e) {
 
 $("#save_coordinates").click(function () {
     $('#location').val('');
-    var coordinates = $('#coordinates_selected').val();
-    $('#location').val(coordinates);
+    var place_name=$('.mapboxgl-ctrl-geocoder--input').val();
+    $('#location').val(place_name);
     $("#map_modal").modal("hide");
 })
 
 //when user click on location inout filed
 $("#location").click(function () {
     var city = $('#city_val').val();
-    // var district = $('#district_val').val();
+    var district = $('#district_val').val();
     if (city == '') {
         Sweet('error', 'Please provide city!');
         return false;
     }
-    // if (district == '') {
-    //     Sweet('error', 'Please provide district!');
-    //     return false;
-    // }
+    if (district == '') {
+        Sweet('error', 'Please provide district!');
+        return false;
+    }
     $("#map_modal").modal("show");
     //get city and dostrict
     var city = $('#city_val :selected').text();
+    var district = $('#district_val :selected').text();
     const mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
     });
     //open defaut map using city name and district name
     mapboxClient.geocoding
         .forwardGeocode({
-            query: city,
-            autocomplete: false,
-            limit: 1
+            query: district+', '+city,
+            countries: ['sa'],
+            autocomplete: true,
+            limit: 1,
         })
         .send()
         .then((response) => {
@@ -114,7 +119,8 @@ $("#location").click(function () {
                 $('.mapboxgl-ctrl-geocoder--input').val('');
                 $('#coordinates_selected').val('');
                 $('#coordinates_selected').val(lngLat['lng'] + ',' + lngLat['lat']);
-                $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
+                reverse(lngLat['lng'],lngLat['lat']);
+                // $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
             }
             marker.on('dragend', onDragEnd);
 
@@ -135,13 +141,44 @@ $("#location").click(function () {
                     $('.mapboxgl-ctrl-geocoder--input').val('');
                     $('#coordinates_selected').val('');
                     $('#coordinates_selected').val(lngLat['lng'] + ',' + lngLat['lat']);
-                    $('.mapboxgl-ctrl-geocoder--input').val(event.result.place_name);
+                    reverse(lngLat['lng'],lngLat['lat']);
+                    // $('.mapboxgl-ctrl-geocoder--input').val(event.result.place_name);
                     // $('.mapboxgl-ctrl-geocoder--input').val(lngLat['lng'] + ',' + lngLat['lat']);
                 })
             });
         });
 });
 
+// reverse();
+function reverse(long,lat){
+    var long=long;
+    var lat=lat;
+    var url='https://api.mapbox.com/geocoding/v5/mapbox.places/'+long+','+lat+'.json?country=sa&access_token=pk.eyJ1IjoicmFrYW5vbmxpbmUiLCJhIjoiY2xjeGpsMmdxMG05ajN2cXJocm5mazV3diJ9.puFe2Kj4KfE5v9Ky20ohYg';
+    $.ajax({
+        type: 'get',
+        url: url,
+        success: function (response) {
+            $('.mapboxgl-ctrl-geocoder--input').val(response.features[0].place_name);
+
+        }
+    });
+   
+}
+
+function on_load_map(long,lat){
+    var long=long;
+    var lat=lat;
+    var url='https://api.mapbox.com/geocoding/v5/mapbox.places/'+long+','+lat+'.json?country=sa&access_token=pk.eyJ1IjoicmFrYW5vbmxpbmUiLCJhIjoiY2xjeGpsMmdxMG05ajN2cXJocm5mazV3diJ9.puFe2Kj4KfE5v9Ky20ohYg';
+    $.ajax({
+        type: 'get',
+        url: url,
+        success: function (response) {
+            $('#location').val(response.features[0].place_name);
+
+        }
+    });
+   
+}
 function map_initialiaze() {
     mapboxgl.accessToken = 'pk.eyJ1IjoicmFrYW5vbmxpbmUiLCJhIjoiY2xjeGpsMmdxMG05ajN2cXJocm5mazV3diJ9.puFe2Kj4KfE5v9Ky20ohYg';
     if ($('#coordinates_selected').val() != '') {
