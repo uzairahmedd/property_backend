@@ -47,14 +47,14 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-12 d-flex justify-content-end mt-n3 pb-1 font-medium">
-                        <div class="col-4 flex-lg-row justify-content-evenly">
+                    <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-end mt-n3 pb-1 font-medium">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
                             <div class="text-center mb-0 pb-0 position-relative mt-3" style="height: 180px;">
-                                <input type="hidden" name="location" id="coordinates_selected" value="{{!empty( $post_data->district) ? $post_data->district->value : ''}}">
+                                <input type="hidden" name="location" id="coordinates_selected"  value="{{ $post_data != '' ? $post_data->district->value  : old('location') }}">
                                 <div id="map_display"></div>
                             </div>
                         </div>
-                        <div class="col-8  flex-lg-row justify-content-evenly">
+                        <div class="col-lg-8 col-md-12 col-sm-12">
                             <div class="col-12 d-flex flex-column-reverse flex-lg-row justify-content-evenly">
                                 <div class="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-end region-drop prop-title-en">
                                     <div>

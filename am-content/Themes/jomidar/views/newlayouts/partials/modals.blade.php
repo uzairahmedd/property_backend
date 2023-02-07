@@ -216,7 +216,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button> -->
             </div>
-            <div class="modal-body" style="height: 400px;">
+            <div class="modal-body" style="height: 450px;">
                 <div class="tab-content">
                     <div class="popup-message form-box">
                         <div class="row clearfix">

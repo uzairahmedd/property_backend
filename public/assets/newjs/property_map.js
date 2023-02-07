@@ -68,7 +68,7 @@ $("#location").click(function () {
                 // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
                 style: 'mapbox://styles/mapbox/streets-v12',
                 center: feature.center,
-                zoom: 12
+                zoom: 12,
             });
             // console.log(feature.center);
             // Create a marker and add it to the map.
@@ -80,10 +80,12 @@ $("#location").click(function () {
 
             const geocoder = new MapboxGeocoder({
                 // Initialize the geocoder
+                autocomplete: true,
                 accessToken: mapboxgl.accessToken, // Set the access token
                 mapboxgl: mapboxgl, // Set the mapbox-gl instance
                 marker: true, // Do not use the default marker style
                 placeholder: placeholder, // Placeholder text for the search bar
+                limit:10,
             });
             // Add the geocoder to the map
             map.addControl(geocoder);
