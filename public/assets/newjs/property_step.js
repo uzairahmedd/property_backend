@@ -210,6 +210,27 @@ function Sweet(icon, title, time = 3000) {
     })
 }
 
+//for total floors arabic to english digit fot total floors
+$(document).on('keyup', 'input[name="total_floors"]', function (e) {
+    var val = toEnglishNumber($(this).val())
+    $(this).val(val)
+});
+//for total floors arabic to english digit for property floor
+$(document).on('keyup', '#interface_val3', function (e) {
+    var val = toEnglishNumber($(this).val())
+    $(this).val(val)
+});
+
+//for total floors arabic to english digit for length
+$(document).on('keyup', 'input[name="length"]', function (e) {
+    var val = toEnglishNumber($(this).val())
+    $(this).val(val)
+});
+//for total floors arabic to english digit for width
+$(document).on('keyup', 'input[name="depth"]', function (e) {
+    var val = toEnglishNumber($(this).val())
+    $(this).val(val)
+});
 /// ******* ADress Add Driver ******//
 // var isGoogleAPIEnable = 1;
 // var googleURL = 'https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyD8jBzTek9k4TI77XXdBaE9_-FDT0lNFaY&callback=CreateMapAD';

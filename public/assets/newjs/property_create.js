@@ -13,11 +13,11 @@ $("#create_status2").click(function (event) {
 });
 
 /*---------------------
-              Image Remove
+       	Image Remove
     --------------------------*/
-var m_id = '';
-function remove_image(param, key) {
-    m_id = key;
+var m_id='';
+function remove_image(param,key) {
+    m_id=key;
     Swal.fire({
         title: 'Are you sure?',
         text: "You want to remove this!",
@@ -28,14 +28,14 @@ function remove_image(param, key) {
         confirmButtonText: 'Yes, Do It!'
     }).then((result) => {
         if (result.value == true) {
-            $('#m_area' + m_id).remove();
+            $('#m_area'+m_id).remove();
             $('#media_id').val(param);
             $('#basicform').submit();
         }
     })
 }
 
-$("#basicform").on('submit', function (e) {
+$("#basicform").on('submit', function(e){
     e.preventDefault();
 
     $.ajaxSetup({
@@ -50,23 +50,25 @@ $("#basicform").on('submit', function (e) {
         dataType: 'json',
         contentType: false,
         cache: false,
-        processData: false,
-        beforeSend: function () {
-            $('.basicbtn').attr('disabled', '');
+        processData:false,
+        beforeSend: function() {
+               $('.basicbtn').attr('disabled','');
         },
 
-        success: function (response) {
+        success: function(response){
             $('.basicbtn').removeAttr('disabled')
-            Sweet('success', response)
+            Sweet('success',response)
 
             // success(response)
         },
-        error: function (xhr, status, error) {
+        error: function(xhr, status, error)
+        {
             $('.basicbtn').removeAttr('disabled')
             $('.errorarea').show();
-            $.each(xhr.responseJSON.errors, function (key, item) {
-                Sweet('error', item)
-                $("#errors").html("<li class='text-danger'>" + item + "</li>")
+            $.each(xhr.responseJSON.errors, function (key, item)
+            {
+                Sweet('error',item)
+                $("#errors").html("<li class='text-danger'>"+item+"</li>")
             });
             errosresponse(xhr, status, error);
         }
@@ -76,102 +78,102 @@ $("#basicform").on('submit', function (e) {
 });
 
 
-var loadFile = function (event) {
+var loadFile = function(event) {
     var output = document.getElementById('first_image');
     output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function () {
-        URL.revokeObjectURL(output.src) // free memory
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
     }
-    var add = $('.add_pics').text();
-    $('.add_pics').text(parseInt(add) + 1);
-};
-var loadFile1 = function (event) {
+    var add= $('.add_pics').text();
+    $('.add_pics').text(parseInt(add)+1);
+  };
+  var loadFile1 = function(event) {
     var output = document.getElementById('second_image');
     output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function () {
-        URL.revokeObjectURL(output.src) // free memory
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
     }
-    var add = $('.add_pics').text();
-    $('.add_pics').text(parseInt(add) + 1);
-};
-var loadFile2 = function (event) {
+    var add= $('.add_pics').text();
+    $('.add_pics').text(parseInt(add)+1);
+  };
+  var loadFile2 = function(event) {
     var output = document.getElementById('third_image');
     output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function () {
-        URL.revokeObjectURL(output.src) // free memory
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
     }
-    var add = $('.add_pics').text();
-    $('.add_pics').text(parseInt(add) + 1);
-};
-var loadFile3 = function (event) {
+    var add= $('.add_pics').text();
+    $('.add_pics').text(parseInt(add)+1);
+  };
+  var loadFile3 = function(event) {
     var output = document.getElementById('forth_image');
     output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function () {
-        URL.revokeObjectURL(output.src) // free memory
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
     }
-    var add = $('.add_pics').text();
-    $('.add_pics').text(parseInt(add) + 1);
-};
-var loadFile4 = function (event) {
+    var add= $('.add_pics').text();
+    $('.add_pics').text(parseInt(add)+1);
+  };
+  var loadFile4 = function(event) {
     var output = document.getElementById('five_image');
     output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function () {
-        URL.revokeObjectURL(output.src) // free memory
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
     }
-    var add = $('.add_pics').text();
-    $('.add_pics').text(parseInt(add) + 1);
-};
+    var add= $('.add_pics').text();
+    $('.add_pics').text(parseInt(add)+1);
+  };
 
 
 
-(function ($) {
-    //update phone
-    $("#update_phone").on("click", function (e) {
-        e.preventDefault();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        // $("#update_phone").prop('disabled', true);
-        $("#update_phone i").addClass('fa fa-spinner fa-spin ');
-        var baseurl = $('#base_url').val();
-        var url = baseurl + 'modify_phone';
-        $.ajax({
-            url: url,
-            type: 'post',
-            data: $("#modify_phone").serialize(),
-            success: function (response) {
-                // $("#update_phone").prop('disabled', false);
-                $("#update_phone i").removeClass('fa fa-spinner fa-spin ');
-                if (response.status == 'success') {
-
-                    window.location.href = response.data['url'];
-
-                }
-                if (response.status == 'error') {
-                    if (response.data['phone']) {
-                        $('#phone_errors').html('<span class="error">' + response.data['phone'] + '</span>');
-                    }
-                    setTimeout(function () {
-                        $('#phone_errors').html('');
-                    }, 20000);
-                }
-            }
-        });
+  (function ($) {
+   //update phone
+   $("#update_phone").on("click", function (e) {
+    e.preventDefault();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
+    // $("#update_phone").prop('disabled', true);
+    $("#update_phone i").addClass('fa fa-spinner fa-spin ');
+    var baseurl = $('#base_url').val();
+    var url = baseurl + 'modify_phone';
+    $.ajax({
+        url: url,
+        type: 'post',
+        data: $("#modify_phone").serialize(),
+        success: function (response) {
+            // $("#update_phone").prop('disabled', false);
+            $("#update_phone i").removeClass('fa fa-spinner fa-spin ');
+            if (response.status == 'success') {
+
+                window.location.href = response.data['url'];
+
+            }
+            if (response.status == 'error') {
+                if (response.data['phone']) {
+                    $('#phone_errors').html('<span class="error">' + response.data['phone'] + '</span>');
+                }
+                setTimeout(function () {
+                    $('#phone_errors').html('');
+                }, 20000);
+            }
+        }
+    });
+});
 })(jQuery);
 
 
-// select box js
+  // select box js
 
 
-(function ($) {
-    $.fn.niceSelect = function (method) {
+(function($) {
+    $.fn.niceSelect = function(method) {
         // Methods
         if (typeof method == 'string') {
             if (method == 'update') {
-                this.each(function () {
+                this.each(function() {
                     var $select = $(this);
                     var $dropdown = $(this).next('.nice-select');
                     var open = $dropdown.hasClass('open');
@@ -184,7 +186,7 @@ var loadFile4 = function (event) {
                     }
                 });
             } else if (method == 'destroy') {
-                this.each(function () {
+                this.each(function() {
                     var $select = $(this);
                     var $dropdown = $(this).next('.nice-select');
 
@@ -206,7 +208,7 @@ var loadFile4 = function (event) {
         this.hide();
 
         // Create custom markup
-        this.each(function () {
+        this.each(function() {
             var $select = $(this);
 
             if (!$select.next().hasClass('nice-select')) {
@@ -228,9 +230,9 @@ var loadFile4 = function (event) {
             if ($select.attr('multiple')) {
                 var $selected = $select.find('option:selected');
                 var $selected_html = '';
-                $selected.each(function () {
+                $selected.each(function() {
                     $selected_option = $(this);
-                    $selected_text = $selected_option.data('display') || $selected_option.text();
+                    $selected_text = $selected_option.data('display') ||  $selected_option.text();
 
                     if (!$selected_option.val()) {
                         return;
@@ -245,11 +247,11 @@ var loadFile4 = function (event) {
                 $dropdown.find('.multiple-options').html($selected_html);
             } else {
                 var $selected = $select.find('option:selected');
-                $dropdown.find('.current').html($selected.data('display') || $selected.text());
+                $dropdown.find('.current').html($selected.data('display') ||  $selected.text());
             }
 
 
-            $options.each(function (i) {
+            $options.each(function(i) {
                 var $option = $(this);
                 var display = $option.data('display');
 
@@ -270,7 +272,7 @@ var loadFile4 = function (event) {
         $(document).off('.nice_select');
 
         // Open/close
-        $(document).on('click.nice_select', '.nice-select', function (event) {
+        $(document).on('click.nice_select', '.nice-select', function(event) {
             var $dropdown = $(this);
 
             $('.nice-select').not($dropdown).removeClass('open');
@@ -288,11 +290,11 @@ var loadFile4 = function (event) {
             }
         });
 
-        $(document).on('click', '.nice-select-search-box', function (event) {
+        $(document).on('click', '.nice-select-search-box', function(event) {
             event.stopPropagation();
             return false;
         });
-        $(document).on('keyup.nice-select-search', '.nice-select', function () {
+        $(document).on('keyup.nice-select-search', '.nice-select', function() {
             var $self = $(this);
             var $text = $self.find('.nice-select-search').val();
             var $options = $self.find('ul li');
@@ -302,7 +304,7 @@ var loadFile4 = function (event) {
                 $text = $text.toLowerCase();
                 var $matchReg = new RegExp($text);
                 if (0 < $options.length) {
-                    $options.each(function () {
+                    $options.each(function() {
                         var $this = $(this);
                         var $optionText = $this.text().toLowerCase();
                         var $matchCheck = $matchReg.test($optionText);
@@ -318,14 +320,14 @@ var loadFile4 = function (event) {
         });
 
         // Close when clicking outside
-        $(document).on('click.nice_select', function (event) {
+        $(document).on('click.nice_select', function(event) {
             if ($(event.target).closest('.nice-select').length === 0) {
                 $('.nice-select').removeClass('open').find('.option');
             }
         });
 
         // Option click
-        $(document).on('click.nice_select', '.nice-select .option:not(.disabled)', function (event) {
+        $(document).on('click.nice_select', '.nice-select .option:not(.disabled)', function(event) {
             var $option = $(this);
             var $dropdown = $option.closest('.nice-select');
             if ($dropdown.hasClass('has-multiple')) {
@@ -338,9 +340,9 @@ var loadFile4 = function (event) {
                 $selected_html = '';
                 $selected_values = [];
 
-                $dropdown.find('.selected').each(function () {
+                $dropdown.find('.selected').each(function() {
                     $selected_option = $(this);
-                    var text = $selected_option.data('display') || $selected_option.text();
+                    var text = $selected_option.data('display') ||  $selected_option.text();
                     $selected_html += '<span class="current">' + text + '</span>';
                     $selected_values.push($selected_option.data('value'));
                 });
@@ -360,7 +362,7 @@ var loadFile4 = function (event) {
         });
 
         // Keyboard events
-        $(document).on('keydown.nice_select', '.nice-select', function (event) {
+        $(document).on('keydown.nice_select', '.nice-select', function(event) {
             var $dropdown = $(this);
             var $focused_option = $($dropdown.find('.focus') || $dropdown.find('.list .option.selected'));
 
@@ -422,26 +424,4 @@ var loadFile4 = function (event) {
 
 }(jQuery));
 
-//cities slection
-$(document).ready(function () {
-    if ($('#city_val :selected').val() != '') {
-        var city_id = $('#city_val :selected').val();
-        get_already_select_district(city_id);
-    }
-
-    $('#city_val').on('change', function () {
-        var city_id = this.value;
-        get_already_select_district(city_id);
-    });
-
-    //for default select box
-    var direction = 'rtl';
-    if (locale == 'en') {
-        direction = 'ltr';
-    }
-    $('#city_val').select2({
-        dir: direction,
-    });
-
-});
 

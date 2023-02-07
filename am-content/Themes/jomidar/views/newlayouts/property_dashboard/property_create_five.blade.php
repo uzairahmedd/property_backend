@@ -114,13 +114,13 @@
                 <div class="col-12 d-flex justify-content-end flex-lg-row flex-sm-column">
                     <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
                         <label class="d-flex justify-content-end align-items-end">{{__('labels.land_depth')}}</label>
-                        <input type="number" name="depth" value="{{ !empty($info->depth) ? $info->depth->content  : old('depth')}}" class="form-control">
+                        <input type="text" name="depth" value="{{ !empty($info->depth) ? $info->depth->content  : old('depth')}}" class="form-control">
                         <span class="meters_span">{{__('labels.meter')}}</span>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
                         <label class="d-flex justify-content-end align-items-end">
                             {{__('labels.land_length')}}</label>
-                        <input type="number" name="length" value="{{ !empty($info->length) ? $info->length->content  : old('length')}}" class="form-control">
+                        <input type="text" name="length" value="{{ !empty($info->length) ? $info->length->content  : old('length')}}" class="form-control">
                         <span class="meters_span">{{__('labels.meter')}}</span>
                     </div>
                 </div>

@@ -239,3 +239,27 @@ function map_initialiaze() {
         });
     }
 }
+
+
+//cities slection
+$(document).ready(function () {
+    if ($('#city_val :selected').val() != '') {
+        var city_id = $('#city_val :selected').val();
+        get_already_select_district(city_id);
+    }
+
+    $('#city_val').on('change', function () {
+        var city_id = this.value;
+        get_already_select_district(city_id);
+    });
+
+    //for default select box
+    var direction = 'rtl';
+    if (locale == 'en') {
+        direction = 'ltr';
+    }
+    $('#city_val').select2({
+        dir: direction,
+    });
+
+});

@@ -121,7 +121,7 @@
                         <form action="{{ route('user_login') }}" method="POST" id="phone_login_form">
                             @csrf
                             <div class="mb-4_5 position-relative">
-                                <input type="text" name="phone" value="" class="form-control font-medium font-16" placeholder="{{__('labels.mobile_number')}}">
+                                <input type="text" name="phone" id="login_phone" value="" class="form-control font-medium font-16" placeholder="{{__('labels.mobile_number')}}">
                                 <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">{{__('labels.mobile_number')}}</label>
                             </div>
                             <button type="submit" class="basicbtn chat-btn theme-bg-blue theme-text-white border-0 font-bold font-16">

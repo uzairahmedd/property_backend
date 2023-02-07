@@ -312,3 +312,36 @@ $("#second_form_btn").click(function () {
 });
 
 
+
+//for convert arabic digits to english for step two built_area
+$(document).on('keyup', '#built_area', function (e) {
+    var val = toEnglishNumber($(this).val())
+    $(this).val(val)
+});
+//for convert arabic digits to english for step two land_size_area
+$(document).on('keyup', '#land_size_area', function (e) {
+    var val = toEnglishNumber($(this).val())
+    $(this).val(val)
+});
+//for convert arabic digits to english for step two yearpicker
+$(document).on('keyup', '#yearpicker', function (e) {
+    var val = toEnglishNumber($(this).val())
+    $(this).val(val)
+});
+//for convert arabic digits to english for step two price
+$(document).on('keyup', '#value', function (e) {
+    var val = toEnglishNumber($(this).val())
+    $(this).val(val)
+});
+
+//for convert arabic digits to english for step two price
+$('input[name="meter[]"]').keyup(function () {
+    var val = toEnglishNumber($(this).val())
+    $(this).val(val)
+});
+
+$(document).on('keyup', 'input[name="meter[]"]', function (e) {
+    var val = toEnglishNumber($(this).val())
+    $(this).val(val)
+});
+
