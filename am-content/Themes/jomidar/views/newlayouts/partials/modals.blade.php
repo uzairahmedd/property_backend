@@ -223,8 +223,6 @@
                             <div class="col-sm-12">
                                 <input type="hidden" id="default_coordinates">
                                 <div id="map" ></div>
-                                <!-- <div id="maps" ></div>
-                                <div id="geocoder" ></div> -->
                             </div>
                         </div>
                     </div>
