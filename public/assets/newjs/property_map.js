@@ -51,28 +51,29 @@ $("#location").click(function () {
         })
         .send()
         .then((response) => {
+            var feature='';
             if (
                 !response ||
                 !response.body ||
                 !response.body.features ||
                 !response.body.features.length
             ) {
-                console.error('Invalid response:');
-                console.error(response);
-                return;
+                 feature =[46.710802261,24.632292401];
             }
-            const feature = response.body.features[0];
-
+            else{
+                 feature = response.body.features[0].center;
+            }
+          
             const map = new mapboxgl.Map({
                 container: 'map',
                 // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
                 style: 'mapbox://styles/mapbox/streets-v12',
-                center: feature.center,
+                center: feature,
                 zoom: 12,
             });
             // console.log(feature.center);
             // Create a marker and add it to the map.
-            new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+            new mapboxgl.Marker().setLngLat(feature).addTo(map);
             var placeholder = 'Search location in KSA';
             if (locale == 'ar') {
                 placeholder = 'موقع البحث في المملكة العربية السعودية';
@@ -114,7 +115,7 @@ $("#location").click(function () {
             const marker = new mapboxgl.Marker({
                 draggable: true,
             }) // Initialize a new marker
-                .setLngLat(feature.center) // Marker [lng, lat] coordinates
+                .setLngLat(feature) // Marker [lng, lat] coordinates
                 .addTo(map); // Add the marker to the map
             function onDragEnd() {
                 const lngLat = marker.getLngLat();
