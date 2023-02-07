@@ -113,6 +113,8 @@ $(document).ready(function (event) {
         var val = $(this).val();
         $('#category').val(val);
         $("#dropdownMenuLink1").html(drop_text);
+        $('.resident-pan').removeClass('home_active');
+        $('.resident-pan.selected').addClass('home_active');
         event.stopPropagation();
     });
 
@@ -170,6 +172,8 @@ $('.reset_category').click(function (e) {
     $('#parent_category').val(val);
     var drop_text = localStorage.getItem('name_parent_category');
     $("#dropdownMenuLink1").html(drop_text);
+    $('.resident-pan').removeClass('home_active');
+    $('.resident-pan').removeClass('selected');
     e.preventDefault();
 });
 
