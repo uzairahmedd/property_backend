@@ -13,6 +13,7 @@ class CreateDistrictsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('districts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();

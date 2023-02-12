@@ -38,7 +38,8 @@ class CategoryController extends Controller
     if (!Auth()->user()->can('category.create')) {
       abort(401);
     }
-    return view('plugin::category.new_create');
+      $posts = Category::where('type', 'parent_category')->get();
+    return view('plugin::category.new_create',compact('posts'));
     // return view('plugin::category.create');
   }
 

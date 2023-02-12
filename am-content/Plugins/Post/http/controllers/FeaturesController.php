@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Amcoders\Plugin\Post\http\controllers;
 
@@ -67,7 +67,7 @@ class FeaturesController extends Controller
     public function old_store(Request $request)
     {
       $validatedData = $request->validate([
-        'name' => 'required|unique:categories|max:100',           
+        'name' => 'required|unique:categories|max:100',
       ]);
 
       $slug=Str::slug($request->name);
@@ -99,8 +99,8 @@ class FeaturesController extends Controller
     public function store(Request $request)
     {
       $validatedData = $request->validate([
-        'name' => 'required|unique:categories|max:100',   
-        'ar_name' => 'required|max:100',           
+        'name' => 'required|unique:categories|max:100',
+        'ar_name' => 'required|max:100',
       ]);
 
       $slug=Str::slug($request->name);
@@ -178,7 +178,7 @@ class FeaturesController extends Controller
     public function old_update(Request $request, $id)
     {
       $validatedData = $request->validate([
-        'name' => 'required|max:100',         
+        'name' => 'required|max:100',
       ]);
 
       $category=Category::find($id);
@@ -204,8 +204,8 @@ class FeaturesController extends Controller
     public function update(Request $request, $id)
     {
       $validatedData = $request->validate([
-        'name' => 'required|max:100',       
-        'ar_name' => 'required|max:100',    
+        'name' => 'required|max:100',
+        'ar_name' => 'required|max:100',
       ]);
 
       $category=Category::find($id);
@@ -223,7 +223,7 @@ class FeaturesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
-    {   
+    {
       if ($request->method=='delete') {
        if ($request->ids) {
         foreach ($request->ids as $id) {

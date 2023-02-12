@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 Route::post('locations/info','Amcoders\Plugin\Post\http\controllers\LocationController@info')->name('locations.info');
-Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=>['web','auth','admin'],'prefix'=>'admin','as'=>'admin.'],function(){	
-		
+Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=>['web','auth','admin'],'prefix'=>'admin','as'=>'admin.'],function(){
+
 
 		Route::resource('location', 'LocationController');
 
@@ -21,7 +21,7 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 
 		Route::get('locations/states', 'LocationController@States')->name('states.index');
 		Route::get('locations/states/create', 'LocationController@StatesCreate')->name('states.create');
-       
+
 		Route::get('locations/district', 'LocationController@district')->name('district.index');
 		Route::get('locations/district/create', 'LocationController@districtCreate')->name('district.create');
 		Route::post('locations/district/destroy', 'LocationController@districtdestroy')->name('district.destroy');
@@ -37,7 +37,6 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 
 
 		Route::resource('feature', 'FeaturesController');
-
 
 		Route::resource('status', 'StatusController');
 		Route::post('statuses/destroy', 'StatusController@destroy')->name('statuses.destroy');

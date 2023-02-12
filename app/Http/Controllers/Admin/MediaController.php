@@ -33,7 +33,7 @@ class MediaController extends Controller
         if (!Auth()->user()->can('media.upload')) {
             abort(401);
         }
-        return view('admin.media.create'); 
+        return view('admin.media.create');
     }
     /**
      * Display a listing of the resource.
@@ -44,19 +44,19 @@ class MediaController extends Controller
     {
         if (!Auth()->user()->can('media.list')) {
             abort(401);
-        } 
-       
-        $medias=Media::latest()->paginate(30);  
+        }
+
+        $medias=Media::latest()->paginate(30);
         $src=$request->src ?? '';
         return view('admin.media.index',compact('medias','src'));
-      
-        
+
+
     }
 
     public function json(Request $request){
-           
+
         $row=Media::latest()->select('id','name','url')->paginate(12);
-        return response()->json($row);  
+        return response()->json($row);
     }
 
     /**
@@ -66,19 +66,19 @@ class MediaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-   
+
      request()->validate([
         'media.*' => 'required'
 
       ]);
-     
+
      $auth_id=Auth::id();
-     
-   
+
+
         $info=Options::where('key','lp_filesystem')->first();
         $info=json_decode($info->value);
-        
-       
+
+
         $imageSizes= json_decode(imageSizes());
 
         if($request->hasfile('media'))
@@ -89,40 +89,40 @@ class MediaController extends Controller
                 $name = uniqid().date('dmy').time(). "." . $image->getClientOriginalExtension();
                 $ext= $image->getClientOriginalExtension();
 
-                
-                
+
+
                 $this->fullname=date('dmy').time().uniqid().'.'.$image->getClientOriginalExtension();
 
                 $path='uploads/'.date('y').'/'.date('m').'/';
-                
-               
+
+
                 if(substr($image->getMimeType(), 0, 5) == 'image' &&  $ext != 'ico') {
-                  
-                  $image->move($path, $name); 
-                  $compress= $this->run($path.$name,$ext,$info->compress); 
+
+                  $image->move($path, $name);
+                  $compress= $this->run($path.$name,$ext,$info->compress);
 
                   if (file_exists($path.$name) ) {
                     if (!in_array(strtolower($ext), array('png','gif'))) {
-                      
+
                          unlink($path.$name);
                     }
-                   
+
                   }
-                   
+
                 if ($info->system_type=='do') {
                     $file=asset($compress['data']['image']);
 
                     $upload= Storage::disk('do')->putFileAs(date('Ym'), $file, $compress['data']['name'] ,'public');
-                    
+
                     $fileUrl=$info->system_url.'/'.$upload;
 
-                    
+
                      $newpath=date('Ym');
                      $filename=$compress['data']['name'];
 
-                     
+
                      $imgArr=explode('.', $compress['data']['name']);
-                     
+
 
 
                      foreach ($imageSizes as $size) {
@@ -136,13 +136,13 @@ class MediaController extends Controller
                        if (file_exists('uploads/'.date('y').'/'.date('m').'/'.$imgArr[0].$size->key.'.'.$imgArr[1])) {
                             unlink('uploads/'.date('y').'/'.date('m').'/'.$imgArr[0].$size->key.'.'.$imgArr[1]);
                        }
-                     
+
                      }
 
                      if (file_exists($compress['data']['image'])) {
                          unlink($compress['data']['image']);
                      }
-                     
+
                 }
 
                 else{
@@ -160,13 +160,13 @@ class MediaController extends Controller
                     $imgArr=explode('.', $compress['data']['image']);
                      if (file_exists($compress['data']['image'])) {
                      foreach ($imageSizes as $size) {
-                       
+
                            $img=Image::make($compress['data']['image']);
                            $img->fit($size->width,$size->height);
-                           
+
                            $img->save($imgArr[0].$size->key.'.'.$imgArr[1]);
                         }
-                       
+
                      }
                 }
 
@@ -178,7 +178,7 @@ class MediaController extends Controller
                 $media->user_id=$auth_id;
                 $media->size=$compress['data']['size'].'kib';
                 $media->save();
-                $data = $media;  
+                $data = $media;
 
             }
             else{
@@ -191,13 +191,13 @@ class MediaController extends Controller
                     $upload= Storage::disk('do')->putFileAs(date('Ym'), $file, $name ,'public');
                     $fileUrl=$info->system_url.date('Ym').'/'.$upload;
                     $newpath=date('Ym');
-                    
+
                 }
                 else{
                     $name = uniqid().time().".".$image->getClientOriginalExtension();
                     $ext= $image->getClientOriginalExtension();
                     $path='uploads/'.date('y').'/'.date('m').'/';
-                    $image->move($path, $name); 
+                    $image->move($path, $name);
 
                     $schemeurl=parse_url(url('/'));
                     if ($schemeurl['scheme']=='https') {
@@ -211,7 +211,7 @@ class MediaController extends Controller
 
 
                 }
-                
+
                 $media=new Media;
                 $media->name=$fileUrl;
                 $media->url=$fileUrl;
@@ -220,12 +220,12 @@ class MediaController extends Controller
                 $media->path=$newpath;
                 $media->user_id=$auth_id;
                 $media->save();
-                $data = $media; 
-                
+                $data = $media;
+
 
             }
-                      
-               
+
+
             }
 
             if ($request->term_id) {
@@ -238,7 +238,7 @@ class MediaController extends Controller
         }
 
 
-        
+
     }
 
     /**
@@ -253,7 +253,7 @@ class MediaController extends Controller
         return response()->json($media);
     }
 
-   
+
 
     /**
      * Remove the specified resource from storage.
@@ -263,14 +263,14 @@ class MediaController extends Controller
      */
     public function destroy(Request $request)
     {
-     
-     
+
+
       if ($request->status=='delete') {
-         
+
         $info=Options::where('key','lp_filesystem')->first();
         $info=json_decode($info->value);
 
-        
+
         $imageSizes= json_decode(imageSizes());
         if (Auth::user()->role_id !== 1) {
          $check=true;
@@ -278,7 +278,7 @@ class MediaController extends Controller
          }
          else{
             $check=false;
-         }   
+         }
         if ($request->id) {
             foreach ($request->id as $id) {
                 if ($check==true) {
@@ -287,44 +287,44 @@ class MediaController extends Controller
                 else{
                    $media=Media::find($id);
                 }
-                
+
                 if ($info->system_type=='do') {
-                 
+
                   $check=  Storage::disk('do')->delete($media->path.'/'.$media->name);
                     foreach ($imageSizes as $size) {
                         $imgArr=explode('.', $media->name);
-                       
-                      $check=  Storage::disk('do')->delete($media->path.'/'.$imgArr[0].$size->key.'.'.$imgArr[1]); 
+
+                      $check=  Storage::disk('do')->delete($media->path.'/'.$imgArr[0].$size->key.'.'.$imgArr[1]);
                      }
                 }
                 else{
                     $file=$media->name;
-                   
+
                    if (file_exists($file)) {
-                  
+
                      unlink($file);
                      foreach ($imageSizes as $size) {
                         $img=explode('.', $file);
                         if (file_exists($img[0].$size->key.'.'.$img[1])) {
                            unlink($img[0].$size->key.'.'.$img[1]);
                         }
-                         
+
                      }
                  }
-                
+
              }
 
              Media::destroy($id);
-           
-               
+
+
            }
        }
 
 
 
      }
-       
-      
+
+
        return response()->json('Delete Success');
     }
 
@@ -336,55 +336,55 @@ class MediaController extends Controller
      */
     public static function post_media_destroy($ids)
     {
-     
-     
-      
-         
+
+
+
+
         $info=Options::where('key','lp_filesystem')->first();
         $info=json_decode($info->value);
 
-        
+
         $imageSizes= json_decode(imageSizes());
-         
-        
+
+
             foreach ($ids as $id) {
                $media=Media::find($id);
-                
+
                 if ($info->system_type=='do') {
-                 
+
                   $check=  Storage::disk('do')->delete($media->path.'/'.$media->name);
                     foreach ($imageSizes as $size) {
                         $imgArr=explode('.', $media->name);
-                       
-                      $check=  Storage::disk('do')->delete($media->path.'/'.$imgArr[0].$size->key.'.'.$imgArr[1]); 
+
+                      $check=  Storage::disk('do')->delete($media->path.'/'.$imgArr[0].$size->key.'.'.$imgArr[1]);
                      }
                 }
                 else{
                     $file=$media->name;
-                   
+
                    if (file_exists($file)) {
-                  
+
                      unlink($file);
                      foreach ($imageSizes as $size) {
                         $img=explode('.', $file);
                         if (file_exists($img[0].$size->key.'.'.$img[1])) {
                            unlink($img[0].$size->key.'.'.$img[1]);
                         }
-                         
+
                      }
                  }
-                
+
              }
 
              Media::destroy($id);
-           
-               
+
+
            }
-    
+
        return response()->json('Delete Success');
     }
 
-   
+
 
 
 
@@ -398,21 +398,21 @@ class MediaController extends Controller
         $path='uploads/'.date('y').'/'.date('m').'/';
         $im_output = $path.$im_name;
         $im_ex = explode('.', $im_output); // get file extension
-        
+
         // create image
         if($type == 'image/jpeg'){
             $im = imagecreatefromjpeg($image); // create image from jpeg
-            
+
         }
-        elseif($type == 'image/png'){
+        elseif($type == 'image/png' || $type == 'image/PNG'){
             $im=imagecreatefrompng($image);
-           
+
         }
         elseif ($type == 'image/gif') {
            $im=imagecreatefromgif($image);
-           
+
         }
-       
+
         // compree image
         if($c_type){
             $im_name = str_replace(end($im_ex),$c_type, $im_name); // replace file extension
@@ -426,40 +426,39 @@ class MediaController extends Controller
                 $im_type = 'image/webp';
                 // image destroy
                 imagedestroy($im);
-
             }
             else{
 
                 if(!empty($level)){
                     imagegif($im, $im_output, 100 - ($level * 10));
-                    
+
                 }else{
                     imagegif($im, $im_output, 100 - ($level * 10));
                 }
                 $im_type = $type;
                 // image destroy
                 imagedestroy($im);
-                 
+
             }
 
             $im_output = str_replace(end($im_ex), $c_type, $im_output); // replace file extension
-           
-          
-            
+
+
+
         }
         else{
-           
+
         }
-        
-        
-        
+
+
+
         // output original image & compressed image
         $im_size = filesize($im_output);
         $info = array(
                 'name' => $im_name,
                 'image' => $im_output,
                 'type' => $im_type,
-                'size' => $im_size 
+                'size' => $im_size
         );
         return $info;
     }
@@ -481,8 +480,8 @@ class MediaController extends Controller
 
         // If we dont find any pixel the function will return false.
         return false;
-    }  
-    
+    }
+
     function run($image, $c_type, $level = 0) {
 
         // get file info
@@ -490,10 +489,10 @@ class MediaController extends Controller
         $im_name = basename($image);
         $im_type = $im_info['mime'];
         $im_size = filesize($image);
-        
+
         // result
         $result = array();
-        
+
         // cek & ricek
         if(in_array($c_type, array('jpeg','jpg','JPG','JPEG','gif','GIF','png','PNG'))) { // jpeg, png, gif only
             $result['data'] = $this->create($image, $im_name, $im_type, $im_size, $c_type, $level);
@@ -502,10 +501,10 @@ class MediaController extends Controller
                 if (file_exists($image)) {
                     unlink($image);
                 }
-            }   
+            }
             return $result;
-            
+
         }
     }
 
- }   
+ }

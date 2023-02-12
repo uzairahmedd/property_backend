@@ -61,8 +61,8 @@ class UserSeeder extends Seeder
 
                 ]
             ],
-            
-            
+
+
              [
                 'group_name' => 'media',
                 'permissions' => [
@@ -78,7 +78,7 @@ class UserSeeder extends Seeder
                     'page.edit',
                     'page.delete',
                     'page.list',
-                    
+
                 ]
             ],
              [
@@ -88,33 +88,33 @@ class UserSeeder extends Seeder
                     'blog.edit',
                     'blog.delete',
                     'blog.list',
-                    
+
                 ]
             ],
              [
                 'group_name' => 'Developer',
                 'permissions' => [
                     'system.settings',
-                    
-                                        
+
+
                 ]
             ],
-            
+
             [
                 'group_name' => 'Appearance',
                 'permissions' => [
-                    'theme.option',                                        
-                    'theme',                                        
-                    'menu',                                        
+                    'theme.option',
+                    'theme',
+                    'menu',
                 ]
             ],
             [
                 'group_name' => 'settings',
                 'permissions' => [
-                    'seo',                                        
-                    'filesystem',                                        
-                    'backup',                                        
-                                                            
+                    'seo',
+                    'filesystem',
+                    'backup',
+
                 ]
             ],
              [
@@ -127,13 +127,13 @@ class UserSeeder extends Seeder
              [
                 'group_name' => 'Location',
                 'permissions' => [
-                    'states.list',
-                    'states.create',
-                    'states.edit',
-                    'neighborhood.list',
-                    'neighborhood.create',
-                    'neighborhood.edit',
-                    
+                    'cities.list',
+                    'cities.create',
+                    'cities.edit',
+                    'district.list',
+                    'district.create',
+                    'district.edit',
+
                 ]
             ],
              [
@@ -143,7 +143,7 @@ class UserSeeder extends Seeder
                     'testimonial.create',
                     'testimonial.edit',
                     'testimonial.delete',
-                                       
+
                 ]
             ],
             [
@@ -153,7 +153,7 @@ class UserSeeder extends Seeder
                     'package.create',
                     'package.edit',
                     'package.delete',
-                                       
+
                 ]
             ],
             [
@@ -163,7 +163,7 @@ class UserSeeder extends Seeder
                     'agency_package.create',
                     'agency_package.edit',
                     'agency_package.delete',
-                                       
+
                 ]
             ],
             [
@@ -173,7 +173,7 @@ class UserSeeder extends Seeder
                     'user.create',
                     'user.edit',
                     'user.delete',
-                                       
+
                 ]
             ],
             [
@@ -183,7 +183,7 @@ class UserSeeder extends Seeder
                     'agency.create',
                     'agency.edit',
                     'agency.delete',
-                                       
+
                 ]
             ],
             [
@@ -192,7 +192,7 @@ class UserSeeder extends Seeder
                     'api_and_getway',
                     'transactions',
                     'payment.settings',
-                                       
+
                 ]
             ],
             [
@@ -200,7 +200,7 @@ class UserSeeder extends Seeder
                 'permissions' => [
                     'review.list',
                     'review.delete',
-                                       
+
                 ]
             ],
 
@@ -273,9 +273,9 @@ class UserSeeder extends Seeder
             array('id' => '5','user_id' => '4','type' => 'credit','content' => NULL,'created_at' => '2021-01-10 17:23:44','updated_at' => '2021-01-10 17:23:44'),
             array('id' => '6','user_id' => '4','type' => 'content','content' => '{"address":"Agrabad, Chittagong","phone":"63134323423","description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.","facebook":"#","twitter":"#","youtube":"#","pinterest":"#","linkedin":"#","instagram":"#","whatsapp":"173918-9181","service_area":"Dhaka, Agrabad, Naogaon","tax_number":"404343248979","license":"144354367687684"}','created_at' => '2021-01-10 17:23:44','updated_at' => '2021-01-10 17:23:44')
         );
-          
+
         Usermeta::insert($user_meta);
 
-       
+
     }
 }

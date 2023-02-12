@@ -13,6 +13,7 @@ class CreateCategoryrelationsTable extends Migration
      */
     public function up()
     {
+//        Schema::disableForeignKeyConstraints();
         Schema::create('categoryrelations', function (Blueprint $table) {
          $table->unsignedBigInteger('parent_id');
          $table->unsignedBigInteger('child_id');

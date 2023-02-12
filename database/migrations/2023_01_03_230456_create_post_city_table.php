@@ -13,10 +13,11 @@ class CreatePostCityTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('post_city', function (Blueprint $table) {
             $table->unsignedBigInteger('term_id');
             $table->unsignedBigInteger('city_id');
-           
+
 
             $table->foreign('term_id')
             ->references('id')->on('terms')

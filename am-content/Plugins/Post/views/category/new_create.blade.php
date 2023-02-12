@@ -26,9 +26,9 @@
             <label for="p_id">{{ __('Parent Category') }}</label>
             <select multiple="" class="form-control select2" name="child[]">
               <option value="">{{ __('None') }}</option>
-              <option value="71">Commercial</option>
-              <!--64 in seeder-->
-              <option value="72">Residential</option>
+                @foreach($posts as $row)
+              <option value="{{$row->id}}">{{$row->name}}</option>
+                @endforeach
               <!--65 in seeder-->
             </select>
           </div>
