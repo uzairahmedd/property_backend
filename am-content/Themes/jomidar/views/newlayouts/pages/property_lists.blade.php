@@ -119,7 +119,7 @@
                                     </div>
                                     <div class="room-container property_radio">
                                         <input type="checkbox" value="9+">
-                                        <span class="checmark step font-14 font-medium">9+</span>
+                                        <span class="checmark step font-14 font-medium">+9</span>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
