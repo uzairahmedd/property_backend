@@ -260,26 +260,26 @@
                     @endforeach
                    <!-- for appartment and opening section -->
                     <div class="col-12 d-flex flex-column-reverse flex-lg-row flex-md-row justify-content-end">
-                        <div class="col-lg-6 col-md-8 col-sm-12 regional-street-1 d-flex align-items-end">
+                        <div class="col-lg-12 col-md-8 col-sm-12 regional-street-1 d-flex align-items-end">
                             <div class="col-12 d-flex flex-lg-row flex-sm-column-reverse justify-content-end align-items-end">
                                 @foreach($input_options as $key=>$row)
                                 @if($row->name == 'Appartments')
                                 <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
-                                <div class="col-lg-4 col-md-12 col-sm-12 mb-4_5 d-flex flex-column ms-5 realestate_roles">
+                                <div class="col-lg-3 col-md-12 col-sm-12 mb-4_5 d-flex flex-column ms-5 realestate_roles">
                                     <label for="" class="d-flex justify-content-end theme-text-black">{{__('labels.no_appartment')}} {{__('labels.optional')}}</label>
                                     <input type="text" name="{{ $row->name }}"  placeholder="{{__('labels.no_appartment')}}" value="{{ !empty($row->post_category_option) ? $row->post_category_option->value  : old('Appartments') }}" class="form-control theme-border">
                                 </div>
                                 @endif
                                 @if($row->name == 'Openings')
                                 <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
-                                <div class="col-lg-4 col-md-12 col-sm-12 mb-4_5 d-flex flex-column ms-5 realestate_roles">
+                                <div class="col-lg-3 col-md-12 col-sm-12 mb-4_5 d-flex flex-column ms-5 realestate_roles">
                                     <label for="" class="d-flex justify-content-end theme-text-black">{{__('labels.no_openings')}}  {{__('labels.optional')}}</label>
                                     <input type="text" name="{{ $row->name }}"  placeholder="{{__('labels.no_openings')}}" value="{{ !empty($row->post_category_option) ? $row->post_category_option->value  : old('Openings') }}" class="form-control theme-border">
                                 </div>
                                 @endif
                                 @if($row->name == 'Office')
                                 <input type="hidden" name="input_option[{{ $row->name }}]" value="{{ $row->id }}">
-                                <div class="col-lg-4 col-md-12 col-sm-12 mb-4_5 d-flex flex-column ms-5 realestate_roles">
+                                <div class="col-lg-3 col-md-12 col-sm-12 mb-4_5 d-flex flex-column ms-5 realestate_roles">
                                     <label for="" class="d-flex justify-content-end theme-text-black">{{__('labels.no_office') }} {{__('labels.optional')}}</label>
                                     <input type="text" name="{{ $row->name }}"  placeholder="{{__('labels.no_office')}}" value="{{ !empty($row->post_category_option) ? $row->post_category_option->value  : old('Openings') }}" class="form-control theme-border">
                                 </div>
