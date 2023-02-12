@@ -19,13 +19,13 @@ class CreatePostDistrictTable extends Migration
             $table->unsignedBigInteger('term_id');
             $table->string('type');
             $table->string('value')->nullable();
-           
-            $table->foreign('district_id')
-            ->references('id')->on('districts')
-            ->onDelete('cascade');
-            $table->foreign('term_id')
-            ->references('id')->on('terms')
-            ->onDelete('cascade');
+
+//            $table->foreign('district_id')
+//            ->references('id')->on('districts')
+//            ->onDelete('cascade');
+//            $table->foreign('term_id')
+//            ->references('id')->on('terms')
+//            ->onDelete('cascade');
         });
     }
 

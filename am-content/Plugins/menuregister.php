@@ -12,18 +12,18 @@ function RegisterAdminMenuBar()
 			);
 		}
 
-		
+
 		// if (Auth()->user()->can('media.upload')) {
 		// 	$media['Add New'] = route('admin.media.upload');
 		// }
 		// if (Auth()->user()->can('media.list')) {
 		// 	$media['Manage Media'] =  route('admin.media.index');
-			
+
 		// }
 
 	// 	if (count($media ?? []) > 0) {
-			
-		
+
+
 	// 	$data[] = array(
 	// 		'name' => 'Media',
 	// 		'active' => Request::is('admin/media*'),
@@ -35,9 +35,9 @@ function RegisterAdminMenuBar()
 
 		if(Amcoders\Plugin\Plugin::is_active('Post'))
 		{
-			// if (Auth()->user()->can('states.list')) {
-			// 	$location['States'] = route('admin.states.index');
-			// }
+//			 if (Auth()->user()->can('states.list')) {
+//			 	$location['States'] = route('admin.states.index');
+//			 }
 			if (Auth()->user()->can('cities.list')) {
 				$location['Cities'] =  route('admin.cities.index');
 
@@ -55,45 +55,45 @@ function RegisterAdminMenuBar()
 			);
 		   }
 		}
-	  
+
 		if(Amcoders\Plugin\Plugin::is_active('Post'))
 		{
 			if (Auth()->user()->can('Properties.list')) {
-				$property['Properties'] = route('admin.property.index');	
+				$property['Properties'] = route('admin.property.index');
 			}
 			if (Auth()->user()->can('Properties.list')) {
-				$property['Download CSV'] = route('admin.property.csv_page');	
+				$property['Download CSV'] = route('admin.property.csv_page');
 			}
 			// if (Auth()->user()->can('project.list')) {
-			// 	$property['Projects'] = route('admin.project.index');	
+			// 	$property['Projects'] = route('admin.project.index');
 			// }
 			if (Auth()->user()->can('feature.list')) {
-				$property['Features'] = route('admin.feature.index');	
+				$property['Features'] = route('admin.feature.index');
 			}
 			// if (Auth()->user()->can('facilities.list')) {
-			// 	$property['Facilities'] = route('admin.facilities.index');	
+			// 	$property['Facilities'] = route('admin.facilities.index');
 			// }
 			if (Auth()->user()->can('category.list')) {
-				$property['Categories'] = route('admin.category.index');	
+				$property['Categories'] = route('admin.category.index');
 			}
 			// if (Auth()->user()->can('investor.list')) {
-			// 	$property['Investors'] = route('admin.investor.index');	
+			// 	$property['Investors'] = route('admin.investor.index');
 			// }
 			if (Auth()->user()->can('status.list')) {
-				$property['Status'] = route('admin.status.index');	
+				$property['Status'] = route('admin.status.index');
 			}
 			// if (Auth()->user()->can('currency.list')) {
-			// 	$property['Currency'] = route('admin.currency.index');	
+			// 	$property['Currency'] = route('admin.currency.index');
 			// }
 			if (Auth()->user()->can('input.list')) {
-				$property['Input Options'] = route('admin.input.index');	
+				$property['Input Options'] = route('admin.input.index');
 			}
 			if (count($property ?? []) > 0) {
 			$data['admin_rs']=array(
 				'name' => 'Real State',
 				'active' => Request::is('admin/real-state*'),
 				'icon' => 'fas fa-landmark',
-				'child'=>$property 
+				'child'=>$property
 			);
 		   }
 		}
@@ -103,10 +103,10 @@ function RegisterAdminMenuBar()
 		// {
 		// 	if (Auth()->user()->can('package.create')) {
 		// 		$plan['Create Package'] = route('admin.plan.create');
-				
+
 		// 	}
 		// 	if (Auth()->user()->can('package.list')) {
-			
+
 		// 		$plan['Package List'] = route('admin.plan.index');
 		// 	}
 		// 	if (count($plan ?? []) > 0) {
@@ -122,10 +122,10 @@ function RegisterAdminMenuBar()
 
 		//    if (Auth()->user()->can('agency_package.create')) {
 		// 		$agency_package['Create Agency Package'] = route('admin.agency-package.create');
-				
+
 		// 	}
 		// 	if (Auth()->user()->can('agency_package.list')) {
-			
+
 		// 		$agency_package['Agency Package List'] = route('admin.agency-package.index');
 		// 	}
 		// 	if (count($agency_package ?? []) > 0) {
@@ -139,7 +139,7 @@ function RegisterAdminMenuBar()
 
 		//    }
 		// }
-		
+
 		// if(Amcoders\Plugin\Plugin::is_active('Post'))
 		// {
 		// 	if (Auth()->user()->can('user.create')) {
@@ -158,7 +158,7 @@ function RegisterAdminMenuBar()
 		// 	);
 		//     }
 		// }
-		
+
 
 		// if(Amcoders\Plugin\Plugin::is_active('Post'))
 		// {
@@ -179,10 +179,10 @@ function RegisterAdminMenuBar()
 
 		//     if (Auth()->user()->can('testimonial.create')) {
 		// 		$testimonials['Create Testimonial'] = route('admin.testimonial.create');
-				
+
 		// 	}
 		// 	if (Auth()->user()->can('testimonial.list')) {
-			
+
 		// 		$testimonials['Testimonial List'] = route('admin.testimonial.index');
 		// 	}
 		// 	if (count($testimonials ?? []) > 0) {
@@ -198,7 +198,7 @@ function RegisterAdminMenuBar()
 		// }
 
 		// if(Amcoders\Plugin\Plugin::is_active('Paymentgetway')){
-			
+
 		// 	if (Auth()->user()->can('api_and_getway')) {
 		// 		$admin_payment_api['API & Getways'] = route('admin.payment.index');
 		// 	}
@@ -220,7 +220,7 @@ function RegisterAdminMenuBar()
 		// }
 
 
-		
+
 
 
 	// 	if (Auth()->user()->can('role.list')) {
@@ -239,16 +239,16 @@ function RegisterAdminMenuBar()
 	// 	);
 	//    }
 
-		
 
-	 
+
+
 	//    if (Auth()->user()->can('language_edit')) {
 	// 	$data[] = array(
 	// 		'name' => 'Language Customize',
 	// 		'active' => Request::is('admin/language*'),
 	// 		'icon' => 'fas fa-language',
 	// 		'child'=> array(
-	// 			'Create Language' => route('admin.language.create'),		
+	// 			'Create Language' => route('admin.language.create'),
 	// 			'Language Settings' => route('admin.language.index')
 	// 		)
 	// 	);
@@ -262,7 +262,7 @@ function RegisterAdminMenuBar()
 	// 		'url' => route('admin.review.index')
 	// 	);
 	//   }
-	    
+
 
 	// 	if (Auth()->user()->can('page.list')) {
 	// 	$data[] = array(
@@ -283,7 +283,7 @@ function RegisterAdminMenuBar()
 
 	//     if (Auth()->user()->can('theme')) {
 	// 		$appearance['Theme'] = route('admin.theme.index');
-			
+
 	// 	}
 	// 	if (Auth()->user()->can('theme.option')) {
 	// 		$appearance['Theme'] = route('admin.theme.index');
@@ -310,7 +310,7 @@ function RegisterAdminMenuBar()
 		// 	'icon' => 'fas fa-download',
 		// 	'url' => route('admin.plugin.index')
 		// );
-		
+
 
 
 		// if (Auth()->user()->can('seo')) {
@@ -343,17 +343,17 @@ function RegisterAdminMenuBar()
 		// 		'icon' => 'fas fa-download',
 		// 		'url' => route('admin.backup.index')
 		// 	);
-		// }	
-	
+		// }
 
-		
+
+
 	}
 
 
 
 
 
-	
+
 
 	return $data ?? [];
 }
