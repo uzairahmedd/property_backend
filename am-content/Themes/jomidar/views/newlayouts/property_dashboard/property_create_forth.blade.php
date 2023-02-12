@@ -92,7 +92,7 @@
             </div>
             <div class="d-flex justify-content-between description-btn-group">
                 <button type="submit" class="btn btn-theme">{{__('labels.next')}}</button>
-                @if(!empty($skip_id))
+                @if($info->property_type->category->name == 'Land' || $info->property_type->category->name == 'Farm' ||  $info->property_type->category->name == 'Warehouse')
                 <a href="{{ route('agent.property.second_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">{{__('labels.previous')}}</a>
                 @else
                 <a href="{{ route('agent.property.third_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">{{__('labels.previous')}}</a>
@@ -110,6 +110,5 @@
 
 @endsection
 @push('js')
-<script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
 @endpush

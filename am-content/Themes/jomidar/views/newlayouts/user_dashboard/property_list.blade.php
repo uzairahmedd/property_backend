@@ -52,7 +52,5 @@
 </div>
 @endsection
 @section('property_list_select')
-<script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{theme_asset('assets/newjs/user_list.js')}}"></script>
-
 @endsection

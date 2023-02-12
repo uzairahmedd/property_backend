@@ -625,7 +625,7 @@
 }
 
 .rtl .radio-edit-third {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .rtl .prop-desc-one
@@ -1039,7 +1039,7 @@
 .rtl #show-less
 {
     text-align: left;
-    margin-top: -18px;
+    margin-top: -10px;
 }
 
 .rtl .detail-txt-left

@@ -51,7 +51,10 @@
 						<th class="am-title">{{ __('Land Area') }}</th>
 						<th class="am-title">{{ __('Built-up Area') }}</th>
 						<th class="am-title">{{ __('Property age') }}</th>
-						<th class="am-title">{{ __('Faatures section') }}</th>
+						<th class="am-title">{{ __('Features section') }}</th>
+						<th class="am-title">{{ __('Furnishing section') }}</th>
+						<th class="am-title">{{ __('Total floors') }}</th>
+						<th class="am-title">{{ __('Property floor') }}</th>
 						<th class="am-title">{{ __('Featured') }}</th>
 						<th class="am-date">{{ __('Date') }}</th>
 					</tr>
@@ -99,7 +102,22 @@
 						@else
 						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
 						@endif
-						@if($post->faatures_section == 1)
+						@if($post->features_section == 1)
+						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						@endif
+						@if($post->furnishing_section == 1)
+						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						@endif
+						@if($post->total_floor == 1)
+						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						@endif
+						@if($post->property_floor == 1)
 						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
 						@else
 						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
@@ -133,7 +151,10 @@
 						<th class="am-title">{{ __('Land Area') }}</th>
 						<th class="am-title">{{ __('Built-up Area') }}</th>
 						<th class="am-title">{{ __('Property age') }}</th>
-						<th class="am-title">{{ __('Faatures section') }}</th>
+						<th class="am-title">{{ __('Features section') }}</th>
+						<th class="am-title">{{ __('Furnishing section') }}</th>
+						<th class="am-title">{{ __('Total floors') }}</th>
+						<th class="am-title">{{ __('Property floor') }}</th>
 						<th class="am-title">{{ __('Featured') }}</th>
 						<th class="am-date">{{ __('Date') }}</th>
 					</tr>

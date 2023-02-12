@@ -60,6 +60,7 @@
 							<th class="am-title">{{ __('Name') }}</th>
 							<th class="am-title">{{ __('Arabic Name') }}</th>
 							<th class="am-title">{{ __('Category') }}</th>
+							<!-- <th class="am-title">{{ __('Required') }}</th> -->
 							<th class="am-title">{{ __('Is Featured') }}</th>
 							<th class="am-date">{{ __('Last Update') }}</th>
 						</tr>
@@ -75,7 +76,7 @@
 								</div>
 							</td>
 							<td>
-								<img src="{{ $row->preview->content ?? '/uploads/defaultsmall.png' }}"  height="20" alt=""></img>
+								<img src="{{ $row->preview->content ?? '/uploads/defaultsmall.png' }}" height="20" alt=""></img>
 							</td>
 							<td>
 								{{ $row->name }}
@@ -87,10 +88,17 @@
 								{{ $row->ar_name }}
 							</td>
 							<td>
-							@foreach($row->child_name as $name_type)
-							<span class="badge badge-primary">{{$name_type->name}}</span>
-							@endforeach
-						</td>
+								@foreach($row->child_name as $name_type)
+								<span class="badge badge-primary">{{$name_type->name}}</span>
+								@endforeach
+							</td>
+							<!-- <td>
+								@if($row->status==1)
+								<span class="badge badge-success">{{ __('Yes') }}</span>
+								@else
+								<span class="badge badge-danger">{{ __('No') }}</span>
+								@endif
+							</td> -->
 							<td>
 								@if($row->featured==1)
 								<span class="badge badge-success">{{ __('Yes') }}</span>

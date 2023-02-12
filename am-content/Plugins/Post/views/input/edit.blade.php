@@ -38,8 +38,8 @@
                                 <option value="number" @if($info->slug=='number') selected="" @endif>{{ __('Number') }}</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="form-group">
+                    </div>-->
+                    <!-- <div class="form-group">
                         <label for="text">{{ __('Is Required') }}</label>
                         <div class="input-group">
                             <select name="required" class="form-control">
@@ -47,7 +47,7 @@
                                 <option value="0" @if($info->status==0) selected="" @endif>{{ __('No') }}</option>
                             </select>
                         </div>
-                    </div> -->
+                    </div>  -->
                     <div class="form-group col-12">
                         <label>{{ __('Select Category') }}</label>
                         <select multiple="" class="form-control select2" name="child[]">

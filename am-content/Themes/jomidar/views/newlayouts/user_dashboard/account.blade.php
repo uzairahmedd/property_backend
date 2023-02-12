@@ -63,8 +63,6 @@
 @endsection
 
 @section('account_js')
-    <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
     <script src="{{theme_asset('assets/newjs/user_account.js')}}"></script>
-
 @endsection
 

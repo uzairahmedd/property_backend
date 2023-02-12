@@ -143,7 +143,6 @@
 </div>
 @endsection
 @section('property_create')
-<script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
 <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
 <script src="{{theme_asset('assets/newjs/property_map.js')}}"></script>

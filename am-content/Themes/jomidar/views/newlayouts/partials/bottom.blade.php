@@ -14,6 +14,7 @@
 <!-- Font Awesome Js -->
 <script src="{{theme_asset('assets/newjs/fontawesome/font.js')}}"></script>
 <script src="{{ theme_asset('assets/js/jquery.selectric.js') }}"></script>
+<script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{ theme_asset('assets/js/helper.js') }}"></script>
 @stack('js')
 <script src="{{theme_asset('assets/newjs/custom.js')}}"></script>

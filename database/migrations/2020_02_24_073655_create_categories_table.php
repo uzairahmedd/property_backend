@@ -27,7 +27,10 @@ class CreateCategoriesTable extends Migration
             $table->string('land_arae')->nullable();
             $table->string('buildup_arae')->nullable();
             $table->string('property_age')->nullable();
-            $table->string('faatures_section')->nullable();
+            $table->string('features_section')->nullable();
+            $table->string('furnishing_section')->nullable();
+            $table->string('total_floor')->nullable();
+            $table->string('property_floor')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

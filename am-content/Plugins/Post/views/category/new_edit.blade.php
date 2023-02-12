@@ -58,8 +58,24 @@
                             <label for="land_area">Property age</label>
                         </div>
                         <div class="col-6 item form-group">
-                            <input type="checkbox" name="faatures_section" value="1" @if($info->faatures_section==1) checked @endif id="faatures_section">
-                            <label for="land_area">Faatures section</label>
+                            <input type="checkbox" name="features_section" value="1" @if($info->features_section==1) checked @endif id="features_section">
+                            <label for="land_area">Features section</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 item form-group">
+                            <input type="checkbox" name="furnishing_section" value="1" @if($info->furnishing_section==1) checked @endif id="furnishing_section">
+                            <label for="land_area">Furnishing section</label>
+                        </div>
+                        <div class="col-6 item form-group">
+                            <input type="checkbox" name="total_floor" value="1" @if($info->total_floor==1) checked @endif id="total_floor">
+                            <label for="land_area">Total floors</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 item form-group">
+                            <input type="checkbox" name="property_floor" value="1" @if($info->property_floor==1) checked @endif id="property_floor">
+                            <label for="land_area">Property floor</label>
                         </div>
                     </div>
             </div>
@@ -84,6 +100,7 @@
 @endsection
 
 @section('script')
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 <script src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('admin/bootstrap-iconpicker/js/iconset/fontawesome5-3-1.min.js') }}"></script>
 <script src="{{ asset('admin/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js') }}"></script>

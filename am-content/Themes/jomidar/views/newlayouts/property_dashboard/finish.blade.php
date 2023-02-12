@@ -58,7 +58,5 @@
 </div>
 @endsection
 @push('js')
-<!-- <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script> -->
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
-
 @endpush

@@ -336,8 +336,8 @@
     margin-right: 0;
 }
 
-.radio-edit-third {
-    margin-left: 10px;
+.ltr .radio-edit-third {
+    margin-left: 5px;
 }
 
 .realestate_roles {

@@ -87,7 +87,7 @@
     @include('theme::newlayouts.partials.user_header')
     <!-- Property Description Section Starts Here -->
     <div class="container">
-        <form method="post" action="{{ route('agent.property.five_update_property',$id) }}">
+        <form method="post" action="{{ route('agent.property.five_update_property',$id) }}" id="features_form">
             @csrf
             @method('PUT')
             <div class="description-card card align-items-end">
@@ -95,7 +95,7 @@
                     <span class="theme-text-sky ">5</span>/
                     <span class="theme-text-seondary-black">6</span>
                 </div>
-                @if(!empty($info->property_type) && $info->property_type->category->faatures_section == '1')
+                @if(!empty($info->property_type) && $info->property_type->category->features_section == '1')
                 <p class="mb-0 font-18 theme-text-seondary-black p-2">{{__('labels.determine_the_features')}}</p>
                 <p class="mb-3 font-14 theme-text-grey ps-2">{{__('labels.choose_more_than_one')}}</p>
                 <div class="row theme-gx-2 theme-gy-36 justify-content-end p-2" id="tick_div">
@@ -114,13 +114,13 @@
                 <div class="col-12 d-flex justify-content-end flex-lg-row flex-sm-column">
                     <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
                         <label class="d-flex justify-content-end align-items-end">{{__('labels.land_depth')}}</label>
-                        <input type="text" name="depth" value="{{ !empty($info->depth) ? $info->depth->content  : old('depth')}}" class="form-control">
+                        <input type="text" id="depth_field" name="depth" value="{{ !empty($info->depth) ? $info->depth->content  : old('depth')}}" class="form-control">
                         <span class="meters_span">{{__('labels.meter')}}</span>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12 apartment_details d-flex flex-column p-2">
                         <label class="d-flex justify-content-end align-items-end">
                             {{__('labels.land_length')}}</label>
-                        <input type="text" name="length" value="{{ !empty($info->length) ? $info->length->content  : old('length')}}" class="form-control">
+                        <input type="text" id="length_field" name="length" value="{{ !empty($info->length) ? $info->length->content  : old('length')}}" class="form-control">
                         <span class="meters_span">{{__('labels.meter')}}</span>
                     </div>
                 </div>
@@ -152,7 +152,7 @@
                 <p class="pb-0 mb-0">{{__('labels.price')}}: <span>{{$info->price->price}} {{__('labels.sar')}}</span></p>
             </div>
             <div class="d-flex justify-content-between description-btn-group">
-                <button class="btn btn-theme">{{__('labels.next')}}</button>
+                <button id="features_btn" class="btn btn-theme">{{__('labels.next')}}</button>
                 <a href="{{ route('agent.property.forth_edit_property', $id)}}" class="btn btn-theme-secondary previous_btn center_property">{{__('labels.previous')}}</a>
             </div>
     </div>

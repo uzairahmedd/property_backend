@@ -103,10 +103,14 @@ class CategoryController extends Controller
     $post->slug = $slug;
     $post->type = 'category';
     $post->user_id = Auth::id();
+    // $post->status=$request->required;
     $post->land_area=!isset($request->land_area) ? 0 :$request->land_area;
     $post->buildup_area=!isset($request->buildup_area) ? 0 :$request->buildup_area;
     $post->property_age=!isset($request->property_age) ? 0 :$request->property_age;
-    $post->faatures_section=!isset($request->faatures_section) ? 0 :$request->faatures_section;
+    $post->features_section=!isset($request->features_section) ? 0 :$request->features_section;
+    $post->furnishing_section=!isset($request->furnishing_section) ? 0 :$request->furnishing_section;
+    $post->total_floor=!isset($request->total_floor) ? 0 :$request->total_floor;
+    $post->property_floor=!isset($request->property_floor) ? 0 :$request->property_floor;
     $post->featured = $request->featured;
     $post->save();
 
@@ -233,10 +237,14 @@ class CategoryController extends Controller
     $post->ar_name = $request->ar_name;
     $post->slug = $slug;
     $post->featured = $request->featured;
+    // $post->status=$request->required;
     $post->land_area=!isset($request->land_area) ? 0 :$request->land_area;
     $post->buildup_area=!isset($request->buildup_area) ? 0 :$request->buildup_area;
     $post->property_age=!isset($request->property_age) ? 0 :$request->property_age;
-    $post->faatures_section=!isset($request->faatures_section) ? 0 :$request->faatures_section;
+    $post->features_section=!isset($request->features_section) ? 0 :$request->features_section;
+    $post->furnishing_section=!isset($request->furnishing_section) ? 0 :$request->furnishing_section;
+    $post->total_floor=!isset($request->total_floor) ? 0 :$request->total_floor;
+    $post->property_floor=!isset($request->property_floor) ? 0 :$request->property_floor;
     $post->save();
 
     $meta = Categorymeta::where('type', 'icon')->where('category_id', $id)->first();

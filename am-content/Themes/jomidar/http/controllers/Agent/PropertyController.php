@@ -887,12 +887,16 @@ class PropertyController extends controller
             $keys_table->save();
         }
         $check_category = Category::where('type', 'category')->where('id', $request->category)->first();
-        //if land and farm then skip third step for facilities
+        //if land,Warehouse and farm then skip third step for facilities
         if (!empty($check_category) && Str::contains($check_category->name, 'land')) {
             $this->remove_input_page_data($term_id);
             return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
         }
         if (!empty($check_category) && Str::contains($check_category->name, 'Farm')) {
+            $this->remove_input_page_data($term_id);
+            return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
+        }
+        if (!empty($check_category) && Str::contains($check_category->name, 'Warehouse')) {
             $this->remove_input_page_data($term_id);
             return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
         }
@@ -918,7 +922,7 @@ class PropertyController extends controller
         $array = [];
         $property_type = null;
         $info = Terms::with('postcategory', 'property_type', 'property_status_type', 'total_floors', 'property_floor', 'property_condition')->where('user_id', Auth::id())->findorFail($this->term_id);
-        //if land and farm is property type
+        //if land,Warehouse and farm is property type
         if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'land')) {
             $this->remove_input_page_data($this->term_id);
             return redirect()->route('agent.property.second_edit_property', $id);
@@ -927,6 +931,11 @@ class PropertyController extends controller
             $this->remove_input_page_data($this->term_id);
             return redirect()->route('agent.property.second_edit_property', $id);
         }
+        if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'Warehouse')) {
+            $this->remove_input_page_data($this->term_id);
+            return redirect()->route('agent.property.second_edit_property', $id);
+        }
+
 
         foreach ($info->postcategory as $key => $value) {
             array_push($array, $value->category_id);
@@ -940,7 +949,6 @@ class PropertyController extends controller
         })->with(['post_category_option' => function ($q) {
             return $q->where('term_id', $this->term_id);
         }])->get();
-
         return view('theme::newlayouts.property_dashboard.property_create_third', compact('id', 'input_options', 'info'));
     }
 
@@ -971,34 +979,34 @@ class PropertyController extends controller
 
 
         //property condition store & update
-        $meta = Meta::where('term_id', $term_id)->where('type', 'property_condition')->first();
-        if (empty($meta)) {
+        Meta::where('term_id', $term_id)->where('type', 'property_condition')->delete();
+        if (isset($request->furnishing)) {
             $meta = new Meta;
             $meta->term_id = $term_id;
             $meta->type =  'property_condition';
+            $meta->content = $request['furnishing'];
+            $meta->save();
         }
-        $meta->content = $request['furnishing'];
-        $meta->save();
 
-        //property condition store & update
-        $meta_role = Meta::where('term_id', $term_id)->where('type', 'total_floors')->first();
-        if (empty($meta_role)) {
+        //property total floors condition store & update
+        Meta::where('term_id', $term_id)->where('type', 'total_floors')->delete();
+        if (isset($request->total_floors)) {
             $meta_role = new Meta;
             $meta_role->term_id = $term_id;
             $meta_role->type =  'total_floors';
+            $meta_role->content = $request['total_floors'];
+            $meta_role->save();
         }
-        $meta_role->content = $request['total_floors'];
-        $meta_role->save();
 
-        $property_floor = Meta::where('term_id', $term_id)->where('type', 'property_floor')->first();
-        if (empty($property_floor)) {
+        //property floors condition store & update
+        Meta::where('term_id', $term_id)->where('type', 'property_floor')->delete();
+        if (isset($request->property_floor)) {
             $property_floor = new Meta;
             $property_floor->term_id = $term_id;
             $property_floor->type =  'property_floor';
+            $property_floor->content = $request['property_floor'];
+            $property_floor->save();
         }
-        $property_floor->content = $request['property_floor'];
-        $property_floor->save();
-
 
         return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
     }
@@ -1012,13 +1020,8 @@ class PropertyController extends controller
      */
     public function edit_forth_property($id)
     {
-        $info = Terms::with('medias', 'virtual_tour', 'postcategory')->where('user_id', Auth::id())->findorFail(decrypt($id));
-        $check_category = Meta::where('type', 'property_condition')->where('term_id', decrypt($id))->first();
-        $skip_id = '';
-        if (empty($check_category)) {
-            $skip_id = 1;
-        }
-        return view('theme::newlayouts.property_dashboard.property_create_forth', compact('id', 'info', 'skip_id'));
+        $info = Terms::with('medias', 'virtual_tour', 'postcategory', 'property_type')->where('user_id', Auth::id())->findorFail(decrypt($id));
+        return view('theme::newlayouts.property_dashboard.property_create_forth', compact('id', 'info'));
     }
 
     /**

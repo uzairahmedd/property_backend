@@ -105,6 +105,22 @@
                                         <input type="checkbox" value="6">
                                         <span class="checmark step font-14 font-medium">6</span>
                                     </div>
+                                    <div class="room-container property_radio">
+                                        <input type="checkbox" value="7">
+                                        <span class="checmark step font-14 font-medium">7</span>
+                                    </div>
+                                    <div class="room-container property_radio">
+                                        <input type="checkbox" value="8">
+                                        <span class="checmark step font-14 font-medium">8</span>
+                                    </div>
+                                    <div class="room-container property_radio">
+                                        <input type="checkbox" value="9">
+                                        <span class="checmark step font-14 font-medium">9</span>
+                                    </div>
+                                    <div class="room-container property_radio">
+                                        <input type="checkbox" value="9+">
+                                        <span class="checmark step font-14 font-medium">9+</span>
+                                    </div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3">
                                     <li class="room-no-drop">

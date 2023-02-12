@@ -553,7 +553,7 @@ class PropertyController extends controller
             'The_Space' => (!empty($posts->builtarea) ? "Built-up area in SQM: " . $posts->builtarea->content . ',' : ' ') . ' ' . (!empty($posts->landarea) ?  "Land area in SQM: " . $posts->landarea->content : ' '),
             'Land_Number' =>  'N/A',
             "Plan_Number" =>  'N/A',
-            'Number_Of_Units' =>  'N/A',
+            'Number_Of_Units' =>  $this->get_option_number($posts, 'Appartments'),
             'Floor_Number' => !empty($posts->property_floor) && !empty($posts->property_floor->content) ? $posts->property_floor->content : 'N/A',
             'Unit_Number' => 'N/A',
             "Rooms_Number" => $this->get_option_number($posts, 'Bedrooms'),
@@ -569,9 +569,9 @@ class PropertyController extends controller
             "Rights and obligations over real estate that are not documented in the real estate document" => $this->get_rule_type(!empty($posts->rules) && Str::contains($posts->rules->content, '2') ? '2' : '0'),
             "Information that may affect the property" => $this->get_rule_type(!empty($posts->rules) && Str::contains($posts->rules->content, '3') ? '3' : '0'),
             "Property disputes" => $this->get_rule_type(!empty($posts->rules) && Str::contains($posts->rules->content, '4') ? '4' : '0'),
-            "Availability of elevators" => $this->get_features_type($posts, 'Elevator'),
+            "Availability of elevators" => $this->get_option_number($posts, 'Elevator') != 'N/A' ? 'Yes' : 'N/A',
             "Number of elevators" => $this->get_option_number($posts, 'Elevators'),
-            "Availability of Parking" => $this->get_features_type($posts, 'Parking'),
+            "Availability of Parking" =>  $this->get_option_number($posts, 'Parking') != 'N/A' ? 'Yes' : 'N/A',
             "Number of parking" => $this->get_option_number($posts, 'Parking'),
             "Advertiser category" => $this->advertiser_category($posts),
             "Advertiser license number" => !empty($posts->user->user_credentials) && !empty($posts->user->user_credentials->rega_number)  ? $posts->user->user_credentials->rega_number : 'N/A',
@@ -677,6 +677,7 @@ class PropertyController extends controller
         }
     }
 
+ 
     public  function get_features_type($data, $feature_name)
     {
 
@@ -733,7 +734,7 @@ class PropertyController extends controller
             }
         }
 
-        $description .= (!empty($posts->property_type) ? $posts->property_type->category->name : 'Property') . ' has ' . (!empty($posts->electricity_facility) && $posts->electricity_facility->content == 0 ? 'electricity connection' : "no electricity connection ") . 'and ' . (!empty($posts->water_facility) && $posts->water_facility->content == 0 ? 'have water connection. ' : 'no water connection. ');
+        $description .= (!empty($posts->property_type) ? $posts->property_type->category->name : 'Property') . ' has ' . (!empty($posts->electricity_facility) && $posts->electricity_facility->content == 0 ? 'electricity connection ' : "no electricity connection ") . 'and ' . (!empty($posts->water_facility) && $posts->water_facility->content == 0 ? 'have water connection. ' : 'no water connection. ');
         $description .= (!empty($posts->property_type) ? $posts->property_type->category->name : 'Property') . ' built year is ' . (!empty($posts->property_age) ? $posts->property_age->content : ' N/A ');
         $description .= '. ' . (!empty($posts->property_type) ? $posts->property_type->category->name : 'Property') . ' price is ' . (!empty($posts->price) ? $posts->price->price . ' SAR' :'');
         return $description;

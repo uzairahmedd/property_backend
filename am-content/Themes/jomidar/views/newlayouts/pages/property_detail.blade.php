@@ -365,7 +365,7 @@
                     </div>
                 </div>
                 @endif
-                @if(isset($property->total_floors->content))
+                @if(!empty($property->total_floors) && isset($property->total_floors->content))
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right">
                         <h3 class="font-16 text-bold">{{ $property->total_floors->content }}</h3>
@@ -376,7 +376,7 @@
                 </div>
                 @endif
 
-                @if(isset($property->property_floor->content))
+                @if(!empty($property->property_floor) && isset($property->property_floor->content))
                 <div class="row w-100 mb-3">
                     <div class="col-6 text-start detail-txt-right">
                         <h3 class="font-16 text-bold">{{ $property->property_floor->content }}</h3>
@@ -386,6 +386,8 @@
                     </div>
                 </div>
                 @endif
+
+              
 
                 @if(isset($property->property_age->content))
                 <div class="row w-100 mb-3">
@@ -517,7 +519,6 @@
 @endsection
 
 @push('js')
-<script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{ theme_asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
 <script>
     var coordinates = $('#map_coordinates').val();

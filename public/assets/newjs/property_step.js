@@ -221,6 +221,21 @@ $(document).on('keyup', '#interface_val3', function (e) {
     $(this).val(val)
 });
 
+//for appartments
+$(document).on('keyup','input[name="Appartments"]', function (e) {
+    var val = toEnglishNumber($(this).val())
+    $(this).val(val)
+});
+//for openings
+$(document).on('keyup','input[name="Openings"]', function (e) {
+    var val = toEnglishNumber($(this).val())
+    $(this).val(val)
+});
+//for offices
+$(document).on('keyup','input[name="Office"]', function (e) {
+    var val = toEnglishNumber($(this).val())
+    $(this).val(val)
+});
 //for total floors arabic to english digit for length
 $(document).on('keyup', 'input[name="length"]', function (e) {
     var val = toEnglishNumber($(this).val())
@@ -231,6 +246,41 @@ $(document).on('keyup', 'input[name="depth"]', function (e) {
     var val = toEnglishNumber($(this).val())
     $(this).val(val)
 });
+
+
+//form submit validations of third step
+$("#additional_detail_btn").click(function () {
+    event.preventDefault();
+    //for property total floors
+     if ($('input[name="total_floors"]').val() == '' || $('input[name="total_floors"]').val() == 'undefined') {
+        Sweet('error', 'Please provide total floors!');
+        return false;
+    }
+    //for property  floors
+    if ($('#interface_val3').val() == '' || $('#interface_val3').val() == 'undefined') {
+        Sweet('error', 'Please provide property floor!');
+        return false;
+    }
+    $("#additional_form").submit();
+});  
+
+//form submit validations of fifth step of features from
+$("#features_btn").click(function () {
+    event.preventDefault();
+    //for property total floors
+     if ($('#length_field').val() == '' || $('#length_field').val() == 'undefined') {
+        Sweet('error', 'Please provide Property length!');
+        return false;
+    }
+    //for property  floors
+    if ($('#depth_field').val() == '' || $('#depth_field').val() == 'undefined') {
+        Sweet('error', 'Please provide property width!');
+        return false;
+    }
+    $("#features_form").submit();
+}); 
+
+
 /// ******* ADress Add Driver ******//
 // var isGoogleAPIEnable = 1;
 // var googleURL = 'https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyD8jBzTek9k4TI77XXdBaE9_-FDT0lNFaY&callback=CreateMapAD';

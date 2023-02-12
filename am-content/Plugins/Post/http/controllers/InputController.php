@@ -106,6 +106,7 @@ class InputController extends controller
         $post->ar_name=$request->ar_title;
         $post->type='option';
         $post->user_id=Auth::id();
+        // $post->status=$request->required;
         $post->featured=$request->featured;
         $post->save();
 
@@ -219,6 +220,7 @@ class InputController extends controller
         $post=  Category::where('type','option')->findorFail($id);
         $post->name=$request->title;
         $post->ar_name=$request->ar_title;
+        // $post->status=$request->required;
         $post->featured=$request->featured;
         $post->save();
 

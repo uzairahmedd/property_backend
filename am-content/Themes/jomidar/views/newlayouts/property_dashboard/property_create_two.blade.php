@@ -173,7 +173,6 @@
 </div>
 @endsection
 @section('step_two_js')
-<script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{theme_asset('assets/newjs/yearpicker.js')}}"></script>
 <script src="{{theme_asset('assets/newjs/step_two.js')}}"></script>
 @endsection

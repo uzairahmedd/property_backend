@@ -48,8 +48,25 @@
               <label for="buildup_area">Property age</label>
             </div>
             <div class="col-6 item form-group">
-              <input type="checkbox" name="faatures_section" value="1" id="faatures_section">
+              <input type="checkbox" name="features_section" value="1" id="features_section">
               <label for="buildup_area">Faatures section</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 item form-group">
+              <input type="checkbox" name="furnishing_section" value="1" id="furnishing_section">
+              <label for="buildup_area">furnishing section</label>
+            </div>
+            <div class="col-6 item form-group">
+              <input type="checkbox" name="total_floor" value="1" id="total_floor">
+              <!-- <input type="hidden" name="required" id="required_field" value=""> -->
+              <label for="buildup_area">Total floors <span id="reuiqred_text"></span></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 item form-group">
+              <input type="checkbox" name="property_floor" value="1" id="property_floor">
+              <label for="buildup_area">Property floor</label>
             </div>
           </div>
       </div>
@@ -74,6 +91,7 @@
 @endsection
 
 @section('script')
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 <script src="{{ asset('admin/js/select2.min.js') }}"></script>
 <script src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('admin/bootstrap-iconpicker/js/iconset/fontawesome5-3-1.min.js') }}"></script>
@@ -99,5 +117,47 @@
   function success(res) {
     location.reload()
   }
+  // jQuery(document).ready(function() {
+  //   $('#total_floor').change(function() {
+
+  //     Swal.fire({
+  //       title: 'Do you want to make it require?',
+  //       html: '<form><input type="checkbox">If yes then click this checkbox</form>',
+  //       text: "You want to delete this!",
+  //       showCancelButton: true,
+  //       confirmButtonColor: '#094193',
+  //       cancelButtonColor: '#d33',
+  //       confirmButtonText: 'Yes, required!',
+  //       showLoaderOnConfirm: true,
+  //     }).then((result) => {
+  //       if (result.isConfirmed) {
+  //         if (result.value) {
+  //           Swal.fire({
+  //             icon: 'success',
+  //             text: 'Total floors is required',
+  //           });
+  //           console.log('1');
+  //           $('#reuiqred_text').text('(Required)');
+  //           $('#required_field').val('1');
+  //         } else {
+  //           Swal.fire({
+  //             icon: 'error',
+  //             text: "Total floors is not required"
+  //           });
+  //           console.log('ds');
+  //           $('#reuiqred_text').text('(not Required)');
+  //           $('#required_field').val('0');
+  //         }
+  //       } else {
+  //         console.log(`modal was dismissed by ${result.dismiss}`);
+  //         $('#reuiqred_text').text('(not Required)');
+  //         $('#required_field').val('0');
+  //       }
+  //     })
+
+
+  //   });
+
+  // });
 </script>
 @endsection
