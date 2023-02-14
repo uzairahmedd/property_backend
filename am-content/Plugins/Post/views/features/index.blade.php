@@ -9,7 +9,7 @@
 				<h4>{{ __('Features') }}</h4>
 			</div>
 			<div class="col-lg-6">
-				@can('fatures.create')
+				@can('feature.create')
 				<div class="add-new-btn">
 					<a href="{{ route('admin.feature.create') }}" class="btn float-right btn-primary">{{ __('Add New') }}</a>
 				</div>
