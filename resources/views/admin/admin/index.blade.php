@@ -56,8 +56,8 @@
                             <th>{{ __('Name') }}</th>
                             <th>{{ __('Email') }}</th>
                             <th>{{ __('Status') }}</th>
-                            <th class="am-title">{{ __('Last Activity') }}</th>
-                            <th class="am-title">{{ __('Last Login Ip') }}</th>
+                            <!-- <th class="am-title">{{ __('Last Activity') }}</th>
+                            <th class="am-title">{{ __('Last Login Ip') }}</th> -->
                             <th>{{ __('Role') }}</th>
 						</tr>
 					</thead>
@@ -88,8 +88,8 @@
                             <span class="badge badge-danger">{{ __('Deactive') }}</span>
                             @endif
                             </td>
-                             <td>@if(!empty($row->user_session)) {{ date('Y-m-d H:i:s', $row->user_session->last_activity) }} @endif</td>
-                            <td>@if(!empty($row->user_session)) {{  $row->user_session->ip_address }} @endif</td>
+                             <!-- <td>@if(!empty($row->user_session)) {{ date('Y-m-d H:i:s', $row->user_session->last_activity) }} @endif</td>
+                            <td>@if(!empty($row->user_session)) {{  $row->user_session->ip_address }} @endif</td> -->
                            <td>
                         	@foreach($row->roles as $r) <span class="badge badge-primary">{{ $r->name }}</span> @endforeach
                         </td>

@@ -371,7 +371,7 @@ class PropertyController extends controller
      */
     public function destroy(Request $request)
     {
-        if (!Auth()->user()->can('Properties.delete')) {
+        if (!Auth()->user()->can('Properties.edit')) {
             abort(401);
         }
 
@@ -402,7 +402,7 @@ class PropertyController extends controller
 
     public function csv_page(Request $request, $type = "all")
     {
-        if (!Auth()->user()->can('Properties.list')) {
+        if (!Auth()->user()->can('csv.list')) {
             abort(401);
         }
 
@@ -457,7 +457,7 @@ class PropertyController extends controller
     */
     public function show_csv_specified(Request $request, $id)
     {
-        if (!Auth()->user()->can('Properties.list')) {
+        if (!Auth()->user()->can('csv.list')) {
             abort(401);
         }
 
@@ -721,7 +721,6 @@ class PropertyController extends controller
     }
     public function add_descruption($posts)
     {
-        // dd($posts->property_type);
         $description = (!empty($posts->property_type) ? $posts->property_type->category->name : 'Property') . ' for ' . $posts->property_status_type->category->name . ' in, ' .
             $posts->post_district->district->name . ', ' .  $posts->post_new_city->city->name . '.';
         if (!empty($posts->landarea)) {
@@ -779,6 +778,9 @@ class PropertyController extends controller
 
     public function exportCSV(Request $request)
     {
+        if (!Auth()->user()->can('csv.export')) {
+            abort(401);
+        }
         $validator = \Validator::make($request->all(), [
             'from_date' => 'required',
             'to_date' => 'required',

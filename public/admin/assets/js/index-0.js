@@ -6,7 +6,7 @@ $('#days').on('change',()=>{
 	loadData();
 })
 
-loadData();
+// loadData();
 loadStaticData();
 
 function loadStaticData(){

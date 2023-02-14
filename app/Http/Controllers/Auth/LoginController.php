@@ -13,6 +13,7 @@ use Session;
 use Illuminate\Http\Request;
 use Socialite;
 use App\Usermeta;
+use Illuminate\Validation\ValidationException;
 
 
 class LoginController extends Controller
@@ -35,7 +36,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-  //  protected $redirectTo = RouteServiceProvider::HOME;
+    //  protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -44,13 +45,13 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-       
-       $this->middleware('guest')->except('logout');
+
+        $this->middleware('guest')->except('logout');
     }
 
     public function redirectToProvider($provider)
     {
-    
+
         return Socialite::driver($provider)->redirect();
     }
 
@@ -61,30 +62,28 @@ class LoginController extends Controller
      */
     public function handleProviderCallback($provider)
     {
-    
+
         $users = Socialite::driver($provider)->user();
 
-        
 
-        $user = User::where('email',$users->getEmail())->first();
 
-        if($user)
-        {
-            Auth::login($user,true);
-            
+        $user = User::where('email', $users->getEmail())->first();
+
+        if ($user) {
+            Auth::login($user, true);
+
             return redirect()->route('login');
-           
-        }else{
-           $user_data = new User();
-           $user_data->role_id = 2;
-           $user_data->name = $users->name;
-           $user_data->slug = Str::slug($users->name);
-           $user_data->email = $users->getEmail();
-           $user_data->avatar = $users->getAvatar();
-           $user_data->password = Hash::make('rootadmin');
-           $user_data->save();
+        } else {
+            $user_data = new User();
+            $user_data->role_id = 2;
+            $user_data->name = $users->name;
+            $user_data->slug = Str::slug($users->name);
+            $user_data->email = $users->getEmail();
+            $user_data->avatar = $users->getAvatar();
+            $user_data->password = Hash::make('rootadmin');
+            $user_data->save();
 
-           $data = [
+            $data = [
                 'address' => null,
                 'phone' => null,
                 'description' => null,
@@ -106,26 +105,62 @@ class LoginController extends Controller
             $usermeta->content = json_encode($data);
             $usermeta->save();
 
-            Auth::login($user_data,true);
+            Auth::login($user_data, true);
 
             return redirect()->route('login');
         }
-
     }
 
     public function redirectTo()
-    {  
-         if (Auth::user()->role_id==1) {
-          return $this->redirectTo=route('admin.dashboard');
+    {
+        if (Auth::user()->role_id == 1) {
+            return $this->redirectTo = route('admin.dashboard');
+        } elseif (Auth::user()->role_id == 2) {
+
+            return $this->redirectTo = route('agent.profile.settings');
         }
-        elseif (Auth::user()->role_id==2) {
-                  
-           return $this->redirectTo=route('agent.profile.settings');
-       }
-       // elseif (Auth::user()->role_id==3) {
-          
-       //     return $this->redirectTo=route('seller.dashboard');
-       // }
-       $this->middleware('guest')->except('logout');
+        // elseif (Auth::user()->role_id==3) {
+
+        //     return $this->redirectTo=route('seller.dashboard');
+        // }
+        $this->middleware('guest')->except('logout');
+    }
+
+    public function login(Request $request)
+    {
+        
+        $this->validateLogin($request);
+        //
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if (method_exists($this, 'hasTooManyLoginAttempts') && $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request)) {
+            //check user status        
+            if (Auth::user()->status == '1') return $this->sendLoginResponse($request);
+            // if user_status != 'A' raise exception
+            else {
+                $this->guard()->logout();
+                return $this->sendAccountBlocked($request);
+            }
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+        return $this->sendFailedLoginResponse($request);
+        //
+    } //
+
+    protected function sendAccountBlocked(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => ['Your account was suspended.'],
+        ]);
     }
 }

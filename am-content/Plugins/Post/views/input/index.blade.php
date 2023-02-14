@@ -31,7 +31,7 @@
 				</div>
 			</form>
 		</div>
-		<form method="post" action="{{ route('admin.features.destroy') }}" class="basicform">
+		<form method="post" action="{{ route('admin.input.destroy') }}" id="confirm_basicform">
 			@csrf
 			<div class="float-left">
 				@can('input.delete')
@@ -47,7 +47,7 @@
 				@endcan
 			</div>
 			<div class="table-responsive custom-table">
-				<table class="table table-bordered">
+				<table class="table table-striped table-hover text-center table-borderless">
 					<thead>
 						<tr>
 							<th class="am-select">

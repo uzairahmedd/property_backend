@@ -173,10 +173,85 @@
 
 
 	});
+    //sweet alert box for delete
+	$("#confirm_basicform").on('submit', function (e) {
+		e.preventDefault();
+		var url=this.action;
+		var form= new FormData(this);
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+		Swal.fire({
+			title: 'Are you sure?',
+			text: "You want to delete this!",
+			showCancelButton: true,
+			confirmButtonColor: '#094193',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!',
+			showLoaderOnConfirm: true,
+
+			preConfirm: function () {
+				return new Promise(function (resolve) {
+					$.ajax({
+						type: 'POST',
+						url: url,
+						data:form,
+						dataType: 'json',
+						contentType: false,
+						cache: false,
+						processData: false,
+					})
+						.done(function (response) {
+
+							Sweet('success', response);
+							success(response);
+						})
+						.fail(function () {
+							Sweet('error', 'Something went wrong!');
+						});
+				});
+			},
+			allowOutsideClick: false
+		});
+
+		// $.ajax({
+		// 	type: 'POST',
+		// 	url: this.action,
+		// 	data: new FormData(this),
+		// 	dataType: 'json',
+		// 	contentType: false,
+		// 	cache: false,
+		// 	processData: false,
+		// 	beforeSend: function () {
+
+		// 		$('.basicbtn').attr('disabled', '');
+
+
+
+		// 	},
+
+		// 	success: function (response) {
+		// 		$('.basicbtn').removeAttr('disabled')
+		// 		Sweet('success', response)
+
+		// 		success(response)
+		// 	},
+		// 	error: function (xhr, status, error) {
+		// 		$('.basicbtn').removeAttr('disabled')
+		// 		$('.errorarea').show();
+		// 		$.each(xhr.responseJSON.errors, function (key, item) {
+		// 			Sweet('error', item)
+		// 			$("#errors").html("<li class='text-danger'>" + item + "</li>")
+		// 		});
+		// 		errosresponse(xhr, status, error);
+		// 	}
+		// })
+	});
 
 	$("#basicform").on('submit', function (e) {
 		e.preventDefault();
-
 		$.ajaxSetup({
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -435,8 +510,8 @@ function get_property_data(elem) {
 			$('#property_data_modal').modal('show');
 
 			$.each(response, function (index, value) {
-			 console.log();
-			 $('#main_contend').append('<div class="row"><label><b>'+index+': </b><span>'+value+'</span></label></div>');
+				console.log();
+				$('#main_contend').append('<div class="row"><label><b>' + index + ': </b><span>' + value + '</span></label></div>');
 			});
 
 		}

@@ -48,7 +48,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'App\Http\Co
 	// role routes
 	Route::resource('role', 'RoleController');
 	Route::post('roles/destroy', 'RoleController@destroy')->name('roles.destroy');
-
+	Route::post('permission/store', 'RoleController@permission_store')->name('permission.store');
 	// users routes
 	Route::resource('users', 'AdminController');
 	Route::post('/userss/destroy', 'AdminController@destroy')->name('users.destroy');

@@ -19,9 +19,9 @@
 					<a href="{{ route('admin.property.show',0) }}" class="mr-2 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{ __('Trash') }} ({{ $trash }})</a>
 				</div>
 			</div>
-			<div class="col-lg-2">
+			<!-- <div class="col-lg-2">
                 <a href="{{ route('admin.property.create') }}" class="btn btn-outline-primary add-property-btn">{{ __('Add') }}</a>
-			</div>
+			</div> -->
 		</div>
 		<br>
 		<div class="float-right">
@@ -43,7 +43,7 @@
 			@csrf
 			<div class="float-left">
 
-				@can('Properties.delete')
+	
 				<div class="input-group">
 					<select class="form-control selectric" name="method">
 						<option disabled selected="">{{ __('Select Action') }}</option>
@@ -62,10 +62,10 @@
 						<button class="btn btn-primary basicbtn" type="submit">{{ __('Submit') }}</button>
 					</div>
 				</div>
-				@endcan
+			
 			</div>
 			<div class="table-responsive custom-table">
-				<table class="table">
+				<table class="table table-striped table-hover text-center table-borderless">
 					<thead>
 						<tr>
 							<th class="am-select">
@@ -93,11 +93,11 @@
 							</td>
 							<td><img src="{{ asset($row->post_preview->media->url ?? 'uploads/default.png') }}" height="50" alt=""></td>
 							<td>{{ $row->title }} (#{{ $row->id }})
-								<div>
+								<!-- <div>
 									<a href="{{ route('admin.property.edit',$row->id) }}">{{ __('Edit') }}</a> | <a href="{{ url('/property',$row->slug) }}">{{ __('Show') }}</a>
-								</div>
+								</div> -->
 							</td>
-							<td><a href="{{ route('admin.users.edit',$row->user->id) }}">{{ $row->user->name }}</a></td>
+							<td><a href="#">{{ $row->user->name }}</a></td>
 							<td>
 								@if($row->resource==1)
 								<span class="badge badge-success">App</span>
@@ -158,7 +158,7 @@
 			var ids = $(this).val();
 			$('#row'+ids).remove();
 		});
-
+		location.reload();
 	}
 </script>
 @endsection

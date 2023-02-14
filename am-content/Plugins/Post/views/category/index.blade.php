@@ -9,14 +9,17 @@
 				<h4>{{ __('Categories') }}</h4>
 			</div>
 			<div class="col-lg-6">
+			@can('category.create')
 				<div class="add-new-btn">
 					<a href="{{ route('admin.category.create') }}" class="btn float-right btn-primary">{{ __('Add New') }}</a>
 				</div>
+				@endcan		
 			</div>
 		</div>
 		<div class="card-action-filter mt-3">
-			<form method="post" id="basicform" action="{{ route('admin.features.destroy') }}">
+			<form method="post" id="confirm_basicform" action="{{ route('admin.category.destroy') }}">
 				@csrf
+				@can('category.delete')
 				<div class="float-left">
 					<div class="input-group">
 						<select class="form-control selectric" name="method">
@@ -28,6 +31,7 @@
 						</div>
 					</div>
 				</div>
+				@endcan	
 				<div class="float-right">
 					<div class="form-group">
 						<input type="text" id="data_search" class="form-control" placeholder="Enter Value">
@@ -35,7 +39,7 @@
 				</div>
 		</div>
 		<div class="table-responsive custom-table">
-			<table class="table text-left">
+			<table class="table text-left table-striped table-hover text-center table-borderless">
 				<thead>
 					<tr>
 						<th class="am-select">

@@ -22,7 +22,7 @@ class AdminController extends Controller
     public function index()
     {
         if (Auth()->user()->can('admin.list')) {
-            $users = User::where('role_id',1)->with('user_session')->where('id','!=',1)->latest()->get();
+            $users = User::where('role_id','!=',2)->with('user_session')->latest()->get();
             return view('admin.admin.index', compact('users'));
         }
     }

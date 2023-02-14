@@ -224,6 +224,9 @@ class FeaturesController extends Controller
      */
     public function destroy(Request $request)
     {
+      if (!Auth()->user()->can('feature.delete')) {
+        abort(401);
+      }
       if ($request->method=='delete') {
        if ($request->ids) {
         foreach ($request->ids as $id) {
@@ -233,6 +236,6 @@ class FeaturesController extends Controller
     }
 
 
-    return response()->json('Post Removed');
+    return response()->json('Feature deleted successfully!');
   }
 }

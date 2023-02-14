@@ -81,7 +81,7 @@
 				@endcan
 			</div> -->
             <div class="table-responsive custom-table">
-                <table class="table">
+                <table class="table table-striped table-hover text-center table-borderless">
                     <thead>
                         <tr>
                             <th class="am-title">{{ __('Id') }}</th>

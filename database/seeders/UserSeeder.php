@@ -130,9 +130,11 @@ class UserSeeder extends Seeder
                     'cities.list',
                     'cities.create',
                     'cities.edit',
+                    'cities.delete',
                     'district.list',
                     'district.create',
                     'district.edit',
+                    'district.delete',
 
                 ]
             ],
@@ -203,8 +205,13 @@ class UserSeeder extends Seeder
 
                 ]
             ],
-
-
+            [
+                'group_name' => 'csv',
+                'permissions' => [
+                    'csv.list',
+                    'csv.export',
+                    ]
+                ],
              [
                 'group_name' => 'Real state',
                 'permissions' => [
@@ -212,25 +219,27 @@ class UserSeeder extends Seeder
                     'Properties.create',
                     'Properties.edit',
                     'Properties.delete',
-                    'project.list',
-                    'project.create',
-                    'project.edit',
-                    'project.delete',
+                    // 'project.list',
+                    // 'project.create',
+                    // 'project.edit',
+                    // 'project.delete',
                     'feature.list',
                     'feature.edit',
                     'feature.create',
-                    'facilities.list',
-                    'facilities.create',
-                    'facilities.edit',
+                    'feature.delete',
+                    // 'facilities.list',
+                    // 'facilities.create',
+                    // 'facilities.edit',
                     'category.list',
                     'category.create',
                     'category.edit',
-                    'investor.list',
-                    'investor.create',
-                    'investor.edit',
-                    'currency.list',
-                    'currency.create',
-                    'currency.edit',
+                    'category.delete',
+                    // 'investor.list',
+                    // 'investor.create',
+                    // 'investor.edit',
+                    // 'currency.list',
+                    // 'currency.create',
+                    // 'currency.edit',
                     'status.create',
                     'status.edit',
                     'status.delete',

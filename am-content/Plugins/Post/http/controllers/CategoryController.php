@@ -291,6 +291,6 @@ class CategoryController extends Controller
     }
 
 
-    return response()->json('Post Removed');
+    return response()->json('Category deleted successfully!');
   }
 }

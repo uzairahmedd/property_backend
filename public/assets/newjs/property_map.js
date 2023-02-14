@@ -41,6 +41,12 @@ $("#location").click(function () {
     const mapboxClient = mapboxSdk({
         accessToken: mapboxgl.accessToken
     });
+
+    //for ad dilam 
+    if(city == 'Ad Dilam'){
+       city='addilam';
+    }
+
     //open defaut map using city name and district name
     mapboxClient.geocoding
         .forwardGeocode({
@@ -249,9 +255,12 @@ $(document).ready(function () {
     }
 
     $('#city_val').on('change', function () {
+        $('#coordinates_selected').val('');
+        $('#location').val('');
         var city_id = this.value;
         get_already_select_district(city_id);
     });
+
 
     //for default select box
     var direction = 'rtl';

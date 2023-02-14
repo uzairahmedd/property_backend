@@ -19,8 +19,9 @@
 				</div>
 			</form>
 		</div>
-		<form method="post" action="{{ route('admin.agent.destroy') }}" class="basicform">
+		<form method="post" action="{{ route('admin.agent.destroy') }}" id="confirm_basicform">
 			@csrf
+			@can('user.delete')
 			<div class="float-left">
 				<div class="input-group">
 					<select class="form-control selectric" name="status">
@@ -32,8 +33,9 @@
 					</div>
 				</div>
 			</div>
+			@endcan	
 			<div class="table-responsive custom-table">
-				<table class="table">
+				<table class="table table-striped table-hover text-center table-borderless">
 					<thead>
 						<tr>
 							<th class="am-select">
@@ -43,12 +45,12 @@
 								</div>
 							</th>
 							<th class="am-title">{{ __('Name') }}</th>
-							<th class="am-title">{{ __('Credits') }}</th>
+							<!-- <th class="am-title">{{ __('Credits') }}</th> -->
 							<th class="am-title">{{ __('Avatar') }}</th>
 							<th class="am-title">{{ __('Email') }}</th>
 							<th class="am-title">{{ __('Status') }}</th>
-							<th class="am-title">{{ __('Last Activity') }}</th>
-							<th class="am-title">{{ __('Last Login Ip') }}</th>
+							<!-- <th class="am-title">{{ __('Last Activity') }}</th>
+							<th class="am-title">{{ __('Last Login Ip') }}</th> -->
 							<th class="am-date">{{ __('Last Update') }}</th>
 						</tr>
 					</thead>
@@ -63,11 +65,11 @@
 							</th>
 							<td>
 								{{ $agent->name }}
-								<div class="hover">
+								<!-- <div class="hover">
 									<a  href="{{ route('admin.agent.edit',$agent->id) }}">Edit</a> | <a href="{{ route('admin.agent.login',$agent->id) }}">Login</a>
-								</div>
+								</div> -->
                             </td>
-                            <td>{{ $agent->credits }}</td>
+                            <!-- <td>{{ $agent->credits }}</td> -->
 							<td>
                                 @if($agent->avatar == null)
                                 <img src="{{ url('https://ui-avatars.com/api/?name='.$agent->name) }}" alt="" class="rounded-circle ob-cover">
@@ -85,8 +87,8 @@
                                 <span class="badge badge-danger">{{ __('suspended') }}</span>
                                 @endif
                             </td>
-                            <td>@if(!empty($agent->user_session)) {{ date('Y-m-d H:i:s', $agent->user_session->last_activity) }} @endif</td>
-                            <td>@if(!empty($agent->user_session)) {{  $agent->user_session->ip_address }} @endif</td>
+                            <!-- <td>@if(!empty($agent->user_session)) {{ date('Y-m-d H:i:s', $agent->user_session->last_activity) }} @endif</td>
+                            <td>@if(!empty($agent->user_session)) {{  $agent->user_session->ip_address }} @endif</td> -->
 							<td>{{ __('Last Modified') }}
 								<div class="date">
 									{{ $agent->updated_at->diffForHumans() }}
@@ -105,12 +107,12 @@
 							</div>
 						</th>
 						<th class="am-title">{{ __('Name') }}</th>
-						<th class="am-title">{{ __('Credits') }}</th>
+						<!-- <th class="am-title">{{ __('Credits') }}</th> -->
                         <th class="am-title">{{ __('Avatar') }}</th>
                         <th class="am-title">{{ __('Email') }}</th>
                         <th class="am-title">{{ __('Status') }}</th>
-                        <th class="am-title">{{ __('Last Activity') }}</th>
-                        <th class="am-title">{{ __('Last Login Ip') }}</th>
+                        <!-- <th class="am-title">{{ __('Last Activity') }}</th>
+                        <th class="am-title">{{ __('Last Login Ip') }}</th> -->
                         <th class="am-date">{{ __('Last Update') }}</th>
 					</tr>
 				</tfoot>

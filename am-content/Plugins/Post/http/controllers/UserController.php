@@ -428,7 +428,7 @@ class UserController extends Controller{
                 }
             }
         }
-        return response()->json('Agent Deleted');
+        return response()->json('Agent Deleted successfully!');
     }
 
     public function delete(Request $request)

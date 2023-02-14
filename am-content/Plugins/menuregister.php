@@ -13,55 +13,48 @@ function RegisterAdminMenuBar()
 		}
 
 
-		// if (Auth()->user()->can('media.upload')) {
-		// 	$media['Add New'] = route('admin.media.upload');
-		// }
-		// if (Auth()->user()->can('media.list')) {
-		// 	$media['Manage Media'] =  route('admin.media.index');
+		if (Auth()->user()->can('media.upload')) {
+			$media['Add New'] = route('admin.media.upload');
+		}
+		if (Auth()->user()->can('media.list')) {
+			$media['Manage Media'] =  route('admin.media.index');
+		}
 
-		// }
-
-	// 	if (count($media ?? []) > 0) {
-
-
-	// 	$data[] = array(
-	// 		'name' => 'Media',
-	// 		'active' => Request::is('admin/media*'),
-	// 		'icon' => 'far fa-images',
-	// 		'child' => $media
-	// 	);
-	//    }
+		if (count($media ?? []) > 0) {
 
 
-		if(Amcoders\Plugin\Plugin::is_active('Post'))
-		{
-//			 if (Auth()->user()->can('states.list')) {
-//			 	$location['States'] = route('admin.states.index');
-//			 }
+			$data[] = array(
+				'name' => 'Media',
+				'active' => Request::is('admin/media*'),
+				'icon' => 'far fa-images',
+				'child' => $media
+			);
+		}
+
+
+		if (Amcoders\Plugin\Plugin::is_active('Post')) {
+
 			if (Auth()->user()->can('cities.list')) {
 				$location['Cities'] =  route('admin.cities.index');
-
 			}
 			if (Auth()->user()->can('district.list')) {
 				$location['District'] =  route('admin.district.index');
-
 			}
 			if (count($location ?? []) > 0) {
-			$data['admin_locations']=array(
-				'name' => 'Locations',
-				'active' => Request::is('admin/location*'),
-				'icon' => 'fas fa-map-marker-alt',
-				'child'=> $location
-			);
-		   }
+				$data['admin_locations'] = array(
+					'name' => 'Locations',
+					'active' => Request::is('admin/location*'),
+					'icon' => 'fas fa-map-marker-alt',
+					'child' => $location
+				);
+			}
 		}
 
-		if(Amcoders\Plugin\Plugin::is_active('Post'))
-		{
+		if (Amcoders\Plugin\Plugin::is_active('Post')) {
 			if (Auth()->user()->can('Properties.list')) {
 				$property['Properties'] = route('admin.property.index');
 			}
-			if (Auth()->user()->can('Properties.list')) {
+			if (Auth()->user()->can('csv.list')) {
 				$property['Download CSV'] = route('admin.property.csv_page');
 			}
 			// if (Auth()->user()->can('project.list')) {
@@ -79,9 +72,9 @@ function RegisterAdminMenuBar()
 			// if (Auth()->user()->can('investor.list')) {
 			// 	$property['Investors'] = route('admin.investor.index');
 			// }
-			if (Auth()->user()->can('status.list')) {
-				$property['Status'] = route('admin.status.index');
-			}
+			// if (Auth()->user()->can('status.list')) {
+			// 	$property['Status'] = route('admin.status.index');
+			// }
 			// if (Auth()->user()->can('currency.list')) {
 			// 	$property['Currency'] = route('admin.currency.index');
 			// }
@@ -89,14 +82,15 @@ function RegisterAdminMenuBar()
 				$property['Input Options'] = route('admin.input.index');
 			}
 			if (count($property ?? []) > 0) {
-			$data['admin_rs']=array(
-				'name' => 'Real State',
-				'active' => Request::is('admin/real-state*'),
-				'icon' => 'fas fa-landmark',
-				'child'=>$property
-			);
-		   }
+				$data['admin_rs'] = array(
+					'name' => 'Real State',
+					'active' => Request::is('admin/real-state*'),
+					'icon' => 'fas fa-landmark',
+					'child' => $property
+				);
+			}
 		}
+		
 
 
 		// if(Amcoders\Plugin\Plugin::is_active('plan'))
@@ -140,24 +134,23 @@ function RegisterAdminMenuBar()
 		//    }
 		// }
 
-		// if(Amcoders\Plugin\Plugin::is_active('Post'))
-		// {
-		// 	if (Auth()->user()->can('user.create')) {
-		// 		$admin_ag['Add new'] = route('admin.agent.create');
-		// 	}
-		// 	if (Auth()->user()->can('user.list')) {
-		// 		$admin_ag['Users'] =  route('admin.agent.index');
-		// 	}
+		if (Amcoders\Plugin\Plugin::is_active('Post')) {
+			// if (Auth()->user()->can('user.create')) {
+			// 	$admin_ag['Add new'] = route('admin.agent.create');
+			// }
+			if (Auth()->user()->can('user.list')) {
+				$admin_ag['Users'] =  route('admin.agent.index');
+			}
 
-		// 	if (count($admin_ag ?? []) > 0) {
-		// 	$data['admin_ag']=array(
-		// 		'name' => 'Agents & Users',
-		// 		'active' => Request::is('admin/agent*'),
-		// 		'icon' => 'fas fa-users',
-		// 		'child'=> $admin_ag
-		// 	);
-		//     }
-		// }
+			if (count($admin_ag ?? []) > 0) {
+				$data['admin_ag'] = array(
+					'name' => 'Agents & Users',
+					'active' => Request::is('admin/agent*'),
+					'icon' => 'fas fa-users',
+					'child' => $admin_ag
+				);
+			}
+		}
 
 
 		// if(Amcoders\Plugin\Plugin::is_active('Post'))
@@ -223,85 +216,85 @@ function RegisterAdminMenuBar()
 
 
 
-	// 	if (Auth()->user()->can('role.list')) {
-	// 		$admins['Roles'] = route('admin.role.index');
-	// 	}
-	// 	if (Auth()->user()->can('admin.list')) {
-	// 		$admins['Admins'] = route('admin.users.index');
-	// 	}
+		if (Auth()->user()->can('role.list')) {
+			$admins['Roles'] = route('admin.role.index');
+		}
+		if (Auth()->user()->can('admin.list')) {
+			$admins['Admins'] = route('admin.users.index');
+		}
 
-	// 	if (count($admins ?? []) > 0) {
-	// 	$data[] = array(
-	// 		'name' => 'Admins & Roles',
-	// 		'active' => Request::is('admin/role*') || Request::is('admin/users*'),
-	// 		'icon' => 'fas fa-user-shield',
-	// 		'child' => $admins
-	// 	);
-	//    }
-
-
+		if (count($admins ?? []) > 0) {
+			$data[] = array(
+				'name' => 'Admins & Roles',
+				'active' => Request::is('admin/role*') || Request::is('admin/users*'),
+				'icon' => 'fas fa-user-shield',
+				'child' => $admins
+			);
+		}
 
 
-	//    if (Auth()->user()->can('language_edit')) {
-	// 	$data[] = array(
-	// 		'name' => 'Language Customize',
-	// 		'active' => Request::is('admin/language*'),
-	// 		'icon' => 'fas fa-language',
-	// 		'child'=> array(
-	// 			'Create Language' => route('admin.language.create'),
-	// 			'Language Settings' => route('admin.language.index')
-	// 		)
-	// 	);
-	//   }
-
-	//   if (Auth()->user()->can('review.list')) {
-	//   	$data[] = array(
-	// 		'name' => 'Reviews And Rettings',
-	// 		'active' => Request::is('admin/review*'),
-	// 		'icon' => 'far fa-star',
-	// 		'url' => route('admin.review.index')
-	// 	);
-	//   }
 
 
-	// 	if (Auth()->user()->can('page.list')) {
-	// 	$data[] = array(
-	// 		'name' => 'Pages',
-	// 		'active' => Request::is('admin/page*'),
-	// 		'icon' => 'far fa-copy',
-	// 		'url' => route('admin.page.index')
-	// 	);
-	//    }
-	//    if (Auth()->user()->can('blog.list')) {
-	// 	$data[] = array(
-	// 		'name' => 'Blogs',
-	// 		'active' => Request::is('admin/blog*'),
-	// 		'icon' => 'fab fa-blogger-b',
-	// 		'url' => route('admin.post.index')
-	// 	);
-	//    }
+		//    if (Auth()->user()->can('language_edit')) {
+		// 	$data[] = array(
+		// 		'name' => 'Language Customize',
+		// 		'active' => Request::is('admin/language*'),
+		// 		'icon' => 'fas fa-language',
+		// 		'child'=> array(
+		// 			'Create Language' => route('admin.language.create'),
+		// 			'Language Settings' => route('admin.language.index')
+		// 		)
+		// 	);
+		//   }
 
-	//     if (Auth()->user()->can('theme')) {
-	// 		$appearance['Theme'] = route('admin.theme.index');
+		//   if (Auth()->user()->can('review.list')) {
+		//   	$data[] = array(
+		// 		'name' => 'Reviews And Rettings',
+		// 		'active' => Request::is('admin/review*'),
+		// 		'icon' => 'far fa-star',
+		// 		'url' => route('admin.review.index')
+		// 	);
+		//   }
 
-	// 	}
-	// 	if (Auth()->user()->can('theme.option')) {
-	// 		$appearance['Theme'] = route('admin.theme.index');
-	// 		$appearance['Theme Options'] = route('admin.theme.option');
-	// 	}
-	// 	if (Auth()->user()->can('theme.option')) {
-	// 		$appearance['Menu'] = route('admin.menu.index');
-	// 	}
 
-	// 	if (count($appearance ?? []) > 0) {
-	// 	$data[] = array(
-	// 		'name' => 'Appearance',
-	// 		'active' => Request::is('admin/appearance*'),
-	// 		'icon' => 'fas fa-palette',
-	// 		'child' => $appearance
-	// 	);
+		// 	if (Auth()->user()->can('page.list')) {
+		// 	$data[] = array(
+		// 		'name' => 'Pages',
+		// 		'active' => Request::is('admin/page*'),
+		// 		'icon' => 'far fa-copy',
+		// 		'url' => route('admin.page.index')
+		// 	);
+		//    }
+		//    if (Auth()->user()->can('blog.list')) {
+		// 	$data[] = array(
+		// 		'name' => 'Blogs',
+		// 		'active' => Request::is('admin/blog*'),
+		// 		'icon' => 'fab fa-blogger-b',
+		// 		'url' => route('admin.post.index')
+		// 	);
+		//    }
 
-	//    }
+		//     if (Auth()->user()->can('theme')) {
+		// 		$appearance['Theme'] = route('admin.theme.index');
+
+		// 	}
+		// 	if (Auth()->user()->can('theme.option')) {
+		// 		$appearance['Theme'] = route('admin.theme.index');
+		// 		$appearance['Theme Options'] = route('admin.theme.option');
+		// 	}
+		// 	if (Auth()->user()->can('theme.option')) {
+		// 		$appearance['Menu'] = route('admin.menu.index');
+		// 	}
+
+		// 	if (count($appearance ?? []) > 0) {
+		// 	$data[] = array(
+		// 		'name' => 'Appearance',
+		// 		'active' => Request::is('admin/appearance*'),
+		// 		'icon' => 'fas fa-palette',
+		// 		'child' => $appearance
+		// 	);
+
+		//    }
 
 
 		// $data[] = array(

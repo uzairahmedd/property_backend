@@ -413,6 +413,9 @@ class LocationController extends Controller
    */
   public function districtdestroy(Request $request)
   {
+    if (!Auth()->user()->can('district.delete')) {
+      abort(401);
+    }
     if ($request->method == 'delete') {
       if ($request->ids) {
         foreach ($request->ids as $id) {
@@ -422,7 +425,7 @@ class LocationController extends Controller
     }
 
 
-    return response()->json('Post Removed');
+    return response()->json('District deleted successfully!');
   }
   /**
    * Remove the specified resource from storage.
@@ -432,6 +435,9 @@ class LocationController extends Controller
    */
   public function Citiesdestroy(Request $request)
   {
+    if (!Auth()->user()->can('cities.delete')) {
+      abort(401);
+    }
     if ($request->method == 'delete') {
       if ($request->ids) {
         foreach ($request->ids as $id) {
@@ -441,7 +447,7 @@ class LocationController extends Controller
     }
 
 
-    return response()->json('Post Removed');
+    return response()->json('city deleted successfully!');
   }
   /**
    * Remove the specified resource from storage.

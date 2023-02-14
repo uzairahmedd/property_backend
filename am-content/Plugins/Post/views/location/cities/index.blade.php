@@ -6,17 +6,20 @@
 	<div class="card-body">
 		<div class="row mb-30">
 			<div class="col-lg-6">
-				<h4>{{ __('Cities') }}</h4>
+				<h4>{{ __('City') }}</h4>
 			</div>
+			@can('cities.create')
 			<div class="col-lg-6">
 				<div class="add-new-btn">
 					<a href="{{ route('admin.cities.create') }}" class="btn float-right btn-primary">{{ __('Add New') }}</a>
 				</div>
 			</div>
+			@endcan	
 		</div>
 		<div class="card-action-filter mt-3">
-			<form method="post" id="basicform" action="{{ route('admin.cities.destroy') }}">
+			<form method="post" id="confirm_basicform" action="{{ route('admin.cities.destroy') }}">
 				@csrf
+				@can('cities.delete')
 				<div class="float-left">
 					<div class="input-group">
 						<select class="form-control selectric" name="method">
@@ -28,14 +31,16 @@
 						</div>
 					</div>
 				</div>
+				@endcan	
 				<div class="float-right">
 					<div class="form-group">
 						<input type="text" id="data_search" class="form-control" placeholder="Enter Value">
 					</div>
 				</div>
+				
 		</div>
 		<div class="table-responsive">
-			<table class="table">
+			<table class="table table-striped table-hover text-center table-borderless">
 				<thead>
 					<tr>
 						<th class="am-select">

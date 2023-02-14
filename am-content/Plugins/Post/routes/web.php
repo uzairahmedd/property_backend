@@ -41,6 +41,7 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::resource('status', 'StatusController');
 		Route::post('statuses/destroy', 'StatusController@destroy')->name('statuses.destroy');
 		Route::resource('input', 'InputController');
+		Route::post('input/destroy', 'InputController@destroy')->name('input.destroy');
 
 
 		Route::resource('project', 'ProjectController');

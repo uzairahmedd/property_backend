@@ -256,7 +256,7 @@ class InputController extends controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         if (!Auth()->user()->can('input.delete')) {
             abort(401);
@@ -270,6 +270,6 @@ class InputController extends controller
         }
 
 
-       return response()->json('Input Removed');
+       return response()->json('Input deleted successfully!');
     }
 }
