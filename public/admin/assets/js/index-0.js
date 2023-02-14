@@ -24,54 +24,54 @@ function loadStaticData(){
 			$('.rejected_list').html(response.total_rejected);
 			$('.approved_list').html(response.total_active);
 			$('.total_list').html(response.total_posts);
-			$('.total_earnings_amount').html(response.total_earnings_amount);
-			$('.total_transection_count').html(response.total_transection_count);
+			// $('.total_earnings_amount').html(response.total_earnings_amount);
+			// $('.total_transection_count').html(response.total_transection_count);
 
-			var dates=[];
-			var sales=[];
+			// var dates=[];
+			// var sales=[];
 
-			$.each(response.sales, function(index, value){
-				var dat=value.month+' '+value.year;
-				var sale=value.sales;
-				dates.push(dat);
-				sales.push(sale);
-			});
+			// $.each(response.sales, function(index, value){
+			// 	var dat=value.month+' '+value.year;
+			// 	var sale=value.sales;
+			// 	dates.push(dat);
+			// 	sales.push(sale);
+			// });
 
-			count_chart(dates,sales);
+			// count_chart(dates,sales);
 
-			var dates=[];
-			var totals=[];
+			// var dates=[];
+			// var totals=[];
 
-			$.each(response.amount, function(index, value){
-				var dat=value.month+' '+value.year;
-				var total=value.amount;
+			// $.each(response.amount, function(index, value){
+			// 	var dat=value.month+' '+value.year;
+			// 	var total=value.amount;
 
-				dates.push(dat);
-				totals.push(total);
-			});
-			earnings_chart(dates,totals);
+			// 	dates.push(dat);
+			// 	totals.push(total);
+			// });
+			// earnings_chart(dates,totals);
 
-			var dates=[];
-			var posts=[];
-			$.each(response.post_count, function(index, value){
-				var dat=value.month+' '+value.year;
-				var total=value.post;
+			// var dates=[];
+			// var posts=[];
+			// $.each(response.post_count, function(index, value){
+			// 	var dat=value.month+' '+value.year;
+			// 	var total=value.post;
 
-				dates.push(dat);
-				posts.push(total);
-			});
-			load_perfomace_chart(dates,posts);
+			// 	dates.push(dat);
+			// 	posts.push(total);
+			// });
+			// load_perfomace_chart(dates,posts);
 
 		}
 	})
 }
 
 
-var balance_chart = document.getElementById("sales_of_earnings_chart").getContext('2d');
+// var balance_chart = document.getElementById("sales_of_earnings_chart").getContext('2d');
 
-var balance_chart_bg_color = balance_chart.createLinearGradient(0, 0, 0, 70);
-balance_chart_bg_color.addColorStop(0, 'rgba(63,82,227,.2)');
-balance_chart_bg_color.addColorStop(1, 'rgba(63,82,227,0)');
+// var balance_chart_bg_color = balance_chart.createLinearGradient(0, 0, 0, 70);
+// balance_chart_bg_color.addColorStop(0, 'rgba(63,82,227,.2)');
+// balance_chart_bg_color.addColorStop(1, 'rgba(63,82,227,0)');
 
 function earnings_chart(dates,totals) {	
 
@@ -129,11 +129,11 @@ function earnings_chart(dates,totals) {
 }
 
 
-var sale_count_chart = document.getElementById("sale_count_chart").getContext('2d');
+// var sale_count_chart = document.getElementById("sale_count_chart").getContext('2d');
 
-var sales_chart_bg_color = sale_count_chart.createLinearGradient(0, 0, 0, 80);
-sales_chart_bg_color.addColorStop(0, 'rgba(63,82,227,.2)');
-sales_chart_bg_color.addColorStop(1, 'rgba(63,82,227,0)');
+// var sales_chart_bg_color = sale_count_chart.createLinearGradient(0, 0, 0, 80);
+// sales_chart_bg_color.addColorStop(0, 'rgba(63,82,227,.2)');
+// sales_chart_bg_color.addColorStop(1, 'rgba(63,82,227,0)');
 
 function count_chart(dates, sales){
 	var myChart = new Chart(sale_count_chart, {
@@ -336,7 +336,7 @@ function number_format(number) {
 }
 
 
-var ctx = document.getElementById("post_cart").getContext('2d');
+// var ctx = document.getElementById("post_cart").getContext('2d');
 
 function load_perfomace_chart(dates,totals) {
 	var myChart = new Chart(ctx, {
