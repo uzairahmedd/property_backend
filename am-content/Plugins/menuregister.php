@@ -13,23 +13,23 @@ function RegisterAdminMenuBar()
 		}
 
 
-		if (Auth()->user()->can('media.upload')) {
-			$media['Add New'] = route('admin.media.upload');
-		}
-		if (Auth()->user()->can('media.list')) {
-			$media['Manage Media'] =  route('admin.media.index');
-		}
+		// if (Auth()->user()->can('media.upload')) {
+		// 	$media['Add New'] = route('admin.media.upload');
+		// }
+		// if (Auth()->user()->can('media.list')) {
+		// 	$media['Manage Media'] =  route('admin.media.index');
+		// }
 
-		if (count($media ?? []) > 0) {
+		// if (count($media ?? []) > 0) {
 
 
-			$data[] = array(
-				'name' => 'Media',
-				'active' => Request::is('admin/media*'),
-				'icon' => 'far fa-images',
-				'child' => $media
-			);
-		}
+		// 	$data[] = array(
+		// 		'name' => 'Media',
+		// 		'active' => Request::is('admin/media*'),
+		// 		'icon' => 'far fa-images',
+		// 		'child' => $media
+		// 	);
+		// }
 
 
 		if (Amcoders\Plugin\Plugin::is_active('Post')) {

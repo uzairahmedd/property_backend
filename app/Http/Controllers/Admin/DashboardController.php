@@ -47,30 +47,30 @@ class DashboardController extends Controller
 			['status',4]
 		])->count();
 
-		$total_earnings_amount=Transaction::whereYear('created_at', '=',date('Y'))->sum('amount');
-		$total_transection_count=Transaction::whereYear('created_at', '=',date('Y'))->count();
+		// $total_earnings_amount=Transaction::whereYear('created_at', '=',date('Y'))->sum('amount');
+		// $total_transection_count=Transaction::whereYear('created_at', '=',date('Y'))->count();
 
 		$sales=Transaction::whereYear('created_at', '=',date('Y'))->orderBy('id', 'asc')->selectRaw('year(created_at) year, monthname(created_at) month, count(*) sales')
                 ->groupBy('year', 'month')
                 ->get();
 
-        $amount=Transaction::whereYear('created_at', '=',date('Y'))->orderBy('id', 'asc')->selectRaw('year(created_at) year, monthname(created_at) month, sum(amount) amount')
-                ->groupBy('year', 'month')
-                ->get();
+        // $amount=Transaction::whereYear('created_at', '=',date('Y'))->orderBy('id', 'asc')->selectRaw('year(created_at) year, monthname(created_at) month, sum(amount) amount')
+        //         ->groupBy('year', 'month')
+        //         ->get();
 
-        $post_count=Terms::where('type','property')->whereYear('created_at', '=',date('Y'))->orderBy('id', 'asc')->selectRaw('year(created_at) year, monthname(created_at) month, count(*) post')
-                ->groupBy('year', 'month')
-                ->get();
+        // $post_count=Terms::where('type','property')->whereYear('created_at', '=',date('Y'))->orderBy('id', 'asc')->selectRaw('year(created_at) year, monthname(created_at) month, count(*) post')
+        //         ->groupBy('year', 'month')
+        //         ->get();
                         
 		$data['total_posts']=number_format($total_listing);
 		$data['total_active']=number_format($total_active);
 		$data['total_rejected']=number_format($total_rejected);
 		$data['total_pending']=number_format($total_pending);
-		$data['total_earnings_amount']=format_currency($total_earnings_amount);
-		$data['total_transection_count']=number_format($total_transection_count);
+		// $data['total_earnings_amount']=format_currency($total_earnings_amount);
+		// $data['total_transection_count']=number_format($total_transection_count);
 		$data['sales']=$sales;
-		$data['amount']=$amount;
-		$data['post_count']=$post_count;
+		// $data['amount']=$amount;
+		// $data['post_count']=$post_count;
 		return $data;
 	}
 
