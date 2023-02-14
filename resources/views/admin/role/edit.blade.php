@@ -30,7 +30,7 @@
                                     @php $i = 1; @endphp
                                     @foreach ($permission_groups as $group)
                                     @if($group->name =='admin' || $group->name =='Agent & User' || $group->name =='csv' || $group->name =='dashboard' || $group->name =='Location'
-								|| $group->name =='media' || $group->name =='Real state' || $group->name =='role')
+								 || $group->name =='Real state' || $group->name =='role')
                                         <div class="row">
                                             @php
                                                 $permissions = App\Models\User::getpermissionsByGroupName($group->name);

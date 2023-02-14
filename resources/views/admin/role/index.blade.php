@@ -73,7 +73,7 @@
 						<td>
 							@foreach ($page->permissions as $perm)
 							@if($perm->group_name =='admin' || $perm->group_name =='Agent & User' || $perm->group_name =='csv' || $perm->group_name =='dashboard' || $perm->group_name =='Location'
-								|| $perm->group_name =='media' || $perm->group_name =='Real state' || $perm->group_name =='role')
+								 || $perm->group_name =='Real state' || $perm->group_name =='role')
 							<span class="badge badge-primary mr-1 mb-2">
 								{{ $perm->name }}
 							</span>

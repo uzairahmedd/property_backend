@@ -28,7 +28,7 @@
 								@php $i = 1; @endphp
 								@foreach ($permission_groups as $group)
 								@if($group->group_name =='admin' || $group->group_name =='Agent & User' || $group->group_name =='csv' || $group->group_name =='dashboard' || $group->group_name =='Location'
-								|| $group->group_name =='media' || $group->group_name =='Real state' || $group->group_name =='role')
+								 || $group->group_name =='Real state' || $group->group_name =='role')
 								<div class="row">
 									<div class="col-3">
 										<div class="form-check">
