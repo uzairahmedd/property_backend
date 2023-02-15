@@ -156,7 +156,7 @@
                             <img src="{{theme_asset('assets/images/phone.png')}}" alt="" class="phone me-2">
                             {{ isset($info->phone) ? $info->phone : 'N/A'  }}
                         </button>
-                        <button class="contact-btn col-12 col-sm-6 theme-bg-white border-0 mx-2 px-2 theme-text-blue font-medium mb-3" data-bs-toggle="modal" data-bs-target="#inquiry_form">
+                        <button class="contact-btn col-12 col-sm-6 theme-bg-white border-0 mx-2 px-2 theme-text-blue font-medium mb-3">
                             <img src="{{theme_asset('assets/images/booking-calender.png')}}" alt="" class="me-3">
                             {{__('labels.book_appoint')}}
                         </button>
