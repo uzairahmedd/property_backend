@@ -67,13 +67,15 @@
                     $('.basicbtn').html('Login');
                    
                     if (data.status == 'success') {
-                        console.log(data);
                         window.location.href = data.data['url'];
                     }
                     //for error page
                     else if (data.status == 'error') {
                         if (data.data['phone']) {
                             $('#phone_login_error_msg').text( data.data['phone'] );
+                        }
+                        if (data.data['message']) {
+                            $('#phone_login_error_msg').text( data.data['message'] );
                         }
                         setTimeout(function () {
                             $('#phone_login_error_msg').text('');
@@ -173,6 +175,9 @@
                     if (response.data['otp']) {
                         $('#otp_error').html('<span class="error">' + response.data['otp'] + '</span>');
                     }
+                    if (response.data['message']) {
+                        $('#otp_error').html('<span class="error">' + response.data['message'] + '</span>');
+                    }
                     setTimeout(function () {
                         $('#otp_error').html('');
                     }, 20000);
@@ -245,6 +250,9 @@
                 if (response.status == 'error') {
                     if (response.data['phone']) {
                         $('#phone_error').html('<span class="error">' + response.data['phone'] + '</span>');
+                    }
+                    if (response.data['message']) {
+                        $('#phone_error').html('<span class="error">' + response.data['message'] + '</span>');
                     }
                     setTimeout(function () {
                         $('#phone_error').html('');

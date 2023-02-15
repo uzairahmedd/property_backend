@@ -113,20 +113,51 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-     
+
         if (Auth::user()->role_id != 2) {
             return $this->redirectTo = route('admin.dashboard');
-        }
-         elseif (Auth::user()->role_id == 2) {
+        } elseif (Auth::user()->role_id == 2) {
 
             return $this->redirectTo = route('agent.profile.settings');
         }
-        // elseif (Auth::user()->role_id==3) {
-
-        //     return $this->redirectTo=route('seller.dashboard');
-        // }
         $this->middleware('guest')->except('logout');
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->role_id != 2) {
+            return redirect()->route('admin.dashboard');
+        } else if ($user->role_id == 2) {
+            return redirect()->route('agent.profile.settings');
+        } else {
+            return redirect()->route('/');
+        }
+    }
+    // public function redirectPath()
+    // {
+
+    //     if (Auth::user()->role_id != 2) {
+    //         return $this->redirectTo = route('admin.dashboard');
+    //     }
+    //     if (Auth::user()->role_id == 2) {
+
+    //         return $this->redirectTo = route('agent.profile.settings');
+    //     }
+    // }
+
+    // public function authenticated($request, $user)
+    // {
+    //     switch ($user->role_id) {
+    //         case '2':
+    //             return redirect()->route('agent.profile.settings');
+    //         case '1':
+    //             return redirect()->route('admin.dashboard');
+    //         case '3':
+    //             return redirect()->route('admin.dashboard');
+    //         default:
+    //             return redirect()->route('agent.profile.settings');
+    //     }
+    // }
 
     public function login(Request $request)
     {
@@ -168,4 +199,5 @@ class LoginController extends Controller
             $this->username() => ['Your account was suspended.'],
         ]);
     }
+    
 }
