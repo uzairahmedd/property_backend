@@ -25,6 +25,7 @@
         <div style="color: red;">{{$error}}</div>
         @endforeach
         @endif
+        @can('csv.export')
         <form method="post" action="{{ route('admin.properties.csv_download') }}">
             @csrf
             <div class="row mb-2">
@@ -33,11 +34,14 @@
                     <input type="hidden" name="from_date" id="from_date">
                     <input type="hidden" name="to_date" id="to_date">
                 </div>
+              
                 <div class="col-lg-6">
                     <button type="submit" class="btn btn-success btn-sm">Export csv file</button>
                 </div>
+             
             </div>
         </form>
+        @endcan
         <!-- </div> -->
         <br>
         <div class="float-right">
