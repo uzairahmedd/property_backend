@@ -652,8 +652,8 @@ class PropertyController extends controller
             $term->unique_id =  $unique_id;
             $term->status = 3;
             $term->type = 'property';
-            $term->slug = $slug;
         }
+        $term->slug = $slug;
         $term->title = $request->title;
         $term->ar_title = $request->ar_title;
         $term->save();
