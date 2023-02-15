@@ -141,7 +141,7 @@
                                 @endif
                             </td>
                             <td>{{ !empty($row->post_district) ? $row->post_district->district->name : 'N/A'}}</td>
-                            <td>{{ !empty($row->post_new_city) ? $row->post_new_city->city->name : 'N/A'}}</td>
+                            <td>{{ !empty($row->post_new_city) ? @$row->post_new_city->city->name : 'N/A'}}</td>
                             <td>{{ !empty($row->parentcategory) ? App\Category::where('id',$row->parentcategory->category_id)->first('name')->name : 'N/A' }}</td>
                             <td>{{ !empty($row->property_type) ? $row->property_type->category->name : 'N/A' }}</td>
                             <td>

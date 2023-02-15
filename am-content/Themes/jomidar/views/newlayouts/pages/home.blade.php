@@ -273,7 +273,7 @@
                             <h3 class="font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ? $sale_data->ar_title : $sale_data->title }}</h3>
                             <div class="d-flex align-items-start justify-content-end pt-2">
                                 <p class="mb-0 theme-text-seondary-black me-2">
-                                    {{ Session::get('locale') == 'ar' ? $sale_data->post_district->district->ar_name : $sale_data->post_district->district->name }} , {{ Session::get('locale') == 'ar' ? $sale_data->post_new_city->city->ar_name : $sale_data->post_new_city->city->name }}
+                                    {{ Session::get('locale') == 'ar' ? @$sale_data->post_district->district->ar_name : @$sale_data->post_district->district->name }} , {{ Session::get('locale') == 'ar' ? @$sale_data->post_new_city->city->ar_name : @$sale_data->post_new_city->city->name }}
                                 </p>
                                 <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                             </div>
@@ -361,7 +361,7 @@
                             <div class="d-flex align-items-start justify-content-end pt-2">
                                 <p class="mb-0 theme-text-seondary-black me-2">
                                     <!-- {{$rent_data->post_district->value}} -->
-                                    {{ Session::get('locale') == 'ar' ? $rent_data->post_district->district->ar_name : $rent_data->post_district->district->name }} , {{ Session::get('locale') == 'ar' ? $rent_data->post_new_city->city->ar_name : $rent_data->post_new_city->city->name }}
+                                    {{ Session::get('locale') == 'ar' ? @$rent_data->post_district->district->ar_name : @$rent_data->post_district->district->name }} , {{ Session::get('locale') == 'ar' ? @$rent_data->post_new_city->city->ar_name : @$rent_data->post_new_city->city->name }}
                                 </p>
                                 <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                             </div>

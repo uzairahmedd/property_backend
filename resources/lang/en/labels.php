@@ -2,6 +2,7 @@
 
 return [
     //    Home Page Start
+    'title'=>'Real estate for sale and rent in KSA',
     'download_app_top' => 'Download App',
     'auction' => 'Auctions',
     'add_property' => 'Add Property',
@@ -57,7 +58,7 @@ return [
     'show_more' => 'Show More',
     'for_rent' => 'For Rent',
     'property_sale_rent' => 'Do you have a property for sale or to rent?',
-    'market_property_txt' => 'You can market your property on our website with ease, or you can authorize my options team to sell and rent the property on your behalf with ease.',
+    'market_property_txt' => 'You can market your property on our website with ease, or you can authorize Khiaratee team to sell and rent the property on your behalf with ease.',
     'add_property_now' => 'Add Property Now',
     'real_estate_auction' => 'Apply to online real estate auctions on our platform',
     'browse_auction' => 'Browse Auction',

@@ -242,9 +242,9 @@ class MediaController extends Controller
     public function destroy(Request $request)
     {
 
-        if (!Auth()->user()->can('media.delete')) {
-            abort(401);
-        }
+        // if (!Auth()->user()->can('media.delete')) {
+        //     abort(401);
+        // }
         if ($request->status == 'delete') {
 
             $info = Options::where('key', 'lp_filesystem')->first();

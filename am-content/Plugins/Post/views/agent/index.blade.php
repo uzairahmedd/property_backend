@@ -21,7 +21,7 @@
 		</div>
 		<form method="post" action="{{ route('admin.agent.destroy') }}" id="confirm_basicform">
 			@csrf
-			@can('user.delete')
+			<!-- @can('user.delete')
 			<div class="float-left">
 				<div class="input-group">
 					<select class="form-control selectric" name="status">
@@ -33,7 +33,7 @@
 					</div>
 				</div>
 			</div>
-			@endcan	
+			@endcan	 -->
 			<div class="table-responsive custom-table">
 				<table class="table table-striped table-hover text-center table-borderless">
 					<thead>

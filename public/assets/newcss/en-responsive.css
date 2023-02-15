@@ -1398,3 +1398,7 @@
         padding: 2px 30px 2px 16px;
     }
 }
+
+.direction{
+    direction: ltr;
+}
