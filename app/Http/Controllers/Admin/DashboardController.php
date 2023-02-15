@@ -21,7 +21,7 @@ class DashboardController extends Controller
 	*/
 	public function dashboard()
 	{
-		if(Auth::User()->role_id == 1 && Auth()->user()->can('dashboard'))
+		if(Auth::User()->role_id != 2 && Auth()->user()->can('dashboard'))
 		{
 			return view('admin.dashboard');
 		}else{

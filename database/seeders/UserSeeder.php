@@ -30,6 +30,7 @@ class UserSeeder extends Seeder
         ]);
         $base_url=env('APP_URL').'/';
         $roleSuperAdmin = Role::create(['name' => 'superadmin']);
+        Role::create(['name' => 'agent']);
         //create permission
         $permissions = [
             [

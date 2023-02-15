@@ -67,10 +67,10 @@ class RoleController extends Controller
         $role = Role::create(['name' => $request->name]);
         $permissions = $request->input('permissions');
 
-        if (!empty($permissions)) {
+        // if (!empty($permissions)) {
 
             $role->syncPermissions($permissions);
-        }
+        // }
 
         return response()->json(['Role created successfully']);
     }
@@ -122,13 +122,14 @@ class RoleController extends Controller
         ]);
 
         $role = Role::findById($id);
+        Role::where('id',$id)->update(['name' => $request->name]);
         $permissions = $request->input('permissions');
 
-        if (!empty($permissions)) {
+        // if (!empty($permissions)) {
             $role->syncPermissions($permissions);
-        }
+        // }
 
-        return response()->json(['Role has been updated !!']);
+        return response()->json(['Role has been updated !']);
     }
 
     /**

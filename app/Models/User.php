@@ -83,6 +83,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Session')->select('user_id', 'ip_address', 'last_activity');
     }
 
+    public function Role(){
+
+        return $this->belongsTo('App\Role','role_id','id');
+    }
+    
     public static function roleHasPermissions($role, $permissions)
     {
         $hasPermission = true;

@@ -48,9 +48,9 @@
 						@endphp
                         <div class="form-group">
                             <label>{{ __('Assign Roles') }}</label>
-                            <select required name="roles[]" id="roles" class="form-control select2" multiple>
+                            <select required name="roles" id="roles" class="form-control" >
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -106,16 +106,18 @@ class LoginController extends Controller
             $usermeta->save();
 
             Auth::login($user_data, true);
-
-            return redirect()->route('login');
+            return redirect()->route('agent.profile.settings');
+            // return redirect()->route('login');
         }
     }
 
     public function redirectTo()
     {
-        if (Auth::user()->role_id == 1) {
+     
+        if (Auth::user()->role_id != 2) {
             return $this->redirectTo = route('admin.dashboard');
-        } elseif (Auth::user()->role_id == 2) {
+        }
+         elseif (Auth::user()->role_id == 2) {
 
             return $this->redirectTo = route('agent.profile.settings');
         }
@@ -128,7 +130,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        
+
         $this->validateLogin($request);
         //
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
@@ -140,9 +142,12 @@ class LoginController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
+            if ($request->hasSession()) {
+                $request->session()->put('auth.password_confirmed_at', time());
+            }
             //check user status        
             if (Auth::user()->status == '1') return $this->sendLoginResponse($request);
-            // if user_status != 'A' raise exception
+            // if user_status != '1' raise exception
             else {
                 $this->guard()->logout();
                 return $this->sendAccountBlocked($request);
