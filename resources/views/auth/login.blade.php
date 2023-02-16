@@ -27,12 +27,12 @@
               <!-- <img src="{{ asset('uploads/logo.png') }}" alt="logo" class="shadow-light"> -->
             </div>
             <div class="card card-primary">
-              <div class="card-header"><h4>{{ __('Login') }}</h4></div>
+              <div class="card-header"><h4>{{ __('labels.login') }}</h4></div>
               <div class="card-body">
                <form method="POST" id="basicform" class="needs-validation" action="{{ route('login') }}">
                 @csrf
                 <div class="form-group">
-                  <label for="email">{{ __('E-Mail Address') }}</label>
+                  <label for="email">{{ __('labels.email') }}</label>
                   <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus >
                   @error('email')
                   <div class="invalid-feedback">
@@ -42,16 +42,16 @@
                 </div>
                 <div class="form-group">
                   <!-- <div class="d-block">
-                    <label for="password" class="control-label">{{ __('Password') }}</label>
+                    <label for="password" class="control-label">{{ __('labels.password') }}</label>
                     @if (Route::has('password.request'))
                     <div class="float-right">
                       <a href="{{ route('password.request') }}" class="text-small">
-                        {{ __('Forgot Password?') }}
+                        {{ __('labels.forgot_password') }}
                       </a>
                     </div>
                     @endif
                   </div> -->
-                  <label for="Password">{{ __('Password') }}</label>
+                  <label for="Password">{{ __('labels.password') }}</label>
                   <input id="password" type="password" class="form-control  @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                   @error('password')
                   <div class="invalid-feedback">
@@ -66,12 +66,12 @@
                  </div>
                  <div class="form-group">
                   <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                    {{ __('Login') }}
+                      {{ __('labels.login') }}
                   </button>
                 </div>
             </form>
           <div class="simple-footer">
-          © Khiaratee 2022. All rights reserved.
+              {{__('labels.all_right_reserved')}}
             <!-- {{ __('Copyright') }} &copy; {{ env('APP_NAME') }} {{ date('Y') }} -->
           </div>
       </div>
