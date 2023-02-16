@@ -18,7 +18,9 @@ class DashboardController extends controller
 
     public function logout()
     {
-        Auth::logout();
+        // Auth::logout();
+        auth()->logout();
+        Session()->flush();
 
         return redirect()->route('new.home');
     }

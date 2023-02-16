@@ -578,8 +578,9 @@ class RegisterController extends controller
         $user_data->advertiser_id = $advertiser_id;
         $user_data->cr_number = $request->cr_number;
         $user_data->rega_number = $request->rega_number;
-
         $user_data->save();
+        
+        $user = User::find(decrypt($request->id));
         Auth::login($user);
 
         $url = env("APP_URL", 'http://mychoice.sa/') . 'agent/profile/settings';
