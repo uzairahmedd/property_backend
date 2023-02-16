@@ -311,8 +311,8 @@ class DataController extends controller
         //search price
         if (!empty($this->min_price) || !empty($this->max_price)) {
             $posts = $posts->whereHas('price', function ($q) {
-
-                return $q->whereBetween('price', [$this->min_price, $this->max_price]);
+                return $q->where('price', '>=', $this->min_price)
+                    ->where('price', '<=', $this->max_price);
             });
         }
 

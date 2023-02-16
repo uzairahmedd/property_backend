@@ -71,7 +71,8 @@
                 </div>
             </form>
           <div class="simple-footer">
-            {{ __('Copyright') }} &copy; {{ env('APP_NAME') }} {{ date('Y') }}
+          © Khiaratee 2022. All rights reserved.
+            <!-- {{ __('Copyright') }} &copy; {{ env('APP_NAME') }} {{ date('Y') }} -->
           </div>
       </div>
     </div>
