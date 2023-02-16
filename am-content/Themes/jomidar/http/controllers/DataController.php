@@ -298,7 +298,7 @@ class DataController extends controller
         //search commercial or residential
         if (!empty($this->parent_category)) {
             $posts = $posts->whereHas('parentcategory', function ($q) {
-                return $q->where('category_id', $this->parent_category);
+                return $q->orwhere('category_id', $this->parent_category);
             });
         }
         //search type of property

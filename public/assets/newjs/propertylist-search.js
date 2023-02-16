@@ -232,8 +232,8 @@ $('.reset_status_sell').click(function (e) {
 
     $('.reset-reset-btn').click(function (e) {
         $('#fade').removeClass('add_overlay');
-        $('#max_price').val('23');
-        $('#min_price').val('12');
+        $('#max_price').val('');
+        $('#min_price').val('');
         e.preventDefault();
     });
 
