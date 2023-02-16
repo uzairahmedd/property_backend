@@ -1,19 +1,22 @@
 @extends('layouts.backend.app')
 
 @section('content')
-@include('layouts.backend.partials.headersection',['title'=>'Categories'])
+    @php
+        $categories = __('labels.categories');
+    @endphp
+@include('layouts.backend.partials.headersection',['title'=> $categories])
 <div class="card">
 	<div class="card-body">
 		<div class="row mb-30">
 			<div class="col-lg-6">
-				<h4>{{ __('Categories') }}</h4>
+				<h4>{{__('labels.categories')}}</h4>
 			</div>
 			<div class="col-lg-6">
 			@can('category.create')
 				<div class="add-new-btn">
-					<a href="{{ route('admin.category.create') }}" class="btn float-right btn-primary">{{ __('Add New') }}</a>
+					<a href="{{ route('admin.category.create') }}" class="btn float-right btn-primary">{{__('labels.add_new')}}</a>
 				</div>
-				@endcan		
+				@endcan
 			</div>
 		</div>
 		<div class="card-action-filter mt-3">
@@ -23,18 +26,18 @@
 				<div class="float-left">
 					<div class="input-group">
 						<select class="form-control selectric" name="method">
-							<option value="">{{ __('Select Action') }}</option>
-							<option value="delete">{{ __('Delete Permanently') }}</option>
+							<option value="">{{__('labels.select_action')}}</option>
+							<option value="delete">{{__('labels.delete_permanently')}}</option>
 						</select>
 						<div class="input-group-append">
-							<button class="btn btn-primary" type="submit">{{ __('Submit') }}</button>
+							<button class="btn btn-primary" type="submit">{{__('labels.submit')}}</button>
 						</div>
 					</div>
 				</div>
-				@endcan	
+				@endcan
 				<div class="float-right">
 					<div class="form-group">
-						<input type="text" id="data_search" class="form-control" placeholder="Enter Value">
+						<input type="text" id="data_search" class="form-control" placeholder="{{__('labels.enter_value')}}">
 					</div>
 				</div>
 		</div>
@@ -48,19 +51,19 @@
 								<label class="custom-control-label checkAll" for="customCheck12"></label>
 							</div>
 						</th>
-						<th class="am-title">{{ __('icon') }}</th>
-						<th class="am-title">{{ __('Title') }}</th>
-						<th class="am-title">{{ __('Arabic title') }}</th>
-						<th class="am-title">{{ __('Property type') }}</th>
-						<th class="am-title">{{ __('Land Area') }}</th>
-						<th class="am-title">{{ __('Built-up Area') }}</th>
-						<th class="am-title">{{ __('Property age') }}</th>
-						<th class="am-title">{{ __('Features section') }}</th>
-						<th class="am-title">{{ __('Furnishing section') }}</th>
-						<th class="am-title">{{ __('Total floors') }}</th>
-						<th class="am-title">{{ __('Property floor') }}</th>
-						<th class="am-title">{{ __('Featured') }}</th>
-						<th class="am-date">{{ __('Date') }}</th>
+						<th class="am-title">{{__('labels.icon')}}</th>
+						<th class="am-title">{{__('labels.title')}}</th>
+						<th class="am-title">{{__('labels.arabic_title')}}</th>
+						<th class="am-title">{{__('labels.property_type')}}</th>
+						<th class="am-title">{{__('labels.land_area')}}</th>
+						<th class="am-title">{{__('labels.built_up_area')}}</th>
+						<th class="am-title">{{__('labels.property_age')}}</th>
+						<th class="am-title">{{__('labels.features_section')}}</th>
+						<th class="am-title">{{__('labels.furnishing_section')}}</th>
+						<th class="am-title">{{__('labels.total_floors')}}</th>
+						<th class="am-title">{{__('labels.property_floor')}}</th>
+						<th class="am-title">{{__('labels.featured')}}</th>
+						<th class="am-date">{{__('labels.date')}}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -148,19 +151,19 @@
 								<label class="custom-control-label checkAll" for="customCheck12"></label>
 							</div>
 						</th>
-						<th class="am-title">{{ __('Icon') }}</th>
-						<th class="am-title">{{ __('Title') }}</th>
-						<th class="am-title">{{ __('Arabic title') }}</th>
-						<th class="am-title">{{ __('Property type') }}</th>
-						<th class="am-title">{{ __('Land Area') }}</th>
-						<th class="am-title">{{ __('Built-up Area') }}</th>
-						<th class="am-title">{{ __('Property age') }}</th>
-						<th class="am-title">{{ __('Features section') }}</th>
-						<th class="am-title">{{ __('Furnishing section') }}</th>
-						<th class="am-title">{{ __('Total floors') }}</th>
-						<th class="am-title">{{ __('Property floor') }}</th>
-						<th class="am-title">{{ __('Featured') }}</th>
-						<th class="am-date">{{ __('Date') }}</th>
+                        <th class="am-title">{{__('labels.icon')}}</th>
+                        <th class="am-title">{{__('labels.title')}}</th>
+                        <th class="am-title">{{__('labels.arabic_title')}}</th>
+                        <th class="am-title">{{__('labels.property_type')}}</th>
+                        <th class="am-title">{{__('labels.land_area')}}</th>
+                        <th class="am-title">{{__('labels.built_up_area')}}</th>
+                        <th class="am-title">{{__('labels.property_age')}}</th>
+                        <th class="am-title">{{__('labels.features_section')}}</th>
+                        <th class="am-title">{{__('labels.furnishing_section')}}</th>
+                        <th class="am-title">{{__('labels.total_floors')}}</th>
+                        <th class="am-title">{{__('labels.property_floor')}}</th>
+                        <th class="am-title">{{__('labels.featured')}}</th>
+                        <th class="am-date">{{__('labels.date')}}</th>
 					</tr>
 				</tfoot>
 			</table>

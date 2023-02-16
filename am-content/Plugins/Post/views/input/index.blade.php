@@ -1,17 +1,19 @@
 @extends('layouts.backend.app')
-
+@php
+    $input_list = __('labels.input_list');
+@endphp
 @section('content')
-@include('layouts.backend.partials.headersection',['title'=>'Input List'])
+@include('layouts.backend.partials.headersection',['title'=>$input_list])
 <div class="card">
 	<div class="card-body">
 		<div class="row mb-2">
 			<div class="col-lg-8">
-				<h4>{{ __('Inputs') }}</h4>
+				<h4>{{__('labels.inputs')}}</h4>
 			</div>
 			<div class="col-lg-4">
 				@can('input.create')
 				<div class="float-right ">
-					<a href="{{ route('admin.input.create') }}" class="btn btn-primary float-right">{{ __('Add New') }}</a>
+					<a href="{{ route('admin.input.create') }}" class="btn btn-primary float-right">{{__('labels.add_new')}}</a>
 				</div>
 				@endcan
 			</div>
@@ -20,10 +22,10 @@
 		<div class="float-right">
 			<form>
 				<div class="input-group mb-2">
-					<input type="text" id="src" class="form-control h-100" placeholder="Search..." required="" name="src" autocomplete="off" value="{{ $src ?? '' }}">
+					<input type="text" id="src" class="form-control h-100" placeholder="{{__('labels.search')}}" required="" name="src" autocomplete="off" value="{{ $src ?? '' }}">
 					<select class="form-control selectric" name="type" id="type">
-						<option value="name">{{ __('Search By Name') }}</option>
-						<option value="slug">{{ __('Search By Input Type') }}</option>
+						<option value="name">{{__('labels.search_by_name')}}</option>
+						<option value="slug">{{__('labels.search_by_input_type')}}</option>
 					</select>
 					<div class="input-group-append">
 						<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
@@ -37,11 +39,11 @@
 				@can('input.delete')
 				<div class="input-group">
 					<select class="form-control selectric" name="method">
-						<option disabled selected="">{{ __('Select Action') }}</option>
-						<option value="delete" class="text-danger">{{ __('Delete Permanently') }}</option>
+						<option disabled selected="">{{__('labels.select_action')}}</option>
+						<option value="delete" class="text-danger">{{__('labels.delete_permanently')}}</option>
 					</select>
 					<div class="input-group-append">
-						<button class="btn btn-primary basicbtn" type="submit">{{ __('Submit') }}</button>
+						<button class="btn btn-primary basicbtn" type="submit">{{__('labels.submit')}}</button>
 					</div>
 				</div>
 				@endcan
@@ -57,12 +59,12 @@
 								</div>
 							</th>
 							<th class="am-title"><i class="far fa-image"></i></th>
-							<th class="am-title">{{ __('Name') }}</th>
-							<th class="am-title">{{ __('Arabic Name') }}</th>
-							<th class="am-title">{{ __('Category') }}</th>
-							<!-- <th class="am-title">{{ __('Required') }}</th> -->
-							<th class="am-title">{{ __('Is Featured') }}</th>
-							<th class="am-date">{{ __('Last Update') }}</th>
+							<th class="am-title">{{__('labels.name')}}</th>
+							<th class="am-title">{{__('labels.arabic_name')}}</th>
+							<th class="am-title">{{__('labels.categories')}}</th>
+							<!-- <th class="am-title">{{__('labels.required')}}</th> -->
+							<th class="am-title">{{__('labels.is_featured')}}</th>
+							<th class="am-date">{{__('labels.last_update')}}</th>
 						</tr>
 					</thead>
 					<tbody>

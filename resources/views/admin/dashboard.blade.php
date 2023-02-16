@@ -5,20 +5,20 @@
     <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card card-statistic-2">
             <div class="card-stats">
-                <div class="card-stats-title">{{ __('Listing Statistics') }}
+                <div class="card-stats-title">{{ __('labels.listing_statistics') }}
             </div>
             <div class="card-stats-items">
                 <div class="card-stats-item">
                 <div class="card-stats-item-count pending_list"><img src="{{ asset('uploads/loader.gif') }}"></div>
-            <div class="card-stats-item-label">{{ __('Pending') }}</div>
+            <div class="card-stats-item-label">{{ __('labels.pending') }}</div>
         </div>
         <div class="card-stats-item">
             <div class="card-stats-item-count rejected_list"><img src="{{ asset('uploads/loader.gif') }}"></div>
-            <div class="card-stats-item-label">{{ __('Rejected') }}</div>
+            <div class="card-stats-item-label">{{ __('labels.rejected') }}</div>
         </div>
         <div class="card-stats-item">
             <div class="card-stats-item-count approved_list"><img src="{{ asset('uploads/loader.gif') }}"></div>
-            <div class="card-stats-item-label">{{ __('Approved') }}</div>
+            <div class="card-stats-item-label">{{ __('labels.approved') }}}</div>
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
     </div>
     <div class="card-wrap">
       <div class="card-header">
-        <h4>{{ __('Total Listing') }}</h4>
+        <h4>{{ __('labels.total_listing') }}</h4>
       </div>
       <div class="card-body total_list">
         <img src="{{ asset('uploads/loader.gif') }}">

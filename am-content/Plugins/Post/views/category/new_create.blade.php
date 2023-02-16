@@ -9,23 +9,23 @@
   <div class="col-lg-9">
     <div class="card">
       <div class="card-body">
-        <h4>{{ __('Add new category') }}</h4>
+        <h4>{{__('labels.add_new_category')}}</h4>
         <form method="post" action="{{ route('admin.category.store') }}" class="basicform">
           @csrf
           <div class="input-group">
-            <input type="text" class="form-control item-menu" name="name" id="text" placeholder="Enter Name" autocomplete="off">
+            <input type="text" class="form-control item-menu" name="name" id="text" placeholder="{{__('labels.enter_name')}}" autocomplete="off">
             <div class="input-group-append">
               <button class="btn btn-outline-primary" id="target" data-icon="fas fa-home" role="iconpicker"></button>
             </div>
           </div>
           <input type="hidden" name="icon" id="icon" class="item-menu">
           <div class="form-group" style="margin-top: 20px;">
-            <input type="text" class="form-control item-menu" name="ar_name" id="ar_text" placeholder="Enter Arabic Name" autocomplete="off">
+            <input type="text" class="form-control item-menu" name="ar_name" id="ar_text" placeholder="{{__('labels.enter_arabic_name')}}" autocomplete="off">
           </div>
           <div class="form-group">
-            <label for="p_id">{{ __('Parent Category') }}</label>
+            <label for="p_id">{{__('labels.parent_category')}}</label>
             <select multiple="" class="form-control select2" name="child[]">
-              <option value="">{{ __('None') }}</option>
+              <option value="">{{__('labels.none')}}</option>
                 @foreach($posts as $row)
               <option value="{{$row->id}}">{{$row->name}}</option>
                 @endforeach
@@ -35,38 +35,38 @@
           <div class="row">
             <div class="col-6 item form-group">
               <input type="checkbox" name="land_area" value="1" id="land_area">
-              <label for="land_area">land area</label>
+              <label for="land_area">{{__('labels.land_area')}}</label>
             </div>
             <div class="col-6 item form-group">
               <input type="checkbox" name="buildup_area" value="1" id="buildup_area">
-              <label for="buildup_area">Build-up area</label>
+              <label for="buildup_area">{{__('labels.built_up_area')}}</label>
             </div>
           </div>
           <div class="row">
             <div class="col-6 item form-group">
               <input type="checkbox" name="property_age" value="1" id="property_age">
-              <label for="buildup_area">Property age</label>
+              <label for="property_age">{{__('labels.property_age')}}</label>
             </div>
             <div class="col-6 item form-group">
               <input type="checkbox" name="features_section" value="1" id="features_section">
-              <label for="buildup_area">Faatures section</label>
+              <label for="features_section">{{__('labels.features_section')}}</label>
             </div>
           </div>
           <div class="row">
             <div class="col-6 item form-group">
               <input type="checkbox" name="furnishing_section" value="1" id="furnishing_section">
-              <label for="buildup_area">furnishing section</label>
+              <label for="furnishing_section">{{__('labels.furnishing_section')}}</label>
             </div>
             <div class="col-6 item form-group">
               <input type="checkbox" name="total_floor" value="1" id="total_floor">
               <!-- <input type="hidden" name="required" id="required_field" value=""> -->
-              <label for="buildup_area">Total floors <span id="reuiqred_text"></span></label>
+              <label for="total_floor">{{__('labels.total_floors')}} <span id="reuiqred_text"></span></label>
             </div>
           </div>
           <div class="row">
             <div class="col-6 item form-group">
               <input type="checkbox" name="property_floor" value="1" id="property_floor">
-              <label for="buildup_area">Property floor</label>
+              <label for="property_floor">{{__('labels.property_floor')}}</label>
             </div>
           </div>
       </div>
@@ -76,11 +76,11 @@
   <div class="single-area">
     <div class="card sub">
       <div class="card-body">
-        <h5>{{ __('Is Featured ?') }}</h5>
+        <h5>{{__('labels.is_featured')}}</h5>
         <hr>
         <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
-          <option value="1">{{ __('Yes') }}</option>
-          <option value="0" selected>{{ __('No') }}</option>
+          <option value="1">{{__('labels.yes')}}</option>
+          <option value="0" selected>{{__('labels.no')}}</option>
         </select>
       </div>
     </div>

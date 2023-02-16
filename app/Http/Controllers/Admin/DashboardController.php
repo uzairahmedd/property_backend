@@ -31,7 +31,7 @@ class DashboardController extends Controller
 
 	public function static_data(){
 		$total_listing=Terms::where('type','property')->count();
-		
+
 		$total_pending=Terms::where([
 			['type','property'],
 			['status',3]
@@ -61,7 +61,7 @@ class DashboardController extends Controller
         // $post_count=Terms::where('type','property')->whereYear('created_at', '=',date('Y'))->orderBy('id', 'asc')->selectRaw('year(created_at) year, monthname(created_at) month, count(*) post')
         //         ->groupBy('year', 'month')
         //         ->get();
-                        
+
 		$data['total_posts']=number_format($total_listing);
 		$data['total_active']=number_format($total_active);
 		$data['total_rejected']=number_format($total_rejected);
@@ -82,7 +82,7 @@ class DashboardController extends Controller
 		$data['Referrers']=$this->fetchTopReferrers($period);
 		$data['fetchUserTypes']=$this->fetchUserTypes($period);
 		$data['TopBrowsers']=$this->fetchTopBrowsers($period);
-		
+
 		return response()->json($data);
 	}
 
@@ -90,49 +90,49 @@ class DashboardController extends Controller
 	public function getCountries($period)
 	{
 		return $country = \Analytics::performQuery(Period::days($period),'ga:sessions',['dimensions'=>'ga:country','dimension'=>'ga:latitude','dimension'=>'ga:longitude','sort'=>'-ga:sessions']);
-		
+
 		$result= collect($country['rows'] ?? [])->map(function (array $dateRow) {
 			return [
 				'country' =>  $dateRow[0],
 				'sessions' => (int) $dateRow[1],
 			];
 		});
-		
+
 		return $result;
 	}
 
-	
+
 
 	public function fetchTotalVisitorsAndPageViews($period)
 	{
 	   return \Analytics::fetchTotalVisitorsAndPageViews(Period::days($period));
-		
+
 	}
 	public function fetchMostVisitedPages($period)
 	{
 	   return \Analytics::fetchMostVisitedPages(Period::days($period));
-		
+
 	}
 
 	public function fetchTopReferrers($period)
 	{
 	   return \Analytics::fetchTopReferrers(Period::days($period));
-		
+
 	}
 
 	public function fetchUserTypes($period)
 	{
 	   return \Analytics::fetchUserTypes(Period::days($period));
-		
+
 	}
 
 	public function fetchTopBrowsers($period)
 	{
 	   return \Analytics::fetchTopBrowsers(Period::days($period));
-		
+
 	}
 
 
-	
-	
+
+
 }

@@ -65,7 +65,7 @@
                 success: function (data) {
                     $('.basicbtn').removeAttr('disabled');
                     $('.basicbtn').html('Login');
-                   
+
                     if (data.status == 'success') {
                         console.log(data);
                         window.location.href = data.data['url'];
@@ -255,7 +255,7 @@
     });
 
 
-    
+
      /*----------------------------
             owner id data form submit
         -------------------------------*/
@@ -346,6 +346,8 @@ $(document).ready(function () {
             });
         }
     });
+
+
 });
 
 // Scroll To Top

@@ -5,11 +5,11 @@
 	<div class="card-body">
 		<div class="row mb-30">
 			<div class="col-lg-6">
-				<h4>{{ __('Roles') }}</h4>
+				<h4>{{ __('labels.roles') }}</h4>
 			</div>
 			<div class="col-lg-6">
 				<div class="add-new-btn">
-					<a href="{{ route('admin.role.create') }}" class="btn btn-primary float-right">{{ __('Add New') }}</a>
+					<a href="{{ route('admin.role.create') }}" class="btn btn-primary float-right">{{ __('labels.add_new') }}</a>
 				</div>
 			</div>
 		</div>
@@ -23,20 +23,20 @@
 							<div class="single-filter">
 								<div class="form-group">
 									<select class="form-control selectric" name="status">
-										<option value="publish">{{ __('Select Action') }}</option>
-										<option value="delete">{{ __('Delete Permanently') }}</option>
+										<option value="publish">{{ __('labels.select_action') }}</option>
+										<option value="delete">{{ __('labels.delete_permanently') }}</option>
 									</select>
 								</div>
 							</div>
 							<div class="single-filter">
-								<button type="submit" class="btn btn-primary btn-lg ml-2">{{ __('Apply') }}</button>
+								<button type="submit" class="btn btn-primary btn-lg ml-2">{{ __('labels.apply') }}</button>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<!-- Button trigger modal -->
 						<button style="float: right;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#permission_modal">
-							Add new permissions
+                            {{ __('labels.add_new_permission') }}
 						</button>
 					</div>
 				</div>
@@ -51,8 +51,8 @@
 								<label class="custom-control-label checkAll" for="selectAll"></label>
 							</div>
 						</th>
-						<th width="10%">{{ __('Name') }}</th>
-						<th width="80%">{{ __('Permissions') }}</th>
+						<th width="10%">{{ __('labels.name') }}</th>
+						<th width="80%">{{ __('labels.permissions') }}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -93,7 +93,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Add new permission</h5>
+				<h5 class="modal-title" id="exampleModalLabel">{{ __('labels.add_new_permission') }}</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -103,17 +103,17 @@
 					@csrf
 					<div class="pt-20">
 						<div class="form-group">
-							<label for="name">Name *</label>
-							<input type="text" placeholder="Enter Name" name="name" class="form-control" id="name"  value="" autocomplete="off" minlength="" maxlength="">
+							<label for="name">{{ __('labels.name') }} *</label>
+							<input type="text" placeholder="{{ __('labels.enter_name') }}" name="name" class="form-control" id="name"  value="" autocomplete="off" minlength="" maxlength="">
 						</div>
 						<div class="form-group">
-							<label for="email">Group name *</label>
-							<input type="text" placeholder="Enter group name" name="group_name" class="form-control" id="group_name"  value="" autocomplete="off" minlength="" maxlength="" >
+							<label for="email">{{ __('labels.group_name') }} *</label>
+							<input type="text" placeholder="{{ __('labels.enter_group_name') }}" name="group_name" class="form-control" id="group_name"  value="" autocomplete="off" minlength="" maxlength="" >
 						</div>
 						<div class="form-group">
-						<div class="btn-publish">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> {{ __('Save') }}</button>
+						<div class="btn-publish d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('labels.close') }}</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> {{ __('labels.save') }}</button>
                     </div>
 						</div>
 					</div>

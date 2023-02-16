@@ -5,23 +5,23 @@
   <div class="col-lg-9">
     <div class="card">
       <div class="card-body">
-        <h4>{{ __('Add new category') }}</h4>
+        <h4>{{__('labels.add_new_category')}}</h4>
         <form method="post" action="{{ route('admin.category.store') }}" class="basicform">
           @csrf
           <div class="form-group">
-            <label for="text">{{ __('Name') }}</label>
+            <label for="text">{{__('labels.name')}}</label>
             <div class="input-group">
-              <input type="text" class="form-control item-menu" name="name" id="text" placeholder="Enter Name" autocomplete="off" required="">
+              <input type="text" class="form-control item-menu" name="name" id="text" placeholder="{{__('labels.enter_name')}}" autocomplete="off" required="">
             </div>
           </div>
           <div class="form-group">
-            <label for="text">{{ __('Description') }}</label>
+            <label for="text">{{__('labels.description')}}</label>
             <div class="input-group">
-              <textarea class="form-control" name="excerpt" required="" placeholder="Short Description"></textarea>
+              <textarea class="form-control" name="excerpt" required="" placeholder="{{__('labels.short_description')}}"></textarea>
             </div>
           </div>
           <div class="form-group">
-            <label for="p_id">{{ __('Parent Category') }}</label>
+            <label for="p_id">{{__('labels.parent_category')}}</label>
             <select class="custom-select mr-sm-2" name="p_id" id="p_id inlineFormCustomSelect">
               <option value="">{{ __('None') }}</option>
               <?php echo ConfigCategory('category') ?>

@@ -1,6 +1,10 @@
 @extends('layouts.backend.app')
 
 @section('style')
+    @php
+        $create_input = __('labels.create_input');
+        $icon_image = __('labels.icon_image');
+    @endphp
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/select2.min.css') }}">
 <style>
     .select2 .select2-container .select2-container--default{
@@ -10,7 +14,7 @@
 @endsection
 
 @section('content')
-@include('layouts.backend.partials.headersection',['title'=>'Create Input'])
+@include('layouts.backend.partials.headersection',['title'=> $create_input])
 <div class="row">
     <div class="col-lg-9">
         <div class="card">
@@ -18,15 +22,15 @@
                 <form method="post" action="{{ route('admin.input.store') }}" class="basicform" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="text">{{ __('Name') }}</label>
+                        <label for="text">{{__('labels.name')}}</label>
                         <div class="input-group">
-                            <input type="text" class="form-control item-menu" name="title" id="text" placeholder="Enter Name" autocomplete="off" required="">
+                            <input type="text" class="form-control item-menu" name="title" id="text" placeholder=" {{__('labels.enter_name')}}" autocomplete="off" required="">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="text">{{ __('Arabic Name') }}</label>
+                        <label for="text">{{__('labels.arabic_name')}}</label>
                         <div class="input-group">
-                            <input type="text" class="form-control item-menu" name="ar_title" id="ar_text" placeholder="Enter Name in Arabic" autocomplete="off" required="">
+                            <input type="text" class="form-control item-menu" name="ar_title" id="ar_text" placeholder="{{__('labels.enter_name_in_arabic')}}" autocomplete="off" required="">
                         </div>
                     </div>
                     <!-- <div class="form-group">
@@ -48,7 +52,7 @@
                         </div>
                     </div> -->
                     <div class="form-group">
-                        <label>{{ __('Select Category') }}</label>
+                        <label>{{__('labels.select_category')}}</label>
                         <select multiple="" class="form-control select2" name="child[]">
                             {{ ConfigCategory('category') }}
                         </select>
@@ -60,16 +64,16 @@
     <div class="single-area">
         <div class="card sub">
             <div class="card-body">
-                <h5>{{ __('Is Featured ?') }}</h5>
+                <h5>{{__('labels.is_featured')}}</h5>
                 <hr>
                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
-                    <option value="1">{{ __('Yes') }}</option>
-                    <option value="0" selected>{{ __('No') }}</option>
+                    <option value="1">{{__('labels.yes')}}</option>
+                    <option value="0" selected>{{__('labels.no')}}</option>
                 </select>
             </div>
         </div>
     </div>
-    {{ mediasection(array('title'=>'Icon Image')) }}
+    {{ mediasection(array('title'=>$icon_image)) }}
     </form>
 </div>
 </div>

@@ -1,17 +1,20 @@
 @extends('layouts.backend.app')
 
 @section('content')
-@include('layouts.backend.partials.headersection',['title'=>'District'])
+    @php
+        $district = __('labels.district');
+    @endphp
+@include('layouts.backend.partials.headersection',['title'=>$district])
 <div class="card">
 	<div class="card-body">
 		<div class="row mb-30">
 			<div class="col-lg-6">
-				<h4>District</h4>
+				<h4>{{__('labels.district')}}</h4>
 			</div>
 			<div class="col-lg-6">
 				@can('district.create')
 				<div class="add-new-btn">
-					<a href="{{ route('admin.district.create') }}" class="btn float-right btn-primary">{{ __('Add New') }}</a>
+					<a href="{{ route('admin.district.create') }}" class="btn float-right btn-primary">{{__('labels.add_new')}}</a>
 				</div>
 				@endcan
 			</div>
@@ -23,18 +26,18 @@
 				<div class="float-left">
 					<div class="input-group">
 						<select class="form-control selectric" name="method">
-							<option value="">{{ __('Select Action') }}</option>
-							<option value="delete">{{ __('Delete Permanently') }}</option>
+							<option value="">{{ __('labels.select_action') }}</option>
+							<option value="delete">{{ __('labels.delete_permanently') }}</option>
 						</select>
 						<div class="input-group-append">
-							<button class="btn btn-primary" type="submit">{{ __('Submit') }}</button>
+							<button class="btn btn-primary" type="submit">{{ __('labels.submit') }}</button>
 						</div>
 					</div>
 				</div>
 				@endcan
 				<div class="float-right">
 					<div class="form-group">
-						<input type="text" id="data_search" class="form-control" placeholder="Enter Value">
+						<input type="text" id="data_search" class="form-control" placeholder="{{__('labels.enter_value')}}">
 					</div>
 				</div>
 		</div>
@@ -49,11 +52,11 @@
 							</div>
 						</th>
 
-						<th class="am-title">{{ __('Title') }}</th>
-						<th class="am-title">{{ __('Arabic Title') }}</th>
-						<th class="am-title">{{ __('City') }}</th>
-						<th class="am-title">{{ __('featured') }}</th>
-						<th class="am-date">{{ __('Date') }}</th>
+						<th class="am-title">{{__('labels.title')}}</th>
+						<th class="am-title">{{__('labels.arabic_title')}}</th>
+						<th class="am-title">{{__('labels.city')}}</th>
+						<th class="am-title">{{__('labels.featured')}}</th>
+						<th class="am-date">{{__('labels.date')}}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -103,12 +106,11 @@
 							</div>
 						</th>
 
-						<th class="am-title">{{ __('Title') }}</th>
-						<th class="am-title">{{ __('Arabic Title') }}</th>
-						<th class="am-title">{{ __('City') }}</th>
-						<th class="am-title">{{ __('featured') }}</th>
-
-						<th class="am-date">{{ __('Date') }}</th>
+                        <th class="am-title">{{__('labels.title')}}</th>
+                        <th class="am-title">{{__('labels.arabic_title')}}</th>
+                        <th class="am-title">{{__('labels.city')}}</th>
+                        <th class="am-title">{{__('labels.featured')}}</th>
+                        <th class="am-date">{{__('labels.date')}}</th>
 					</tr>
 				</tfoot>
 			</table>

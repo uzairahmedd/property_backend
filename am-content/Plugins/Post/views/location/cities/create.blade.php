@@ -1,34 +1,37 @@
 @extends('layouts.backend.app')
 
 @section('content')
-<div class="row">
+    @php
+       $city_name_arabic =  __('labels.city_name_in_arabic');
+       $city_name =  __('labels.city_name');
+
+    @endphp
+        <div class="row">
     <div class="col-lg-9">
         <div class="card">
             <div class="card-body">
-                <h4>{{ __('Add new City') }}</h4>
+                <h4>{{__('labels.add_new_city')}}</h4>
                 <form method="post" action="{{ route('admin.location.store') }}" class="basicform">
                     @csrf
                     <div class="pt-20">
                         @php
-                        $arr['title']= 'City Name';
+                        $arr['title']= $city_name;
                         $arr['id']= 'title';
                         $arr['type']= 'text';
-                        $arr['placeholder']= 'Enter Name';
+                        $arr['placeholder']= $city_name;
                         $arr['name']= 'name';
                         $arr['is_required'] = true;
 
                         echo input($arr);
 
-                        $ar_arr['title']= 'City Name in Arabic';
+                        $ar_arr['title']= $city_name_arabic;
                         $ar_arr['id']= 'ar_title';
                         $ar_arr['type']= 'text';
-                        $ar_arr['placeholder']= 'Enter Name in Arabic';
+                        $ar_arr['placeholder']= $city_name_arabic;
                         $ar_arr['name']= 'ar_name';
                         $ar_arr['is_required'] = true;
 
                         echo input($ar_arr);
-
-
 
                         @endphp
                     </div>
@@ -39,10 +42,10 @@
         <div class="single-area">
             <div class="card">
                 <div class="card-body">
-                    <h5>{{ __('Publish') }}</h5>
+                    <h5>{{__('labels.publish')}}</h5>
                     <hr>
                     <div class="btn-publish">
-                        <button type="submit" class="btn btn-primary col-12 basicbtn"><i class="fa fa-save"></i> {{ __('Save') }}</button>
+                        <button type="submit" class="btn btn-primary col-12 basicbtn"><i class="fa fa-save"></i> {{__('labels.save')}}</button>
                     </div>
                 </div>
             </div>
@@ -50,17 +53,17 @@
         <div class="single-area">
             <div class="card sub">
                 <div class="card-body">
-                    <h5>{{ __('Is Featured ?') }}</h5>
+                    <h5>{{__('labels.is_featured')}}</h5>
                     <hr>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
-                        <option value="1">{{ __('Yes') }}</option>
-                        <option value="0" selected>{{ __('No') }}</option>
+                        <option value="1">{{__('labels.yes')}}</option>
+                        <option value="0" selected>{{__('labels.no')}}</option>
                     </select>
                 </div>
             </div>
         </div>
     </div>
-    <input type="hidden" name="type" value="city">
+    <input type="hidden" name="type" value="{{__('labels.city')}}">
     </form>
     {{ mediasingle() }}
     @endsection

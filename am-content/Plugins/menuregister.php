@@ -5,7 +5,7 @@ function RegisterAdminMenuBar()
 	if (Auth::User()->role_id == 1) {
 		if (Auth()->user()->can('dashboard')) {
 			$data[] = array(
-				'name' => 'Dashboard',
+				'name' =>  __('labels.dashboard') ,
 				'active' => Request::is('admin/dashboard'),
 				'icon' => 'fas fa-tachometer-alt',
 				'url' => url('admin/dashboard')
@@ -31,18 +31,19 @@ function RegisterAdminMenuBar()
 		// 	);
 		// }
 
-
+$cities = __('labels.cities');
+$district = __('labels.district');
 		if (Amcoders\Plugin\Plugin::is_active('Post')) {
 
 			if (Auth()->user()->can('cities.list')) {
-				$location['Cities'] =  route('admin.cities.index');
+				$location[$cities] =  route('admin.cities.index');
 			}
 			if (Auth()->user()->can('district.list')) {
-				$location['District'] =  route('admin.district.index');
+				$location[$district] =  route('admin.district.index');
 			}
 			if (count($location ?? []) > 0) {
 				$data['admin_locations'] = array(
-					'name' => 'Locations',
+					'name' => __('labels.locations'),
 					'active' => Request::is('admin/location*'),
 					'icon' => 'fas fa-map-marker-alt',
 					'child' => $location
@@ -50,24 +51,30 @@ function RegisterAdminMenuBar()
 			}
 		}
 
+        $properties = __('labels.properties');
+        $download_csv = __('labels.download_csv');
+        $features = __('labels.features');
+        $categories = __('labels.categories');
+        $input_options = __('labels.input_options');
+
 		if (Amcoders\Plugin\Plugin::is_active('Post')) {
 			if (Auth()->user()->can('Properties.list')) {
-				$property['Properties'] = route('admin.property.index');
+				$property[$properties] = route('admin.property.index');
 			}
 			if (Auth()->user()->can('csv.list')) {
-				$property['Download CSV'] = route('admin.property.csv_page');
+				$property[$download_csv] = route('admin.property.csv_page');
 			}
 			// if (Auth()->user()->can('project.list')) {
 			// 	$property['Projects'] = route('admin.project.index');
 			// }
 			if (Auth()->user()->can('feature.list')) {
-				$property['Features'] = route('admin.feature.index');
+				$property[$features] = route('admin.feature.index');
 			}
 			// if (Auth()->user()->can('facilities.list')) {
 			// 	$property['Facilities'] = route('admin.facilities.index');
 			// }
 			if (Auth()->user()->can('category.list')) {
-				$property['Categories'] = route('admin.category.index');
+				$property[$categories] = route('admin.category.index');
 			}
 			// if (Auth()->user()->can('investor.list')) {
 			// 	$property['Investors'] = route('admin.investor.index');
@@ -79,18 +86,18 @@ function RegisterAdminMenuBar()
 			// 	$property['Currency'] = route('admin.currency.index');
 			// }
 			if (Auth()->user()->can('input.list')) {
-				$property['Input Options'] = route('admin.input.index');
+				$property[$input_options] = route('admin.input.index');
 			}
 			if (count($property ?? []) > 0) {
 				$data['admin_rs'] = array(
-					'name' => 'Real State',
+					'name' => __('labels.real_state'),
 					'active' => Request::is('admin/real-state*'),
 					'icon' => 'fas fa-landmark',
 					'child' => $property
 				);
 			}
 		}
-		
+
 
 
 		// if(Amcoders\Plugin\Plugin::is_active('plan'))
@@ -133,18 +140,19 @@ function RegisterAdminMenuBar()
 
 		//    }
 		// }
+        $users = __('labels.users');
 
 		if (Amcoders\Plugin\Plugin::is_active('Post')) {
 			// if (Auth()->user()->can('user.create')) {
 			// 	$admin_ag['Add new'] = route('admin.agent.create');
 			// }
 			if (Auth()->user()->can('user.list')) {
-				$admin_ag['Users'] =  route('admin.agent.index');
+				$admin_ag[$users] =  route('admin.agent.index');
 			}
 
 			if (count($admin_ag ?? []) > 0) {
 				$data['admin_ag'] = array(
-					'name' => 'Agents & Users',
+					'name' => __('labels.agent_users'),
 					'active' => Request::is('admin/agent*'),
 					'icon' => 'fas fa-users',
 					'child' => $admin_ag
@@ -214,18 +222,19 @@ function RegisterAdminMenuBar()
 
 
 
-
+        $roles = __('labels.roles');
+        $admin = __('labels.admins');
 
 		if (Auth()->user()->can('role.list')) {
-			$admins['Roles'] = route('admin.role.index');
+			$admins[$roles] = route('admin.role.index');
 		}
 		if (Auth()->user()->can('admin.list')) {
-			$admins['Admins'] = route('admin.users.index');
+			$admins[$admin] = route('admin.users.index');
 		}
 
 		if (count($admins ?? []) > 0) {
 			$data[] = array(
-				'name' => 'Admins & Roles',
+				'name' => __('labels.admin_roles'),
 				'active' => Request::is('admin/role*') || Request::is('admin/users*'),
 				'icon' => 'fas fa-user-shield',
 				'child' => $admins

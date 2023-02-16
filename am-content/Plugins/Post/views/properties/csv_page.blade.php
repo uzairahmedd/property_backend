@@ -1,22 +1,21 @@
 @extends('layouts.backend.app')
 
 @section('content')
-@include('layouts.backend.partials.headersection',['title'=>'Download CSV of property'])
+    @php
+        $download_csv_of_property = __('labels.download_csv_of_property');
+    @endphp
+@include('layouts.backend.partials.headersection',['title' => $download_csv_of_property])
 <div class="card">
     <div class="card-body">
         <div class="row mb-2">
             <div class="col-lg-12">
                 <div class="">
-                    <a href="{{ route('admin.property.csv_page') }}" class="mr-2 btn btn-outline-primary @if($type=='all') active @endif">{{ __('Total') }} ({{ $totals }})</a>
-
-                    <a href="{{ route('admin.property.csv_page_type',1) }}" class="mr-2 btn btn-outline-success @if($type==1) active @endif">{{ __('Published') }} ({{ $actives }})</a>
-
-                    <a href="{{ route('admin.property.csv_page_type',2) }}" class="mr-2 btn btn-outline-info @if($type==2) active @endif">{{ __('Incomplete') }} ({{ $incomplete }})</a>
-                    <a href="{{ route('admin.property.csv_page_type',3) }}" class="mr-2 btn btn-outline-warning @if($type==3) active @endif">{{ __('Pending For Approval') }} ({{ $pendings }})</a>
-
-                    <a href="{{ route('admin.property.csv_page_type',4) }}" class="mr-2 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{ __('Rejected') }} ({{ $rejected }})</a>
-
-                    <a href="{{ route('admin.property.csv_page_type',0) }}" class="mr-2 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{ __('Trash') }} ({{ $trash }})</a>
+                    <a href="{{ route('admin.property.csv_page') }}" class="mr-2 btn btn-outline-primary @if($type=='all') active @endif">{{__('labels.total')}} ({{ $totals }})</a>
+                    <a href="{{ route('admin.property.csv_page_type',1) }}" class="mr-2 btn btn-outline-success @if($type==1) active @endif">{{__('labels.published')}} ({{ $actives }})</a>
+                    <a href="{{ route('admin.property.csv_page_type',2) }}" class="mr-2 btn btn-outline-info @if($type==2) active @endif">{{__('labels.incomplete')}} ({{ $incomplete }})</a>
+                    <a href="{{ route('admin.property.csv_page_type',3) }}" class="mr-2 btn btn-outline-warning @if($type==3) active @endif">{{__('labels.pending_for_approval')}} ({{ $pendings }})</a>
+                    <a href="{{ route('admin.property.csv_page_type',4) }}" class="mr-2 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{__('labels.rejected')}} ({{ $rejected }})</a>
+                    <a href="{{ route('admin.property.csv_page_type',0) }}" class="mr-2 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{__('labels.trash')}} ({{ $trash }})</a>
                 </div>
             </div>
         </div>
@@ -29,12 +28,12 @@
             @csrf
             <div class="row mb-2">
                 <div class="col-lg-6">
-                    <input type="text"  id="main_date" name="daterange" class="form-control" value="" placeholder="Please select daterange" />
+                    <input type="text"  id="main_date" name="daterange" class="form-control" value="" placeholder="{{__('labels.please_select_date_range')}}" />
                     <input type="hidden" name="from_date" id="from_date">
                     <input type="hidden" name="to_date" id="to_date">
                 </div>
                 <div class="col-lg-6">
-                    <button type="submit" class="btn btn-success btn-sm">Export csv file</button>
+                    <button type="submit" class="btn btn-success btn-sm">{{__('labels.export_csv_file')}}</button>
                 </div>
             </div>
         </form>
@@ -43,11 +42,11 @@
         <div class="float-right">
             <form>
                 <div class="input-group mb-2">
-                    <input type="text" id="src" class="form-control h-100" placeholder="Search..." required="" name="src" autocomplete="off" value="{{ $request->src ?? '' }}">
+                    <input type="text" id="src" class="form-control h-100" placeholder="{{__('labels.search')}}" required="" name="src" autocomplete="off" value="{{ $request->src ?? '' }}">
                     <select class="form-control selectric" name="type" id="type">
-                        <option value="name">{{ __('Search By Name') }}</option>
-                        <option value="email">{{ __('Search User Email') }}</option>
-                        <option value="unique_id">{{ __('Search By Id') }}</option>
+                        <option value="name">{{__('labels.search_by_name')}}</option>
+                        <option value="email">{{__('labels.search_user_email')}}</option>
+                        <option value="unique_id">{{__('labels.search_by_id')}}</option>
                     </select>
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
@@ -62,20 +61,20 @@
 				@can('Properties.delete')
 				<div class="input-group">
 					<select class="form-control selectric" name="method">
-						<option disabled selected="">{{ __('Select Action') }}</option>
-						<option value="1">{{ __('Publish Now') }}</option>
-						<option value="2">{{ __('Incomplete') }}</option>
-						<option value="3">{{ __('Pending') }}</option>
-						<option value="4">{{ __('Reject') }}</option>
+						<option disabled selected="">{{__('labels.select_action')}}</option>
+						<option value="1">{{__('labels.publish_now')}}</option>
+						<option value="2">{{__('labels.incomplete')}}</option>
+						<option value="3">{{__('labels.pending')}}</option>
+						<option value="4">{{__('labels.reject')}}</option>
 
 						@if($type== 0 && $type != 'all')
-						<option value="delete" class="text-danger">{{ __('Delete Permanently') }}</option>
+						<option value="delete" class="text-danger">{{__('labels.delete_permanently')}}</option>
 						@else
-						<option value="trash">{{ __('Move To Trash') }}</option>
+						<option value="trash">{{__('labels.move_to_trash')}}</option>
 						@endif
 					</select>
 					<div class="input-group-append">
-						<button class="btn btn-primary basicbtn" type="submit">{{ __('Submit') }}</button>
+						<button class="btn btn-primary basicbtn" type="submit">{{__('labels.submit')}}</button>
 					</div>
 				</div>
 				@endcan
@@ -84,25 +83,25 @@
                 <table class="table table-striped table-hover text-center table-borderless">
                     <thead>
                         <tr>
-                            <th class="am-title">{{ __('Id') }}</th>
-                            <th class="am-title">{{ __('Ad Id') }}</th>
-                            <th class="am-title">{{ __('Name') }}</th>
-                            <th class="am-date">{{ __('Mobile number') }}</th>
-                            <th class="am-date">{{ __('Email') }}</th>
-                            <th class="am-title">{{ __('Main type') }}</th>
-                            <th class="am-title">{{ __('Subtype') }}</th>
-                            <th class="am-date">{{ __('publication date') }}</th>
-                            <!-- <th class="am-title">{{ __('Update date') }}</th> -->
-                            <th class="am-title">{{ __('Expiration') }}</th>
-                            <th class="am-title">{{ __('Status') }}</th>
-                            <th class="am-title">{{ __('District') }}</th>
-                            <th class="am-title">{{ __('City') }}</th>
-                            <th class="am-title">{{ __('Using For') }}</th>
-                            <th class="am-date">{{ __('Property Type') }}</th>
-                            <th class="am-title">{{ __('The Space SQM') }}</th>
-                            <th class="am-title">{{ __('Seling price') }}</th>
-                            <th class="am-title">{{ __('Rental price') }}</th>
-                            <th class="am-title">{{ __('Action') }}</th>
+                            <th class="am-title">{{__('labels.id')}}</th>
+                            <th class="am-title">{{__('labels.ad_id')}}</th>
+                            <th class="am-title">{{__('labels.name')}}</th>
+                            <th class="am-date">{{__('labels.mobile_number')}}</th>
+                            <th class="am-date">{{__('labels.email')}}</th>
+                            <th class="am-title">{{__('labels.main_type')}}</th>
+                            <th class="am-title">{{__('labels.subtype')}}</th>
+                            <th class="am-date">{{__('labels.publication_date')}}</th>
+                            <!-- <th class="am-title">{{__('labels.update_date')}}</th> -->
+                            <th class="am-title">{{__('labels.expiration')}}</th>
+                            <th class="am-title">{{__('labels.status')}}</th>
+                            <th class="am-title">{{__('labels.district')}}</th>
+                            <th class="am-title">{{__('labels.city')}}</th>
+                            <th class="am-title">{{__('labels.using_for')}}</th>
+                            <th class="am-date">{{__('labels.property_type')}}</th>
+                            <th class="am-title">{{__('labels.space_sqm')}}</th>
+                            <th class="am-title">{{__('labels.selling_price')}}</th>
+                            <th class="am-title">{{__('labels.rental_price')}}</th>
+                            <th class="am-title">{{__('labels.action')}}</th>
 
                         </tr>
                     </thead>
@@ -159,25 +158,25 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th class="am-title">{{ __('Id') }}</th>
-                            <th class="am-title">{{ __('Ad Id') }}</th>
-                            <th class="am-title">{{ __('Name') }}</th>
-                            <th class="am-date">{{ __('Mobile number') }}</th>
-                            <th class="am-date">{{ __('Email') }}</th>
-                            <th class="am-title">{{ __('Main type') }}</th>
-                            <th class="am-title">{{ __('Subtype') }}</th>
-                            <th class="am-date">{{ __('publication date') }}</th>
-                            <!-- <th class="am-title">{{ __('Update date') }}</th> -->
-                            <th class="am-title">{{ __('Expiration') }}</th>
-                            <th class="am-title">{{ __('Status') }}</th>
-                            <th class="am-title">{{ __('District') }}</th>
-                            <th class="am-title">{{ __('City') }}</th>
-                            <th class="am-title">{{ __('Using For') }}</th>
-                            <th class="am-date">{{ __('Property Type') }}</th>
-                            <th class="am-title">{{ __('The Space SQM') }}</th>
-                            <th class="am-title">{{ __('Seling price') }}</th>
-                            <th class="am-title">{{ __('Rental price') }}</th>
-                            <th class="am-title">{{ __('Action') }}</th>
+                            <th class="am-title">{{__('labels.id')}}</th>
+                            <th class="am-title">{{__('labels.ad_id')}}</th>
+                            <th class="am-title">{{__('labels.name')}}</th>
+                            <th class="am-date">{{__('labels.mobile_number')}}</th>
+                            <th class="am-date">{{__('labels.email')}}</th>
+                            <th class="am-title">{{__('labels.main_type')}}</th>
+                            <th class="am-title">{{__('labels.subtype')}}</th>
+                            <th class="am-date">{{__('labels.publication_date')}}</th>
+                            <!-- <th class="am-title">{{__('labels.update_date')}}</th> -->
+                            <th class="am-title">{{__('labels.expiration')}}</th>
+                            <th class="am-title">{{__('labels.status')}}</th>
+                            <th class="am-title">{{__('labels.district')}}</th>
+                            <th class="am-title">{{__('labels.city')}}</th>
+                            <th class="am-title">{{__('labels.using_for')}}</th>
+                            <th class="am-date">{{__('labels.property_type')}}</th>
+                            <th class="am-title">{{__('labels.space_sqm')}}</th>
+                            <th class="am-title">{{__('labels.selling_price')}}</th>
+                            <th class="am-title">{{__('labels.rental_price')}}</th>
+                            <th class="am-title">{{__('labels.action')}}</th>
                         </tr>
                     </tfoot>
                 </table>

@@ -9,45 +9,45 @@
 	<div class="col-lg-9">
 		<div class="card">
 			<div class="card-body">
-				<h4>{{ __('Add Admin') }}</h4>
+				<h4>{{ __('labels.add_admin') }}</h4>
 				<form method="post" action="{{ route('admin.users.store') }}" id="basicform">
 					@csrf
 					<div class="pt-20">
 						@php
-						$arr['title']= 'Name';
+						$arr['title']=  __('labels.name') ;
 						$arr['id']= 'name';
 						$arr['type']= 'text';
-						$arr['placeholder']= 'Enter Name';
+						$arr['placeholder']= __('labels.enter_name') ;
 						$arr['name']= 'name';
 						$arr['is_required'] = true;
 						echo  input($arr);
 
-						$arr['title']= 'Email';
+						$arr['title']= __('labels.email');
 						$arr['id']= 'email';
 						$arr['type']= 'email';
-						$arr['placeholder']= 'Enter Email';
+						$arr['placeholder']= __('labels.enter_email') ;
 						$arr['name']= 'email';
 						$arr['is_required'] = true;
                         echo  input($arr);
 
-                        $arr['title']= 'Password';
+                        $arr['title']= __('labels.password');
 						$arr['id']= 'password';
 						$arr['type']= 'password';
-						$arr['placeholder']= 'Enter password';
+						$arr['placeholder']= __('labels.enter_password');
 						$arr['name']= 'password';
 						$arr['is_required'] = true;
                         echo  input($arr);
 
-                        $arr['title']= 'Password';
+                        $arr['title']= __('labels.confirm_password');
 						$arr['id']= 'password_confirmation';
 						$arr['type']= 'password';
-						$arr['placeholder']= 'Confirm Password';
+						$arr['placeholder']= __('labels.confirm_password');
 						$arr['name']= 'password_confirmation';
 						$arr['is_required'] = true;
 						echo  input($arr);
 						@endphp
                         <div class="form-group">
-                            <label>{{ __('Assign Roles') }}</label>
+                            <label>{{__('labels.assign_roles')}}</label>
                             <select required name="roles[]" id="roles" class="form-control select2" multiple>
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->name }}">{{ $role->name }}</option>
@@ -63,7 +63,7 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="btn-publish">
-							<button type="submit" class="btn btn-primary col-12"><i class="fa fa-save"></i> {{ __('Save') }}</button>
+							<button type="submit" class="btn btn-primary col-12"><i class="fa fa-save"></i> {{__('labels.assign_roles')}}</button>
 						</div>
 					</div>
 				</div>

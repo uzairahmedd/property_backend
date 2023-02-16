@@ -22,19 +22,22 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                     <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->created_at->format('m/d/Y') }}</h3>
                 </div>
 
-                <div class="d-flex align-items-center mb-3 mb-lg-0">
-                    <div class="col d-flex flex-column align-items-end">
-                        <span class="font-16 theme-text-sky">{{__('labels.welcome')}}</span>
-                        <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->name }}</h3>
-                    </div>
-                    <div class="dp-elipse d-flex align-items-center justify-content-center">
-                        <img src="{{asset('assets/images/avatar.png')}}" alt="" class="img-fluid">
-                        <div class="file-container">
-                            <input type="file">
-                            <img src="{{asset('assets/images/dp-camera.png')}}" alt="">
+                <form class="form-signin text-center" id="user_save_profile_form" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="d-flex align-items-center mb-3 mb-lg-0">
+                        <div class="col d-flex flex-column align-items-end">
+                            <span class="font-16 theme-text-sky">{{__('labels.welcome')}}</span>
+                            <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->name }}</h3>
+                        </div>
+                        <div class="dp-elipse photo-row d-flex align-items-center justify-content-center">
+                            <img class="photo-img" id="image_user" src="{{asset('assets/images/avatar.png')}}" alt="" class="img-fluid">
+                            <div class="file-container">
+                                <input onchange="doAfterSelectImage(this)" type="file" id="profile_pic" name="picture" />
+                                <img src="{{asset('assets/images/dp-camera.png')}}" alt="">
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="row gy-3 flex-wrap justify-content-between">
                 <div class="col-12 col-sm-6 col-md-4 col-xl-4">

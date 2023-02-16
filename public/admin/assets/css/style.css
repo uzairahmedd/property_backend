@@ -3839,4 +3839,8 @@ tfoot tr th {
   display: none;
 }
 
+.lang::after
+{
+    display: none;
+}
 

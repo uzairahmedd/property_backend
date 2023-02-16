@@ -262,7 +262,7 @@ $("#additional_detail_btn").click(function () {
         return false;
     }
     $("#additional_form").submit();
-});  
+});
 
 //form submit validations of fifth step of features from
 $("#features_btn").click(function () {
@@ -278,7 +278,7 @@ $("#features_btn").click(function () {
         return false;
     }
     $("#features_form").submit();
-}); 
+});
 
 
 /// ******* ADress Add Driver ******//
@@ -364,11 +364,60 @@ $("#features_btn").click(function () {
 // }
 
 
+function doAfterSelectImage(input) {
+    readURL(input);
+    // uploadUserProfileImage();
+}
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var output = document.getElementById('image_user');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    }
+}
 
 
+function uploadUserProfileImage() {
+    let myForm = document.getElementById('user_save_profile_form');
+    let formData = new FormData(myForm);
+    var baseurl = $('#base_url').val();
+    var url = baseurl + 'agent/profile_img';
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        data: formData,
+        dataType: 'JSON',
+        contentType: false,
+        cache: false,
+        processData: false,
+        url: url,
+        success: function (response) {
+            if (response == 200) {
+                $('#notifDiv').fadeIn();
+                $('#notifDiv').css('background', 'green');
+                $('#notifDiv').text('Profile Saved Successfully.');
+                setTimeout(() => {
+                    $('#notifDiv').fadeOut();
+                }, 3000);
 
-
-
+            } else if (response == 700) {
+                $('#notifDiv').fadeIn();
+                $('#notifDiv').css('background', 'red');
+                $('#notifDiv').text('An error occured. Please try later');
+                setTimeout(() => {
+                    $('#notifDiv').fadeOut();
+                }, 3000);
+            }
+        }.bind($(this))
+    });
+}
 
 
 

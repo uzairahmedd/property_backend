@@ -295,7 +295,9 @@ Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Th
 	Route::get('Additional-details/property/{id}', 'PropertyController@edit_third_property')->name('property.third_edit_property');
 	Route::put('update-third/property/{id}', 'PropertyController@update_third_property')->name('property.third_update_property');
 	Route::get('property-images/property/{id}', 'PropertyController@edit_forth_property')->name('property.forth_edit_property');
+    Route::post('profile_img', 'PropertyController@profile_img')->name('property.profile_img');
 	Route::put('update-forth/property/{id}', 'PropertyController@update_forth_property')->name('property.forth_update_property');
+
 	Route::get('Feature-details/property/{id}', 'PropertyController@edit_five_property')->name('property.five_edit_property');
 	Route::put('update-five/property/{id}', 'PropertyController@update_five_property')->name('property.five_update_property');
 	Route::get('Property-docs/property/{id}', 'PropertyController@edit_six_property')->name('property.six_edit_property');

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Amcoders\Theme\jomidar\http\controllers\Agent;
 use Illuminate\Http\Request;

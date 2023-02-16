@@ -1,17 +1,20 @@
 @extends('layouts.backend.app')
 
 @section('content')
-@include('layouts.backend.partials.headersection',['title'=>'All Agents'])
+    @php
+        $all_agents = __('labels.all_agents');
+    @endphp
+@include('layouts.backend.partials.headersection',['title'=> $all_agents])
 <div class="card">
 	<div class="card-body">
 		<div class="float-right">
 			<form>
 				<div class="input-group mb-2">
-					<input type="text" id="src" class="form-control h-100" placeholder="Search..." required="" name="src" autocomplete="off" value="{{ $request->src ?? '' }}">
+					<input type="text" id="src" class="form-control h-100" placeholder="{{ __('labels.search') }}" required="" name="src" autocomplete="off" value="{{ $request->src ?? '' }}">
 					<select class="form-control selectric" name="type" id="type">
-						<option value="name" @if($request->type == 'name') selected @endif>{{ __('Search By Name') }}</option>
-						<option value="email" @if($request->type == 'email') selected @endif>{{ __('Search User Email') }}</option>
-						<option value="id" @if($request->type == 'id') selected @endif>{{ __('Search By Id') }}</option>
+						<option value="name" @if($request->type == 'name') selected @endif>{{ __('labels.search_by_name') }}</option>
+						<option value="email" @if($request->type == 'email') selected @endif>{{ __('labels.search_user_email') }}</option>
+						<option value="id" @if($request->type == 'id') selected @endif>{{ __('labels.search_by_id') }}</option>
 					</select>
 					<div class="input-group-append">
 						<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
@@ -25,15 +28,15 @@
 			<div class="float-left">
 				<div class="input-group">
 					<select class="form-control selectric" name="status">
-						<option disabled="" selected="">{{ __('Select Action') }}</option>
-						<option value="delete">{{ __('Delete Permanently') }}</option>
+						<option disabled="" selected="">{{ __('labels.select_action') }}</option>
+						<option value="delete">{{ __('labels.delete_permanently') }}</option>
 					</select>
 					<div class="input-group-append">
-						<button class="btn btn-primary basicbtn" type="submit">{{ __('Submit') }}</button>
+						<button class="btn btn-primary basicbtn" type="submit">{{ __('labels.submit') }}</button>
 					</div>
 				</div>
 			</div>
-			@endcan	
+			@endcan
 			<div class="table-responsive custom-table">
 				<table class="table table-striped table-hover text-center table-borderless">
 					<thead>
@@ -44,14 +47,14 @@
 									<label class="custom-control-label checkAll" for="selectAll"></label>
 								</div>
 							</th>
-							<th class="am-title">{{ __('Name') }}</th>
+							<th class="am-title">{{ __('labels.name') }}</th>
 							<!-- <th class="am-title">{{ __('Credits') }}</th> -->
-							<th class="am-title">{{ __('Avatar') }}</th>
-							<th class="am-title">{{ __('Email') }}</th>
-							<th class="am-title">{{ __('Status') }}</th>
-							<!-- <th class="am-title">{{ __('Last Activity') }}</th>
-							<th class="am-title">{{ __('Last Login Ip') }}</th> -->
-							<th class="am-date">{{ __('Last Update') }}</th>
+							<th class="am-title">{{ __('labels.avatar') }}</th>
+							<th class="am-title">{{ __('labels.email') }}</th>
+							<th class="am-title">{{ __('labels.status') }}</th>
+							<!-- <th class="am-title">{{ __('labels.last_activity') }}</th>
+							<th class="am-title">{{ __('labels.last_login_ip') }}</th> -->
+							<th class="am-date">{{ __('labels.last_update') }}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -106,14 +109,14 @@
 								<label class="custom-control-label checkAll" for="selectAll"></label>
 							</div>
 						</th>
-						<th class="am-title">{{ __('Name') }}</th>
-						<!-- <th class="am-title">{{ __('Credits') }}</th> -->
-                        <th class="am-title">{{ __('Avatar') }}</th>
-                        <th class="am-title">{{ __('Email') }}</th>
-                        <th class="am-title">{{ __('Status') }}</th>
-                        <!-- <th class="am-title">{{ __('Last Activity') }}</th>
-                        <th class="am-title">{{ __('Last Login Ip') }}</th> -->
-                        <th class="am-date">{{ __('Last Update') }}</th>
+                        <th class="am-title">{{ __('labels.name') }}</th>
+                        <!-- <th class="am-title">{{ __('Credits') }}</th> -->
+                        <th class="am-title">{{ __('labels.avatar') }}</th>
+                        <th class="am-title">{{ __('labels.email') }}</th>
+                        <th class="am-title">{{ __('labels.status') }}</th>
+                        <!-- <th class="am-title">{{ __('labels.last_activity') }}</th>
+							<th class="am-title">{{ __('labels.last_login_ip') }}</th> -->
+                        <th class="am-date">{{ __('labels.last_update') }}</th>
 					</tr>
 				</tfoot>
 			</table>

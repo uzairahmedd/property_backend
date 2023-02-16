@@ -4,9 +4,9 @@
   /*----------------------------
         Comment reply box scrollbar Active
       ------------------------------*/
-    $(".comment-reply-box").niceScroll({cursorcolor:"#5b7798"}); 
+    $(".comment-reply-box").niceScroll({cursorcolor:"#5b7798"});
 
-    
+
   /*----------------------------
         Hamburger Active
       ------------------------------*/
@@ -31,31 +31,31 @@
   /*----------------------------
         Jquery Live Search
       ------------------------------*/
-    $('#data_search').keyup(function(){  
-      search_table($(this).val());  
-    });  
-    function search_table(value){  
-        $('.table tbody tr').each(function(){  
-        var found = 'false';  
-        $(this).each(function(){  
-          if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
-          {  
-            found = true;  
-          }  
-        });  
-        if(found == true)  
-        {  
-          $(this).show();  
-        }  
-        else  
-        {  
-          $(this).hide();  
-        }  
-      });  
-    } 
+    $('#data_search').keyup(function(){
+      search_table($(this).val());
+    });
+    function search_table(value){
+        $('.table tbody tr').each(function(){
+        var found = 'false';
+        $(this).each(function(){
+          if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+          {
+            found = true;
+          }
+        });
+        if(found == true)
+        {
+          $(this).show();
+        }
+        else
+        {
+          $(this).hide();
+        }
+      });
+    }
 
 
-})(jQuery);	
+})(jQuery);
 
 /*----------------------------
         Sweet Aleart
@@ -64,7 +64,7 @@
 
 
   function Sweet(icon,title,time=3000){
-      
+
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -77,7 +77,7 @@
       }
     })
 
-   
+
     Toast.fire({
       icon: icon,
       title: title,
@@ -86,7 +86,7 @@
 
 
     function SweetAudio(icon,title,time=3000,audio=""){
-      
+
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -101,12 +101,50 @@
       }
     })
 
-   
+
     Toast.fire({
       icon: icon,
       title: title,
     })
   }
+
+
+let baseUrl = $('#base_url').val();
+$("#admin_lang").click(function () {
+    if ($('#admin_lang').text() == 'English') {
+
+        var url = '/lang/change/' + "?lang=" + 'en';
+        console.log(baseUrl + url);
+        $.ajax({
+            type: "get",
+            url: baseUrl + url,
+            success: function (data) {
+                $('#admin_lang').text('عربي');
+                //for success
+                if (data.status == 'success') {
+                    self.location.reload();
+                }
+            }
+        });
+
+    } else if ($('#admin_lang').text() == 'عربي') {
+        var url = '/lang/change/' + "?lang=" + 'ar';
+
+        $.ajax({
+            type: "get",
+            url: baseUrl + url,
+            success: function (data) {
+                $('#admin_lang').text('English');
+                //for success
+                if (data.status == 'success') {
+                    self.location.reload();
+                }
+            }
+        });
+    }
+});
+
+
 
 
 

@@ -124,12 +124,12 @@ function amount_format($amount, $array = false)
 
 function new_amount_format($amount)
 {
-     
+
 	$format ="ر.س ".number_format($amount, 2);
 	if(Session::has('locale') && Session::get('locale') == 'en'){
 		$format ="SAR ".number_format($amount, 2);
 	}
-	
+
 	return $format;
 }
 function amount_calculation($amount)
@@ -337,8 +337,10 @@ function editor($array = [])
 
 function publish($array = [])
 {
-	$title = $array['title'] ?? 'Publish';
-	$button_text = $array['button_text'] ?? 'Save';
+    $publish = __('labels.publish');
+    $save = __('labels.save');
+	$title = $array['title'] ?? $publish;
+	$button_text = $array['button_text'] ?? $save;
 	$class = $array['class'] ?? '';
 	$id = $array['id'] ?? '';
 	return view('components.publish', compact('title', 'button_text', 'class', 'id'));
