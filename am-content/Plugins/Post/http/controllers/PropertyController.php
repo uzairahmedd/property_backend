@@ -653,7 +653,9 @@ class PropertyController extends controller
         $rooms_type = [];
         foreach ($posts->option_data as $key => $value) {
 
-            if ($value->category->name != 'Parking' && $value->category->name != 'Elevators') {
+            if ($value->category->name == 'Living-room' || $value->category->name == 'Guest-room'
+            || $value->category->name == 'Bedroom'
+            ) {
                 array_push($rooms_type, $value->category->name);
             }
         }
