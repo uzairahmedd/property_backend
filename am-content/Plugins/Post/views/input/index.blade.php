@@ -52,12 +52,12 @@
 				<table class="table table-striped table-hover text-center table-borderless">
 					<thead>
 						<tr>
-							<th class="am-select">
+							<!-- <th class="am-select">
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" class="custom-control-input checkAll" id="selectAll">
 									<label class="custom-control-label checkAll" for="selectAll"></label>
 								</div>
-							</th>
+							</th> -->
 							<th class="am-title"><i class="far fa-image"></i></th>
 							<th class="am-title">{{__('labels.name')}}</th>
 							<th class="am-title">{{__('labels.arabic_name')}}</th>
@@ -70,20 +70,20 @@
 					<tbody>
 						@foreach($posts as $row)
 						<tr id="row{{  $row->id }}">
-							<td>
+							<!-- <td>
 
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" name="ids[]" class="custom-control-input" id="customCheck{{ $row->id }}" value="{{ $row->id }}">
 									<label class="custom-control-label" for="customCheck{{ $row->id }}"></label>
 								</div>
-							</td>
+							</td> -->
 							<td>
 								<img src="{{ $row->preview->content ?? '/uploads/defaultsmall.png' }}" height="20" alt=""></img>
 							</td>
 							<td>
 								{{ $row->name }}
 								<div>
-									<a href="{{ route('admin.input.edit',$row->id) }}">Edit</a>
+									<a href="{{ route('admin.input.edit',$row->id) }}">{{__('labels.edit')}}</a>
 								</div>
 							</td>
 							<td>
@@ -91,7 +91,7 @@
 							</td>
 							<td>
 								@foreach($row->child_name as $name_type)
-								<span class="badge badge-primary">{{$name_type->name}}</span>
+								<span class="badge badge-primary">{{Session::get('locale') == 'ar' ? @$name_type->ar_name :  @$name_type->name}}</span>
 								@endforeach
 							</td>
 							<!-- <td>
@@ -103,9 +103,9 @@
 							</td> -->
 							<td>
 								@if($row->featured==1)
-								<span class="badge badge-success">{{ __('Yes') }}</span>
+								<span class="badge badge-success">{{ __('labels.yes') }}</span>
 								@else
-								<span class="badge badge-danger">{{ __('No') }}</span>
+								<span class="badge badge-danger">{{ __('labels.no') }}</span>
 								@endif
 							</td>
 							<td>{{ $row->updated_at->diffForHumans() }}</td>

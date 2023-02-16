@@ -1,5 +1,10 @@
 @extends('layouts.backend.app')
-
+@php
+        $district = __('labels.district');
+        $enter_name_english = __('labels.enter_name_in_english');
+        $enter_name_arabic = __('labels.district_name_in_arabic');
+        $enter_arabic = __('labels.enter_name_in_arabic');
+    @endphp
 @section('content')
 <div class="row">
     <div class="col-lg-9">
@@ -11,20 +16,20 @@
                     @method('PUT')
                     <div class="pt-20">
                         @php
-                        $arr['title']= 'District Name';
+                        $arr['title']= $district;
                         $arr['id']= 'title';
                         $arr['type']= 'text';
-                        $arr['placeholder']= 'Enter Name';
+                        $arr['placeholder']= $enter_name_english;
                         $arr['name']= 'name';
                         $arr['is_required'] = true;
                         $arr['value'] = $info->name;
 
                         echo  input($arr);
 
-                        $arr['title']= 'District Name in arabic';
+                        $arr['title']=  $enter_name_arabic;
                         $arr['id']= 'ar_title';
                         $arr['type']= 'text';
-                        $arr['placeholder']= 'Enter Name in arabic';
+                        $arr['placeholder']= $enter_arabic;
                         $arr['name']= 'ar_name';
                         $arr['is_required'] = true;
                         $arr['value'] = $info->ar_name;
@@ -34,11 +39,11 @@
                       
                         @endphp
                         <div class="form-group states">
-                            <label for="title">{{ __('Select City') }}</label>
+                            <label for="title">{{ __('labels.select_city') }}</label>
                             <select class="form-control" name="p_id" id="state">
-                                <option disabled="" selected="">{{ __('Select City') }}</option>
+                                <option disabled="" selected="">{{ __('labels.select_city') }}</option>
                                 @foreach($cities as $r)
-                                <option value="{{ $r->id }}" class="res" @if($r->id==$info->p_id) selected="" @endif>{{ $r->name }}</option>
+                                <option value="{{ $r->id }}" class="res" @if($r->id==$info->p_id) selected="" @endif>{{ Session::get('locale') == 'ar' ? $r->ar_name : $r->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -50,11 +55,11 @@
         <div class="single-area">
             <div class="card sub">
                 <div class="card-body">
-                    <h5>{{ __('Is Featured ?') }}</h5>
+                <h5>{{__('labels.is_featured')}}</h5>
                     <hr>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
-                        <option  value="1" @if($info->featured==1) selected="" @endif>{{ __('Yes') }}</option>
-                        <option value="0"  @if($info->featured==0) selected="" @endif>{{ __('No') }}</option>
+                        <option  value="1" @if($info->featured==1) selected="" @endif>{{ __('labels.yes') }}</option>
+                        <option value="0"  @if($info->featured==0) selected="" @endif>{{ __('labels.no') }}</option>
                     </select>
                 </div>
             </div>

@@ -1722,7 +1722,7 @@ tr:first-child > td > .fc-day-grid-event {
 
       /* tabel cell scrollable */
       div.scrollable {
-        width: 140px;
+        width: 150px;
         height: 100%;
         margin: 0;
         padding: 0;

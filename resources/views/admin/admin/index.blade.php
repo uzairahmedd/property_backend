@@ -74,7 +74,7 @@
                                 {{ $row->name }}
                                 @can('admin.edit')
 								<div class="hover">
-									<a href="{{ route('admin.users.edit',$row->id) }}">{{ __('Edit') }}</a>
+									<a href="{{ route('admin.users.edit',$row->id) }}">{{ __('labels.edit') }}</a>
                                 </div>
                                 @endcan
                             </td>
@@ -83,9 +83,9 @@
                             </td>
                             <td>
                             @if($row->status==1)
-                            <span class="badge badge-success">{{ __('Active') }}</span>
+                            <span class="badge badge-success">{{ __('labels.active') }}</span>
                             @else
-                            <span class="badge badge-danger">{{ __('Deactive') }}</span>
+                            <span class="badge badge-danger">{{ __('labels.deactive') }}</span>
                             @endif
                             </td>
                              <!-- <td>@if(!empty($row->user_session)) {{ date('Y-m-d H:i:s', $row->user_session->last_activity) }} @endif</td>

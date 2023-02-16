@@ -5,16 +5,16 @@
 	<div class="col-lg-9">
 		<div class="card">
 			<div class="card-body">
-				<h4>{{ __('Edit Role') }}</h4>
+            <h4>{{ __('labels.edit_role') }}</h4>
 				<form method="post" action="{{ route('admin.role.update',$role->id) }}" class="basicform">
                     @csrf
                     @method('PUT')
 					<div class="pt-20">
 						@php
-						$arr['title']= 'Role Name';
+						$arr['title']= __('labels.role_name');
 						$arr['id']= 'name';
 						$arr['type']= 'text';
-						$arr['placeholder']= 'Enter Role Name';
+						$arr['placeholder']= __('labels.enter_role_name');
 						$arr['name']= 'name';
                         $arr['is_required'] = true;
                         $arr['value']=$role->name;
@@ -24,7 +24,7 @@
 							<div class="col-sm-12">
 								<div class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input checkAll" id="selectAll">
-										<label class="custom-control-label checkAll" for="selectAll">Permissions</label>
+										<label class="custom-control-label checkAll" for="selectAll">{{ __('labels.permissions') }}</label>
 									</div>
 									<hr>
                                     @php $i = 1; @endphp
@@ -67,7 +67,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="btn-publish">
-                        <button type="submit" class="btn btn-primary col-12 basicbtn"><i class="fa fa-save"></i> {{ __('Save') }}</button>
+                        <button type="submit" class="btn btn-primary col-12 basicbtn"><i class="fa fa-save"></i> {{ __('labels.save') }}</button>
                     </div>
                 </div>
             </div>

@@ -18,7 +18,7 @@
         </div>
         <div class="card-stats-item">
             <div class="card-stats-item-count approved_list"><img src="{{ asset('uploads/loader.gif') }}"></div>
-            <div class="card-stats-item-label">{{ __('labels.approved') }}}</div>
+            <div class="card-stats-item-label">{{ __('labels.approved') }}</div>
         </div>
       </div>
     </div>

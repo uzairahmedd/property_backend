@@ -25,9 +25,9 @@
           <div class="form-group">
             <label for="p_id">{{__('labels.parent_category')}}</label>
             <select multiple="" class="form-control select2" name="child[]">
-              <option value="">{{__('labels.none')}}</option>
+              <option value="" disabled>{{__('labels.none')}}</option>
                 @foreach($posts as $row)
-              <option value="{{$row->id}}">{{$row->name}}</option>
+              <option value="{{$row->id}}">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
                 @endforeach
               <!--65 in seeder-->
             </select>

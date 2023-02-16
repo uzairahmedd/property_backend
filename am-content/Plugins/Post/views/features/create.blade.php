@@ -44,7 +44,7 @@
       <div class="single-area">
         <div class="card">
           <div class="card-body">
-            <h5>{{__('labels.is_featured')}}}</h5>
+            <h5>{{__('labels.is_featured')}}</h5>
             <hr>
             <select name="featured" class="form-control">
               <option value="1">{{__('labels.yes')}}</option>

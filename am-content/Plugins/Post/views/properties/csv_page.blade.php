@@ -117,8 +117,8 @@
                             <td><a href="{{ route('admin.users.edit',$row->user->id) }}">{{ $row->user->name }}</a></td>
                             <td>{{$row->user->phone}}</td>
                             <td>{{$row->user->email}}</td>
-                            <td>Offer</td>
-                            <td>{{!empty($row->property_status_type) ? $row->property_status_type->category->name : 'N/A'}}</td>
+                            <td>{{__('labels.offer')}}</td>
+                            <td>{{Session::get('locale') == 'ar' && !empty($row->property_status_type) ? @$row->property_status_type->category->ar_name :  @$row->property_status_type->category->name }}</td>
                             <td>
                                 <div class="scrollable">{{ $row->created_at }}</div>
                             </td>
@@ -126,25 +126,25 @@
                             <td> {{date('d-m-Y', strtotime( $row->created_at->addMonths(3)))}} </td>
                             <td>
                                 @if($row->status==1)
-                                <span class="badge badge-success">{{ __('Published') }}</span>
+                                <span class="badge badge-success">{{ __('labels.publish') }}</span>
                                 @elseif($row->status==2)
-                                <span class="badge badge-warning">{{ __('Incomplete') }}</span>
+                                <span class="badge badge-warning">{{ __('labels.incomplete') }}</span>
 
                                 @elseif($row->status==0)
-                                <span class="badge badge-danger">{{ __('Trash') }}</span>
+                                <span class="badge badge-danger">{{ __('labels.trash') }}</span>
 
                                 @elseif($row->status==3)
-                                <span class="badge badge-warning">{{ __('Pending') }}</span>
+                                <span class="badge badge-warning">{{ __('labels.pending') }}</span>
                                 @elseif($row->status==4)
-                                <span class="badge badge-danger">{{ __('Rejected') }}</span>
+                                <span class="badge badge-danger">{{ __('labels.reject') }}</span>
                                 @endif
                             </td>
-                            <td>{{ !empty($row->post_district) ? $row->post_district->district->name : 'N/A'}}</td>
-                            <td>{{ !empty($row->post_new_city) ? @$row->post_new_city->city->name : 'N/A'}}</td>
-                            <td>{{ !empty($row->parentcategory) ? App\Category::where('id',$row->parentcategory->category_id)->first('name')->name : 'N/A' }}</td>
-                            <td>{{ !empty($row->property_type) ? $row->property_type->category->name : 'N/A' }}</td>
+                            <td>{{  Session::get('locale') == 'ar' && !empty($row->post_district) ? @$row->post_district->district->ar_name : @$row->post_district->district->name}}</td>
+                            <td>{{ Session::get('locale') == 'ar' && !empty($row->post_new_city) ? @$row->post_new_city->city->ar_name :  @$row->post_new_city->city->name}}</td>
+                            <td>{{  Session::get('locale') == 'ar' && !empty($row->parentcategory) ?  @App\Category::where('id',$row->parentcategory->category_id)->first('ar_name')->ar_name : @App\Category::where('id',$row->parentcategory->category_id)->first('name')->name }}</td>
+                            <td>{{ Session::get('locale') == 'ar' && !empty($row->property_type) ? @$row->property_type->category->ar_name  : @$row->property_type->category->name }}</td>
                             <td>
-                                <div class=scrollable><span>Built-up area: {{ !empty($row->builtarea) ? $row->builtarea->content : 'N/A' }}</span><span> Land area: {{ !empty($row->landarea) ? $row->landarea->content : 'N/A' }} </span></div>
+                                <div class=scrollable><span>{{__('labels.built_up_area')}}: {{ !empty($row->builtarea) ? $row->builtarea->content : 'N/A' }}</span><span> {{__('labels.built_up_area')}}: {{ !empty($row->landarea) ? $row->landarea->content : 'N/A' }} </span></div>
                             </td>
                             @if(!empty($row->property_status_type) && $row->property_status_type->category->name == "Sale")
                             <td>{{!empty($row->price) ? $row->price->price : 'N/A' }}</td>
@@ -156,7 +156,7 @@
                             @else
                             <td>N/A</td>
                             @endif
-                            <td><span><i class="fa fa-eye" onclick="get_property_data(this)" data-value="{{$row->id}}" data-toggle='tooltip' title="View data"></i></span></td>
+                            <td><span><i class="fa fa-eye" title="{{__('labels.view_data')}}" toggle='tooltip' onclick="get_property_data(this)" data-value="{{$row->id}}" data-toggle='tooltip' title="View data"></i></span></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -195,7 +195,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">CSV file data</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{__('labels.csv_file_data')}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -206,7 +206,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('labels.close')}}</button>
             </div>
         </div>
     </div>

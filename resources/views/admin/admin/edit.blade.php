@@ -9,48 +9,48 @@
 	<div class="col-lg-9">
 		<div class="card">
 			<div class="card-body">
-				<h4>{{ __('Edit Admin') }}</h4>
+			<h4>{{ __('labels.update_admin') }}</h4>
 				<form method="post" action="{{ route('admin.users.update',$user->id) }}" id="basicform">
                     @csrf
                     @method('PUT')
 					<div class="pt-20">
 						@php
-						$arr['title']= 'Name';
+						$arr['title']= __('labels.name') ;
 						$arr['id']= 'name';
 						$arr['type']= 'text';
-						$arr['placeholder']= 'Enter Name';
+						$arr['placeholder']= __('labels.enter_name') ;
 						$arr['name']= 'name';
                         $arr['is_required'] = true;
                         $arr['value']=$user->name;
 						echo  input($arr);
 
-						$arr['title']= 'Email';
+						$arr['title']= __('labels.email');
 						$arr['id']= 'email';
 						$arr['type']= 'email';
-						$arr['placeholder']= 'Enter Email';
+						$arr['placeholder']= __('labels.enter_email') ;
 						$arr['name']= 'email';
                         $arr['is_required'] = true;
                         $arr['value']=$user->email;
                         echo  input($arr);
 
-                        $arr['title']= 'Password';
+                        $arr['title']= __('labels.password');
 						$arr['id']= 'password';
 						$arr['type']= 'password';
-						$arr['placeholder']= 'Enter password';
+						$arr['placeholder']= __('labels.enter_password');
 						$arr['name']= 'password';
 						$arr['is_required'] = true;
                         echo  input($arr);
 
-                        $arr['title']= 'Password';
+                        $arr['title']= __('labels.confirm_password');
 						$arr['id']= 'password_confirmation';
 						$arr['type']= 'password';
-						$arr['placeholder']= 'Confirm Password';
+						$arr['placeholder']= __('labels.confirm_password');
 						$arr['name']= 'password_confirmation';
 						$arr['is_required'] = true;
 						echo  input($arr);
                         @endphp
                         <div class="form-group">
-                            <label for="roles">{{ __('Assign Roles') }}</label>
+                            <label for="roles">{{ __('labels.assign_role') }}</label>
                                 <select required name="roles" id="roles" class="form-control">
                                     @foreach ($roles as $role)
                                         <option value="{{ $role->id }}" {{ $role->id==$user->role_id ? 'selected' : '' }}>{{ $role->name }}</option>
@@ -58,10 +58,10 @@
                                 </select>
                             </div>
                         <div class="form-group">
-                        <label>{{ __('Status') }}</label>
+                        <label>{{ __('labels.status') }}</label>
                         <select name="status" class="form-control">
-                            <option value="1" @if($user->status==1) selected @endif>{{ __('Active') }}</option>
-                            <option value="0"  @if($user->status==0) selected @endif>{{ __('Deactive') }}</option>
+                            <option value="1" @if($user->status==1) selected @endif>{{ __('labels.active') }}</option>
+                            <option value="0"  @if($user->status==0) selected @endif>{{ __('labels.deactive') }}</option>
                         </select>
                     </div>
 				</div>
@@ -73,7 +73,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="btn-publish">
-						<button type="submit" class="btn btn-primary col-12"><i class="fa fa-save"></i> {{ __('Save') }}</button>
+						<button type="submit" class="btn btn-primary col-12"><i class="fa fa-save"></i> {{ __('labels.save') }}</button>
 					</div>
 				</div>
 			</div>

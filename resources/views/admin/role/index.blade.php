@@ -45,12 +45,12 @@
 			<table class="table table-striped table-hover text-center table-borderless">
 				<thead>
 					<tr>
-						<th class="am-select" width="10%">
+						<!-- <th class="am-select" width="10%">
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input checkAll" id="selectAll">
 								<label class="custom-control-label checkAll" for="selectAll"></label>
 							</div>
-						</th>
+						</th> -->
 						<th width="10%">{{ __('labels.name') }}</th>
 						<th width="80%">{{ __('labels.permissions') }}</th>
 					</tr>
@@ -58,16 +58,16 @@
 				<tbody>
 					@foreach($roles as $page)
 					<tr>
-						<th>
+						<!-- <th>
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" name="ids[]" class="custom-control-input" id="customCheck{{ $page->id }}" value="{{ $page->id }}">
 								<label class="custom-control-label" for="customCheck{{ $page->id }}"></label>
 							</div>
-						</th>
+						</th> -->
 						<td>
 							{{ $page->name }}
 							<div class="hover">
-								<a href="{{ route('admin.role.edit',$page->id) }}">{{ __('Edit') }}</a>
+								<a href="{{ route('admin.role.edit',$page->id) }}">{{ __('labels.edit') }}</a>
 							</div>
 						</td>
 						<td>

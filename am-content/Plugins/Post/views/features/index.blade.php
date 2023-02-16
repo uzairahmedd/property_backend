@@ -21,7 +21,7 @@
 		<div class="card-action-filter mt-3">
 			<form method="post" id="confirm_basicform" action="{{ route('admin.features.destroy') }}">
 				@csrf
-				@can('feature.delete')
+				<!-- @can('feature.delete')
 				<div class="float-left">
 					<div class="input-group">
 						<select class="form-control selectric" name="method">
@@ -33,7 +33,7 @@
 						</div>
 					</div>
 				</div>
-				@endcan
+				@endcan -->
 				<div class="float-right">
 					<div class="form-group">
 						<input type="text" id="data_search" class="form-control" placeholder="{{__('labels.enter_value')}}">
@@ -44,12 +44,12 @@
 			<table class="table text-left table-striped table-hover text-center table-borderless">
 				<thead>
 					<tr>
-						<th class="am-select">
+						<!-- <th class="am-select">
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input checkAll" id="customCheck12">
 								<label class="custom-control-label checkAll" for="customCheck12"></label>
 							</div>
-						</th>
+						</th> -->
 						<!-- <th class="am-title"><i class="far fa-image"></i></th> -->
 						<th class="am-title">{{__('labels.title')}}</th>
 						<th class="am-title">{{__('labels.arabic_title')}}</th>
@@ -60,19 +60,19 @@
 				<tbody>
 					@foreach($posts as $post)
 					<tr>
-						<th>
+						<!-- <th>
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" name="ids[]" class="custom-control-input" id="customCheck{{ $post->id }}" value="{{ $post->id }}">
 								<label class="custom-control-label" for="customCheck{{ $post->id }}"></label>
 							</div>
-						</th>
+						</th> -->
 						<!-- <td>
 								<i class="{{ $post->icon->content ?? '' }}"></i>
 							</td> -->
 						<td>
 							{{ $post->name }}
 							<div class="hover">
-								<a href="{{ route('admin.feature.edit',$post->id) }}">{{ __('Edit') }}</a>
+								<a href="{{ route('admin.feature.edit',$post->id) }}">{{ __('labels.edit') }}</a>
 							</div>
 						</td>
 						<td>
@@ -80,9 +80,9 @@
 						</td>
 						<td>
 							@if($post->featured==1)
-							<span class="badge badge-success">{{ __('Yes') }}</span>
+							<span class="badge badge-success">{{ __('labels.yes') }}</span>
 							@else
-							<span class="badge badge-danger">{{ __('No') }}</span>
+							<span class="badge badge-danger">{{ __('labels.no') }}</span>
 							@endif
 						</td>
 						<td>{{ __('Last Modified') }}
@@ -96,12 +96,12 @@
 				</form>
 				<tfoot>
 					<tr>
-						<th class="am-select">
+						<!-- <th class="am-select">
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input checkAll" id="customCheck12">
 								<label class="custom-control-label checkAll" for="customCheck12"></label>
 							</div>
-						</th>
+						</th> -->
 						<!-- <th class="am-title"><i class="far fa-image"></i></th> -->
                         <th class="am-title">{{__('labels.title')}}</th>
                         <th class="am-title">{{__('labels.arabic_title')}}</th>

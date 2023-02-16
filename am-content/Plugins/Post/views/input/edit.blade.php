@@ -3,14 +3,17 @@
 @section('style')
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/select2.min.css') }}">
 <style>
-    .select2 .select2-container .select2-container--default{
+    .select2 .select2-container .select2-container--default {
         width: none !important;
     }
 </style>
 @endsection
-
+@php
+$edit_input = __('labels.edit_input');
+$icon_image = __('labels.icon_image');
+@endphp
 @section('content')
-@include('layouts.backend.partials.headersection',['title'=>'Edit Input'])
+@include('layouts.backend.partials.headersection',['title'=> $edit_input])
 <div class="row">
     <div class="col-lg-9">
         <div class="card">
@@ -19,15 +22,15 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="text">{{ __('Name') }}</label>
+                        <label for="text">{{__('labels.name')}}</label>
                         <div class="input-group">
-                            <input type="text" class="form-control item-menu" name="title" id="text" placeholder="Enter Name" autocomplete="off" required="" value="{{ $info->name }}">
+                            <input type="text" class="form-control item-menu" name="title" id="text" placeholder=" {{__('labels.enter_name')}}" autocomplete="off" required="" value="{{ $info->name }}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="text">{{ __('Arabic Name') }}</label>
+                        <label for="text">{{__('labels.arabic_name')}}</label>
                         <div class="input-group">
-                            <input type="text" class="form-control item-menu" name="ar_title" id="ar_text" placeholder="Enter Name in Arabic" autocomplete="off" required="" value="{{ $info->ar_name }}">
+                            <input type="text" class="form-control item-menu" name="ar_title" id="ar_text" placeholder="{{__('labels.enter_name_in_arabic')}}" autocomplete="off" required="" value="{{ $info->ar_name }}">
                         </div>
                     </div>
                     <!-- <div class="form-group">
@@ -49,10 +52,10 @@
                         </div>
                     </div>  -->
                     <div class="form-group col-12">
-                        <label>{{ __('Select Category') }}</label>
+                        <label>{{__('labels.select_category')}}</label>
                         <select multiple="" class="form-control select2" name="child[]">
                             @foreach($categories as $row)
-                            <option value="{{ $row->id }}" @if(in_array($row->id, $childs)) selected="" @endif>{{ $row->name }}</option>
+                            <option value="{{ $row->id }}" @if(in_array($row->id, $childs)) selected="" @endif>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -63,11 +66,11 @@
     <div class="single-area">
         <div class="card sub">
             <div class="card-body">
-                <h5>{{ __('Is Featured ?') }}</h5>
+                <h5>{{__('labels.is_featured')}}</h5>
                 <hr>
                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
-                    <option value="1" @if($info->featured==1) selected="" @endif>{{ __('Yes') }}</option>
-                    <option value="0" @if($info->featured==0) selected="" @endif>{{ __('No') }}</option>
+                    <option value="1" @if($info->featured==1) selected="" @endif>{{__('labels.yes')}}</option>
+                    <option value="0" @if($info->featured==0) selected="" @endif>{{__('labels.no')}}</option>
                 </select>
             </div>
         </div>
@@ -76,10 +79,10 @@
     if (!empty($info->preview)) {
         $media['preview'] = $info->preview->content;
         $media['value'] = $info->preview->content;
-        $media['title'] = 'Icon Image';
+        $media['title'] = $icon_image;
         echo  mediasection($media);
     } else {
-        $media['title'] = 'Icon Image';
+        $media['title'] = $icon_image;
         echo mediasection($media);
     }
     ?>
@@ -103,8 +106,8 @@
         });
     })(jQuery);
     //success response will assign here
-    function success(res){
-      location.reload()
+    function success(res) {
+        location.reload()
     }
 </script>
 @endsection

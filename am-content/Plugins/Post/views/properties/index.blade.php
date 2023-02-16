@@ -103,24 +103,24 @@
 							<td><a href="#">{{ $row->user->name }}</a></td>
 							<td>
 								@if($row->resource==1)
-								<span class="badge badge-success">App</span>
+								<span class="badge badge-success">{{__('labels.api')}}</span>
 								@else
-								<span class="badge badge-primary">Web</span>
+								<span class="badge badge-primary">{{__('labels.web')}}</span>
 								@endif
 							</td>
 							<td>
 								@if($row->status==1)
-								<span class="badge badge-success">{{ __('Published') }}</span>
+								<span class="badge badge-success">{{ __('labels.publish') }}</span>
 								@elseif($row->status==2)
-								<span class="badge badge-warning">{{ __('Incomplete') }}</span>
+								<span class="badge badge-warning">{{ __('labels.incomplete') }}</span>
 
 								@elseif($row->status==0)
-								<span class="badge badge-danger">{{ __('Trash') }}</span>
+								<span class="badge badge-danger">{{ __('labels.trash') }}</span>
 
 								@elseif($row->status==3)
-								<span class="badge badge-warning">{{ __('Pending') }}</span>
+								<span class="badge badge-warning">{{ __('labels.pending') }}</span>
 								@elseif($row->status==4)
-								<span class="badge badge-danger">{{ __('Rejected') }}</span>
+								<span class="badge badge-danger">{{ __('labels.reject') }}</span>
 								@endif
 							</td>
 							<td>{{ $row->updated_at->diffForHumans() }}</td>

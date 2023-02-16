@@ -22,7 +22,7 @@
 		<div class="card-action-filter mt-3">
 			<form method="post" id="confirm_basicform" action="{{ route('admin.category.destroy') }}">
 				@csrf
-				@can('category.delete')
+				<!-- @can('category.delete')
 				<div class="float-left">
 					<div class="input-group">
 						<select class="form-control selectric" name="method">
@@ -34,7 +34,7 @@
 						</div>
 					</div>
 				</div>
-				@endcan
+				@endcan -->
 				<div class="float-right">
 					<div class="form-group">
 						<input type="text" id="data_search" class="form-control" placeholder="{{__('labels.enter_value')}}">
@@ -45,12 +45,12 @@
 			<table class="table text-left table-striped table-hover text-center table-borderless">
 				<thead>
 					<tr>
-						<th class="am-select">
+						<!-- <th class="am-select">
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input checkAll" id="customCheck12">
 								<label class="custom-control-label checkAll" for="customCheck12"></label>
 							</div>
-						</th>
+						</th> -->
 						<th class="am-title">{{__('labels.icon')}}</th>
 						<th class="am-title">{{__('labels.title')}}</th>
 						<th class="am-title">{{__('labels.arabic_title')}}</th>
@@ -69,19 +69,19 @@
 				<tbody>
 					@foreach($posts as $post)
 					<tr>
-						<th>
+						<!-- <th>
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" name="ids[]" class="custom-control-input" id="customCheck{{ $post->id }}" value="{{ $post->id }}">
 								<label class="custom-control-label" for="customCheck{{ $post->id }}"></label>
 							</div>
-						</th>
+						</th> -->
 						<td>
 							<span><i class="{{!empty($post->icon) ? $post->icon->content : ''}}"></i></span>
 						</td>
 						<td>
 							{{ $post->name }}
 							<div class="hover">
-								<a href="{{ route('admin.category.edit',$post->id) }}">{{ __('Edit') }}</a>
+								<a href="{{ route('admin.category.edit',$post->id) }}">{{ __('labels.edit') }}</a>
 							</div>
 						</td>
 						<td>
@@ -89,50 +89,50 @@
 						</td>
 						<td>
 							@foreach($post->child_name as $name_type)
-							<span class="badge badge-primary">{{$name_type->name}}</span>
+							<span class="badge badge-primary">{{Session::get('locale') == 'ar' ? @$name_type->ar_name :  @$name_type->name}}</span>
 							@endforeach
 						</td>
 
 						@if($post->land_area == 1)
-						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
 						@else
-						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
 						@endif
 
 						@if($post->buildup_area == 1)
-						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
 						@else
-						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
 						@endif
 						@if($post->property_age == 1)
-						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
 						@else
-						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
 						@endif
 						@if($post->features_section == 1)
-						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
 						@else
-						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
 						@endif
 						@if($post->furnishing_section == 1)
-						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
 						@else
-						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
 						@endif
 						@if($post->total_floor == 1)
-						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
 						@else
-						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
 						@endif
 						@if($post->property_floor == 1)
-						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
 						@else
-						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
 						@endif
 						@if($post->featured == 1)
-						<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
 						@else
-						<td><span class="badge badge-danger">{{ __('No') }}</span></td>
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
 						@endif
 						<td>{{ __('Last Modified') }}
 							<div class="date">
@@ -145,12 +145,12 @@
 				</form>
 				<tfoot>
 					<tr>
-						<th class="am-select">
+						<!-- <th class="am-select">
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input checkAll" id="customCheck12">
 								<label class="custom-control-label checkAll" for="customCheck12"></label>
 							</div>
-						</th>
+						</th> -->
                         <th class="am-title">{{__('labels.icon')}}</th>
                         <th class="am-title">{{__('labels.title')}}</th>
                         <th class="am-title">{{__('labels.arabic_title')}}</th>

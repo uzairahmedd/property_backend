@@ -14,7 +14,7 @@
 					<select class="form-control selectric" name="type" id="type">
 						<option value="name" @if($request->type == 'name') selected @endif>{{ __('labels.search_by_name') }}</option>
 						<option value="email" @if($request->type == 'email') selected @endif>{{ __('labels.search_user_email') }}</option>
-						<option value="id" @if($request->type == 'id') selected @endif>{{ __('labels.search_by_id') }}</option>
+						<!-- <option value="id" @if($request->type == 'id') selected @endif>{{ __('labels.search_by_id') }}</option> -->
 					</select>
 					<div class="input-group-append">
 						<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
@@ -24,7 +24,7 @@
 		</div>
 		<form method="post" action="{{ route('admin.agent.destroy') }}" id="confirm_basicform">
 			@csrf
-			 @can('user.delete')
+			 <!-- @can('user.delete')
 			<div class="float-left">
 				<div class="input-group">
 					<select class="form-control selectric" name="status">
@@ -36,17 +36,17 @@
 					</div>
 				</div>
 			</div>
-			@endcan
+			@endcan -->
 			<div class="table-responsive custom-table">
 				<table class="table table-striped table-hover text-center table-borderless">
 					<thead>
 						<tr>
-							<th class="am-select">
+							<!-- <th class="am-select">
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" class="custom-control-input checkAll" id="selectAll">
 									<label class="custom-control-label checkAll" for="selectAll"></label>
 								</div>
-							</th>
+							</th> -->
 							<th class="am-title">{{ __('labels.name') }}</th>
 {{--							 <th class="am-title">{{ __('Credits') }}</th> --}}
 							<th class="am-title">{{ __('labels.avatar') }}</th>
@@ -60,12 +60,12 @@
 					<tbody>
 						@foreach($agents as $agent)
 						<tr>
-							<th>
+							<!-- <th>
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" name="ids[]" class="custom-control-input" id="customCheck{{ $agent->id }}" value="{{ $agent->id }}">
 									<label class="custom-control-label" for="customCheck{{ $agent->id }}"></label>
 								</div>
-							</th>
+							</th> -->
 							<td>
 								{{ $agent->name }}
 								<!-- <div class="hover">
@@ -83,11 +83,11 @@
                             <td>{{ $agent->email }}</td>
                             <td>
                                 @if($agent->status == 1)
-                                <span class="badge badge-success">{{ __('active') }}</span>
+                                <span class="badge badge-success">{{ __('labels.active') }}</span>
                                 @elseif($agent->status == 2)
-                                <span class="badge badge-warning">{{ __('Pending') }}</span>
+                                <span class="badge badge-warning">{{ __('labels.pending') }}</span>
                                 @else
-                                <span class="badge badge-danger">{{ __('suspended') }}</span>
+                                <span class="badge badge-danger">{{ __('labels.suspended') }}</span>
                                 @endif
                             </td>
                             <!-- <td>@if(!empty($agent->user_session)) {{ date('Y-m-d H:i:s', $agent->user_session->last_activity) }} @endif</td>
@@ -103,12 +103,12 @@
 				</form>
 				<tfoot>
 					<tr>
-						<th class="am-select">
+						<!-- <th class="am-select">
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input checkAll" id="selectAll">
 								<label class="custom-control-label checkAll" for="selectAll"></label>
 							</div>
-						</th>
+						</th> -->
                         <th class="am-title">{{ __('labels.name') }}</th>
                         <!-- <th class="am-title">{{ __('Credits') }}</th> -->
                         <th class="am-title">{{ __('labels.avatar') }}</th>
