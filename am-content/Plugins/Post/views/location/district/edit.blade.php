@@ -10,7 +10,7 @@
     <div class="col-lg-9">
         <div class="card">
             <div class="card-body">
-                <h4>{{ __('Edit District') }}</h4>
+                <h4>{{ __('labels.edit_District') }}</h4>
                 <form method="post" action="{{ route('admin.location.update',$info->id) }}" class="basicform">
                     @csrf
                     @method('PUT')

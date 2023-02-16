@@ -651,5 +651,6 @@ return [
     'deactive'=>'Deactive',
     'update_admin'=>'Edit Admin',
     'assign_role'=>'Assign role',
+    'edit_District'=>'Edit district',
 
 ];

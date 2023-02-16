@@ -648,5 +648,6 @@ return [
     'deactive'=>'معطل',
     'update_admin'=>'تحرير المسؤول',
     'assign_role'=>'تعيين الأدوار',
+    'edit_District'=>'تحرير المنطقة',
 
 ];
