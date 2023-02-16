@@ -102,40 +102,41 @@ class PropertyController extends controller
             ['type', 'property'],
             ['status', 1],
             ['slug', $slug]
-        ])->with('depth', 'length', 'virtual_tour', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'post_preview', 'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition','property_type')->withCount('reviews')->first();
-        //views count
-        $property->increment('count',1);
-        $features = [];
-        foreach ($property->postcategory as $key => $value) {
-
-            if ($value->type == 'features') {
-                $name = DB::table('categories')->where([
-                    ['id', $value->category_id]
-                ])->first();
-                array_push($features, $name);
-            }
-        }
-
-        $property_type_nature = [];
-        foreach ($property->postcategory as $key => $value) {
-
-            if ($value->type == 'category') {
-                $type = DB::table('categories')->where([
-                    ['id', $value->category_id]
-                ])->first();
-
-                array_push($property_type_nature, $type);
-            }
-            if ($value->type == 'parent_category') {
-                $type = DB::table('categories')->where([
-                    ['id', $value->category_id]
-                ])->first();
-
-                array_push($property_type_nature, $type);
-            }
-        }
-
+        ])->with('depth', 'length', 'virtual_tour', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'post_preview', 'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition', 'property_type')->withCount('reviews')->first();
         if ($property) {
+            //views count
+            $property->increment('count', 1);
+            $features = [];
+            foreach ($property->postcategory as $key => $value) {
+
+                if ($value->type == 'features') {
+                    $name = DB::table('categories')->where([
+                        ['id', $value->category_id]
+                    ])->first();
+                    array_push($features, $name);
+                }
+            }
+
+            $property_type_nature = [];
+            foreach ($property->postcategory as $key => $value) {
+
+                if ($value->type == 'category') {
+                    $type = DB::table('categories')->where([
+                        ['id', $value->category_id]
+                    ])->first();
+
+                    array_push($property_type_nature, $type);
+                }
+                if ($value->type == 'parent_category') {
+                    $type = DB::table('categories')->where([
+                        ['id', $value->category_id]
+                    ])->first();
+
+                    array_push($property_type_nature, $type);
+                }
+            }
+
+
             SEOMeta::setTitle($property->title);
             // SEOMeta::setDescription($property->description->content ?? '');
             SEOMeta::addMeta('article:published_time', $property->updated_at->format('Y-m-d'), 'property');
@@ -349,7 +350,7 @@ class PropertyController extends controller
 
     public function list_page(Request $request)
     {
-      
+
         $seo = Options::where('key', 'seo')->first();
         $seo = json_decode($seo->value);
 

@@ -22,7 +22,7 @@
 		<div class="card-action-filter mt-3">
 			<form method="post" id="confirm_basicform" action="{{ route('admin.category.destroy') }}">
 				@csrf
-				@can('category.delete')
+				<!-- @can('category.delete')
 				<div class="float-left">
 					<div class="input-group">
 						<select class="form-control selectric" name="method">

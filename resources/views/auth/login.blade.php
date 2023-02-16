@@ -51,6 +51,7 @@
                     </div>
                     @endif
                   </div> -->
+                  <label for="Password">{{ __('Password') }}</label>
                   <input id="password" type="password" class="form-control  @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                   @error('password')
                   <div class="invalid-feedback">
@@ -70,7 +71,8 @@
                 </div>
             </form>
           <div class="simple-footer">
-            {{ __('Copyright') }} &copy; {{ env('APP_NAME') }} {{ date('Y') }}
+          © Khiaratee 2022. All rights reserved.
+            <!-- {{ __('Copyright') }} &copy; {{ env('APP_NAME') }} {{ date('Y') }} -->
           </div>
       </div>
     </div>

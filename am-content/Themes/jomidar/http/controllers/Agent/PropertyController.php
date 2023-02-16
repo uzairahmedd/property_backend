@@ -641,23 +641,19 @@ class PropertyController extends controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-        $slug = Str::slug($request->title);
-        $count = Terms::where('type', 'property')->where('slug', $slug)->count();
-        if ($count > 0) {
-            $slug = $slug . '-' . rand(40, 60) . $count;
-        }
-
+       
         //store & update title and slug
         $term = Terms::where('user_id', Auth::id())->where('id', $request->term_id)->first();
         $unique_id = generate_unique_id();
+        $slug = Str::slug($request->title).'-'.$unique_id;
         if (empty($term)) {
             $term = new Terms;
             $term->user_id = Auth::id();
             $term->unique_id =  $unique_id;
             $term->status = 3;
             $term->type = 'property';
-            $term->slug = $slug;
         }
+        $term->slug = $slug;
         $term->title = $request->title;
         $term->ar_title = $request->ar_title;
         $term->save();

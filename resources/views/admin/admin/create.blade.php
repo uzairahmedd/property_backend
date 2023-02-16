@@ -50,7 +50,7 @@
                             <label>{{__('labels.assign_roles')}}</label>
                             <select required name="roles[]" id="roles" class="form-control select2" multiple>
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
                             </select>
                         </div>

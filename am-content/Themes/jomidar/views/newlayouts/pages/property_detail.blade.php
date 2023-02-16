@@ -125,8 +125,8 @@
                     <div class="d-flex align-items-start justify-content-end mb-4">
                         <p class="mb-0 theme-text-seondary-black me-2">
                             <!-- {{$property->post_district->value}} -->
-                            {{ Session::get('locale') == 'ar' ? $property->post_district->district->ar_name : $property->post_district->district->name }}
-                            , {{ Session::get('locale') == 'ar' ? $property->post_new_city->city->ar_name : $property->post_new_city->city->name }}
+                            {{ Session::get('locale') == 'ar' ? @$property->post_district->district->ar_name : @$property->post_district->district->name }}
+                            , {{ Session::get('locale') == 'ar' ? @$property->post_new_city->city->ar_name : @$property->post_new_city->city->name }}
                         </p>
                         <img src="{{theme_asset('assets/images/location.png')}}" alt="">
                     </div>
@@ -156,7 +156,7 @@
                             <img src="{{theme_asset('assets/images/phone.png')}}" alt="" class="phone me-2">
                             {{ isset($info->phone) ? $info->phone : 'N/A'  }}
                         </button>
-                        <button class="contact-btn col-12 col-sm-6 theme-bg-white border-0 mx-2 px-2 theme-text-blue font-medium mb-3" data-bs-toggle="modal" data-bs-target="#inquiry_form">
+                        <button class="contact-btn col-12 col-sm-6 theme-bg-white border-0 mx-2 px-2 theme-text-blue font-medium mb-3">
                             <img src="{{theme_asset('assets/images/booking-calender.png')}}" alt="" class="me-3">
                             {{__('labels.book_appoint')}}
                         </button>
@@ -177,7 +177,7 @@
                             <span>{{ Session::get('locale') == 'ar' && !empty($property->property_status_type) ? $property->property_status_type->category->ar_name : $property->property_status_type->category->name}} </span>{{__('labels.in')}}
                             <span>
                                 <!-- {{$property->post_district->value}} -->
-                                {{ Session::get('locale') == 'ar' ? $property->post_district->district->ar_name : $property->post_district->district->name }} , {{ Session::get('locale') == 'ar' ? $property->post_new_city->city->ar_name : $property->post_new_city->city->name }}</span>
+                                {{ Session::get('locale') == 'ar' ? @$property->post_district->district->ar_name : @$property->post_district->district->name }} , {{ Session::get('locale') == 'ar' ? @$property->post_new_city->city->ar_name : @$property->post_new_city->city->name }}</span>
                         </p>
                         @if(!empty($property->landarea))
                         <p class="mb-1 land-area-txt">{{__('labels.land_area')}}: <span>{{$property->landarea->content}} {{__('labels.sqm')}}</span></p>

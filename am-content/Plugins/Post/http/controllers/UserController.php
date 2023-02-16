@@ -51,8 +51,8 @@ class UserController extends Controller{
         $user = User::where('role_id',2)->findorFail($id);
         Auth::logout();
         Auth::loginUsingId($id);
-
-        return redirect('/agent/dashboard');
+        return redirect()->route('agent.profile.settings');
+        // return redirect('/agent/dashboard');
     }
 
     public function agent_store(Request $request)

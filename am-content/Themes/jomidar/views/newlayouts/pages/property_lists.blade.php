@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="range-input">
                                     <input type="range" id="min_price" name="min_price" class="range-min" min="0" max="10000000" value="0" step="100">
-                                    <input type="range" id="max_price" name="max_price" class="range-max" min="0" max="10000000" value="10000000" step="100">
+                                    <input type="range" id="max_price" name="max_price" class="range-max" min="0" max="10000000" value="1000000000" step="100">
                                 </div>
 
 
@@ -262,16 +262,18 @@
 <!-- Property Sell and Buy section Starts Here -->
 <div class="propertly-list-banner property-list-sl-r d-flex justify-content-center align-items-center hide">
     <div class="col-12 col-sm-10 col-lg-8 col-xl-5">
-        <h1 class="font-bold theme-text-white mb-0">هل عندك عقار للبيع أو للإيجار</h1>
-        <h3 class="mb-0 theme-text-white">يمكنك تسويق عقارك على موقعنا بكل سهولة، او بإمكانك تفويض فريق وصلت لبيع
-            وتأجير
-            العقار بالنيابة عنك بكل
-            سهولة
-        </h3>
+        <h1 class="font-bold theme-text-white mb-0 direction">{{__('labels.property_sale_rent')}}</h1>
+        <h3 class="mb-0 theme-text-white direction">{{__('labels.market_property_txt')}}</h3>
         <div>
+        @if (Auth::User())
             <button class="btn-add btn-theme">
-                اضف عقارك الأن
+                <a href="{{ route('agent.property.create_property') }}"> {{__('labels.add_property_now')}}</a>
             </button>
+            @else
+            <button class="btn-add btn-theme">
+                <a data-bs-toggle="modal" data-bs-target="#login_modal"> {{__('labels.add_property_now')}}</a>
+            </button>
+            @endif
         </div>
     </div>
 </div>

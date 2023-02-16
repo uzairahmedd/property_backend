@@ -117,9 +117,11 @@ function user_properties_list(target, data) {
             title = str_limit(value.ar_title, 40, true);
         }
 
-        district = value.post_district.district.name;
-        city = value.post_new_city.city.name;
-        if (locale == 'ar') {
+        if(value.post_district.district != null){
+        district = value.post_district.district.name;}
+        if(value.post_new_city.city != null){
+        city = value.post_new_city.city.name;}
+        if (locale == 'ar' && value.post_district.district != null && value.post_new_city.city !=null) {
             district = value.post_district.district.ar_name;
             city = value.post_new_city.city.ar_name;
         }

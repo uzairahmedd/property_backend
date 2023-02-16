@@ -19,7 +19,7 @@
 				@csrf
 				<div class="row">
 					<div class="col-lg-6">
-						<div class="d-flex">
+						<!-- <div class="d-flex">
 							<div class="single-filter">
 								<div class="form-group">
 									<select class="form-control selectric" name="status">
@@ -31,7 +31,7 @@
 							<div class="single-filter">
 								<button type="submit" class="btn btn-primary btn-lg ml-2">{{ __('labels.apply') }}</button>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<div class="col-lg-6">
 						<!-- Button trigger modal -->
@@ -73,7 +73,7 @@
 						<td>
 							@foreach ($page->permissions as $perm)
 							@if($perm->group_name =='admin' || $perm->group_name =='Agent & User' || $perm->group_name =='csv' || $perm->group_name =='dashboard' || $perm->group_name =='Location'
-								 || $perm->group_name =='Real state' || $perm->group_name =='role')
+								 || $perm->group_name =='Real state' || $perm->group_name =='role' || $perm->group_name =='media')
 							<span class="badge badge-primary mr-1 mb-2">
 								{{ $perm->name }}
 							</span>

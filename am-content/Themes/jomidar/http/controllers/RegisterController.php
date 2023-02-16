@@ -578,8 +578,9 @@ class RegisterController extends controller
         $user_data->advertiser_id = $advertiser_id;
         $user_data->cr_number = $request->cr_number;
         $user_data->rega_number = $request->rega_number;
-
         $user_data->save();
+        
+        $user = User::find(decrypt($request->id));
         Auth::login($user);
 
         $url = env("APP_URL", 'http://mychoice.sa/') . 'agent/profile/settings';
@@ -602,7 +603,7 @@ class RegisterController extends controller
             Auth::login($user);
 
             $url = env("APP_URL", 'http://mychoice.sa/') . 'agent/profile/settings';
-            return success_response(['url' => $url, 'User Account created successfully']);
+            return success_response(['url' => $url, 'User logged-in successfully']);
         }
         $messsage = ['phone' => 'User does not exist!'];
         return error_response($messsage, '');

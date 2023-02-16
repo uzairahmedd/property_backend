@@ -36,7 +36,7 @@
 		<form method="post" action="{{ route('admin.input.destroy') }}" id="confirm_basicform">
 			@csrf
 			<div class="float-left">
-				@can('input.delete')
+				<!-- @can('input.delete')
 				<div class="input-group">
 					<select class="form-control selectric" name="method">
 						<option disabled selected="">{{__('labels.select_action')}}</option>
@@ -46,7 +46,7 @@
 						<button class="btn btn-primary basicbtn" type="submit">{{__('labels.submit')}}</button>
 					</div>
 				</div>
-				@endcan
+				@endcan -->
 			</div>
 			<div class="table-responsive custom-table">
 				<table class="table table-striped table-hover text-center table-borderless">

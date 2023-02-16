@@ -2,7 +2,7 @@
 function RegisterAdminMenuBar()
 {
 
-	if (Auth::User()->role_id == 1) {
+	if (Auth::User()->role_id != 2) {
 		if (Auth()->user()->can('dashboard')) {
 			$data[] = array(
 				'name' =>  __('labels.dashboard') ,

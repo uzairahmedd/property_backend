@@ -22,7 +22,7 @@
 		<div class="card-action-filter mt-3">
 			<form method="post" id="confirm_basicform" action="{{ route('admin.district.destroy') }}">
 				@csrf
-				@can('district.delete')
+				<!-- @can('district.delete')
 				<div class="float-left">
 					<div class="input-group">
 						<select class="form-control selectric" name="method">
@@ -34,7 +34,7 @@
 						</div>
 					</div>
 				</div>
-				@endcan
+				@endcan -->
 				<div class="float-right">
 					<div class="form-group">
 						<input type="text" id="data_search" class="form-control" placeholder="{{__('labels.enter_value')}}">

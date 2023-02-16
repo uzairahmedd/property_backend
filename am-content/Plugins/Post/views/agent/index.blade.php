@@ -24,7 +24,7 @@
 		</div>
 		<form method="post" action="{{ route('admin.agent.destroy') }}" id="confirm_basicform">
 			@csrf
-			@can('user.delete')
+			<!-- @can('user.delete')
 			<div class="float-left">
 				<div class="input-group">
 					<select class="form-control selectric" name="status">
@@ -37,6 +37,7 @@
 				</div>
 			</div>
 			@endcan
+>>>>>>> cb4bc3c6ad6b1907bdd5e7ece55acf3754f2767e
 			<div class="table-responsive custom-table">
 				<table class="table table-striped table-hover text-center table-borderless">
 					<thead>
@@ -48,12 +49,12 @@
 								</div>
 							</th>
 							<th class="am-title">{{ __('labels.name') }}</th>
-							<!-- <th class="am-title">{{ __('Credits') }}</th> -->
+{{--							 <th class="am-title">{{ __('Credits') }}</th> --}}
 							<th class="am-title">{{ __('labels.avatar') }}</th>
 							<th class="am-title">{{ __('labels.email') }}</th>
 							<th class="am-title">{{ __('labels.status') }}</th>
-							<!-- <th class="am-title">{{ __('labels.last_activity') }}</th>
-							<th class="am-title">{{ __('labels.last_login_ip') }}</th> -->
+{{--							 <th class="am-title">{{ __('labels.last_activity') }}</th>--}}
+{{--							<th class="am-title">{{ __('labels.last_login_ip') }}</th> --}}
 							<th class="am-date">{{ __('labels.last_update') }}</th>
 						</tr>
 					</thead>

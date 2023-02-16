@@ -51,9 +51,9 @@
                         @endphp
                         <div class="form-group">
                             <label for="roles">{{ __('Assign Roles') }}</label>
-                                <select required name="roles[]" id="roles" class="form-control select2" multiple>
+                                <select required name="roles" id="roles" class="form-control">
                                     @foreach ($roles as $role)
-                                        <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
+                                        <option value="{{ $role->id }}" {{ $role->id==$user->role_id ? 'selected' : '' }}>{{ $role->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

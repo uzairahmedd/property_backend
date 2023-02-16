@@ -538,9 +538,9 @@ class PropertyController extends controller
             "Ad_expiration" => date('d-m-Y', strtotime($posts->created_at->addMonths(3))),
             "Ad_status" => $this->get_status($posts->status),
             "Ad_Views" => $posts->count,
-            "District_Name" => !empty($posts->post_district) ? $posts->post_district->district->name : 'N/A',
-            'City_Name' => !empty($posts->post_new_city) ? $posts->post_new_city->city->name : 'N/A',
-            'Neighbourhood_Name' => !empty($posts->post_district) ? $posts->post_district->district->name : 'N/A',
+            "District_Name" => !empty($posts->post_district) ? @$posts->post_district->district->name : 'N/A',
+            'City_Name' => !empty($posts->post_new_city) ? @$posts->post_new_city->city->name : 'N/A',
+            'Neighbourhood_Name' => !empty($posts->post_district) ? @$posts->post_district->district->name : 'N/A',
             'Street_Name' => 'N/A',
             'Longitude' => !empty($posts->post_district) && !empty($posts->post_district->value)  ? @$this->get_coordinate($posts->post_district->value, 0) : 'N/A',
             "Lattitude" => !empty($posts->post_district) && !empty($posts->post_district->value)  ? @$this->get_coordinate($posts->post_district->value, 1) : 'N/A',
@@ -653,7 +653,9 @@ class PropertyController extends controller
         $rooms_type = [];
         foreach ($posts->option_data as $key => $value) {
 
-            if ($value->category->name != 'Parking' && $value->category->name != 'Elevators') {
+            if ($value->category->name == 'Living-room' || $value->category->name == 'Guest-room'
+            || $value->category->name == 'Bedroom'
+            ) {
                 array_push($rooms_type, $value->category->name);
             }
         }
@@ -722,7 +724,7 @@ class PropertyController extends controller
     public function add_descruption($posts)
     {
         $description = (!empty($posts->property_type) ? $posts->property_type->category->name : 'Property') . ' for ' . $posts->property_status_type->category->name . ' in, ' .
-            $posts->post_district->district->name . ', ' .  $posts->post_new_city->city->name . '.';
+            @$posts->post_district->district->name . ', ' .  @$posts->post_new_city->city->name . '.';
         if (!empty($posts->landarea)) {
             $description .= $posts->property_type->category->name . " have land-area " . $posts->landarea->content . ' sqm';
         }

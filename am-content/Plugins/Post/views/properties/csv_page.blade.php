@@ -24,6 +24,7 @@
         <div style="color: red;">{{$error}}</div>
         @endforeach
         @endif
+        @can('csv.export')
         <form method="post" action="{{ route('admin.properties.csv_download') }}">
             @csrf
             <div class="row mb-2">
@@ -32,11 +33,14 @@
                     <input type="hidden" name="from_date" id="from_date">
                     <input type="hidden" name="to_date" id="to_date">
                 </div>
+              
                 <div class="col-lg-6">
                     <button type="submit" class="btn btn-success btn-sm">{{__('labels.export_csv_file')}}</button>
                 </div>
+             
             </div>
         </form>
+        @endcan
         <!-- </div> -->
         <br>
         <div class="float-right">
@@ -136,7 +140,7 @@
                                 @endif
                             </td>
                             <td>{{ !empty($row->post_district) ? $row->post_district->district->name : 'N/A'}}</td>
-                            <td>{{ !empty($row->post_new_city) ? $row->post_new_city->city->name : 'N/A'}}</td>
+                            <td>{{ !empty($row->post_new_city) ? @$row->post_new_city->city->name : 'N/A'}}</td>
                             <td>{{ !empty($row->parentcategory) ? App\Category::where('id',$row->parentcategory->category_id)->first('name')->name : 'N/A' }}</td>
                             <td>{{ !empty($row->property_type) ? $row->property_type->category->name : 'N/A' }}</td>
                             <td>
