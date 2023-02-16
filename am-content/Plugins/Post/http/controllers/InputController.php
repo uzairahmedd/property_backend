@@ -42,8 +42,8 @@ class InputController extends controller
         if (!Auth()->user()->can('input.create')) {
             abort(401);
         }
-
-         return view('plugin::input.create');
+         $categories=Category::where('type','category')->where('featured',1)->get();
+         return view('plugin::input.create',compact('categories'));
     }
 
      /**

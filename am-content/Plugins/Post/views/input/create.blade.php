@@ -54,7 +54,9 @@
                     <div class="form-group">
                         <label>{{__('labels.select_category')}}</label>
                         <select multiple="" class="form-control select2" name="child[]">
-                            {{ ConfigCategory('category') }}
+                            @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{Session::get('locale') == 'ar' ?  $category->ar_name :  $category->name}}</option>
+                            @endforeach
                         </select>
                     </div>
             </div>

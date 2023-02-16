@@ -3844,3 +3844,8 @@ tfoot tr th {
     display: none;
 }
 
+.rtl .card-body
+{
+  direction: rtl;
+}
+
