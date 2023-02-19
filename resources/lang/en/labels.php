@@ -2,7 +2,7 @@
 
 return [
     //    Home Page Start
-    'tab_title'=>'Real estate for sale and rent in KSA',
+    'tab_title'=>'Khiaratee | Real estate for sale and rent',
     'download_app_top' => 'Download App',
     'auction' => 'Auctions',
     'add_property' => 'Add Property',

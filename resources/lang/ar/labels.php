@@ -2,7 +2,7 @@
 
 return [
     //    Home Page Start
-    'tab_title'=>'عقارات للبيع و للايجار في السعودية',
+    'tab_title'=>'خياراتي | عقارات للبيع والايجار',
     'download_app_top' => 'تحميل التطبيق',
     'auction' => 'المزادات',
     'add_property' => 'اضف إعلان',
