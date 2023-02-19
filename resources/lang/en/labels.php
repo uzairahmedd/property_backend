@@ -2,7 +2,7 @@
 
 return [
     //    Home Page Start
-    'title'=>'Real estate for sale and rent in KSA',
+    'tab_title'=>'Real estate for sale and rent in KSA',
     'download_app_top' => 'Download App',
     'auction' => 'Auctions',
     'add_property' => 'Add Property',
