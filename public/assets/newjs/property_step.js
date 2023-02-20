@@ -402,10 +402,11 @@ function uploadUserProfileImage() {
         success: function (response) {
             var baseurl = $('#base_url').val();
             if (response.status == 'success') {
+                Sweet('success',"Image uploaded successfully!");
                $('#image_user').attr('src', baseurl + 'assets/images/profile/'+response.data.imageName);
             }
             if (response.status == 'error') {
-
+                Sweet('error', 'Image not uploaded!');
             }
         }
     });

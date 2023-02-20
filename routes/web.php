@@ -298,7 +298,7 @@ Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Th
 	Route::get('Basic-details/property/{id}', 'PropertyController@edit_two_property')->name('property.second_edit_property');
 	Route::put('update-second/property/{id}', 'PropertyController@update_two_property')->name('property.second_update_property');
 	Route::get('Additional-details/property/{id}', 'PropertyController@edit_third_property')->name('property.third_edit_property');
-	Route::put('update-third/property/{id}', 'PropertyController@update_third_property')->name('property.third_update_property');
+	Route::put('update-third/property/{id}', 'Prop  ertyController@update_third_property')->name('property.third_update_property');
 	Route::get('property-images/property/{id}', 'PropertyController@edit_forth_property')->name('property.forth_edit_property');
 	Route::put('update-forth/property/{id}', 'PropertyController@update_forth_property')->name('property.forth_update_property');
 

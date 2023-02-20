@@ -21,7 +21,7 @@
                 <h3 class="font-24 font-medium theme-text-blue align-items-end mb-0 ms-2 admin-name">{{ Auth::User()->name }}</h3>
             </div>
             <div class="dp-elipse ms-4 d-flex align-items-center justify-content-center">
-                <img src="{{ asset('assets/images/avatar.png')}}" alt="">
+                <img class="photo-img" id="image_user" src="{{asset('assets/images/avatar.png')}}" alt="" class="img-fluid">
             </div>
         </div>
     </div>
