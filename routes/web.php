@@ -298,7 +298,6 @@ Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Th
 	Route::get('Additional-details/property/{id}', 'PropertyController@edit_third_property')->name('property.third_edit_property');
 	Route::put('update-third/property/{id}', 'PropertyController@update_third_property')->name('property.third_update_property');
 	Route::get('property-images/property/{id}', 'PropertyController@edit_forth_property')->name('property.forth_edit_property');
-    Route::post('profile_img', 'PropertyController@profile_img')->name('property.profile_img');
 	Route::put('update-forth/property/{id}', 'PropertyController@update_forth_property')->name('property.forth_update_property');
 
 	Route::get('Feature-details/property/{id}', 'PropertyController@edit_five_property')->name('property.five_edit_property');
@@ -317,11 +316,13 @@ Route::group(['prefix' => 'agent', 'as' => 'agent.', 'namespace' => 'Amcoders\Th
 	Route::get('account', 'PropertyController@userboard_account')->name('profile.account');
 	//get property type
 	Route::get('get_property_type', 'PropertyController@get_property_type');
-	//get distric
+	//get district
 	Route::get('get_district','PropertyController@info')->name('property.district');
 	Route::post('contact_type/{id}', 'PropertyController@contact_type')->name('contact_type');
 	Route::get('property/delete/{id}', 'PropertyController@destroy')->name('propertys.destory');
 	Route::get('favourites', 'FavouriteController@index')->name('favourite.index');
+    Route::get('profile/img', 'ProfileController@viewProfile');
+    Route::post('profile/img', 'ProfileController@profile_img')->name('profile.img');
 	Route::get('profile/settings', 'ProfileController@index')->name('profile.settings');
 	Route::post('profile/settings', 'ProfileController@update')->name('profile.settings.update');
 	Route::get('logout', 'DashboardController@logout')->name('logout');

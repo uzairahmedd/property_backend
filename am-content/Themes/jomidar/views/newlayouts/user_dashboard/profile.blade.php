@@ -22,8 +22,10 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                     <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->created_at->format('m/d/Y') }}</h3>
                 </div>
 
-                <form class="form-signin text-center" id="user_save_profile_form" method="POST" enctype="multipart/form-data">
+                <form class="form-signin text-center" id="user_save_profile_form" method="post"
+                      action="{{ route('agent.profile.img') }}" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" id="image_id" name="id">
                     <div class="d-flex align-items-center mb-3 mb-lg-0">
                         <div class="col d-flex flex-column align-items-end">
                             <span class="font-16 theme-text-sky">{{__('labels.welcome')}}</span>
@@ -74,4 +76,8 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
     @include('theme::newlayouts.partials.sidebar')
 </div>
 @endsection
+@section('account_js')
+    <script src="{{theme_asset('assets/newjs/user_account.js')}}"></script>
+@endsection
+
 

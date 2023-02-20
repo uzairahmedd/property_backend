@@ -366,7 +366,7 @@ $("#features_btn").click(function () {
 
 function doAfterSelectImage(input) {
     readURL(input);
-    // uploadUserProfileImage();
+    uploadUserProfileImage();
 }
 
 function readURL(input) {
@@ -380,44 +380,37 @@ function readURL(input) {
 }
 
 
+
 function uploadUserProfileImage() {
     let myForm = document.getElementById('user_save_profile_form');
     let formData = new FormData(myForm);
-    var baseurl = $('#base_url').val();
-    var url = baseurl + 'agent/profile_img';
+    var url = $('#user_save_profile_form').attr('action');
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
     $.ajax({
-        type: 'POST',
+        type: 'post',
         data: formData,
+        enctype: 'multipart/form-data',
         dataType: 'JSON',
         contentType: false,
         cache: false,
         processData: false,
         url: url,
         success: function (response) {
-            if (response == 200) {
-                $('#notifDiv').fadeIn();
-                $('#notifDiv').css('background', 'green');
-                $('#notifDiv').text('Profile Saved Successfully.');
-                setTimeout(() => {
-                    $('#notifDiv').fadeOut();
-                }, 3000);
-
-            } else if (response == 700) {
-                $('#notifDiv').fadeIn();
-                $('#notifDiv').css('background', 'red');
-                $('#notifDiv').text('An error occured. Please try later');
-                setTimeout(() => {
-                    $('#notifDiv').fadeOut();
-                }, 3000);
+            var baseurl = $('#base_url').val();
+            if (response.status == 'success') {
+               $('#image_user').attr('src', baseurl + 'assets/images/profile/'+response.data.imageName);
             }
-        }.bind($(this))
+            if (response.status == 'error') {
+
+            }
+        }
     });
 }
+
 
 
 

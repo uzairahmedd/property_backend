@@ -641,7 +641,7 @@ class PropertyController extends controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-       
+
         //store & update title and slug
         $term = Terms::where('user_id', Auth::id())->where('id', $request->term_id)->first();
         $unique_id = generate_unique_id();
@@ -681,7 +681,7 @@ class PropertyController extends controller
         $district->value = $request->location;
         $district->save();
 
-        //store & update property city 
+        //store & update property city
         $post_city['term_id'] = $term->id;
         $post_city['city_id'] = $request->city;
         PostCity::where('term_id', $term->id)->delete();
@@ -1190,7 +1190,6 @@ class PropertyController extends controller
 
         $info = Options::where('key', 'lp_filesystem')->first();
         $info = json_decode($info->value);
-
         $imageSizes = json_decode(imageSizes());
 
         if ($request->hasfile('media')) {
