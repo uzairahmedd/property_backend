@@ -60,22 +60,4 @@ function Sweet(icon, title, time = 3000) {
     })
 }
 
-defaultImg();
-function defaultImg()
-{
-    var baseurl = $('#base_url').val();
-    $.ajax({
-        type: 'get',
-        url: baseurl + 'agent/profile/img',
-        success: function (response) {
-            console.log(response);
-            var baseurl = $('#base_url').val();
-            if (response.status == 'success') {
-                $('#image_user').attr('src', baseurl + 'assets/images/profile/'+response.data.imageName);
-            }
-            if (response.status == 'error') {
 
-            }
-        }
-    });
-}

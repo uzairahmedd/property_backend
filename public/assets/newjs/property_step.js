@@ -222,17 +222,17 @@ $(document).on('keyup', '#interface_val3', function (e) {
 });
 
 //for appartments
-$(document).on('keyup','input[name="Appartments"]', function (e) {
+$(document).on('keyup', 'input[name="Appartments"]', function (e) {
     var val = toEnglishNumber($(this).val())
     $(this).val(val)
 });
 //for openings
-$(document).on('keyup','input[name="Openings"]', function (e) {
+$(document).on('keyup', 'input[name="Openings"]', function (e) {
     var val = toEnglishNumber($(this).val())
     $(this).val(val)
 });
 //for offices
-$(document).on('keyup','input[name="Office"]', function (e) {
+$(document).on('keyup', 'input[name="Office"]', function (e) {
     var val = toEnglishNumber($(this).val())
     $(this).val(val)
 });
@@ -252,7 +252,7 @@ $(document).on('keyup', 'input[name="depth"]', function (e) {
 $("#additional_detail_btn").click(function () {
     event.preventDefault();
     //for property total floors
-     if ($('input[name="total_floors"]').val() == '' || $('input[name="total_floors"]').val() == 'undefined') {
+    if ($('input[name="total_floors"]').val() == '' || $('input[name="total_floors"]').val() == 'undefined') {
         Sweet('error', 'Please provide total floors!');
         return false;
     }
@@ -268,7 +268,7 @@ $("#additional_detail_btn").click(function () {
 $("#features_btn").click(function () {
     event.preventDefault();
     //for property total floors
-     if ($('#length_field').val() == '' || $('#length_field').val() == 'undefined') {
+    if ($('#length_field').val() == '' || $('#length_field').val() == 'undefined') {
         Sweet('error', 'Please provide Property length!');
         return false;
     }
@@ -363,23 +363,28 @@ $("#features_btn").click(function () {
 //     }
 // }
 
-
-function doAfterSelectImage(input) {
-    readURL(input);
-    uploadUserProfileImage();
-}
-
 function readURL(input) {
+    var baseurl = $('#base_url').val();
     if (input.files && input.files[0]) {
-        var output = document.getElementById('image_user');
-        output.src = URL.createObjectURL(event.target.files[0]);
-        output.onload = function () {
-            URL.revokeObjectURL(output.src) // free memory
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#image_user').attr('src', e.target.result);
         }
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        $('#image_user').attr('src', baseurl + 'assets/images/avatar.png');
     }
 }
 
-
+$("#profile_pic").change(function () {
+    var ext = $('#profile_pic').val().split('.').pop().toLowerCase();
+    if ($.inArray(ext, [ 'PNG','png', 'jpg', 'jpeg']) == -1) {
+        Sweet('error', 'invalid image extension!');
+        return false;
+    }
+    readURL(this);
+    uploadUserProfileImage();
+});
 
 function uploadUserProfileImage() {
     let myForm = document.getElementById('user_save_profile_form');
@@ -400,13 +405,28 @@ function uploadUserProfileImage() {
         processData: false,
         url: url,
         success: function (response) {
-            var baseurl = $('#base_url').val();
             if (response.status == 'success') {
-                Sweet('success',"Image uploaded successfully!");
-               $('#image_user').attr('src', baseurl + 'assets/images/profile/'+response.data.imageName);
+                Sweet('success', "Image uploaded successfully!");
+                $('#image_user').attr('src',response.data.imageName);
             }
             if (response.status == 'error') {
-                Sweet('error', 'Image not uploaded!');
+                Sweet('error', response.data.image[0]);
+            }
+        }
+    });
+}
+
+//profile pic upload page load
+defaultImg();
+function defaultImg()
+{
+    var baseurl = $('#base_url').val();
+    $.ajax({
+        type: 'get',
+        url: baseurl + 'agent/profile/img',
+        success: function (response) {
+            if (response.status == 'success') {
+                $('.image_user').attr('src', response.data.imageName);
             }
         }
     });

@@ -23,7 +23,7 @@
                                 <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->name }}</h3>
                             </div>
                             <div class="dp-elipse d-flex align-items-center justify-content-center">
-                                <img src="http://127.0.0.1:8000/assets/images/avatar.png" alt="" class="img-fluid">
+                                <img src="http://127.0.0.1:8000/assets/images/avatar.png" alt="" class="img-fluid image_user photo-img">
                                 <div class="file-container">
                                     <input type="file">
                                     <img src="http://127.0.0.1:8000/assets/images/dp-camera.png" alt="">

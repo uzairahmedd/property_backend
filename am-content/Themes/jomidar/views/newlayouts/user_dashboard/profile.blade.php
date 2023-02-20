@@ -32,10 +32,10 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                             <h3 class="font-lg-18 font-24 font-medium theme-text-blue mb-0 ms-2">{{ Auth::User()->name }}</h3>
                         </div>
                         <div class="dp-elipse photo-row d-flex align-items-center justify-content-center">
-                            <img class="photo-img" id="image_user" src="{{asset('assets/images/avatar.png')}}" alt="" class="img-fluid">
+                            <img class="photo-img image_user" id="image_user"  src="{{asset('assets/images/avatar.png')}}" alt="" class="img-fluid">
                             <div class="file-container">
-                                <input onchange="doAfterSelectImage(this)" type="file" id="profile_pic" name="picture" />
-                                <img src="{{asset('assets/images/dp-camera.png')}}" alt="">
+                                <input  type="file" id="profile_pic" name="image" />
+                                <img src="{{asset('assets/images/dp-camera.png')}}"  alt="">
                             </div>
                         </div>
                     </div>
@@ -75,9 +75,6 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
     </div>
     @include('theme::newlayouts.partials.sidebar')
 </div>
-@endsection
-@section('account_js')
-    <script src="{{theme_asset('assets/newjs/user_account.js')}}"></script>
 @endsection
 
 
