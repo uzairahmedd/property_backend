@@ -470,6 +470,7 @@ return [
     'term124' => '',
     'term63' => '',
     'yes' => 'نعم',
+    'favorite_properties' => 'الخصائص المفضلة',
     'no' => 'لا',
 
     //    Admin Dictionary

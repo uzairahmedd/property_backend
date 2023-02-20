@@ -45,10 +45,10 @@ $info = json_decode(Auth::User()->usermeta->content ?? '');
                 <div class="col-12 col-sm-6 col-md-4 col-xl-4">
                     <div class="card stat-card align-items-end">
                         <span class="font-16 theme-text-sky mb-2">
-                            {{__('labels.views')}}
+                            {{__('labels.favorite_properties')}}
                         </span>
                         <h2 class="theme-text-blue font-medium">
-                           N/A
+                            {{ isset($favorite_property) ? $favorite_property : 'N/A'}}
                         </h2>
                     </div>
                 </div>

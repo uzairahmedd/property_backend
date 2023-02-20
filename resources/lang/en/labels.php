@@ -103,6 +103,7 @@ return [
     'do_you_have_account' => 'Sign In, do you have an account',
     'dashboard' => 'Dashboard',
     'favorite' => 'Favorite',
+    'favorite_properties' => 'Favorite Properties',
     'my_properties' => 'My Properties',
     'account_setting' => 'Account Setting',
     'log_out' => 'Log Out',

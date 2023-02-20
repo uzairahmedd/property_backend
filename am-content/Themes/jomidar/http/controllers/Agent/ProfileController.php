@@ -24,7 +24,8 @@ class ProfileController extends controller
     public function index()
     {
         $property_count=Terms::where('type', 'property')->where('status', 1)->where('user_id', Auth::id())->count();
-        return view('theme::newlayouts.user_dashboard.profile',compact('property_count'));
+        $favorite_property = Auth::User()->user_favourite_properties()->count();
+        return view('theme::newlayouts.user_dashboard.profile',compact('property_count','favorite_property'));
         // return view('view::agent.settings');
     }
 
