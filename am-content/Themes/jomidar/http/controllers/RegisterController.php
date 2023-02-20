@@ -4,6 +4,7 @@ namespace Amcoders\Theme\jomidar\http\controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\NafathCallback;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\UserCredentials;
@@ -607,5 +608,33 @@ class RegisterController extends controller
         }
         $messsage = ['phone' => 'User does not exist!'];
         return error_response($messsage, '');
+    }
+   
+    //nafath api callback url
+    public function callback_url(Request $request){
+        try{
+        if(!$request->headers->get("Authorization")){
+            $messsage = ['messsage' => 'Header Authorization must be required'];
+            return error_response($messsage, 'validation error');
+        }
+        if(!$request->headers->get("Content-Type")){
+            $messsage = ['messsage' => 'Header Content-type must be required'];
+            return error_response($messsage, 'validation error');
+        }
+        if($request->headers->get("content-Type") != 'application/json'){
+            $messsage = ['messsage' => 'Header Content-type must be application/json'];
+            return error_response($messsage, 'validation error');
+        }
+        // if($request->headers->get("Authorization") != env("nafath_api_key")){
+        //     $messsage = ['messsage' => 'Header Authorization api-key not correct'];
+        //     return error_response($messsage, '');
+        // }
+        $nafath_callback=new NafathCallback;
+        $nafath_callback->response = json_encode($request->all());
+        $nafath_callback->save();
+        return success_response(['messsage' => 'Response get successfully', 'Response get successfully']);
+        } catch (\Exception $e) {
+            return error_response(['messsage' => 'Something went wrong!', '']);
+        }
     }
 }
