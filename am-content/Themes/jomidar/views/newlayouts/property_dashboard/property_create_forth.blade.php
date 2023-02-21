@@ -111,4 +111,5 @@
 @endsection
 @push('js')
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/property_step.js')}}"></script>
 @endpush

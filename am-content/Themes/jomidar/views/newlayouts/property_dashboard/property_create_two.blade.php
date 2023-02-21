@@ -175,4 +175,5 @@
 @section('step_two_js')
 <script src="{{theme_asset('assets/newjs/yearpicker.js')}}"></script>
 <script src="{{theme_asset('assets/newjs/step_two.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/property_step.js')}}"></script>
 @endsection

@@ -21,6 +21,13 @@
   <link rel="stylesheet" href="{{ asset('admin/assets/css/components.css') }}">
 
 </head>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CY3C4HV1QR');
+</script>
 
 <body>
 

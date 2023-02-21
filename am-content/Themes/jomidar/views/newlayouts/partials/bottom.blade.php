@@ -18,4 +18,3 @@
 <script src="{{ theme_asset('assets/js/helper.js') }}"></script>
 @stack('js')
 <script src="{{theme_asset('assets/newjs/custom.js')}}"></script>
-<script src="{{theme_asset('assets/newjs/property_step.js')}}"></script>

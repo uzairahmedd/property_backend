@@ -53,4 +53,5 @@
 @endsection
 @section('favorite_properties')
 <script src="{{theme_asset('assets/newjs/user_favorite.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/property_step.js')}}"></script>
 @endsection

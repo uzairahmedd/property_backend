@@ -53,4 +53,5 @@
 @endsection
 @section('property_list_select')
 <script src="{{theme_asset('assets/newjs/user_list.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/property_step.js')}}"></script>
 @endsection

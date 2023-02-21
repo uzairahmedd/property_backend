@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/owl.theme.default.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/owl.theme.default.min.css')}}">
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
     <!-- Home Stylesheet -->
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/common.css')}}">
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/home.css')}}">
@@ -26,3 +24,10 @@
     <link rel="stylesheet" href="{{theme_asset('assets/newcss/en-responsive.css')}}">
     @stack('css')
 </head>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CY3C4HV1QR');
+</script>

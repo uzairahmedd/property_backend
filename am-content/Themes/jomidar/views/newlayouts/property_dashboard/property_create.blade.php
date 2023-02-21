@@ -5,6 +5,8 @@
 <script>
     var locale = '<?php echo Session::get('locale'); ?>';
 </script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
 <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
 <div class="add-property row-style">
@@ -146,4 +148,5 @@
 <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
 <script src="{{theme_asset('assets/newjs/property_map.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/property_step.js')}}"></script>
 @endsection

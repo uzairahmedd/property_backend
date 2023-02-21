@@ -72,3 +72,6 @@
     <!-- Property Description Section Ends Here -->
 </div>
 @endsection
+@section('property_create')
+<script src="{{theme_asset('assets/newjs/property_step.js')}}"></script>
+@endsection

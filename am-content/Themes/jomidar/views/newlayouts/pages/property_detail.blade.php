@@ -11,6 +11,8 @@
 </style>
 <link rel="stylesheet" href="{{ theme_asset('assets/css/fontawesome-all.min.css') }}">
 <link rel="stylesheet" href="{{ theme_asset('assets/css/magnific-popup.css') }}">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
 @endpush
 @section('content')
 
