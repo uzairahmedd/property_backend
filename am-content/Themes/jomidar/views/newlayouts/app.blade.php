@@ -3,6 +3,18 @@
 @include('theme::newlayouts.partials.top')
 
 <body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-257805457-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-257805457-1');
+    </script>
     <div class="overflow-hidden position-relative {{ session()->has('locale') && session()->get('locale') =='en' ? 'rtl' : 'ltr'}}" id="main-home" data-session="">
         <input type="hidden" id="base_url" value="{{ asset('/') }}">
         <input type="hidden" id="asset_url" value="{{ asset('/') }}">
