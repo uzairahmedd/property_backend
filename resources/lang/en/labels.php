@@ -637,7 +637,7 @@ return [
     'edit'=>'Edit',
     'api'=>'Api',
     'web'=>'Web',
-    'offer'=>'Iffer',
+    'offer'=>'Offer',
     'selling_price'=>'Selling price',
     'csv_file_data'=>'CSV file data',
     'view_data'=>'view data',
