@@ -905,6 +905,7 @@ class PropertyController extends controller
         Meta::where('term_id', $term_id)->where('type', 'property_condition')->delete();
         Meta::where('term_id', $term_id)->where('type', 'total_floors')->delete();
         Meta::where('term_id', $term_id)->where('type', 'property_floor')->delete();
+        Postcategory::where('type', 'features')->where('term_id', $term_id)->delete();
     }
     /**
      * Show the form for editing the specified resource.
