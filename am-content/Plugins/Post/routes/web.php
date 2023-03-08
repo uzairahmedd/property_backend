@@ -3,7 +3,6 @@
 Route::post('locations/info','Amcoders\Plugin\Post\http\controllers\LocationController@info')->name('locations.info');
 Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=>['web','auth','admin'],'prefix'=>'admin','as'=>'admin.'],function(){
 
-
 		Route::resource('location', 'LocationController');
 
 		Route::resource('review', 'ReviewController');
@@ -32,7 +31,6 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::post('locations/cities/destroy', 'LocationController@Citiesdestroy')->name('cities.destroy');
 
 
-
 	Route::group(['prefix'=>'real-state'], function(){
 
 
@@ -58,15 +56,33 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::post('category/destroy', 'CategoryController@destroy')->name('category.destroy');
 
 		Route::resource('property', 'PropertyController');
-		Route::post('properties/destroy', 'PropertyController@destroy')->name('properties.destroy');
+        Route::put('update-second/property/{id}', 'PropertyController@second_update_property')->name('property.second_update_property');
+        Route::put('update-third/property/{id}', 'PropertyController@third_update_property')->name('property.third_update_property');
+        Route::put('update-forth/property/{id}', 'PropertyController@fourth_update_property')->name('property.fourth_update_property');
+        Route::put('update-fifth/property/{id}', 'PropertyController@fifth_update_property')->name('property.fifth_update_property');
+        Route::put('update-sixth/property/{id}', 'PropertyController@sixth_update_property')->name('property.sixth_update_property');
+
+
+//        Show every step agains data route
+
+        Route::put('update-sixth/property/{id}', 'PropertyController@sixth_update_property')->name('property.sixth_update_property');
+
+        Route::post('properties/destroy', 'PropertyController@destroy')->name('properties.destroy');
+		Route::post('', 'PropertyController@destroy')->name('properties.destroy');
 		Route::post('properties/user', 'PropertyController@findUser')->name('properties.findUser');
+        Route::get('get_property_type', 'PropertyController@get_property_type');
+
+        Route::get('get_data/{id}', 'PropertyController@get_data');
+        Route::get('all_features/{id}', 'PropertyController@get_all_features');
 		//download csv
 		Route::get('download-csv', 'PropertyController@csv_page')->name('property.csv_page');
 		Route::get('download-csv-type/{id}', 'PropertyController@show_csv_specified')->name('property.csv_page_type');
 		Route::get('get_property_data/{id}', 'PropertyController@get_property_data');
-			//property type
+        //property type
 	    Route::get('property_type/{id}', 'PropertyController@property_type')->name('properties.type');
 		Route::post('/export-csv', 'PropertyController@exportCSV')->name('properties.csv_download');
+        //update Property
+//      Route::post('update_property', 'PropertyController@update_property')->name('property.update_property');
 
 	});
 
