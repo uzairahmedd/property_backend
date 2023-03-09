@@ -2,9 +2,9 @@
 
 @section('content')
 @php
-$properties_list = __('labels.properties_list');
+$land_blocks = __('labels.land_blocks');
 @endphp
-@include('layouts.backend.partials.headersection',['title' => 'Land block'])
+@include('layouts.backend.partials.headersection',['title' =>$land_blocks])
 <div class="card">
 	<div class="card-body">
 		<div class="row mb-2">

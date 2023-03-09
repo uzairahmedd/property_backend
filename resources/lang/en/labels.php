@@ -677,7 +677,7 @@ return [
 'add_land_block' => 'Add land block',
 'select_your_city'=>'Select your City',
 'select_your_district'=>'Select your District',
-'comma_seperated'=>'Comma Separated Coordinats',
+'comma_seperated'=>'Comma Separated Coordinates',
 'add_images'=>'Add Images',
 'video_link'=>'Video Link',
 'add_more_plots'=>'Add More Plots',

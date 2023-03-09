@@ -285,10 +285,6 @@ class PropertyController extends controller
         $post_cat->category_id = $request->status;
         $post_cat->type = 'status';
         $post_cat->save();
-        // $post_cat['term_id'] = $term->id;
-        // $post_cat['category_id'] = $request->status;
-        // $post_cat['type'] = 'status';
-        // \App\Postcategory::insert($post_cat);
 
         //for virtual tour and images
         $virtual_tour = new Meta;

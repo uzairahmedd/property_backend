@@ -578,7 +578,10 @@ function get_property_data(elem) {
 		processData: false,
 		success: function (response) {
 			var select = $('#land_block_district').html('');
-			$("#land_block_district").select2().append('<option disabled selected>Please select district</option>');
+			console.log($('#select_district').text());
+			// var please_select_district=$('#select_district').text();
+			
+			// $("#land_block_district").select2().append('<option disabled selected>'+please_select_district+'</option>');
             $.each(response, function (index, value) {
                 name = value.name;
                 if (locale == 'ar') {
