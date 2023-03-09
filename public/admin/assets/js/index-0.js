@@ -24,8 +24,12 @@ function loadStaticData(){
 			$('.rejected_list').html(response.total_rejected);
 			$('.approved_list').html(response.total_active);
 			$('.total_list').html(response.total_posts);
-			$('.total_earnings_amount').html(response.total_earnings_amount);
-			$('.total_transection_count').html(response.total_transection_count);
+			$('.pending_lands_list').html(response.total_lands_pending);
+			$('.rejected_lands_list').html(response.total_lands_rejected);
+			$('.approved_lands_list').html(response.total_lands_active);
+			$('.total_lands_list').html(response.total_lands_posts);
+			// $('.total_earnings_amount').html(response.total_earnings_amount);
+			// $('.total_transection_count').html(response.total_transection_count);
 
 			var dates=[];
 			var sales=[];

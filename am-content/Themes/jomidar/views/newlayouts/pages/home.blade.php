@@ -264,11 +264,17 @@
                             </div>
                             @endif
                         </div>
+                        @if(!empty($sale_data->price))
                         <div class="price theme-text-white d-flex align-items-center justify-content-center">
                             <span class="font-bold">{{ new_amount_format($sale_data->price->price ?? 0) }}</span>
                         </div>
+                        @else
+                        <div class="price theme-text-white d-flex align-items-center justify-content-center">
+                            <span class="font-bold">{{ __('labels.land_blocks') }}</span>
+                        </div>
+                        @endif
                     </div>
-                    <a href="property-detail/{{$sale_data->slug}}" target="_blank">
+                    <a href="{{$sale_data->is_land_block == '1' ? 'land-block-detail/'.$sale_data->slug : 'property-detail/'.$sale_data->slug }}" target="_blank">
                         <div class="mt-3 home-listing-detail">
                             <h3 class="font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ? $sale_data->ar_title : $sale_data->title }}</h3>
                             <div class="d-flex align-items-start justify-content-end pt-2">
@@ -351,11 +357,17 @@
                             </div>
                             @endif
                         </div>
+                        @if(!empty($rent_data->price))
                         <div class="price theme-text-white d-flex align-items-center justify-content-center">
                             <span class="font-bold">{{ new_amount_format($rent_data->price->price ?? 0) }}</span>
                         </div>
+                        @else
+                        <div class="price theme-text-white d-flex align-items-center justify-content-center">
+                            <span class="font-bold">{{ __('labels.land_blocks') }}</span>
+                        </div>
+                        @endif
                     </div>
-                    <a href="property-detail/{{$rent_data->slug}}" target="_blank">
+                    <a href="{{$rent_data->is_land_block == '1' ? 'land-block-detail/'.$rent_data->slug : 'property-detail/'.$rent_data->slug }}" target="_blank">
                         <div class="mt-3 home-listing-detail">
                             <h3 class="font-medium theme-text-blue">{{ Session::get('locale') == 'ar' ? $rent_data->ar_title : $rent_data->title }}</h3>
                             <div class="d-flex align-items-start justify-content-end pt-2">

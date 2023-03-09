@@ -128,70 +128,73 @@ $(document).ready(function () {
 });
 
 // Range Dropdown Js
-const rangeInput = document.querySelectorAll(".range-input input"),
-    priceInput = document.querySelectorAll(".price-input input"),
-    range = document.querySelector(".slider .progress");
-let priceGap = 1000;
-
-priceInput.forEach((input) => {
-    input.addEventListener("input", (e) => {
-        let minPrice = parseInt(priceInput[0].value),
-            maxPrice = parseInt(priceInput[1].value);
-
-        if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
-            if (e.target.className === "input-min") {
-                rangeInput[0].value = minPrice;
-                range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
-            } else {
-                rangeInput[1].value = maxPrice;
-                range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
-            }
-        }
-    });
-});
-
-rangeInput.forEach((input) => {
-    input.addEventListener("input", (e) => {
-        let minVal = parseInt(rangeInput[0].value),
-            maxVal = parseInt(rangeInput[1].value);
-
-        if (maxVal - minVal < priceGap) {
-            if (e.target.className === "range-min") {
-                rangeInput[0].value = maxVal - priceGap;
-            } else {
-                rangeInput[1].value = minVal + priceGap;
-            }
-        } else {
-            priceInput[0].value = minVal;
-            priceInput[1].value = maxVal;
-            range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
-            range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
-        }
-    });
-});
+// setTimeout(function () {
 
 
+// const rangeInput = document.querySelectorAll(".range-input input"),
+//     priceInput = document.querySelectorAll(".price-input input"),
+//     range = document.querySelector(".slider .progress");
+// let priceGap = 1000;
 
+// priceInput.forEach((input) => {
+//     input.addEventListener("input", (e) => {
+//         let minPrice = parseInt(priceInput[0].value),
+//             maxPrice = parseInt(priceInput[1].value);
+
+//         if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
+//             if (e.target.className === "input-min") {
+//                 rangeInput[0].value = minPrice;
+//                 range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
+//             } else {
+//                 rangeInput[1].value = maxPrice;
+//                 range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+//             }
+//         }
+//     });
+// });
+
+// rangeInput.forEach((input) => {
+//     input.addEventListener("input", (e) => {
+//         let minVal = parseInt(rangeInput[0].value),
+//             maxVal = parseInt(rangeInput[1].value);
+
+//         if (maxVal - minVal < priceGap) {
+//             if (e.target.className === "range-min") {
+//                 rangeInput[0].value = maxVal - priceGap;
+//             } else {
+//                 rangeInput[1].value = minVal + priceGap;
+//             }}
+//         // } else {
+//         //     priceInput[0].value = minVal;
+//         //     priceInput[1].value = maxVal;
+//         //     range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+//         //     range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+//         // }
+//     });
+// });
+
+// alert('dsa');
+// }, 10000);
 
 
 $(document).ready(function (event) {
-//set status
-localStorage.setItem('list_status', $('#status_list').val());
-$('.reset_status_rent').click(function (e) {
-    e.preventDefault();
-    $('#status_list').val(localStorage.getItem('list_status'));
-    var base_url = $('#base_url').val();
-    var url = base_url + 'get_properties_data';
-    get_properties(url);
-});
+    //set status
+    localStorage.setItem('list_status', $('#status_list').val());
+    $('.reset_status_rent').click(function (e) {
+        e.preventDefault();
+        $('#status_list').val(localStorage.getItem('list_status'));
+        var base_url = $('#base_url').val();
+        var url = base_url + 'get_properties_data';
+        get_properties(url);
+    });
 
-$('.reset_status_sell').click(function (e) {
-    e.preventDefault();
-    $('#status_list').val(localStorage.getItem('list_status'));
-    var base_url = $('#base_url').val();
-    var url = base_url + 'get_properties_data';
-    get_properties(url);
-});
+    $('.reset_status_sell').click(function (e) {
+        e.preventDefault();
+        $('#status_list').val(localStorage.getItem('list_status'));
+        var base_url = $('#base_url').val();
+        var url = base_url + 'get_properties_data';
+        get_properties(url);
+    });
 
 
     $('.list-complete-btn').click(function (e) {
@@ -476,9 +479,6 @@ $('.reset_status_sell').click(function (e) {
 /*----------------------------
         Properties Data Get
     -------------------------------*/
-// var base_url = $('#base_url').val();
-// var url = base_url + 'get_properties_data';
-// get_properties(url)
 function get_properties(url) {
     $('.propertly-list-banner').addClass('hide');
     $.ajax({
@@ -562,6 +562,7 @@ function properties_list(target, data) {
     var price = '';
     var district = '';
     var city = '';
+    var slug = '';
     $.each(data, function (index, value) {
 
         favourite_property_check(value.id);
@@ -571,16 +572,16 @@ function properties_list(target, data) {
             image = base_url + 'uploads/default.png';
         }
 
-        if (value.property_status_type != null && value.property_status_type.category.name=='Sale') {
+        if (value.property_status_type != null && value.property_status_type.category.name == 'Sale') {
             status = 'Buy';
             if (locale == 'ar') {
                 status = value.property_status_type.category.ar_name;
             }
         }
-        if (value.property_status_type != null && value.property_status_type.category.name=='Rent') {
+        if (value.property_status_type != null && value.property_status_type.category.name == 'Rent') {
             status = value.property_status_type.category.name;
             if (locale == 'ar') {
-                status =value.property_status_type.category.ar_name;
+                status = value.property_status_type.category.ar_name;
             }
         }
         if (value.user.usermeta != null) {
@@ -598,6 +599,8 @@ function properties_list(target, data) {
 
         if (value.price != null) {
             price = new_amount_format(value.price.price);
+        } else if (value.is_land_block == 1) {
+            price = 'Land Block';
         }
         else {
             price = 'N/A';
@@ -616,7 +619,12 @@ function properties_list(target, data) {
             city = value.post_new_city.city.ar_name;
         }
         location = district + ', ' + city;
-        $(target).append('<div class="col-lg-3 col-md-4 col-sm-12 single-property-list"> <div class="slide single-img-carousel"> <div id="myCarousel' + value.id + '" class="carousel" data-bs-ride="carousel"><div class="features"><div class="d-flex justify-content-between"><div class="content d-flex flex-column align-items-start theme-text-white"><div class="fav-elipse justify-content-center align-items-center theme-bg-blue"><span class="font-medium" onclick="favourite_property(' + value.id + ')"> <i title="favorite property" data-toggle="tooltip" class="fa-regular fa-heart heart' + value.id + '"></i></span></div><div class="sale theme-bg-sky"><span class="font-medium">' + status + '</span> </div></div> <div class="d-flex justify-content-center pt-3">  </div></div> </div><ol class="carousel-indicators"><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="0" class="active"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a target="_blank" href="' + asset_url + 'property-detail/' + value.slug + '"><h3 class="resident-text">' + title + '</h3><div class="d-flex align-items-start justify-content-end mt-2 propertylist-locate-icon"><p class="me-2">' + location + '</p><img src="assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex flex-wrap flex-row-reverse justify-content-right align-items-center facilicites-area facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex"><div class="call d-flex justify-content-center align-items-center me-3"> <img src="assets/images/mobile-icon.png" alt="" data-toggle="tooltip" title="' + phone + '"></div><div class="whatsapp d-flex justify-content-center align-items-center"><a href="https://api.whatsapp.com/send?text=' + asset_url + 'property-detail/' + value.slug + '" target="_blank"> <img  src="assets/images/whatsapp-icon.png" alt=""></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span>' + price + ' </span></h3></div> </div></div></div></div></div>');
+
+        slug = base_url + 'property-detail/' + value.slug;
+        if (value.is_land_block == 1) {
+            slug = base_url + 'land-block-detail/' + value.slug;
+        }
+        $(target).append('<div class="col-lg-3 col-md-4 col-sm-12 single-property-list"> <div class="slide single-img-carousel"> <div id="myCarousel' + value.id + '" class="carousel" data-bs-ride="carousel"><div class="features"><div class="d-flex justify-content-between"><div class="content d-flex flex-column align-items-start theme-text-white"><div class="fav-elipse justify-content-center align-items-center theme-bg-blue"><span class="font-medium" onclick="favourite_property(' + value.id + ')"> <i title="favorite property" data-toggle="tooltip" class="fa-regular fa-heart heart' + value.id + '"></i></span></div><div class="sale theme-bg-sky"><span class="font-medium">' + status + '</span> </div></div> <div class="d-flex justify-content-center pt-3">  </div></div> </div><ol class="carousel-indicators"><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="0" class="active"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a target="_blank" href="' + slug + '"><h3 class="resident-text">' + title + '</h3><div class="d-flex align-items-start justify-content-end mt-2 propertylist-locate-icon"><p class="me-2">' + location + '</p><img src="assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex flex-wrap flex-row-reverse justify-content-right align-items-center facilicites-area facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex"><div class="call d-flex justify-content-center align-items-center me-3"> <img src="assets/images/mobile-icon.png" alt="" data-toggle="tooltip" title="' + phone + '"></div><div class="whatsapp d-flex justify-content-center align-items-center"><a href="https://api.whatsapp.com/send?text=' + asset_url + 'property-detail/' + value.slug + '" target="_blank"> <img  src="assets/images/whatsapp-icon.png" alt="" data-toggle="tooltip" title="Whatsapp"></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span>' + price + ' </span></h3></div> </div></div></div></div></div>');
 
         if (value.landarea != null) {
             floor_name = value.landarea.type + " in SQM";

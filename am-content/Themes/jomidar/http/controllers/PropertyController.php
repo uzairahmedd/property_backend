@@ -89,6 +89,41 @@ class PropertyController extends controller
         return view('theme::newlayouts.pages.verify_user');
     }
 
+    /**
+     * Display a ldetails of land block.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function land_block_detail(Request $request, $slug)
+    {
+        $property = Terms::where([
+            ['type', 'property'],
+            ['status', 1],
+            ['is_land_block', 1],
+            ['slug', $slug]
+        ])->with('virtual_tour', 'user', 'post_new_city', 'post_district', 'multiple_images', 'property_status_type')->first();
+        if ($property) {
+            return view('theme::newlayouts.pages.land_block_detail', compact('property'));
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function Land_block_data($id)
+    {
+        try {
+            $data['property'] = Terms::where([
+                ['type', 'property'],
+                ['status', 1],
+                ['is_land_block', 1],
+                ['id', $id]
+            ])->with('land_blocks_details', 'post_district')->first();
+            $data['map'] = polygon_data($data['property']);
+            return success_response($data, 'Land block data get successfully');
+        } catch (\Exception $e) {
+            return error_response("Coordinates data not valid", 'Something went wrong!');
+        }
+    }
 
     /**
      * Display a listing of the resource.
@@ -101,6 +136,7 @@ class PropertyController extends controller
         $property = Terms::where([
             ['type', 'property'],
             ['status', 1],
+            ['is_land_block', 0],
             ['slug', $slug]
         ])->with('depth', 'length', 'virtual_tour', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'post_preview', 'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition', 'property_type')->withCount('reviews')->first();
         if ($property) {

@@ -23,6 +23,9 @@ use Illuminate\Support\Str;
  */
 class ProfileController extends controller
 {
+    protected $filename;
+    protected $fullname;
+
     public function index()
     {
         $property_count = Terms::where('type', 'property')->where('status', 1)->where('user_id', Auth::id())->count();
@@ -205,7 +208,7 @@ class ProfileController extends controller
         if ($validator->fails()) {
             return error_response($validator->errors(), 'Validation error');
         }
-        
+
         $info = Options::where('key', 'lp_filesystem')->first();
         $info = json_decode($info->value);
 

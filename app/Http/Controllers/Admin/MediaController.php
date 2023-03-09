@@ -67,7 +67,7 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
-
+     
         request()->validate([
             'media.*' => 'required'
 

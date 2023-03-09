@@ -8,11 +8,17 @@
     #map {
         height: 500px;
     }
+
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+</style>
 </style>
 <link rel="stylesheet" href="{{ theme_asset('assets/css/fontawesome-all.min.css') }}">
 <link rel="stylesheet" href="{{ theme_asset('assets/css/magnific-popup.css') }}">
-<link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
-<script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
 @endpush
 @section('content')
 
@@ -389,7 +395,7 @@
                 </div>
                 @endif
 
-              
+
 
                 @if(isset($property->property_age->content))
                 <div class="row w-100 mb-3">
@@ -519,7 +525,6 @@
 </div>
 <!-- Send Message Ends Here -->
 @endsection
-
 @push('js')
 <script src="{{ theme_asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
 <script>
@@ -540,13 +545,10 @@
     });
 
     const marker = new mapboxgl.Marker({
-            draggable: true,
+            draggable: false,
         }) // Initialize a new marker
         .setLngLat([array[0], array[1]]) // Marker [lng, lat] coordinates
         .addTo(map); // Add the marker to the map
-
-
-
 
     map.on("load", () => {
         map.addSource("mine", {
@@ -580,5 +582,4 @@
         });
     });
 </script>
-
 @endpush

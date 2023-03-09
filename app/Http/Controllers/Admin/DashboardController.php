@@ -30,22 +30,58 @@ class DashboardController extends Controller
 	}
 
 	public function static_data(){
-		$total_listing=Terms::where('type','property')->count();
+		$total_listing=Terms::where('type','property')->where('is_land_block',0)->count();
 
 		$total_pending=Terms::where([
 			['type','property'],
+			['is_land_block', 0],
 			['status',3]
 		])->count();
 
 		$total_active=Terms::where([
 			['type','property'],
+			['is_land_block', 0],
 			['status',1]
 			])->count();
 
 		$total_rejected=Terms::where([
 			['type','property'],
+			['is_land_block', 0],
 			['status',4]
 		])->count();
+
+		
+		$data['total_posts']=number_format($total_listing);
+		$data['total_active']=number_format($total_active);
+		$data['total_rejected']=number_format($total_rejected);
+		$data['total_pending']=number_format($total_pending);
+
+
+		//for land blocks
+		$total_lands_listing=Terms::where('type','property')->where('is_land_block',1)->count();
+		$total_lands_pending=Terms::where([
+			['type','property'],
+			['is_land_block', 1],
+			['status',3]
+		])->count();
+
+		$total_lands_active=Terms::where([
+			['type','property'],
+			['is_land_block', 1],
+			['status',1]
+			])->count();
+
+		$total_lands_rejected=Terms::where([
+			['type','property'],
+			['is_land_block', 1],
+			['status',4]
+		])->count();
+
+		
+		$data['total_lands_posts']=number_format($total_lands_listing);
+		$data['total_lands_active']=number_format($total_lands_active);
+		$data['total_lands_rejected']=number_format($total_lands_rejected);
+		$data['total_lands_pending']=number_format($total_lands_pending);
 
 		// $total_earnings_amount=Transaction::whereYear('created_at', '=',date('Y'))->sum('amount');
 		// $total_transection_count=Transaction::whereYear('created_at', '=',date('Y'))->count();
@@ -61,11 +97,6 @@ class DashboardController extends Controller
         // $post_count=Terms::where('type','property')->whereYear('created_at', '=',date('Y'))->orderBy('id', 'asc')->selectRaw('year(created_at) year, monthname(created_at) month, count(*) post')
         //         ->groupBy('year', 'month')
         //         ->get();
-
-		$data['total_posts']=number_format($total_listing);
-		$data['total_active']=number_format($total_active);
-		$data['total_rejected']=number_format($total_rejected);
-		$data['total_pending']=number_format($total_pending);
 		// $data['total_earnings_amount']=format_currency($total_earnings_amount);
 		// $data['total_transection_count']=number_format($total_transection_count);
 		// $data['sales']=$sales;

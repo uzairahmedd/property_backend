@@ -32,6 +32,9 @@ class PropertyController extends controller
 {
     protected $term_id;
     protected $property_type;
+    protected $filename;
+    protected $ext;
+    protected $fullname;
     /**
      * Display a listing of the resource.
      *
@@ -643,9 +646,9 @@ class PropertyController extends controller
         }
 
         //store & update title and slug
-        $term = Terms::where('user_id', Auth::id())->where('id', $request->term_id)->first();
+        $term = Terms::where('user_id', Auth::id())->where('is_land_block', 0)->where('id', $request->term_id)->first();
         $unique_id = generate_unique_id();
-        $slug = Str::slug($request->title).'-'.$unique_id;
+        $slug = Str::slug($request->title) . '-' . $unique_id;
         if (empty($term)) {
             $term = new Terms;
             $term->user_id = Auth::id();
@@ -767,15 +770,13 @@ class PropertyController extends controller
             'parent_category' => 'required',
             'category' => 'required',
             'price' => 'required|numeric',
-            'streets' => 'required',
-            // 'ready' => 'required',
+            'streets' => 'required'
         ], [
             'parent_category.required' => 'Please select property nature',
             'category.required' => 'Please select property type',
             'price.required' => 'Property price is required',
             'price.numeric' => 'Property price is only in digits',
-            'streets.required' => 'Number of streets are required',
-            // 'ready.required' => 'Please provide property year',
+            'streets.required' => 'Number of streets are required'
 
         ]);
     }
@@ -1393,7 +1394,7 @@ class PropertyController extends controller
 
     public function get_user_properties(Request $request)
     {
-        $posts = Terms::where('type', 'property')->where('status', 1)
+        $posts = Terms::where('type', 'property')->where('status', 1)->where('is_land_block', 0)
             ->where('user_id', Auth::id())
             ->with('landarea', 'post_new_city', 'post_preview', 'post_district', 'price', 'user', 'option_data', 'property_status_type')
             ->latest()->paginate(20);

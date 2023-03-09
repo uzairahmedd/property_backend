@@ -3850,3 +3850,12 @@ tfoot tr th {
   direction: rtl;
 }
 
+.hidden
+{
+  display: none;
+}
+
+.font-bold
+{
+  font-weight: 600;
+}
