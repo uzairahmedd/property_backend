@@ -424,6 +424,7 @@ $(".step_3").on('click', function (e) {
                 $('#opening_features').html('');
                 $('#office_features').html('');
                 $.each(response.data.get_data, function (index, value) {
+                    console.log(response);
                     var name = value.name;
                     if (locale == 'ar') {
                         name = value.ar_name;
@@ -432,7 +433,7 @@ $(".step_3").on('click', function (e) {
                         $('#bedroom_features').html('<label>' + name + '</label>\n' +
                             '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
                             '                    <select id="bedroom_select" name="Bedroom" class="form-control"></select>');
-                        for (var i = 0; i <= 9; i++) {
+                        for (var i = 1; i <= 9; i++) {
                             var selected = '';
                             if (value.post_category_option != null && value.post_category_option.value == i) {
                                 selected = 'selected';
@@ -515,15 +516,7 @@ $(".step_3").on('click', function (e) {
                     if (value.name == 'Appartments') {
                         $('#appartment_features').html('<label>' + name + '</label>\n' +
                             '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
-                            '                    <select id="appartment_select" name="Appartments" class="form-control"></select>');
-                        for (var i = 0; i <= 9; i++) {
-                            var selected = '';
-                            if (value.post_category_option != null && value.post_category_option.value == i) {
-                                selected = 'selected';
-                            }
-                            $('#appartment_select').append('<option value="' + i + '" ' + selected + '>' + i + '</option>');
-
-                        }
+                            '<input type="text" value="'+value.post_category_option.value+'" name="Appartments" class="form-control d-flex justify-content-start align-items-start w-100">\n');
                     }
 
                     if (value.name == 'Openings') {
@@ -594,7 +587,7 @@ $(".step_5").on('click', function (e) {
                         if (jQuery.inArray(value.id, response.data.post_features) != -1) {
                             check = 'checked';
                         }
-                        $('#features_check').append('<input type="checkbox" value="' + value.id + '" ' + check + '>' +
+                        $('#features_check').append('<input name="features[]" type="checkbox" value="' + value.id + '" ' + check + '>' +
                             '<label class="m-0 px-2">' + name + '</label>\n');
                     })
                 }

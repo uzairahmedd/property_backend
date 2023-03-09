@@ -390,7 +390,7 @@
                                         @if(!empty($info->property_type) && $info->property_type->category->property_floor == '1')
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="property_floor">{{__('labels.total_floors')}}</label>
+                                                    <label for="property_floor">{{__('labels.property_floor')}}</label>
                                                     <input type="text" name="property_floor"
                                                            value="{{ !empty( $info->property_floor) ? $info->property_floor->content  : old('property_floor') }}"
                                                            placeholder="{{__('labels.property_floor')}}"
@@ -404,7 +404,7 @@
                                         @if(!empty($info->property_type) && $info->property_type->category->total_floor == '1')
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="total_floors">Property Floor</label>
+                                                    <label for="total_floors">{{__('labels.total_floors')}}</label>
                                                     <input type="text" name="total_floors"
                                                            value="{{ !empty( $info->total_floors) ? $info->total_floors->content  : old('total_floors') }}"
                                                            placeholder="{{__('labels.total_floors')}}"
@@ -511,9 +511,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>{{__('labels.land_length')}}</label>
-                                                <input type="text" name="land_length" class="form-control"
-                                                       id="land_length"
-                                                       value="{{!empty($info->length ? $info->length->content : old('length'))}}">
+                                                <input type="text" name="length" class="form-control" id="land_length" value="{{!empty($info->length) ? $info->length->content : old('length')}}">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -549,7 +547,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>{{__('labels.instrument_no')}} {{__('labels.optional')}}</label>
-                                                <input type="text" name="instrument_number" value="{{ !empty( $info->instrument_no) ? $info->instrument_no->content  : old('instrument_number') }}" placeholder="{{__('labels.instrument_no')}}" class="form-control payment theme-border">
+                                                <input type="text" name="instrument_number" value="{{ !empty( $instrument->instrument_number) ? $instrument->instrument_number->content  : old('instrument_number') }}" placeholder="{{__('labels.instrument_no')}}" class="form-control payment theme-border">
                                             </div>
                                         </div>
                                     </div>

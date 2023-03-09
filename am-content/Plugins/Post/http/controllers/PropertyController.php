@@ -312,15 +312,14 @@ class PropertyController extends controller
             ['id', $id]
         ])->with('depth', 'length','medias', 'virtual_tour', 'interface', 'instrument_number', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'id_number', 'post_preview', 'streets', 'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'ready', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition', 'property_type')->withCount('reviews')->first();
 
+//        dd($info->length->content);
         $post_parent_category = Postcategory::where('type', 'parent_category')->where('term_id', $id)->first();
-
-//        dd($post_parent_category);
 
         $child_category = Category::where('type', 'parent_category')->where('id', $post_parent_category->category_id)->with('parent')->get();
 
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
 
-        $instrument = Terms::with('rules', 'id_number', 'instrument_number')->where('user_id', Auth::id())->findorFail($id);
+        $instrument = Terms::with('rules', 'id_number', 'instrument_number')->findorFail($id);
 
         $cities = City::where('featured', 1)->get();
 
@@ -575,6 +574,18 @@ class PropertyController extends controller
 
         $term_id = $id;
 
+        //store and update virtual rour video
+        $virtual_tour = Meta::where('term_id', $term_id)->where('type', 'virtual_tour')->first();
+        if (empty($virtual_tour)) {
+            $virtual_tour = new Meta;
+            $virtual_tour->term_id = $term_id;
+            $virtual_tour->type = 'virtual_tour';
+        }
+        $virtual_tour->content = $request->virtual_tour;
+        $virtual_tour->save();
+
+        unset($request['_token'], $request['virtual_tour']);
+
         //store images
         $this->upload_images($request, $term_id);
         return response()->json(['Property Updated Successfully']);
@@ -597,6 +608,7 @@ class PropertyController extends controller
 
         //length and depth
         $data = $request->all();
+
         unset($data['_token'], $data['_method'], $data['features']);
         foreach ($data as $key => $value) {
             $keys_table = '';
