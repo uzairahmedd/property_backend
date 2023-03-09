@@ -12,7 +12,7 @@ use App\Options;
 use App\Models\City;
 use App\Models\LandBlock;
 use App\Models\District;
-use App\Postcategory;
+use App\PostCategory;
 use App\Models\Postcategoryoption;
 use App\Models\User;
 use App\Models\Termrelation;
@@ -283,7 +283,7 @@ class PropertyController extends controller
         $post_cat['term_id'] = $term->id;
         $post_cat['category_id'] = $request->status;
         $post_cat['type'] = 'status';
-        Postcategory::insert($post_cat);
+        \App\Postcategory::insert($post_cat);
 
         //for virtual tour and images
         $virtual_tour = new Meta;
