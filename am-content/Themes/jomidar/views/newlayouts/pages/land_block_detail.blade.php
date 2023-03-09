@@ -18,12 +18,12 @@
 <div class="map-page m-0 p-0">
     <div class="map-container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-8 mapbox-map">
                 <div class="map">
                     <div id="map"></div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 mapbox-form">
                 <div class="sidebar mt-3">
                     <div class="land-info">
                         <div class="info-piece d-flex flex-column justify-content-end align-items-end">

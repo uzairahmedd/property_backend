@@ -600,7 +600,11 @@ function properties_list(target, data) {
         if (value.price != null) {
             price = new_amount_format(value.price.price);
         } else if (value.is_land_block == 1) {
-            price = 'Land Block';
+            price='Land Block';
+            if (locale == 'ar') {
+                price = 'قطعة أرض';
+            }
+           
         }
         else {
             price = 'N/A';
