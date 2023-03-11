@@ -301,6 +301,7 @@ class PropertyController extends controller
      */
     public function edit($id, Request $request)
     {
+
         if (!Auth()->user()->can('Properties.edit')) {
             abort(401);
         }
@@ -375,6 +376,11 @@ class PropertyController extends controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'title' => 'required|max:100',
+            'ar_title' => 'required|max:100',
+            'location' => 'required',
+        ]);
         //store & update title and slug
         $term = Terms::where('user_id', Auth::id())->where('id', $id)->first();
         $unique_id = generate_unique_id();
@@ -420,6 +426,14 @@ class PropertyController extends controller
 
     public function second_update_property(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'landarea' => 'required',
+            'builtarea' => 'required',
+            'meter' => 'required',
+            'price' => 'required',
+
+        ]);
+
         $term_id = $id;
         $price = Price::where('term_id', $term_id)->where('type', 'price')->first();
         if (empty($price)) {
@@ -506,6 +520,10 @@ class PropertyController extends controller
 
     public function third_update_property(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'total_floors' => 'required',
+        ]);
+
         $term_id = $id;
         //store number of features
         $options = [];
@@ -557,6 +575,10 @@ class PropertyController extends controller
 
     public function fourth_update_property(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'virtual_tour' => 'required',
+        ]);
+
 //        $validator = \Validator::make($request->all(), [
 //            'media.*' => 'mimes:jpeg,jpg,png|max:20480',
 //        ]);
@@ -593,6 +615,11 @@ class PropertyController extends controller
 
     public function fifth_update_property(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'features' => 'required',
+            'length' => 'required',
+            'depth' => 'required',
+        ]);
         $term_id = $id;
         $category = [];
         foreach ($request->features ?? [] as $key => $value) {
@@ -626,6 +653,9 @@ class PropertyController extends controller
 
     public function sixth_update_property(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'instrument_number' => 'required',
+        ]);
         $term_id = $id;
         $rule_data = isset($request['rule']) ? implode(',', $request['rule']) : 0;
         $rule = Meta::where('term_id', $term_id)->where('type', 'rules')->first();
@@ -1433,6 +1463,28 @@ class PropertyController extends controller
             'size' => $im_size
         );
         return $info;
+    }
+
+    public function property_create_validations($request)
+    {
+        return  \Validator::make($request->all(), [
+            'status' => 'required',
+            'title' => 'required|max:100',
+            'ar_title' => 'required|max:100',
+            'district' => 'required',
+            'location' => 'required',
+            'city' => 'required'
+        ], [
+            'status.required' => 'Please select property type',
+            'title.required' => 'Please provide title of property',
+            'title.max' => 'Property title must be 100 words',
+            'ar_title.required' => 'Please provide arabic title of property',
+            'ar_title.max' => 'Property arabic title must be 100 words',
+            'district.required' => 'Please provide district',
+            'location.required' => 'Please provide address',
+            'city.required' => 'Please provide city',
+
+        ]);
     }
 
 }

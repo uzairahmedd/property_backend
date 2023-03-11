@@ -1,89 +1,14 @@
 (function ($) {
 	"use strict";
 	//step 1 submit
-	$("#productform").on('submit', function (e) {
-		e.preventDefault();
-
-
-		$.ajaxSetup({
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			}
-		});
-		$.ajax({
-			type: 'POST',
-			url: this.action,
-			data: new FormData(this),
-			dataType: 'json',
-			contentType: false,
-			cache: false,
-			processData: false,
-			success: function (response) {
-				Sweet('success', response)
-
-				success(response)
-			},
-			error: function (xhr, status, error) {
-
-				$('.errorarea').show();
-				$.each(xhr.responseJSON.errors, function (key, item) {
-					Sweet('error', item)
-					$("#errors").html("<li class='text-danger'>" + item + "</li>")
-				});
-				errosresponse(xhr, status, error);
-			}
-		})
-
-
-	});
-
-
-
-    //step 2 Submit
-    $("#step_two_submit").on('submit', function (e) {
-        e.preventDefault();
-
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            type: 'POST',
-            url: this.action,
-            data: new FormData(this),
-            dataType: 'json',
-            contentType: false,
-            cache: false,
-            processData: false,
-
-            success: function (response) {
-                Sweet('success', response)
-                success(response)
-            },
-            error: function (xhr, status, error) {
-                $('.errorarea').show();
-                $.each(xhr.responseJSON.errors, function (key, item) {
-                    Sweet('error', item)
-                    $("#errors").html("<li class='text-danger'>" + item + "</li>")
-                });
-                errosresponse(xhr, status, error);
-            }
-        })
-
-
-    });
-
-
-    //step 3 Submit
-    $("#step_three_submit").on('submit', function (e) {
+    $("#productform").on('submit', function (e) {
         e.preventDefault();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        var basicbtnhtml = $('.basicbtn').html();
         $.ajax({
             type: 'POST',
             url: this.action,
@@ -94,13 +19,106 @@
             processData: false,
             beforeSend: function () {
 
-            },
+                $('.basicbtn').html("Please Wait....");
+                $('.basicbtn').attr('disabled', '')
 
+            },
             success: function (response) {
-                Sweet('success', response)
-                success(response)
+                console.log(response);
+
+                $('.basicbtn').removeAttr('disabled')
+                Sweet('success', response);
+                $('.basicbtn').html(basicbtnhtml);
+                success(response);
             },
             error: function (xhr, status, error) {
+                $('.basicbtn').html(basicbtnhtml);
+                $('.basicbtn').removeAttr('disabled')
+                $('.errorarea').show();
+                $.each(xhr.responseJSON.errors, function (key, item) {
+                    Sweet('error', item)
+                    $("#errors").html("<li class='text-danger'>" + item + "</li>")
+                });
+                errosresponse(xhr, status, error);
+            }
+        })
+    });
+
+
+    //step 2 Submit
+    $("#step_two_submit").on('submit', function (e) {
+        e.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var basicbtnhtml = $('.basicbtn').html();
+        $.ajax({
+            type: 'POST',
+            url: this.action,
+            data: new FormData(this),
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function () {
+
+                $('.basicbtn').html("Please Wait....");
+                $('.basicbtn').attr('disabled', '')
+
+            },
+            success: function (response) {
+                $('.basicbtn').removeAttr('disabled')
+                Sweet('success', response);
+                $('.basicbtn').html(basicbtnhtml);
+                success(response);
+            },
+            error: function (xhr, status, error) {
+                $('.basicbtn').html(basicbtnhtml);
+                $('.basicbtn').removeAttr('disabled')
+                $('.errorarea').show();
+                $.each(xhr.responseJSON.errors, function (key, item) {
+                    Sweet('error', item)
+                    $("#errors").html("<li class='text-danger'>" + item + "</li>")
+                });
+                errosresponse(xhr, status, error);
+            }
+        })
+    });
+
+    //step 3 Submit
+    $("#step_three_submit").on('submit', function (e) {
+        e.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var basicbtnhtml = $('.basicbtn').html();
+        $.ajax({
+            type: 'POST',
+            url: this.action,
+            data: new FormData(this),
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function () {
+
+                $('.basicbtn').html("Please Wait....");
+                $('.basicbtn').attr('disabled', '')
+
+            },
+            success: function (response) {
+                $('.basicbtn').removeAttr('disabled')
+                Sweet('success', response);
+                $('.basicbtn').html(basicbtnhtml);
+                success(response);
+            },
+            error: function (xhr, status, error) {
+                $('.basicbtn').html(basicbtnhtml);
+                $('.basicbtn').removeAttr('disabled')
                 $('.errorarea').show();
                 $.each(xhr.responseJSON.errors, function (key, item) {
                     Sweet('error', item)
@@ -120,6 +138,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        var basicbtnhtml = $('.basicbtn').html();
         $.ajax({
             type: 'POST',
             url: this.action,
@@ -128,12 +147,21 @@
             contentType: false,
             cache: false,
             processData: false,
+            beforeSend: function () {
 
+                $('.basicbtn').html("Please Wait....");
+                $('.basicbtn').attr('disabled', '')
+
+            },
             success: function (response) {
-                Sweet('success', response)
-                success(response)
+                $('.basicbtn').removeAttr('disabled')
+                Sweet('success', response);
+                $('.basicbtn').html(basicbtnhtml);
+                success(response);
             },
             error: function (xhr, status, error) {
+                $('.basicbtn').html(basicbtnhtml);
+                $('.basicbtn').removeAttr('disabled')
                 $('.errorarea').show();
                 $.each(xhr.responseJSON.errors, function (key, item) {
                     Sweet('error', item)
@@ -148,12 +176,12 @@
     //step 5 Submit
     $("#step_fifth_submit").on('submit', function (e) {
         e.preventDefault();
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        var basicbtnhtml = $('.basicbtn').html();
         $.ajax({
             type: 'POST',
             url: this.action,
@@ -163,14 +191,19 @@
             cache: false,
             processData: false,
             beforeSend: function () {
+
+                $('.basicbtn').html("Please Wait....");
+                $('.basicbtn').attr('disabled', '')
+
             },
-
             success: function (response) {
-
-                Sweet('success', response)
-                success(response)
+                $('.basicbtn').removeAttr('disabled')
+                Sweet('success', response);
+                $('.basicbtn').html(basicbtnhtml);
+                success(response);
             },
             error: function (xhr, status, error) {
+                $('.basicbtn').html(basicbtnhtml);
                 $('.basicbtn').removeAttr('disabled')
                 $('.errorarea').show();
                 $.each(xhr.responseJSON.errors, function (key, item) {
@@ -180,19 +213,17 @@
                 errosresponse(xhr, status, error);
             }
         })
-
-
     });
 
     //step 5 Submit
     $("#step_sixth_submit").on('submit', function (e) {
         e.preventDefault();
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        var basicbtnhtml = $('.basicbtn').html();
         $.ajax({
             type: 'POST',
             url: this.action,
@@ -202,15 +233,20 @@
             cache: false,
             processData: false,
             beforeSend: function () {
-                $('.basicbtn').attr('disabled', '')
-            },
 
+                $('.basicbtn').html("Please Wait....");
+                $('.basicbtn').attr('disabled', '')
+
+            },
             success: function (response) {
                 $('.basicbtn').removeAttr('disabled')
-                Sweet('success', response)
-                success(response)
+                Sweet('success', response);
+                $('.basicbtn').html(basicbtnhtml);
+                success(response);
             },
             error: function (xhr, status, error) {
+                $('.basicbtn').html(basicbtnhtml);
+                $('.basicbtn').removeAttr('disabled')
                 $('.errorarea').show();
                 $.each(xhr.responseJSON.errors, function (key, item) {
                     Sweet('error', item)
@@ -237,22 +273,28 @@
 			contentType: false,
 			cache: false,
 			processData: false,
+            beforeSend: function () {
 
-			success: function (response) {
-				Sweet('success', response);
-				$('.basicbtn').html(basicbtnhtml);
-				location.reload();
-			},
-			error: function (xhr, status, error) {
-				$('.basicbtn').html(basicbtnhtml);
-				$('.basicbtn').removeAttr('disabled')
-				$('.errorarea').show();
-				$.each(xhr.responseJSON.errors, function (key, item) {
-					Sweet('error', item)
-					$("#errors").html("<li class='text-danger'>" + item + "</li>")
-				});
-				errosresponse(xhr, status, error);
-			}
+                $('.basicbtn').html("Please Wait....");
+                $('.basicbtn').attr('disabled', '')
+
+            },
+            success: function (response) {
+                $('.basicbtn').removeAttr('disabled')
+                Sweet('success', response);
+                $('.basicbtn').html(basicbtnhtml);
+                success(response);
+            },
+            error: function (xhr, status, error) {
+                $('.basicbtn').html(basicbtnhtml);
+                $('.basicbtn').removeAttr('disabled')
+                $('.errorarea').show();
+                $.each(xhr.responseJSON.errors, function (key, item) {
+                    Sweet('error', item)
+                    $("#errors").html("<li class='text-danger'>" + item + "</li>")
+                });
+                errosresponse(xhr, status, error);
+            }
 		})
 
 
