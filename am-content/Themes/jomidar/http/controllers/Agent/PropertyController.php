@@ -737,10 +737,10 @@ class PropertyController extends controller
     {
         $parent_category = Category::where('type', 'parent_category')->get();
         $child_category =  Category::where('type', 'category')->where('featured', 1)->limit(8)->get();
-        //for edit
         $post_data = Terms::with('property_age', 'landarea', 'builtarea', 'interface', 'meter', 'ready', 'price', 'electricity_facility', 'water_facility', 'streets', 'postcategory', 'property_status_type')->where('user_id', Auth::id())->where('id', decrypt($id))->first();
         $array = [];
         $interface_array = [];
+        //get property nature and property type 
         foreach ($post_data->postcategory as $key => $value) {
             if ($value->type == 'parent_category') {
                 $array[$value->type] = $value->category_id;
@@ -796,22 +796,22 @@ class PropertyController extends controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-
+        //built area validation
         if (array_key_exists('builtarea', $request->all()) && empty($request->builtarea)) {
             $message = ['area' => 'please provide property builtup area details'];
             return back()->withErrors($message)->withInput();
         }
-
+        //land area validation
         if (array_key_exists('landarea', $request->all()) && empty($request->landarea)) {
             $message = ['area' => 'please provide property land area details'];
             return back()->withErrors($message)->withInput();
         }
-
+        //property age validation
         if (array_key_exists('ready', $request->all()) && $request->ready == '1' && empty($request->property_age)) {
             $message = ['property_age' => 'please provide property year'];
             return back()->withErrors($message)->withInput();
         }
-
+        //streets and their interface validation
         $count_streets = $request->streets;
         if (!isset($request->meter) || count($request->meter) < $count_streets || !isset($request->interface) || count($request->interface) < $count_streets) {
             $message = ['meter' => 'please provide all meter/interface details'];
@@ -900,6 +900,11 @@ class PropertyController extends controller
         return redirect()->route('agent.property.third_edit_property', encrypt($term_id));
     }
 
+    /**
+     * Delete features conditions and floors on land ,farm and warehouse
+     *
+     * @param  int  $id
+     */
     public function remove_input_page_data($term_id)
     {
         Postcategoryoption::where('type', 'options')->where('term_id', $term_id)->delete();
@@ -908,6 +913,7 @@ class PropertyController extends controller
         Meta::where('term_id', $term_id)->where('type', 'property_floor')->delete();
         Postcategory::where('type', 'features')->where('term_id', $term_id)->delete();
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -941,7 +947,7 @@ class PropertyController extends controller
                 $this->property_type = $value->category_id;
             }
         }
-
+        //get input options like bedroom ,bathromms 
         $input_options = Category::where('type', 'option')->where('featured', 1)->whereHas('child', function ($q) {
             return $q->where('id', $this->property_type);
         })->with(['post_category_option' => function ($q) {
@@ -1074,6 +1080,7 @@ class PropertyController extends controller
         $term_id = decrypt($id);
         $info = Terms::with('post_district', 'post_new_city', 'length', 'depth', 'property_type', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor',  'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility',  'property_status_type', 'postcategory', 'property_condition', 'option_data')->where('user_id', Auth::id())->findorFail($term_id);
         $categories_data = Category::where('type', 'feature')->where('featured', 1)->get();
+        //make features array for edit
         $features_array = [];
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
@@ -1091,6 +1098,7 @@ class PropertyController extends controller
     public function update_five_property(Request $request, $id)
     {
         $term_id = decrypt($id);
+        //store features
         $category = [];
         foreach ($request->features ?? [] as $key => $value) {
             if (!empty($value)) {
@@ -1103,7 +1111,7 @@ class PropertyController extends controller
         Postcategory::where('type', 'features')->where('term_id', $term_id)->delete();
         Postcategory::insert($category);
 
-        //length and depth
+        //store length and depth
         $data = $request->all();
         unset($data['_token'], $data['_method'], $data['features']);
         foreach ($data as $key => $value) {
@@ -1131,6 +1139,7 @@ class PropertyController extends controller
     {
         $term_id = decrypt($id);
         $post_data = Terms::with('rules', 'id_number', 'instrument_number')->where('user_id', Auth::id())->findorFail($term_id);
+        //for user id  number
         $user_id = UserCredentials::where('user_id', Auth::id())->first();
         return view('theme::newlayouts.property_dashboard.property_create_six', compact('id', 'post_data', 'user_id'));
     }
@@ -1146,6 +1155,7 @@ class PropertyController extends controller
     {
 
         $term_id = decrypt($id);
+        //store rules of rega
         $rule_data = isset($request['rule']) ? implode(',', $request['rule']) : 0;
         $rule = Meta::where('term_id', $term_id)->where('type', 'rules')->first();
         if (empty($rule)) {
@@ -1158,6 +1168,7 @@ class PropertyController extends controller
 
         $data = $request->all();
         unset($data['_token'], $data['_method'], $data['rule']);
+        //store id and deed number
         foreach ($data as $key => $value) {
             $keys_table = '';
             $keys_table = Meta::where('term_id', $term_id)->where('type', $key)->first();
