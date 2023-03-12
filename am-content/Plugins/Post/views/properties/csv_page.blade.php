@@ -144,7 +144,7 @@
                             <td>{{  Session::get('locale') == 'ar' && !empty($row->parentcategory) ?  @App\Category::where('id',$row->parentcategory->category_id)->first('ar_name')->ar_name : @App\Category::where('id',$row->parentcategory->category_id)->first('name')->name }}</td>
                             <td>{{ Session::get('locale') == 'ar' && !empty($row->property_type) ? @$row->property_type->category->ar_name  : @$row->property_type->category->name }}</td>
                             <td>
-                                <div class=scrollable><span>{{__('labels.built_up_area')}}: {{ !empty($row->builtarea) ? $row->builtarea->content : 'N/A' }}</span><span> {{__('labels.built_up_area')}}: {{ !empty($row->landarea) ? $row->landarea->content : 'N/A' }} </span></div>
+                                <div class=scrollable><span>{{__('labels.built_up_area')}}: {{ !empty($row->builtarea) ? $row->builtarea->content : 'N/A' }}</span><span> {{__('labels.land_area')}}: {{ !empty($row->landarea) ? $row->landarea->content : 'N/A' }} </span></div>
                             </td>
                             @if(!empty($row->property_status_type) && $row->property_status_type->category->name == "Sale")
                             <td>{{!empty($row->price) ? $row->price->price : 'N/A' }}</td>
