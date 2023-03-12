@@ -1,4 +1,4 @@
-//load map
+//load map on lamnd block
 var term_id = $('#term_id').val();
 Load_land_block_map(term_id);
 

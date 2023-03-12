@@ -173,7 +173,7 @@ function reverse(long,lat){
     });
    
 }
-
+//give location against lang and lat
 function on_load_map(long,lat){
     var long=long;
     var lat=lat;
@@ -188,6 +188,7 @@ function on_load_map(long,lat){
     });
    
 }
+//on create property page
 function map_initialiaze() {
     mapboxgl.accessToken = 'pk.eyJ1IjoicmFrYW5vbmxpbmUiLCJhIjoiY2xjeGpsMmdxMG05ajN2cXJocm5mazV3diJ9.puFe2Kj4KfE5v9Ky20ohYg';
     if ($('#coordinates_selected').val() != '') {
