@@ -12,7 +12,7 @@
     								<div class="row mb-8">
     									<div class="col-lg-6">
     										<div class="d-flex">
-                                                <h4 class="mr-3">{{ __('Media List') }} </h4>
+                                                <h4 class="mr-3">{{ __('labels.media_list') }} </h4>
                                                 <p class="errors"></p>
                                             </div>
                                         </div>
@@ -38,14 +38,14 @@
     									</div>
                                         <input type="hidden" id="murl" value="{{ route('admin.medias.json') }}">
                                             <input type="hidden" class="last_id1" >
-                                    <p class="text-center"><button type="button"  class="btn btn-primary view-more-button view-more-media" >{{ __('View more') }}</button></p>
+                                    <p class="text-center"><button type="button"  class="btn btn-primary view-more-button view-more-media" >{{ __('labels.view_more') }}</button></p>
     								</div>
     							</div>
     							<div class="col-lg-3">
                                     <div class="preview-show-rightbar">
                                         <div class="preview-eye text-center">
                                             <i class="fas fa-eye"></i>
-                                            <p>{{ __('No Preview Found') }}</p>
+                                            <p>{{ __('lanels.no_preview_found') }}</p>
                                         </div>
                                     </div>
     								<div class="model-rightbar media-info-bar none">
@@ -70,7 +70,7 @@
     			</div>
     		</div>
     		<div class="modal-footer">
-    			<button type="button" class="btn btn-secondary media-single-dismiss" data-dismiss="modal">{{ __('Close') }}</button>
+    			<button type="button" class="btn btn-secondary media-single-dismiss" data-dismiss="modal">{{ __('labels.close') }}</button>
     			<button type="button" class="btn btn-primary none use" data-dismiss="modal">{{ __('Use') }}</button>
     		</div>
     	</div>

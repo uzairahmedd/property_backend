@@ -42,23 +42,23 @@
             if(me.parent().hasClass("active")){
               active = true;
             }
-            
+
             $('.main-sidebar .sidebar-menu li.active > .dropdown-menu').slideUp(500, function() {
-              update_sidebar_nicescroll();          
+              update_sidebar_nicescroll();
               return false;
             });
-            
+
             $('.main-sidebar .sidebar-menu li.active').removeClass('active');
 
             if(active==true) {
-              me.parent().removeClass('active');          
-              me.parent().find('> .dropdown-menu').slideUp(500, function() {            
+              me.parent().removeClass('active');
+              me.parent().find('> .dropdown-menu').slideUp(500, function() {
                 update_sidebar_nicescroll();
                 return false;
               });
             }else{
-              me.parent().addClass('active');          
-              me.parent().find('> .dropdown-menu').slideDown(500, function() {            
+              me.parent().addClass('active');
+              me.parent().find('> .dropdown-menu').slideDown(500, function() {
                 update_sidebar_nicescroll();
                 return false;
               });
@@ -68,7 +68,7 @@
           });
 
           $('.main-sidebar .sidebar-menu li.active > .dropdown-menu').slideDown(500, function() {
-            update_sidebar_nicescroll();        
+            update_sidebar_nicescroll();
             return false;
           });
         }
@@ -117,7 +117,6 @@
           sidebar_nicescroll = null;
           $(".main-sidebar .sidebar-menu > li").each(function() {
             let me = $(this);
-
             if(me.find('> .dropdown-menu').length) {
               me.find('> .dropdown-menu').hide();
               me.find('> .dropdown-menu').prepend('<li class="dropdown-title pt-3">'+ me.find('> a').text() +'</li>');
@@ -267,7 +266,7 @@
         }
       });
 
-     
+
        // Background
       $("[data-background]").each(function() {
         var me = $(this);
@@ -289,7 +288,7 @@
         });
       }
 
-      
+
 
 
     });
@@ -320,30 +319,30 @@
     /*----------------------------
             Jquery Live Search
             ------------------------------*/
-    $('#data_search').keyup(function(){  
-      search_table($(this).val());  
-    });  
-    function search_table(value){  
-      $('.table tbody tr').each(function(){  
-        var found = 'false';  
-        $(this).each(function(){  
-          if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
-          {  
-            found = true;  
-          }  
-        });  
-        if(found == true)  
-        {  
-          $(this).show();  
-        }  
-        else  
-        {  
-          $(this).hide();  
-        }  
-      });  
+    $('#data_search').keyup(function(){
+      search_table($(this).val());
+    });
+    function search_table(value){
+      $('.table tbody tr').each(function(){
+        var found = 'false';
+        $(this).each(function(){
+          if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+          {
+            found = true;
+          }
+        });
+        if(found == true)
+        {
+          $(this).show();
+        }
+        else
+        {
+          $(this).hide();
+        }
+      });
     }
 
 
 
-})(jQuery); 
-    
+})(jQuery);
+

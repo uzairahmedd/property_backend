@@ -24,27 +24,27 @@ class PropertyResource extends JsonResource
             "created_at" => $this->created_at,
             "updated_at" => $this->updated_at,
             "media" => $this->post_preview['media'],
-            "min_price" => $this->price_min,
-            "max_price" => $this->price_max,
+            "price" => $this->price,
+            // "max_price" => $this->price_max,
             "address" => [
-                "city" => $this->post_city["value"],
-                "state" => $this->post_state["value"],
+                "city" => $this->post_new_city ? $this->post_new_city->city->name : '',
+                "state" => $this->post_district ? $this->post_district->district->name : '',
             ],
             "user" => [
                 "name" => $this->user["name"],
                 "email" => $this->user["email"],
-                "info" => $this->user->usermeta->content,
+                "info" => isset($this->user->usermeta) && isset($this->user->usermeta->content) ? $this->user->usermeta->content : '',
                 "avatar" => $this->user["avatar"],
             ],
-            "coordinates" => $this->lat_long,
+            "coordinates" => $this->post_district->value ?? '',
             "features" => $this->features,
-            "bedrooms" => $this->option_data->where('category.name', 'Bedrooms')->last()->value ?? 0,
-            "bathrooms" => $this->option_data->where('category.name', 'Bathrooms')->last()->value ?? 0,
+            "bedrooms" => $this->option_data->where('category.name', 'Bedroom')->last()->value ?? 0,
+            "bathrooms" => $this->option_data->where('category.name', 'Bathroom')->last()->value ?? 0,
             "photos" => $this->photos,
             "facilities" => $this->facilities,
-            "youtube_id" => $this->youtube_url->content,
-            "floor_plans" => $this->floor_plans->pluck('content'),
-            "virtual_tour" => $this->virtual_tour->content
+            "youtube_id" => isset($this->youtube_url) ? $this->youtube_url->content : '',
+            "floor_plans" => isset($this->floor_plans) ? $this->floor_plans->pluck('content') : '',
+            "virtual_tour" => isset($this->virtual_tour) ? $this->virtual_tour->content : ''
         ];
     }
 }

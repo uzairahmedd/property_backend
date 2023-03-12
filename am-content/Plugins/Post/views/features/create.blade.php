@@ -9,18 +9,22 @@
   <div class="col-lg-9">
     <div class="card">
       <div class="card-body">
-        <h4>{{ __('Add new feature') }}</h4>
+        <h4>{{__('labels.add_new_feature')}}</h4>
         <form method="post" action="{{ route('admin.feature.store') }}" class="basicform">
           @csrf
           <div class="form-group">
-            <label for="text">{{ __('Name') }}</label>
+            <label for="text">{{__('labels.name')}}</label>
             <div class="input-group">
-              <input type="text" class="form-control item-menu" name="name" id="text" placeholder="Enter Name" autocomplete="off" required="">
-              <div class="input-group-append">
+              <input type="text" class="form-control item-menu" name="name" id="text" placeholder="{{__('labels.enter_name')}}" autocomplete="off" required="">
+              <!-- <div class="input-group-append">
                  <button class="btn btn-outline-primary" id="target" data-icon="fas fa-home" role="iconpicker"></button>
-              </div>
+              </div> -->
             </div>
-            <input type="hidden" name="icon" id="icon" class="item-menu">
+            <!-- <input type="hidden" name="icon" id="icon" class="item-menu"> -->
+            <label for="text">{{__('labels.arabic_name')}}</label>
+            <div class="input-group">
+              <input type="text" class="form-control item-menu" name="ar_name" id="ar_text" placeholder="{{__('labels.enter_name_in_arabic')}}" autocomplete="off" required="">
+            </div>
           </div>
         </div>
       </div>
@@ -29,10 +33,10 @@
       <div class="single-area">
         <div class="card">
           <div class="card-body">
-            <h5>{{ __('Publish') }}</h5>
+            <h5>{{__('labels.publish')}}</h5>
             <hr>
             <div class="btn-publish">
-              <button type="submit" class="btn btn-primary col-12 basicbtn"><i class="fa fa-save"></i> {{ __('Save') }}</button>
+              <button type="submit" class="btn btn-primary col-12 basicbtn"><i class="fa fa-save"></i> {{__('labels.save')}}</button>
             </div>
           </div>
         </div>
@@ -40,11 +44,11 @@
       <div class="single-area">
         <div class="card">
           <div class="card-body">
-            <h5>{{ __('Is Featured') }}</h5>
+            <h5>{{__('labels.is_featured')}}</h5>
             <hr>
             <select name="featured" class="form-control">
-              <option value="1">{{ __('Yes') }}</option>
-              <option value="0" selected="">{{ __('No') }}</option>
+              <option value="1">{{__('labels.yes')}}</option>
+              <option value="0" selected="">{{__('labels.no')}}</option>
             </select>
           </div>
         </div>

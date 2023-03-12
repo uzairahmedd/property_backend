@@ -22,7 +22,7 @@
                             <input type="file" name="logo" class="form-control" id="logo">
                             <br>
                             <div class="pre-img">
-                                <span>{{ __('Pre Logo') }}: <img width="50" height="50" src="{{ asset('uploads/logo.png') }}" alt=""></span>
+                                <span>{{ __('Pre Logo') }}: <img width="50" height="50" src="{{theme_asset('assets/images/logo.png')}}" alt=""></span>
                             </div>
                         </div>
                     </div>

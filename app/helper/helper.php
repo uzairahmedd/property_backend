@@ -1,214 +1,214 @@
 <?php
+
 use App\Terms;
 use App\Options;
+use App\Category;
 use Amcoders\Lpress\Lphelper;
 
 /*
 replace image name via $name from $url
 */
-function ImageSize($url,$name){
-	$img_arr=explode('.', $url);
-	$ext='.'.end($img_arr);
-	$newName=str_replace($ext, $name.$ext, $url);
+
+function ImageSize($url, $name)
+{
+	$img_arr = explode('.', $url);
+	$ext = '.' . end($img_arr);
+	$newName = str_replace($ext, $name . $ext, $url);
 	return $newName;
 }
 
 function breadcrumb()
 {
-	$option = Options::where('key','breadcrumb')->first();
-	if($option)
-	{
+	$option = Options::where('key', 'breadcrumb')->first();
+	if ($option) {
 		return $option->value;
-	}else{
+	} else {
 		return null;
 	}
 }
 
 function theme_color()
 {
-	$theme_color = Options::where('key','theme_color')->first();
-	if($theme_color)
-	{
+	$theme_color = Options::where('key', 'theme_color')->first();
+	if ($theme_color) {
 		return $theme_color->value;
-	}else{
+	} else {
 		return "#274ABB";
 	}
 }
 
 function list_page()
 {
-	$listing_page = Options::where('key','listing_page')->first();
-	if($listing_page)
-	{
-		if($listing_page->value == 'without_map')
-		{
+	$listing_page = Options::where('key', 'listing_page')->first();
+	if ($listing_page) {
+		if ($listing_page->value == 'without_map') {
 			return 'list';
-		}else{
+		} else {
 			return 'map';
 		}
-	}else{
+	} else {
 		return 'list';
 	}
 }
 
 function imageSizes()
 {
-	$sizes='[{"key":"small","height":"80","width":"80"},{"key":"medium","height":"270","width":"270"}]';
+	$sizes = '[{"key":"small","height":"80","width":"80"},{"key":"medium","height":"270","width":"270"}]';
 	return $sizes;
 }
 
 function currency_icon()
 {
-	return $icon= cache()->remember('currency',420,function(){
-	  $currency=Options::where('key','currency_icon')->first();
-	   return $currency->value;
-    });
+	return $icon = cache()->remember('currency', 420, function () {
+		$currency = Options::where('key', 'currency_icon')->first();
+		return $currency->value;
+	});
 }
 
-function format_currency($amount){
+function format_currency($amount)
+{
 	$value = Cache::remember('currency_settings', 400, function () {
-		 $data=Options::where('key','payment_settings')->first();
-		 return $data=json_decode($data->value);
+		$data = Options::where('key', 'payment_settings')->first();
+		return $data = json_decode($data->value);
 	});
 
-	if($value->currency_position == 'left'){
-			return $value->currency_icon.$amount;
+	if ($value->currency_position == 'left') {
+		return $value->currency_icon . $amount;
 	}
-	return $amount.$value->currency_icon;
+	return $amount . $value->currency_icon;
 }
 
 
-function amount_format($amount,$array=false)
+function amount_format($amount, $array = false)
 {
-	$default_currency=default_currency();
+	$default_currency = default_currency();
 
 	if (!Session::has('currency')) {
-		$put_curryncy=\App\Category::where('type','currency')->with('position')->where('status',1)->first();
+		$put_curryncy = \App\Category::where('type', 'currency')->with('position')->where('status', 1)->first();
 		Session::put('currency', $put_curryncy);
-		$info['name']=$put_curryncy->name;
-		$info['id']=$put_curryncy->id;
-		$info['slug']=$put_curryncy->slug;
-		$info['position']=$put_curryncy->position->content;
+		$info['name'] = $put_curryncy->name;
+		$info['id'] = $put_curryncy->id;
+		$info['slug'] = $put_curryncy->slug;
+		$info['position'] = $put_curryncy->position->content;
 		Session::put('currency_info', $info);
 	}
-	$currency=Session::get('currency');
+	$currency = Session::get('currency');
 
-	if ($default_currency->name==$currency->name) {
-		$format=number_format($amount,2);
-		$name=$default_currency->name;
-		if ($currency->position->content=="left") {
-			$row=$currency->slug.$format;
+	if ($default_currency->name == $currency->name) {
+		$format = number_format($amount, 2);
+		$name = $default_currency->name;
+		if ($currency->position->content == "left") {
+			$row = $currency->slug . $format;
+		} else {
+			$row = $format . $currency->slug;
 		}
-		else{
-			$row=$format.$currency->slug;
-		}
-	}
-	else{
-		$num=$amount*$currency->featured;
-		$format=number_format($num,2);
-		$name=$currency->name;
-		if ($currency->position->content=="left") {
-			$row=$currency->slug.$format;
-		}
-		else{
-			$row=$format.$currency->slug;
+	} else {
+		$num = $amount * $currency->featured;
+		$format = number_format($num, 2);
+		$name = $currency->name;
+		if ($currency->position->content == "left") {
+			$row = $currency->slug . $format;
+		} else {
+			$row = $format . $currency->slug;
 		}
 	}
-	if ($array==false) {
-	 return $row;
-	}
-	else{
-		$data['currency']=$name;
-		$data['total']=$format;
+	if ($array == false) {
+		return $row;
+	} else {
+		$data['currency'] = $name;
+		$data['total'] = $format;
 
 		return $data;
 	}
-
 }
 
+
+function new_amount_format($amount)
+{
+
+	$format = "ر.س " . number_format($amount, 2);
+	if (Session::has('locale') && Session::get('locale') == 'en') {
+		$format = "SAR " . number_format($amount, 2);
+	}
+
+	return $format;
+}
 function amount_calculation($amount)
 {
-	$default_currency=default_currency();
+	$default_currency = default_currency();
 
 	if (!Session::has('currency')) {
-		$put_curryncy=\App\Category::where('type','currency')->with('position')->where('status',1)->first();
+		$put_curryncy = \App\Category::where('type', 'currency')->with('position')->where('status', 1)->first();
 		Session::put('currency', $put_curryncy);
-		$info['name']=$put_curryncy->name;
-		$info['id']=$put_curryncy->id;
-		$info['slug']=$put_curryncy->slug;
-		$info['position']=$put_curryncy->position->content;
+		$info['name'] = $put_curryncy->name;
+		$info['id'] = $put_curryncy->id;
+		$info['slug'] = $put_curryncy->slug;
+		$info['position'] = $put_curryncy->position->content;
 		Session::put('currency_info', $info);
 	}
-	$currency=Session::get('currency');
+	$currency = Session::get('currency');
 
-	if ($default_currency->name==$currency->name) {
-		return str_replace(',','',number_format($amount,2));
-
+	if ($default_currency->name == $currency->name) {
+		return str_replace(',', '', number_format($amount, 2));
+	} else {
+		$num = $amount * $currency->featured;
+		return str_replace(',', '', number_format($num, 2));
 	}
-	else{
-		$num=$amount*$currency->featured;
-		return str_replace(',','',number_format($num,2));
-
-	}
-
-
 }
 
 function default_currency()
 {
 	if (Cache::has('default_currency')) {
-		$value=Cache::get('default_currency');
-	}
-	else{
+		$value = Cache::get('default_currency');
+	} else {
 		$value = Cache::remember('default_currency', 400, function () {
-			return $default_currency=\App\Category::where('type','currency')->with('position')->where('status',1)->first();
+			return $default_currency = \App\Category::where('type', 'currency')->with('position')->where('status', 1)->first();
 		});
 
 		Cache::remember('default_currency_info', 400, function () {
-			$put_curryncy=Cache::get('default_currency');
-			$info['name']=$put_curryncy->name;
-			$info['id']=$put_curryncy->id;
-			$info['icon']=$put_curryncy->slug;
-			$info['rate']=$put_curryncy->featured;
-			$info['position']=$put_curryncy->position->content;
-		    return $info;
-	   });
+			$put_curryncy = Cache::get('default_currency');
+			$info['name'] = $put_curryncy->name;
+			$info['id'] = $put_curryncy->id;
+			$info['icon'] = $put_curryncy->slug;
+			$info['rate'] = $put_curryncy->featured;
+			$info['position'] = $put_curryncy->position->content;
+			return $info;
+		});
 	}
 	return $value;
 }
 
-function all_currency(){
+function all_currency()
+{
 	return Cache::remember('all_currency', 400, function () {
-			return $default_currency=\App\Category::where('type','currency')->get();
+		return $default_currency = \App\Category::where('type', 'currency')->get();
 	});
 }
 
-function get_currency_info(){
-	if(Session::has('currency_info')){
-	  $currency_info=Session::get('currency_info');
-
-	}
-	elseif(Cache::has('default_currency_info')){
-		 $currency_info = Cache::get('default_currency_info');
-	}
-	else{
-		 $info=Cache::remember('default_currency_info', 400, function () {
-			$default_currency=\App\Category::where('type','currency')->with('position')->where('status',1)->first();
-			$info['name']=$default_currency->name;
-			$info['id']=$default_currency->id;
-			$info['icon']=$default_currency->slug;
-			$info['rate']=$default_currency->featured;
-			$info['position']=$default_currency->position->content;
-		    return $info;
+function get_currency_info()
+{
+	if (Session::has('currency_info')) {
+		$currency_info = Session::get('currency_info');
+	} elseif (Cache::has('default_currency_info')) {
+		$currency_info = Cache::get('default_currency_info');
+	} else {
+		$info = Cache::remember('default_currency_info', 400, function () {
+			$default_currency = \App\Category::where('type', 'currency')->with('position')->where('status', 1)->first();
+			$info['name'] = $default_currency->name;
+			$info['id'] = $default_currency->id;
+			$info['icon'] = $default_currency->slug;
+			$info['rate'] = $default_currency->featured;
+			$info['position'] = $default_currency->position->content;
+			return $info;
 		});
-		$currency_info=$info;
+		$currency_info = $info;
 	}
 
 	return $currency_info;
 }
 
 
- /**
+/**
  * genarate frontend menu.
  *
  * @param $position=menu position
@@ -219,12 +219,12 @@ function get_currency_info(){
  * @param $lang= translate true or false
  */
 
-function Menu($position,$ul='',$li='',$a='',$icon_position='top',$lang=false)
+function Menu($position, $ul = '', $li = '', $a = '', $icon_position = 'top', $lang = false)
 {
-	return Lphelper::Menu($position,$ul,$li,$a,$icon_position,$lang);
+	return Lphelper::Menu($position, $ul, $li, $a, $icon_position, $lang);
 }
 
- /**
+/**
  * genarate frontend menu.
  *
  * @param $position=menu position
@@ -235,20 +235,20 @@ function Menu($position,$ul='',$li='',$a='',$icon_position='top',$lang=false)
  * @param $lang= translate true or false
  */
 
-function MenuCustom($position,$ul='',$li='',$a='',$icon_position='top',$lang=false)
+function MenuCustom($position, $ul = '', $li = '', $a = '', $icon_position = 'top', $lang = false)
 {
-	return Lphelper::MenuCustom($position,$ul,$li,$a,$icon_position,$lang);
+	return Lphelper::MenuCustom($position, $ul, $li, $a, $icon_position, $lang);
 }
 
 
-function ConfigCategory($type,$select = ''){
-	return Lphelper::ConfigCategory($type,$select);
-
+function ConfigCategory($type, $select = '')
+{
+	return Lphelper::ConfigCategory($type, $select);
 }
 /*
 return total active language
 */
-function adminLang($c='')
+function adminLang($c = '')
 {
 	return Lphelper::AdminLang($c);
 }
@@ -261,20 +261,19 @@ function disquscomment()
 /*
 return options value
 */
-function LpOption($key,$array=false,$translate=false){
+function LpOption($key, $array = false, $translate = false)
+{
 	if ($translate == true) {
-		$data=Options::where('key',$key)->where('lang',Session::get('locale'))->select('value')->first();
+		$data = Options::where('key', $key)->where('lang', Session::get('locale'))->select('value')->first();
 		if (empty($data)) {
-			$data=Options::where('key',$key)->select('value')->first();
-
+			$data = Options::where('key', $key)->select('value')->first();
 		}
-	}
-	else{
-		$data=Options::where('key',$key)->select('value')->first();
+	} else {
+		$data = Options::where('key', $key)->select('value')->first();
 	}
 
-	if ($array==true) {
-		return json_decode($data->value,true);
+	if ($array == true) {
+		return json_decode($data->value, true);
 	}
 	return json_decode($data->value);
 }
@@ -287,7 +286,7 @@ function Livechat($param)
 
 function mediasingle()
 {
-  return view('admin.media.mediamodal');
+	return view('admin.media.mediamodal');
 }
 
 function input($array = [])
@@ -303,73 +302,74 @@ function input($array = [])
 	$step = $array['step'] ?? '';
 	if (isset($array['is_required'])) {
 		$required = $array['is_required'];
-	}
-	else{
+	} else {
 		$required = false;
 	}
-	return view('components.input',compact('title','step','max_input','min_input','type','placeholder','name','id','value','required'));
+	return view('components.input', compact('title', 'step', 'max_input', 'min_input', 'type', 'placeholder', 'name', 'id', 'value', 'required'));
 }
 
 function textarea($array = [])
 {
-	$title=$array['title'] ?? '';
-	$id=$array['id'] ?? '';
-	$name=$array['name'] ?? '';
-	$placeholder=$array['placeholder'] ?? '';
-	$maxlength=$array['maxlength'] ?? '';
-	$cols=$array['cols'] ?? 30;
-	$rows=$array['rows'] ?? 3;
-	$class=$array['class'] ?? '';
-	$value=$array['value'] ?? '';
-	$is_required=$array['is_required'] ?? false;
-	return view('components.textarea',compact('title','placeholder','name','id','value','is_required','class','cols','rows','maxlength'));
+	$title = $array['title'] ?? '';
+	$id = $array['id'] ?? '';
+	$name = $array['name'] ?? '';
+	$placeholder = $array['placeholder'] ?? '';
+	$maxlength = $array['maxlength'] ?? '';
+	$cols = $array['cols'] ?? 30;
+	$rows = $array['rows'] ?? 3;
+	$class = $array['class'] ?? '';
+	$value = $array['value'] ?? '';
+	$is_required = $array['is_required'] ?? false;
+	return view('components.textarea', compact('title', 'placeholder', 'name', 'id', 'value', 'is_required', 'class', 'cols', 'rows', 'maxlength'));
 }
 
 function editor($array = [])
 {
-	$title=$array['title'] ?? '';
-	$id=$array['id'] ?? 'content';
-	$name=$array['name'] ?? '';
-	$cols=$array['cols'] ?? 30;
-	$rows=$array['rows'] ?? 10;
-	$class=$array['class'] ?? '';
-	$value=$array['value'] ?? '';
+	$title = $array['title'] ?? '';
+	$id = $array['id'] ?? 'content';
+	$name = $array['name'] ?? '';
+	$cols = $array['cols'] ?? 30;
+	$rows = $array['rows'] ?? 10;
+	$class = $array['class'] ?? '';
+	$value = $array['value'] ?? '';
 
-	return view('components.editor',compact('title','name','id','value','class','cols','rows'));
+	return view('components.editor', compact('title', 'name', 'id', 'value', 'class', 'cols', 'rows'));
 }
 
 function publish($array = [])
 {
-	$title=$array['title'] ?? 'Publish';
-	$button_text=$array['button_text'] ?? 'Save';
-	$class=$array['class'] ?? '';
-	$id=$array['id'] ?? '';
-	return view('components.publish',compact('title','button_text','class','id'));
+	$publish = __('labels.publish');
+	$save = __('labels.save');
+	$title = $array['title'] ?? $publish;
+	$button_text = $array['button_text'] ?? $save;
+	$class = $array['class'] ?? '';
+	$id = $array['id'] ?? '';
+	return view('components.publish', compact('title', 'button_text', 'class', 'id'));
 }
 
 function mediasection($array = [])
 {
-	$title=$array['title'] ?? 'Image';
-	$preview_id=$array['preview_id'] ?? 'preview';
-	$preview=$array['preview'] ?? 'admin/img/img/placeholder.png';
-	$input_id=$array['input_id'] ?? 'preview_input';
-	$input_class=$array['input_class'] ?? 'input_image';
-	$input_name=$array['input_name'] ?? 'preview';
-	$value=$array['value'] ?? '';
-	return view('admin.media.section',compact('title','preview_id','preview','input_id','input_class','input_name','value'));
+	$title = $array['title'] ?? 'Image';
+	$preview_id = $array['preview_id'] ?? 'preview';
+	$preview = $array['preview'] ?? 'admin/img/img/placeholder.png';
+	$input_id = $array['input_id'] ?? 'preview_input';
+	$input_class = $array['input_class'] ?? 'input_image';
+	$input_name = $array['input_name'] ?? 'preview';
+	$value = $array['value'] ?? '';
+	return view('admin.media.section', compact('title', 'preview_id', 'preview', 'input_id', 'input_class', 'input_name', 'value'));
 }
 
 function mediasectionmulti($array = [])
 {
-	$title=$array['title'] ?? 'Image';
-	$preview_id=$array['preview_id'] ?? 'preview';
-	$preview=$array['preview'] ?? '';
-	$input_id=$array['input_id'] ?? 'preview_input';
-	$input_class=$array['input_class'] ?? 'input_image';
-	$input_name=$array['input_name'] ?? 'preview';
-	$area_id=$array['area_id'] ?? 'gallary-img';
-	$value=$array['value'] ?? '';
-	return view('admin.media.multisection',compact('title','preview_id','preview','input_id','input_class','input_name','value','area_id'));
+	$title = $array['title'] ?? 'Image';
+	$preview_id = $array['preview_id'] ?? 'preview';
+	$preview = $array['preview'] ?? '';
+	$input_id = $array['input_id'] ?? 'preview_input';
+	$input_class = $array['input_class'] ?? 'input_image';
+	$input_name = $array['input_name'] ?? 'preview';
+	$area_id = $array['area_id'] ?? 'gallary-img';
+	$value = $array['value'] ?? '';
+	return view('admin.media.multisection', compact('title', 'preview_id', 'preview', 'input_id', 'input_class', 'input_name', 'value', 'area_id'));
 }
 
 
@@ -381,58 +381,42 @@ function mediamulti()
 /*
 return posts array
 */
-function LpPosts($arr){
+function LpPosts($arr)
+{
 
-	$type=$arr['type'];
-	$relation=$arr['with'] ?? '';
-	$order=$arr['order'] ?? 'DESC';
-	$limit=$arr['limit'] ?? null;
-	$lang=$arr['translate'] ?? true;
+	$type = $arr['type'];
+	$relation = $arr['with'] ?? '';
+	$order = $arr['order'] ?? 'DESC';
+	$limit = $arr['limit'] ?? null;
+	$lang = $arr['translate'] ?? true;
 
 	if (!empty($relation)) {
 		if (empty($limit)) {
-			if ($lang==true) {
-				$data=Terms::with($relation)->where('type',$type)->where('status',1)->orderBy('id',$order)->where('lang',Session::get('locale'))->get();
-
+			if ($lang == true) {
+				$data = Terms::with($relation)->where('type', $type)->where('status', 1)->orderBy('id', $order)->where('lang', Session::get('locale'))->get();
+			} else {
+				$data = Terms::with($relation)->where('type', $type)->where('status', 1)->orderBy('id', $order)->where('lang', 'en')->get();
 			}
-			else{
-				$data=Terms::with($relation)->where('type',$type)->where('status',1)->orderBy('id',$order)->where('lang','en')->get();
+		} else {
+			if ($lang == true) {
+				$data = Terms::with($relation)->where('type', $type)->where('status', 1)->where('lang', Session::get('locale'))->orderBy('id', $order)->paginate($limit);
+			} else {
+				$data = Terms::with($relation)->where('type', $type)->where('status', 1)->where('lang', 'en')->orderBy('id', $order)->paginate($limit);
 			}
-
 		}
-		else{
-			if ($lang==true) {
-				$data=Terms::with($relation)->where('type',$type)->where('status',1)->where('lang',Session::get('locale'))->orderBy('id',$order)->paginate($limit);
-			}
-			else{
-				$data=Terms::with($relation)->where('type',$type)->where('status',1)->where('lang','en')->orderBy('id',$order)->paginate($limit);
-			}
-
-		}
-
-	}
-	else{
+	} else {
 		if (empty($limit)) {
-			if ($lang==true) {
-				$data=Terms::where('type',$type)->where('status',1)->where('lang',Session::get('locale'))->orderBy('id',$order)->get();
+			if ($lang == true) {
+				$data = Terms::where('type', $type)->where('status', 1)->where('lang', Session::get('locale'))->orderBy('id', $order)->get();
+			} else {
+				$data = Terms::where('type', $type)->where('status', 1)->where('lang', 'en')->orderBy('id', $order)->get();
 			}
-			else {
-				$data=Terms::where('type',$type)->where('status',1)->where('lang','en')->orderBy('id',$order)->get();
-
+		} else {
+			if ($lang == true) {
+				$data = Terms::where('type', $type)->where('status', 1)->where('lang', Session::get('locale'))->orderBy('id', $order)->paginate($limit);
+			} else {
+				$data = Terms::where('type', $type)->where('status', 1)->where('lang', 'en')->orderBy('id', $order)->paginate($limit);
 			}
-
-
-		}
-		else{
-			if ($lang==true) {
-				$data=Terms::where('type',$type)->where('status',1)->where('lang',Session::get('locale'))->orderBy('id',$order)->paginate($limit);
-			}
-			else {
-				$data=Terms::where('type',$type)->where('status',1)->where('lang','en')->orderBy('id',$order)->paginate($limit);
-
-
-			}
-
 		}
 	}
 
@@ -447,16 +431,17 @@ return admin category
 
 function  AdminCategory($type)
 {
-	 return Lphelper::LPAdminCategory($type);
+	return Lphelper::LPAdminCategory($type);
 }
 
 /*
 return category selected
 */
 
-function AdminCategoryUpdate($type,$arr = []){
+function AdminCategoryUpdate($type, $arr = [])
+{
 
-	 return Lphelper::LPAdminCategoryUpdate($type,$arr);
+	return Lphelper::LPAdminCategoryUpdate($type, $arr);
 }
 
 
@@ -466,15 +451,16 @@ function theme_asset($path)
 	return asset($path);
 }
 
-function content_format($data){
-	return view('components.content',compact('data'));
+function content_format($data)
+{
+	return view('components.content', compact('data'));
 }
 
 
-function content($main_id,$id,$get_id=null)
+function content($main_id, $id, $get_id = null)
 {
 
-	$theme_json_file_get = file_get_contents( base_path().'/am-content/Themes/theme.json');
+	$theme_json_file_get = file_get_contents(base_path() . '/am-content/Themes/theme.json');
 	$themes = json_decode($theme_json_file_get, true);
 	foreach ($themes as $theme) {
 		if ($theme['status'] == 'active') {
@@ -496,22 +482,19 @@ function content($main_id,$id,$get_id=null)
 			if (isset($check_id->settings->$id)) {
 
 				if (Session::has('locale')) {
-					if(Session::get('locale') == 'en'){
+					if (Session::get('locale') == 'en') {
 						if ($customizer->status == 0) {
 							$value = json_decode($customizer->value);
 							return $value->settings->$id->old_value;
-						}else{
+						} else {
 							$value = json_decode($customizer->value);
 							return $value->settings->$id->new_value;
 						}
-					}else{
-						if (file_exists(base_path().'/resources/lang/'.Session::get('locale').'.json')) {
-						$lang_file = file_get_contents( base_path().'/resources/lang/'.Session::get('locale').'.json');
-
-						}
-						else{
-						$lang_file = file_get_contents( base_path().'/resources/lang/en.json');
-
+					} else {
+						if (file_exists(base_path() . '/resources/lang/' . Session::get('locale') . '.json')) {
+							$lang_file = file_get_contents(base_path() . '/resources/lang/' . Session::get('locale') . '.json');
+						} else {
+							$lang_file = file_get_contents(base_path() . '/resources/lang/en.json');
 						}
 						$lang_data = json_decode($lang_file);
 
@@ -524,11 +507,10 @@ function content($main_id,$id,$get_id=null)
 				if ($customizer->status == 0) {
 					$value = json_decode($customizer->value);
 					return $value->settings->$id->old_value;
-				}else{
+				} else {
 					$value = json_decode($customizer->value);
 					return $value->settings->$id->new_value;
 				}
-
 			}
 		}
 
@@ -538,22 +520,19 @@ function content($main_id,$id,$get_id=null)
 			if (isset($check_get_id->content->$get_id->$id)) {
 
 				if (Session::has('locale')) {
-					if(Session::get('locale') == 'en')
-					{
+					if (Session::get('locale') == 'en') {
 						if ($customizer->status == 0) {
 							$value = json_decode($customizer->value);
 							return $value->content->$get_id->$id->old_value;
-						}else{
+						} else {
 							$value = json_decode($customizer->value);
 							return $value->content->$get_id->$id->new_value;
 						}
-					}else{
-						if (file_exists(base_path().'/resources/lang/'.Session::get('locale').'.json')) {
-						$lang_file = file_get_contents( base_path().'/resources/lang/'.Session::get('locale').'.json');
-						}
-						else{
-						$lang_file = file_get_contents( base_path().'/resources/lang/en.json');
-
+					} else {
+						if (file_exists(base_path() . '/resources/lang/' . Session::get('locale') . '.json')) {
+							$lang_file = file_get_contents(base_path() . '/resources/lang/' . Session::get('locale') . '.json');
+						} else {
+							$lang_file = file_get_contents(base_path() . '/resources/lang/en.json');
 						}
 						$lang_data = json_decode($lang_file);
 
@@ -561,77 +540,191 @@ function content($main_id,$id,$get_id=null)
 							return $lang_data->$id;
 						}
 					}
-
 				}
 
 				if ($customizer->status == 0) {
 					$value = json_decode($customizer->value);
 					return $value->content->$get_id->$id->old_value;
-				}else{
+				} else {
 					$value = json_decode($customizer->value);
 					return $value->content->$get_id->$id->new_value;
 				}
-
 			}
-
 		}
 	}
-
-
 }
 
 
 
 function GetThemeRoot()
 {
-	$file = file_get_contents( base_path().'/am-content/Themes/theme.json');
+	$file = file_get_contents(base_path() . '/am-content/Themes/theme.json');
 	$themes = json_decode($file, true);
 	foreach ($themes as $theme) {
 		if ($theme['status'] == 'active') {
-			$customizer_file = file_get_contents( base_path().'/am-content/Themes/'.$theme['Text Domain'].'/customizer.json');
-			$active_theme = json_decode($customizer_file,true);
+			$customizer_file = file_get_contents(base_path() . '/am-content/Themes/' . $theme['Text Domain'] . '/customizer.json');
+			$active_theme = json_decode($customizer_file, true);
 			foreach ($active_theme as $key => $value) {
 				if ($value['status'] == 'active') {
-					$root = base_path().'/am-content/Themes/'.$theme['Text Domain'].'/';
+					$root = base_path() . '/am-content/Themes/' . $theme['Text Domain'] . '/';
 					break;
-
 				}
 			}
 		}
 	}
 
-	$dir= $root ?? "lp";
+	$dir = $root ?? "lp";
 
 	return $dir;
 }
 
 
-function put($content,$root)
+function put($content, $root)
 {
-	$content=file_get_contents($content);
-	File::put($root,$content);
+	$content = file_get_contents($content);
+	File::put($root, $content);
 }
 
 
 function AdminSidebar()
 {
-	if(file_exists(base_path().'/am-content/Plugins/menuregister.php')){
-      include_once(base_path().'/am-content/Plugins/menuregister.php');
-      if(function_exists('RegisterAdminMenuBar')){
-      	$dyanmicMenu=RegisterAdminMenuBar();
-      }
-
-    }
-    return $dyanmicMenu ?? [];
-
-
+	if (file_exists(base_path() . '/am-content/Plugins/menuregister.php')) {
+		include_once(base_path() . '/am-content/Plugins/menuregister.php');
+		if (function_exists('RegisterAdminMenuBar')) {
+			$dyanmicMenu = RegisterAdminMenuBar();
+		}
+	}
+	return $dyanmicMenu ?? [];
 }
 
-function google_analytics(){
-
+function google_analytics()
+{
 }
 
-function id(){
+function id()
+{
 	return "31039172";
 }
 
+function error_response($data = null, $message = null)
+{
+	return response()->json(['status' => 'error', 'data' => $data, 'message' => $message]);
+}
+
+function success_response($data = null, $message = null)
+{
+	return response()->json(['status' => 'success', 'data' => $data, 'message' => $message]);
+}
+
+function polygon_data($details)
+{
+	$data = [];
+	foreach ($details->land_blocks_details as $values) {
+		$bottom_left = explode(',', $values->bottom_left_coordinate);
+		$bottom_right = explode(',', $values->bottom_right_coordinate);
+		$top_right = explode(',', $values->top_right_coordinate);
+		$top_left = explode(',', $values->top_left_coordinate);
+		$center = explode(',', $values->center_coordinate);
+		$property_nature = Category::where('id', $values->parent_category)->first();
+		$points['map_polygon'] = [
+			'type' => "Feature",
+			'properties' => [
+				'plot_num' =>  $values->plot_number,
+				'price' => $values->price,
+				'planned_number' => $values->planned_number,
+				'type' => $property_nature->name,
+				'name' => Session::get('locale') == 'ar' ? $property_nature->ar_name : $property_nature->name,
+				'total_area' => $values->total_area,
+				'left_measurement' => $values->left_measurement,
+				'right_measurement' => $values->right_measurement,
+				'top_measurement' => $values->top_measurement,
+				'bottom_measurement' => $values->bottom_measurement,
+			],
+			'geometry' => [
+				'coordinates' => [
+					[
+						[
+							$bottom_left[0], $bottom_left[1]
+						],
+						[
+							$bottom_right[0], $bottom_right[1]
+						],
+						[
+							$top_right[0], $top_right[1]
+						],
+						[
+							$top_left[0], $top_left[1]
+						],
+						[
+							$bottom_left[0], $bottom_left[1]
+						]
+					]
+				],
+				"type" => "Polygon"
+			],
+		];
+
+		$points['center_point'] = [
+			'type' => "Feature",
+			'properties' => [
+				'plot_num' => $values->plot_number,
+			],
+			'geometry' => [
+				'coordinates' =>
+				[
+					$center[0], $center[1]
+				],
+				"type" => "Point"
+			],
+		];
+
+		$data[] = $points['map_polygon'];
+		$data[] = $points['center_point'];
+	}
+
+
+	return $data;
+}
+
+
+/**
+ * Return response after sending a curl request
+ * @param  string $url , string $data, boolean $is_post, array $headers, boolean $auth
+ * @return array
+ */
+function curl_request($url, $data = null, $is_post = false, $headers = null, $auth = false)
+{
+	$curl = curl_init($url);
+	if (!empty($headers) || $headers != null) {
+		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+	}
+	if ($auth) {
+		curl_setopt($curl, CURLOPT_USERPWD, $auth);
+	}
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+	if ($is_post) {
+		curl_setopt($curl, CURLOPT_POST, 1);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+	}
+
+	$output = curl_exec($curl);
+	curl_close($curl);
+
+	return $output;
+}
+
+function generate_unique_id()
+{
+	$data = Terms::orderBy('id', 'DESC')->first();
+	if ($data) {
+		$orderNr = $data->id;
+		$removed1char = substr($orderNr, 1);
+		$unique_id = $stpad = str_pad($removed1char + 1, 6, '5', STR_PAD_LEFT);
+	} else {
+		$unique_id = str_pad(1, 6, '5', STR_PAD_LEFT);
+	}
+
+	return $unique_id;
+}

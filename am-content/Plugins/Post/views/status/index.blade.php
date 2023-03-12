@@ -45,7 +45,7 @@
 								</div>
 							</th>
 							<th class="am-title">{{ __('Name') }}</th>
-							<th class="am-title">{{ __('Is Featured') }}</th>
+							<!-- <th class="am-title">{{ __('Is Featured') }}</th> -->
 							<th class="am-date">{{ __('Date') }}</th>
 						</tr>
 					</thead>
@@ -64,7 +64,7 @@
 									<a class="text-left" href="{{ route('admin.status.edit',$post->id) }}">{{ __('Edit') }}</a>
 								</div>
 							</td>
-							<td>@if($post->featured == 1) <span class="badge badge-success">{{ __('Yes') }}</span> @else <span class="badge badge-danger">{{ __('No') }}</span> @endif</td>
+							<!-- <td>@if($post->featured == 1) <span class="badge badge-success">{{ __('Yes') }}</span> @else <span class="badge badge-danger">{{ __('No') }}</span> @endif</td> -->
 							<td>{{ __('Last Modified') }}
 								<div class="date">
 									{{ $post->updated_at->diffForHumans() }}

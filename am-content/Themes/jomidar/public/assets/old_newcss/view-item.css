@@ -1,0 +1,273 @@
+
+.hr {
+    border: 1px solid #C9C9C9;
+}
+
+.filter {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    padding: 31px 0px 13px 0px;
+}
+
+.map-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 18px rgba(41, 32, 113, 0.15);
+}
+
+.filter .search-field {
+    background: rgba(255, 255, 255, 0.95);
+    height: 61px;
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-size: 16px;
+    color: var(--theme-seondary-black);
+    text-align: end;
+}
+
+.filter .serch-icon {
+    top: 8px;
+    left: 8px;
+}
+
+.item-header .breadcrumb-item+.breadcrumb-item::before {
+    content: '<';
+    color: var(--theme-seondary-black);
+    font-weight: bold;
+}
+
+.item-header .breadcrumb-item {
+    font-size: 14px;
+}
+
+.item-header .title {
+    font-size: 18px;
+}
+
+.item-header .detail .icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    margin: 0px 4px;
+}
+
+.item-header .item-carousel {
+    max-height: 603px;
+    object-fit: cover;
+}
+
+/* Property Detail */
+.property-detail .card {
+    border: 0.5px solid var(--theme-main);
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 36px 24px;
+}
+
+.property-detail .card hr {
+    width: 100%;
+    border: 1px solid #C9C9C9;
+    margin-top: 16px;
+    margin-bottom: 36px;
+}
+
+.property-detail .card h1 {
+    font-size: 31px;
+}
+
+.property-detail .card h3 {
+    font-size: 18px;
+}
+
+.property-detail .card li {
+    margin-left: 60px;
+}
+
+.property-detail .card img {
+    margin-left: 6px;
+}
+
+.contact-btn {
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    height: 41px;
+    font-size: 16px;
+}
+
+.contact-btn .phone {
+    left: 24px;
+}
+
+.tag {
+    max-width: 100%;
+    height: 35px;
+    border: 0.5px solid #292071;
+    border-radius: 8px;
+    padding: 0 12px;
+    margin-left: 20px;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    position: unset;
+    width: unset;
+    width: 48px;
+    height: 48px;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+.carousel-control-prev-icon {
+    background-image: url(/assets/images/arrow-left.png);
+    width: 7px;
+    height: 13px;
+}
+
+.carousel-control-next-icon {
+    background-image: url(/assets/images/arrow-right.png);
+    width: 7px;
+    height: 13px;
+}
+
+.carousel-indicators [data-bs-target] {
+    border-radius: 50%;
+    width: 11px;
+    height: 11px;
+    opacity: 1;
+    border: 0px;
+}
+
+.carousel-indicators .active {
+    background: #292071;
+}
+
+/* Contact Modal style starts here */
+.theme-modal .modal-dialog {
+    max-width: 630px;
+    text-align: end;
+}
+
+.theme-modal .modal-content {
+    border: none;
+    border-radius: 20px;
+}
+
+.theme-modal .chat-btn {
+    border-radius: 8px;
+    width: 100%;
+    height: 61px;
+}
+
+.theme-modal .form-control {
+    height: 72px;
+    border-radius: 8px;
+    border-color: var(--theme-sky);
+    text-align: end;
+}
+
+.contact-modal .modal-body {
+    padding: 67px 36px 57px;
+}
+
+
+.send-modal .modal-body {
+    padding: 67px 36px 57px;
+}
+
+.contact-modal h1 {
+    margin-bottom: 70px;
+}
+
+.floating-Input {
+    padding: 7px 28px;
+    font-size: 12px;
+    background: var(--theme-white);
+    top: -15px;
+    right: 19px;
+    display: block;
+}
+
+.contact-modal .mesg {
+    top: 66px;
+    left: 0;
+}
+
+.close-modal {
+    top: 20px;
+    left: 20px;
+}
+
+.signIn-modal h1 {
+    margin-bottom: 30px;
+}
+
+.signIn-modal .modal-body {
+    padding: 20px 0px 36px;
+}
+
+.otp-modal .modal-body {
+    padding: 54px 0px 35px;
+}
+
+.otp-modal .form-control {
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #848484;
+    border-radius: 0px;
+    max-width: 69px;
+}
+
+.otp-modal .form-control:focus {
+    border-color: transparent;
+    border-bottom: 1px solid var(--theme-sky);
+    box-shadow: none;
+}
+
+/* COntact Modal ends here */
+
+/* Media Query */
+
+@media screen and (max-width:1400px) {
+    .property-detail .card li {
+        margin-left: 30px;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .tag {
+        margin-left: 10px;
+    }
+    .carousel-control-next, .carousel-control-prev {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .carousel-control-next, .carousel-control-prev {
+        display: none;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .tag h3, .item-header .breadcrumb-item, .contact-modal a {
+        font-size: 10px;
+    }
+    .contact-modal .modal-body{
+        padding: 16px;
+    }
+    .item-header .title {
+        font-size: 16px;
+    }
+    .otp-modal h3, .otp-modal span, .otp-modal a {
+        font-size: 12px;
+    }
+    .otp-modal .form-control {
+        max-width: 40px;
+    }
+}

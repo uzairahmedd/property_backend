@@ -320,15 +320,26 @@ function favourite_property(id)
         data: {id: id},
         dataType: 'json',
         beforeSend: function() {
-           if($('#favourite_btn').hasClass('active'))
-           {
-                $('#favourite_btn').removeClass('active');
-           }else{
-                $('#favourite_btn').addClass('active');
-           }
+           // if($('#favourite_btn').hasClass('active'))
+           // {
+           //     $('#heart').removeClass('fa-regular');
+           //         $('#heart').addClass('fa-solid');
+           // }else if($('#favourite_btn').removeClass('active')){
+           //     $('#heart').removeClass('fa-solid');
+           //         $('#heart').addClass('fa-regular');
+           // }
         },
         success: function(response){
-
+            if(response.status == true)
+            {
+                $('#heart').removeClass('fa-regular');
+                $('#heart').addClass('fa-solid');
+            }
+            else if(response.status == false)
+            {
+                $('#heart').removeClass('fa-solid');
+                $('#heart').addClass('fa-regular');
+            }
         },
         error: function(xhr, status, error)
         {
@@ -372,3 +383,19 @@ function get_similar_property()
         }
     })
 }
+
+
+$('#show-more-content').hide();
+
+$('#show-more').click(function(){
+    $('#show-more-content').show(300);
+    $('#show-less').show();
+    $('#show-more').hide();
+});
+
+$('#show-less').click(function(){
+    $('#show-more-content').hide(150);
+    $('#show-more').show();
+    $(this).hide();
+});
+

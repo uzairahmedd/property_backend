@@ -72,6 +72,15 @@ return [
             'bucket' => env('DO_SPACES_BUCKET'),
             'endpoint' => env('DO_SPACES_ENDPOINT'),
         ],
+
+        'oci' => [
+            'driver' => 's3',
+            'key' => env('OCI_ACCESS_KEY_ID'),
+            'secret' => env('OCI_SECRET_ACCESS_KEY'),
+            'region' => env('OCI_DEFAULT_REGION'),
+            'bucket' => env('OCI_BUCKET'),
+            'url' => env('OCI_URL'),
+        ],
     ],
 
     /*

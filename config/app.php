@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Khiaratee'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ar',
 
     /*
     |--------------------------------------------------------------------------
@@ -185,6 +185,7 @@ return [
          Amcoders\Lpress\LpressServiceProvider::class,
          Amcoders\Check\CheckServiceProvider::class,
          Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+         App\Providers\OciObjectStorageServiceProvider::class,
 
     ],
 

@@ -39,26 +39,26 @@
                         <input type="hidden" value="{{ route('agent.list.data') }}" id="agent_list_data_url">
                         @if($query == null)
                         <div class="row" id="agents_data">
-                            
+
                         </div>
-                        @else 
+                        @else
                         <div class="row">
                             @if ($query->count() > 0)
                             @foreach ($query as $row)
                             <div class="col-lg-4">
                                 <div class="single-agent">
-                                    <div class="agent-img text-center"> 
+                                    <div class="agent-img text-center">
                                         <a href="{{ route('agent.show',$row->slug) }}"> <img src="{{ $row->avatar }}" alt=""> </a>
                                     </div>
                                     @php
                                         $info = json_decode($row->usermeta->content);
                                     @endphp
-                                    <div class="agent-content text-center"> 
+                                    <div class="agent-content text-center">
                                         <a href="{{ route('agent.show',$row->slug) }}"><h2>{{ $row->name }}</h2></a>
-                                        <div class="agent-number-info"> 
+                                        <div class="agent-number-info">
                                             <a href="{{ route('agent.show',$row->slug) }}">{{ __('View Profile') }}</a>
                                         </div>
-                                        <div class="agent-number-info"> 
+                                        <div class="agent-number-info">
                                             <span>{{ $info->phone }}</span>
                                             <div class="agent-email">
                                                 <p>{{ $row->email }}</p>
@@ -82,13 +82,13 @@
                                                     <li>
                                                         <a href="{{ $info->pinterest }}"><span class="iconify" data-icon="ri:pinterest-fill" data-inline="false"></span></a>
                                                     </li>
-                                                </ul> 
+                                                </ul>
                                             </nav>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            @endforeach  
+                            @endforeach
                             @else
                             <div class="col-lg-12">
                                 <div class="text-center">
@@ -108,8 +108,8 @@
                             </div>
                         </div>
                     </div>
-                    @endif 
-                    @else 
+                    @endif
+                    @else
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="f-right">
@@ -123,7 +123,7 @@
         </div>
     </div>
 </section>
-<!-- agent list area end -->   
+<!-- agent list area end -->
 @endsection
 
 @push('js')

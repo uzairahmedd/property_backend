@@ -1,98 +1,169 @@
 @extends('layouts.backend.app')
 
 @section('content')
-@include('layouts.backend.partials.headersection',['title'=>'Categories'])
-<div class="card"  >
+    @php
+        $categories = __('labels.categories');
+    @endphp
+@include('layouts.backend.partials.headersection',['title'=> $categories])
+<div class="card">
 	<div class="card-body">
 		<div class="row mb-30">
 			<div class="col-lg-6">
-				<h4>{{ __('Categories') }}</h4>
+				<h4>{{__('labels.categories')}}</h4>
 			</div>
 			<div class="col-lg-6">
+			@can('category.create')
 				<div class="add-new-btn">
-					<a href="{{ route('admin.category.create') }}" class="btn float-right btn-primary">{{ __('Add New') }}</a>
+					<a href="{{ route('admin.category.create') }}" class="btn float-right btn-primary">{{__('labels.add_new')}}</a>
 				</div>
+				@endcan
 			</div>
 		</div>
 		<div class="card-action-filter mt-3">
-			<form method="post" id="basicform" action="{{ route('admin.features.destroy') }}">
+			<form method="post" id="confirm_basicform" action="{{ route('admin.category.destroy') }}">
 				@csrf
+				<!-- @can('category.delete')
 				<div class="float-left">
 					<div class="input-group">
 						<select class="form-control selectric" name="method">
-							<option value="">{{ __('Select Action') }}</option>
-							<option value="delete">{{ __('Delete Permanently') }}</option>
+							<option value="">{{__('labels.select_action')}}</option>
+							<option value="delete">{{__('labels.delete_permanently')}}</option>
 						</select>
 						<div class="input-group-append">
-							<button class="btn btn-primary" type="submit">{{ __('Submit') }}</button>
+							<button class="btn btn-primary" type="submit">{{__('labels.submit')}}</button>
 						</div>
 					</div>
 				</div>
+				@endcan -->
 				<div class="float-right">
 					<div class="form-group">
-						<input type="text" id="data_search" class="form-control" placeholder="Enter Value">
+						<input type="text" id="data_search" class="form-control" placeholder="{{__('labels.enter_value')}}">
 					</div>
 				</div>
-			</div>
-			<div class="table-responsive custom-table">
-				<table class="table text-left">
-					<thead>
-						<tr>
-							<th class="am-select">
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input checkAll" id="customCheck12">
-									<label class="custom-control-label checkAll" for="customCheck12"></label>
-								</div>
-							</th>
-							<th class="am-title">{{ __('Title') }}</th>
-							<th class="am-title">{{ __('Credit Charge') }}</th>
-							<th class="am-title">{{ __('Featured') }}</th>
-							<th class="am-date">{{ __('Date') }}</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($posts as $post)
-						<tr>
-							<th>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" name="ids[]" class="custom-control-input" id="customCheck{{ $post->id }}" value="{{ $post->id }}">
-									<label class="custom-control-label" for="customCheck{{ $post->id }}"></label>
-								</div>
-							</th>
-							<td>
-								{{ $post->name }}
-								<div class="hover">
-									<a href="{{ route('admin.category.edit',$post->id) }}">{{ __('Edit') }}</a>
-								</div>
-							</td>
-							<td>{{ $post->creditcharge->content ?? '' }}</td>
-
-							@if($post->featured==1)
-							<td><span class="badge badge-success">{{ __('Yes') }}</span></td>
-							@else
-							<td><span class="badge badge-danger">{{ __('No') }}</span></td>
-							@endif
-							<td>{{ __('Last Modified') }}
-								<div class="date">
-									{{ $post->updated_at->diffForHumans() }}
-								</div>
-							</td>
-						</tr>
-						@endforeach
-					</tbody>
-				</form>
-				<tfoot>
+		</div>
+		<div class="table-responsive custom-table">
+			<table class="table text-left table-striped table-hover text-center table-borderless">
+				<thead>
 					<tr>
-						<th class="am-select">
+						<!-- <th class="am-select">
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input checkAll" id="customCheck12">
 								<label class="custom-control-label checkAll" for="customCheck12"></label>
 							</div>
-						</th>
-						<th class="am-title">{{ __('Title') }}</th>
-						<th class="am-title">{{ __('Credit Charge') }}</th>
-						<th class="am-title">{{ __('Featured') }}</th>
-						<th class="am-date">{{ __('Date') }}</th>
+						</th> -->
+						<th class="am-title">{{__('labels.icon')}}</th>
+						<th class="am-title">{{__('labels.title')}}</th>
+						<th class="am-title">{{__('labels.arabic_title')}}</th>
+						<th class="am-title">{{__('labels.property_type')}}</th>
+						<th class="am-title">{{__('labels.land_area')}}</th>
+						<th class="am-title">{{__('labels.built_up_area')}}</th>
+						<th class="am-title">{{__('labels.property_age')}}</th>
+						<th class="am-title">{{__('labels.features_section')}}</th>
+						<th class="am-title">{{__('labels.furnishing_section')}}</th>
+						<th class="am-title">{{__('labels.total_floors')}}</th>
+						<th class="am-title">{{__('labels.property_floor')}}</th>
+						<th class="am-title">{{__('labels.featured')}}</th>
+						<th class="am-date">{{__('labels.date')}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($posts as $post)
+					<tr>
+						<!-- <th>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" name="ids[]" class="custom-control-input" id="customCheck{{ $post->id }}" value="{{ $post->id }}">
+								<label class="custom-control-label" for="customCheck{{ $post->id }}"></label>
+							</div>
+						</th> -->
+						<td>
+							<span><i class="{{!empty($post->icon) ? $post->icon->content : ''}}"></i></span>
+						</td>
+						<td>
+							{{ $post->name }}
+							<div class="hover">
+								<a href="{{ route('admin.category.edit',$post->id) }}">{{ __('labels.edit') }}</a>
+							</div>
+						</td>
+						<td>
+							{{ $post->ar_name }}
+						</td>
+						<td>
+							@foreach($post->child_name as $name_type)
+							<span class="badge badge-primary">{{Session::get('locale') == 'ar' ? @$name_type->ar_name :  @$name_type->name}}</span>
+							@endforeach
+						</td>
+
+						@if($post->land_area == 1)
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
+						@endif
+
+						@if($post->buildup_area == 1)
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
+						@endif
+						@if($post->property_age == 1)
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
+						@endif
+						@if($post->features_section == 1)
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
+						@endif
+						@if($post->furnishing_section == 1)
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
+						@endif
+						@if($post->total_floor == 1)
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
+						@endif
+						@if($post->property_floor == 1)
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
+						@endif
+						@if($post->featured == 1)
+						<td><span class="badge badge-success">{{__('labels.yes')}}</span></td>
+						@else
+						<td><span class="badge badge-danger">{{__('labels.no')}}</span></td>
+						@endif
+						<td>{{ __('Last Modified') }}
+							<div class="date">
+								{{ $post->updated_at->diffForHumans() }}
+							</div>
+						</td>
+					</tr>
+					@endforeach
+				</tbody>
+				</form>
+				<tfoot>
+					<tr>
+						<!-- <th class="am-select">
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input checkAll" id="customCheck12">
+								<label class="custom-control-label checkAll" for="customCheck12"></label>
+							</div>
+						</th> -->
+                        <th class="am-title">{{__('labels.icon')}}</th>
+                        <th class="am-title">{{__('labels.title')}}</th>
+                        <th class="am-title">{{__('labels.arabic_title')}}</th>
+                        <th class="am-title">{{__('labels.property_type')}}</th>
+                        <th class="am-title">{{__('labels.land_area')}}</th>
+                        <th class="am-title">{{__('labels.built_up_area')}}</th>
+                        <th class="am-title">{{__('labels.property_age')}}</th>
+                        <th class="am-title">{{__('labels.features_section')}}</th>
+                        <th class="am-title">{{__('labels.furnishing_section')}}</th>
+                        <th class="am-title">{{__('labels.total_floors')}}</th>
+                        <th class="am-title">{{__('labels.property_floor')}}</th>
+                        <th class="am-title">{{__('labels.featured')}}</th>
+                        <th class="am-date">{{__('labels.date')}}</th>
 					</tr>
 				</tfoot>
 			</table>
@@ -108,7 +179,7 @@
 <script type="text/javascript">
 	"use strict";
 	//response will assign this function
-	function success(res){
+	function success(res) {
 		location.reload();
 	}
 </script>

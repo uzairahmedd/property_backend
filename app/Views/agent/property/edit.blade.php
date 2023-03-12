@@ -260,8 +260,8 @@
 											$arr22['is_required'] = true;
 											echo  input($arr22);
 											@endphp
-											<input type="hidden" name="latitude" id="latitude" value="{{ $info->latitude->value ?? '' }}">
-											<input type="hidden" name="longitude" id="longitude" value="{{ $info->longitude->value ?? '' }}">
+											<input type="text" name="latitude" id="latitude" value="{{ $info->latitude->value ?? '' }}">
+											<input type="text" name="longitude" id="longitude" value="{{ $info->longitude->value ?? '' }}">
 											<div id="map-canvas" style="height: 200px" height="200"  class="map-canvas"></div>
 											<hr>
 											<p>{{ __('Price') }}</p>

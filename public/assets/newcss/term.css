@@ -1,0 +1,60 @@
+.data-collection
+{
+    padding: 48px 0px;
+}
+
+.data-collection h3,p
+{
+    font-family: TajawalMedium;
+    text-align: right;
+}
+
+.data-collection .terms-text
+{
+    font-family: TajawalBold;
+}
+
+.all-collection
+{
+    padding-top: 30px;
+}
+
+.terms-top h3
+{
+    font-weight: 600;
+}
+
+
+@media screen and (max-width: 576px) {
+
+    .terms-top p
+    {
+        text-align: right !important;
+    }
+
+    .terms-top h3
+    {
+        text-align: right !important;
+    }
+
+    .data-collection p:nth-child(2)
+    {
+        /* font-size: 24px; */
+        padding-top: 10px !important;
+    }
+
+    .pt-4
+    {
+        padding-top: -20px !important;
+    }
+
+    .data-collection {
+        padding: 0px 0px;
+    }
+
+    .all-collection
+    {
+        padding: 0 !important;
+    }
+
+}

@@ -1,0 +1,298 @@
+@import "home.css";
+
+/* Filter Bar CSS Start */
+
+.filter-bar
+{
+    background: #FFFFFF;
+    opacity: 0.95;
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    height: 114px;
+}
+
+.filter-bar .search-box
+{
+    background: #FFFFFF;
+    opacity: 0.95;
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.search-bar input[type='search'] {
+    text-align: right;
+}
+
+.search-bar input[type='search']:focus-visible {
+    outline: none;
+}
+
+.search-bar input[type="search"]::-webkit-search-decoration,
+.search-bar input[type="search"]::-webkit-search-cancel-button,
+.search-bar input[type="search"]::-webkit-search-results-button,
+.search-bar input[type="search"]::-webkit-search-results-decoration
+{
+    display: none;
+}
+
+.filter-bar .select-filter
+{
+    gap: 8px;
+    padding: 12px;
+}
+
+.filter-bar .map-icon
+{
+    background: #FFFFFF;
+    box-shadow: 1px 1px 18px rgba(41, 32, 113, 0.15);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.filter-bar .row
+{
+    padding-top: 20px;
+}
+
+.all-property-list
+{
+    padding: 42px 0 19px 0;
+}
+
+.all-property-list .sort-by
+{
+    background: #FFFFFF;
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.all-property-list .sort-text
+{
+    padding-left: 8px;
+}
+
+.all-property-list .all-ads
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+/* .all-ads p
+{
+    padding-left: 20px;
+} */
+
+.all-ads .vertical-line
+{
+    border-right: 1.5px solid var(--theme-seondary-black);
+    height: 16px;
+    margin-top: 5px;
+}
+
+/* Property Lists CSS Start */
+
+.all-listing {
+    text-align: end;
+}
+
+.all-listing .property-lists
+{
+    margin: 30px 0;
+}
+
+.documented span
+{
+    font-family: Tajawal;
+    font-size: 14px;
+    margin-top: 4px;
+}
+.carousel-inner img
+{
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    height: 213px;
+    width: 100%;
+}
+
+.list-container
+{
+    padding: 8px;
+}
+
+.property-lists .row .col-lg-3
+{
+    padding: 0px 7px;
+}
+.property-lists .content {
+    padding: 16px;
+    margin-bottom: 85px;
+}
+
+.property-lists .sale {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.property-lists .documented
+{
+    width: 85px;
+    color: white;
+    padding-right: 8px;
+    height: 33px;
+    background: linear-gradient(270deg, #292071 0%, rgba(41, 32, 113, 0) 93.23%);
+    border-radius: 30px 0px 0px 30px;
+}
+
+.property-lists .fav-elipse {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--theme-white);
+    opacity: 0.75;
+    padding-top: 7px;
+    padding-left: 8px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: -8px;
+}
+
+.property-lists .price {
+    background: var(--theme-secondary);
+    box-shadow: 8px -8px 8px rgba(41, 32, 113, 0.15);
+    border-radius: 0px 50px 0px 8px;
+    height: 41px;
+    width: 178px;
+    max-width: 100%;
+}
+
+.property-lists .price span {
+    font-size: 14px;
+}
+
+.property-lists .features
+{
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+}
+
+.property-lists h3 {
+    font-family: TajawalBold;
+    font-size: 14px;
+    letter-spacing: -0.3px;
+}
+
+.property-lists p {
+    font-size: 12px;
+    font-family: Tajawal;
+    color: rgba(15, 15, 15, 0.75);
+}
+
+.amenities p
+{
+    padding-right: 6px;
+    font-family: Tajawal;
+}
+
+.price-section .call
+{
+    width: 52px;
+    height: 48px;
+    background: #292071;
+    border-radius: 8px;
+}
+
+.price-section .whatsapp
+{
+    width: 53px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #4AC958;
+    border-radius: 8px;
+}
+
+.price-section .calender
+{
+    width: 53px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #C9009D;
+    border-radius: 8px;
+}
+
+.price-section .all-price h3
+{
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: -0.3px;
+}
+
+.property-sl-banner
+{
+    margin-bottom: 120px;
+}
+
+.last-property-list
+{
+    margin-bottom: 120px;
+}
+
+@media screen and (max-width:1400px) {
+
+}
+@media screen and (max-width:1050px) {
+
+}
+
+@media screen and (max-width:992px) {
+
+}
+
+@media screen and (max-width:768px) {
+
+}
+
+@media screen and (max-width:576px) {
+    .property-lists .row .col-lg-3 {
+        padding: 10px 7px;
+    }
+    .all-listing .property-lists {
+        margin: 20px 0 0 0;
+    }
+    .location-icon{
+        display: none;
+    }
+    .filter-bar {
+        height: 159px;
+    }
+    .filter-bar .select-filter {
+        padding: 12px 0;
+    }
+    .all-property-list .all-ads {
+        padding-top: 10px;
+    }
+    .last-property-list {
+        margin-bottom: 60px;
+    }
+    .property-sl-banner {
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width:375px) {
+    .price-section .all-price h3 {
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .carousel-inner img {
+        height: 190px;
+    }
+    .all-listing .property-lists {
+        margin: 20px 0 0 0;
+    }
+}

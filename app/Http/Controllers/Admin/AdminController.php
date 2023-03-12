@@ -22,7 +22,7 @@ class AdminController extends Controller
     public function index()
     {
         if (Auth()->user()->can('admin.list')) {
-            $users = User::where('role_id',1)->with('user_session')->where('id','!=',1)->latest()->get();
+            $users = User::where('role_id','!=',2)->with('user_session')->latest()->get();
             return view('admin.admin.index', compact('users'));
         }
     }
@@ -48,7 +48,6 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        // Validation Data
         $request->validate([
             'name' => 'required|max:50',
             'roles' => 'required',
@@ -60,7 +59,7 @@ class AdminController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->role_id = 1;
+        $user->role_id = $request->roles;
         $user->password = Hash::make($request->password);
         $user->save();
 
@@ -121,6 +120,7 @@ class AdminController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->status = $request->status;
+        $user->role_id = $request->roles;
         if ($request->password) {
             $user->password = Hash::make($request->password);
         }

@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 Route::post('locations/info','Amcoders\Plugin\Post\http\controllers\LocationController@info')->name('locations.info');
-Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=>['web','auth','admin'],'prefix'=>'admin','as'=>'admin.'],function(){	
-		
+Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=>['web','auth','admin'],'prefix'=>'admin','as'=>'admin.'],function(){
+
 
 		Route::resource('location', 'LocationController');
 
@@ -22,9 +22,14 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::get('locations/states', 'LocationController@States')->name('states.index');
 		Route::get('locations/states/create', 'LocationController@StatesCreate')->name('states.create');
 
+		Route::get('locations/district', 'LocationController@district')->name('district.index');
+		Route::get('locations/district/create', 'LocationController@districtCreate')->name('district.create');
+		Route::post('locations/district/destroy', 'LocationController@districtdestroy')->name('district.destroy');
 
 		Route::get('locations/cities', 'LocationController@Cities')->name('cities.index');
 		Route::get('locations/cities/create', 'LocationController@CitiesCreate')->name('cities.create');
+		Route::get('locations/cities/edit/{id}', 'LocationController@Citiesedit')->name('cities.edit');
+		Route::post('locations/cities/destroy', 'LocationController@Citiesdestroy')->name('cities.destroy');
 
 
 
@@ -33,10 +38,10 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 
 		Route::resource('feature', 'FeaturesController');
 
-
 		Route::resource('status', 'StatusController');
 		Route::post('statuses/destroy', 'StatusController@destroy')->name('statuses.destroy');
 		Route::resource('input', 'InputController');
+		Route::post('input/destroy', 'InputController@destroy')->name('input.destroy');
 
 
 		Route::resource('project', 'ProjectController');
@@ -55,6 +60,21 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::resource('property', 'PropertyController');
 		Route::post('properties/destroy', 'PropertyController@destroy')->name('properties.destroy');
 		Route::post('properties/user', 'PropertyController@findUser')->name('properties.findUser');
+		//land block
+		Route::get('land-block', 'PropertyController@land_block_index')->name('property.land-block');
+		Route::get('land-block-show/{id}', 'PropertyController@land_block_show')->name('property.land-block-show');
+		Route::get('land-block/create', 'PropertyController@land_block_create')->name('property.land-block-craete');
+		Route::post('block_store', 'PropertyController@block_store')->name('property.block_store');
+		Route::get('property_nature', 'PropertyController@property_nature')->name('property.property_nature');
+		//download csv
+		Route::get('download-csv', 'PropertyController@csv_page')->name('property.csv_page');
+		Route::get('download-csv-type/{id}', 'PropertyController@show_csv_specified')->name('property.csv_page_type');
+		Route::get('get_property_data/{id}', 'PropertyController@get_property_data');
+			//property type
+	    Route::get('property_type/{id}', 'PropertyController@property_type')->name('properties.type');
+		Route::post('/export-csv', 'PropertyController@exportCSV')->name('properties.csv_download');
+
+		Route::get('get_districts/{id}', 'PropertyController@get_districts');
 
 	});
 

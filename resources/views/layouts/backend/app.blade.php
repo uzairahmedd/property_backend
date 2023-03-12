@@ -8,19 +8,19 @@
   <title>{{ config('app.name') }} | {{ Request::segment(2) }}</title>
   <!-- Favicon icon -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link rel="icon" type="image/png" href="{{ asset('uploads/favicon.ico') }}"/>
+  <link rel="icon" type="image/png" href="{{ asset('assets/images/khiaratee_favicon.png') }}"/>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin/assets/css/fontawesome.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin/assets/css/selectric.css') }}">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   @yield('style')
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('admin/assets/css/components.css') }}">
 
 </head>
-
 <body>
 
  <div id="app">
@@ -46,7 +46,8 @@
 <script src="{{ asset('admin/assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('admin/assets/js/jquery.nicescroll.min.js') }}"></script>
 <script src="{{ asset('admin/js/sweetalert2.all.min.js') }}"></script>
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <!-- Template JS File -->
 <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
 <script src="{{ asset('admin/assets/js/custom.js') }}"></script>

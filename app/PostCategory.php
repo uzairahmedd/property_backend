@@ -14,6 +14,6 @@ class PostCategory extends Model
 
 	public function category()
 	{
-		return $this->hasOne('App\Category','id','category_id')->select('id','name','slug');
+		return $this->hasOne('App\Category','id','category_id')->select('id','name','ar_name','slug','features_section','furnishing_section','total_floor','property_floor');
 	}
 }

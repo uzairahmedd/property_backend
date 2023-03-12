@@ -1,96 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
  <sitemap>
-  <loc>http://jomidar.test</loc>
+  <loc>http://127.0.0.1:8000</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/contact</loc>
+  <loc>http://127.0.0.1:8000/contact</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/list</loc>
+  <loc>http://127.0.0.1:8000/list</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/map</loc>
+  <loc>http://127.0.0.1:8000/map</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/agency/list</loc>
+  <loc>http://127.0.0.1:8000/agency/list</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/agent/list</loc>
+  <loc>http://127.0.0.1:8000/agent/list</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/project</loc>
+  <loc>http://127.0.0.1:8000/project</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/blog</loc>
+  <loc>http://127.0.0.1:8000/blog</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/property/nulla-excepteur-atqu</loc>
+  <loc>http://127.0.0.1:8000/property/english-test-601</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/property/laudantium-sint-au</loc>
+  <loc>http://127.0.0.1:8000/property/das</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/property/quibusdam-sed-quos-a</loc>
+  <loc>http://127.0.0.1:8000/property/sad</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/property/dignissimos-ut-earum</loc>
+  <loc>http://127.0.0.1:8000/property/dsf</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/project/autumn-berry</loc>
+  <loc>http://127.0.0.1:8000/property/test12</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/blog/7-instagram-accounts-for-interior-design-enthusiasts</loc>
+  <loc>http://127.0.0.1:8000/property/english-441</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/blog/the-most-inspiring-interior-design-of-2021</loc>
+  <loc>http://127.0.0.1:8000/property/dnmasd</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/blog/macy-baker</loc>
+  <loc>http://127.0.0.1:8000/property/english-491</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/page/nicole-hinton</loc>
+  <loc>http://127.0.0.1:8000/property/dasd</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/state/dhaka</loc>
+  <loc>http://127.0.0.1:8000/property/hj</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/state/chattogram</loc>
+  <loc>http://127.0.0.1:8000/property/dsaf</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/state/rajshahi</loc>
+  <loc>http://127.0.0.1:8000/property/english-411</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/state/jessore</loc>
+  <loc>http://127.0.0.1:8000/property/english-551</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/state/khulna</loc>
+  <loc>http://127.0.0.1:8000/property/english-test</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/state/sylhet</loc>
+  <loc>http://127.0.0.1:8000/property/english-541</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/agency/amcodersrzBcY/show</loc>
+  <loc>http://127.0.0.1:8000/property/eng</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/agency/fast-box/show</loc>
+  <loc>http://127.0.0.1:8000/property/fds</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/agency/company-slogan/show</loc>
+  <loc>http://127.0.0.1:8000/property/sda</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/agent/admin/show</loc>
+  <loc>http://127.0.0.1:8000/property/farm</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/agent/dane-reese/show</loc>
+  <loc>http://127.0.0.1:8000/property/english-541</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/agent/blythe-dorsey/show</loc>
+  <loc>http://127.0.0.1:8000/property/english-541</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/agent/orlando-whitfield/show</loc>
+  <loc>http://127.0.0.1:8000/property/englisg</loc>
  </sitemap>
  <sitemap>
-  <loc>http://jomidar.test/agent/customer/show</loc>
+  <loc>http://127.0.0.1:8000/property/english</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/property/english-appartment</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/property/eglish</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/property/dsadafd</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/property/riyadh</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/property/appartment</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/property/testing</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/property/english-tilte</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/property/hello</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/blog/7-instagram-accounts-for-interior-design-enthusiasts</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/blog/the-most-inspiring-interior-design-of-2021</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/blog/macy-baker</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/state/riyadh</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/state/madina</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/state/hail</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/state/dammam</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/state/jeddah</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/state/taif</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/state/khamis-mushayt</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/state/al-jafr</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/agency/amcodersrzBcY/show</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/agency/fast-box/show</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/agency/company-slogan/show</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/agent/admin/show</loc>
+ </sitemap>
+ <sitemap>
+  <loc>http://127.0.0.1:8000/agent/User31/show</loc>
  </sitemap>
 </sitemapindex>

@@ -150,43 +150,7 @@
                   $rand=rand(100,300);
                   @endphp
                   <table class="table facilities_area">
-                    @if(count($info->facilities) == 0)
-                    <tr id="table_row{{ $rand }}">
-                      <td>
-                        <select name="facilities[]" class="form-control">
-                          <option value="">{{ __('Select facility') }}</option>
-                          @foreach($facilities as $row)
-                          <option value="{{ $row->id }}" @if(in_array($row->id, $array)) selected="" @endif>{{ $row->name }}</option>
-                          @endforeach
-                        </select>
-                      </td>
-                      <td>
-                        <input type="number" name="facilities_input[]" placeholder="Distance (Km)" class="form-control col-12" step="any">
-                      </td>
-                      <td>
-                        <button type="button" onclick="remove_row({{ $rand }})" class="btn btn-danger mt-1 float-left delete_btn"><i class="fa fa-trash"></i></button>
-                      </td>
-                    </tr>
-                    @else
-                    @foreach($info->facilities as $facility)
-                     <tr id="table_row{{ $rand.$facility->id }}">
-                      <td>
-                        <select name="facilities[]" class="form-control">
-                          <option value="">{{ __('Select facility') }}</option>
-                          @foreach($facilities as $rows)
-                          <option value="{{ $rows->id }}" @if($facility->category_id == $rows->id) selected="" @endif>{{ $rows->name }}</option>
-                          @endforeach
-                        </select>
-                      </td>
-                      <td>
-                        <input value="{{ $facility->value }}" type="number" step="any" name="facilities_input[]" placeholder="Distance (Km)" class="form-control col-12" >
-                      </td>
-                      <td>
-                        <button type="button" onclick="remove_row({{ $rand.$facility->id }})" class="btn btn-danger mt-1 float-left delete_btn"><i class="fa fa-trash"></i></button>
-                      </td>
-                    </tr>
-                    @endforeach
-                    @endif
+                
                   </table>
                 </div>
               </div>
@@ -281,16 +245,7 @@
   @csrf
   <input type="hidden" name="id" id="id2" >
 </form>
-<div class="none">
-    <div class="f_row">
-    <select name="facilities[]" class="form-control">
-      <option value="">{{ __('Select facility') }}</option>
-      @foreach($facilities as $row)
-      <option value="{{ $row->id }}">{{ $row->name }}</option>
-      @endforeach
-    </select>
-    </div>
-</div>
+
 <form method="post" action="{{ route('admin.medias.destroy') }}" id="basicform">
     @csrf
     <input type="hidden" id="media_id" name="id[]">
@@ -300,12 +255,16 @@
 @endsection
 
 @section('script')
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&libraries=places&callback=initialize"></script>
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&libraries=places&callback=initialize"></script> -->
 <script src="{{ asset('admin/js/form.js') }}"></script>
 <script src="{{ asset('admin/js/ckeditor/ckeditor.js') }}"></script>
 <script>
   "use strict";
 
+   //success response will assign here
+   function success(res) {
+        location.reload()
+    }
   (function ($) {
 
     // CKEDITOR.replace( 'content' );

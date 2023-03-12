@@ -1,0 +1,75 @@
+.side-bar {
+    width: 277px;
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding-top: 75px;
+    height: 100vh;
+    background: var(--theme-white);
+}
+
+.side-bar .sideBar-links a {
+    margin-bottom: 12px;
+    padding-right: 1.5rem;
+}
+.location_property{
+    direction: ltr;
+}
+.side-bar .sideBar-links i {
+    margin-left: 1.5rem;
+    font-size: 18px;
+}
+.main-content{
+    padding-top: 67px;
+}
+
+.main-content .personal-card {
+    padding: 36px 46px;
+}
+.stat-card{
+    padding: 30px 37px;
+    height: 100%;
+}
+.account-setting .form-control{
+    height: 48px;
+    text-align: end;
+}
+.account-setting .accout-id {
+    margin-right: 84px;
+}
+.account-setting .btn {
+    height: 61px;
+    width: 310px;
+    max-width: 100%;
+}
+.account-setting .acct-btn:hover{
+    background: var(--theme-blue);
+}
+
+@media screen and (max-width:1200px) {
+    .main-content .personal-card {
+        padding: 30px 12px;
+    }
+}
+
+@media screen and (max-width:991px) {
+    .side-bar{
+        position: fixed;
+        height: unset;
+        bottom: 0;
+        width: 100%;
+        padding-top: 1rem;
+        z-index: 11;
+    }
+    .side-bar .sideBar-links a {
+        width: 50px;
+        height: 50px;
+        padding: 12px;
+        border-radius: 8px;
+    }
+    .side-bar .sideBar-links span {
+        display: none;
+    }
+    .side-bar .sideBar-links img{
+        margin: 0;
+    }
+}

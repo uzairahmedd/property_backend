@@ -14,14 +14,18 @@
           @csrf
           @method('PUT')
           <div class="form-group">
-            <label for="text">{{ __('Name') }}</label>
+            <label for="text">{{__('labels.name')}}</label>
             <div class="input-group">
-              <input type="text" class="form-control item-menu" name="name" id="text" placeholder="Enter Name" autocomplete="off" required="" value="{{ $info->name }}">
-              <div class="input-group-append">
+              <input type="text" class="form-control item-menu" name="name" id="text" placeholder="{{__('labels.name')}}" autocomplete="off" required="" value="{{ $info->name }}">
+              <!-- <div class="input-group-append">
                  <button class="btn btn-outline-primary" id="target" data-icon="{{ $info->icon->content ?? '' }}" role="iconpicker"></button>
-              </div>
+              </div> -->
             </div>
-            <input type="hidden" name="icon" id="icon" class="item-menu" value="{{ $info->icon->content ?? '' }}">
+            <!-- <input type="hidden" name="icon" id="icon" class="item-menu" value="{{ $info->icon->content ?? '' }}"> -->
+            <label for="text">{{__('labels.arabic_name')}}</label>
+            <div class="input-group">
+              <input type="text" class="form-control item-menu" name="ar_name" id="ar_text" placeholder="{{__('labels.arabic_name')}}" autocomplete="off" required="" value="{{ $info->ar_name }}">
+            </div>
           </div>
         </div>
       </div>
@@ -30,10 +34,10 @@
       <div class="single-area">
         <div class="card">
           <div class="card-body">
-            <h5>{{ __('Publish') }}</h5>
+          <h5>{{__('labels.publish')}}</h5>
             <hr>
             <div class="btn-publish">
-              <button type="submit" class="btn btn-primary col-12"><i class="fa fa-save"></i> {{ __('Save') }}</button>
+              <button type="submit" class="btn btn-primary col-12"><i class="fa fa-save"></i> {{__('labels.save')}}</button>
             </div>
           </div>
         </div>
@@ -41,11 +45,11 @@
        <div class="single-area">
         <div class="card">
           <div class="card-body">
-            <h5>{{ __('Is Featured') }}</h5>
+          <h5>{{__('labels.is_featured')}}</h5>
             <hr>
             <select name="featured" class="form-control">
-              <option value="1" @if($info->featured==1) selected="" @endif>{{ __('Yes') }}</option>
-              <option value="0" @if($info->featured==0) selected="" @endif>{{ __('No') }}</option>
+              <option value="1" @if($info->featured==1) selected="" @endif>{{__('labels.yes')}}</option>
+              <option value="0" @if($info->featured==0) selected="" @endif>{{__('labels.no')}}</option>
             </select>
           </div>
         </div>
@@ -62,6 +66,10 @@
 <script src="{{ asset('admin/js/form.js') }}"></script>
 <script>
     "use strict";
+     //success response will assign here
+     function success(res) {
+            location.reload()
+        }
     (function ($) {
       $('#target').on('change', function(e) {
 

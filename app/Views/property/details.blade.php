@@ -7,8 +7,8 @@
 @endpush
 
 @section('content')
- <!-- hero area start -->
- <section id="property_details_breadcrumb">
+<!-- hero area start -->
+<section id="property_details_breadcrumb">
     <div class="hero-area hero-demo-2 breadcrumb" style="background-image: url('{{ breadcrumb() }}');" id="bg_breadcrumb_img">
         <div class="container">
             <div class="row">
@@ -60,16 +60,16 @@
                                     @if (Auth::check())
                                     <input type="hidden" value="{{ route('property.favourite') }}" id="favourite_property_url">
                                     @php
-                                        $data = DB::table('terms_user')->where([
-                                            ['terms_id',$property->id],
-                                            ['user_id',Auth::User()->id]
-                                        ])->first(); Auth::User()->favourite_properties()->first();
-                                        if($data)
-                                        {
-                                            $property_id = $data->terms_id;
-                                        }else{
-                                            $property_id = null;
-                                        }
+                                    $data = DB::table('terms_user')->where([
+                                    ['terms_id',$property->id],
+                                    ['user_id',Auth::User()->id]
+                                    ])->first(); Auth::User()->favourite_properties()->first();
+                                    if($data)
+                                    {
+                                    $property_id = $data->terms_id;
+                                    }else{
+                                    $property_id = null;
+                                    }
                                     @endphp
                                     <a href="javascript:void(0)" onclick="favourite_property('{{ $property->id }}')" id="favourite_btn" class="{{ $property_id == $property->id ? 'active' : '' }}">
                                         <span class="iconify" data-icon="cil:heart" data-inline="false"></span>
@@ -176,22 +176,22 @@
                                                 <div class="accordion" id="accordionExample">
                                                     @foreach ($property->floor_plans as $key=>$floor)
                                                     @php
-                                                        $data = json_decode($floor->content);
+                                                    $data = json_decode($floor->content);
                                                     @endphp
                                                     <div class="card">
                                                         <div class="card-header" id="headingOne">
-                                                        <h2 class="mb-0">
-                                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}">
-                                                            {{ $data->name }} <span>{{ $data->square_ft }} {{ __('sq ft') }}</span>
-                                                            </button>
-                                                        </h2>
+                                                            <h2 class="mb-0">
+                                                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}">
+                                                                    {{ $data->name }} <span>{{ $data->square_ft }} {{ __('sq ft') }}</span>
+                                                                </button>
+                                                            </h2>
                                                         </div>
                                                         <div id="collapse{{ $key }}" class="collapse {{ $key == 0 ? 'show' : '' }}" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                                        <div class="card-body">
-                                                            <div class="floor-img">
-                                                                <img class="img-fluid" src="{{ asset($data->file_name) }}" alt="">
+                                                            <div class="card-body">
+                                                                <div class="floor-img">
+                                                                    <img class="img-fluid" src="{{ asset($data->file_name) }}" alt="">
+                                                                </div>
                                                             </div>
-                                                        </div>
                                                         </div>
                                                     </div>
                                                     @endforeach
@@ -268,7 +268,9 @@
                                         var ws_format = 'tall';
                                         var ws_width = '100%';
                                         var ws_height = '800';
-                                        </script><div id='ws-walkscore-tile'></div><script type='text/javascript' src='{{ url('//www.walkscore.com/tile/show-walkscore-tile.php') }}'></script>
+                                    </script>
+                                    <div id='ws-walkscore-tile'></div>
+                                    <script type='text/javascript' src='{{ url('//www.walkscore.com/tile/show-walkscore-tile.php') }}'></script>
                                 </div>
                             </div>
                             @endisset
@@ -277,7 +279,7 @@
                                     <h5>{{ __('Page Views') }}</h5>
                                 </div>
                                 <div class="property-card-body">
-                                   <canvas id="myChart2" style="height:400px;width:100%"></canvas>
+                                    <canvas id="myChart2" style="height:400px;width:100%"></canvas>
                                 </div>
                             </div>
 
@@ -352,7 +354,7 @@
                                 <h4>{{ __('Contact an Agent') }}</h4>
                             </div>
                             @php
-                                $info = json_decode($property->user->usermeta->content);
+                            $info = isset($property->user->usermeta->content) ? json_decode($property->user->usermeta->content) : null ;
                             @endphp
                             <div class="agency-content-main-area">
                                 <img src="{{ $property->user->avatar }}" alt="agency">
@@ -361,7 +363,7 @@
                                         <h5><a href="{{ route('agent.show',$property->user->slug) }}">{{ $property->user->name }}</a></h5>
                                     </div>
                                     <div class="agency-number">
-                                        <span>{{ $info->phone }}</span>
+                                        <span> {{ isset($info->phone) ? $info->phone : ''  }}</span>
                                     </div>
                                     <div class="agency-email">
                                         <span>{{ $property->user->email }}</span>
@@ -370,7 +372,7 @@
                             </div>
                             @isset($property->contact_type->content)
                             @php
-                                $property_type = json_decode($property->contact_type->content);
+                            $property_type = json_decode($property->contact_type->content);
                             @endphp
                             @if ($property_type->contact_type == 'mail')
                             @include('view::property.section.inquiryform',['info'=>$property_type])

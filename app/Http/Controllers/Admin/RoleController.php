@@ -19,8 +19,10 @@ class RoleController extends Controller
     public function index()
     {
         if (Auth()->user()->can('role.list')) {
-            $roles = Role::where('id','!=',1)->get();
+            $roles = Role::get();
             return view('admin.role.index', compact('roles'));
+        }else{
+            abort(401);
         }
     }
 
@@ -36,6 +38,19 @@ class RoleController extends Controller
             $permission_groups = User::getPermissionGroup();
             return view('admin.role.create', compact('permisions', 'permission_groups'));
         }
+        else{
+            abort(401);
+        }
+    }
+
+    public function permission_store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|unique:permissions|max:100',
+            'group_name' => 'required|max:100',
+        ]);
+        $role = Permission::create(['name' => $request->name, 'group_name' => $request->group_name]);
+        return response()->json(['Permision created successfully']);
     }
 
     /**
@@ -52,10 +67,10 @@ class RoleController extends Controller
         $role = Role::create(['name' => $request->name]);
         $permissions = $request->input('permissions');
 
-        if (!empty($permissions)) {
+        // if (!empty($permissions)) {
 
             $role->syncPermissions($permissions);
-        }
+        // }
 
         return response()->json(['Role created successfully']);
     }
@@ -85,6 +100,9 @@ class RoleController extends Controller
             $permission_groups = User::getpermissionGroups();
             return view('admin.role.edit', compact('role', 'all_permissions', 'permission_groups'));
         }
+        else{
+            abort(401);
+        }
     }
 
     /**
@@ -104,13 +122,14 @@ class RoleController extends Controller
         ]);
 
         $role = Role::findById($id);
+        Role::where('id',$id)->update(['name' => $request->name]);
         $permissions = $request->input('permissions');
 
-        if (!empty($permissions)) {
+        // if (!empty($permissions)) {
             $role->syncPermissions($permissions);
-        }
+        // }
 
-        return response()->json(['Role has been updated !!']);
+        return response()->json(['Role has been updated !']);
     }
 
     /**
@@ -129,7 +148,10 @@ class RoleController extends Controller
                     }
                 }
             }
-            return response()->json('Role Removed');
+            return response()->json('Role deleted successfully!');
+        }
+        else{
+            abort(401);
         }
     }
 }

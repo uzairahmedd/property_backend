@@ -11,7 +11,7 @@
     								<div class="row mb-8">
     									<div class="col-lg-6">
     										<div class="d-flex">
-                                                <h4 class="mr-3">{{ __('Media List') }} </h4>
+                                                <h4 class="mr-3">{{ __('labels.media_list') }} </h4>
                                                 <p class="errors"></p>
                                             </div>
                                         </div>
@@ -36,14 +36,14 @@
     								</div>
                                      <input type="hidden" class="murl" value="{{ route('admin.medias.json') }}">
                                      <input type="hidden" class="multi_last">
-                                    <p class="text-center"><button type="button"  class="btn btn-primary view-more-button view-more-media1">{{ __('View more') }}</button></p>
+                                    <p class="text-center"><button type="button"  class="btn btn-primary view-more-button view-more-media1">{{ __('labels.view_more') }}</button></p>
     								</div>
     							</div>
     							<div class="col-lg-3">
                                     <div class="preview-show-rightbar preview-show1">
                                         <div class="preview-eye text-center">
                                             <i class="fas fa-eye"></i>
-                                            <p>{{ __('No Preview Found') }}</p>
+                                            <p>{{ __('labels.no_preview_found') }}</p>
                                         </div>
                                     </div>
     								<div class="model-rightbar media-info-bar1 none">
@@ -68,7 +68,7 @@
     					</div>
     				</div>
     				<div class="modal-footer">
-    					<button type="button" class="btn btn-danger" data-dismiss="modal">{{ __('Close') }}</button>
+    					<button type="button" class="btn btn-danger" data-dismiss="modal">{{ __('labels.close') }}</button>
     				<button type="button" class="btn btn-primary none use1" data-dismiss="modal">{{ __('Use') }}</button>
     			</div>
     		</div>

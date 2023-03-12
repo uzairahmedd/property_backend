@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Amcoders\Plugin\Post\http\controllers;
 
@@ -57,16 +57,17 @@ class FeaturesController extends Controller
       return view('plugin::features.create');
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function old_store(Request $request)
     {
       $validatedData = $request->validate([
-        'name' => 'required|unique:categories|max:100',           
+        'name' => 'required|unique:categories|max:100',
       ]);
 
       $slug=Str::slug($request->name);
@@ -88,6 +89,34 @@ class FeaturesController extends Controller
 
     }
 
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+      $validatedData = $request->validate([
+        'name' => 'required|unique:categories|max:100',
+        'ar_name' => 'required|max:100',
+      ]);
+
+      $slug=Str::slug($request->name);
+
+      $category=new Category;
+      $category->name=$request->name;
+      $category->ar_name=$request->ar_name;
+      $category->slug=$slug;
+      $category->featured=$request->featured;
+      $category->type=$request->type;
+      $category->user_id=Auth::id();
+      $category->save();
+      return response()->json($request->type.' created');
+
+    }
+
     /**
      * Display the specified resource.
      *
@@ -99,13 +128,30 @@ class FeaturesController extends Controller
         //
     }
 
-    /**
+
+     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+    {
+      $info=Category::find($id);
+      if (!Auth()->user()->can('feature.edit')) {
+        abort(401);
+      }
+      return view('plugin::features.edit',compact('info'));
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function old_edit($id)
     {
       $info=Category::with('icon')->find($id);
       if ($info->type=='facilities') {
@@ -121,17 +167,18 @@ class FeaturesController extends Controller
 
     }
 
-    /**
+
+     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function old_update(Request $request, $id)
     {
       $validatedData = $request->validate([
-        'name' => 'required|max:100',         
+        'name' => 'required|max:100',
       ]);
 
       $category=Category::find($id);
@@ -148,13 +195,38 @@ class FeaturesController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+      $validatedData = $request->validate([
+        'name' => 'required|max:100',
+        'ar_name' => 'required|max:100',
+      ]);
+
+      $category=Category::find($id);
+      $category->name=$request->name;
+      $category->ar_name=$request->ar_name;
+       $category->featured=$request->featured;
+      $category->save();
+      return response()->json($category->type.' Updated');
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
-    {   
+    {
+      if (!Auth()->user()->can('feature.delete')) {
+        abort(401);
+      }
       if ($request->method=='delete') {
        if ($request->ids) {
         foreach ($request->ids as $id) {
@@ -164,6 +236,6 @@ class FeaturesController extends Controller
     }
 
 
-    return response()->json('Post Removed');
+    return response()->json('Feature deleted successfully!');
   }
 }

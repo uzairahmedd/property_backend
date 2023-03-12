@@ -15,14 +15,18 @@ class CreateTermsTable extends Migration
     {
         Schema::create('terms', function (Blueprint $table) {
             $table->id();
+            $table->string('unique_id')->nullable();
             $table->string('title');
+            $table->string('ar_title')->nullable();
             $table->string('slug');
            // $table->string('lang')->default('en');
             $table->unsignedBigInteger('user_id');
             $table->integer('status');
             $table->string('type')->default(0);
+            $table->integer('is_land_block')->default(0);
             $table->double('count')->default(0);
             $table->integer('featured')->default(0);
+            $table->integer('resource')->default(0);
             $table->timestamps();
             $table->foreign('user_id')
             ->references('id')->on('users')

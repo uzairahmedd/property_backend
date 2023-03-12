@@ -19,19 +19,19 @@
             <div class="col-md-6">
                 <form method="post" id="basicform" enctype="multipart/form-data" action="{{ route('admin.users.genupdate') }}">
                     @csrf
-                    <h4 class="mb-20">{{ __('Edit Genaral Settings') }}</h4>
+                    <h4 class="mb-20">{{ __('labels.edit_genaral_settings') }}</h4>
                     <div class="custom-form">
                         <div class="form-group">
-                            <label for="name">{{ __('Name') }}</label>
-                            <input type="text" name="name" id="name" class="form-control" required placeholder="Enter User's  Name" value="{{ $info->name }}">
+                            <label for="name">{{ __('labels.name') }}</label>
+                            <input type="text" name="name" id="name" class="form-control" required placeholder="{{ __('labels.enter_name') }}" value="{{ $info->name }}">
                         </div>
                         <div class="form-group">
-                            <label for="email">{{ __('Email') }}</label>
-                            <input type="text" name="email" id="email" class="form-control" required placeholder="Enter Email"  value="{{ $info->email }}">
+                            <label for="email">{{ __('labels.email') }}</label>
+                            <input type="text" name="email" id="email" class="form-control" required placeholder="{{ __('labels.enter_email') }}"  value="{{ $info->email }}">
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-info">{{ __('Update') }}</button>
+                            <button type="submit" class="btn btn-info">{{ __('labels.update') }}</button>
                         </div>
                     </div>
                 </form>
@@ -39,22 +39,22 @@
             <div class="col-md-6">
                 <form method="post" id="basicform1" action="{{ route('admin.users.passup') }}">
                     @csrf
-                    <h4 class="mb-20">{{ __('Change Password') }}</h4>
+                    <h4 class="mb-20">{{ __('labels.change_password') }}</h4>
                     <div class="custom-form">
                         <div class="form-group">
-                            <label for="oldpassword">{{ __('Old Password') }}</label>
-                            <input type="password" name="current" id="oldpassword" class="form-control"  placeholder="Enter Old Password" required>
+                            <label for="oldpassword">{{ __('labels.old_password') }}</label>
+                            <input type="password" name="current" id="oldpassword" class="form-control"  placeholder="{{ __('labels.enter_old_password') }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="password">{{ __('New Password') }}</label>
-                            <input type="password" name="password" id="password" class="form-control"  placeholder="Enter New Password" required>
+                            <label for="password">{{ __('labels.new_password') }}</label>
+                            <input type="password" name="password" id="password" class="form-control"  placeholder="{{ __('labels.enter_new_password') }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="password1">{{ __('Enter Again Password') }}</label>
-                            <input type="password" name="password_confirmation" id="password1" class="form-control"  placeholder="Enter Again" required>
+                            <label for="password1">{{ __('labels.confirm_password') }}</label>
+                            <input type="password" name="password_confirmation" id="password1" class="form-control"  placeholder="{{ __('labels.confirm_password') }}" required>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">{{ __('Change') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('labels.change') }}</button>
                         </div>
                     </div>
                 </form>

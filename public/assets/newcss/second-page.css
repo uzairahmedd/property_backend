@@ -1,0 +1,1829 @@
+
+/*new search box css*/
+
+.search-input-bar
+{
+    border: 0;
+    padding: 0;
+}
+
+.hierarchy-select > button
+{
+    border: 0;
+    text-align: right;
+    height: 50px;
+}
+
+.hierarchy-select .dropdown-menu {
+    top: -62px !important;
+    width: 100%;
+    padding: 0;
+    margin-left: 10px;
+    border: 0;
+    overflow: unset !important;
+}
+
+.hs-menu-inner::-webkit-scrollbar {
+    width: 4px;               /* width of the entire scrollbar */
+}
+
+.hs-menu-inner::-webkit-scrollbar {
+    float: left !important;              /* width of the entire scrollbar */
+}
+
+.hs-menu-inner::-webkit-scrollbar-track {
+    background: var(--theme-white);        /* color of the tracking area */
+}
+
+.hs-menu-inner::-webkit-scrollbar-thumb {
+    background-color: var(--theme-blue);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid var(--theme-blue);  /* creates padding around scroll thumb */
+}
+
+.hs-menu-inner a.dropdown-item.active {
+    background-color: unset;
+}
+
+.property_list_zindex {
+    z-index: -1;
+}
+/*.search-right-arrow*/
+/*{*/
+/*    position: absolute;*/
+/*    margin-left: auto;*/
+/*    right: 0;*/
+/*    top: 26px;*/
+/*    margin-right: 10px;*/
+/*}*/
+
+.z-index
+{
+    z-index: unset;
+}
+
+.hs-searchbox input
+{
+    text-align: right;
+    padding-right: 30px;
+    border-left: unset;
+    border-radius: 0;
+    height: 60px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top: unset;
+}
+
+.hierarchy-select .dropdown-toggle::after
+{
+    display: none;
+}
+
+.hierarchy-select .dropdown-menu::before {
+    background-color: #ffffff;
+    display: none;
+    content: "";
+    height: 20px;
+    left: unset;
+    margin: 0 30px;
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    top: -8px;
+    width: 13px;
+    opacity: 0.95;
+    border-radius: 2px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* Filter Bar CSS Start */
+.filter-bar {
+    background: #FFFFFF;
+    /*opacity: 0.95;*/
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    height: 114px;
+}
+
+.filter-bar .search-box {
+    background: #FFFFFF;
+    opacity: 0.95;
+    box-shadow: -2px 2px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.search-bar input[type='search'] {
+    text-align: right;
+}
+
+.search-bar input[type='search']:focus-visible {
+    outline: none;
+}
+
+.search-bar input[type="search"]::-webkit-search-decoration,
+.search-bar input[type="search"]::-webkit-search-cancel-button,
+.search-bar input[type="search"]::-webkit-search-results-button,
+.search-bar input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+
+.filter-bar .select-filter {
+    gap: 8px;
+    padding: 12px;
+}
+
+.filter-bar .map-icon {
+    background: #FFFFFF;
+    box-shadow: 1px 1px 18px rgba(41, 32, 113, 0.15);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.filter-bar .row {
+    padding-top: 20px;
+}
+
+.all-property-list {
+    padding: 42px 0 19px 0;
+}
+
+.all-property-list .sort-by {
+    background: #FFFFFF;
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.all-property-list .sort-text {
+    padding-left: 8px;
+}
+
+.all-property-list .all-ads {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+/* .all-ads p
+{
+    padding-left: 20px;
+} */
+
+.all-ads .vertical-line {
+    border-right: 1.5px solid var(--theme-seondary-black);
+    height: 16px;
+    margin-top: 5px;
+}
+
+/* Property Lists CSS Start */
+
+.all-listing {
+    text-align: end;
+}
+
+.all-listing .property-lists {
+    margin: 10px 0;
+    z-index: -1 !important;
+}
+
+.profile .favorite-container
+{
+    padding: 0px 20px 0px 85px;
+}
+
+.documented span {
+    font-family: Tajawal;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.carousel-inner img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    height: 213px;
+    width: 100%;
+}
+
+.list-container {
+    padding: 8px;
+}
+
+.property-lists .row .col-lg-3 {
+    padding: 0px 0px;
+}
+
+.amenities
+{
+    border-bottom: 1px solid #e5e5e6;
+}
+
+.property-lists .content {
+    padding: 16px;
+    margin-bottom: 85px;
+}
+
+.property-lists .sale {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.property-lists .documented {
+    width: 85px;
+    color: white;
+    padding-right: 8px;
+    height: 33px;
+    background: linear-gradient(270deg, #292071 0%, rgba(41, 32, 113, 0) 93.23%);
+    border-radius: 30px 0px 0px 30px;
+}
+
+.property-lists .fav-elipse {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--theme-white);
+    opacity: 0.75;
+    padding-top: 7px;
+    padding-left: 8px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: -8px;
+}
+
+.property-lists .price {
+    background: var(--theme-secondary);
+    box-shadow: 8px -8px 8px rgba(41, 32, 113, 0.15);
+    border-radius: 0px 50px 0px 8px;
+    height: 41px;
+    width: 178px;
+    max-width: 100%;
+}
+
+.property-lists .price span {
+    font-size: 14px;
+}
+
+.property-lists .features {
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+}
+
+.propertylist-locate-icon
+{
+    direction: ltr;
+}
+
+.property-lists h3 {
+    font-family: TajawalBold;
+    font-size: 14px;
+    letter-spacing: -0.3px;
+    direction: rtl;
+    text-align: right;
+}
+
+.property-lists p {
+    font-size: 11px;
+    font-family: Tajawal;
+    color: rgba(15, 15, 15, 0.75);
+}
+
+.amenities p {
+    padding-right: 6px;
+    font-family: Tajawal;
+}
+
+.price-section .call {
+    width: 52px;
+    height: 48px;
+    background: #292071;
+    border-radius: 8px;
+    margin-right: 0 !important;
+    margin-left: 10px;
+}
+
+.price-section .dash-call {
+    width: 52px;
+    height: 48px;
+    background: #292071;
+    border-radius: 8px;
+    margin-right: 0px !important;
+    margin-left: 10px;
+}
+
+.price-section .whatsapp {
+    width: 53px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #4AC958;
+    border-radius: 8px;
+}
+
+.price-section .dash-whatsapp {
+    width: 53px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #4AC958;
+    border-radius: 8px;
+}
+
+.price-section .del {
+    width: 53px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid red;
+    border-radius: 8px;
+}
+
+
+
+.price-section .calender {
+    width: 53px;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #C9009D;
+    border-radius: 8px;
+}
+
+.price-section .all-price h3 {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: -0.3px;
+}
+
+.property-sl-banner {
+    margin-bottom: 120px;
+}
+
+.last-property-list {
+    margin-bottom: 120px;
+}
+
+
+.carousel-indicators [data-bs-target] {
+    border-radius: 50%;
+    width: 11px;
+    height: 11px;
+    opacity: 1;
+    border: 0px;
+}
+
+.carousel-indicators .active {
+    background: #292071;
+}
+
+/*Third page CSS Start Here*/
+
+.offer-section .add-offer-btn {
+    background: #292071;
+    border-radius: 8px;
+    width: 125px;
+    height: 42px;
+}
+
+.offer-section .offer-btn p {
+    font-size: 14px !important;
+}
+
+.offer-section .all-price h2 {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    font-family: TajawalBold;
+}
+
+/*Filter Dropdown Css Start */
+
+.dropdown-select.wide {
+    width: 100%;
+    width: 121px;
+    max-width: 100%;
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    height: 43px;
+    padding: 10px 16px 12px 8px;
+}
+
+.dropdown-select.wide .list {
+    margin-top: 20px;
+}
+
+.dropdown .rent-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 100px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
+.dropdown .budget-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 100px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
+.dropdown .type-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 100px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
+.dropdown .room-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 100px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
+.complete-rent-drop img {
+    position: absolute;
+    top: 19px;
+    left: 25px;
+    width: 10px;
+    max-width: 100%;
+}
+
+.property-type-drop img {
+    position: absolute;
+    top: 19px;
+    left: 25px;
+    width: 10px;
+    max-width: 100%;
+}
+
+.room-type-drop img {
+    position: absolute;
+    top: 19px;
+    left: 25px;
+    width: 10px;
+    max-width: 100%;
+}
+
+.budget-drop img {
+    position: absolute;
+    top: 19px;
+    left: 8px;
+    width: 10px;
+    max-width: 100%;
+}
+
+.list-rent-toggle-icon img {
+    position: absolute;
+    display: flex;
+    margin-left: 15px;
+}
+
+.dropdown .list-rent-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 100px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
+.budget-dropdown h3 {
+    text-align: right;
+    color: var(--theme-black);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 19px;
+    font-family: Tajawal;
+    padding-bottom: 38px;
+}
+
+.type-drop img {
+    position: absolute;
+    top: 19px;
+    left: 25px;
+    width: 10px;
+    max-width: 100%;
+}
+
+.rent-dropdown {
+    margin-top: 20px !important;
+}
+
+.s-rent-toggle-icon img {
+    position: absolute;
+    display: flex;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.room-toggle-icon img {
+    position: absolute;
+    display: flex;
+    margin-left: 15px;
+}
+
+
+element.style {
+    position: absolute;
+    inset: auto auto 0px 0px;
+    margin: 0px;
+    transform: translate3d(0px, -44.6667px, 0px);
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.rent-dropdown {
+    margin-top: 20px !important;
+}
+
+.type-dropdown {
+    width: 470px;
+    background: #FFFFFF;
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    margin-left: -390px !important;
+    padding: 30px 25px 10px 25px;
+    margin-top: 35px !important;
+}
+
+.budget-dropdown {
+    width: 380px;
+    background: #FFFFFF;
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    padding: 30px 25px 10px 25px;
+    margin-top: 35px !important;
+}
+
+.room-dropdown {
+    width: 470px;
+    background: #FFFFFF;
+    box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    padding: 30px 10px 10px;
+    margin-top: 35px !important;
+}
+
+
+.active-bg-color {
+    background: #f9f5fe;
+    border-color: #6f10a2;
+}
+
+.remove-bg-color {
+    background: transparent;
+    border-color: none;
+}
+
+.rent-dropdown
+{
+    margin-left: -263px;
+}
+
+.type-box {
+    padding: 10px 20px;
+    border: 0.5px solid #292071;
+    border-radius: 8px;
+    letter-spacing: -0.3px;
+    color: #292071;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.type-dropdown .type-dropdown-content {
+    max-height: 250px;
+    overflow-y: auto;
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-content: end;
+}
+
+.budget-dropdown .budget-dropdown-content {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-content: end;
+}
+
+.room-dropdown .room-dropdown-content {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-content: end;
+}
+
+.budget-drop-btn .type-dropdown .type-dropdown-content {
+    justify-content: space-between;
+}
+
+.budget-drop-btn .budget-dropdown .budget-dropdown-content {
+    justify-content: space-between;
+}
+
+
+
+.budget-drop-btn .dropdown .budget-btn {
+    width: 97px;
+    height: 43px;
+}
+
+.budget-drop-btn .dropdown .type-btn {
+    width: 97px;
+    height: 43px;
+}
+
+.type-dropdown .type-dropdown-content .room-no-drop {
+    padding: 0px 0px 10px 10px;
+}
+
+.type-dropdown::before {
+    background-color: #ffffff;
+    content: "";
+    height: 20px;
+    left: 1;
+    margin: 0 15px;
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    top: -8px;
+    width: 13px;
+    opacity: 0.95;
+    border-radius: 2px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.type-dropdown .show-results-bttn {
+    background-color: var(--theme-blue);
+    color: var(--theme-white);
+    border: 0.5px solid #292071;
+    border-radius: 8px;
+}
+
+
+.budget-dropdown .budget-dropdown-content .room-no-drop {
+    padding: 0px 0px 10px 10px;
+}
+
+.budget-dropdown::before {
+    background-color: #ffffff;
+    content: "";
+    height: 20px;
+    left: 0;
+    margin: 0 15px;
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    top: -8px;
+    width: 13px;
+    opacity: 0.95;
+    border-radius: 2px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.budget-dropdown .show-results-bttn {
+    background-color: var(--theme-blue);
+    color: var(--theme-white);
+    border: 0.5px solid #292071;
+    border-radius: 8px;
+}
+
+.room-dropdown .room-dropdown-content .room-no-drop {
+    padding: 0px 0px 10px 10px;
+}
+
+.room-dropdown::before {
+    background-color: #ffffff;
+    content: "";
+    height: 20px;
+    left: 0;
+    margin: 0 15px;
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    top: -8px;
+    width: 13px;
+    opacity: 0.95;
+    border-radius: 2px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.room-dropdown .show-results-bttn {
+    background-color: var(--theme-blue);
+    color: var(--theme-white);
+    border: 0.5px solid #292071;
+    border-radius: 8px;
+}
+
+.no-rooms-drop-btn .dropdown .budget-btn {
+    padding: 9px 77px 12px 33px;
+}
+
+.no-rooms-drop-btn .dropdown .budget-btn {
+    padding: 9px 77px 12px 33px;
+}
+
+.type-drop-btn .dropdown .type-btn {
+    padding: 9px 77px 12px 33px;
+}
+
+.no-rooms-drop-btn .dropdown .room-btn {
+    padding: 9px 77px 12px 33px;
+}
+
+.type-select-dropdown {
+    appearance: none;
+    display: none;
+}
+
+.type-rent-dropdowns type-dropdown-content .room-no-drop input[type="radio"]:checked + .type-box {
+    background: var(--theme-sky);
+    border: 1px solid var(--theme-sky);
+    color: #fff;
+}
+
+.all-listing .property-lists
+{
+    direction: rtl;
+}
+
+.rtl .ss_ulsearch {
+    margin-right: -70px !important;
+}
+
+.rtl .hierarchy-select .dropdown-menu
+{
+    margin-left: -8px;
+}
+
+.rtl .type-dropdown
+{
+    margin-left: 0px !important;
+}
+
+.rtl .type-dropdown::before
+{
+    left: 0 !important;
+    right: unset;
+}
+
+.rtl .list-rent-dropdown
+{
+    margin-left: 0px !important;
+}
+
+.rtl .list-rent-dropdown::before
+{
+    left: 0;
+    right: unset;
+}
+
+.room-dropdown h3 {
+    text-align: right;
+    color: var(--theme-black);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 19px;
+    font-family: Tajawal;
+    padding-bottom: 16px;
+}
+
+.room-rent-dropdowns room-dropdown-content .room-no-drop input[type="radio"]:checked + .type-box {
+    background: var(--theme-sky);
+    border: 1px solid var(--theme-sky);
+    color: #fff;
+}
+
+.room-dropdown h3 {
+    text-align: right;
+    color: var(--theme-black);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    font-family: Tajawal;
+    padding-bottom: 16px;
+}
+
+
+.floating-Input {
+    padding: 7px 8px;
+    font-size: 12px;
+    background: var(--theme-white);
+    top: -15px;
+    right: 19px;
+    display: block;
+}
+
+.budget-drop-btn .form-control {
+    /*height: 72px;*/
+    border-radius: 8px;
+    width: 152px;
+    border-color: var(--theme-sky);
+    text-align: end;
+}
+
+@media screen and (min-width: 1400px)
+{
+    .ss_ulsearch
+    {
+        width: 436px !important;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .rent-dropdown {
+        left: -244px !important;
+    }
+    .rent-dropdown::before {
+        left: 260px;
+    }
+}
+
+@media screen and (max-width: 1391px)
+{
+    .ss_ulsearch
+    {
+        width: 397px !important;
+    }
+}
+
+@media screen and (max-width: 1391px)
+{
+    .ss_ulsearch
+    {
+        width: 399px !important;
+    }
+}
+
+@media screen and (max-width: 1240px)
+{
+    .ss_ulsearch
+    {
+        width: 372px !important;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .filter-bar .select-filter {
+        padding: 14px 14px 14px 0px;
+        /*gap: 0px;*/
+    }
+
+    .container {
+        padding: 0 35px;
+    }
+    .ss_ulsearch {
+        width: 337px !important;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .filter-bar {
+        height: 200px;
+    }
+
+    .room-dropdown {
+        width: 380px;
+        padding: 21px 12px 10px 25px;
+    }
+
+    .type-dropdown {
+        width: 421px;
+        background: #FFFFFF;
+        box-shadow: -2px 2px 18px rgb(0 0 0 / 10%);
+        border-radius: 8px;
+        margin-left: -171px !important;
+        padding: 15px 12px 10px 12px;
+        margin-top: 35px !important;
+    }
+
+    .radio-container
+    {
+        max-width: 112px !important;
+        min-width: 80px !important;
+    }
+
+    .ss_ulsearch {
+        width: 111% !important;
+    }
+
+    #filter-drop {
+        padding-top: 42px;
+    }
+
+    #filter-map {
+        padding-top: 25px;
+    }
+}
+
+@media screen and (max-width: 815px) {
+    .ss_ulsearch {
+        width: 113% !important;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .ss_ulsearch {
+        width: 116% !important;
+    }
+    .filter-bar {
+        height: 200px;
+    }
+
+    .room-dropdown
+    {
+        width: 320px;
+        padding: 21px 31px 10px 15px;
+    }
+    .budget-dropdown {
+        width: 421px;
+    }
+
+    #filter-drop {
+        padding-top: 42px;
+    }
+
+    #filter-map {
+        padding-top: 25px;
+    }
+
+}
+
+@media screen and (max-width: 630px) {
+
+    .ss_ulsearch {
+        width: 118% !important;
+    }
+}
+
+@media screen and (max-width: 660px) {
+
+    .filter-bar {
+        height: 244px;
+    }
+
+}
+
+@media screen and (max-width: 579px) {
+    .property-lists .row .col-lg-3 {
+        padding: 10px 7px;
+    }
+
+    .list-complete-rent-drop img {
+        margin-left: 0px;
+        margin-top: 0;
+    }
+
+    .ss_ulsearch {
+        width: 130% !important;
+        /* width: 466px !important; */
+    }
+
+    .room-toggle-icon img {
+         margin-left: -5px;
+    }
+
+    .all-listing .property-lists {
+        margin: 20px 0 0 0;
+    }
+
+    .no-rooms-drop-btn .dropdown .rent-btn {
+        padding: 9px 70px 12px 24px;
+    }
+
+    .dropdown .rent-btn {
+        width: 60px;
+    }
+
+    .no-rooms-drop-btn .dropdown .rent-btn {
+        padding: 9px 80px 12px 57px;
+    }
+
+    .dropdown .rent-btn {
+        width: 123px;
+        padding: 9px 5px 12px 20px;
+    }
+
+
+
+
+    .no-rooms-drop-btn .dropdown .budget-btn {
+        padding: 9px 70px 12px 24px;
+    }
+
+    .dropdown .budget-btn {
+        width: 60px;
+    }
+
+    .no-rooms-drop-btn .dropdown .budget-btn {
+        padding: 9px 80px 12px 57px;
+    }
+
+    .dropdown .budget-btn {
+        width: 123px;
+        padding: 9px 5px 12px 20px;
+    }
+
+
+
+
+
+
+
+
+    .type-drop-btn .dropdown .type-btn {
+        padding: 9px 70px 12px 24px;
+    }
+
+    .dropdown .type-btn {
+        width: 60px;
+    }
+
+    .type-drop-btn .dropdown .type-btn {
+        padding: 9px 80px 12px 57px;
+    }
+
+    .dropdown .type-btn {
+        width: 123px;
+        padding: 9px 5px 12px 20px;
+    }
+
+
+
+
+
+
+
+    .no-rooms-drop-btn .dropdown .room-btn {
+        padding: 9px 70px 12px 24px;
+    }
+
+    .dropdown .room-btn {
+        width: 60px;
+    }
+
+    .no-rooms-drop-btn .dropdown .room-btn {
+        padding: 9px 80px 12px 57px;
+    }
+
+    .dropdown .room-btn {
+        width: 123px;
+        padding: 9px 5px 12px 20px;
+    }
+
+
+    .complete-rent-drop img {
+        top: 4px;
+        left: -1px;
+    }
+
+    #filter-map {
+        display: none;
+    }
+
+    .filter-bar {
+        height: 240px;
+    }
+
+    .filter-bar .select-filter {
+        padding: 12px 0;
+    }
+
+    .all-property-list .all-ads {
+        padding-top: 10px;
+    }
+
+    .last-property-list {
+        margin-bottom: 60px;
+    }
+
+    .property-sl-banner {
+        margin-bottom: 50px;
+    }
+}
+@media screen and (max-width: 579px) {
+    .ss_ulsearch {
+        width: 120% !important;
+        /* width: 466px !important; */
+    }
+}
+@media screen and (max-width:576px) {
+
+    .dropdown .rent-btn {
+        width: 90px;
+    }
+    .budget-dropdown {
+        width: 320px;
+    }
+
+    .prop-checkbox {
+        max-width: 71px !important;
+        min-width: 75px !important;
+        height: 65px !important;
+    }
+    .list-rent-dropdown
+    {
+        margin-left: -94px !important;
+    }
+    .type-dropdown {
+        width: 292px;
+        /*max-width: 100%;*/
+        margin-left: -140px !important;
+    }
+
+    .dropdown .budget-btn {
+        width: 90px;
+    }
+
+    .dropdown .type-btn {
+        width: 90px;
+    }
+
+    .dropdown .room-btn {
+        width: 90px;
+    }
+
+    .rent-dropdown {
+         left: -80px !important;
+    }
+    .rent-dropdown::before {
+        left: 111px;
+    }
+    .no-rooms-drop-btn
+    {
+        display: flex;
+        flex-display: row-reverse;
+        justify-content: center;
+
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .regional-drop-btn
+    {
+        font-size: 10px;
+    }
+    .description-card .form-control::placeholder
+    {
+        font-size: 10px;
+    }
+.filter-all-bar
+{
+    margin-bottom: -20px;
+}
+    .all-ads p
+    {
+        font-size: 12px;
+    }
+
+    .all-ads .vertical-line {
+        height: 12px;
+    }
+
+    .sort-by p
+    {
+        font-size: 12px;
+    }
+
+
+    .filter-bar {
+        height: 237px;
+    }
+    .type-dropdown {
+        width: 292px;
+        /* max-width: 100%; */
+        margin-left: -49px !important;
+    }
+
+    .filter-bar {
+        height: 243px !important;
+    }
+    .ss_ulsearch {
+        width: 133% !important;
+        /* width: 466px !important; */
+    }
+}
+@media screen and (max-width: 375px) {
+    .ss_ulsearch {
+        width: 141% !important;
+        /* width: 466px !important; */
+    }
+}
+@media screen and (max-width: 375px) {
+    .price-section .all-price h3 {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .ss_ulsearch {
+        width: 152% !important;
+        /* width: 466px !important; */
+    }
+
+    .filter-bar {
+        height: 304px;
+    }
+    .room-dropdown .show-results-bttn {
+
+        font-size: 10px;
+    }
+
+    .room-no-drop
+    {
+        margin-left: -7px;
+    }
+
+
+
+    .type-dropdown {
+        width: 240px;
+        /*max-width: 100%;*/
+        padding: 12px 15px 10px 13px;
+        margin-top: 0 !important;
+    }
+
+    .budget-dropdown {
+        width: 250px;
+        /*max-width: 100%;*/
+        padding: 12px 15px 10px 13px;
+        margin-top: 0 !important;
+    }
+
+    .list-rent-dropdown
+    {
+        width: 270px;
+        margin-left: 0px !important;
+    }
+
+    .room-dropdown {
+        width: 234px;
+        /*max-width: 100%;*/
+        padding: 12px 15px 10px 13px;
+        margin-top: 0 !important;
+        /*margin-left: -145px !important;*/
+    }
+    .room-dropdown::before {
+        right: 0;
+        left: unset;
+    }
+    .font-16 {
+        font-size: 10px;
+    }
+
+    .price-input
+    {
+        flex-direction: column;
+    }
+
+    .room-container
+    {
+        max-width: 54px;
+    }
+
+    .room-container
+    {
+        margin-left: 4px;
+    }
+
+    .carousel-inner img {
+        height: 190px;
+    }
+
+    .all-listing .property-lists {
+        margin: 20px 0 0 0;
+    }
+}
+
+
+
+@media screen and (max-width: 290px) {
+
+    .all-ads
+    {
+        display: flex;
+        flex-direction: column !important;
+        justify-content: end;
+        align-items: end;
+    }
+
+    .all-property-list .sort-by
+    {
+        border: none;
+    }
+
+    .all-results
+    {
+        margin-bottom: 0;
+    }
+    .all-ads .vertical-line
+    {
+        border: none;
+    }
+
+    .ss_ulsearch {
+        width: 160% !important;
+        /* width: 466px !important; */
+    }
+
+    .filter-bar {
+        height: 294px !important;
+    }
+    .type-dropdown
+    {
+        width: 218px;
+        margin-left: 0 !important;
+    }
+}
+
+/*Filter Range Slider CSS Start*/
+
+
+.wrapper {
+    /*position: relative;*/
+    width: 100%;
+    /*background-color: #ffffff;*/
+    /*padding: 50px 40px 20px 40px;*/
+    border-radius: 10px;
+}
+
+/*.container {*/
+/*    position: relative;*/
+/*    width: 100%;*/
+/*    height: 100px;*/
+/*    margin-top: 30px;*/
+/*}*/
+input[type="range"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100% !important;
+    outline: none;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    background-color: transparent;
+    pointer-events: none;
+}
+
+.slider-track {
+    width: 91%;
+    max-width: 100%;
+    height: 5px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px;
+}
+
+.range-filters {
+    margin-top: 100px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.auction-status-dropdown .dropdown .rent-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 111px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
+.auction-status-dropdown .dropdown .budget-btn {
+    border: 1px solid #C9C9C9;
+    border-radius: 8px;
+    width: 111px;
+    padding: 9px 16px 12px 8px;
+    gap: 8px;
+    max-width: 100%;
+    height: 43px;
+    text-align: right;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    height: 5px;
+}
+
+input[type="range"]::-moz-range-track {
+    -moz-appearance: none;
+    height: 5px;
+}
+
+input[type="range"]::-ms-track {
+    appearance: none;
+    height: 5px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    background-color: #3264fe;
+    cursor: pointer;
+    margin-top: -9px;
+    pointer-events: auto;
+    border-radius: 50%;
+}
+
+input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #3264fe;
+    pointer-events: auto;
+    border: none;
+}
+
+input[type="range"]::-ms-thumb {
+    appearance: none;
+    height: 1.7em;
+    width: 1.7em;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #3264fe;
+    pointer-events: auto;
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+    background-color: #ffffff;
+    border: 1px solid #3264fe;
+}
+
+/*.values {*/
+/*    background-color: #3264fe;*/
+/*    width: 32%;*/
+/*    position: relative;*/
+/*    margin: auto;*/
+/*    padding: 10px 0;*/
+/*    border-radius: 5px;*/
+/*    text-align: center;*/
+/*    font-weight: 500;*/
+/*    font-size: 25px;*/
+/*    color: #ffffff;*/
+/*}*/
+/*.values:before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    height: 0;*/
+/*    width: 0;*/
+/*    border-top: 15px solid #3264fe;*/
+/*    border-left: 15px solid transparent;*/
+/*    border-right: 15px solid transparent;*/
+/*    margin: auto;*/
+/*    bottom: -14px;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*}*/
+
+/*preloader CSS Start */
+
+#load_cover {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    background-color: #000;
+    opacity: 0.2;
+    z-index: 1000000;
+}
+
+.loaderInner {
+    position: absolute;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+}
+
+.loader-logo{
+    width: 150px;
+    top: calc(50% - 38px);
+    position: absolute;
+    left: calc(50% - 0px);
+    height: 150px;
+    background-image: url('/assets/images/preloader.gif');
+    background-repeat: no-repeat;
+}
+
+/*preloader CSS End */
+
+
+
+
+
+
+/* Radio Button Style Satrts Here */
+.radio-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid #292071;
+    border-radius: 8px;
+    color: #292071;
+    text-align: center;
+    width: 100%;
+    height: 80px;
+    padding: 10px 0;
+    max-width: 120px;
+    min-width: 80px;
+    margin-bottom: 10px;
+}
+
+.radio-container span {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-container span i {
+    padding-bottom: 5px;
+}
+
+.radio-container i {
+    font-size: 20px;
+}
+
+.radio-container input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    z-index: 11;
+
+}
+
+/*.radio-container {*/
+/*    */
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    line-height: 1.7;*/
+/*}*/
+
+.radio-container input:checked ~ .checmark {
+    background: #f9f5fe;
+    border-radius: 8px;
+    color: #292071;
+    text-align: center;
+    width: 100%;
+    height: 80px;
+    padding: 15px 0;
+    max-width: 120px;
+    min-width: 80px;
+}
+
+.yes-no-radio .checmark {
+    padding: 8px 12px;
+}
+
+
+
+/* Radio Button Styles End */
+
+
+/* Radio Button Style Satrts Here */
+.room-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid #292071;
+    border-radius: 8px;
+    color: #292071;
+    text-align: center;
+    width: 100%;
+    height: 45px;
+    padding: 10px 0;
+    max-width: 54px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.room-container span {
+    display: flex;
+    flex-direction: column;
+}
+
+.room-container span i {
+    padding-bottom: 5px;
+}
+
+.room-container i {
+    font-size: 20px;
+}
+
+.room-container input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    z-index: 11;
+
+}
+
+/*.radio-container {*/
+/*    */
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    line-height: 1.7;*/
+/*}*/
+
+.room-container input:checked ~ .checmark {
+    background: #f9f5fe;
+    border-radius: 8px;
+    color: #292071;
+    text-align: center;
+    width: 100%;
+    /*height: 52px;*/
+    padding: 9px 0;
+}
+
+.yes-no-radio .checmark {
+    padding: 8px 12px;
+}
+
+/* Radio Button Styles End */
+
+/*Dropdown Range Css Start*/
+/*.price-input .field {*/
+/*    display: flex;*/
+/*    width: 100%;*/
+/*    height: 45px;*/
+/*    align-items: center;*/
+/*}*/
+.field input {
+    width: 100%;
+    height: 41px;
+    outline: none;
+    text-align: right;
+    padding-right: 12px;
+    font-size: 14px;
+    /*margin-left: 12px;*/
+    border-radius: 5px;
+    border: 1px solid #999;
+    -moz-appearance: textfield;
+}
+
+.price-input .separator {
+    width: 130px;
+    display: flex;
+    font-size: 19px;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider {
+    height: 5px;
+    position: relative;
+    background: #ddd;
+    border-radius: 5px;
+}
+
+.slider .progress {
+    height: 100%;
+    left: 5%;
+    right: 5%;
+    position: absolute;
+    border-radius: 5px;
+    background: var(--theme-blue);
+}
+
+.range-input {
+    position: relative;
+}
+
+.range-input input {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    background: #292071;
+    box-shadow: 2px 2px 8px rgba(41, 32, 113, 0.2);
+    border-radius: 4px;
+    pointer-events: auto;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 16px;
+}
+
+input[type="range"]::-moz-range-thumb {
+    height: 17px;
+    width: 17px;
+    border: none;
+    border-radius: 50%;
+    background: var(--blue);
+    pointer-events: auto;
+    -moz-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+.list-rent-all {
+    padding-top: 15px;
+    overflow-x: auto;
+}
+
+/*.list-rent-all input[type="radio"]:checked + .rent-box {*/
+/*    background: var(--theme-sky);*/
+/*    border: 1px solid var(--theme-sky);*/
+/*    color: #fff;*/
+/*}*/
+
+/*.rent-all input[type="radio"]:checked + .rent-box {*/
+/*    background: var(--theme-sky);*/
+/*    border: 1px solid var(--theme-sky);*/
+/*    color: #fff;*/
+/*}*/
+
+
+.property_radio input[type="radio"]:checked + .roommark {
+    background-color: #f9f5fe;
+    border-radius: 8px;
+    color: #292071;
+    text-align: center;
+    padding: 9px 3px;
+    width: 53px;
+    max-width: 100%;
+}
+
+.hide{
+display: none !important;
+}
+
+.facilicites-area
+{
+    direction: ltr;
+   gap: 0px 10%;
+}

@@ -5,12 +5,12 @@
 	<div class="card-body">
 		<div class="row mb-30">
 			<div class="col-lg-6">
-				<h4>{{ __('Admins') }}</h4>
+				<h4>{{ __('labels.admins') }}</h4>
 			</div>
 			<div class="col-lg-6">
                 @can('admin.create')
 				<div class="add-new-btn">
-					<a href="{{ route('admin.users.create') }}" class="btn btn-primary float-right">{{ __('Add New') }}</a>
+					<a href="{{ route('admin.users.create') }}" class="btn btn-primary float-right">{{ __('labels.add_new') }}</a>
                 </div>
                 @endcan
 			</div>
@@ -25,15 +25,15 @@
 							<div class="single-filter">
 								<div class="form-group">
 									<select class="form-control selectric" name="status">
-                                        <option disabled selected>{{ __('Select Action') }}</option>
-										<option value="1">{{ __('Active') }}</option>
-										<option value="0">{{ __('Deactivate') }}</option>
+                                        <option disabled selected>{{ __('labels.select_action') }}</option>
+										<option value="1">{{ __('labels.active') }}</option>
+										<option value="0">{{ __('labels.deactivate') }}</option>
 									</select>
 								</div>
                             </div>
                             @can('admin.edit')
 							<div class="single-filter">
-								<button type="submit" class="btn btn-primary btn-lg ml-2">{{ __('Apply') }}</button>
+								<button type="submit" class="btn btn-primary btn-lg ml-2">{{ __('labels.apply') }}</button>
                             </div>
                             @endcan
 						</div>
@@ -53,12 +53,12 @@
 									<label class="custom-control-label checkAll" for="selectAll"></label>
 								</div>
 							</th>
-                            <th>{{ __('Name') }}</th>
-                            <th>{{ __('Email') }}</th>
-                            <th>{{ __('Status') }}</th>
-                            <th class="am-title">{{ __('Last Activity') }}</th>
-                            <th class="am-title">{{ __('Last Login Ip') }}</th>
-                            <th>{{ __('Role') }}</th>
+                            <th>{{ __('labels.name') }}</th>
+                            <th>{{ __('labels.email') }}</th>
+                            <th>{{ __('labels.status') }}</th>
+                            <!-- <th class="am-title">{{ __('Last Activity') }}</th>
+                            <th class="am-title">{{ __('labels.last_login_ip') }}</th> -->
+                            <th>{{ __('labels.role') }}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -74,7 +74,7 @@
                                 {{ $row->name }}
                                 @can('admin.edit')
 								<div class="hover">
-									<a href="{{ route('admin.users.edit',$row->id) }}">{{ __('Edit') }}</a>
+									<a href="{{ route('admin.users.edit',$row->id) }}">{{ __('labels.edit') }}</a>
                                 </div>
                                 @endcan
                             </td>
@@ -83,13 +83,13 @@
                             </td>
                             <td>
                             @if($row->status==1)
-                            <span class="badge badge-success">{{ __('Active') }}</span>
+                            <span class="badge badge-success">{{ __('labels.active') }}</span>
                             @else
-                            <span class="badge badge-danger">{{ __('Deactive') }}</span>
+                            <span class="badge badge-danger">{{ __('labels.deactive') }}</span>
                             @endif
                             </td>
-                             <td>@if(!empty($row->user_session)) {{ date('Y-m-d H:i:s', $row->user_session->last_activity) }} @endif</td>
-                            <td>@if(!empty($row->user_session)) {{  $row->user_session->ip_address }} @endif</td>
+                             <!-- <td>@if(!empty($row->user_session)) {{ date('Y-m-d H:i:s', $row->user_session->last_activity) }} @endif</td>
+                            <td>@if(!empty($row->user_session)) {{  $row->user_session->ip_address }} @endif</td> -->
                            <td>
                         	@foreach($row->roles as $r) <span class="badge badge-primary">{{ $r->name }}</span> @endforeach
                         </td>
