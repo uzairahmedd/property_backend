@@ -39,22 +39,22 @@
                                 <h3>{{__('labels.budget_sar')}}</h3>
                                 <div class="type-dropdown-content price-input d-flex justify-content-between align-items-center mb-4">
                                     <div class="mb-3 field p-1 position-relative">
-                                        <input type="number" class="input-min" value="" class="form-control font-medium font-16 text-end font-14" placeholder=" 0 {{__('labels.sar')}}">
+                                        <input type="number" class="input-min" name="min_price" value="" class="form-control font-medium font-16 text-end font-14" placeholder=" 0 {{__('labels.sar')}}">
                                         <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">{{__('labels.low_price')}}</label>
                                     </div>
                                     <div class="mb-3 field p-1 position-relative">
-                                        <input type="number" class="input-max" value="" class="form-control font-medium font-16 text-end font-14" placeholder="10,000.0000+ {{__('labels.sar')}}">
+                                        <input type="number" class="input-max" name="max_price" value="" class="form-control font-medium font-16 text-end font-14" placeholder="10,000.0000+ {{__('labels.sar')}}">
                                         <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">{{__('labels.high_price')}}</label>
                                     </div>
                                 </div>
 
-                                <div class="slider">
+                                <!-- <div class="slider">
                                     <div class="progress"></div>
-                                </div>
-                                <div class="range-input">
-                                    <input type="range" id="min_price" name="min_price" class="range-min" min="0" max="10000000" value="0" step="100">
-                                    <input type="range" id="max_price" name="max_price" class="range-max" min="0" max="10000000" value="1000000000" step="100">
-                                </div>
+                                </div> -->
+                                <!-- <div class="range-input"> -->
+                                <!-- <input type="text" id="min_price" name="min_price" class="range-min" min="0" max="10000000" step="100">
+                                    <input type="text" id="max_price" name="max_price" class="range-max" min="0" max="10000000"  step="100"> -->
+                                <!-- </div> -->
 
 
 
@@ -265,7 +265,7 @@
         <h1 class="font-bold theme-text-white mb-0 direction">{{__('labels.property_sale_rent')}}</h1>
         <h3 class="mb-0 theme-text-white direction">{{__('labels.market_property_txt')}}</h3>
         <div>
-        @if (Auth::User())
+            @if (Auth::User())
             <button class="btn-add btn-theme">
                 <a href="{{ route('agent.property.create_property') }}"> {{__('labels.add_property_now')}}</a>
             </button>

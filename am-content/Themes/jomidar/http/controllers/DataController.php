@@ -273,8 +273,8 @@ class DataController extends controller
         $this->parent_category = $request->parent_category;
         $this->price = $request->price;
         $this->room = $request->room;
-        $this->min_price = $request->min_price ?? 0;
-        $this->max_price = $request->max_price ?? 0;
+        $this->min_price = $request->min_price;
+        $this->max_price = $request->max_price;
         $posts = Terms::where('type', 'property')->where('status', 1)->with('parentcategory', 'category', 'landarea', 'post_preview', 'price', 'post_district', 'user', 'property_status_type', 'option_data', 'post_new_city');
         //search city   
         if (!empty($this->state)) {

@@ -22,7 +22,10 @@ class Terms extends Model
 		return 	$this->hasMany('App\Meta', 'term_id', 'id')->where('type', 'floor_plan');
 	}
 
-
+	public function land_blocks_details()
+	{
+		return 	$this->hasMany('App\Models\LandBlock', 'term_id', 'id');
+	}
 
 	public function post_preview()
 	{
@@ -89,7 +92,7 @@ class Terms extends Model
 
 	public function user()
 	{
-		return $this->belongsTo('App\Models\User')->select('slug', 'name', 'id', 'email', 'avatar','phone')->with('usermeta','user_credentials');
+		return $this->belongsTo('App\Models\User')->select('slug', 'name', 'id', 'email', 'avatar', 'phone')->with('usermeta', 'user_credentials');
 	}
 
 	public function medias()
@@ -169,7 +172,7 @@ class Terms extends Model
 	{
 		return $this->hasOne('App\Models\PostDistrict', 'term_id')->where('type', 'district');
 	}
-	
+
 
 
 	public function facilities()

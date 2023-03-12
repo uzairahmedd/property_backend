@@ -544,6 +544,49 @@
 		})
 	});
 
+	$(".land_block_basicform").on('submit', function (e) {
+		e.preventDefault();
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+		var basicbtnhtml = $('.basicbtn').html();
+		$.ajax({
+			type: 'POST',
+			url: this.action,
+			data: new FormData(this),
+			dataType: 'json',
+			contentType: false,
+			cache: false,
+			processData: false,
+			beforeSend: function () {
+
+				$('.basicbtn').html("Please Wait....");
+				$('.basicbtn').attr('disabled', '')
+
+			},
+			success: function (response) {
+				console.log(response);
+				$('.term_id').val(response.data);
+				$('.basicbtn').removeAttr('disabled')
+				Sweet('success', response.message);
+				$('.basicbtn').html(basicbtnhtml);
+				success(response);
+			},
+			error: function (xhr, status, error) {
+				$('.basicbtn').html(basicbtnhtml);
+				$('.basicbtn').removeAttr('disabled')
+				$('.errorarea').show();
+				$.each(xhr.responseJSON.errors, function (key, item) {
+					Sweet('error', item)
+					$("#errors").html("<li class='text-danger'>" + item + "</li>")
+				});
+				errosresponse(xhr, status, error);
+			}
+		})
+	});
+
 	$("#basicform3").on('submit', function (e) {
 		e.preventDefault();
 
@@ -729,4 +772,38 @@ function get_property_data(elem) {
 		}
 	});
 }
-
+//land block districts
+  $('#land_block_city').change(function() {
+	var city_id=this.value;
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+	var url = '/admin/real-state/get_districts/' + city_id;
+	$.ajax({
+		type: 'get',
+		url: url,
+		dataType: 'json',
+		contentType: false,
+		cache: false,
+		processData: false,
+		success: function (response) {
+			var select = $('#land_block_district').html('');
+			console.log($('#select_district').text());
+			// var please_select_district=$('#select_district').text();
+			
+			// $("#land_block_district").select2().append('<option disabled selected>'+please_select_district+'</option>');
+            $.each(response, function (index, value) {
+                name = value.name;
+                if (locale == 'ar') {
+                    name = value.ar_name;
+                }
+                $("#land_block_district").select2().append('<option value="' + value.id + '">' + name + '</option>');
+                if (value.id == select) {
+                    $("#district_val").select2().val(select).trigger('change');
+                }
+            });
+        }
+    });
+});

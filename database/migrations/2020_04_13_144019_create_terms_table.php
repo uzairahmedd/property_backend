@@ -23,6 +23,7 @@ class CreateTermsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->integer('status');
             $table->string('type')->default(0);
+            $table->integer('is_land_block')->default(0);
             $table->double('count')->default(0);
             $table->integer('featured')->default(0);
             $table->integer('resource')->default(0);

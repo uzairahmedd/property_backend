@@ -93,7 +93,7 @@
                                                 aria-label=".form-select-lg example" name="status">
                                             <option value='' disabled selected>{{__('labels.select_property_type')}}</option>
                                             @foreach($status_category as $statuses)
-                                                <option value='{{$statuses->id}}' {{ $info->property_status_type->category_id == $statuses->id ? 'selected' : '' }}>{{Session::get('locale')=='ar' ? $statuses->ar_name : $statuses->name}}</option>
+                                                <option value='{{$statuses->id}}' {{ $info != '' && $info->property_status_type->category_id == $statuses->id ? 'selected' : '' }}>{{Session::get('locale')=='ar' ? $statuses->ar_name : $statuses->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -547,7 +547,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>{{__('labels.instrument_no')}} {{__('labels.optional')}}</label>
-                                                <input type="text" name="instrument_number" value="{{ !empty( $instrument->instrument_number) ? $instrument->instrument_number->content  : old('instrument_number') }}" placeholder="{{__('labels.instrument_no')}}" class="form-control payment theme-border">
+                                                <input type="text" name="instrument_number" value="{{ !empty( $info->instrument_number) ? $info->instrument_number->content  : old('instrument_number') }}" placeholder="{{__('labels.instrument_no')}}" class="form-control payment theme-border">
                                             </div>
                                         </div>
                                     </div>
@@ -888,4 +888,4 @@
         @endsection
         @section('property_step_calender')
             <script src="{{theme_asset('assets/newjs/yearpicker.js')}}"></script>
-@endsection
+        @endsection

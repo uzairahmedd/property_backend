@@ -2,6 +2,7 @@
 
 use App\Terms;
 use App\Options;
+use App\Category;
 use Amcoders\Lpress\Lphelper;
 
 /*
@@ -125,9 +126,9 @@ function amount_format($amount, $array = false)
 function new_amount_format($amount)
 {
 
-	$format ="ر.س ".number_format($amount, 2);
-	if(Session::has('locale') && Session::get('locale') == 'en'){
-		$format ="SAR ".number_format($amount, 2);
+	$format = "ر.س " . number_format($amount, 2);
+	if (Session::has('locale') && Session::get('locale') == 'en') {
+		$format = "SAR " . number_format($amount, 2);
 	}
 
 	return $format;
@@ -337,8 +338,8 @@ function editor($array = [])
 
 function publish($array = [])
 {
-    $publish = __('labels.publish');
-    $save = __('labels.save');
+	$publish = __('labels.publish');
+	$save = __('labels.save');
 	$title = $array['title'] ?? $publish;
 	$button_text = $array['button_text'] ?? $save;
 	$class = $array['class'] ?? '';
@@ -615,44 +616,115 @@ function success_response($data = null, $message = null)
 	return response()->json(['status' => 'success', 'data' => $data, 'message' => $message]);
 }
 
- /**
-     * Return response after sending a curl request
-     * @param  string $url , string $data, boolean $is_post, array $headers, boolean $auth
-     * @return array
-     */
-    function curl_request($url, $data = null, $is_post = false, $headers = null, $auth = false)
-    {
-        $curl = curl_init($url);
-        if (!empty($headers) || $headers != null) {
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        }
-        if ($auth) {
-            curl_setopt($curl, CURLOPT_USERPWD, $auth);
-        }
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        if ($is_post) {
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-        }
+function polygon_data($details)
+{
+	$data = [];
+	foreach ($details->land_blocks_details as $values) {
+		$bottom_left = explode(',', $values->bottom_left_coordinate);
+		$bottom_right = explode(',', $values->bottom_right_coordinate);
+		$top_right = explode(',', $values->top_right_coordinate);
+		$top_left = explode(',', $values->top_left_coordinate);
+		$center = explode(',', $values->center_coordinate);
+		$property_nature = Category::where('id', $values->parent_category)->first();
+		$points['map_polygon'] = [
+			'type' => "Feature",
+			'properties' => [
+				'plot_num' =>  $values->plot_number,
+				'price' => $values->price,
+				'planned_number' => $values->planned_number,
+				'type' => $property_nature->name,
+				'name' => Session::get('locale') == 'ar' ? $property_nature->ar_name : $property_nature->name,
+				'total_area' => $values->total_area,
+				'left_measurement' => $values->left_measurement,
+				'right_measurement' => $values->right_measurement,
+				'top_measurement' => $values->top_measurement,
+				'bottom_measurement' => $values->bottom_measurement,
+			],
+			'geometry' => [
+				'coordinates' => [
+					[
+						[
+							$bottom_left[0], $bottom_left[1]
+						],
+						[
+							$bottom_right[0], $bottom_right[1]
+						],
+						[
+							$top_right[0], $top_right[1]
+						],
+						[
+							$top_left[0], $top_left[1]
+						],
+						[
+							$bottom_left[0], $bottom_left[1]
+						]
+					]
+				],
+				"type" => "Polygon"
+			],
+		];
 
-        $output = curl_exec($curl);
-        curl_close($curl);
+		$points['center_point'] = [
+			'type' => "Feature",
+			'properties' => [
+				'plot_num' => $values->plot_number,
+			],
+			'geometry' => [
+				'coordinates' =>
+				[
+					$center[0], $center[1]
+				],
+				"type" => "Point"
+			],
+		];
 
-        return $output;
-    }
+		$data[] = $points['map_polygon'];
+		$data[] = $points['center_point'];
+	}
 
-	 function generate_unique_id(){
-		$data= Terms::orderBy('id','DESC')->first();
-        if ($data) {
-            $orderNr = $data->id;
-            $removed1char = substr($orderNr, 1);
-            $unique_id = $stpad = str_pad($removed1char + 1, 6, '5', STR_PAD_LEFT);
-        } else {
-            $unique_id = str_pad(1, 6, '5', STR_PAD_LEFT);
-        }
 
-        return $unique_id;
-    }
+	return $data;
+}
 
+
+/**
+ * Return response after sending a curl request
+ * @param  string $url , string $data, boolean $is_post, array $headers, boolean $auth
+ * @return array
+ */
+function curl_request($url, $data = null, $is_post = false, $headers = null, $auth = false)
+{
+	$curl = curl_init($url);
+	if (!empty($headers) || $headers != null) {
+		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+	}
+	if ($auth) {
+		curl_setopt($curl, CURLOPT_USERPWD, $auth);
+	}
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+	if ($is_post) {
+		curl_setopt($curl, CURLOPT_POST, 1);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+	}
+
+	$output = curl_exec($curl);
+	curl_close($curl);
+
+	return $output;
+}
+
+function generate_unique_id()
+{
+	$data = Terms::orderBy('id', 'DESC')->first();
+	if ($data) {
+		$orderNr = $data->id;
+		$removed1char = substr($orderNr, 1);
+		$unique_id = $stpad = str_pad($removed1char + 1, 6, '5', STR_PAD_LEFT);
+	} else {
+		$unique_id = str_pad(1, 6, '5', STR_PAD_LEFT);
+	}
+
+	return $unique_id;
+}

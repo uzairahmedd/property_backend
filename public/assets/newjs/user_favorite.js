@@ -82,6 +82,7 @@ function user_properties_list(target, data) {
     var price = '';
     var district = '';
     var city = '';
+    var slug='';
     $.each(data, function (index, value) {
 
         user_favourite_property_check(value.id);
@@ -112,7 +113,13 @@ function user_properties_list(target, data) {
 
         if (value.price != null) {
             price = new_amount_format(value.price.price);
-        } else {
+        }else if(value.is_land_block == 1){
+            price='Land Block';
+            if (locale == 'ar') {
+                price = 'قطعة أرض';
+            }
+        }
+         else {
             price = 'N/A';
         }
 
@@ -129,10 +136,14 @@ function user_properties_list(target, data) {
             city = value.post_new_city.city.ar_name;
         }
         location =  district + ', ' + city;
+        slug= base_url + 'property-detail/' + value.slug ;
+        if(value.is_land_block == 1){
+            slug= base_url + 'land-block-detail/' + value.slug ;
+        }
         $(target).append('<div class="col-lg-4 col-md-4 col-sm-6 single-property-list"> <div class="slide single-img-carousel"> <div id="myCarousel' + value.id + '" class="carousel" data-bs-ride="carousel"><div class="features"><div class="d-flex justify-content-between"><div class="content d-flex flex-column align-items-start theme-text-white"><div class="fav-elipse justify-content-center align-items-center theme-bg-blue"><span class="font-medium" onclick="favourite_property(' + value.id + ')"> <i title="favorite property" data-toggle="tooltip" class="fa-regular fa-heart heart' + value.id + '"></i></span></div><div class="sale theme-bg-sky"><span class="font-medium">' + status + '</span> </div></div> <div class="d-flex justify-content-center pt-3">  </div></div> </div>' +
             '<ol class="carousel-indicators"><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="0" class="active"></li>' +
-            '<li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a target="_blank" href="' + base_url + 'property-detail/' + value.slug + '"><h3 class="resident-text">' + title + '</h3><div class="location_property d-flex align-items-start justify-content-end mt-2"><p class="me-2">' + location + '</p><img src="/assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex flex-wrap flex-row-reverse justify-content-right align-items-center facilicites-area facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex">' +
-            '<div class="dash-call d-flex justify-content-center align-items-center me-3"> <img src="/assets/images/mobile-icon.png" alt="" data-toggle="tooltip" title="edit"></div><div class="dash-whatsapp d-flex justify-content-center align-items-center"><a href=""> <img  src="/assets/images/whatsapp-icon.png" alt=""></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span>' + price + ' </span></h3></div> </div></div></div></div></div>');
+            '<li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="1"></li><li data-bs-target="#myCarousel' + value.id + '" data-bs-slide-to="2"></li> </ol> <div class="carousel-inner"><div class="carousel-item active"><img src="' + image + '" class="" alt="Slide 1"></div><div class="carousel-item"> <img src="' + image + '" class="" alt="Slide 2"></div><div class="carousel-item"><img src="' + image + '" class="" alt="Slide 3"></div></div></div><div class="list-container"><div class="mt-3 mb-0"> <a target="_blank" href="' +slug+ '"><h3 class="resident-text">' + title + '</h3><div class="location_property d-flex align-items-start justify-content-end mt-2"><p class="me-2">' + location + '</p><img src="/assets/images/location.png" alt=""></div></a> </div> <div class="amenities"> <div class="d-flex flex-wrap flex-row-reverse justify-content-right align-items-center facilicites-area facilities_area' + index + '"></div></div><div class="price-section mt-2"><div class="d-flex justify-content-between"><div class="social-btn d-flex">' +
+            '<div class="dash-call d-flex justify-content-center align-items-center me-3"> <img src="/assets/images/mobile-icon.png" alt="" data-toggle="tooltip" title="' + phone + '"></div><div class="dash-whatsapp d-flex justify-content-center align-items-center"><a href=""> <img  src="/assets/images/whatsapp-icon.png" alt="" data-toggle="tooltip" title="Whatsapp"></a> </div></div> <div class="all-price d-flex justify-content-end align-items-center"> <h3 class="theme-text-secondary-color"><span>' + price + ' </span></h3></div> </div></div></div></div></div>');
 
         if(value.landarea != null){
         floor_name = value.landarea.type + " in SQM";

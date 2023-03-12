@@ -7,6 +7,7 @@ use App\Models\District;
 use App\Models\Mediapost;
 use App\Models\PostCity;
 use App\Models\PostDistrict;
+use App\Models\UserCredentials;
 use App\Options;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,7 +18,8 @@ use Illuminate\Support\Str;
 use App\Meta;
 use App\Category;
 use App\Models\City;
-use App\Postcategory;
+use App\Models\LandBlock;
+use App\PostCategory;
 use App\Models\Postcategoryoption;
 use App\Models\User;
 use App\Models\Termrelation;
@@ -32,6 +34,9 @@ class PropertyController extends controller
     protected $property_type;
     public $email;
     public $name;
+    protected $filename;
+    protected $ext;
+    protected $fullname;
 
     /**
      * Display a listing of the resource.
@@ -40,44 +45,379 @@ class PropertyController extends controller
      */
     public function index(Request $request, $type = "all")
     {
-
         if (!Auth()->user()->can('Properties.list')) {
             abort(401);
         }
         if ($request->src && $request->type == 'email') {
             $this->email = $request->src;
-            $posts = Terms::where('type', 'property')->whereHas('user', function ($q) {
+            $posts = Terms::where('type', 'property')->where('is_land_block', 0)->whereHas('user', function ($q) {
                 return $q->where('email', $this->email);
             })->latest()->paginate(40);
         } elseif ($request->src) {
-            $posts = Terms::where('type', 'property')->where($request->type, 'LIKE', '%' . $request->src . '%')->latest()->paginate(40);
+            $posts = Terms::where('type', 'property')->where('is_land_block', 0)->where($request->type, 'LIKE', '%' . $request->src . '%')->latest()->paginate(40);
         } else {
-            $posts = Terms::where('type', 'property')->latest()->paginate(40);
+            $posts = Terms::where('type', 'property')->where('is_land_block', 0)->latest()->paginate(40);
         }
-        $totals = Terms::where('type', 'property')->count();
+        $totals = Terms::where('type', 'property')->where('is_land_block', 0)->count();
         $actives = Terms::where([
             ['type', 'property'],
             ['status', 1],
+            ['is_land_block', 0],
         ])->count();
         $incomplete = Terms::where([
             ['type', 'property'],
             ['status', 2],
+            ['is_land_block', 0],
         ])->count();
         $trash = Terms::where([
             ['type', 'property'],
             ['status', 0],
+            ['is_land_block', 0],
         ])->count();
         $pendings = Terms::where([
             ['type', 'property'],
             ['status', 3],
+            ['is_land_block', 0],
         ])->count();
         $rejected = Terms::where([
             ['type', 'property'],
             ['status', 4],
+            ['is_land_block', 0],
         ])->count();
         return view('plugin::properties.index', compact('type', 'posts', 'totals', 'pendings', 'actives', 'incomplete', 'trash', 'pendings', 'request', 'rejected'));
     }
 
+    /**
+     * Display a listing of the land blocks.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function land_block_index(Request $request, $type = "all")
+    {
+        if (!Auth()->user()->can('Properties.list')) {
+            abort(401);
+        }
+        if ($request->src && $request->type == 'email') {
+            $this->email = $request->src;
+            $posts = Terms::where('type', 'property')->where('is_land_block', 1)->whereHas('user', function ($q) {
+                return $q->where('email', $this->email);
+            })
+                ->join('land_block_details', 'land_block_details.term_id', '=', 'terms.id')
+                ->select(
+                    'terms.*',
+                    DB::raw("count(land_block_details.term_id) AS total_lands")
+                )
+                ->groupBy('terms.id')
+                ->latest('terms.created_at')->paginate(40);
+        } elseif ($request->src) {
+            $posts = Terms::where('type', 'property')->where('is_land_block', 1)->where($request->type, 'LIKE', '%' . $request->src . '%')
+                ->join('land_block_details', 'land_block_details.term_id', '=', 'terms.id')
+                ->select(
+                    'terms.*',
+                    DB::raw("count(land_block_details.term_id) AS total_lands")
+                )
+                ->groupBy('terms.id')
+                ->latest('terms.created_at')->paginate(40);
+        } else {
+            $posts = Terms::where('type', 'property')->where('is_land_block', 1)
+                ->join('land_block_details', 'land_block_details.term_id', '=', 'terms.id')
+                ->select(
+                    'terms.*',
+                    DB::raw("count(land_block_details.term_id) AS total_lands")
+                )
+                ->groupBy('terms.id')
+                ->latest('terms.created_at')->paginate(40);
+        }
+        $totals = Terms::where('type', 'property')->where('is_land_block', 1)->count();
+        $actives = Terms::where([
+            ['type', 'property'],
+            ['is_land_block', 1],
+            ['status', 1],
+        ])->count();
+        $incomplete = Terms::where([
+            ['type', 'property'],
+            ['is_land_block', 1],
+            ['status', 2],
+        ])->count();
+        $trash = Terms::where([
+            ['type', 'property'],
+            ['is_land_block', 1],
+            ['status', 0],
+        ])->count();
+        $pendings = Terms::where([
+            ['type', 'property'],
+            ['is_land_block', 1],
+            ['status', 3],
+        ])->count();
+        $rejected = Terms::where([
+            ['type', 'property'],
+            ['is_land_block', 1],
+            ['status', 4],
+        ])->count();
+        return view('plugin::properties.land_block_index', compact('type', 'posts', 'totals', 'pendings', 'actives', 'incomplete', 'trash', 'pendings', 'request', 'rejected'));
+    }
+
+    /**
+     * Create a  land blocks.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function land_block_create()
+    {
+        if (!Auth()->user()->can('Properties.create')) {
+            abort(401);
+        }
+        $categories = Category::where('type', 'category')->get();
+        $parent_category = Category::where('type', 'parent_category')->get();
+        //new design khiaratee
+        $status_category = Category::where('type', 'status')->where('featured', 1)->get();
+        //feature
+        $feature = Category::where('type', 'feature')->get();
+        $cities = City::where('featured', 1)->get();
+        return view('plugin::properties.land_block_create', compact('categories', 'status_category', 'parent_category', 'feature', 'cities'));
+    }
+
+    /**
+     * Display a listing of the districts.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function get_districts($city_id)
+    {
+        return District::where('p_id', $city_id)->where('featured', 1)->select('id', 'name', 'ar_name')->get();
+    }
+
+    public function property_nature()
+    {
+        $parent_category = Category::where('type', 'parent_category')->where('featured', 1)->get();
+        return success_response($parent_category, 'Property nature get successfully!');
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function block_store(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'status' => 'required',
+            'title' => 'required|max:100',
+            'ar_title' => 'required|max:100',
+            'district' => 'required',
+            'location' => 'required',
+            'city' => 'required',
+            'property_nature.*' => 'required',
+            'plot_price.*' => 'required',
+            'plot_number.*' => 'required',
+            'planned_number.*' => 'required',
+            'total_area.*' => 'required',
+            'center_coordinate.*' => 'required',
+            'top_right_coordinate.*' => 'required',
+            'top_left_coordinate.*' => 'required',
+            'bottom_right_coordinate.*' => 'required',
+            'bottom_left_coordinate.*' => 'required',
+            'right_measurement.*' => 'required',
+            'left_measurement.*' => 'required',
+            'top_measurement.*' => 'required',
+            'bottom_measurement.*' => 'required'
+        ], [
+            'status.required' => 'Please provide property type',
+            'title.required' => 'Please provide property english title',
+            'title.max' => 'Maximum english title character are 100',
+            'ar_title.required' => 'Please provide property arabic title',
+            'ar_title.max' => 'Maximum arabic title character are 100',
+            'district.required' => 'Please provide property district',
+            'location.required' => 'Please provide property location',
+            // 'location.regex' => 'Provide comma seperated location coordinates',
+            'city.required' => 'Please provide property city',
+            'property_nature.*.required' => 'Please provide all plot nature',
+            'plot_price.*.required' => 'Please provide all plot prices',
+            'plot_number.*.required' => 'Please provide all plot number',
+            'planned_number.*.required' => 'Please provide all plot planned number',
+            'total_area.*.required' => 'Please provide Area of land in SQM',
+            'center_coordinate.*.required' => 'Please provide all plot center coordinates',
+            // 'center_coordinate.*.regex' => 'Provide comma seperated center coordinates',
+            'top_right_coordinate.*.required' => 'Please provide all plot top right coordinates',
+            // 'top_right_coordinate.*.regex' => 'Provide comma seperated top coordinates',
+            'top_left_coordinate.*.required' => 'Please provide all plot top left coordinates',
+            // 'top_left_coordinate.*.regex' => 'Provide comma seperated top left coordinates',
+            'bottom_right_coordinate.*.required' => 'Please provide all plot bottom right coordinates',
+            // 'bottom_right_coordinate.*.regex' => 'Provide comma seperated bottom right coordinates',
+            'bottom_left_coordinate.*.required' => 'Please provide all plot bottom left coordinates',
+            // 'bottom_left_coordinate.*.regex' => 'Provide comma seperated bottom leftsss coordinates',
+            'right_measurement.*.required' => 'Please provide all plot right measurements',
+            'left_measurement.*.required' => 'Please provide all plot left measurements',
+            'top_measurement.*.required' => 'Please provide all plot top measurements',
+            'bottom_measurement.*.required' => 'Please provide all bottom measurements'
+
+        ]);
+
+        //store & update title and slug
+        $unique_id = generate_unique_id();
+        $slug = Str::slug($request->title) . '-' . $unique_id;
+        $term = new Terms;
+        $term->user_id = Auth::id();
+        $term->unique_id =  $unique_id;
+        $term->status = 3;
+        $term->type = 'property';
+        $term->is_land_block = 1;
+        $term->slug = $slug;
+        $term->title = $request->title;
+        $term->ar_title = $request->ar_title;
+        $term->save();
+        //post districts
+        $district = new PostDistrict;
+        $district->term_id = $term->id;
+        $district->type = 'district';
+        $district->district_id = $request->district;
+        $district->value = $request->location;
+        $district->save();
+
+        $post_city['term_id'] = $term->id;
+        $post_city['city_id'] = $request->city;
+        PostCity::insert($post_city);
+
+        //property status create and update
+        $post_cat = new PostCategory;
+        $post_cat->term_id = $term->id;
+        $post_cat->category_id = $request->status;
+        $post_cat->type = 'status';
+        $post_cat->save();
+
+        //for virtual tour and images
+        $virtual_tour = new Meta;
+        $virtual_tour->term_id = $term->id;
+        $virtual_tour->type = 'virtual_tour';
+        $virtual_tour->content = $request->virtual_tour;
+        $virtual_tour->save();
+
+
+        unset($request['_token'], $request['virtual_tour']);
+        //store images
+        $this->upload_images($request, $term->id);
+        //store land block coordinates and measurement details
+        $this->land_block_detail_save($request->all(), $term->id);
+
+        return success_response($term->id, 'Land block data inserted successfully');
+    }
+
+    function run($image, $c_type, $level = 0)
+    {
+
+        // get file info
+        $im_info = getImageSize($image);
+        $im_name = basename($image);
+        $im_type = $im_info['mime'];
+        $im_size = filesize($image);
+
+        // result
+        $result = array();
+
+        // cek & ricek
+        if (in_array($c_type, array('jpeg', 'jpg', 'JPG', 'JPEG', 'gif', 'GIF', 'png', 'PNG'))) { // jpeg, png, gif only
+            $result['data'] = $this->create_image($image, $im_name, $im_type, $im_size, $c_type, $level);
+
+            if ($c_type == 'gif' || $c_type == 'png') {
+                if (file_exists($image)) {
+                    unlink($image);
+                }
+            }
+            return $result;
+        }
+    }
+
+
+
+    private function create_image($image, $name, $type, $size, $c_type, $level)
+    {
+        $im_name = $this->fullname;
+        $path = 'uploads/' . date('y') . '/' . date('m') . '/';
+        $im_output = $path . $im_name;
+        $im_ex = explode('.', $im_output); // get file extension
+
+        // create image
+        if ($type == 'image/jpeg') {
+            $im = imagecreatefromjpeg($image); // create image from jpeg
+
+        } elseif ($type == 'image/png') {
+            $im = imagecreatefrompng($image);
+        } elseif ($type == 'image/gif') {
+            $im = imagecreatefromgif($image);
+        }
+
+        // compree image
+        if ($c_type) {
+            $im_name = str_replace(end($im_ex), $c_type, $im_name); // replace file extension
+            if ($c_type != 'gif') {
+                $im_output = str_replace(end($im_ex), 'webp', $im_output); // replace file extension
+                if (!empty($level)) {
+                    imagewebp($im, $im_output, 100 - ($level * 10)); // if level = 2 then quality = 80%
+                } else {
+                    imagewebp($im, $im_output, 100); // default quality = 100% (no compression)
+                }
+                $im_type = 'image/webp';
+                // image destroy
+                imagedestroy($im);
+            } else {
+
+                if (!empty($level)) {
+                    imagegif($im, $im_output, 100 - ($level * 10));
+                } else {
+                    imagegif($im, $im_output, 100 - ($level * 10));
+                }
+                $im_type = $type;
+                // image destroy
+                imagedestroy($im);
+            }
+
+            $im_output = str_replace(end($im_ex), $c_type, $im_output); // replace file extension
+
+
+
+        } else {
+        }
+
+
+
+        // output original image & compressed image
+        $im_size = filesize($im_output);
+        $info = array(
+            'name' => $im_name,
+            'image' => $im_output,
+            'type' => $im_type,
+            'size' => $im_size
+        );
+        return $info;
+    }
+
+    public function land_block_detail_save($data, $term_id)
+    {
+
+        unset($data['_token'], $data['status'], $data['title'], $data['ar_title'], $data['city'], $data['district'], $data['location']);
+        $plot_number_count =  $data['plot_number'];
+        for ($count = 0; $count < count($plot_number_count); $count++) {
+
+            $land_block = new LandBlock;
+            $land_block->term_id = $term_id;
+            $land_block->parent_category = $data['property_nature'][$count];
+            $land_block->price = $data['plot_price'][$count];
+            $land_block->plot_number =  $data['plot_number'][$count];
+            $land_block->planned_number =  $data['planned_number'][$count];
+            $land_block->total_area =  $data['total_area'][$count];
+            $land_block->center_coordinate =  $data['center_coordinate'][$count];
+            $land_block->top_right_coordinate =  $data['top_right_coordinate'][$count];
+            $land_block->top_left_coordinate =  $data['top_left_coordinate'][$count];
+            $land_block->bottom_right_coordinate =  $data['bottom_right_coordinate'][$count];
+            $land_block->bottom_left_coordinate =  $data['bottom_left_coordinate'][$count];
+            $land_block->right_measurement =  $data['right_measurement'][$count];
+            $land_block->left_measurement =  $data['left_measurement'][$count];
+            $land_block->top_measurement =  $data['top_measurement'][$count];
+            $land_block->bottom_measurement =  $data['bottom_measurement'][$count];
+            $land_block->save();
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -189,7 +529,7 @@ class PropertyController extends controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
+        //        dd($request->all());
     }
 
     /**
@@ -208,36 +548,120 @@ class PropertyController extends controller
             $this->email = $request->src;
             $posts = Terms::where('type', 'property')->whereHas('user', function ($q) {
                 return $q->where('email', $this->email);
-            })->where('status', $id)->latest()->paginate(40);
+            })->where('is_land_block', 0)->where('status', $id)->latest()->paginate(40);
         } elseif ($request->src) {
-            $posts = Terms::where('type', 'property')->where('status', $id)->where($request->type, 'LIKE', '%' . $request->src . '%')->latest()->paginate(40);
+            $posts = Terms::where('type', 'property')->where('is_land_block', 0)->where('status', $id)->where($request->type, 'LIKE', '%' . $request->src . '%')->latest()->paginate(40);
         } else {
-            $posts = Terms::where('type', 'property')->where('status', $id)->latest()->paginate(40);
+            $posts = Terms::where('type', 'property')->where('is_land_block', 0)->where('status', $id)->latest()->paginate(40);
         }
-        $totals = Terms::where('type', 'property')->count();
+        $totals = Terms::where('type', 'property')->where('is_land_block', 0)->count();
         $actives = Terms::where([
             ['type', 'property'],
+            ['is_land_block', 0],
             ['status', 1],
         ])->count();
         $incomplete = Terms::where([
             ['type', 'property'],
+            ['is_land_block', 0],
             ['status', 2],
         ])->count();
         $trash = Terms::where([
             ['type', 'property'],
+            ['is_land_block', 0],
             ['status', 0],
         ])->count();
         $pendings = Terms::where([
             ['type', 'property'],
+            ['is_land_block', 0],
             ['status', 3],
         ])->count();
         $rejected = Terms::where([
             ['type', 'property'],
+            ['is_land_block', 0],
             ['status', 4],
         ])->count();
 
         $type = $id;
         return view('plugin::properties.index', compact('type', 'posts', 'totals', 'pendings', 'actives', 'incomplete', 'trash', 'pendings', 'request', 'rejected'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function land_block_show(Request $request, $id)
+    {
+        if (!Auth()->user()->can('Properties.list')) {
+            abort(401);
+        }
+
+        if ($request->src && $request->type == 'email') {
+            $this->email = $request->src;
+            $posts = Terms::where('type', 'property')->whereHas('user', function ($q) {
+                return $q->where('email', $this->email);
+            })
+                ->where('is_land_block', 1)
+                ->where('status', $id)
+                ->join('land_block_details', 'land_block_details.term_id', '=', 'terms.id')
+                ->select(
+                    'terms.*',
+                    DB::raw("count(land_block_details.term_id) AS total_lands")
+                )
+                ->groupBy('terms.id')
+                ->latest('terms.created_at')->paginate(40);
+        } elseif ($request->src) {
+            $posts = Terms::where('type', 'property')->where('status', $id)->where($request->type, 'LIKE', '%' . $request->src . '%')
+                ->where('is_land_block', 1)
+                ->where('status', $id)
+                ->join('land_block_details', 'land_block_details.term_id', '=', 'terms.id')
+                ->select(
+                    'terms.*',
+                    DB::raw("count(land_block_details.term_id) AS total_lands")
+                )
+                ->groupBy('terms.id')
+                ->latest('terms.created_at')->paginate(40);
+        } else {
+            $posts = Terms::where('type', 'property')->where('status', $id)->where('is_land_block', 1)
+                ->where('status', $id)
+                ->join('land_block_details', 'land_block_details.term_id', '=', 'terms.id')
+                ->select(
+                    'terms.*',
+                    DB::raw("count(land_block_details.term_id) AS total_lands")
+                )
+                ->groupBy('terms.id')
+                ->latest('terms.created_at')->paginate(40);
+        }
+        $totals = Terms::where('type', 'property')->where('is_land_block', 1)->count();
+        $actives = Terms::where([
+            ['type', 'property'],
+            ['is_land_block', 1],
+            ['status', 1],
+        ])->count();
+        $incomplete = Terms::where([
+            ['type', 'property'],
+            ['is_land_block', 1],
+            ['status', 2],
+        ])->count();
+        $trash = Terms::where([
+            ['type', 'property'],
+            ['is_land_block', 1],
+            ['status', 0],
+        ])->count();
+        $pendings = Terms::where([
+            ['type', 'property'],
+            ['is_land_block', 1],
+            ['status', 3],
+        ])->count();
+        $rejected = Terms::where([
+            ['type', 'property'],
+            ['is_land_block', 1],
+            ['status', 4],
+        ])->count();
+
+        $type = $id;
+        return view('plugin::properties.land_block_index', compact('type', 'posts', 'totals', 'pendings', 'actives', 'incomplete', 'trash', 'pendings', 'request', 'rejected'));
     }
 
     /**
@@ -266,11 +690,6 @@ class PropertyController extends controller
                 $this->property_type = $value->category_id;
             }
         }
-
-
-        // foreach ($info->facilities as $key => $row) {
-        //     array_push($array, $row->category_id);
-        // }
 
         $input_options = \App\Category::where('type', 'option')->whereHas('child', function ($q) {
             return $q->where('id', $this->property_type);
@@ -301,43 +720,30 @@ class PropertyController extends controller
      */
     public function edit($id, Request $request)
     {
-
         if (!Auth()->user()->can('Properties.edit')) {
             abort(401);
         }
 
         $this->term_id = $id;
-
         $info = Terms::where([
             ['type', 'property'],
             ['id', $id]
-        ])->with('depth', 'length','medias', 'virtual_tour', 'interface', 'instrument_number', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'id_number', 'post_preview', 'streets', 'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'ready', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition', 'property_type')->withCount('reviews')->first();
-
-//        dd($info->length->content);
+        ])->with('depth', 'length', 'medias', 'virtual_tour', 'interface', 'instrument_number', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'id_number', 'post_preview', 'streets', 'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'ready', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition', 'property_type')->first();
+        //Fetch parent category against term id
         $post_parent_category = Postcategory::where('type', 'parent_category')->where('term_id', $id)->first();
-
+        //Fetch property type (Farm, Land, Apartment, etc.) against upcoming id in param
         $child_category = Category::where('type', 'parent_category')->where('id', $post_parent_category->category_id)->with('parent')->get();
-
+        //Fetch Features Land Area, Built up area, Furnished and other features that have status 1
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
-
-        $instrument = Terms::with('rules', 'id_number', 'instrument_number')->findorFail($id);
-
+        //Fetch all Cities
         $cities = City::where('featured', 1)->get();
-
+        //Fetch all District
         $district = District::where('featured', 1)->get();
-
-        $postDistrict = PostDistrict::where('type', 'district')->get();
-
+        // Fetch table parent category data
         $parent_category = Category::where('type', 'parent_category')->get();
-
-        $interfaces = Meta::where('type', 'interface')->get();
-
-        $categories_data = Category::where('type', 'feature')->where('featured', 1)->get();
-
-        $user_id = DB::table('user_credentials')->where('user_id', $id)->first();
-
-        $property_nature = Category::where('type', 'parent_category')->with('category_parent')->where('id', $request->id)->where('featured', 1)->get();
-
+        //Fetch Advertising Id
+        $user_id = UserCredentials::where('user_id', $id)->first();
+        //Fetch Parent Category (Residential or commertial) against category (Farm, Appartment, Duplex ect)
         $array = [];
         $property_type = null;
         foreach ($info->postcategory as $key => $value) {
@@ -349,21 +755,19 @@ class PropertyController extends controller
                 $this->property_type = $value->category_id;
             }
         }
-
-
         foreach ($info->postcategory as $key => $value) {
             array_push($array, $value->category_id);
             if ($value->type == 'category') {
                 $this->property_type = $value->category_id;
             }
         }
-
+//        Fetch Features(Kitchen, Security, wifi, swimming pool etc) against postcategory(Farm, Appartment, Duplex etc.)
         $features_array = [];
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
         }
 
-        return view('plugin::properties.new_edit', compact('info', 'user_id', 'post_parent_category', 'instrument', 'categories_data', 'array', 'property_nature', 'status_category', 'parent_category', 'child_category', 'features_array', 'cities', 'district', 'postDistrict', 'interfaces'));
+        return view('plugin::properties.new_edit', compact('info', 'user_id', 'post_parent_category', 'array', 'status_category', 'parent_category', 'child_category', 'features_array', 'cities', 'district'));
     }
 
 
@@ -376,6 +780,7 @@ class PropertyController extends controller
      */
     public function update(Request $request, $id)
     {
+//        Step 1 Validation Property English and Arabic name, location longitude and latitude
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'ar_title' => 'required|max:100',
@@ -384,7 +789,7 @@ class PropertyController extends controller
         //store & update title and slug
         $term = Terms::where('user_id', Auth::id())->where('id', $id)->first();
         $unique_id = generate_unique_id();
-        $slug = \Illuminate\Support\Str::slug($request->title).'-'.$unique_id;
+        $slug = \Illuminate\Support\Str::slug($request->title) . '-' . $unique_id;
         if (empty($term)) {
             $term = new Terms;
             $term->user_id = Auth::id();
@@ -426,6 +831,7 @@ class PropertyController extends controller
 
     public function second_update_property(Request $request, $id)
     {
+    // Step 2 Validation Land value, builtup value, Street value in meter and price
         $validatedData = $request->validate([
             'landarea' => 'required',
             'builtarea' => 'required',
@@ -433,7 +839,7 @@ class PropertyController extends controller
             'price' => 'required',
 
         ]);
-
+    // Property price create and update
         $term_id = $id;
         $price = Price::where('term_id', $term_id)->where('type', 'price')->first();
         if (empty($price)) {
@@ -520,6 +926,7 @@ class PropertyController extends controller
 
     public function third_update_property(Request $request, $id)
     {
+//        Step 3 Validation floors value
         $validatedData = $request->validate([
             'total_floors' => 'required',
         ]);
@@ -575,16 +982,11 @@ class PropertyController extends controller
 
     public function fourth_update_property(Request $request, $id)
     {
+//        Step 4 validation on Youtube link
         $validatedData = $request->validate([
             'virtual_tour' => 'required',
         ]);
 
-//        $validator = \Validator::make($request->all(), [
-//            'media.*' => 'mimes:jpeg,jpg,png|max:20480',
-//        ]);
-//        if ($validator->fails()) {
-//            return back()->withErrors($validator->errors())->withInput();
-//        }
 
         if ($request->hasfile('media'))
             foreach ($request->file('media') as $image) {
@@ -615,11 +1017,13 @@ class PropertyController extends controller
 
     public function fifth_update_property(Request $request, $id)
     {
+//        Validation on features (wifi, swimming pool, security etc), Property Length and Depth
         $validatedData = $request->validate([
             'features' => 'required',
             'length' => 'required',
             'depth' => 'required',
         ]);
+//        Feature show against property type(Farm, Duplex, Appartment) and update
         $term_id = $id;
         $category = [];
         foreach ($request->features ?? [] as $key => $value) {
@@ -635,7 +1039,6 @@ class PropertyController extends controller
 
         //length and depth
         $data = $request->all();
-
         unset($data['_token'], $data['_method'], $data['features']);
         foreach ($data as $key => $value) {
             $keys_table = '';
@@ -653,9 +1056,11 @@ class PropertyController extends controller
 
     public function sixth_update_property(Request $request, $id)
     {
+//        validate the Deed number
         $validatedData = $request->validate([
             'instrument_number' => 'required',
         ]);
+//        Show and update the Deed Number and FAQs of Property
         $term_id = $id;
         $rule_data = isset($request['rule']) ? implode(',', $request['rule']) : 0;
         $rule = Meta::where('term_id', $term_id)->where('type', 'rules')->first();
@@ -709,7 +1114,6 @@ class PropertyController extends controller
             return response()->json(['Property Updated Successfully']);
         }
 
-
         foreach ($info->postcategory as $key => $value) {
             array_push($array, $value->category_id);
             if ($value->type == 'category') {
@@ -743,12 +1147,12 @@ class PropertyController extends controller
         $info = Terms::with('postcategory', 'property_type')->findorFail($term_id);
         $data['categories_data'] = Category::where('type', 'feature')->where('featured', 1)->get();
         $data['property_data'] = $info->property_type;
-        $array=[];
+        $array = [];
         foreach ($info->postcategory as $key => $value) {
             array_push($array, $value->category_id);
         }
 
-        $data['post_features']= $array;
+        $data['post_features'] = $array;
         return success_response($data, 'Data get Successfully!');
     }
 
@@ -797,43 +1201,48 @@ class PropertyController extends controller
 
         if ($request->src && ($request->type == 'email')) {
             $this->email = $request->src;
-            $posts = Terms::where('type', 'property')->where('resource', 0)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
+            $posts = Terms::where('type', 'property')->where('resource', 0)->where('is_land_block', 0)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
                 ->whereHas('user', function ($q) {
                     return $q->where('email', $this->email);
                 })->latest()->paginate(25);
         } elseif ($request->src && ($request->type == 'name')) {
             $this->name = $request->src;
-            $posts = Terms::where('type', 'property')->where('resource', 0)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
+            $posts = Terms::where('type', 'property')->where('resource', 0)->where('is_land_block', 0)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')
                 ->whereHas('user', function ($q) {
                     return $q->where('name', $this->name);
                 })->latest()->paginate(25);
         } else {
-            $posts = Terms::where('type', 'property')->where('resource', 0)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')->latest()->paginate(25);
+            $posts = Terms::where('type', 'property')->where('resource', 0)->where('is_land_block', 0)->with('parentcategory', 'post_new_city', 'builtarea', 'landarea', 'price', 'post_district', 'user', 'property_status_type')->latest()->paginate(25);
         }
-        $totals = Terms::where('type', 'property')->where('resource', 0)->count();
+        $totals = Terms::where('type', 'property')->where('resource', 0)->where('is_land_block', 0)->count();
         $actives = Terms::where([
             ['type', 'property'],
             ['status', 1],
+            ['is_land_block', 0],
             ['resource', 0],
         ])->count();
         $incomplete = Terms::where([
             ['type', 'property'],
             ['status', 2],
+            ['is_land_block', 0],
             ['resource', 0],
         ])->count();
         $trash = Terms::where([
             ['type', 'property'],
             ['status', 0],
+            ['is_land_block', 0],
             ['resource', 0],
         ])->count();
         $pendings = Terms::where([
             ['type', 'property'],
             ['status', 3],
+            ['is_land_block', 0],
             ['resource', 0],
         ])->count();
         $rejected = Terms::where([
             ['type', 'property'],
             ['status', 4],
+            ['is_land_block', 0],
             ['resource', 0],
         ])->count();
         return view('plugin::properties.csv_page', compact('type', 'posts', 'totals', 'pendings', 'actives', 'incomplete', 'trash', 'pendings', 'request', 'rejected'));
@@ -895,16 +1304,11 @@ class PropertyController extends controller
         return view('plugin::properties.csv_page', compact('type', 'posts', 'totals', 'pendings', 'actives', 'incomplete', 'trash', 'pendings', 'request', 'rejected'));
     }
 
-    // public function get_user_id($id)
-    // {
-    //     $user_id = DB::table('user_credentials')->where('user_id', $id)->first();
-    //     return $user_id;
-    // }
 
     //display modal box specif id data of property
     public function get_property_data($id)
     {
-        $posts = Terms::where('type', 'property')->where('resource', 0)->where('id', $id)
+        $posts = Terms::where('type', 'property')->where('resource', 0)->where('is_land_block', 0)->where('id', $id)
             ->with('rules', 'parentcategory', 'depth', 'length', 'property_age', 'meter', 'property_floor', 'post_new_city', 'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'option_data', 'property_status_type', 'property_type', 'postcategory', 'property_condition')
             ->first();
         $final_data = $this->property_data_making($posts);
@@ -1047,7 +1451,9 @@ class PropertyController extends controller
         $rooms_type = [];
         foreach ($posts->option_data as $key => $value) {
 
-            if ($value->category->name == 'Living-room' || $value->category->name == 'Guest-room'
+            if (
+                $value->category->name == 'Living-room' || $value->category->name == 'Guest-room'
+
                 || $value->category->name == 'Bedroom'
             ) {
                 array_push($rooms_type, $value->category->name);
@@ -1192,6 +1598,7 @@ class PropertyController extends controller
         $fileName = $request->from_date . 'to' . $request->to_date . '.csv';
         $tasks = Terms::where('type', 'property')
             ->where('resource', 0)
+            ->where('is_land_block', 0)
             ->whereDate('created_at', '>=', $from)
             ->whereDate('created_at', '<=', $to)
             ->with('rules', 'parentcategory', 'depth', 'length', 'interface', 'property_age', 'meter', 'property_floor', 'post_new_city', 'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'option_data', 'property_status_type', 'postcategory', 'property_type', 'property_condition')
@@ -1378,93 +1785,6 @@ class PropertyController extends controller
         }
     }
 
-    function run($image, $c_type, $level = 0)
-    {
-
-        // get file info
-        $im_info = getImageSize($image);
-        $im_name = basename($image);
-        $im_type = $im_info['mime'];
-        $im_size = filesize($image);
-
-        // result
-        $result = array();
-
-        // cek & ricek
-        if (in_array($c_type, array('jpeg', 'jpg', 'JPG', 'JPEG', 'gif', 'GIF', 'png', 'PNG'))) { // jpeg, png, gif only
-            $result['data'] = $this->create_image($image, $im_name, $im_type, $im_size, $c_type, $level);
-
-            if ($c_type == 'gif' || $c_type == 'png') {
-                if (file_exists($image)) {
-                    unlink($image);
-                }
-            }
-            return $result;
-        }
-    }
-
-    private function create_image($image, $name, $type, $size, $c_type, $level)
-    {
-        $im_name = $this->fullname;
-        $path = 'uploads/' . date('y') . '/' . date('m') . '/';
-        $im_output = $path . $im_name;
-        $im_ex = explode('.', $im_output); // get file extension
-
-        // create image
-        if ($type == 'image/jpeg') {
-            $im = imagecreatefromjpeg($image); // create image from jpeg
-
-        } elseif ($type == 'image/png') {
-            $im = imagecreatefrompng($image);
-        } elseif ($type == 'image/gif') {
-            $im = imagecreatefromgif($image);
-        }
-
-        // compree image
-        if ($c_type) {
-            $im_name = str_replace(end($im_ex), $c_type, $im_name); // replace file extension
-            if ($c_type != 'gif') {
-                $im_output = str_replace(end($im_ex), 'webp', $im_output); // replace file extension
-                if (!empty($level)) {
-                    imagewebp($im, $im_output, 100 - ($level * 10)); // if level = 2 then quality = 80%
-                } else {
-                    imagewebp($im, $im_output, 100); // default quality = 100% (no compression)
-                }
-                $im_type = 'image/webp';
-                // image destroy
-                imagedestroy($im);
-            } else {
-
-                if (!empty($level)) {
-                    imagegif($im, $im_output, 100 - ($level * 10));
-                } else {
-                    imagegif($im, $im_output, 100 - ($level * 10));
-                }
-                $im_type = $type;
-                // image destroy
-                imagedestroy($im);
-            }
-
-            $im_output = str_replace(end($im_ex), $c_type, $im_output); // replace file extension
-
-
-
-        } else {
-        }
-
-
-
-        // output original image & compressed image
-        $im_size = filesize($im_output);
-        $info = array(
-            'name' => $im_name,
-            'image' => $im_output,
-            'type' => $im_type,
-            'size' => $im_size
-        );
-        return $info;
-    }
-
     public function property_create_validations($request)
     {
         return  \Validator::make($request->all(), [
@@ -1486,5 +1806,4 @@ class PropertyController extends controller
 
         ]);
     }
-
 }

@@ -234,6 +234,8 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	//detail page
 	Route::get('property-detail/{slug}', 'PropertyController@detail')->name('property.detail');
 	Route::get('change_title', 'RegisterController@change_title');
+	Route::get('land-block-detail/{slug}', 'PropertyController@land_block_detail')->name('property.land_block_detail');
+	Route::get('Land_block_data/{id}', 'PropertyController@Land_block_data');
 	//user phone number verification page
 	Route::get('user-phone/verification/{id?}','RegisterController@phone_verification')->name('phone_verification');
 	Route::post('user/phone_register', 'RegisterController@phone_register')->name('phone_register');

@@ -74,6 +74,12 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 
         Route::get('get_data/{id}', 'PropertyController@get_data');
         Route::get('all_features/{id}', 'PropertyController@get_all_features');
+		//land block
+		Route::get('land-block', 'PropertyController@land_block_index')->name('property.land-block');
+		Route::get('land-block-show/{id}', 'PropertyController@land_block_show')->name('property.land-block-show');
+		Route::get('land-block/create', 'PropertyController@land_block_create')->name('property.land-block-craete');
+		Route::post('block_store', 'PropertyController@block_store')->name('property.block_store');
+		Route::get('property_nature', 'PropertyController@property_nature')->name('property.property_nature');
 		//download csv
 		Route::get('download-csv', 'PropertyController@csv_page')->name('property.csv_page');
 		Route::get('download-csv-type/{id}', 'PropertyController@show_csv_specified')->name('property.csv_page_type');
@@ -83,6 +89,8 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::post('/export-csv', 'PropertyController@exportCSV')->name('properties.csv_download');
         //update Property
 //      Route::post('update_property', 'PropertyController@update_property')->name('property.update_property');
+
+		Route::get('get_districts/{id}', 'PropertyController@get_districts');
 
 	});
 

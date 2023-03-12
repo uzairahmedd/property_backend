@@ -38,7 +38,6 @@
 </div>
 
 @yield('extra')
-
 <!-- General JS Scripts -->
 <script src="{{ asset('admin/assets/js/jquery-3.5.1.min.js') }}"></script>
 
@@ -50,6 +49,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <!-- Template JS File -->
 <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
+ <script src="{{theme_asset('assets/newjs/yearpicker.js')}}"></script>
 <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
 <script src="{{ asset('admin/assets/js/jquery.selectric.min.js') }}"></script>
 @yield('script')

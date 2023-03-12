@@ -53,6 +53,7 @@ $district = __('labels.district');
 
         $properties = __('labels.properties');
         $download_csv = __('labels.download_csv');
+		$land_block = __('labels.land_blocks');
         $features = __('labels.features');
         $categories = __('labels.categories');
         $input_options = __('labels.input_options');
@@ -60,6 +61,9 @@ $district = __('labels.district');
 		if (Amcoders\Plugin\Plugin::is_active('Post')) {
 			if (Auth()->user()->can('Properties.list')) {
 				$property[$properties] = route('admin.property.index');
+			}
+			if (Auth()->user()->can('Properties.list')) {
+				$property[$land_block] = route('admin.property.land-block');
 			}
 			if (Auth()->user()->can('csv.list')) {
 				$property[$download_csv] = route('admin.property.csv_page');
