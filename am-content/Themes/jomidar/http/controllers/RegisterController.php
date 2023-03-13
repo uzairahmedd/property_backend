@@ -580,7 +580,7 @@ class RegisterController extends controller
         $user_data->cr_number = $request->cr_number;
         $user_data->rega_number = $request->rega_number;
         $user_data->save();
-        
+
         $user = User::find(decrypt($request->id));
         Auth::login($user);
 
@@ -588,7 +588,10 @@ class RegisterController extends controller
         return success_response(['url' => $url, 'User Account created successfully']);
     }
 
-
+    /**
+     *Agent login process
+     * @return @Response.
+     */
     public function user_login(Request $request)
     {
         $validator = \Validator::make($request->all(), [
@@ -601,7 +604,12 @@ class RegisterController extends controller
         $user = DB::table('users')->where('phone', $request->phone)->where('status', 1)->where('is_verified', 1)->first();
         if (!empty($user)) {
             $user = User::find($user->id);
-            Auth::login($user);
+            //for remember me 
+            $remember = false;
+            if (isset($request->remember)) {
+                $remember = true;
+            }
+            Auth::login($user, $remember);
 
             $url = env("APP_URL", 'http://mychoice.sa/') . 'agent/profile/settings';
             return success_response(['url' => $url, 'User logged-in successfully']);
@@ -609,30 +617,31 @@ class RegisterController extends controller
         $messsage = ['phone' => 'User does not exist!'];
         return error_response($messsage, '');
     }
-   
+
     //nafath api callback url
-    public function callback_url(Request $request){
-        try{
-        if(!$request->headers->get("Authorization")){
-            $messsage = ['messsage' => 'Header Authorization must be required'];
-            return error_response($messsage, 'validation error');
-        }
-        if(!$request->headers->get("Content-Type")){
-            $messsage = ['messsage' => 'Header Content-type must be required'];
-            return error_response($messsage, 'validation error');
-        }
-        if($request->headers->get("content-Type") != 'application/json'){
-            $messsage = ['messsage' => 'Header Content-type must be application/json'];
-            return error_response($messsage, 'validation error');
-        }
-        // if($request->headers->get("Authorization") != env("nafath_api_key")){
-        //     $messsage = ['messsage' => 'Header Authorization api-key not correct'];
-        //     return error_response($messsage, '');
-        // }
-        $nafath_callback=new NafathCallback;
-        $nafath_callback->response = json_encode($request->all());
-        $nafath_callback->save();
-        return success_response(['messsage' => 'Response get successfully', 'Response get successfully']);
+    public function callback_url(Request $request)
+    {
+        try {
+            if (!$request->headers->get("Authorization")) {
+                $messsage = ['messsage' => 'Header Authorization must be required'];
+                return error_response($messsage, 'validation error');
+            }
+            if (!$request->headers->get("Content-Type")) {
+                $messsage = ['messsage' => 'Header Content-type must be required'];
+                return error_response($messsage, 'validation error');
+            }
+            if ($request->headers->get("content-Type") != 'application/json') {
+                $messsage = ['messsage' => 'Header Content-type must be application/json'];
+                return error_response($messsage, 'validation error');
+            }
+            // if($request->headers->get("Authorization") != env("nafath_api_key")){
+            //     $messsage = ['messsage' => 'Header Authorization api-key not correct'];
+            //     return error_response($messsage, '');
+            // }
+            $nafath_callback = new NafathCallback;
+            $nafath_callback->response = json_encode($request->all());
+            $nafath_callback->save();
+            return success_response(['messsage' => 'Response get successfully', 'Response get successfully']);
         } catch (\Exception $e) {
             return error_response(['messsage' => 'Something went wrong!', '']);
         }

@@ -124,6 +124,12 @@
                                 <input type="text" name="phone" id="login_phone" autocomplete="off" value="" class="form-control font-medium font-16" placeholder="{{__('labels.mobile_number')}}">
                                 <label for="floating-Input" class="floating-Input position-absolute font-medium theme-text-seondary-black b-r-8">{{__('labels.mobile_number')}}</label>
                             </div>
+                            <div class="mb-4_5 position-relative">
+                                <a class="form-check-label check-box-terms" for="remember">{{ __('labels.Remember_Me') }}</a>
+                                <span class="theme-text-seondary-black font-16 ms-1"> </span>
+                                <input class="form-check-input" type="checkbox" name="remember">
+                            </div>
+
                             <button type="submit" class="basicbtn chat-btn theme-bg-blue theme-text-white border-0 font-bold font-16">
                                 {{__('labels.login')}}
                             </button>
@@ -222,7 +228,7 @@
                         <div class="row clearfix">
                             <div class="col-sm-12">
                                 <input type="hidden" id="default_coordinates">
-                                <div id="map" ></div>
+                                <div id="map"></div>
                             </div>
                         </div>
                     </div>
