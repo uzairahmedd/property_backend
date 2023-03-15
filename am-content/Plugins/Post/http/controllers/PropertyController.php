@@ -802,6 +802,7 @@ class PropertyController extends controller
         $post_parent_category = Postcategory::where('type', 'parent_category')->where('term_id', $id)->first();
         //Fetch property type (Farm, Land, Apartment, etc.) against upcoming id in param
         $child_category='';
+        
         if(!empty($post_parent_category)) {
             $child_category = Category::where('type', 'parent_category')->where('id', $post_parent_category->category_id)->with('parent')->get();
         }
