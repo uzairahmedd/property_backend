@@ -224,7 +224,6 @@ return [
     'otp_received_enter' => 'Please enter OTP you received',
     'otp_phone_num_received' => 'Enter the OTP code you received on',
     'tooltip_google' => 'This help you to be search in google',
-    '' => '',
     'qualified' => 'Qualified leads',
     'property_title_en' => 'Title of ad (English)',
     'property_title_ar' => 'Title of ad (Arabic)',
@@ -676,4 +675,5 @@ return [
     'plot_number' => 'Plot number',
     'plot_basic_details' => 'Plot Basic details',
     'rem_plot_form' => 'Remove Plot From',
+    "Remember_Me" => "Remember Me",
 ];
