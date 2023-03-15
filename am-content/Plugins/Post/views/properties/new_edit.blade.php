@@ -8,7 +8,7 @@
 <script>
     var interface = '<?php echo !empty($info->interface) ? $info->interface->content : ''; ?>';
     var meter = '<?php echo !empty($info->meter) ? $info->meter->content : ''; ?>';
-    var pro_type_name = '<?php echo !empty($info->property_type) ? $info->property_type->category->name : ''; ?>';
+    var pro_type_name = '<?php echo $info->property_type->category->name ?>';
     var locale = '<?php echo Session::get('locale'); ?>';
 </script>
 @section('content')
@@ -189,7 +189,7 @@
                                                         onchange="property_type_triger(this, event)">
                                                     <option value='' disabled selected>{{__('labels.property_nature')}}</option>
                                                     @foreach($parent_category as $row)
-                                                        <option value="{{ $row->id }}" {{ !empty($array) && array_key_exists($row->id, $array) ? "selected" : "" }}>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name }}</option>
+                                                        <option value="{{ $row->id }}" {{ !empty($array) && $array['parent_category'] == $row->id ? "selected" : "" }}>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 <input id="all_feature_id" type="hidden" name="term_id"
@@ -203,7 +203,7 @@
                                                         id="property_type_select"
                                                         onchange="land_triger(this, event)"
                                                         aria-label=".form-select-lg example" name="category">
-                                                    @foreach($child_category as $row)
+                                                    @foreach($child_category[0]->parent as $row)
                                                         <option class="type_categpry" name="category"
                                                                 value="{{ $row->id }}"
                                                                 data-val="{{ !empty($array) ? $array['category'] : old('category') }}"
@@ -657,7 +657,6 @@
 
         @section('script')
             <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&libraries=places&callback=initialize"></script> -->
-            <script src="{{ asset('admin/js/edit_property.js') }}"></script>
             <script src="{{ asset('admin/js/form.js') }}"></script>
             <script src="{{ asset('admin/js/select2.min.js') }}"></script>
             <script>
@@ -886,4 +885,7 @@
 
                 }
             </script>
+        @endsection
+        @section('property_step_calender')
+            <script src="{{theme_asset('assets/newjs/yearpicker.js')}}"></script>
         @endsection

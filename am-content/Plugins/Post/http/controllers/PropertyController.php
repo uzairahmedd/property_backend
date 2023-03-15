@@ -178,67 +178,6 @@ class PropertyController extends controller
     }
 
     /**
-     * Edit a  land blocks.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function land_block_edit(Request $request, $id)
-    {
-//        if (!Auth()->user()->can('Properties.land_block_edit')) {
-//            abort(401);
-//        }
-        $this->term_id = $id;
-        $info = Terms::where([
-            ['type', 'property'],
-            ['id', $id]
-        ])->with('medias', 'virtual_tour', 'post_new_city', 'post_preview', 'post_district', 'multiple_images', 'property_status_type', 'postcategory', 'property_type')->first();
-//First land block againt term ID
-        $landblock = LandBlock::where('term_id', $id)->first();
-//        Land Block Count
-        $blockcount = LandBlock::where('term_id', $id)->count();
-//        dd($blockcount);
-        //        //Fetch parent category against term id
-//        $post_parent_category = Postcategory::where('type', 'parent_category')->where('term_id', $id)->first();
-//        //Fetch property type (Farm, Land, Apartment, etc.) against upcoming id in param
-//        $child_category = Category::where('type', 'parent_category')->where('id', $post_parent_category->category_id)->with('parent')->get();
-        //Fetch Features Land Area, Built up area, Furnished and other features that have status 1
-        $status_category = Category::where('type', 'status')->where('featured', 1)->get();
-
-        //Fetch all Cities
-        $cities = City::where('featured', 1)->get();
-        //Fetch all District
-        $district = District::where('featured', 1)->get();
-        // Fetch table parent category data
-        $parent_category = Category::where('type', 'parent_category')->get();
-//        //Fetch Advertising Id
-//        $user_id = UserCredentials::where('user_id', $id)->first();
-//        //Fetch Parent Category (Residential or commertial) against category (Farm, Appartment, Duplex ect)
-//        $array = [];
-//        $property_type = null;
-//        foreach ($info->postcategory as $key => $value) {
-//            if ($value->type == 'parent_category') {
-//                $array[$value->type] = $value->category_id;
-//            }
-//            if ($value->type == 'category') {
-//                $array[$value->type] = $value->category_id;
-//                $this->property_type = $value->category_id;
-//            }
-//        }
-//        foreach ($info->postcategory as $key => $value) {
-//            array_push($array, $value->category_id);
-//            if ($value->type == 'category') {
-//                $this->property_type = $value->category_id;
-//            }
-//        }
-////        Fetch Features(Kitchen, Security, wifi, swimming pool etc) against postcategory(Farm, Appartment, Duplex etc.)
-//        $features_array = [];
-//        foreach ($info->postcategory as $key => $value) {
-//            array_push($features_array, $value->category_id);
-//        }
-        return view('plugin::properties.land_block_edit', compact('info', 'status_category','cities','district','parent_category','landblock','blockcount'));
-    }
-
-    /**
      * Display a listing of the districts.
      *
      * @return \Illuminate\Http\Response
@@ -248,26 +187,15 @@ class PropertyController extends controller
         return District::where('p_id', $city_id)->where('featured', 1)->select('id', 'name', 'ar_name')->get();
     }
 
-    public function property_nature($id)
+    public function property_nature()
     {
-//        dd($id);
-        $data = [];
-        $data['parent_category'] = Category::where('type', 'parent_category')->where('featured', 1)->get();
-//        $posts = Terms::where('type', 'property')->where('is_land_block', 1)
-//            ->join('land_block_details', 'land_block_details.term_id', '=', $id)
-//            ->select(
-//                'terms.*',
-//                DB::raw("count(land_block_details.term_id) AS total_lands")
-//            );
-//            dd($posts);
-        $data['blockcount'] = LandBlock::where('term_id', $id)->count();
-        return success_response($data, 'Property nature get successfully!');
+        $parent_category = Category::where('type', 'parent_category')->where('featured', 1)->get();
+        return success_response($parent_category, 'Property nature get successfully!');
     }
-
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function block_store(Request $request)
@@ -331,7 +259,7 @@ class PropertyController extends controller
         $slug = Str::slug($request->title) . '-' . $unique_id;
         $term = new Terms;
         $term->user_id = Auth::id();
-        $term->unique_id = $unique_id;
+        $term->unique_id =  $unique_id;
         $term->status = 3;
         $term->type = 'property';
         $term->is_land_block = 1;
@@ -401,6 +329,7 @@ class PropertyController extends controller
     }
 
 
+
     private function create_image($image, $name, $type, $size, $c_type, $level)
     {
         $im_name = $this->fullname;
@@ -446,8 +375,10 @@ class PropertyController extends controller
             $im_output = str_replace(end($im_ex), $c_type, $im_output); // replace file extension
 
 
+
         } else {
         }
+
 
 
         // output original image & compressed image
@@ -465,29 +396,28 @@ class PropertyController extends controller
     {
 
         unset($data['_token'], $data['status'], $data['title'], $data['ar_title'], $data['city'], $data['district'], $data['location']);
-        $plot_number_count = $data['plot_number'];
+        $plot_number_count =  $data['plot_number'];
         for ($count = 0; $count < count($plot_number_count); $count++) {
 
             $land_block = new LandBlock;
             $land_block->term_id = $term_id;
             $land_block->parent_category = $data['property_nature'][$count];
             $land_block->price = $data['plot_price'][$count];
-            $land_block->plot_number = $data['plot_number'][$count];
-            $land_block->planned_number = $data['planned_number'][$count];
-            $land_block->total_area = $data['total_area'][$count];
-            $land_block->center_coordinate = $data['center_coordinate'][$count];
-            $land_block->top_right_coordinate = $data['top_right_coordinate'][$count];
-            $land_block->top_left_coordinate = $data['top_left_coordinate'][$count];
-            $land_block->bottom_right_coordinate = $data['bottom_right_coordinate'][$count];
-            $land_block->bottom_left_coordinate = $data['bottom_left_coordinate'][$count];
-            $land_block->right_measurement = $data['right_measurement'][$count];
-            $land_block->left_measurement = $data['left_measurement'][$count];
-            $land_block->top_measurement = $data['top_measurement'][$count];
-            $land_block->bottom_measurement = $data['bottom_measurement'][$count];
+            $land_block->plot_number =  $data['plot_number'][$count];
+            $land_block->planned_number =  $data['planned_number'][$count];
+            $land_block->total_area =  $data['total_area'][$count];
+            $land_block->center_coordinate =  $data['center_coordinate'][$count];
+            $land_block->top_right_coordinate =  $data['top_right_coordinate'][$count];
+            $land_block->top_left_coordinate =  $data['top_left_coordinate'][$count];
+            $land_block->bottom_right_coordinate =  $data['bottom_right_coordinate'][$count];
+            $land_block->bottom_left_coordinate =  $data['bottom_left_coordinate'][$count];
+            $land_block->right_measurement =  $data['right_measurement'][$count];
+            $land_block->left_measurement =  $data['left_measurement'][$count];
+            $land_block->top_measurement =  $data['top_measurement'][$count];
+            $land_block->bottom_measurement =  $data['bottom_measurement'][$count];
             $land_block->save();
         }
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -518,6 +448,7 @@ class PropertyController extends controller
 
     public function findUser(Request $request)
     {
+
         $user = User::where('role_id', 2)->where('email', $request->email)->first();
         if (empty($user)) {
             $data['errors']['user'] = 'User Not Found';
@@ -657,7 +588,7 @@ class PropertyController extends controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function land_block_show(Request $request, $id)
@@ -801,20 +732,15 @@ class PropertyController extends controller
         //Fetch parent category against term id
         $post_parent_category = Postcategory::where('type', 'parent_category')->where('term_id', $id)->first();
         //Fetch property type (Farm, Land, Apartment, etc.) against upcoming id in param
-        $child_category='';
-        if(!empty($post_parent_category)) {
-            $child_category = Category::where('type', 'parent_category')->where('id', $post_parent_category->category_id)->with('parent')->get();
-        }
+        $child_category = Category::where('type', 'parent_category')->where('id', $post_parent_category->category_id)->with('parent')->get();
         //Fetch Features Land Area, Built up area, Furnished and other features that have status 1
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
         //Fetch all Cities
         $cities = City::where('featured', 1)->get();
         //Fetch all District
         $district = District::where('featured', 1)->get();
-        // Fetch table parent category data (Commercial and Residential)
+        // Fetch table parent category data
         $parent_category = Category::where('type', 'parent_category')->get();
-        // Fetch table child category data (appartment, duplex, villa etc)
-        $child_category = Category::where('type', 'child_category')->get();
         //Fetch Advertising Id
         $user_id = UserCredentials::where('user_id', $id)->first();
         //Fetch Parent Category (Residential or commertial) against category (Farm, Appartment, Duplex ect)
@@ -840,7 +766,7 @@ class PropertyController extends controller
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
         }
-//dd($array);
+
         return view('plugin::properties.new_edit', compact('info', 'user_id', 'post_parent_category', 'array', 'status_category', 'parent_category', 'child_category', 'features_array', 'cities', 'district'));
     }
 
@@ -867,7 +793,7 @@ class PropertyController extends controller
         if (empty($term)) {
             $term = new Terms;
             $term->user_id = Auth::id();
-            $term->unique_id = $unique_id;
+            $term->unique_id =  $unique_id;
             $term->status = 3;
             $term->type = 'property';
         }
@@ -905,20 +831,15 @@ class PropertyController extends controller
 
     public function second_update_property(Request $request, $id)
     {
-        // Step 2 Validation meter and price
+    // Step 2 Validation Land value, builtup value, Street value in meter and price
         $validatedData = $request->validate([
+            'landarea' => 'required',
+            'builtarea' => 'required',
             'meter' => 'required',
             'price' => 'required',
+
         ]);
-        //built area validation
-        if (array_key_exists('builtarea', $request->all()) && empty($request->builtarea)) {
-            return error_response('','please provide property builtup area details');
-        }
-        //land area validation
-        if (array_key_exists('landarea', $request->all()) && empty($request->landarea)) {
-            return error_response('','please provide property land area details');
-        }
-        // Property price create and update
+    // Property price create and update
         $term_id = $id;
         $price = Price::where('term_id', $term_id)->where('type', 'price')->first();
         if (empty($price)) {
@@ -967,8 +888,8 @@ class PropertyController extends controller
         Meta::where('term_id', $term_id)->where('type', 'landarea')->delete();
         Meta::where('term_id', $term_id)->where('type', 'builtarea')->delete();
         //street info ,slectricity and water flag store and update
-        $interface = implode(',', $request->interface);
-        $meter = implode(',', $request->meter);
+        $interface = implode(',',  $request->interface);
+        $meter = implode(',',  $request->meter);
         $data = $request->all();
         $data['meter'] = $meter;
         $data['interface'] = $interface;
@@ -1005,14 +926,10 @@ class PropertyController extends controller
 
     public function third_update_property(Request $request, $id)
     {
-        //Validate property total floor
-        if (array_key_exists('total_floors', $request->all()) && empty($request->total_floors)) {
-            return error_response('','please provide total floors detail');
-        }
-        //Validate property floor
-        if (array_key_exists('property_floor', $request->all()) && empty($request->property_floor)) {
-            return error_response('','please provide property floor detail');
-        }
+//        Step 3 Validation floors value
+        $validatedData = $request->validate([
+            'total_floors' => 'required',
+        ]);
 
         $term_id = $id;
         //store number of features
@@ -1022,7 +939,7 @@ class PropertyController extends controller
                 $data['term_id'] = $term_id;
                 $data['category_id'] = $value;
                 $data['type'] = 'options';
-                $data['value'] = $request[$key];
+                $data['value'] =  $request[$key];
                 array_push($options, $data);
             }
         }
@@ -1035,7 +952,7 @@ class PropertyController extends controller
         if (isset($request->furnishing)) {
             $meta = new Meta;
             $meta->term_id = $term_id;
-            $meta->type = 'property_condition';
+            $meta->type =  'property_condition';
             $meta->content = $request['furnishing'];
             $meta->save();
         }
@@ -1045,7 +962,7 @@ class PropertyController extends controller
         if (isset($request->total_floors)) {
             $meta_role = new Meta;
             $meta_role->term_id = $term_id;
-            $meta_role->type = 'total_floors';
+            $meta_role->type =  'total_floors';
             $meta_role->content = $request['total_floors'];
             $meta_role->save();
         }
@@ -1055,7 +972,7 @@ class PropertyController extends controller
         if (isset($request->property_floor)) {
             $property_floor = new Meta;
             $property_floor->term_id = $term_id;
-            $property_floor->type = 'property_floor';
+            $property_floor->type =  'property_floor';
             $property_floor->content = $request['property_floor'];
             $property_floor->save();
         }
@@ -1065,10 +982,11 @@ class PropertyController extends controller
 
     public function fourth_update_property(Request $request, $id)
     {
-//Validate Virtual Tour
-        if (array_key_exists('virtual_tour', $request->all()) && empty($request->virtual_tour)) {
-            return error_response('','please provide virtual tour link');
-        }
+//        Step 4 validation on Youtube link
+        $validatedData = $request->validate([
+            'virtual_tour' => 'required',
+        ]);
+
 
         if ($request->hasfile('media'))
             foreach ($request->file('media') as $image) {
@@ -1099,17 +1017,12 @@ class PropertyController extends controller
 
     public function fifth_update_property(Request $request, $id)
     {
-        //Validate features, length and depth
-        if (array_key_exists('features', $request->all()) && empty($request->features)) {
-            return error_response('','please provide features');
-        }
-        if (array_key_exists('length', $request->all()) && empty($request->length)) {
-            return error_response('','please provide length');
-        }
-        if (array_key_exists('depth', $request->all()) && empty($request->depth)) {
-            return error_response('','please provide depth');
-        }
-
+//        Validation on features (wifi, swimming pool, security etc), Property Length and Depth
+        $validatedData = $request->validate([
+            'features' => 'required',
+            'length' => 'required',
+            'depth' => 'required',
+        ]);
 //        Feature show against property type(Farm, Duplex, Appartment) and update
         $term_id = $id;
         $category = [];
@@ -1143,11 +1056,10 @@ class PropertyController extends controller
 
     public function sixth_update_property(Request $request, $id)
     {
-        //        validate the Deed number
-        if (array_key_exists('instrument_number', $request->all()) && empty($request->instrument_number)) {
-            return error_response('','please provide instrument number');
-        }
-
+//        validate the Deed number
+        $validatedData = $request->validate([
+            'instrument_number' => 'required',
+        ]);
 //        Show and update the Deed Number and FAQs of Property
         $term_id = $id;
         $rule_data = isset($request['rule']) ? implode(',', $request['rule']) : 0;
@@ -1782,7 +1694,7 @@ class PropertyController extends controller
                 $path = 'uploads/' . date('y') . '/' . date('m') . '/';
 
 
-                if (substr($image->getMimeType(), 0, 5) == 'image' && $ext != 'ico' && $ext != 'jfif') {
+                if (substr($image->getMimeType(), 0, 5) == 'image' &&  $ext != 'ico' && $ext != 'jfif') {
 
                     $image->move($path, $name);
                     // Storage::disk('oci')->putFile('uploads', $image);
@@ -1808,6 +1720,7 @@ class PropertyController extends controller
 
 
                         $imgArr = explode('.', $compress['data']['name']);
+
 
 
                         foreach ($imageSizes as $size) {
@@ -1874,7 +1787,7 @@ class PropertyController extends controller
 
     public function property_create_validations($request)
     {
-        return \Validator::make($request->all(), [
+        return  \Validator::make($request->all(), [
             'status' => 'required',
             'title' => 'required|max:100',
             'ar_title' => 'required|max:100',

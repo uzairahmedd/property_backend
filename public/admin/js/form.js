@@ -69,22 +69,15 @@
 
             },
             success: function (response) {
-                // console.log(response);
-                    $('.basicbtn').removeAttr('disabled')
-                    Sweet('success', response);
-                    $('.basicbtn').html(basicbtnhtml);
-                    success(response);
-
-                if(response.status == 'error')
-                    {
-                        Sweet('error', response.message);
-                    }
+                $('.basicbtn').removeAttr('disabled')
+                Sweet('success', response);
+                $('.basicbtn').html(basicbtnhtml);
+                success(response);
             },
             error: function (xhr, status, error) {
                 $('.basicbtn').html(basicbtnhtml);
                 $('.basicbtn').removeAttr('disabled')
                 $('.errorarea').show();
-                $(response.data.area).show();
                 $.each(xhr.responseJSON.errors, function (key, item) {
                     Sweet('error', item)
                     $("#errors").html("<li class='text-danger'>" + item + "</li>")
@@ -122,10 +115,6 @@
                 Sweet('success', response);
                 $('.basicbtn').html(basicbtnhtml);
                 success(response);
-                if(response.status == 'error')
-                {
-                    Sweet('error', response.message);
-                }
             },
             error: function (xhr, status, error) {
                 $('.basicbtn').html(basicbtnhtml);
@@ -169,10 +158,6 @@
                 Sweet('success', response);
                 $('.basicbtn').html(basicbtnhtml);
                 success(response);
-                if(response.status == 'error')
-                {
-                    Sweet('error', response.message);
-                }
             },
             error: function (xhr, status, error) {
                 $('.basicbtn').html(basicbtnhtml);
@@ -216,10 +201,6 @@
                 Sweet('success', response);
                 $('.basicbtn').html(basicbtnhtml);
                 success(response);
-                if(response.status == 'error')
-                {
-                    Sweet('error', response.message);
-                }
             },
             error: function (xhr, status, error) {
                 $('.basicbtn').html(basicbtnhtml);
@@ -262,10 +243,6 @@
                 Sweet('success', response);
                 $('.basicbtn').html(basicbtnhtml);
                 success(response);
-                if(response.status == 'error')
-                {
-                    Sweet('error', response.message);
-                }
             },
             error: function (xhr, status, error) {
                 $('.basicbtn').html(basicbtnhtml);
@@ -815,7 +792,7 @@ function get_property_data(elem) {
 			var select = $('#land_block_district').html('');
 			console.log($('#select_district').text());
 			// var please_select_district=$('#select_district').text();
-
+			
 			// $("#land_block_district").select2().append('<option disabled selected>'+please_select_district+'</option>');
             $.each(response, function (index, value) {
                 name = value.name;

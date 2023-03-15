@@ -66,7 +66,7 @@
                     $('.basicbtn').removeAttr('disabled');
                     $('.basicbtn').html('Login');
 
-                    if (data.response == 'error') {
+                    if (data.status == 'success') {
                         window.location.href = data.data['url'];
                     }
                     //for error page
