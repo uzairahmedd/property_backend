@@ -147,6 +147,6 @@
 @section('property_create')
 <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 <script src="{{theme_asset('assets/newjs/property_create.js')}}"></script>
-<script src="{{theme_asset('assets/newjs/property_map.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/property_map.min.js')}}"></script>
 <script src="{{theme_asset('assets/newjs/property_step.js')}}"></script>
 @endsection
