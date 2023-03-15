@@ -25,6 +25,7 @@
     <p id="land_areaa" class="d-none"> {{__('labels.land_area')}}</p>
     <p id="built_up_areaa" class="d-none">{{__('labels.built_up_area')}}</p>
     <p id="area_in_square_m" class="d-none">{{__('labels.area_in_square_m')}}</p>
+    <p id="child_cate" class="d-none">{{!empty($array['category']) ? $array['category'] : "" }}</p>
 
     <div class="row">
         <div class="col-lg-12">
@@ -123,7 +124,6 @@
                                                 $arr['name']= 'ar_title';
                                                 $arr['is_required'] = true;
                                                 $arr['value'] = $info->ar_title;
-
                                                 echo input($arr);
                                             @endphp
                                         </div>
@@ -164,7 +164,7 @@
                                         @endphp
                                     </div>
                                     <div class="d-flex justify-content-end">
-{{--                                        <button type="button" class="btn btn-default prev-step"></button>--}}
+                                        {{--                                        <button type="button" class="btn btn-default prev-step"></button>--}}
                                         <button type="submit" class="btn btn-primary next-step" id="next_btn1">
                                             {{__('labels.update')}}
                                         </button>
@@ -184,12 +184,10 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="title">{{__('labels.property_nature')}}</label>
-                                                <select class="form-control" id="parent_category_change"
-                                                        name="parent_category"
-                                                        onchange="property_type_triger(this, event)">
+                                                <select class="form-control" id="parent_category_change" name="parent_category" onchange="property_type_triger(this, event)">
                                                     <option value='' disabled selected>{{__('labels.property_nature')}}</option>
                                                     @foreach($parent_category as $row)
-                                                        <option value="{{ $row->id }}" {{ !empty($array) && array_key_exists($row->id, $array) ? "selected" : "" }}>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name }}</option>
+                                                        <option value="{{ $row->id }}" {{ !empty($array['parent_category']) && $array['parent_category'] == $row->id ? "selected" : "" }}>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 <input id="all_feature_id" type="hidden" name="term_id"
@@ -203,15 +201,15 @@
                                                         id="property_type_select"
                                                         onchange="land_triger(this, event)"
                                                         aria-label=".form-select-lg example" name="category">
-                                                    @foreach($child_category as $row)
-                                                        <option class="type_categpry" name="category"
-                                                                value="{{ $row->id }}"
-                                                                data-val="{{ !empty($array) ? $array['category'] : old('category') }}"
-                                                                data-name="{{$row->name}}"
-                                                                data-age="{{$row->property_age}}"
-                                                                data-landarea="{{$row->land_area}}"
-                                                                data-build="{{$row->buildup_area}}">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name }}</option>
-                                                    @endforeach
+{{--                                                    @foreach($child_category as $row)--}}
+{{--                                                        <option class="type_categpry"--}}
+{{--                                                                value="{{ $row->id }}"--}}
+{{--                                                                data-val="{{ !empty($array) ? $array['category'] : old('category') }}"--}}
+{{--                                                                data-name="{{$row->name}}"--}}
+{{--                                                                data-age="{{$row->property_age}}"--}}
+{{--                                                                data-landarea="{{$row->land_area}}"--}}
+{{--                                                                data-build="{{$row->buildup_area}}">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name }}</option>--}}
+{{--                                                    @endforeach--}}
                                                 </select>
                                             </div>
                                         </div>
@@ -334,7 +332,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-{{--                                    <button type="button" class="btn btn-info prev-step" id="p-btn1">Previous</button>--}}
+                                    {{--                                    <button type="button" class="btn btn-info prev-step" id="p-btn1">Previous</button>--}}
                                     <button type="submit" class="btn btn-primary next-step" id="next_btn2">{{__('labels.update')}}</button>
                                 </div>
                             </form>
@@ -365,7 +363,9 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="row">
+                                        @if(!empty($info->property_type) && $info->property_type->category->furnishing_section == '1')
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label for="furnishing">{{__('labels.property_furnishing')}}</label>
@@ -385,7 +385,7 @@
                                                 </select>
                                             </div>
                                         </div>
-
+                                        @endif
 
                                         @if(!empty($info->property_type) && $info->property_type->category->property_floor == '1')
                                             <div class="col-sm-4">
@@ -415,7 +415,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-{{--                                    <button type="button" class="btn btn-info prev-step" id="p-btn2">Previous</button>--}}
+                                    {{--                                    <button type="button" class="btn btn-info prev-step" id="p-btn2">Previous</button>--}}
                                     <button type="submit" class="btn btn-primary next-step" id="next_btn3">{{__('labels.update')}}</button>
                                 </div>
                             </form>
@@ -504,7 +504,7 @@
                                 @method('PUT')
                                 <div class="pt-4">
                                     <div class="theme-gx-2 theme-gy-36 d-flex justify-content-between align-items-center flex-wrap p-2 form-check"
-                                        id="tick_div">
+                                         id="tick_div">
                                         <div class="features_check" id="features_check"></div>
                                     </div>
                                     <div class="row">
@@ -525,7 +525,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-{{--                                    <button type="button" class="btn btn-info prev-step" id="p-btn4">Previous</button>--}}
+                                    {{--                                    <button type="button" class="btn btn-info prev-step" id="p-btn4">Previous</button>--}}
                                     <button type="submit" class="btn btn-primary next-step" id="next_btn5">{{__('labels.update')}}</button>
                                 </div>
                             </form>
@@ -547,7 +547,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>{{__('labels.instrument_no')}} {{__('labels.optional')}}</label>
-                                                <input type="text" name="instrument_number" value="{{ !empty( $info->instrument_number) ? $info->instrument_number->content  : old('instrument_number') }}" placeholder="{{__('labels.instrument_no')}}" class="form-control payment theme-border">
+                                                <input type="text" name="instrument_number" value="{{ !empty( $instrument->instrument_number) ? $instrument->instrument_number->content  : old('instrument_number') }}" placeholder="{{__('labels.instrument_no')}}" class="form-control payment theme-border">
                                             </div>
                                         </div>
                                     </div>
@@ -601,7 +601,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-{{--                                    <button type="button" class="btn btn-info prev-step" id="p-btn5">Previous</button>--}}
+                                    {{--                                    <button type="button" class="btn btn-info prev-step" id="p-btn5">Previous</button>--}}
                                     <button type="submit" class="btn btn-primary next-step" id="next_btn6">{{__('labels.update')}}</button>
                                 </div>
                             </form>
@@ -886,4 +886,4 @@
 
                 }
             </script>
-        @endsection
+@endsection

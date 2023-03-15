@@ -235,7 +235,7 @@ class PropertyController extends controller
 //        foreach ($info->postcategory as $key => $value) {
 //            array_push($features_array, $value->category_id);
 //        }
-        return view('plugin::properties.land_block_edit', compact('info', 'status_category','cities','district','parent_category','landblock','blockcount'));
+        return view('plugin::properties.land_block_edit', compact('info', 'status_category', 'cities', 'district', 'parent_category', 'landblock', 'blockcount'));
     }
 
     /**
@@ -792,17 +792,16 @@ class PropertyController extends controller
         if (!Auth()->user()->can('Properties.edit')) {
             abort(401);
         }
-
         $this->term_id = $id;
         $info = Terms::where([
             ['type', 'property'],
             ['id', $id]
-        ])->with('depth', 'length', 'medias', 'virtual_tour', 'interface', 'instrument_number', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'id_number', 'post_preview', 'streets', 'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'ready', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition', 'property_type')->first();
+        ])->with('depth', 'length', 'medias', 'virtual_tour', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'id_number', 'post_preview', 'streets', 'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'ready', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition', 'property_type')->first();
         //Fetch parent category against term id
         $post_parent_category = Postcategory::where('type', 'parent_category')->where('term_id', $id)->first();
         //Fetch property type (Farm, Land, Apartment, etc.) against upcoming id in param
-        $child_category='';
-        if(!empty($post_parent_category)) {
+        $child_category = [];
+        if (!empty($post_parent_category)) {
             $child_category = Category::where('type', 'parent_category')->where('id', $post_parent_category->category_id)->with('parent')->get();
         }
         //Fetch Features Land Area, Built up area, Furnished and other features that have status 1
@@ -814,7 +813,9 @@ class PropertyController extends controller
         // Fetch table parent category data (Commercial and Residential)
         $parent_category = Category::where('type', 'parent_category')->get();
         // Fetch table child category data (appartment, duplex, villa etc)
-        $child_category = Category::where('type', 'child_category')->get();
+        $child_category = Category::where('type', 'category')->where('featured', 1)->limit(8)->get();
+//        Fetch Deed Number
+        $instrument = Terms::with('instrument_number')->findorFail($id);
         //Fetch Advertising Id
         $user_id = UserCredentials::where('user_id', $id)->first();
         //Fetch Parent Category (Residential or commertial) against category (Farm, Appartment, Duplex ect)
@@ -840,8 +841,8 @@ class PropertyController extends controller
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
         }
-//dd($array);
-        return view('plugin::properties.new_edit', compact('info', 'user_id', 'post_parent_category', 'array', 'status_category', 'parent_category', 'child_category', 'features_array', 'cities', 'district'));
+//        dd($array);
+        return view('plugin::properties.new_edit', compact('info', 'user_id', 'instrument', 'post_parent_category', 'array', 'status_category', 'parent_category', 'child_category', 'features_array', 'cities', 'district'));
     }
 
 
@@ -912,11 +913,11 @@ class PropertyController extends controller
         ]);
         //built area validation
         if (array_key_exists('builtarea', $request->all()) && empty($request->builtarea)) {
-            return error_response('','please provide property builtup area details');
+            return error_response('', 'please provide property builtup area details');
         }
         //land area validation
         if (array_key_exists('landarea', $request->all()) && empty($request->landarea)) {
-            return error_response('','please provide property land area details');
+            return error_response('', 'please provide property land area details');
         }
         // Property price create and update
         $term_id = $id;
@@ -1007,11 +1008,11 @@ class PropertyController extends controller
     {
         //Validate property total floor
         if (array_key_exists('total_floors', $request->all()) && empty($request->total_floors)) {
-            return error_response('','please provide total floors detail');
+            return error_response('', 'please provide total floors detail');
         }
         //Validate property floor
         if (array_key_exists('property_floor', $request->all()) && empty($request->property_floor)) {
-            return error_response('','please provide property floor detail');
+            return error_response('', 'please provide property floor detail');
         }
 
         $term_id = $id;
@@ -1067,7 +1068,7 @@ class PropertyController extends controller
     {
 //Validate Virtual Tour
         if (array_key_exists('virtual_tour', $request->all()) && empty($request->virtual_tour)) {
-            return error_response('','please provide virtual tour link');
+            return error_response('', 'please provide virtual tour link');
         }
 
         if ($request->hasfile('media'))
@@ -1101,13 +1102,13 @@ class PropertyController extends controller
     {
         //Validate features, length and depth
         if (array_key_exists('features', $request->all()) && empty($request->features)) {
-            return error_response('','please provide features');
+            return error_response('', 'please provide features');
         }
         if (array_key_exists('length', $request->all()) && empty($request->length)) {
-            return error_response('','please provide length');
+            return error_response('', 'please provide length');
         }
         if (array_key_exists('depth', $request->all()) && empty($request->depth)) {
-            return error_response('','please provide depth');
+            return error_response('', 'please provide depth');
         }
 
 //        Feature show against property type(Farm, Duplex, Appartment) and update
@@ -1143,9 +1144,10 @@ class PropertyController extends controller
 
     public function sixth_update_property(Request $request, $id)
     {
+//        dd($request->all());
         //        validate the Deed number
         if (array_key_exists('instrument_number', $request->all()) && empty($request->instrument_number)) {
-            return error_response('','please provide instrument number');
+            return error_response('', 'please provide instrument number');
         }
 
 //        Show and update the Deed Number and FAQs of Property
@@ -1159,7 +1161,6 @@ class PropertyController extends controller
         }
         $rule->content = $rule_data;
         $rule->save();
-
         $data = $request->all();
         unset($data['_token'], $data['_method'], $data['rule']);
         foreach ($data as $key => $value) {
