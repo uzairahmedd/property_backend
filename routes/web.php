@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 // Laravel Default Auth Routes
 Auth::routes();
+//for login form of admin backoffice
+Route::group(['prefix' => 'admin', 'as' => 'admin.','namespace' => 'App\Http\Controllers\Auth', 'middleware' => 'web'], function () {
+    Route::get('login', 'LoginController@admin_login')->name('login');
+});
 
 // // sitemap route
 Route::group(['namespace' => 'App\Http\Controllers'], function () {

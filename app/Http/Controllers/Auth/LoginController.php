@@ -49,6 +49,29 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+     /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showLoginForm()
+    {
+        
+        abort(404);
+    }
+
+     /**
+     * Show the admin's login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function admin_login()
+    {
+        
+        return view('auth.login');
+    }
+
+
     public function redirectToProvider($provider)
     {
 
@@ -161,7 +184,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-
+        
         $this->validateLogin($request);
         //
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
