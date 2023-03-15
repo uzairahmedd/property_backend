@@ -638,6 +638,8 @@ return [
     'update_admin' => 'Edit Admin',
     'assign_role' => 'Assign role',
     'edit_District' => 'Edit district',
+
+
     'add_favorites' => 'Add Favorites',
     'open_maps' => 'Open Maps',
     'no_planned' => 'Planned No',
