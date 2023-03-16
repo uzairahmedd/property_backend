@@ -248,19 +248,10 @@ class PropertyController extends controller
         return District::where('p_id', $city_id)->where('featured', 1)->select('id', 'name', 'ar_name')->get();
     }
 
-    public function property_nature($id)
+    public function property_nature()
     {
-        //        dd($id);
-        $data = [];
-        $data['parent_category'] = Category::where('type', 'parent_category')->where('featured', 1)->get();
-        //        $posts = Terms::where('type', 'property')->where('is_land_block', 1)
-        //            ->join('land_block_details', 'land_block_details.term_id', '=', $id)
-        //            ->select(
-        //                'terms.*',
-        //                DB::raw("count(land_block_details.term_id) AS total_lands")
-        //            );
-        //            dd($posts);
-        $data['blockcount'] = LandBlock::where('term_id', $id)->count();
+        
+        $data= Category::where('type', 'parent_category')->where('featured', 1)->get();
         return success_response($data, 'Property nature get successfully!');
     }
 
@@ -1157,6 +1148,7 @@ class PropertyController extends controller
         }
         $rule->content = $rule_data;
         $rule->save();
+
         $data = $request->all();
         unset($data['_token'], $data['_method'], $data['rule']);
         foreach ($data as $key => $value) {
