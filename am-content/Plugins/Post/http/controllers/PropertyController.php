@@ -1102,10 +1102,11 @@ class PropertyController extends controller
 
     public function fifth_update_property(Request $request, $id)
     {
+       
         //Validate features
-        $validatedData = $request->validate([
-            'features' => 'required',
-        ]);
+        if (array_key_exists('features', $request->all()) && empty($request->features)) {
+            return error_response('', 'please provide features');
+        }
         //Validate length and depth
         if (array_key_exists('length', $request->all()) && empty($request->length)) {
             return error_response('', 'please provide length');
