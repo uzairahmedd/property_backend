@@ -26,6 +26,7 @@
     <p id="built_up_areaa" class="d-none">{{__('labels.built_up_area')}}</p>
     <p id="area_in_square_m" class="d-none">{{__('labels.area_in_square_m')}}</p>
     <p id="child_cate" class="d-none">{{!empty($array['category']) ? $array['category'] : "" }}</p>
+    <p id="please_select_district" class="d-none">{{__('labels.please_select_district')}}</p>
 
     <div class="row">
         <div class="col-lg-12">
@@ -133,7 +134,7 @@
                                         <div class="form-group col-6">
                                             <label for="title">{{ __('labels.city') }}</label>
                                             <select class="form-control selectric" id="city_val" name="city">
-                                                <option>{{ __('labels.city') }}</option>
+                                                <option value="">{{ __('labels.select_city') }}</option>
                                                 @foreach($cities as $city)
                                                     <option value="{{ $city->id }}" {{ $allcity != '' && $allcity->post_new_city->city_id == $city->id ? 'selected' : (old('city') == $city->id ? 'selected' : '')}}>{{ Session::get('locale') == 'ar' ?  $city->ar_name : $city->name}}</option>
                                                 @endforeach
@@ -143,14 +144,7 @@
                                             <label for="title">{{ __('labels.district') }}</label>
                                             <input type="hidden" id="get_district_val" value="{{$info != '' ?  $info->district->district_id : old('district')}}" />
                                             <select id="district_val" name="district" class="form-control theme-border" autocomplete="off" placeholder="{{__('labels.please_select_district')}}">
-                                                <option disabled selected value="">{{ __('labels.district') }}</option>--}}
                                             </select>
-{{--                                            <select class="form-control selectric" id="state" name="district">--}}
-{{--                                                <option>{{ __('labels.district') }}</option>--}}
-{{--                                                @foreach($district as $dist)--}}
-{{--                                                    <option name="$dist->name" value="{{ $dist->id }}" {{ $info != '' && $info->post_district->district_id == $dist->id ? 'selected' : (old('district') == $dist->id ? 'selected' : '')}}>{{ Session::get('locale') == 'ar' ?  $dist->ar_name : $dist->name}}</option>--}}
-{{--                                                @endforeach--}}
-{{--                                            </select>--}}
                                         </div>
                                     </div>
 
