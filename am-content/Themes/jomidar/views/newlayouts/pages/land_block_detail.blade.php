@@ -163,5 +163,5 @@
 </div>
 @endsection
 @push('js')
-<script src="{{theme_asset('assets/newjs/land_block_map.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/land_block_map.min.js')}}"></script>
 @endpush
