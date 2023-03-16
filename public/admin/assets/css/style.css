@@ -4028,3 +4028,14 @@ tfoot tr th {
 {
   font-weight: 600;
 }
+
+.select2-selection__arrow
+{
+    display: none;
+
+}
+
+.select2-search
+{
+    direction: ltr;
+}

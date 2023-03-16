@@ -638,6 +638,8 @@ return [
     'update_admin' => 'Edit Admin',
     'assign_role' => 'Assign role',
     'edit_District' => 'Edit district',
+
+
     'add_favorites' => 'Add Favorites',
     'open_maps' => 'Open Maps',
     'no_planned' => 'Planned No',
@@ -650,6 +652,7 @@ return [
     'call_me' => 'Call Me',
     'chat' => 'Chat',
     'total_price' => 'Total Price (SAR)',
+    'seperate_comma' => 'Comma Separated Coordinates',
     'meaurements' => 'Meaturements (SQM)',
     'total_area' => 'Total Area (SQM)',
     'add_land_block' => 'Add land block',

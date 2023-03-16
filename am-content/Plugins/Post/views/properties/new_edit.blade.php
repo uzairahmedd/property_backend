@@ -143,6 +143,7 @@
                                             <label for="title">{{ __('labels.district') }}</label>
                                             <input type="hidden" id="get_district_val" value="{{$info != '' ?  $info->district->district_id : old('district')}}" />
                                             <select id="district_val" name="district" class="form-control theme-border" autocomplete="off" placeholder="{{__('labels.please_select_district')}}">
+                                                <option disabled selected value="">{{ __('labels.district') }}</option>--}}
                                             </select>
 {{--                                            <select class="form-control selectric" id="state" name="district">--}}
 {{--                                                <option>{{ __('labels.district') }}</option>--}}
