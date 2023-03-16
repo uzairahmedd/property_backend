@@ -83,6 +83,7 @@
 							<th class="am-title">{{__('labels.resource')}}</th>
 							<th class="am-title">{{__('labels.status')}}</th>
 							<th class="am-date">{{__('labels.last_update')}}</th>
+							<th class="am-date">{{__('labels.action')}}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -96,9 +97,13 @@
 							</td>
 							<td><img src="{{ asset($row->post_preview->media->url ?? 'uploads/default.png') }}" height="50" alt=""></td>
 							<td>{{ $row->title }} (#{{ $row->id }})
-								<!-- <div>
-									<a href="{{ route('admin.property.edit',$row->id) }}">{{ __('Edit') }}</a> | <a href="{{ url('/property-detail',$row->slug) }}" target="_blank">{{ __('Show') }}</a>
-								</div> -->
+{{--								 <div>--}}
+{{--									<a href="{{ route('admin.property.edit',$row->id) }}">{{ __('Edit') }}</a> | <a href="{{ url('/property-detail',$row->slug) }}" target="_blank">{{ __('Show') }}</a>--}}
+{{--								</div> --}}
+								<div>
+									<a href="{{ route('admin.property.edit',$row->id) }}">{{ __('Edit') }}</a>
+									 <!-- | <a href="{{ url('/property',$row->slug) }}">{{ __('Show') }}</a> -->
+								</div>
 							</td>
 							<td><a href="#">{{ $row->user->name }}</a></td>
 							<td>
@@ -124,6 +129,7 @@
 								@endif
 							</td>
 							<td>{{ $row->updated_at->diffForHumans() }}</td>
+							<td><i class="fa fa-book" data-id="{{$row->id}}" onclick="property_logs(this)" data-toggle="tooltip" title="Logs"></i></td>
 						</tr>
 						@endforeach
 					</tbody>
@@ -141,6 +147,7 @@
                             <th class="am-title">{{__('labels.resource')}}</th>
                             <th class="am-title">{{__('labels.status')}}</th>
                             <th class="am-date">{{__('labels.last_update')}}</th>
+							<th class="am-date">{{__('labels.action')}}</th>
 						</tr>
 					</tfoot>
 				</table>
@@ -149,6 +156,25 @@
 			{{ $posts->links('vendor.pagination.bootstrap') }}
 		</div>
 	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="property_logs_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">{{__('labels.Property_Logs')}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('labels.close')}}</button>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
 

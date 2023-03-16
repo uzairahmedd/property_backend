@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use App\Models\Mediapost;
 use App\Models\District;
+use App\Models\UserLogs;
 use App\Media;
 use App\Models\City;
 use App\Models\Postcategoryoption;
@@ -25,6 +26,7 @@ use App\Models\Price;
 use App\Models\User;
 use App\Models\UserCredentials;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Auth;
 
@@ -640,8 +642,11 @@ class PropertyController extends controller
      */
     public function add_property(Request $request)
     {
+        //store request
+        $log_id = UserLogs::create(['user_id' => Auth::id(), 'request' => serialize($request->all())]);
         $validator = $this->property_create_validations($request);
         if ($validator->fails()) {
+            DB::table('user_logs')->where('id', $log_id->id)->update(['response' => serialize($validator->errors()), 'message' => 'property first step validation errors']);
             return back()->withErrors($validator)->withInput();
         }
 
@@ -696,7 +701,8 @@ class PropertyController extends controller
         $post_cat['type'] = 'status';
         Postcategory::where('type', 'status')->where('term_id', $term->id)->delete();
         Postcategory::insert($post_cat);
-
+        //store response logs
+        DB::table('user_logs')->where('id', $log_id->id)->update(['terms_id' => $term->id, 'response' => 'First step completed', 'message' => 'property initial info added successfully']);
         return redirect()->route('agent.property.second_edit_property', encrypt($term->id));
     }
 
@@ -792,29 +798,36 @@ class PropertyController extends controller
     {
 
         $term_id = decrypt($id);
+        //store request logs
+        $log_id = UserLogs::create(['terms_id' => $term_id, 'user_id' => Auth::id(), 'request' => serialize($request->all())]);
         $validator = $this->property_two_validations($request);
         if ($validator->fails()) {
+            DB::table('user_logs')->where('id', $log_id->id)->update(['response' => serialize($validator->errors()), 'message' => 'property second step validation errors']);
             return back()->withErrors($validator)->withInput();
         }
         //built area validation
         if (array_key_exists('builtarea', $request->all()) && empty($request->builtarea)) {
             $message = ['area' => 'please provide property builtup area details'];
+            DB::table('user_logs')->where('id', $log_id->id)->update(['response' => serialize($message), 'message' => 'property secont step validation errors']);
             return back()->withErrors($message)->withInput();
         }
         //land area validation
         if (array_key_exists('landarea', $request->all()) && empty($request->landarea)) {
             $message = ['area' => 'please provide property land area details'];
+            DB::table('user_logs')->where('id', $log_id->id)->update(['response' => serialize($message), 'message' => 'property secont step validation errors']);
             return back()->withErrors($message)->withInput();
         }
         //property age validation
         if (array_key_exists('ready', $request->all()) && $request->ready == '1' && empty($request->property_age)) {
             $message = ['property_age' => 'please provide property year'];
+            DB::table('user_logs')->where('id', $log_id->id)->update(['response' => serialize($message), 'message' => 'property secont step validation errors']);
             return back()->withErrors($message)->withInput();
         }
         //streets and their interface validation
         $count_streets = $request->streets;
         if (!isset($request->meter) || count($request->meter) < $count_streets || !isset($request->interface) || count($request->interface) < $count_streets) {
             $message = ['meter' => 'please provide all meter/interface details'];
+            DB::table('user_logs')->where('id', $log_id->id)->update(['response' => serialize($message), 'message' => 'property secont step validation errors']);
             return back()->withErrors($message)->withInput();
         }
         //price store & update
@@ -842,6 +855,11 @@ class PropertyController extends controller
             $post_cat['category_id'] = $request->category;
             $post_cat['type'] = 'category';
             array_push($category, $post_cat);
+        }
+        $post_category_data = Postcategory::where('type', 'category')->where('term_id', $term_id)->first();
+        if (!empty($post_category_data) && $request->category != $post_category_data) {
+            //if new category selected 
+            $this->remove_input_page_data($term_id);
         }
         Postcategory::where('type', 'parent_category')->where('term_id', $term_id)->delete();
         Postcategory::where('type', 'category')->where('term_id', $term_id)->delete();
@@ -887,21 +905,36 @@ class PropertyController extends controller
         //if land,Warehouse and farm then skip third step for facilities
         if (!empty($check_category) && Str::contains($check_category->name, 'land')) {
             $this->remove_input_page_data($term_id);
+            $this->remove_feature_data($term_id);
             return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
         }
         if (!empty($check_category) && Str::contains($check_category->name, 'Farm')) {
             $this->remove_input_page_data($term_id);
+            $this->remove_feature_data($term_id);
             return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
         }
         if (!empty($check_category) && Str::contains($check_category->name, 'Warehouse')) {
             $this->remove_input_page_data($term_id);
+            $this->remove_feature_data($term_id);
             return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
         }
+        //store response logs
+        DB::table('user_logs')->where('id', $log_id->id)->update(['response' => 'Second step completed', 'message' => 'property basic details added successfully']);
         return redirect()->route('agent.property.third_edit_property', encrypt($term_id));
     }
 
+
     /**
      * Delete features conditions and floors on land ,farm and warehouse
+     *
+     * @param  int  $id
+     */
+    public function remove_feature_data($term_id)
+    {
+        Postcategory::where('type', 'features')->where('term_id', $term_id)->delete();
+    }
+    /**
+     * Delete input conditions and floors on land ,farm and warehouse
      *
      * @param  int  $id
      */
@@ -911,7 +944,6 @@ class PropertyController extends controller
         Meta::where('term_id', $term_id)->where('type', 'property_condition')->delete();
         Meta::where('term_id', $term_id)->where('type', 'total_floors')->delete();
         Meta::where('term_id', $term_id)->where('type', 'property_floor')->delete();
-        Postcategory::where('type', 'features')->where('term_id', $term_id)->delete();
     }
 
     /**
@@ -929,14 +961,17 @@ class PropertyController extends controller
         //if land,Warehouse and farm is property type
         if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'land')) {
             $this->remove_input_page_data($this->term_id);
+            $this->remove_feature_data($this->term_id);
             return redirect()->route('agent.property.second_edit_property', $id);
         }
         if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'Farm')) {
             $this->remove_input_page_data($this->term_id);
+            $this->remove_feature_data($this->term_id);
             return redirect()->route('agent.property.second_edit_property', $id);
         }
         if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'Warehouse')) {
             $this->remove_input_page_data($this->term_id);
+            $this->remove_feature_data($this->term_id);
             return redirect()->route('agent.property.second_edit_property', $id);
         }
 
@@ -967,6 +1002,8 @@ class PropertyController extends controller
     public function update_third_property(Request $request, $id)
     {
         $term_id = decrypt($id);
+        //store request logs
+        $log_id = UserLogs::create(['terms_id' => $term_id, 'user_id' => Auth::id(), 'request' => serialize($request->all())]);
         //store number of features
         $options = [];
         foreach ($request->input_option ?? [] as $key => $value) {
@@ -1011,7 +1048,8 @@ class PropertyController extends controller
             $property_floor->content = $request['property_floor'];
             $property_floor->save();
         }
-
+        //store response logs
+        DB::table('user_logs')->where('id', $log_id->id)->update(['response' => 'Third step completed', 'message' => 'property additional details added successfully']);
         return redirect()->route('agent.property.forth_edit_property', encrypt($term_id));
     }
 
@@ -1037,10 +1075,14 @@ class PropertyController extends controller
      */
     public function update_forth_property(Request $request, $id)
     {
+        $term_id = decrypt($id);
+        //store request logs
+        $log_id = UserLogs::create(['terms_id' => $term_id, 'user_id' => Auth::id(), 'request' => serialize($request->virtual_tour)]);
         $validator = \Validator::make($request->all(), [
             'media.*' => 'mimes:jpeg,jpg,png|max:20480',
         ]);
         if ($validator->fails()) {
+            DB::table('user_logs')->where('id', $log_id->id)->update(['response' => serialize($validator->errors()), 'message' => 'property forth step validation errors']);
             return back()->withErrors($validator->errors())->withInput();
         }
         if ($request->hasfile('media'))
@@ -1051,7 +1093,6 @@ class PropertyController extends controller
                 }
             }
 
-        $term_id = decrypt($id);
         //store and update virtual rour video
         $virtual_tour = Meta::where('term_id', $term_id)->where('type', 'virtual_tour')->first();
         if (empty($virtual_tour)) {
@@ -1066,6 +1107,8 @@ class PropertyController extends controller
         unset($request['_token'], $request['virtual_tour']);
         //store images
         $this->upload_images($request);
+        //store response logs
+        DB::table('user_logs')->where('id', $log_id->id)->update(['response' => 'Forth step completed', 'message' => 'property media added successfully']);
         return redirect()->route('agent.property.five_edit_property', encrypt($term_id));
     }
 
@@ -1098,6 +1141,8 @@ class PropertyController extends controller
     public function update_five_property(Request $request, $id)
     {
         $term_id = decrypt($id);
+        //store request logs
+        $log_id = UserLogs::create(['terms_id' => $term_id, 'user_id' => Auth::id(), 'request' => serialize($request->all())]);
         //store features
         $category = [];
         foreach ($request->features ?? [] as $key => $value) {
@@ -1125,6 +1170,8 @@ class PropertyController extends controller
             $keys_table->content = $value;
             $keys_table->save();
         }
+        //store response logs
+        DB::table('user_logs')->where('id', $log_id->id)->update(['response' => 'Fifth step completed', 'message' => 'property feature details added successfully']);
         return redirect()->route('agent.property.six_edit_property', encrypt($term_id));
     }
 
@@ -1155,6 +1202,8 @@ class PropertyController extends controller
     {
 
         $term_id = decrypt($id);
+        //store request logs
+        $log_id = UserLogs::create(['terms_id' => $term_id, 'user_id' => Auth::id(), 'request' => serialize($request->all())]);
         //store rules of rega
         $rule_data = isset($request['rule']) ? implode(',', $request['rule']) : 0;
         $rule = Meta::where('term_id', $term_id)->where('type', 'rules')->first();
@@ -1180,6 +1229,8 @@ class PropertyController extends controller
             $keys_table->content = $value;
             $keys_table->save();
         }
+        //store response logs
+        DB::table('user_logs')->where('id', $log_id->id)->update(['response' => 'Third step completed', 'message' => 'property document details added successfully']);
         return redirect()->route('agent.property.finish_property', encrypt($term_id));
     }
 
@@ -1191,7 +1242,7 @@ class PropertyController extends controller
      */
     public function finish_property($id)
     {
-
+        $log_id = UserLogs::create(['terms_id' => decrypt($id), 'user_id' => Auth::id(), 'request' => serialize($id), 'response' => 'Property steps completed', 'message' => 'Property added successfully']);
         return view('theme::newlayouts.property_dashboard.finish', compact('id'));
     }
 
@@ -1421,12 +1472,16 @@ class PropertyController extends controller
      */
     public function delete_property($id)
     {
+        //store request logs
+        $log_id = UserLogs::create(['terms_id' => $id, 'user_id' => Auth::id(), 'request' => serialize($id)]);
         $data = ['messages' => 'Property not found', 'status' => 'error'];
         $term = Terms::where('user_id', Auth::id())->findorFail($id);
         if (!empty($term)) {
             $term = Terms::where('user_id', Auth::id())->where('id', $id)->update(['status' => 0]);
             $data = ['messages' => 'Property deleted successfully', 'status' => 'success'];
         }
+        //store response logs
+        DB::table('user_logs')->where('id', $log_id->id)->update(['response' => serialize($data), 'message' => 'property deleted successfully']);
         return response()->json($data);
     }
 
@@ -1434,15 +1489,18 @@ class PropertyController extends controller
     public function delete_account($id)
     {
 
-
-        $data = ['messages' => 'Admin can not delete your account', 'status' => 'error'];
+        //store request logs
+        $log_id = UserLogs::create(['user_id' => $id, 'request' => serialize($id)]);
+        $data = ['messages' => 'Admin can not delete his account', 'status' => 'error'];
 
         if ($id != 1) {
             User::where('id', $id)->update(['status' => 0]);
-            Auth::logout();
+            auth()->logout();
+            Session()->flush();
             $data = ['messages' => 'Account deleted successfully', 'status' => 'success'];
         }
-
+        //store response logs
+        DB::table('user_logs')->where('id', $log_id->id)->update(['response' => serialize($data), 'message' => 'Account deleted successfully']);
         return response()->json($data);
     }
 

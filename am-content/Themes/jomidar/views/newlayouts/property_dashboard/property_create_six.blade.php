@@ -22,7 +22,7 @@
                 <div class="document row theme-gx-32 justify-content-end">
                     <div class="col-xl-5 col-lg-4 id-number col-md-6 col-sm-12 d-flex flex-column align-items-end">
                         <label for="" class="font-18 theme-text-seondary-black">{{__('labels.instrument_no')}} {{__('labels.optional')}}</label>
-                        <input type="text" name="instrument_number" value="{{ !empty( $post_data->instrument_no) ? $post_data->instrument_no->content  : old('instrument_number') }}" placeholder="{{__('labels.instrument_no')}}" class="form-control payment theme-border">
+                        <input type="text" name="instrument_number" value="{{ !empty( $post_data->instrument_number) ? $post_data->instrument_number->content  : old('instrument_number') }}" placeholder="{{__('labels.instrument_no')}}" class="form-control payment theme-border">
                     </div>
                     <div class="col-xl-5 col-lg-4 id-number col-md-6 col-sm-12 d-flex flex-column align-items-end">
                         <label for="" class="font-18 theme-text-seondary-black">{{__('labels.identification_no')}}</label>

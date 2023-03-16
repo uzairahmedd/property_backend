@@ -1839,5 +1839,11 @@ table.table.category tfoot th {
     float: right;
 }
 
+.add_upload_img
+{
+    margin-left: -17px;
+    margin-top: 20px;
+}
+
 
 
