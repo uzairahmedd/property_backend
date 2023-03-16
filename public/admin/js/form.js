@@ -25,7 +25,6 @@
             },
             success: function (response) {
                 console.log(response);
-
                 $('.basicbtn').removeAttr('disabled')
                 Sweet('success', response);
                 $('.basicbtn').html(basicbtnhtml);
@@ -50,6 +49,8 @@
         $('.alert-danger').show();
         $("#errors").html("<li class='text-danger'>" + xhr.responseJSON.errors.url + "</li>")
       }
+
+
     //step 2 Submit
     $("#step_two_submit").on('submit', function (e) {
         e.preventDefault();
@@ -74,22 +75,16 @@
 
             },
             success: function (response) {
-                // console.log(response);
+                console.log(response);
                 $('.basicbtn').removeAttr('disabled')
                 Sweet('success', response);
                 $('.basicbtn').html(basicbtnhtml);
                 success(response);
-
-                if(response.status == 'error')
-                {
-                    Sweet('error', response.message);
-                }
             },
             error: function (xhr, status, error) {
                 $('.basicbtn').html(basicbtnhtml);
                 $('.basicbtn').removeAttr('disabled')
                 $('.errorarea').show();
-                $(response.data.area).show();
                 $.each(xhr.responseJSON.errors, function (key, item) {
                     Sweet('error', item)
                     $("#errors").html("<li class='text-danger'>" + item + "</li>")
@@ -98,6 +93,55 @@
             }
         })
     });
+
+    //
+    //
+    // $("#step_two_submit").on('submit', function (e) {
+    //     e.preventDefault();
+    //     $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    //     });
+    //     var basicbtnhtml = $('.basicbtn').html();
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: this.action,
+    //         data: new FormData(this),
+    //         dataType: 'json',
+    //         contentType: false,
+    //         cache: false,
+    //         processData: false,
+    //         beforeSend: function () {
+    //
+    //             $('.basicbtn').html("Please Wait....");
+    //             $('.basicbtn').attr('disabled', '')
+    //
+    //         },
+    //         success: function (response) {
+    //             console.log(response);
+    //             $('.basicbtn').removeAttr('disabled')
+    //             Sweet('success', response);
+    //             $('.basicbtn').html(basicbtnhtml);
+    //             Sweet('error', response.message.errors);
+    //             if(response.status == 'error')
+    //             {
+    //                 Sweet('error', response.message);
+    //             }
+    //         },
+    //         error: function (xhr, status, error) {
+    //             $('.basicbtn').html(basicbtnhtml);
+    //             $('.basicbtn').removeAttr('disabled')
+    //             $('.errorarea').show();
+    //             $(response.data.area).show();
+    //             $.each(xhr.responseJSON.errors, function (key, item) {
+    //                 Sweet('error', item)
+    //                 $("#errors").html("<li class='text-danger'>" + item + "</li>")
+    //             });
+    //             errosresponse(xhr, status, error);
+    //         }
+    //     })
+    // });
 
     //step 3 Submit
     $("#step_three_submit").on('submit', function (e) {

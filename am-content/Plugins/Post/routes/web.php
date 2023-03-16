@@ -89,8 +89,8 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::post('/export-csv', 'PropertyController@exportCSV')->name('properties.csv_download');
         //update Property
 //      Route::post('update_property', 'PropertyController@update_property')->name('property.update_property');
-
 		Route::get('get_districts/{id}', 'PropertyController@get_districts');
+        Route::get('get_district','PropertyController@info')->name('property.district');
 
 	});
 

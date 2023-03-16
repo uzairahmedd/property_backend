@@ -250,7 +250,7 @@ class PropertyController extends controller
 
     public function property_nature()
     {
-        
+
         $data= Category::where('type', 'parent_category')->where('featured', 1)->get();
         return success_response($data, 'Property nature get successfully!');
     }
@@ -795,6 +795,8 @@ class PropertyController extends controller
         if (!empty($post_parent_category)) {
             $child_category = Category::where('type', 'parent_category')->where('id', $post_parent_category->category_id)->with('parent')->get();
         }
+        //show cities against district
+        $allcity = Terms::with('district', 'saudi_post_city')->findorFail($id);
         //Fetch Features Land Area, Built up area, Furnished and other features that have status 1
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
         //Fetch all Cities
@@ -805,7 +807,7 @@ class PropertyController extends controller
         $parent_category = Category::where('type', 'parent_category')->get();
         // Fetch table child category data (appartment, duplex, villa etc)
         $child_category = Category::where('type', 'category')->where('featured', 1)->limit(8)->get();
-        //        Fetch Deed Number
+        //Fetch Deed Number
         $instrument = Terms::with('instrument_number')->findorFail($id);
         //Fetch Advertising Id
         $user_id = UserCredentials::where('user_id', $id)->first();
@@ -832,9 +834,14 @@ class PropertyController extends controller
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
         }
-        return view('plugin::properties.new_edit', compact('info', 'user_id', 'instrument', 'post_parent_category', 'array', 'status_category', 'parent_category', 'child_category', 'features_array', 'cities', 'district'));
+        return view('plugin::properties.new_edit', compact('info', 'allcity', 'user_id', 'instrument', 'post_parent_category', 'array', 'status_category', 'parent_category', 'child_category', 'features_array', 'cities', 'district'));
     }
 
+    //distric against cities
+    public function info(Request $request)
+    {
+        return District::where('p_id', $request->id)->where('featured', 1)->select('id', 'name', 'ar_name')->get();
+    }
 
     /**
      * Update the specified resource in storage.
@@ -887,9 +894,8 @@ class PropertyController extends controller
 
     public function second_update_property(Request $request, $id)
     {
-        // Step 2 Validation meter and price
         $validatedData = $request->validate([
-            'meter' => 'required',
+            'streets' => 'required',
             'price' => 'required',
         ]);
         //built area validation
@@ -899,6 +905,11 @@ class PropertyController extends controller
         //land area validation
         if (array_key_exists('landarea', $request->all()) && empty($request->landarea)) {
             return error_response('', 'please provide property land area details');
+        }
+
+        //Length in meter validation
+        if (array_key_exists('meter', $request->all()) && empty($request->meter)) {
+            return error_response('', 'please select meter');
         }
         // Property price create and update
         $term_id = $id;
@@ -928,7 +939,7 @@ class PropertyController extends controller
         }
         $post_category_data = Postcategory::where('type', 'category')->where('term_id', $term_id)->first();
         if (!empty($post_category_data) && $request->category != $post_category_data) {
-            //if new category selected 
+            //if new category selected
             $this->remove_input_page_data($term_id);
         }
         Postcategory::where('type', 'parent_category')->where('term_id', $term_id)->delete();
@@ -952,9 +963,11 @@ class PropertyController extends controller
         //del already exist area
         Meta::where('term_id', $term_id)->where('type', 'landarea')->delete();
         Meta::where('term_id', $term_id)->where('type', 'builtarea')->delete();
+
         //street info ,slectricity and water flag store and update
-        $interface = implode(',', $request->interface);
-        $meter = implode(',', $request->meter);
+            $interface = implode(',', $request->interface);
+            $meter = implode(',', $request->meter);
+
         $data = $request->all();
         $data['meter'] = $meter;
         $data['interface'] = $interface;
@@ -1088,10 +1101,11 @@ class PropertyController extends controller
 
     public function fifth_update_property(Request $request, $id)
     {
-        //Validate features, length and depth
-        if (array_key_exists('features', $request->all()) && empty($request->features)) {
-            return error_response('', 'please provide features');
-        }
+        //Validate features
+        $validatedData = $request->validate([
+            'features' => 'required',
+        ]);
+        //Validate length and depth
         if (array_key_exists('length', $request->all()) && empty($request->length)) {
             return error_response('', 'please provide length');
         }
