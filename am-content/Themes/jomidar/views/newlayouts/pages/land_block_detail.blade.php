@@ -2,6 +2,9 @@
 <style>
     #map {
         height: 500px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
     }
 
     .mapboxgl-popup {
@@ -160,5 +163,5 @@
 </div>
 @endsection
 @push('js')
-<script src="{{theme_asset('assets/newjs/land_block_map.min.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/land_block_map.js')}}"></script>
 @endpush
