@@ -121,7 +121,7 @@
                                             <select id="city_val" name="city" class="form-control theme-border" autocomplete="off">
                                                 <option value="" selected>{{__('labels.select_city')}}</option>
                                                 @foreach($cities as $row)
-                                                <option value="{{ $row->id }}" {{ $post_data != '' && $post_data->saudi_post_city->city_id == $row->id ? 'selected' : (old('city') == $row->id ? 'selected' : '')}}>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
+                                                <option value="{{ $row->id }}" {{ !empty($post_data->saudi_post_city) && $post_data->saudi_post_city->city_id == $row->id ? 'selected' : (old('city') == $row->id ? 'selected' : '')}}>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
                                                 @endforeach
                                             </select>
                                     </div>

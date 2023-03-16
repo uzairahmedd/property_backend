@@ -1,35 +1,35 @@
 (function ($) {
 //for year picker
-var year = '2022'
-if ($('#yearpicker').val != '') {
-    year = $('#yearpicker').val();
-}
-$("#yearpicker").yearpicker({
-    year: year,
-    startYear: 1975,
-    endYear: 2023
-});
+    var year = '2022'
+    if ($('#yearpicker').val != '') {
+        year = $('#yearpicker').val();
+    }
+    $("#yearpicker").yearpicker({
+        year: year,
+        startYear: 1975,
+        endYear: 2023
+    });
 
 // Hide and Show Ready Calender
 
-$("#ready").click(function () {
-    $('#year_calender input').removeClass("hidden");
-});
-$("#not_ready").click(function () {
-    $('#year_calender input').addClass("hidden");
-});
+    $("#ready").click(function () {
+        $('#year_calender input').removeClass("hidden");
+    });
+    $("#not_ready").click(function () {
+        $('#year_calender input').addClass("hidden");
+    });
 
 // Hide Step 3 in Admin Panel
-if (pro_type_name == 'land' || pro_type_name == 'Farm' || pro_type_name == 'Warehouse') {
-    $(".step_3").addClass('hide');
-}
+    if (pro_type_name == 'land' || pro_type_name == 'Farm' || pro_type_name == 'Warehouse') {
+        $(".step_3").addClass('hide');
+    }
 // Disable Last Finish Step
-$(".step_7").addClass('disabled');
+    $(".step_7").addClass('disabled');
 
-$("#next_btn6").click(function () {
-    $('#myTab li:nth-child(7) a').tab('show');
-    $(".step_7").removeClass('disabled');
-});
+    $("#next_btn6").click(function () {
+        $('#myTab li:nth-child(7) a').tab('show');
+        $(".step_7").removeClass('disabled');
+    });
 
 // // property edit next steps Js
 //
@@ -204,10 +204,9 @@ $("#ready").click(function () {
 $("#not_ready").click(function () {
     $('#year_calender input').addClass("hidden");
 });
-
-if ($('.type_categpry').data('val') != '') {
-    var parent_cate = $("#parent_category_change  option:selected").val();
-    var selected_cat = $('.type_categpry').data('val');
+var parent_cate = $("#parent_category_change  option:selected").val();
+if (parent_cate != '') {
+    var selected_cat = $('#child_cate').text();
     property_type(parent_cate, selected_cat);
 }
 
@@ -295,7 +294,7 @@ function property_type(parent_cate, selected_cat = null) {
                         selected = 'selected';
                     }
 
-                    $('#property_type_select').append('<option class="type_categpry" name="selected" ' + selected + '   value="' + value_data.id + '" data-name="' + value_data.name + '" data-age="' + value_data.property_age + '" data-landarea="' + value_data.land_area + '" data-build="' + value_data.buildup_area + '">' + name + '</option>');
+                    $('#property_type_select').append('<option class="type_categpry"  ' + selected + '   value="' + value_data.id + '" data-name="' + value_data.name + '" data-age="' + value_data.property_age + '" data-landarea="' + value_data.land_area + '" data-build="' + value_data.buildup_area + '">' + name + '</option>');
 
                 });
             });
@@ -404,7 +403,6 @@ $(".step_3").on('click', function (e) {
                 $('#opening_features').html('');
                 $('#office_features').html('');
                 $.each(response.data.get_data, function (index, value) {
-                    console.log(response);
                     var name = value.name;
                     if (locale == 'ar') {
                         name = value.ar_name;

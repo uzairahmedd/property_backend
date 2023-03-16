@@ -182,61 +182,61 @@ class PropertyController extends controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function land_block_edit(Request $request, $id)
-    {
-//        if (!Auth()->user()->can('Properties.land_block_edit')) {
-//            abort(401);
-//        }
-        $this->term_id = $id;
-        $info = Terms::where([
-            ['type', 'property'],
-            ['id', $id]
-        ])->with('medias', 'virtual_tour', 'post_new_city', 'post_preview', 'post_district', 'multiple_images', 'property_status_type', 'postcategory', 'property_type')->first();
-//First land block againt term ID
-        $landblock = LandBlock::where('term_id', $id)->first();
-//        Land Block Count
-        $blockcount = LandBlock::where('term_id', $id)->count();
-//        dd($blockcount);
-        //        //Fetch parent category against term id
-//        $post_parent_category = Postcategory::where('type', 'parent_category')->where('term_id', $id)->first();
-//        //Fetch property type (Farm, Land, Apartment, etc.) against upcoming id in param
-//        $child_category = Category::where('type', 'parent_category')->where('id', $post_parent_category->category_id)->with('parent')->get();
-        //Fetch Features Land Area, Built up area, Furnished and other features that have status 1
-        $status_category = Category::where('type', 'status')->where('featured', 1)->get();
+    // public function land_block_edit(Request $request, $id)
+    // {
+    //     //        if (!Auth()->user()->can('Properties.land_block_edit')) {
+    //     //            abort(401);
+    //     //        }
+    //     $this->term_id = $id;
+    //     $info = Terms::where([
+    //         ['type', 'property'],
+    //         ['id', $id]
+    //     ])->with('medias', 'virtual_tour', 'post_new_city', 'post_preview', 'post_district', 'multiple_images', 'property_status_type', 'postcategory', 'property_type')->first();
+    //     //First land block againt term ID
+    //     $landblock = LandBlock::where('term_id', $id)->first();
+    //     //        Land Block Count
+    //     $blockcount = LandBlock::where('term_id', $id)->count();
+    //     //        dd($blockcount);
+    //     //        //Fetch parent category against term id
+    //     //        $post_parent_category = Postcategory::where('type', 'parent_category')->where('term_id', $id)->first();
+    //     //        //Fetch property type (Farm, Land, Apartment, etc.) against upcoming id in param
+    //     //        $child_category = Category::where('type', 'parent_category')->where('id', $post_parent_category->category_id)->with('parent')->get();
+    //     //Fetch Features Land Area, Built up area, Furnished and other features that have status 1
+    //     $status_category = Category::where('type', 'status')->where('featured', 1)->get();
 
-        //Fetch all Cities
-        $cities = City::where('featured', 1)->get();
-        //Fetch all District
-        $district = District::where('featured', 1)->get();
-        // Fetch table parent category data
-        $parent_category = Category::where('type', 'parent_category')->get();
-//        //Fetch Advertising Id
-//        $user_id = UserCredentials::where('user_id', $id)->first();
-//        //Fetch Parent Category (Residential or commertial) against category (Farm, Appartment, Duplex ect)
-//        $array = [];
-//        $property_type = null;
-//        foreach ($info->postcategory as $key => $value) {
-//            if ($value->type == 'parent_category') {
-//                $array[$value->type] = $value->category_id;
-//            }
-//            if ($value->type == 'category') {
-//                $array[$value->type] = $value->category_id;
-//                $this->property_type = $value->category_id;
-//            }
-//        }
-//        foreach ($info->postcategory as $key => $value) {
-//            array_push($array, $value->category_id);
-//            if ($value->type == 'category') {
-//                $this->property_type = $value->category_id;
-//            }
-//        }
-////        Fetch Features(Kitchen, Security, wifi, swimming pool etc) against postcategory(Farm, Appartment, Duplex etc.)
-//        $features_array = [];
-//        foreach ($info->postcategory as $key => $value) {
-//            array_push($features_array, $value->category_id);
-//        }
-        return view('plugin::properties.land_block_edit', compact('info', 'status_category','cities','district','parent_category','landblock','blockcount'));
-    }
+    //     //Fetch all Cities
+    //     $cities = City::where('featured', 1)->get();
+    //     //Fetch all District
+    //     $district = District::where('featured', 1)->get();
+    //     // Fetch table parent category data
+    //     $parent_category = Category::where('type', 'parent_category')->get();
+    //     //        //Fetch Advertising Id
+    //     //        $user_id = UserCredentials::where('user_id', $id)->first();
+    //     //        //Fetch Parent Category (Residential or commertial) against category (Farm, Appartment, Duplex ect)
+    //     //        $array = [];
+    //     //        $property_type = null;
+    //     //        foreach ($info->postcategory as $key => $value) {
+    //     //            if ($value->type == 'parent_category') {
+    //     //                $array[$value->type] = $value->category_id;
+    //     //            }
+    //     //            if ($value->type == 'category') {
+    //     //                $array[$value->type] = $value->category_id;
+    //     //                $this->property_type = $value->category_id;
+    //     //            }
+    //     //        }
+    //     //        foreach ($info->postcategory as $key => $value) {
+    //     //            array_push($array, $value->category_id);
+    //     //            if ($value->type == 'category') {
+    //     //                $this->property_type = $value->category_id;
+    //     //            }
+    //     //        }
+    //     ////        Fetch Features(Kitchen, Security, wifi, swimming pool etc) against postcategory(Farm, Appartment, Duplex etc.)
+    //     //        $features_array = [];
+    //     //        foreach ($info->postcategory as $key => $value) {
+    //     //            array_push($features_array, $value->category_id);
+    //     //        }
+    //     return view('plugin::properties.land_block_edit', compact('info', 'status_category', 'cities', 'district', 'parent_category', 'landblock', 'blockcount'));
+    // }
 
     /**
      * Display a listing of the districts.
@@ -250,16 +250,16 @@ class PropertyController extends controller
 
     public function property_nature($id)
     {
-//        dd($id);
+        //        dd($id);
         $data = [];
         $data['parent_category'] = Category::where('type', 'parent_category')->where('featured', 1)->get();
-//        $posts = Terms::where('type', 'property')->where('is_land_block', 1)
-//            ->join('land_block_details', 'land_block_details.term_id', '=', $id)
-//            ->select(
-//                'terms.*',
-//                DB::raw("count(land_block_details.term_id) AS total_lands")
-//            );
-//            dd($posts);
+        //        $posts = Terms::where('type', 'property')->where('is_land_block', 1)
+        //            ->join('land_block_details', 'land_block_details.term_id', '=', $id)
+        //            ->select(
+        //                'terms.*',
+        //                DB::raw("count(land_block_details.term_id) AS total_lands")
+        //            );
+        //            dd($posts);
         $data['blockcount'] = LandBlock::where('term_id', $id)->count();
         return success_response($data, 'Property nature get successfully!');
     }
@@ -792,17 +792,16 @@ class PropertyController extends controller
         if (!Auth()->user()->can('Properties.edit')) {
             abort(401);
         }
-
         $this->term_id = $id;
         $info = Terms::where([
             ['type', 'property'],
             ['id', $id]
-        ])->with('depth', 'length', 'medias', 'virtual_tour', 'interface', 'instrument_number', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'id_number', 'post_preview', 'streets', 'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'ready', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition', 'property_type')->first();
+        ])->with('depth', 'length', 'medias', 'virtual_tour', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'id_number', 'post_preview', 'streets', 'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'ready', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition', 'property_type')->first();
         //Fetch parent category against term id
         $post_parent_category = Postcategory::where('type', 'parent_category')->where('term_id', $id)->first();
         //Fetch property type (Farm, Land, Apartment, etc.) against upcoming id in param
-        $child_category=[];
-        if(!empty($post_parent_category)) {
+        $child_category = [];
+        if (!empty($post_parent_category)) {
             $child_category = Category::where('type', 'parent_category')->where('id', $post_parent_category->category_id)->with('parent')->get();
         }
         //Fetch Features Land Area, Built up area, Furnished and other features that have status 1
@@ -814,7 +813,9 @@ class PropertyController extends controller
         // Fetch table parent category data (Commercial and Residential)
         $parent_category = Category::where('type', 'parent_category')->get();
         // Fetch table child category data (appartment, duplex, villa etc)
-        $child_category = Category::where('type', 'child_category')->get();
+        $child_category = Category::where('type', 'category')->where('featured', 1)->limit(8)->get();
+        //        Fetch Deed Number
+        $instrument = Terms::with('instrument_number')->findorFail($id);
         //Fetch Advertising Id
         $user_id = UserCredentials::where('user_id', $id)->first();
         //Fetch Parent Category (Residential or commertial) against category (Farm, Appartment, Duplex ect)
@@ -835,12 +836,12 @@ class PropertyController extends controller
                 $this->property_type = $value->category_id;
             }
         }
-//        Fetch Features(Kitchen, Security, wifi, swimming pool etc) against postcategory(Farm, Appartment, Duplex etc.)
+        //        Fetch Features(Kitchen, Security, wifi, swimming pool etc) against postcategory(Farm, Appartment, Duplex etc.)
         $features_array = [];
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
         }
-        return view('plugin::properties.new_edit', compact('info', 'user_id', 'post_parent_category', 'array', 'status_category', 'parent_category', 'child_category', 'features_array', 'cities', 'district'));
+        return view('plugin::properties.new_edit', compact('info', 'user_id', 'instrument', 'post_parent_category', 'array', 'status_category', 'parent_category', 'child_category', 'features_array', 'cities', 'district'));
     }
 
 
@@ -853,46 +854,37 @@ class PropertyController extends controller
      */
     public function update(Request $request, $id)
     {
-//        Step 1 Validation Property English and Arabic name, location longitude and latitude
+        //Step 1 Validation Property English and Arabic name, location longitude and latitude
         $validatedData = $request->validate([
+            'status' => 'required',
             'title' => 'required|max:100',
             'ar_title' => 'required|max:100',
+            'district' => 'required',
             'location' => 'required',
+            'city' => 'required'
         ]);
-        //store & update title and slug
-        $term = Terms::where('user_id', Auth::id())->where('id', $id)->first();
+        //update title and slug
+        $term = Terms::where('id', $id)->first();
         $unique_id = generate_unique_id();
         $slug = \Illuminate\Support\Str::slug($request->title) . '-' . $unique_id;
-        if (empty($term)) {
-            $term = new Terms;
-            $term->user_id = Auth::id();
-            $term->unique_id = $unique_id;
-            $term->status = 3;
-            $term->type = 'property';
-        }
         $term->slug = $slug;
         $term->title = $request->title;
         $term->ar_title = $request->ar_title;
         $term->save();
 
-        //store & update property district and location
+        //update property district and location
         $district = PostDistrict::where('term_id', $term->id)->where('type', 'district')->first();
-        if (empty($district)) {
-            $district = new PostDistrict;
-            $district->term_id = $term->id;
-            $district->type = 'district';
-        }
         $district->district_id = $request->district;
         $district->value = $request->location;
         $district->save();
 
-        //store & update property city
+        //update property city
         $post_city['term_id'] = $term->id;
         $post_city['city_id'] = $request->city;
         PostCity::where('term_id', $term->id)->delete();
         PostCity::insert($post_city);
 
-        //property status create and update
+        //property status update
         $post_cat['term_id'] = $term->id;
         $post_cat['category_id'] = $request->status;
         $post_cat['type'] = 'status';
@@ -911,11 +903,11 @@ class PropertyController extends controller
         ]);
         //built area validation
         if (array_key_exists('builtarea', $request->all()) && empty($request->builtarea)) {
-            return error_response('','please provide property builtup area details');
+            return error_response('', 'please provide property builtup area details');
         }
         //land area validation
         if (array_key_exists('landarea', $request->all()) && empty($request->landarea)) {
-            return error_response('','please provide property land area details');
+            return error_response('', 'please provide property land area details');
         }
         // Property price create and update
         $term_id = $id;
@@ -943,7 +935,11 @@ class PropertyController extends controller
             $post_cat['type'] = 'category';
             array_push($category, $post_cat);
         }
-
+        $post_category_data = Postcategory::where('type', 'category')->where('term_id', $term_id)->first();
+        if (!empty($post_category_data) && $request->category != $post_category_data) {
+            //if new category selected 
+            $this->remove_input_page_data($term_id);
+        }
         Postcategory::where('type', 'parent_category')->where('term_id', $term_id)->delete();
         Postcategory::where('type', 'category')->where('term_id', $term_id)->delete();
         Postcategory::insert($category);
@@ -988,14 +984,17 @@ class PropertyController extends controller
         if (!empty($check_category) && Str::contains($check_category->name, 'land')) {
 
             $this->remove_input_page_data($term_id);
+            $this->remove_feature_data($term_id);
             return response()->json(['Property Updated Successfully']);
         }
         if (!empty($check_category) && Str::contains($check_category->name, 'Farm')) {
             $this->remove_input_page_data($term_id);
+            $this->remove_feature_data($term_id);
             return response()->json(['Property Updated Successfully']);
         }
         if (!empty($check_category) && Str::contains($check_category->name, 'Warehouse')) {
             $this->remove_input_page_data($term_id);
+            $this->remove_feature_data($term_id);
             return response()->json(['Property Updated Successfully']);
         }
         return response()->json(['Property Updated Successfully']);
@@ -1006,11 +1005,11 @@ class PropertyController extends controller
     {
         //Validate property total floor
         if (array_key_exists('total_floors', $request->all()) && empty($request->total_floors)) {
-            return error_response('','please provide total floors detail');
+            return error_response('', 'please provide total floors detail');
         }
         //Validate property floor
         if (array_key_exists('property_floor', $request->all()) && empty($request->property_floor)) {
-            return error_response('','please provide property floor detail');
+            return error_response('', 'please provide property floor detail');
         }
 
         $term_id = $id;
@@ -1064,9 +1063,9 @@ class PropertyController extends controller
 
     public function fourth_update_property(Request $request, $id)
     {
-//Validate Virtual Tour
+        //Validate Virtual Tour
         if (array_key_exists('virtual_tour', $request->all()) && empty($request->virtual_tour)) {
-            return error_response('','please provide virtual tour link');
+            return error_response('', 'please provide virtual tour link');
         }
 
         if ($request->hasfile('media'))
@@ -1100,16 +1099,16 @@ class PropertyController extends controller
     {
         //Validate features, length and depth
         if (array_key_exists('features', $request->all()) && empty($request->features)) {
-            return error_response('','please provide features');
+            return error_response('', 'please provide features');
         }
         if (array_key_exists('length', $request->all()) && empty($request->length)) {
-            return error_response('','please provide length');
+            return error_response('', 'please provide length');
         }
         if (array_key_exists('depth', $request->all()) && empty($request->depth)) {
-            return error_response('','please provide depth');
+            return error_response('', 'please provide depth');
         }
 
-//        Feature show against property type(Farm, Duplex, Appartment) and update
+        //        Feature show against property type(Farm, Duplex, Appartment) and update
         $term_id = $id;
         $category = [];
         foreach ($request->features ?? [] as $key => $value) {
@@ -1144,10 +1143,10 @@ class PropertyController extends controller
     {
         //        validate the Deed number
         if (array_key_exists('instrument_number', $request->all()) && empty($request->instrument_number)) {
-            return error_response('','please provide instrument number');
+            return error_response('', 'please provide instrument number');
         }
 
-//        Show and update the Deed Number and FAQs of Property
+        //        Show and update the Deed Number and FAQs of Property
         $term_id = $id;
         $rule_data = isset($request['rule']) ? implode(',', $request['rule']) : 0;
         $rule = Meta::where('term_id', $term_id)->where('type', 'rules')->first();
@@ -1158,7 +1157,6 @@ class PropertyController extends controller
         }
         $rule->content = $rule_data;
         $rule->save();
-
         $data = $request->all();
         unset($data['_token'], $data['_method'], $data['rule']);
         foreach ($data as $key => $value) {
@@ -1190,14 +1188,17 @@ class PropertyController extends controller
         //if land,Warehouse and farm is property type
         if (!empty($info->property_type) && \Illuminate\Support\Str::contains($info->property_type->category->name, 'land')) {
             $this->remove_input_page_data($this->term_id);
+            $this->remove_feature_data($this->term_id);
             return response()->json(['Property Updated Successfully']);
         }
         if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'Farm')) {
             $this->remove_input_page_data($this->term_id);
+            $this->remove_feature_data($this->term_id);
             return response()->json(['Property Updated Successfully']);
         }
         if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'Warehouse')) {
             $this->remove_input_page_data($this->term_id);
+            $this->remove_feature_data($this->term_id);
             return response()->json(['Property Updated Successfully']);
         }
 
@@ -1217,13 +1218,22 @@ class PropertyController extends controller
         return success_response($data, 'Data get Successfully!');
     }
 
+    /**
+     * Delete features conditions and floors on land ,farm and warehouse
+     *
+     * @param  int  $id
+     */
+    public function remove_feature_data($term_id)
+    {
+        Postcategory::where('type', 'features')->where('term_id', $term_id)->delete();
+    }
+
     public function remove_input_page_data($term_id)
     {
         Postcategoryoption::where('type', 'options')->where('term_id', $term_id)->delete();
         Meta::where('term_id', $term_id)->where('type', 'property_condition')->delete();
         Meta::where('term_id', $term_id)->where('type', 'total_floors')->delete();
         Meta::where('term_id', $term_id)->where('type', 'property_floor')->delete();
-        Postcategory::where('type', 'features')->where('term_id', $term_id)->delete();
     }
 
 
