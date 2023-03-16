@@ -189,7 +189,7 @@
                                                         onchange="property_type_triger(this, event)">
                                                     <option value='' disabled selected>{{__('labels.property_nature')}}</option>
                                                     @foreach($parent_category as $row)
-                                                        <option value="{{ $row->id }}" {{ !empty($array) && array_key_exists($row->id, $array) ? "selected" : "" }}>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name }}</option>
+                                                        <option value="{{ $row->id }}" {{ !empty($array["parent_category"]) && $array["parent_category"]== $row->id ? "selected" : "" }}>{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 <input id="all_feature_id" type="hidden" name="term_id"

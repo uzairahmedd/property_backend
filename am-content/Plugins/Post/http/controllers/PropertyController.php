@@ -801,7 +801,7 @@ class PropertyController extends controller
         //Fetch parent category against term id
         $post_parent_category = Postcategory::where('type', 'parent_category')->where('term_id', $id)->first();
         //Fetch property type (Farm, Land, Apartment, etc.) against upcoming id in param
-        $child_category='';
+        $child_category=[];
         if(!empty($post_parent_category)) {
             $child_category = Category::where('type', 'parent_category')->where('id', $post_parent_category->category_id)->with('parent')->get();
         }
@@ -840,7 +840,6 @@ class PropertyController extends controller
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
         }
-//dd($array);
         return view('plugin::properties.new_edit', compact('info', 'user_id', 'post_parent_category', 'array', 'status_category', 'parent_category', 'child_category', 'features_array', 'cities', 'district'));
     }
 

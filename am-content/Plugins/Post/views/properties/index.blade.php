@@ -100,7 +100,8 @@
 {{--									<a href="{{ route('admin.property.edit',$row->id) }}">{{ __('Edit') }}</a> | <a href="{{ url('/property-detail',$row->slug) }}" target="_blank">{{ __('Show') }}</a>--}}
 {{--								</div> --}}
 								<div>
-									<a href="{{ route('admin.property.edit',$row->id) }}">{{ __('Edit') }}</a> | <a href="{{ url('/property',$row->slug) }}">{{ __('Show') }}</a>
+									<a href="{{ route('admin.property.edit',$row->id) }}">{{ __('Edit') }}</a>
+									 <!-- | <a href="{{ url('/property',$row->slug) }}">{{ __('Show') }}</a> -->
 								</div>
 							</td>
 							<td><a href="#">{{ $row->user->name }}</a></td>
