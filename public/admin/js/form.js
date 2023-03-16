@@ -898,7 +898,7 @@ function property_logs(elem) {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length > 1) {
                     $.each(response.data, function (index, value) {
-                        $('.modal-body').append('<h6>* ' + value.message + '</h3><label>Request:</label><p>' + value.request + '</p><label>Response:</label><p>' + value.response + '</p>');
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: bread-word;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
                     });
                 }
                 else {

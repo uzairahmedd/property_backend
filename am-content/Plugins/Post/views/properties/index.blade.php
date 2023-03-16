@@ -5,6 +5,12 @@
         $properties_list = __('labels.properties_list');
     @endphp
 @include('layouts.backend.partials.headersection',['title' => $properties_list])
+<style>
+	.property-logs p
+	{
+		overflow-wrap: break-word;
+	}
+</style>
 <div class="card">
 	<div class="card-body">
 		<div class="row mb-2">
@@ -167,7 +173,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body property-logs">
        
       </div>
       <div class="modal-footer">
