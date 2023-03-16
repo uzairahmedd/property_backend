@@ -24,6 +24,7 @@ use App\Models\Postcategoryoption;
 use App\Models\User;
 use App\Models\Termrelation;
 use App\Models\Price;
+use App\Models\UserLogs;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Session;
@@ -1895,5 +1896,11 @@ class PropertyController extends controller
             'city.required' => 'Please provide city',
 
         ]);
+    }
+
+    //property logs
+    public function get_property_logs($id){
+       $logs=UserLogs::where('terms_id',$id)->get();
+       return success_response($logs, 'Property logs get successfully!');
     }
 }
