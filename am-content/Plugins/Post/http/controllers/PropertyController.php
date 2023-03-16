@@ -1242,11 +1242,13 @@ class PropertyController extends controller
         $term_id = $id;
         $data = [];
         $info = Terms::with('postcategory', 'property_type')->findorFail($term_id);
-        $data['categories_data'] = Category::where('type', 'feature')->where('featured', 1)->get();
+        $data['features_data'] = Category::where('type', 'feature')->where('featured', 1)->get();
         $data['property_data'] = $info->property_type;
         $array = [];
         foreach ($info->postcategory as $key => $value) {
+           if($value->type =='features'){
             array_push($array, $value->category_id);
+           }
         }
 
         $data['post_features'] = $array;

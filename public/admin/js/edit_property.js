@@ -551,17 +551,16 @@ $(".step_5").on('click', function (e) {
             url: url,
             dataType: 'json',
             success: function (response) {
-                $('#features_check').html('');
 
-                var check = '';
+                $('#features_check').html('');
                 var feature = response.data.property_data.category.features_section;
                 if( feature == 1) {
-                    $.each(response.data.categories_data, function (index, value) {
+                    $.each(response.data.features_data, function (index, value) {
                         var name = value.name;
                         if (locale == 'ar') {
                             name = value.ar_name;
                         }
-                        // $('#features_check').append('<checkbox-section class="div-check features-check checkbox-div d-flex flex-row justify-content-start align-items-center"></checkbox-section>');
+                        var check = '';
                         if (jQuery.inArray(value.id, response.data.post_features) != -1) {
                             check = 'checked';
                         }
