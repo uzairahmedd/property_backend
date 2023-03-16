@@ -496,20 +496,30 @@ $(".step_3").on('click', function (e) {
                             '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
                             '<input type="text" value="'+value.post_category_option.value+'" name="Appartments" class="form-control d-flex justify-content-start align-items-start w-100">\n');
                     }
-
+                    var val = '';
                     if (value.name == 'Openings') {
+                        if(value.post_category_option.value != null)
+                        {
+                           val =  value.post_category_option.value;
+                        }
                         $('#opening_features').html('<label>' + name + '</label>\n' +
                             '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
-                            '                    <select id="opening_select" name="Openings" class="form-control"></select>');
-                        for (var i = 0; i <= 9; i++) {
-                            var selected = '';
-                            if (value.post_category_option != null && value.post_category_option.value == i) {
-                                selected = 'selected';
-                            }
-                            $('#opening_select').append('<option value="' + i + '" ' + selected + '>' + i + '</option>');
-
-                        }
+                            '<input type="text" value="'+val+'" name="Openings" class="form-control d-flex justify-content-start align-items-start w-100">\n');
                     }
+
+                    // if (value.name == 'Openings') {
+                    //     $('#opening_features').html('<label>' + name + '</label>\n' +
+                    //         '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
+                    //         '                    <select id="opening_select" name="Openings" class="form-control"></select>');
+                    //     for (var i = 0; i <= 9; i++) {
+                    //         var selected = '';
+                    //         if (value.post_category_option != null && value.post_category_option.value == i) {
+                    //             selected = 'selected';
+                    //         }
+                    //         $('#opening_select').append('<option value="' + i + '" ' + selected + '>' + i + '</option>');
+                    //
+                    //     }
+                    // }
 
                     if (value.name == 'Office') {
                         $('#office_features').html('<label>' + name + '</label>\n' +
@@ -635,3 +645,70 @@ function remove_image(param,key) {
     })
 }
 
+
+
+
+
+//cities slection
+$(document).ready(function () {
+    if ($('#city_val :selected').val() != '') {
+        var city_id = $('#city_val :selected').val();
+        get_already_select_district(city_id);
+    }
+
+    $('#city_val').on('change', function () {
+        $('#coordinates_selected').val('');
+        $('#location').val('');
+        var city_id = this.value;
+        get_already_select_district(city_id);
+    });
+
+
+    //for default select box
+    var direction = 'rtl';
+    if (locale == 'en') {
+        direction = 'ltr';
+    }
+    $('#city_val').select2({
+        dir: direction,
+    });
+
+});
+
+
+//distrcits slection
+function get_already_select_district(city_id) {
+    var select_district = $('#please_select_district').text();
+    $("#district_val option").remove();
+    $('#district_val').select2().append('<option value="" selected>' + select_district + '</option>');
+    var baseurl = $('#base_url').val();
+    var url = baseurl + '/admin/real-state/get_district';
+    $.ajax({
+        type: 'get',
+        url: url,
+        data: { 'id': city_id },
+        success: function (response) {
+            var name = '';
+            var select = $('#get_district_val').val();
+            $.each(response, function (index, value) {
+                name = value.name;
+                if (locale == 'ar') {
+                    name = value.ar_name;
+                }
+                $("#district_val").select2().append('<option value="' + value.id + '">' + name + '</option>');
+                if (value.id == select) {
+                    $("#district_val").select2().val(select).trigger('change');
+                }
+            });
+
+            var direction = 'rtl';
+            if (locale == 'en') {
+                direction = 'ltr';
+            }
+            $('#district_val').select2({
+                dir: direction,
+            });
+
+        }
+    });
+}

@@ -91,8 +91,8 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::get('get_property_logs/{id}', 'PropertyController@get_property_logs')->name('properties.property_logs');
         //update Property
 //      Route::post('update_property', 'PropertyController@update_property')->name('property.update_property');
-
 		Route::get('get_districts/{id}', 'PropertyController@get_districts');
+        Route::get('get_district','PropertyController@info')->name('property.district');
 
 	});
 

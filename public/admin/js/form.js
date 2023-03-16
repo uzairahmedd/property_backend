@@ -25,7 +25,6 @@
             },
             success: function (response) {
                 console.log(response);
-
                 $('.basicbtn').removeAttr('disabled')
                 Sweet('success', response);
                 $('.basicbtn').html(basicbtnhtml);
@@ -74,7 +73,7 @@
 
             },
             success: function (response) {
-                // console.log(response);
+                console.log(response);
                 $('.basicbtn').removeAttr('disabled')
                 Sweet('success', response);
                 $('.basicbtn').html(basicbtnhtml);
@@ -88,7 +87,6 @@
                 $('.basicbtn').html(basicbtnhtml);
                 $('.basicbtn').removeAttr('disabled')
                 $('.errorarea').show();
-                $(response.data.area).show();
                 $.each(xhr.responseJSON.errors, function (key, item) {
                     Sweet('error', item)
                     $("#errors").html("<li class='text-danger'>" + item + "</li>")
@@ -97,6 +95,55 @@
             }
         })
     });
+
+    //
+    //
+    // $("#step_two_submit").on('submit', function (e) {
+    //     e.preventDefault();
+    //     $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    //     });
+    //     var basicbtnhtml = $('.basicbtn').html();
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: this.action,
+    //         data: new FormData(this),
+    //         dataType: 'json',
+    //         contentType: false,
+    //         cache: false,
+    //         processData: false,
+    //         beforeSend: function () {
+    //
+    //             $('.basicbtn').html("Please Wait....");
+    //             $('.basicbtn').attr('disabled', '')
+    //
+    //         },
+    //         success: function (response) {
+    //             console.log(response);
+    //             $('.basicbtn').removeAttr('disabled')
+    //             Sweet('success', response);
+    //             $('.basicbtn').html(basicbtnhtml);
+    //             Sweet('error', response.message.errors);
+    //             if(response.status == 'error')
+    //             {
+    //                 Sweet('error', response.message);
+    //             }
+    //         },
+    //         error: function (xhr, status, error) {
+    //             $('.basicbtn').html(basicbtnhtml);
+    //             $('.basicbtn').removeAttr('disabled')
+    //             $('.errorarea').show();
+    //             $(response.data.area).show();
+    //             $.each(xhr.responseJSON.errors, function (key, item) {
+    //                 Sweet('error', item)
+    //                 $("#errors").html("<li class='text-danger'>" + item + "</li>")
+    //             });
+    //             errosresponse(xhr, status, error);
+    //         }
+    //     })
+    // });
 
     //step 3 Submit
     $("#step_three_submit").on('submit', function (e) {
@@ -849,14 +896,14 @@ function property_logs(elem) {
             $('.modal-body').html('');
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
-                if (response.data.length >   1) {
-                $.each(response.data, function (index, value) {
-                    $('.modal-body').append('<h6>* ' + value.message + '</h3><label>Request:</label><p>'+value.request+'</p><label>Response:</label><p>'+value.response+'</p>');
-                });
-            }
-            else{
-                $('.modal-body').append('<h7>No Logs found</h6>');
-            }
+                if (response.data.length > 1) {
+                    $.each(response.data, function (index, value) {
+                        $('.modal-body').append('<h6>* ' + value.message + '</h3><label>Request:</label><p>' + value.request + '</p><label>Response:</label><p>' + value.response + '</p>');
+                    });
+                }
+                else {
+                    $('.modal-body').append('<h7>No Logs found</h6>');
+                }
             }
         }
     });
