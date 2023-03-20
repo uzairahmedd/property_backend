@@ -1,16 +1,10 @@
 @extends('layouts.backend.app')
 
 @section('content')
-    @php
-        $properties_list = __('labels.properties_list');
-    @endphp
+@php
+$properties_list = __('labels.properties_list');
+@endphp
 @include('layouts.backend.partials.headersection',['title' => $properties_list])
-<style>
-	.property-logs p
-	{
-		overflow-wrap: break-word;
-	}
-</style>
 <div class="card">
 	<div class="card-body">
 		<div class="row mb-2">
@@ -50,9 +44,8 @@
 		</div>
 		<form method="post" action="{{ route('admin.properties.destroy') }}" class="basicform">
 			@csrf
+			@can('Properties.edit')
 			<div class="float-left">
-
-
 				<div class="input-group">
 					<select class="form-control selectric" name="method">
 						<option disabled selected="">{{__('labels.select_action')}}</option>
@@ -73,6 +66,7 @@
 				</div>
 
 			</div>
+			@endcan
 			<div class="table-responsive custom-table">
 				<table class="table table-striped table-hover text-center table-borderless">
 					<thead>
@@ -103,12 +97,9 @@
 							</td>
 							<td><img src="{{ asset($row->post_preview->media->url ?? 'uploads/default.png') }}" height="50" alt=""></td>
 							<td>{{ $row->title }} (#{{ $row->id }})
-{{--								 <div>--}}
-{{--									<a href="{{ route('admin.property.edit',$row->id) }}">{{ __('Edit') }}</a> | <a href="{{ url('/property-detail',$row->slug) }}" target="_blank">{{ __('Show') }}</a>--}}
-{{--								</div> --}}
 								<div>
 									<a href="{{ route('admin.property.edit',$row->id) }}">{{ __('Edit') }}</a>
-									 <!-- | <a href="{{ url('/property',$row->slug) }}">{{ __('Show') }}</a> -->
+									| <a href="{{route('property.detail',[$row->slug,$row->id])}}" target="_blank">{{ __('Show') }}</a>
 								</div>
 							</td>
 							<td><a href="#">{{ $row->user->name }}</a></td>
@@ -147,40 +138,40 @@
 									<label class="custom-control-label checkAll" for="selectAll"></label>
 								</div>
 							</th>
-                            <th class="am-title"><i class="far fa-image"></i></th>
-                            <th class="am-title">{{__('labels.name')}}</th>
-                            <th class="am-title">{{__('labels.created_by')}}</th>
-                            <th class="am-title">{{__('labels.resource')}}</th>
-                            <th class="am-title">{{__('labels.status')}}</th>
-                            <th class="am-date">{{__('labels.last_update')}}</th>
+							<th class="am-title"><i class="far fa-image"></i></th>
+							<th class="am-title">{{__('labels.name')}}</th>
+							<th class="am-title">{{__('labels.created_by')}}</th>
+							<th class="am-title">{{__('labels.resource')}}</th>
+							<th class="am-title">{{__('labels.status')}}</th>
+							<th class="am-date">{{__('labels.last_update')}}</th>
 							<th class="am-date">{{__('labels.action')}}</th>
 						</tr>
 					</tfoot>
 				</table>
 
-			</form>
-			{{ $posts->links('vendor.pagination.bootstrap') }}
-		</div>
+		</form>
+		{{ $posts->links('vendor.pagination.bootstrap') }}
 	</div>
+</div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="property_logs_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">{{__('labels.Property_Logs')}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body property-logs">
-       
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('labels.close')}}</button>
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">{{__('labels.Property_Logs')}}</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('labels.close')}}</button>
+			</div>
+		</div>
+	</div>
 </div>
 @endsection
 
@@ -188,10 +179,11 @@
 <script src="{{ asset('admin/js/form.js') }}"></script>
 <script>
 	"use strict";
-	function success(res){
-		$('input[name="ids[]"]:checked').each(function(i){
+
+	function success(res) {
+		$('input[name="ids[]"]:checked').each(function(i) {
 			var ids = $(this).val();
-			$('#row'+ids).remove();
+			$('#row' + ids).remove();
 		});
 		location.reload();
 	}

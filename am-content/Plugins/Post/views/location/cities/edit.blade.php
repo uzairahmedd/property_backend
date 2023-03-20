@@ -4,6 +4,7 @@
 @php
        $city_name_arabic =  __('labels.city_name_in_arabic');
        $city_name =  __('labels.city_name');
+       $slug =  __('labels.slug');
 
     @endphp
 <div class="row">
@@ -34,6 +35,17 @@
                         $arr['name']= 'ar_name';
                         $arr['is_required'] = true;
                         $arr['value'] = $info->ar_name;
+
+
+                        echo input($arr);
+
+                        $arr['title']= $slug;
+                        $arr['id']= 'edit_city_slug';
+                        $arr['type']= 'text';
+                        $arr['placeholder']= $slug;
+                        $arr['name']= 'slug';
+                        $arr['is_required'] = false;
+                        $arr['value'] = $info->slug;
 
 
                         echo input($arr);

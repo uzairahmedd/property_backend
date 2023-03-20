@@ -681,4 +681,5 @@ return [
     "Remember_Me" => "Remember Me",
     "action"=>'Action',
     "Property_Logs"=>"Property Logs",
+    "slug"=>'Enter Slug',
 ];

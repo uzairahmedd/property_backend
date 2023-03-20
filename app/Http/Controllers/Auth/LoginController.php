@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\User;
+use App\Models\AdminLogs;
 use Hash;
 use Illuminate\Support\Str;
 use Session;
@@ -49,25 +51,25 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-     /**
+    /**
      * Show the application's login form.
      *
      * @return \Illuminate\View\View
      */
     public function showLoginForm()
     {
-        
+
         abort(404);
     }
 
-     /**
+    /**
      * Show the admin's login form.
      *
      * @return \Illuminate\View\View
      */
     public function admin_login()
     {
-        
+
         return view('auth.login');
     }
 
@@ -182,11 +184,16 @@ class LoginController extends Controller
     //     }
     // }
 
+    /**
+     * Login for admin backoffice
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function login(Request $request)
     {
-        
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'L1', 'request' => serialize($request->all())]);
         $this->validateLogin($request);
-        //
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
@@ -194,15 +201,16 @@ class LoginController extends Controller
             $this->fireLockoutEvent($request);
             return $this->sendLockoutResponse($request);
         }
-
+        //attempt to login
         if ($this->attemptLogin($request)) {
             if ($request->hasSession()) {
                 $request->session()->put('auth.password_confirmed_at', time());
             }
-            //check user status        
-            if (Auth::user()->status == '1') return $this->sendLoginResponse($request);
-            // if user_status != '1' raise exception
-            else {
+            //check admin status for his account      
+            if (Auth::user()->status == '1') {
+                DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => 'user logged-in', 'message' => 'User logged-in successfully!']);
+                return $this->sendLoginResponse($request);
+            } else {
                 $this->guard()->logout();
                 return $this->sendAccountBlocked($request);
             }
@@ -213,14 +221,17 @@ class LoginController extends Controller
         // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
         return $this->sendFailedLoginResponse($request);
-        //
-    } //
+    }
 
+    /**
+     * Send response for account status
+     *
+     * @return \Illuminate\Http\Response
+     */
     protected function sendAccountBlocked(Request $request)
     {
         throw ValidationException::withMessages([
             $this->username() => ['Your account was suspended.'],
         ]);
     }
-    
 }

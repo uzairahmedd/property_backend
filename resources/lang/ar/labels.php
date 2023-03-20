@@ -692,5 +692,6 @@ return [
     "Remember_Me" => "تذكرنى",
     "action" => 'فعل',
     "Property_Logs" => "سجلات الملكية",
+    "slug"=>'أدخل سبيكة',
 
 ];

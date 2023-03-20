@@ -5,6 +5,7 @@
         $enter_name_english = __('labels.enter_name_in_english');
         $enter_name_arabic = __('labels.district_name_in_arabic');
         $enter_arabic = __('labels.enter_name_in_arabic');
+        $slug =  __('labels.slug');
     @endphp
 <div class="row">
     <div class="col-lg-9">
@@ -31,6 +32,15 @@
                         $arr['placeholder']= $enter_arabic;
                         $arr['name']= 'ar_name';
                         $arr['is_required'] = true;
+
+                        echo  input($arr);
+
+                        $arr['title']= $slug;
+                        $arr['id']= 'district';
+                        $arr['type']= 'text';
+                        $arr['placeholder']= $slug;
+                        $arr['name']= 'slug';
+                        $arr['is_required'] = false;
 
                         echo  input($arr);
                         @endphp
