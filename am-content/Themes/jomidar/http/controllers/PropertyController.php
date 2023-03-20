@@ -126,19 +126,23 @@ class PropertyController extends controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a detail of the property.
      *
      * @return \Illuminate\Http\Response
      */
-    public function detail(Request $request, $slug)
+    public function detail(Request $request, $slug, $id = Null)
     {
         $path = $request->path();
         $property = Terms::where([
             ['type', 'property'],
-            ['status', 1],
             ['is_land_block', 0],
             ['slug', $slug]
-        ])->with('depth', 'length', 'virtual_tour', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'post_preview', 'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition', 'property_type')->withCount('reviews')->first();
+        ]);
+        //for user
+        if ($id == null) {
+            $property = $property->where('status', 1);
+        }
+        $property = $property->with('depth', 'length', 'virtual_tour', 'interface', 'property_age', 'meter', 'total_floors', 'property_floor', 'post_new_city', 'post_preview', 'streets',  'builtarea', 'landarea', 'price', 'electricity_facility', 'water_facility', 'post_district', 'user', 'multiple_images', 'option_data', 'property_status_type', 'postcategory', 'property_condition', 'property_type')->first();
         if ($property) {
             //views count
             $property->increment('count', 1);

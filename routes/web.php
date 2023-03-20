@@ -236,7 +236,7 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	Route::get('Update-phone/{id}', 'RegisterController@Update_phone');
 	Route::post('modify_phone', 'RegisterController@modify_phone');
 	//detail page
-	Route::get('property-detail/{slug}', 'PropertyController@detail')->name('property.detail');
+	Route::get('property-detail/{slug}/{id?}', 'PropertyController@detail')->name('property.detail');
 	Route::get('change_title', 'RegisterController@change_title');
 	Route::get('land-block-detail/{slug}', 'PropertyController@land_block_detail')->name('property.land_block_detail');
 	Route::get('Land_block_data/{id}', 'PropertyController@Land_block_data');

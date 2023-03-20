@@ -9,6 +9,7 @@ use App\Models\City;
 use App\Categorymeta;
 use App\Models\District;
 use Illuminate\Support\Str;
+use App\Models\AdminLogs;
 use Auth;
 use DB;
 use Google\Service\Dfareporting\Resource\Cities;
@@ -106,9 +107,9 @@ class LocationController extends Controller
     if (!Auth()->user()->can('district.list')) {
       abort(401);
     }
-    $posts = District::leftJoin('cities', function($join) {
+    $posts = District::leftJoin('cities', function ($join) {
       $join->on('districts.p_id', '=', 'cities.id');
-    })->select('districts.*','cities.name as city_name','cities.ar_name as arabic_name')->orderBy('cities.id', 'ASC')->paginate(100);
+    })->select('districts.*', 'cities.name as city_name', 'cities.ar_name as arabic_name')->orderBy('cities.id', 'ASC')->paginate(100);
     return view('plugin::location.district.index', compact('posts'));
   }
 
@@ -209,14 +210,15 @@ class LocationController extends Controller
   }
 
   /**
-   * Store a newly created resource in storage.
+   * Store a newly created city $ district in storage.
    *
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request)
   {
-
+    //Store $request logs
+    $log_id = AdminLogs::create(['log_code' => 'L2', 'request' => serialize($request->all())]);
     $validatedData = $request->validate([
       'name' => 'required|max:100',
       'ar_name' => 'required|max:100',
@@ -225,26 +227,30 @@ class LocationController extends Controller
     if ($request->p_id) {
       $pid = $request->p_id;
     }
-
-    if ($request->type == 'city') {
+    //store city
+    if ($request->type == 'City') {
       $category = new City;
       $category->name = $request->name;
       $category->ar_name = $request->ar_name;
+      $category->slug = $request->slug;
       $category->featured = $request->featured;
       $category->user_id = Auth::id();
       $category->save();
-    } elseif ($request->type == 'district') {
+    }
+    //store district
+    elseif ($request->type == 'district') {
       $category = new District();
       $category->name = $request->name;
       $category->ar_name = $request->ar_name;
+      $category->slug = $request->slug;
       $category->p_id = $pid;
       $category->featured = $request->featured;
       $category->user_id = Auth::id();
       $category->save();
     }
-
-
-    return response()->json('Location created');
+    //store response
+    DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize($request->type.' created sucessfully!'), 'message' => $request->type . ' added successfully!']);
+    return response()->json($request->type.' created sucessfully!');
   }
 
 
@@ -364,7 +370,7 @@ class LocationController extends Controller
   }
 
   /**
-   * Update the specified resource in storage.
+   * Update the specified resource of city and district in storage.
    *
    * @param  \Illuminate\Http\Request  $request
    * @param  int  $id
@@ -372,6 +378,8 @@ class LocationController extends Controller
    */
   public function update(Request $request, $id)
   {
+    //Store $request logs
+    $log_id = AdminLogs::create(['log_code' => 'L3', 'request' => serialize($request->all())]);
     $validatedData = $request->validate([
       'name' => 'required|max:100',
       'ar_name' => 'required|max:100',
@@ -381,31 +389,36 @@ class LocationController extends Controller
       $pid = $request->p_id;
     }
 
-
+    //update city
     if (empty($pid)) {
       $category = City::find($id);
       $category->name = $request->name;
       $category->ar_name = $request->ar_name;
+      $category->slug = $request->slug;
       $category->featured = $request->featured;
       $category->user_id = Auth::id();
       $category->save();
-    } else {
+    }
+    //update district
+    else {
       $category =  District::find($id);
       $category->name = $request->name;
       $category->ar_name = $request->ar_name;
+      $category->slug = $request->slug;
       $category->p_id = $pid;
       $category->featured = $request->featured;
       $category->user_id = Auth::id();
       $category->save();
     }
 
-
-    return response()->json('Location Updated');
+    //store response
+    DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Location updated successfully!'), 'message' => 'Location updated']);
+    return response()->json('Location updated successfully!');
   }
 
 
 
-   /**
+  /**
    * Remove the specified resource from storage.
    *
    * @param  int  $id
