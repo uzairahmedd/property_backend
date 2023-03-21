@@ -659,6 +659,50 @@
         })
     });
 
+
+    $(".land_block_updateform").on('submit', function (e) {
+        e.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var basicbtnhtml = $('.basicbtn').html();
+        $.ajax({
+            type: 'POST',
+            url: this.action,
+            data: new FormData(this),
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function () {
+
+                $('.basicbtn').html("Please Wait....");
+                $('.basicbtn').attr('disabled', '')
+
+            },
+            success: function (response) {
+                console.log(response);
+                $('.term_id').val(response.data);
+                $('.basicbtn').removeAttr('disabled')
+                Sweet('success', response.message);
+                $('.basicbtn').html(basicbtnhtml);
+                success(response);
+            },
+            error: function (xhr, status, error) {
+                $('.basicbtn').html(basicbtnhtml);
+                $('.basicbtn').removeAttr('disabled')
+                $('.errorarea').show();
+                $.each(xhr.responseJSON.errors, function (key, item) {
+                    Sweet('error', item)
+                    $("#errors").html("<li class='text-danger'>" + item + "</li>")
+                });
+                errosresponse(xhr, status, error);
+            }
+        })
+    });
+
     $("#basicform3").on('submit', function (e) {
         e.preventDefault();
 

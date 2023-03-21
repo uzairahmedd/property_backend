@@ -177,66 +177,7 @@ class PropertyController extends controller
         return view('plugin::properties.land_block_create', compact('categories', 'status_category', 'parent_category', 'feature', 'cities'));
     }
 
-    /**
-     * Edit a  land blocks.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function land_block_edit(Request $request, $id)
-    // {
-    //     //        if (!Auth()->user()->can('Properties.land_block_edit')) {
-    //     //            abort(401);
-    //     //        }
-    //     $this->term_id = $id;
-    //     $info = Terms::where([
-    //         ['type', 'property'],
-    //         ['id', $id]
-    //     ])->with('medias', 'virtual_tour', 'post_new_city', 'post_preview', 'post_district', 'multiple_images', 'property_status_type', 'postcategory', 'property_type')->first();
-    //     //First land block againt term ID
-    //     $landblock = LandBlock::where('term_id', $id)->first();
-    //     //        Land Block Count
-    //     $blockcount = LandBlock::where('term_id', $id)->count();
-    //     //        dd($blockcount);
-    //     //        //Fetch parent category against term id
-    //     //        $post_parent_category = Postcategory::where('type', 'parent_category')->where('term_id', $id)->first();
-    //     //        //Fetch property type (Farm, Land, Apartment, etc.) against upcoming id in param
-    //     //        $child_category = Category::where('type', 'parent_category')->where('id', $post_parent_category->category_id)->with('parent')->get();
-    //     //Fetch Features Land Area, Built up area, Furnished and other features that have status 1
-    //     $status_category = Category::where('type', 'status')->where('featured', 1)->get();
 
-    //     //Fetch all Cities
-    //     $cities = City::where('featured', 1)->get();
-    //     //Fetch all District
-    //     $district = District::where('featured', 1)->get();
-    //     // Fetch table parent category data
-    //     $parent_category = Category::where('type', 'parent_category')->get();
-    //     //        //Fetch Advertising Id
-    //     //        $user_id = UserCredentials::where('user_id', $id)->first();
-    //     //        //Fetch Parent Category (Residential or commertial) against category (Farm, Appartment, Duplex ect)
-    //     //        $array = [];
-    //     //        $property_type = null;
-    //     //        foreach ($info->postcategory as $key => $value) {
-    //     //            if ($value->type == 'parent_category') {
-    //     //                $array[$value->type] = $value->category_id;
-    //     //            }
-    //     //            if ($value->type == 'category') {
-    //     //                $array[$value->type] = $value->category_id;
-    //     //                $this->property_type = $value->category_id;
-    //     //            }
-    //     //        }
-    //     //        foreach ($info->postcategory as $key => $value) {
-    //     //            array_push($array, $value->category_id);
-    //     //            if ($value->type == 'category') {
-    //     //                $this->property_type = $value->category_id;
-    //     //            }
-    //     //        }
-    //     ////        Fetch Features(Kitchen, Security, wifi, swimming pool etc) against postcategory(Farm, Appartment, Duplex etc.)
-    //     //        $features_array = [];
-    //     //        foreach ($info->postcategory as $key => $value) {
-    //     //            array_push($features_array, $value->category_id);
-    //     //        }
-    //     return view('plugin::properties.land_block_edit', compact('info', 'status_category', 'cities', 'district', 'parent_category', 'landblock', 'blockcount'));
-    // }
 
     /**
      * Display a listing of the districts.
@@ -248,10 +189,23 @@ class PropertyController extends controller
         return District::where('p_id', $city_id)->where('featured', 1)->select('id', 'name', 'ar_name')->get();
     }
 
-    public function property_nature()
+    public function parent_property()
     {
-
         $data= Category::where('type', 'parent_category')->where('featured', 1)->get();
+        return success_response($data, 'Property nature get successfully!');
+    }
+
+    public function property_nature($id)
+    {
+        $data = [];
+        $data['parent_category'] = Category::where('type', 'parent_category')->where('featured', 1)->get();
+        $data['post_data'] = Terms::where('type', 'property')->where('is_land_block', 1)
+            ->where('terms.id',$id)
+            ->leftjoin('land_block_details', 'terms.id', '=', 'land_block_details.term_id')
+            ->select(
+                'terms.*', 'land_block_details.*'
+            )->get();
+        $data['blockcount'] = LandBlock::where('term_id', $id)->count();
         return success_response($data, 'Property nature get successfully!');
     }
 
@@ -366,6 +320,124 @@ class PropertyController extends controller
         return success_response($term->id, 'Land block data inserted successfully');
     }
 
+
+
+    public function block_update(Request $request)
+    {
+//        dd($request->all());
+        $validatedData = $request->validate([
+            'status' => 'required',
+            'title' => 'required|max:100',
+            'ar_title' => 'required|max:100',
+            'district' => 'required',
+            'location' => 'required',
+            'city' => 'required',
+            'property_nature.*' => 'required',
+            'plot_price.*' => 'required',
+            'plot_number.*' => 'required',
+            'planned_number.*' => 'required',
+            'total_area.*' => 'required',
+            'center_coordinate.*' => 'required',
+            'top_right_coordinate.*' => 'required',
+            'top_left_coordinate.*' => 'required',
+            'bottom_right_coordinate.*' => 'required',
+            'bottom_left_coordinate.*' => 'required',
+            'right_measurement.*' => 'required',
+            'left_measurement.*' => 'required',
+            'top_measurement.*' => 'required',
+            'bottom_measurement.*' => 'required'
+        ], [
+            'status.required' => 'Please provide property type',
+            'title.required' => 'Please provide property english title',
+            'title.max' => 'Maximum english title character are 100',
+            'ar_title.required' => 'Please provide property arabic title',
+            'ar_title.max' => 'Maximum arabic title character are 100',
+            'district.required' => 'Please provide property district',
+            'location.required' => 'Please provide property location',
+            // 'location.regex' => 'Provide comma seperated location coordinates',
+            'city.required' => 'Please provide property city',
+            'property_nature.*.required' => 'Please provide all plot nature',
+            'plot_price.*.required' => 'Please provide all plot prices',
+            'plot_number.*.required' => 'Please provide all plot number',
+            'planned_number.*.required' => 'Please provide all plot planned number',
+            'total_area.*.required' => 'Please provide Area of land in SQM',
+            'center_coordinate.*.required' => 'Please provide all plot center coordinates',
+            // 'center_coordinate.*.regex' => 'Provide comma seperated center coordinates',
+            'top_right_coordinate.*.required' => 'Please provide all plot top right coordinates',
+            // 'top_right_coordinate.*.regex' => 'Provide comma seperated top coordinates',
+            'top_left_coordinate.*.required' => 'Please provide all plot top left coordinates',
+            // 'top_left_coordinate.*.regex' => 'Provide comma seperated top left coordinates',
+            'bottom_right_coordinate.*.required' => 'Please provide all plot bottom right coordinates',
+            // 'bottom_right_coordinate.*.regex' => 'Provide comma seperated bottom right coordinates',
+            'bottom_left_coordinate.*.required' => 'Please provide all plot bottom left coordinates',
+            // 'bottom_left_coordinate.*.regex' => 'Provide comma seperated bottom leftsss coordinates',
+            'right_measurement.*.required' => 'Please provide all plot right measurements',
+            'left_measurement.*.required' => 'Please provide all plot left measurements',
+            'top_measurement.*.required' => 'Please provide all plot top measurements',
+            'bottom_measurement.*.required' => 'Please provide all bottom measurements'
+
+        ]);
+
+        //store & update title and slug
+//        $unique_id = generate_unique_id();
+//        $slug = Str::slug($request->title) . '-' . $unique_id;
+        $term_id = $request->term_id;
+        $term = Terms::where('id', $term_id)->first();
+//        $term = new Terms;
+//        $term->user_id = Auth::id();
+//        $term->unique_id = $unique_id;
+        $term->status = 3;
+        $term->title = $request->title;
+        $term->ar_title = $request->ar_title;
+        $term->save();
+//        $term->type = 'property';
+//        $term->is_land_block = 1;
+//        $term->slug = $slug;
+
+        //update property district and location
+        $district = PostDistrict::where('term_id', $term_id)->where('type', 'district')->first();
+        $district->district_id = $request->district;
+        $district->value = $request->location;
+        $district->save();
+
+        //update property city
+        $post_city['term_id'] = $term_id;
+        $post_city['city_id'] = $request->city;
+        PostCity::where('term_id', $term_id)->delete();
+        PostCity::insert($post_city);
+
+        //property status update
+        $post_cat['term_id'] = $term_id;
+        $post_cat['category_id'] = $request->status;
+        $post_cat['type'] = 'status';
+        Postcategory::where('type', 'status')->where('term_id', $term_id)->delete();
+        Postcategory::insert($post_cat);
+
+        //property status create and update
+        $post_cat = new PostCategory;
+        $post_cat->term_id = $term_id;
+        $post_cat->category_id = $request->status;
+        $post_cat->type = 'status';
+        $post_cat->save();
+
+        //for virtual tour and images
+        $virtual_tour = Meta::where('term_id', $term_id)->where('type', 'virtual_tour')->first();
+        if (empty($virtual_tour)) {
+            $virtual_tour = new Meta;
+            $virtual_tour->term_id = $term_id;
+            $virtual_tour->type = 'virtual_tour';
+        }
+        $virtual_tour->content = $request->virtual_tour;
+        $virtual_tour->save();
+
+        unset($request['_token'], $request['virtual_tour']);
+        //store images
+        $this->upload_images($request, $term_id);
+        //store land block coordinates and measurement details
+        $this->land_block_detail_update($request->all(), $term_id);
+        return success_response($term_id, 'Land block data inserted successfully');
+    }
+
     function run($image, $c_type, $level = 0)
     {
 
@@ -460,6 +532,32 @@ class PropertyController extends controller
         for ($count = 0; $count < count($plot_number_count); $count++) {
 
             $land_block = new LandBlock;
+            $land_block->term_id = $term_id;
+            $land_block->parent_category = $data['property_nature'][$count];
+            $land_block->price = $data['plot_price'][$count];
+            $land_block->plot_number = $data['plot_number'][$count];
+            $land_block->planned_number = $data['planned_number'][$count];
+            $land_block->total_area = $data['total_area'][$count];
+            $land_block->center_coordinate = $data['center_coordinate'][$count];
+            $land_block->top_right_coordinate = $data['top_right_coordinate'][$count];
+            $land_block->top_left_coordinate = $data['top_left_coordinate'][$count];
+            $land_block->bottom_right_coordinate = $data['bottom_right_coordinate'][$count];
+            $land_block->bottom_left_coordinate = $data['bottom_left_coordinate'][$count];
+            $land_block->right_measurement = $data['right_measurement'][$count];
+            $land_block->left_measurement = $data['left_measurement'][$count];
+            $land_block->top_measurement = $data['top_measurement'][$count];
+            $land_block->bottom_measurement = $data['bottom_measurement'][$count];
+            $land_block->save();
+        }
+    }
+
+    public function land_block_detail_update($data, $term_id)
+    {
+        unset($data['_token'], $data['status'], $data['title'], $data['ar_title'], $data['city'], $data['district'], $data['location']);
+
+        $plot_number_count = $data['id'];
+        for ($count = 0; $count < count($plot_number_count); $count++) {
+            $land_block = LandBlock::where('id', $data['id'][$count])->first();
             $land_block->term_id = $term_id;
             $land_block->parent_category = $data['property_nature'][$count];
             $land_block->price = $data['plot_price'][$count];
@@ -829,13 +927,44 @@ class PropertyController extends controller
                 $this->property_type = $value->category_id;
             }
         }
-        //        Fetch Features(Kitchen, Security, wifi, swimming pool etc) against postcategory(Farm, Appartment, Duplex etc.)
+        //Fetch Features(Kitchen, Security, wifi, swimming pool etc) against postcategory(Farm, Appartment, Duplex etc.)
         $features_array = [];
         foreach ($info->postcategory as $key => $value) {
             array_push($features_array, $value->category_id);
         }
         return view('plugin::properties.new_edit', compact('info', 'allcity', 'user_id', 'instrument', 'post_parent_category', 'array', 'status_category', 'parent_category', 'child_category', 'features_array', 'cities', 'district'));
     }
+
+    /**
+     * Edit a  land blocks.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    /**
+     * Edit a  land blocks.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function land_block_edit(Request $request, $id)
+    {
+        $this->term_id = $id;
+        $info = Terms::where([
+            ['type', 'property'],
+            ['id', $id]
+        ])->with('medias', 'virtual_tour', 'post_new_city', 'post_preview', 'post_district', 'multiple_images', 'property_status_type', 'postcategory', 'property_type')->first();
+        //First land block againt term ID
+        $landblock = LandBlock::where('term_id', $id)->first();
+        //Fetch all Status that have featured 1
+        $status_category = Category::where('type', 'status')->where('featured', 1)->get();
+        //Fetch all Cities
+        $cities = City::where('featured', 1)->get();
+        //Fetch all District against cities
+        $district = District::where('featured', 1)->get();
+        // Fetch table parent category data
+        $parent_category = Category::where('type', 'parent_category')->get();
+        return view('plugin::properties.land_block_edit', compact('info', 'status_category','cities','district','parent_category','landblock'));
+    }
+
 
     //distric against cities
     public function info(Request $request)
@@ -911,6 +1040,7 @@ class PropertyController extends controller
         if (array_key_exists('meter', $request->all()) && empty($request->meter)) {
             return error_response('', 'please select meter');
         }
+
         // Property price create and update
         $term_id = $id;
         $price = Price::where('term_id', $term_id)->where('type', 'price')->first();
@@ -1003,7 +1133,6 @@ class PropertyController extends controller
         }
         return response()->json(['Property Updated Successfully']);
     }
-
 
     public function third_update_property(Request $request, $id)
     {

@@ -76,10 +76,13 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
         Route::get('all_features/{id}', 'PropertyController@get_all_features');
 		//land block
 		Route::get('land-block', 'PropertyController@land_block_index')->name('property.land-block');
-		Route::get('land-block-show/{id}', 'PropertyController@land_block_show')->name('property.land-block-show');
+        Route::get('land-block/edit/{id}', 'PropertyController@land_block_edit')->name('property.land_block_edit');
+        Route::get('land-block-show/{id}', 'PropertyController@land_block_show')->name('property.land-block-show');
 		Route::get('land-block/create', 'PropertyController@land_block_create')->name('property.land-block-craete');
 		Route::post('block_store', 'PropertyController@block_store')->name('property.block_store');
-		Route::get('property_nature', 'PropertyController@property_nature')->name('property.property_nature');
+		Route::post('block_update', 'PropertyController@block_update')->name('property.block_update');
+        Route::get('property_nature/{id?}', 'PropertyController@property_nature')->name('property.property_nature');
+        Route::get('parent_property', 'PropertyController@parent_property')->name('property.parent_property');
 		//download csv
 		Route::get('download-csv', 'PropertyController@csv_page')->name('property.csv_page');
 		Route::get('download-csv-type/{id}', 'PropertyController@show_csv_specified')->name('property.csv_page_type');

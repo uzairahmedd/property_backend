@@ -1,10 +1,8 @@
 @extends('layouts.backend.app')
-
 @section('style')
     <link rel="stylesheet" href="{{ asset('admin/css/dropzone.css') }}">
     <script src="{{ asset('admin/js/dropzone.js') }}"></script>
 @endsection
-
 @section('content')
     <div class="row">
         <div class="col-lg-9">

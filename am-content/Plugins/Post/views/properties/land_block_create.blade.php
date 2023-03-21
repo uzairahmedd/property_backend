@@ -25,10 +25,12 @@
 <p class="hidden" id="right_measurement">{{__('labels.right_measurement')}}</p>
 <p class="hidden" id="top_measurement">{{__('labels.top_measurement')}}</p>
 <p class="hidden" id="bottom_measurement">{{__('labels.bottom_measurement')}}</p>
-<p class="hidden" id="comma_seperated ">{{__('labels.comma_seperated')}}</p>
+<p class="hidden comma_seperated">{{__('labels.comma_seperated')}}</p>
 <p class="hidden" id="rem_plot_form">{{__('labels.rem_plot_form')}}</p>
+<p class="hidden" id="seperate_comma">{{__('labels.seperate_comma')}}</p>
 <p class="hidden" id="commercial  ">{{__('labels.commercial ')}}</p>
 <p class="hidden" id="residential  ">{{__('labels.residential ')}}</p>
+
 
 
 <div class="row">
@@ -127,7 +129,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="region">{{__('labels.address')}}</label>
-                                        <input type="text" name="location" placeholder="{{__('labels.comma_seperated')}}" required="" class="form-control">
+                                        <input type="text" name="location" placeholder="{{__('labels.address')}}" required="" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -453,7 +455,7 @@
                     </div> -->
                         <!-- <div class="form-group d-flex justify-content-between">
                              <button class="btn btn-primary previous-btn" type="submit">Previous
-                                    </button> 
+                                    </button>
                             <button class="btn btn-primary save-btn" type="submit">Save
                             </button>
                         </div> -->
@@ -672,10 +674,9 @@
         $('.submitbtn').removeAttr('disabled');
     }
 
-
     //Add Input Fields
     $(document).ready(function() {
-        var max_fields = 100; //Maximum allowed input fields 
+        var max_fields = 100; //Maximum allowed input fields
         var wrapper = $(".wrapper"); //Input fields wrapper
         var add_button = $(".add_fields"); //Add button class or ID
         var plot_basic_detail = $('#plot_basic_detail').text();
@@ -690,7 +691,7 @@
         var plot_bottom_left_coordinate = $('#plot_bottom_left_coordinate').text();
         var plot_center_coordinate = $('#plot_center_coordinate').text();
         var plot_all_side_coordinate = $('#plot_all_side_coordinate').text();
-        var comma_seperated = $('#comma_seperated ').text();
+        var seperate_comma = $('#seperate_comma').text();
         var plot_area = $('#plot_area').text();
         var planned_number = $('#planned_number').text();
         var plot_number = $('#plot_number').text();
@@ -708,7 +709,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            var url = '/admin/real-state/property_nature';
+            var url = '/admin/real-state/parent_property';
             $.ajax({
                 type: 'get',
                 url: url,
@@ -721,7 +722,7 @@
                     if (x < max_fields) {
                         x++; //input field increment
                         //add input field
-                        $(wrapper).append('<div><hr><h6 style="text-align:center">' + x + ' : ' + plot_basic_detail + '</h6><div class="row"> <div class="col-sm-3"><div class="form-group"><label for="property_nature">' + property_nature + '</label><select class="form-control form-select-lg mb-3 parent_category" name="property_nature[]" required="" aria-label=".form-select-lg example"></select></div></div> <div class="col-sm-3"><div class="form-group"><label for="number">' + plot_number + '</label> <input type="text" name="plot_number[]" id="number" required="" placeholder="' + plot_number + '" class="form-control"> </div></div> <div class="col-sm-2"><div class="form-group"><label for="price">' + plot_price + '</label> <input type="text" name="plot_price[]"  required="" placeholder="' + plot_price + '" class="form-control"></div> </div><div class="col-sm-2"> <div class="form-group"><label for="planned_number">' + planned_number + '</label><input type="text" name="planned_number[]"  required="" placeholder="' + planned_number + '" class="form-control"></div></div><div class="col-sm-2"><div class="form-group"><label for="planned_number">' + plot_area + '</label><input type="text" name="total_area[]" id="planned_number" required="" placeholder="' + plot_area + '" class="form-control"></div> </div> </div><hr> <h6 style="text-align:center">' + x + ' : ' + plot_all_side_coordinate + '</h6> <div class="row"> <div class="col-sm-4"><div class="form-group"><label for="bottom_left_coordinate">' + plot_center_coordinate + '</label><input type="text" name="center_coordinate[]" id="center_coordinate" required="" placeholder="' + comma_seperated + '" class="form-control"></div></div><div class="col-sm-4"><div class="form-group"><label for="bottom_left_coordinate">' + plot_bottom_left_coordinate + '</label><input type="text" name="bottom_left_coordinate[]"  required="" placeholder="' + plot_bottom_left_coordinate + '" class="form-control"></div></div><div class="col-sm-4"> <div class="form-group"> <label for="bottom_right_coordinate">' + plot_right_bottom_coordinate + '</label><input type="text" name="bottom_right_coordinate[]"  required="" placeholder="' + plot_right_bottom_coordinate + '" class="form-control"></div></div><div class="col-sm-4"><div class="form-group"> <label for="top_right_coordinate">' + plot_top_right_coordinate + '</label><input type="text" name="top_right_coordinate[]"  required="" placeholder="' + plot_top_right_coordinate + '" class="form-control"></div></div><div class="col-sm-4"><div class="form-group"><label for="top_left_coordinate">' + plot_top_left_coordinate + '</label><input type="text" name="top_left_coordinate[]"  required="" placeholder="' + plot_top_left_coordinate + '" class="form-control"> </div></div>  </div><hr> <h6 style="text-align:center">' + x + ' : ' + plot_all_side_measurement + '</h6><div class="row"><div class="col-sm-3"><div class="form-group"><label for="left_measurement">' + left_measurement + '</label><input type="text" name="left_measurement[]"  required="" placeholder="' + left_measurement + '" class="form-control"></div> </div><div class="col-sm-3"><div class="form-group"><label for="right_measurement">' + right_measurement + '</label><input type="text" name="right_measurement[]" required="" placeholder="' + right_measurement + '" class="form-control"></div></div><div class="col-sm-3"><div class="form-group"><label for="top_measurement">' + top_measurement + '</label><input type="text" name="top_measurement[]"  required="" placeholder="' + top_measurement + '" class="form-control"></div> </div><div class="col-sm-3"> <div class="form-group"><label for="bottom_measurement">' + bottom_measurement + '</label><input type="text" name="bottom_measurement[]"  required="" placeholder="' + bottom_measurement + '" class="form-control"></div></div></div><a href="javascript:void(0);" class="remove_field btn btn-danger" style="float:right">' + rem_plot_form + '</a></div>');
+                        $(wrapper).append('<div><hr><h6 style="text-align:center">' + x + ' : ' + plot_basic_detail + '</h6><div class="row"> <div class="col-sm-3"><div class="form-group"><label for="property_nature">' + property_nature + '</label><select class="form-control form-select-lg mb-3 parent_category" name="property_nature[]" required="" aria-label=".form-select-lg example"></select></div></div> <div class="col-sm-3"><div class="form-group"><label for="number">' + plot_number + '</label> <input type="text" name="plot_number[]" id="number" required="" placeholder="' + plot_number + '" class="form-control"> </div></div> <div class="col-sm-2"><div class="form-group"><label for="price">' + plot_price + '</label> <input type="text" name="plot_price[]"  required="" placeholder="' + plot_price + '" class="form-control"></div> </div><div class="col-sm-2"> <div class="form-group"><label for="planned_number">' + planned_number + '</label><input type="text" name="planned_number[]"  required="" placeholder="' + planned_number + '" class="form-control"></div></div><div class="col-sm-2"><div class="form-group"><label for="planned_number">' + plot_area + '</label><input type="text" name="total_area[]" id="planned_number" required="" placeholder="' + plot_area + '" class="form-control"></div> </div> </div><hr> <h6 style="text-align:center">' + x + ' : ' + plot_all_side_coordinate + '</h6> <div class="row"> <div class="col-sm-4"><div class="form-group"><label for="bottom_left_coordinate">' + plot_center_coordinate + '</label><input type="text" name="center_coordinate[]" id="center_coordinate" required="" placeholder="' + seperate_comma + '" class="form-control"></div></div><div class="col-sm-4"><div class="form-group"><label for="bottom_left_coordinate">' + plot_bottom_left_coordinate + '</label><input type="text" name="bottom_left_coordinate[]"  required="" placeholder="' + plot_bottom_left_coordinate + '" class="form-control"></div></div><div class="col-sm-4"> <div class="form-group"> <label for="bottom_right_coordinate">' + plot_right_bottom_coordinate + '</label><input type="text" name="bottom_right_coordinate[]"  required="" placeholder="' + plot_right_bottom_coordinate + '" class="form-control"></div></div><div class="col-sm-4"><div class="form-group"> <label for="top_right_coordinate">' + plot_top_right_coordinate + '</label><input type="text" name="top_right_coordinate[]"  required="" placeholder="' + plot_top_right_coordinate + '" class="form-control"></div></div><div class="col-sm-4"><div class="form-group"><label for="top_left_coordinate">' + plot_top_left_coordinate + '</label><input type="text" name="top_left_coordinate[]"  required="" placeholder="' + plot_top_left_coordinate + '" class="form-control"> </div></div>  </div><hr> <h6 style="text-align:center">' + x + ' : ' + plot_all_side_measurement + '</h6><div class="row"><div class="col-sm-3"><div class="form-group"><label for="left_measurement">' + left_measurement + '</label><input type="text" name="left_measurement[]"  required="" placeholder="' + left_measurement + '" class="form-control"></div> </div><div class="col-sm-3"><div class="form-group"><label for="right_measurement">' + right_measurement + '</label><input type="text" name="right_measurement[]" required="" placeholder="' + right_measurement + '" class="form-control"></div></div><div class="col-sm-3"><div class="form-group"><label for="top_measurement">' + top_measurement + '</label><input type="text" name="top_measurement[]"  required="" placeholder="' + top_measurement + '" class="form-control"></div> </div><div class="col-sm-3"> <div class="form-group"><label for="bottom_measurement">' + bottom_measurement + '</label><input type="text" name="bottom_measurement[]"  required="" placeholder="' + bottom_measurement + '" class="form-control"></div></div></div><a href="javascript:void(0);" class="remove_field btn btn-danger" style="float:right">' + rem_plot_form + '</a></div>');
                     }
                     var name = '';
                     $('.parent_category').append('<option disabled selected>' + property_nature + '</option>');

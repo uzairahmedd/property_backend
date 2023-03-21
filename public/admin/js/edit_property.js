@@ -275,6 +275,8 @@ function property_type(parent_cate, selected_cat = null) {
     var select_property_type = $('#select_property_type').text();
     var baseurl = $('#base_url').val();
     var url = baseurl + '/admin/real-state/get_property_type';
+    var id = $('#block_id').text();
+    alert(id);
     $.ajax({
         url: url,
         type: 'get',
@@ -561,7 +563,6 @@ $(".step_5").on('click', function (e) {
             url: url,
             dataType: 'json',
             success: function (response) {
-
                 $('#features_check').html('');
                 var feature = response.data.property_data.category.features_section;
                 if( feature == 1) {
@@ -638,6 +639,7 @@ function remove_image(param,key) {
         confirmButtonText: 'Yes, Do It!'
     }).then((result) => {
         if (result.value == true) {
+
             $('#m_area'+m_id).remove();
             $('#media_id').val(param);
             $('#basicform').submit();
