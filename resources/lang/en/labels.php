@@ -679,4 +679,7 @@ return [
     'plot_basic_details' => 'Plot Basic details',
     'rem_plot_form' => 'Remove Plot From',
     "Remember_Me" => "Remember Me",
+    "action"=>'Action',
+    "Property_Logs"=>"Property Logs",
+    "slug"=>'Enter Slug',
 ];

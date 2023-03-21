@@ -51,35 +51,8 @@
                     </ul>
                 </div>
                 @endif
-
-                <!-- <ul class="nav nav-tabs d-flex" id="myTab3" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab3" data-toggle="tab" href="#step_1" role="tab" aria-controls="step_1" aria-selected="true">Step 1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="home-tab3" data-toggle="tab" href="#step_2" role="tab" aria-controls="step_2" aria-selected="true">Step 2</a>
-                    </li> -->
-                <!-- <li class="nav-item">
-                            <a class="nav-link" id="home-tab3" data-toggle="tab" href="#step_3" role="tab" aria-controls="step_3"
-                               aria-selected="true">Step 3</a>
-                        </li> -->
-                <!-- <li class="nav-item">
-                        <a class="nav-link" id="profile-tab3" data-toggle="tab" href="#images" role="tab" aria-controls="profile" aria-selected="false">Step 3</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="home-tab3" data-toggle="tab" href="#step_5" role="tab" aria-controls="step_5" aria-selected="true">Step 4</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="home-tab3" data-toggle="tab" href="#step_6" role="tab" aria-controls="step_6" aria-selected="true">Step 5</a>
-                    </li> -->
-                <!-- <li class="nav-item">
-                        <a class="nav-link" id="home-tab3" data-toggle="tab" href="#finish" role="tab" aria-controls="finish" aria-selected="true">Finish</a>
-                    </li> -->
-                <!-- </ul> -->
-
                 <div class="tab-content" id="myTabContent2">
                     {{--step 1 start here--}}
-                    <!-- <div class="tab-pane fade active show" id="step_1" role="tabpanel" aria-labelledby="step_1">-->
                     <form method="post" action="{{ route('admin.property.block_store') }}" class="land_block_basicform">
                         @csrf
                         <div class="form-group mt-3">
@@ -148,48 +121,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- first step end -->
-                        <!-- <div class="form-group d-flex justify-content-between">
-                                <button class="btn btn-primary previous-btn" type="submit">Previous
-                                    </button>
-                                <button class="btn btn-primary save-btn basicbtn" type="submit">Save
-                                </button>
-                            </div> -->
-                        <!-- </form>
-                    </div> -->
-                        {{--step 1 end here--}}
-                        {{--step 2 start here--}}
-                        <!-- <div class="tab-pane fade" id="step_2" role="tabpanel" aria-labelledby="step_2">
-                        <form method="post" action="{{ route('admin.property.store') }}">
-                            @csrf -->
-                        <!-- second page start  -->
-                        <!-- <div class="row"> -->
-                        <!-- <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="nature">Property Nature</label>
-                                    <select class="form-control form-select-lg mb-3" name="parent_category" required="" aria-label=".form-select-lg example">
-                                        <option value='' disabled selected>Property Nature</option>
-                                        @foreach($parent_category as $row)
-                                        <option value="{{ $row->id }}"> {{ $row->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div> -->
-                        <!-- <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="property_type">Property Type</label>
-                                    <select class="form-control form-select-lg mb-3" required="" id="property_type" name="category" aria-label=".form-select-lg example">
-                                        <option selected value="0">Land block</option>
-                                    </select>
-                                </div>
-                            </div> -->
-                        <!-- <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="price">Property Value</label>
-                                    <input type="text" name="price" id="price" required="" placeholder="Propery price" class="form-control">
-                                </div>
-                            </div> -->
-                        <!-- </div> -->
                         <div class="wrapper">
                             <h6 style="text-align:center">{{__('labels.plot_basic_details')}}</h6>
                             <div class="row">
@@ -292,127 +223,65 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <a href="javascript:void(0);" class="remove_field btn btn-danger" style="float:right">Remove Plot form</a> -->
                         </div>
                         <p><button class="add_fields btn btn-success">{{__('labels.add_more_plots')}}</button></p>
-                        <!-- <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="electricity">Is there an electricity meter?</label>
-                                        <select class="form-control form-select-lg mb-3" id="electricity" name="electricity_facility" aria-label=".form-select-lg example">
-                                            <option value="0" selected>Yes</option>
-                                            <option value="1">No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="water">Is there a water meter?</label>
-                                        <select class="form-control form-select-lg mb-3" id="water" name="water_facility" aria-label=".form-select-lg example">
-                                            <option value="0" selected>Yes</option>
-                                            <option value="1">No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div> -->
-                        <!-- <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label for="streets">No of Street</label>
-                                        <input type="number" required="" max='4' min='0' id="streets" name="streets" placeholder="No of streets" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label for="street_info_one">Street Information 1</label>
-                                        <input type="text" name="street_info_one" id="street_info_one" placeholder="Street Information 1" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label for="street_info_two">Street Information 2</label>
-                                        <input type="text" name="street_info_two" id="street_info_two" placeholder="Street Information 2" class="form-control">
-                                    </div>
-                                </div>
-                            </div> -->
-                        <!-- end step two -->
-                        <!-- <div class="form-group d-flex justify-content-between">
-                                <button class="btn btn-primary previous-btn" type="submit">Previous
-                                </button>
-                                <button class="btn btn-primary save-btn" type="submit">Save
-                                </button>
-                            </div> -->
-                        <!-- </form>
-                    </div> -->
-                        {{--step 2 end here--}}
-                        {{--step 3 start here--}}
-                        <!-- <div class="tab-pane fade" id="step_3" role="tabpanel" aria-labelledby="step_3">
-                        <form method="post" action="{{ route('admin.property.store') }}">
-                            @csrf
-                            <div id="features" class="hiden">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for="Parking">NO of Parking</label>
-                                            <input type="number" id="Parking" name="Parking" required="" max='6' min="0" placeholder="NO of Parking" class="form-control">
-                                        </div>
-                                    </div>
 
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for="Board">No of Board</label>
-                                            <input type="number" max='6' min="0" name="Board" required="" id="Board" placeholder="No of Board" class="form-control">
-                                        </div>
-                                    </div>
 
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for="lounges">No of Lounges</label>
-                                            <input type="number" id="" name="lounges" max='6' required="" min="0" placeholder="No of Lounges" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for="Bathrooms">No of Bathrooms</label>
-                                            <input type="number" id="Bathrooms" name="Bathrooms" max="6" min="0" placeholder="No of Bathrooms" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for="Bedrooms">No of Bedrooms</label>
-                                            <input type="number" id="Bedrooms" name="Bedrooms" required="" max='6' min="0" placeholder="No of Bedrooms" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="furnishing">Property furnishing</label>
-                                        <select name="furnishing" id="furnishing" class="form-control">
-                                            <option value="1">Furnished</option>
-                                            <option value="2">Semi Furnished</option>
-                                            <option value="3" selected>Un-Furnished</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="role">Property role</label>
-                                        <input type="text" name="role" id="role" placeholder="Property role" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group d-flex justify-content-between">
-                                <button class="btn btn-primary previous-btn" type="submit">Previous
-                                </button>
-                                <button class="btn btn-primary save-btn" type="submit">Save
-                                </button>
-                            </div>
-                        </form>
-                    </div> -->
+{{--                                    <div class="col-sm-4">--}}
+{{--                                        <div class="form-group">--}}
+{{--                                            <label for="Board">No of Board</label>--}}
+{{--                                            <input type="number" max='6' min="0" name="Board" required="" id="Board" placeholder="No of Board" class="form-control">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
+{{--                                    <div class="col-sm-4">--}}
+{{--                                        <div class="form-group">--}}
+{{--                                            <label for="lounges">No of Lounges</label>--}}
+{{--                                            <input type="number" id="" name="lounges" max='6' required="" min="0" placeholder="No of Lounges" class="form-control">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="row">--}}
+{{--                                    <div class="col-sm-4">--}}
+{{--                                        <div class="form-group">--}}
+{{--                                            <label for="Bathrooms">No of Bathrooms</label>--}}
+{{--                                            <input type="number" id="Bathrooms" name="Bathrooms" max="6" min="0" placeholder="No of Bathrooms" class="form-control">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-sm-4">--}}
+{{--                                        <div class="form-group">--}}
+{{--                                            <label for="Bedrooms">No of Bedrooms</label>--}}
+{{--                                            <input type="number" id="Bedrooms" name="Bedrooms" required="" max='6' min="0" placeholder="No of Bedrooms" class="form-control">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-sm-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="furnishing">Property furnishing</label>--}}
+{{--                                        <select name="furnishing" id="furnishing" class="form-control">--}}
+{{--                                            <option value="1">Furnished</option>--}}
+{{--                                            <option value="2">Semi Furnished</option>--}}
+{{--                                            <option value="3" selected>Un-Furnished</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-sm-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="role">Property role</label>--}}
+{{--                                        <input type="text" name="role" id="role" placeholder="Property role" class="form-control">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group d-flex justify-content-between">--}}
+{{--                                <button class="btn btn-primary previous-btn" type="submit">Previous--}}
+{{--                                </button>--}}
+{{--                                <button class="btn btn-primary save-btn" type="submit">Save--}}
+{{--                                </button>--}}
+{{--                            </div>--}}
+{{--                        </form>--}}
+{{--                    </div> -->--}}
                         {{--step 3 end here--}}
                         {{--step 4 start here--}}
                         <!--  <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="profile-tab3"> -->
@@ -630,14 +499,10 @@
                         </div> -->
                         <!-- end third step -->
                         <div class="form-group d-flex justify-content-between" style="float:right;">
-                            <!-- <button class="btn btn-primary previous-btn">Previous
-                            </button> -->
+
                             <button class="btn btn-primary save-btn" type="submit">{{__('labels.save')}}
                             </button>
                         </div>
-                        <!-- </form>
-                    </div> -->
-                        {{--step 6 end here--}}
                     </form>
                 </div>
             </div>

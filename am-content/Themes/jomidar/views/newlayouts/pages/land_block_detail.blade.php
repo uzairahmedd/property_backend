@@ -2,14 +2,7 @@
 <style>
     #map {
         height: 500px;
-        display: flex;
-        justify-content: center;
         width: 100%;
-    }
-
-    .mapboxgl-popup {
-        max-width: 400px;
-        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     }
 </style>
 <script>
@@ -163,5 +156,5 @@
 </div>
 @endsection
 @push('js')
-<script src="{{theme_asset('assets/newjs/land_block_map.js')}}"></script>
+<script src="{{theme_asset('assets/newjs/land_block_map.min.js')}}"></script>
 @endpush

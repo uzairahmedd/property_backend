@@ -24,6 +24,8 @@ use App\Models\Postcategoryoption;
 use App\Models\User;
 use App\Models\Termrelation;
 use App\Models\Price;
+use App\Models\UserLogs;
+use App\Models\AdminLogs;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Session;
@@ -1095,8 +1097,8 @@ class PropertyController extends controller
         Meta::where('term_id', $term_id)->where('type', 'builtarea')->delete();
 
         //street info ,slectricity and water flag store and update
-            $interface = implode(',', $request->interface);
-            $meter = implode(',', $request->meter);
+        $interface = implode(',', $request->interface);
+        $meter = implode(',', $request->meter);
 
         $data = $request->all();
         $data['meter'] = $meter;
@@ -1230,10 +1232,11 @@ class PropertyController extends controller
 
     public function fifth_update_property(Request $request, $id)
     {
+
         //Validate features
-        $validatedData = $request->validate([
-            'features' => 'required',
-        ]);
+        if (array_key_exists('features', $request->all()) && empty($request->features)) {
+            return error_response('', 'please provide features');
+        }
         //Validate length and depth
         if (array_key_exists('length', $request->all()) && empty($request->length)) {
             return error_response('', 'please provide length');
@@ -1381,9 +1384,9 @@ class PropertyController extends controller
         $data['property_data'] = $info->property_type;
         $array = [];
         foreach ($info->postcategory as $key => $value) {
-           if($value->type =='features'){
-            array_push($array, $value->category_id);
-           }
+            if ($value->type == 'features') {
+                array_push($array, $value->category_id);
+            }
         }
 
         $data['post_features'] = $array;
@@ -1391,24 +1394,28 @@ class PropertyController extends controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Updated the specified property status from storage.
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'P3', 'request' => serialize($request->all())]);
         if (!Auth()->user()->can('Properties.edit')) {
             abort(401);
         }
-
+        //for delete
         if ($request->method == 'delete') {
             if ($request->ids) {
                 foreach ($request->ids as $id) {
                     Terms::destroy($id);
                 }
             }
-        } elseif (!empty($request->method)) {
+        }
+        //for update propery status
+         elseif (!empty($request->method)) {
             if ($request->ids) {
                 if ($request->method == "trash") {
                     $method = 0;
@@ -1423,8 +1430,9 @@ class PropertyController extends controller
                 }
             }
         }
-
-        return response()->json(['Success']);
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Property status updated Successully!'), 'message' => 'Status updated']);
+        return response()->json(['Property status updated Successully!']);
     }
 
     public function csv_page(Request $request, $type = "all")
@@ -2038,5 +2046,12 @@ class PropertyController extends controller
             'city.required' => 'Please provide city',
 
         ]);
+    }
+
+    //property logs
+    public function get_property_logs($id)
+    {
+        $logs = UserLogs::where('terms_id', $id)->get();
+        return success_response($logs, 'Property logs get successfully!');
     }
 }

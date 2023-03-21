@@ -4,6 +4,7 @@
         $enter_name_english = __('labels.enter_name_in_english');
         $enter_name_arabic = __('labels.district_name_in_arabic');
         $enter_arabic = __('labels.enter_name_in_arabic');
+        $slug =  __('labels.slug');
     @endphp
 @section('content')
 <div class="row">
@@ -35,6 +36,18 @@
                         $arr['value'] = $info->ar_name;
 
                         echo  input($arr);
+
+
+                        $arr['title']=  $slug;
+                        $arr['id']= 'edit_district';
+                        $arr['type']= 'text';
+                        $arr['placeholder']= $slug;
+                        $arr['name']= 'slug';
+                        $arr['is_required'] = false;
+                        $arr['value'] = $info->slug;
+
+                        echo  input($arr);
+
 
                       
                         @endphp

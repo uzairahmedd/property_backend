@@ -690,5 +690,8 @@ return [
     'plot_basic_details' => 'تفاصيل الأرض الأساسية',
     'rem_plot_form' => 'إزالة نموذج الرسم',
     "Remember_Me" => "تذكرنى",
+    "action" => 'فعل',
+    "Property_Logs" => "سجلات الملكية",
+    "slug"=>'أدخل سبيكة',
 
 ];
