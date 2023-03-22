@@ -94,15 +94,20 @@ class PropertyController extends controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function land_block_detail(Request $request, $slug)
+    public function land_block_detail(Request $request, $slug, $id = null)
     {
         $property = Terms::where([
             ['type', 'property'],
-            ['status', 1],
             ['is_land_block', 1],
             ['slug', $slug]
-        ])->with('virtual_tour', 'user', 'post_new_city', 'post_district', 'multiple_images', 'property_status_type')->first();
+        ]);
+        //for user
+        if ($id == null) {
+            $property = $property->where('status', 1);
+        }
+        $property = $property->with('virtual_tour', 'user', 'post_new_city', 'post_district', 'multiple_images', 'property_status_type')->first();
         if ($property) {
+            $property->increment('count', 1);
             return view('theme::newlayouts.pages.land_block_detail', compact('property'));
         } else {
             return abort(404);

@@ -51,7 +51,7 @@ $(document).ready(function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        var url = base_url + '/admin/real-state/property_nature/' + id;
+        var url = base_url + '/admin/real-state/edit_land_block_property/' + id;
         $.ajax({
             type: 'get',
             url: url,
@@ -61,42 +61,32 @@ $(document).ready(function () {
             processData: false,
             success: function (response) {
                 $(wrapper).html('');
-                $('.landblock_parent_category').html('');
+                // $('.landblock_parent_category').html('');
                 var count = response.data.blockcount;
                 $('.parent_category').html('');
                 if (count < max_fields) {
-                    var x=1;
+                    var x = 1;
                     //add input field
-                    $.each(response.data.post_data, function (index, value) {
-                        // console.log(response);
-                        if(value.parent_category != null)
-                        {
-                            var val =  value.parent_category;
-                        }
+                    $.each(response.data.post_data, function (index_val, value) {
 
-                        $(wrapper).append('<input type="hidden" name="id[]" value="'+value.id+'">  <div style="padding-bottom: 45px;"><hr><h6 style="text-align:center">' + x + ' : ' + plot_basic_detail + '</h6><div class="row"> <div class="col-sm-3"><div class="form-group"><label for="property_nature">' + property_nature + '</label><select class="form-control form-select-lg mb-3 landblock_parent_category" name="property_nature[]" required="" aria-label=".form-select-lg example"></select></div></div> <div class="col-sm-3"><div class="form-group"><label for="number">' + plot_number + '</label> <input type="text" name="plot_number[]" value="'+value.plot_number+'" id="number" required="" placeholder="' + plot_number + '" class="form-control"> </div></div> <div class="col-sm-2"><div class="form-group"><label for="price">' + plot_price + '</label> <input type="text" name="plot_price[]"  required="" value="'+value.price+'" placeholder="' + plot_price + '" class="form-control"></div> </div><div class="col-sm-2"> <div class="form-group"><label for="planned_number">' + planned_number + '</label><input type="text" name="planned_number[]"  required="" value="'+value.planned_number+'" placeholder="' + planned_number + '" class="form-control"></div></div><div class="col-sm-2"><div class="form-group"><label for="planned_number">' + plot_area + '</label><input type="text" name="total_area[]" value="'+value.total_area+'" id="planned_number" required="" placeholder="' + plot_area + '" class="form-control"></div> </div> </div><hr> <h6 style="text-align:center">' + x + ' : ' + plot_all_side_coordinate + '</h6> <div class="row"> <div class="col-sm-4"><div class="form-group"><label for="bottom_left_coordinate">' + plot_center_coordinate + '</label><input type="text" name="center_coordinate[]" id="center_coordinate" value="'+value.center_coordinate+'" required="" placeholder="' + comma_seperated + '" class="form-control"></div></div><div class="col-sm-4"><div class="form-group"><label for="bottom_left_coordinate">' + plot_bottom_left_coordinate + '</label><input type="text" name="bottom_left_coordinate[]" value="'+value.bottom_left_coordinate+'"  required="" placeholder="' + plot_bottom_left_coordinate + '" class="form-control"></div></div><div class="col-sm-4"> <div class="form-group"> <label for="bottom_right_coordinate">' + plot_right_bottom_coordinate + '</label><input type="text" name="bottom_right_coordinate[]" value="'+value.bottom_right_coordinate+'" required="" placeholder="' + plot_right_bottom_coordinate + '" class="form-control"></div></div><div class="col-sm-4"><div class="form-group"> <label for="top_right_coordinate">' + plot_top_right_coordinate + '</label><input type="text" name="top_right_coordinate[]"  required="" value="'+value.top_right_coordinate+'" placeholder="' + plot_top_right_coordinate + '" class="form-control"></div></div><div class="col-sm-4"><div class="form-group"><label for="top_left_coordinate">' + plot_top_left_coordinate + '</label><input type="text" name="top_left_coordinate[]" value="'+value.top_left_coordinate+'" required="" placeholder="' + plot_top_left_coordinate + '" class="form-control"> </div></div>  </div><hr> <h6 style="text-align:center">' + x + ' : ' + plot_all_side_measurement + '</h6><div class="row"><div class="col-sm-3"><div class="form-group"><label for="left_measurement">' + left_measurement + '</label><input type="text" name="left_measurement[]"  required="" placeholder="' + left_measurement + '" value="'+value.left_measurement+'" class="form-control"></div> </div><div class="col-sm-3"><div class="form-group"><label for="right_measurement">' + right_measurement + '</label><input type="text" name="right_measurement[]" value="'+value.right_measurement+'" required="" placeholder="' + right_measurement + '" class="form-control"></div></div><div class="col-sm-3"><div class="form-group"><label for="top_measurement">' + top_measurement + '</label><input type="text" name="top_measurement[]" value="'+value.top_measurement+'"  required="" placeholder="' + top_measurement + '" class="form-control"></div> </div><div class="col-sm-3"> <div class="form-group"><label for="bottom_measurement">' + bottom_measurement + '</label><input type="text" name="bottom_measurement[]"  required="" value="'+value.bottom_measurement+'" placeholder="' + bottom_measurement + '" class="form-control"></div></div></div><a href="javascript:void(0);" class="remove_field btn btn-danger" style="float:left;">' + rem_plot_form + '</a></div>');
+
+                        $(wrapper).append('<input type="hidden" name="id[]" value="' + value.id + '">  <div style="padding-bottom: 45px;"><hr><h6 style="text-align:center">' + x + ' : ' + plot_basic_detail + '</h6><div class="row"> <div class="col-sm-3"><div class="form-group"><label for="property_nature">' + property_nature + '</label><div class="landblock_parent_category' + index_val + '"></div></div></div> <div class="col-sm-3"><div class="form-group"><label for="number">' + plot_number + '</label> <input type="text" name="plot_number[]" value="' + value.plot_number + '" id="number" required="" placeholder="' + plot_number + '" class="form-control"> </div></div> <div class="col-sm-2"><div class="form-group"><label for="price">' + plot_price + '</label> <input type="text" name="plot_price[]"  required="" value="' + value.price + '" placeholder="' + plot_price + '" class="form-control"></div> </div><div class="col-sm-2"> <div class="form-group"><label for="planned_number">' + planned_number + '</label><input type="text" name="planned_number[]"  required="" value="' + value.planned_number + '" placeholder="' + planned_number + '" class="form-control"></div></div><div class="col-sm-2"><div class="form-group"><label for="planned_number">' + plot_area + '</label><input type="text" name="total_area[]" value="' + value.total_area + '" id="planned_number" required="" placeholder="' + plot_area + '" class="form-control"></div> </div> </div><hr> <h6 style="text-align:center">' + x + ' : ' + plot_all_side_coordinate + '</h6> <div class="row"> <div class="col-sm-4"><div class="form-group"><label for="bottom_left_coordinate">' + plot_center_coordinate + '</label><input type="text" name="center_coordinate[]" id="center_coordinate" value="' + value.center_coordinate + '" required="" placeholder="' + comma_seperated + '" class="form-control"></div></div><div class="col-sm-4"><div class="form-group"><label for="bottom_left_coordinate">' + plot_bottom_left_coordinate + '</label><input type="text" name="bottom_left_coordinate[]" value="' + value.bottom_left_coordinate + '"  required="" placeholder="' + plot_bottom_left_coordinate + '" class="form-control"></div></div><div class="col-sm-4"> <div class="form-group"> <label for="bottom_right_coordinate">' + plot_right_bottom_coordinate + '</label><input type="text" name="bottom_right_coordinate[]" value="' + value.bottom_right_coordinate + '" required="" placeholder="' + plot_right_bottom_coordinate + '" class="form-control"></div></div><div class="col-sm-4"><div class="form-group"> <label for="top_right_coordinate">' + plot_top_right_coordinate + '</label><input type="text" name="top_right_coordinate[]"  required="" value="' + value.top_right_coordinate + '" placeholder="' + plot_top_right_coordinate + '" class="form-control"></div></div><div class="col-sm-4"><div class="form-group"><label for="top_left_coordinate">' + plot_top_left_coordinate + '</label><input type="text" name="top_left_coordinate[]" value="' + value.top_left_coordinate + '" required="" placeholder="' + plot_top_left_coordinate + '" class="form-control"> </div></div>  </div><hr> <h6 style="text-align:center">' + x + ' : ' + plot_all_side_measurement + '</h6><div class="row"><div class="col-sm-3"><div class="form-group"><label for="left_measurement">' + left_measurement + '</label><input type="text" name="left_measurement[]"  required="" placeholder="' + left_measurement + '" value="' + value.left_measurement + '" class="form-control"></div> </div><div class="col-sm-3"><div class="form-group"><label for="right_measurement">' + right_measurement + '</label><input type="text" name="right_measurement[]" value="' + value.right_measurement + '" required="" placeholder="' + right_measurement + '" class="form-control"></div></div><div class="col-sm-3"><div class="form-group"><label for="top_measurement">' + top_measurement + '</label><input type="text" name="top_measurement[]" value="' + value.top_measurement + '"  required="" placeholder="' + top_measurement + '" class="form-control"></div> </div><div class="col-sm-3"> <div class="form-group"><label for="bottom_measurement">' + bottom_measurement + '</label><input type="text" name="bottom_measurement[]"  required="" value="' + value.bottom_measurement + '" placeholder="' + bottom_measurement + '" class="form-control"></div></div></div><a href="javascript:void(0);" class="remove_field btn btn-danger" style="float:left;">' + rem_plot_form + '</a></div>');
+                        $('.landblock_parent_category' + index_val).html('');
+                        $('.landblock_parent_category' + index_val).html('<select class="form-control form-select-lg mb-3 test' + index_val + '"  name="property_nature[]" required="" aria-label=".form-select-lg example"><option value="" disabled >select</option></select>');
+                        $.each(response.data.parent_category, function (index, parent_value) {
+                            var check = '';
+                            var name = parent_value.name;
+                            if (locale == 'ar') {
+                                name = parent_value.ar_name;
+                            }
+                            if (parent_value.id == parseInt(value.parent_category)) {
+                                console.log('in');
+                                check = 'selected';
+                            }
+                            $('.test' + index_val).append('<option value="' + parent_value.id + '"  ' + check + '>' + name + '</option>');
+                        });
+
                         x++;
-                    });
-                    var arr = new Array();
-                    $.each(response.data.post_data, function (index, value) {
-                    var parent = value.parent_category;
-                        arr.push(parent);
-                    })
-                    // var check = '';
-                    $.each(response.data.parent_category, function (index, value) {
-
-                        var name = value.name;
-                        if (locale == 'ar') {
-                            name = value.ar_name;
-                        }
-                        // console.log(response.data.post_data[index]['parent_category']);
-                        var check = '';
-                        if (jQuery.inArray('64', arr) != -1) {
-                            check = 'selected';
-                         console.log(check);
-                        }
-
-                        $('.landblock_parent_category').append('<option value="'+value.id+'" check >'+name+'</option>');
                     });
                 }
             }
@@ -122,7 +112,7 @@ var loadFile = function (event) {
 
 
 /*---------------------
-       	Image Remove
+              Image Remove
     --------------------------*/
 var m_id = '';
 

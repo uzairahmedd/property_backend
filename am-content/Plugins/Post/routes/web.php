@@ -89,7 +89,7 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::get('land-block/create', 'PropertyController@land_block_create')->name('property.land-block-craete');
 		Route::post('block_store', 'PropertyController@block_store')->name('property.block_store');
 		Route::post('block_update', 'PropertyController@block_update')->name('property.block_update');
-        Route::get('property_nature/{id?}', 'PropertyController@property_nature')->name('property.property_nature');
+        Route::get('edit_land_block_property/{id}', 'PropertyController@edit_land_block_property')->name('property.edit_land_block');
         Route::get('parent_property', 'PropertyController@parent_property')->name('property.parent_property');
 		//download csv
 		Route::get('download-csv', 'PropertyController@csv_page')->name('property.csv_page');
