@@ -276,7 +276,7 @@ function property_type(parent_cate, selected_cat = null) {
     var baseurl = $('#base_url').val();
     var url = baseurl + '/admin/real-state/get_property_type';
     var id = $('#block_id').text();
-    alert(id);
+    // alert(id);
     $.ajax({
         url: url,
         type: 'get',

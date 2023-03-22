@@ -3,6 +3,7 @@
 namespace Amcoders\Plugin\Post\http\controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminLogs;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Categorymeta;
@@ -98,6 +99,7 @@ class FeaturesController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
       $validatedData = $request->validate([
         'name' => 'required|unique:categories|max:100',
         'ar_name' => 'required|max:100',
@@ -113,6 +115,10 @@ class FeaturesController extends Controller
       $category->type=$request->type;
       $category->user_id=Auth::id();
       $category->save();
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'F3', 'feature_id'=> $category->id, 'request' => serialize($request->all())]);
+        //store response
+        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Features created successfully!'), 'message' => 'Features created!']);
       return response()->json($request->type.' created');
 
     }
@@ -167,7 +173,6 @@ class FeaturesController extends Controller
 
     }
 
-
      /**
      * Update the specified resource in storage.
      *
@@ -203,6 +208,8 @@ class FeaturesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'F3', 'feature_id'=> $id, 'request' => serialize($request->all())]);
       $validatedData = $request->validate([
         'name' => 'required|max:100',
         'ar_name' => 'required|max:100',
@@ -213,6 +220,8 @@ class FeaturesController extends Controller
       $category->ar_name=$request->ar_name;
        $category->featured=$request->featured;
       $category->save();
+        //store response
+        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Features updated successfully!'), 'message' => 'Features updated!']);
       return response()->json($category->type.' Updated');
     }
 
@@ -235,7 +244,13 @@ class FeaturesController extends Controller
       }
     }
 
-
     return response()->json('Feature deleted successfully!');
   }
+
+    //Features Logs
+    public function get_feature_logs($id)
+    {
+        $logs = AdminLogs::where('feature_id', $id)->get();
+        return success_response($logs, 'Admin logs get successfully!');
+    }
 }

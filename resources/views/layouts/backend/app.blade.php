@@ -54,7 +54,7 @@
 <script src="{{ asset('admin/assets/js/jquery.selectric.min.js') }}"></script>
 @yield('script')
 <script src="{{ asset('admin/js/main.js') }}"></script>
-
+@yield('land_block_js')
 
 </body>
 </html>

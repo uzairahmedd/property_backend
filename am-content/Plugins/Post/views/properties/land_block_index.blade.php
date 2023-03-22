@@ -86,6 +86,7 @@ $land_blocks = __('labels.land_blocks');
 							<th class="am-title">{{__('labels.status')}}</th>
 							<th class="am-title">{{__('labels.total_lands')}}</th>
 							<th class="am-date">{{__('labels.last_update')}}</th>
+							<th class="am-date">{{__('labels.action')}}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -129,7 +130,10 @@ $land_blocks = __('labels.land_blocks');
 							</td>
 							<td>{{$row->total_lands}}</td>
 							<td>{{ $row->updated_at->diffForHumans() }}</td>
-						</tr>
+                            <td>
+                                <i class="fa fa-book" data-id="{{$row->id}}" onclick="landBlock_logs(this)" data-toggle="tooltip" title="Land Block Logs"></i>
+                            </td>
+                        </tr>
 						@endforeach
 					</tbody>
 					<tfoot>
@@ -147,6 +151,7 @@ $land_blocks = __('labels.land_blocks');
 							<th class="am-title">{{__('labels.status')}}</th>
 							<th class="am-title">{{__('labels.total_lands')}}</th>
 							<th class="am-date">{{__('labels.last_update')}}</th>
+                            <th class="am-date">{{__('labels.action')}}</th>
 						</tr>
 					</tfoot>
 				</table>
@@ -155,6 +160,26 @@ $land_blocks = __('labels.land_blocks');
 		{{ $posts->links('vendor.pagination.bootstrap') }}
 	</div>
 </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="property_logs_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">{{__('labels.Property_Logs')}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('labels.close')}}</button>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 

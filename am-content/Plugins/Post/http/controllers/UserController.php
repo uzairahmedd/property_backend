@@ -1,9 +1,10 @@
-<?php 
+<?php
 
 
 namespace Amcoders\Plugin\Post\http\controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminLogs;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Category;
@@ -31,9 +32,9 @@ class UserController extends Controller{
         else{
          $agents = User::where([
             ['role_id',2]
-         ])->with('user_session')->latest()->paginate(20); 
+         ])->with('user_session')->latest()->paginate(20);
         }
-        
+
 
         return view('plugin::agent.index',compact('agents','request'));
     }
@@ -88,7 +89,7 @@ class UserController extends Controller{
         }
         $user->save();
 
-       
+
 
         $data = [
             'address' => $request->address,
@@ -119,7 +120,7 @@ class UserController extends Controller{
     public function agent_update(Request $request,$id)
     {
         $user = User::findOrfail($id);
-        
+
         $validatedData = $request->validate([
             'name' => 'required|max:100',
             'email' => 'required|unique:users,email,'.$user->id
@@ -144,7 +145,7 @@ class UserController extends Controller{
             }else{
                 $slug = $slug_name.Str::random(5);
             }
-            
+
         }else{
             $slug = $slug_name;
         }
@@ -165,7 +166,7 @@ class UserController extends Controller{
         }
         $user->save();
 
-        
+
 
         $data = [
             'address' => $request->address,
@@ -410,7 +411,7 @@ class UserController extends Controller{
                 ['type','agency']
             ])->latest()->paginate(20);
         }
-        
+
 
         return view('plugin::agency.index',compact('agencies','request'));
     }
@@ -424,7 +425,7 @@ class UserController extends Controller{
             if ($request->ids) {
                 foreach ($request->ids as $id) {
                    User::destroy($id);
-                   
+
                 }
             }
         }
@@ -444,6 +445,13 @@ class UserController extends Controller{
             }
         }
         return response()->json('Agency Deleted');
+    }
+
+    //Input Logs
+    public function get_user_logs($id)
+    {
+        $logs = AdminLogs::where('input_id', $id)->get();
+        return success_response($logs, 'Admin logs get successfully!');
     }
 
 }

@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 namespace Amcoders\Plugin\Post\http\controllers;
+use App\Models\AdminLogs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -10,7 +11,7 @@ use App\Models\Categoryrelation;
 
 class InputController extends controller
 {
-	
+
 
 	 /**
      * Display a listing of the resource.
@@ -23,10 +24,10 @@ class InputController extends controller
             abort(401);
         }
         if ($request->src) {
-            $posts=Category::where('type','option')->with('child_name','preview')->where($request->type,'LIKE','%'.$request->src.'%')->latest()->paginate(20);  
+            $posts=Category::where('type','option')->with('child_name','preview')->where($request->type,'LIKE','%'.$request->src.'%')->latest()->paginate(20);
         }
         else{
-            $posts=Category::where('type','option')->with('child_name','preview')->latest()->paginate(20);  
+            $posts=Category::where('type','option')->with('child_name','preview')->latest()->paginate(20);
         }
         $src=$request->src;
         return view('plugin::input.index',compact('posts','src'));
@@ -84,7 +85,7 @@ class InputController extends controller
             $meta->type="preview";
             $meta->content=$request->preview;
             $meta->save();
-        } 
+        }
         return response()->json(['Input Feild Created']);
     }
 
@@ -109,6 +110,8 @@ class InputController extends controller
         // $post->status=$request->required;
         $post->featured=$request->featured;
         $post->save();
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'I3', 'input_id'=> $post->id, 'request' => serialize($request->all())]);
 
         if ($request->child) {
             $childs=[];
@@ -127,11 +130,13 @@ class InputController extends controller
             $meta->type="preview";
             $meta->content=$request->preview;
             $meta->save();
-        } 
+        }
+        //store response
+        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Input created successfully!'), 'message' => 'Input created!']);
         return response()->json(['Input Feild Created']);
     }
 
-   
+
 
     /**
      * Show the form for editing the specified resource.
@@ -211,7 +216,8 @@ class InputController extends controller
      */
     public function update(Request $request, $id)
     {
-       
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'I3', 'input_id'=> $id, 'request' => serialize($request->all())]);
         $validatedData = $request->validate([
             'title' => 'required|max:50',
             'ar_title' => 'required|max:50',
@@ -247,6 +253,9 @@ class InputController extends controller
             $meta->save();
         }
 
+        //store response
+        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Input updated successfully!'), 'message' => 'Input updated!']);
+
         return response()->json(['Input Feild Updated']);
     }
 
@@ -271,5 +280,12 @@ class InputController extends controller
 
 
        return response()->json('Input deleted successfully!');
+    }
+
+    //Input Logs
+    public function get_input_logs($id)
+    {
+        $logs = AdminLogs::where('input_id', $id)->get();
+        return success_response($logs, 'Admin logs get successfully!');
     }
 }
