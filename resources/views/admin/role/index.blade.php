@@ -53,6 +53,7 @@
 						</th> -->
 						<th width="10%">{{ __('labels.name') }}</th>
 						<th width="80%">{{ __('labels.permissions') }}</th>
+						<th width="">{{ __('labels.action') }}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -80,6 +81,9 @@
 							@endif
 							@endforeach
 						</td>
+                        <td>
+                            <i class="fa fa-book" data-id="{{$page->id}}" onclick="role_logs(this)" data-toggle="tooltip" title="Role Logs"></i>
+                        </td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -87,6 +91,27 @@
 			</table>
 		</div>
 	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="property_logs_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">{{__('labels.Property_Logs')}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('labels.close')}}</button>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="permission_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

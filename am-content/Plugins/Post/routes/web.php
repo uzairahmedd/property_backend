@@ -29,6 +29,8 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::get('locations/cities/create', 'LocationController@CitiesCreate')->name('cities.create');
 		Route::get('locations/cities/edit/{id}', 'LocationController@Citiesedit')->name('cities.edit');
 		Route::post('locations/cities/destroy', 'LocationController@Citiesdestroy')->name('cities.destroy');
+    //Logs
+    Route::get('get_location_logs/{id}', 'LocationController@get_location_logs')->name('properties.location_logs');
 
 
 	Route::group(['prefix'=>'real-state'], function(){

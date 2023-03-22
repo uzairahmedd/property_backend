@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminLogs;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+
         if (Auth()->user()->can('role.create')) {
             $permisions = Permission::all();
             $permission_groups = User::getPermissionGroup();
@@ -65,12 +67,17 @@ class RoleController extends Controller
             'name' => 'required|unique:roles|max:100',
         ]);
         $role = Role::create(['name' => $request->name]);
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'R3', 'role_id'=> $role->id, 'request' => serialize($request->all())]);
         $permissions = $request->input('permissions');
 
         // if (!empty($permissions)) {
 
             $role->syncPermissions($permissions);
         // }
+
+        //store response
+        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Role created successfully!'), 'message' => 'Role created!']);
 
         return response()->json(['Role created successfully']);
     }
@@ -114,6 +121,8 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'R3', 'role_id'=> $id, 'request' => serialize($request->all())]);
         // Validation Data
         $request->validate([
             'name' => 'required|max:100|unique:roles,name,' . $id
@@ -128,7 +137,8 @@ class RoleController extends Controller
         // if (!empty($permissions)) {
             $role->syncPermissions($permissions);
         // }
-
+        //store response
+        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Role updated successfully!'), 'message' => 'Role updated!']);
         return response()->json(['Role has been updated !']);
     }
 
@@ -154,4 +164,13 @@ class RoleController extends Controller
             abort(401);
         }
     }
+
+    //Input Logs
+    public function get_role_logs($id)
+    {
+        $logs = AdminLogs::where('role_id', $id)->get();
+        return success_response($logs, 'Admin logs get successfully!');
+    }
+
+
 }

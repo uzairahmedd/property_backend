@@ -57,6 +57,7 @@
 						<th class="am-title">{{__('labels.city')}}</th>
 						<th class="am-title">{{__('labels.featured')}}</th>
 						<th class="am-date">{{__('labels.date')}}</th>
+						<th class="am-date">{{__('labels.action')}}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -94,6 +95,9 @@
 								{{ $post->updated_at->diffForHumans() }}
 							</div>
 						</td>
+                        <td>
+                            <i class="fa fa-book" data-id="{{$post->id}}" onclick="location_logs(this)" data-toggle="tooltip" title="Location Logs"></i>
+                        </td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -111,6 +115,7 @@
                         <th class="am-title">{{__('labels.city')}}</th>
                         <th class="am-title">{{__('labels.featured')}}</th>
                         <th class="am-date">{{__('labels.date')}}</th>
+                        <th class="am-date">{{__('labels.action')}}</th>
 					</tr>
 				</tfoot>
 			</table>

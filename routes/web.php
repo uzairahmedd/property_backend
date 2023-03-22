@@ -53,9 +53,13 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'App\Http\Co
 	Route::resource('role', 'RoleController');
 	Route::post('roles/destroy', 'RoleController@destroy')->name('roles.destroy');
 	Route::post('permission/store', 'RoleController@permission_store')->name('permission.store');
+    //Logs
+    Route::get('get_role_logs/{id}', 'RoleController@get_role_logs')->name('properties.role_logs');
 	// users routes
 	Route::resource('users', 'AdminController');
 	Route::post('/userss/destroy', 'AdminController@destroy')->name('users.destroy');
+    //Logs
+    Route::get('get_adminpermission_logs/{id}', 'AdminController@get_adminPermission_logs')->name('properties.role_logs');
 
 	// page resource route
 	Route::resource('page', 'PageController');

@@ -11,8 +11,6 @@ use App\Models\Categoryrelation;
 
 class InputController extends controller
 {
-
-
 	 /**
      * Display a listing of the resource.
      *
