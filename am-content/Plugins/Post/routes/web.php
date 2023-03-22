@@ -40,7 +40,8 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::post('statuses/destroy', 'StatusController@destroy')->name('statuses.destroy');
 		Route::resource('input', 'InputController');
 		Route::post('input/destroy', 'InputController@destroy')->name('input.destroy');
-
+        //Logs
+        Route::get('get_input_logs/{id}', 'InputController@get_input_logs')->name('properties.input_logs');
 
 		Route::resource('project', 'ProjectController');
 		Route::post('projects/destroy', 'ProjectController@destroy')->name('projects.destroy');
@@ -55,15 +56,20 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::resource('category', 'CategoryController');
 		Route::post('category/destroy', 'CategoryController@destroy')->name('category.destroy');
 
-		Route::resource('property', 'PropertyController');
+        //Logs
+        Route::get('get_category_logs/{id}', 'CategoryController@get_category_logs')->name('properties.category_logs');
+
+
+        Route::resource('property', 'PropertyController');
         Route::put('update-second/property/{id}', 'PropertyController@second_update_property')->name('property.second_update_property');
         Route::put('update-third/property/{id}', 'PropertyController@third_update_property')->name('property.third_update_property');
         Route::put('update-forth/property/{id}', 'PropertyController@fourth_update_property')->name('property.fourth_update_property');
         Route::put('update-fifth/property/{id}', 'PropertyController@fifth_update_property')->name('property.fifth_update_property');
         Route::put('update-sixth/property/{id}', 'PropertyController@sixth_update_property')->name('property.sixth_update_property');
+        //Logs
+        Route::get('get_feature_logs/{id}', 'FeaturesController@get_feature_logs')->name('properties.feature_logs');
 
-
-//        Show every step agains data route
+        //Show every step agains data route
 
         Route::put('update-sixth/property/{id}', 'PropertyController@sixth_update_property')->name('property.sixth_update_property');
 
@@ -92,6 +98,8 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::post('/export-csv', 'PropertyController@exportCSV')->name('properties.csv_download');
 		//property logs
 		Route::get('get_property_logs/{id}', 'PropertyController@get_property_logs')->name('properties.property_logs');
+		Route::get('get_admin_logs/{id}', 'PropertyController@get_admin_logs')->name('properties.admin_logs');
+		Route::get('get_landBlock_logs/{id}', 'PropertyController@get_landBlock_logs')->name('properties.landBlock_logs');
         //update Property
 //      Route::post('update_property', 'PropertyController@update_property')->name('property.update_property');
 		Route::get('get_districts/{id}', 'PropertyController@get_districts');

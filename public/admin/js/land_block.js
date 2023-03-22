@@ -138,7 +138,6 @@ function remove_image(param, key) {
         confirmButtonText: 'Yes, Do It!'
     }).then((result) => {
         if (result.value == true) {
-            alert('in');
             $('#m_area' + m_id).remove();
             $('#media_id').val(param);
             $('#basicform').submit();

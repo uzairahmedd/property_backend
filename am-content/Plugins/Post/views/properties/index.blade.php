@@ -126,7 +126,10 @@ $properties_list = __('labels.properties_list');
 								@endif
 							</td>
 							<td>{{ $row->updated_at->diffForHumans() }}</td>
-							<td><i class="fa fa-book" data-id="{{$row->id}}" onclick="property_logs(this)" data-toggle="tooltip" title="Logs"></i></td>
+							<td>
+                                <i class="fa fa-book" data-id="{{$row->id}}" onclick="property_logs(this)" data-toggle="tooltip" title="Logs"></i> /
+                                <i class="fa fa-book" data-id="{{$row->id}}" onclick="admin_logs(this)" data-toggle="tooltip" title="Admin Logs"></i>
+                            </td>
 						</tr>
 						@endforeach
 					</tbody>

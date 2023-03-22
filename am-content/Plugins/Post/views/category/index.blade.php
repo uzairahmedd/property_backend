@@ -64,6 +64,7 @@
 						<th class="am-title">{{__('labels.property_floor')}}</th>
 						<th class="am-title">{{__('labels.featured')}}</th>
 						<th class="am-date">{{__('labels.date')}}</th>
+                        <th class="am-date">{{__('labels.action')}}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -139,6 +140,9 @@
 								{{ $post->updated_at->diffForHumans() }}
 							</div>
 						</td>
+                        <td>
+                            <i class="fa fa-book" data-id="{{$post->id}}" onclick="category_logs(this)" data-toggle="tooltip" title="Category Logs"></i>
+                        </td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -164,6 +168,7 @@
                         <th class="am-title">{{__('labels.property_floor')}}</th>
                         <th class="am-title">{{__('labels.featured')}}</th>
                         <th class="am-date">{{__('labels.date')}}</th>
+                        <th class="am-date">{{__('labels.action')}}</th>
 					</tr>
 				</tfoot>
 			</table>
@@ -172,6 +177,26 @@
 		</div>
 	</div>
 </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="property_logs_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{__('labels.Property_Logs')}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('labels.close')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')

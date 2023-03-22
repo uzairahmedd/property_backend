@@ -219,7 +219,8 @@ class PropertyController extends controller
      */
     public function block_store(Request $request)
     {
-
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'B3', 'terms_id' => $term_id, 'request' => serialize($request->all())]);
         $validatedData = $request->validate([
             'status' => 'required',
             'title' => 'required|max:100',
@@ -318,14 +319,16 @@ class PropertyController extends controller
         $this->upload_images($request, $term->id);
         //store land block coordinates and measurement details
         $this->land_block_detail_save($request->all(), $term->id);
-
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Land Block created successfully!'), 'message' => 'Land Block Created']);
         return success_response($term->id, 'Land block data inserted successfully');
     }
 
-
-
     public function block_update(Request $request)
     {
+        $term_id = $request->term_id;
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'B3', 'terms_id' => $term_id, 'request' => serialize($request->all())]);
 //        dd($request->all());
         $validatedData = $request->validate([
             'status' => 'required',
@@ -383,7 +386,6 @@ class PropertyController extends controller
         //store & update title and slug
 //        $unique_id = generate_unique_id();
 //        $slug = Str::slug($request->title) . '-' . $unique_id;
-        $term_id = $request->term_id;
         $term = Terms::where('id', $term_id)->first();
 //        $term = new Terms;
 //        $term->user_id = Auth::id();
@@ -437,6 +439,8 @@ class PropertyController extends controller
         $this->upload_images($request, $term_id);
         //store land block coordinates and measurement details
         $this->land_block_detail_update($request->all(), $term_id);
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Land Block updated successfully!'), 'message' => 'Land Block updated']);
         return success_response($term_id, 'Land block data inserted successfully');
     }
 
@@ -556,7 +560,6 @@ class PropertyController extends controller
     public function land_block_detail_update($data, $term_id)
     {
         unset($data['_token'], $data['status'], $data['title'], $data['ar_title'], $data['city'], $data['district'], $data['location']);
-
         $plot_number_count = $data['id'];
         for ($count = 0; $count < count($plot_number_count); $count++) {
             $land_block = LandBlock::where('id', $data['id'][$count])->first();
@@ -983,6 +986,8 @@ class PropertyController extends controller
      */
     public function update(Request $request, $id)
     {
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id'=> $id, 'request' => serialize($request->all())]);
         //Step 1 Validation Property English and Arabic name, location longitude and latitude
         $validatedData = $request->validate([
             'status' => 'required',
@@ -1020,11 +1025,15 @@ class PropertyController extends controller
         Postcategory::where('type', 'status')->where('term_id', $term->id)->delete();
         Postcategory::insert($post_cat);
 
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 1 updated successfully!'), 'message' => 'Step 1 updated']);
         return response()->json(['Property Updated Successfully']);
     }
 
     public function second_update_property(Request $request, $id)
     {
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id'=> $id, 'request' => serialize($request->all())]);
         $validatedData = $request->validate([
             'streets' => 'required',
             'price' => 'required',
@@ -1133,11 +1142,15 @@ class PropertyController extends controller
             $this->remove_feature_data($term_id);
             return response()->json(['Property Updated Successfully']);
         }
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 2 updated successfully!'), 'message' => 'Step 2 updated']);
         return response()->json(['Property Updated Successfully']);
     }
 
     public function third_update_property(Request $request, $id)
     {
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id'=> $id, 'request' => serialize($request->all())]);
         //Validate property total floor
         if (array_key_exists('total_floors', $request->all()) && empty($request->total_floors)) {
             return error_response('', 'please provide total floors detail');
@@ -1192,12 +1205,15 @@ class PropertyController extends controller
             $property_floor->content = $request['property_floor'];
             $property_floor->save();
         }
-
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 3 updated successfully!'), 'message' => 'Step 3 updated']);
         return response()->json(['Property Updated Successfully']);
     }
 
     public function fourth_update_property(Request $request, $id)
     {
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id'=> $id, 'request' => serialize($request->virtual_tour)]);
         //Validate Virtual Tour
         if (array_key_exists('virtual_tour', $request->all()) && empty($request->virtual_tour)) {
             return error_response('', 'please provide virtual tour link');
@@ -1227,12 +1243,15 @@ class PropertyController extends controller
 
         //store images
         $this->upload_images($request, $term_id);
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 4 updated successfully!'), 'message' => 'Step 4 updated']);
         return response()->json(['Property Updated Successfully']);
     }
 
     public function fifth_update_property(Request $request, $id)
     {
-
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id'=> $id, 'request' => serialize($request->all())]);
         //Validate features
         if (array_key_exists('features', $request->all()) && empty($request->features)) {
             return error_response('', 'please provide features');
@@ -1273,11 +1292,15 @@ class PropertyController extends controller
             $keys_table->content = $value;
             $keys_table->save();
         }
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 5 updated successfully!'), 'message' => 'Step 5 updated']);
         return response()->json(['Property Updated Successfully']);
     }
 
     public function sixth_update_property(Request $request, $id)
     {
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id'=> $id, 'request' => serialize($request->all())]);
         //        validate the Deed number
         if (array_key_exists('instrument_number', $request->all()) && empty($request->instrument_number)) {
             return error_response('', 'please provide instrument number');
@@ -1308,6 +1331,8 @@ class PropertyController extends controller
             $keys_table->content = $value;
             $keys_table->save();
         }
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 6 updated successfully!'), 'message' => 'Step 6 updated']);
         return response()->json(['Property Updated Successfully']);
     }
 
@@ -2053,5 +2078,19 @@ class PropertyController extends controller
     {
         $logs = UserLogs::where('terms_id', $id)->get();
         return success_response($logs, 'Property logs get successfully!');
+    }
+
+    //Admin Logs
+    public function get_admin_logs($id)
+    {
+        $logs = AdminLogs::where('terms_id', $id)->get();
+        return success_response($logs, 'Admin logs get successfully!');
+    }
+
+    //Land Block Logs
+    public function get_landBlock_logs($id)
+    {
+        $logs = AdminLogs::where('terms_id', $id)->get();
+        return success_response($logs, 'Admin logs get successfully!');
     }
 }
