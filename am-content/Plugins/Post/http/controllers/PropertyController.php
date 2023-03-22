@@ -197,7 +197,7 @@ class PropertyController extends controller
         return success_response($data, 'Property nature get successfully!');
     }
 
-    public function property_nature($id)
+    public function edit_land_block_property($id)
     {
         $data = [];
         $data['parent_category'] = Category::where('type', 'parent_category')->where('featured', 1)->get();
