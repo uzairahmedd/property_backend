@@ -93,7 +93,7 @@
 							</div>
 						</td>
                         <td>
-                            <i class="fa fa-book" data-id="{{$post->id}}" onclick="location_logs(this)" data-toggle="tooltip" title="Location Logs"></i>
+                            <i class="fa fa-book" data-id="{{$post->id}}" onclick="cities_logs(this)" data-toggle="tooltip" title="Cities Logs"></i>
                         </td>
 					</tr>
 					@endforeach

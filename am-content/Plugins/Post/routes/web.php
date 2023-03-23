@@ -29,15 +29,14 @@ Route::group(['namespace'=>'Amcoders\Plugin\Post\http\controllers','middleware'=
 		Route::get('locations/cities/create', 'LocationController@CitiesCreate')->name('cities.create');
 		Route::get('locations/cities/edit/{id}', 'LocationController@Citiesedit')->name('cities.edit');
 		Route::post('locations/cities/destroy', 'LocationController@Citiesdestroy')->name('cities.destroy');
-    //Logs
-    Route::get('get_location_logs/{id}', 'LocationController@get_location_logs')->name('properties.location_logs');
+        //cities Logs
+        Route::get('get_cities_logs/{id}', 'LocationController@get_cities_logs')->name('properties.cities_logs');
+        //district Logs
+        Route::get('get_district_logs/{id}', 'LocationController@get_district_logs')->name('properties.district_logs');
 
 
 	Route::group(['prefix'=>'real-state'], function(){
-
-
 		Route::resource('feature', 'FeaturesController');
-
 		Route::resource('status', 'StatusController');
 		Route::post('statuses/destroy', 'StatusController@destroy')->name('statuses.destroy');
 		Route::resource('input', 'InputController');

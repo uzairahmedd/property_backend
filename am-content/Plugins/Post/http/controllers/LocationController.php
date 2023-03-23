@@ -230,6 +230,10 @@ class LocationController extends Controller
       $category->featured = $request->featured;
       $category->user_id = Auth::id();
       $category->save();
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'C3', 'cities_id'=> $category->id, 'request' => serialize($request->all())]);
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Cities created sucessfully!'), 'message' => 'Cities created sucessfully!']);
     }
 
     //store district
@@ -242,12 +246,12 @@ class LocationController extends Controller
       $category->featured = $request->featured;
       $category->user_id = Auth::id();
       $category->save();
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'D3', 'district_id'=> $category->id, 'request' => serialize($request->all())]);
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('District created sucessfully!'), 'message' => 'District created sucessfully!']);
     }
 
-      //Store $request logs
-      $log_id = AdminLogs::create(['log_code' => 'L3', 'location_id'=> $category->id, 'request' => serialize($request->all())]);
-    //store response
-    DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Cities and District created sucessfully!'), 'message' => 'Cities and District created!']);
     return response()->json($request->type.' created sucessfully!');
   }
 
@@ -376,8 +380,7 @@ class LocationController extends Controller
    */
   public function update(Request $request, $id)
   {
-      //Store $request logs
-      $log_id = AdminLogs::create(['log_code' => 'L3', 'location_id'=> $id, 'request' => serialize($request->all())]);
+
     $validatedData = $request->validate([
       'name' => 'required|max:100',
       'ar_name' => 'required|max:100',
@@ -396,6 +399,10 @@ class LocationController extends Controller
       $category->featured = $request->featured;
       $category->user_id = Auth::id();
       $category->save();
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'C3', 'cities_id'=> $id, 'request' => serialize($request->all())]);
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Cities updated sucessfully!'), 'message' => 'Cities updated!']);
     }
     //update district
     else {
@@ -407,10 +414,12 @@ class LocationController extends Controller
       $category->featured = $request->featured;
       $category->user_id = Auth::id();
       $category->save();
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'D3', 'district_id'=> $id, 'request' => serialize($request->all())]);
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('District updated sucessfully!'), 'message' => 'Cities and District updated!']);
     }
 
-      //store response
-      DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Cities and District created sucessfully!'), 'message' => 'Cities and District created!']);
     return response()->json('Location updated successfully!');
   }
 
@@ -480,10 +489,17 @@ class LocationController extends Controller
     return response()->json('Post Removed');
   }
 
-    //Location Logs
-    public function get_location_logs($id)
+    //Cities Logs
+    public function get_cities_logs($id)
     {
-        $logs = AdminLogs::where('location_id', $id)->get();
+        $logs = AdminLogs::where('cities_id', $id)->get();
+        return success_response($logs, 'Admin logs get successfully!');
+    }
+
+    //Dictrict Logs
+    public function get_district_logs($id)
+    {
+        $logs = AdminLogs::where('district_id', $id)->get();
         return success_response($logs, 'Admin logs get successfully!');
     }
 }
