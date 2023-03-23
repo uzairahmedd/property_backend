@@ -329,7 +329,6 @@ class PropertyController extends controller
         $term_id = $request->term_id;
         //Store $request logs
         $log_id = AdminLogs::create(['log_code' => 'B3', 'terms_id' => $term_id, 'request' => serialize($request->all())]);
-//        dd($request->all());
         $validatedData = $request->validate([
             'status' => 'required',
             'title' => 'required|max:100',
@@ -417,20 +416,10 @@ class PropertyController extends controller
         Postcategory::where('type', 'status')->where('term_id', $term_id)->delete();
         Postcategory::insert($post_cat);
 
-        //property status create and update
-        $post_cat = new PostCategory;
-        $post_cat->term_id = $term_id;
-        $post_cat->category_id = $request->status;
-        $post_cat->type = 'status';
-        $post_cat->save();
+
 
         //for virtual tour and images
         $virtual_tour = Meta::where('term_id', $term_id)->where('type', 'virtual_tour')->first();
-        if (empty($virtual_tour)) {
-            $virtual_tour = new Meta;
-            $virtual_tour->term_id = $term_id;
-            $virtual_tour->type = 'virtual_tour';
-        }
         $virtual_tour->content = $request->virtual_tour;
         $virtual_tour->save();
 
@@ -533,7 +522,6 @@ class PropertyController extends controller
     public function land_block_detail_save($data, $term_id)
     {
 
-        unset($data['_token'], $data['status'], $data['title'], $data['ar_title'], $data['city'], $data['district'], $data['location']);
         $plot_number_count = $data['plot_number'];
         for ($count = 0; $count < count($plot_number_count); $count++) {
 
@@ -558,11 +546,11 @@ class PropertyController extends controller
     }
 
     public function land_block_detail_update($data, $term_id)
-    {
-        unset($data['_token'], $data['status'], $data['title'], $data['ar_title'], $data['city'], $data['district'], $data['location']);
+    {  
         $plot_number_count = $data['id'];
         for ($count = 0; $count < count($plot_number_count); $count++) {
-            $land_block = LandBlock::where('id', $data['id'][$count])->first();
+            $details=LandBlock::where('id', $data['id'][$count])->first();
+            $land_block = !empty($details) ? $details : new LandBlock;
             $land_block->term_id = $term_id;
             $land_block->parent_category = $data['property_nature'][$count];
             $land_block->price = $data['plot_price'][$count];
@@ -957,17 +945,15 @@ class PropertyController extends controller
             ['type', 'property'],
             ['id', $id]
         ])->with('medias', 'virtual_tour', 'post_new_city', 'post_preview', 'post_district', 'multiple_images', 'property_status_type', 'postcategory', 'property_type')->first();
-        //First land block againt term ID
-        $landblock = LandBlock::where('term_id', $id)->first();
         //Fetch all Status that have featured 1
         $status_category = Category::where('type', 'status')->where('featured', 1)->get();
         //Fetch all Cities
         $cities = City::where('featured', 1)->get();
         //Fetch all District against cities
         $district = District::where('featured', 1)->get();
-        // Fetch table parent category data
-        $parent_category = Category::where('type', 'parent_category')->get();
-        return view('plugin::properties.land_block_edit', compact('info', 'status_category','cities','district','parent_category','landblock'));
+        //count for land block
+        $blockcount = LandBlock::where('term_id', $id)->count();
+        return view('plugin::properties.land_block_edit', compact('info', 'status_category','cities','district','blockcount'));
     }
 
 
