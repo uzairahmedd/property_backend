@@ -137,9 +137,7 @@
 
                         <div class="wrapper"></div>
                         <button class="add_fields btn btn-success" style="">{{__('labels.add_more_plots')}}</button>
-                        <div class="form-group d-flex justify-content-between" style="float:right;">
-
-
+                        <div class="form-group d-flex justify-content-end" style="margin-top: -20px;">
                             <button class="btn btn-primary save-btn mx-1" type="submit">{{__('labels.update')}}</button>
                         </div>
                         {{--step 6 end here--}}
