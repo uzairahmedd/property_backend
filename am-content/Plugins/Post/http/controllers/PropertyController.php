@@ -219,8 +219,9 @@ class PropertyController extends controller
      */
     public function block_store(Request $request)
     {
+//        dd($request->all());
         //Store $request logs
-        $log_id = AdminLogs::create(['log_code' => 'B3', 'terms_id' => $term_id, 'request' => serialize($request->all())]);
+        $log_id = AdminLogs::create(['log_code' => 'B3', 'request' => serialize($request->all('status', 'id','title','property_nature','plot_number','plot_price','planned_number','total_area','center_coordinate','bottom_left_coordinate','bottom_right_coordinate','top_right_coordinate','top_left_coordinate','left_measurement','right_measurement','top_measurement','bottom_measurement','property_nature','bottom_left_coordinate','bottom_right_coordinate','top_right_coordinate','top_left_coordinate'))]);
         $validatedData = $request->validate([
             'status' => 'required',
             'title' => 'required|max:100',
@@ -320,7 +321,7 @@ class PropertyController extends controller
         //store land block coordinates and measurement details
         $this->land_block_detail_save($request->all(), $term->id);
         //store response
-        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Land Block created successfully!'), 'message' => 'Land Block Created']);
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['terms_id' => $term->id, 'user_id' => Auth::id(), 'response' => serialize('Land Block created successfully!'), 'message' => 'Land Block Created']);
         return success_response($term->id, 'Land block data inserted successfully');
     }
 
@@ -546,7 +547,7 @@ class PropertyController extends controller
     }
 
     public function land_block_detail_update($data, $term_id)
-    {  
+    {
         $plot_number_count = $data['id'];
         for ($count = 0; $count < count($plot_number_count); $count++) {
             $details=LandBlock::where('id', $data['id'][$count])->first();

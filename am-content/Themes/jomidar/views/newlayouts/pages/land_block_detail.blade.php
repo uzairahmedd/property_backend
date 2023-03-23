@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-lg-8 mapbox-map">
                 <div class="map">
-                    <div id="map"></div>
+                    <div class="d-flex justify-content-center" id="map"></div>
                 </div>
             </div>
             <div class="col-lg-4 mapbox-form">
