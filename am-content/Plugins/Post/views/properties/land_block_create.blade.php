@@ -226,7 +226,6 @@
                         </div>
                         <p><button class="add_fields btn btn-success">{{__('labels.add_more_plots')}}</button></p>
                         <div class="form-group d-flex justify-content-between" style="float:right;">
-
                             <button class="btn btn-primary save-btn" type="submit">{{__('labels.save')}}
                             </button>
                         </div>
