@@ -36,7 +36,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="header">
-                    <h4>{{ __('labels.add_land_block') }}</h4>
+                    <h4>{{ __('labels.edit_land_block') }}</h4>
                 </div>
             </div>
             <div class="card-body">
@@ -136,10 +136,11 @@
                         </div>
 
                         <div class="wrapper"></div>
-
+                        <button class="add_fields btn btn-success" style="">{{__('labels.add_more_plots')}}</button>
                         <div class="form-group d-flex justify-content-between" style="float:right;">
-                            <button class="edit_add_fields btn btn-success m-1">{{__('labels.add_more_plots')}}</button>
-                            <button class="btn btn-primary save-btn m-1" type="submit">{{__('labels.update')}}</button>
+
+
+                            <button class="btn btn-primary save-btn mx-1" type="submit">{{__('labels.update')}}</button>
                         </div>
                         {{--step 6 end here--}}
                     </form>

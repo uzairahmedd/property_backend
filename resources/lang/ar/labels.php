@@ -693,5 +693,6 @@ return [
     "action" => 'فعل',
     "Property_Logs" => "سجلات الملكية",
     "slug"=>'أدخل سبيكة',
+    'edit_land_block'=>'تحرير كتلة الأرض',
 
 ];

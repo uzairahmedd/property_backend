@@ -101,8 +101,7 @@ $land_blocks = __('labels.land_blocks');
 							<td><img src="{{ asset($row->post_preview->media->url ?? 'uploads/default.png') }}" height="50" alt=""></td>
 							<td>{{ $row->title }} (#{{ $row->id }})
                                 <div>
-                                    <a href="{{ route('admin.property.land_block_edit',$row->id) }}">{{ __('Edit') }}</a> 
-									| <a href="{{route('property.land_block_detail',[$row->slug,$row->id])}}" target="_blank">{{ __('Show') }}</a>
+                                    <a href="{{ route('admin.property.land_block_edit',$row->id) }}">{{ __('Edit') }}</a> | <a href="{{route('property.land_block_detail',[$row->slug,$row->id])}}" target="_blank">{{ __('Show') }}</a>
                                 </div>
 							</td>
 							<td><a href="#">{{ $row->user->name }}</a></td>

@@ -1209,15 +1209,15 @@ function adminPermission_logs(elem) {
 }
 
 
-// for location logs
-function location_logs(elem) {
-    var location_id = $(elem).data('id');
+// for cities logs
+function cities_logs(elem) {
+    var cities_id = $(elem).data('id');
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    var url = '/admin/get_location_logs/' + location_id;
+    var url = '/admin/get_cities_logs/' + cities_id;
     $.ajax({
         type: 'get',
         url: url,
@@ -1243,5 +1243,43 @@ function location_logs(elem) {
     });
 
 }
+
+
+// for district logs
+function district_logs(elem) {
+    var district_id = $(elem).data('id');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var url = '/admin/get_district_logs/' + district_id;
+    $.ajax({
+        type: 'get',
+        url: url,
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (response) {
+            $('.modal-body').html('');
+            if (response.status == 'success') {
+                $('#property_logs_modal').modal('show');
+                if (response.data.length >= 1) {
+                    console.log('in');
+                    $.each(response.data, function (index, value) {
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                    });
+                }
+                else {
+                    $('.modal-body').append('<h7>No Logs found</h6>');
+                }
+            }
+        }
+    });
+
+}
+
+
 
 
