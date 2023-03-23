@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminLogs;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +49,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => 'required|max:50',
             'roles' => 'required',
@@ -63,11 +65,15 @@ class AdminController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'A3', 'admin_id'=> $user->id, 'request' => serialize($request->all())]);
+
         if ($request->roles) {
             $user->assignRole($request->roles);
         }
 
-
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Admin Role created successfully!'), 'message' => 'Admin Role created!']);
         return response()->json(['User has been created !!']);
     }
 
@@ -106,6 +112,8 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'A3', 'admin_id'=> $id, 'request' => serialize($request->all())]);
         // Create New User
         $user = User::find($id);
 
@@ -131,7 +139,8 @@ class AdminController extends Controller
             $user->assignRole($request->roles);
         }
 
-
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Admin Role successfully!'), 'message' => 'Admin created!']);
         return response()->json(['User has been updated !!']);
     }
 
@@ -143,9 +152,8 @@ class AdminController extends Controller
      */
     public function destroy(Request $request)
     {
-
         if (Auth()->user()->can('admin.delete')) {
-            
+
                 if ($request->status == 'delete') {
                     if ($request->ids) {
                         foreach ($request->ids as $id) {
@@ -154,7 +162,7 @@ class AdminController extends Controller
                     }
                 }
                 else{
-                   
+
                     if ($request->ids) {
                         foreach ($request->ids as $id) {
                             $post = User::find($id);
@@ -163,9 +171,15 @@ class AdminController extends Controller
                         }
                     }
                 }
-            
         }
 
         return response()->json('Success');
+    }
+
+    //Input Logs
+    public function get_adminPermission_logs($id)
+    {
+        $logs = AdminLogs::where('admin_id', $id)->get();
+        return success_response($logs, 'Admin logs get successfully!');
     }
 }

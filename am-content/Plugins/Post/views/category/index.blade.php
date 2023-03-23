@@ -64,6 +64,7 @@
 						<th class="am-title">{{__('labels.property_floor')}}</th>
 						<th class="am-title">{{__('labels.featured')}}</th>
 						<th class="am-date">{{__('labels.date')}}</th>
+                        <th class="am-date">{{__('labels.action')}}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -139,6 +140,9 @@
 								{{ $post->updated_at->diffForHumans() }}
 							</div>
 						</td>
+                        <td>
+                            <i class="fa fa-book" data-id="{{$post->id}}" onclick="category_logs(this)" data-toggle="tooltip" title="Category Logs"></i>
+                        </td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -164,6 +168,7 @@
                         <th class="am-title">{{__('labels.property_floor')}}</th>
                         <th class="am-title">{{__('labels.featured')}}</th>
                         <th class="am-date">{{__('labels.date')}}</th>
+                        <th class="am-date">{{__('labels.action')}}</th>
 					</tr>
 				</tfoot>
 			</table>

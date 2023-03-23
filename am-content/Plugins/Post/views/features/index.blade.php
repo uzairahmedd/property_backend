@@ -55,6 +55,7 @@
 						<th class="am-title">{{__('labels.arabic_title')}}</th>
 						<th class="am-title">{{__('labels.featured')}}</th>
 						<th class="am-date">{{__('labels.date')}}</th>
+                        <th class="am-date">{{__('labels.action')}}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -90,6 +91,9 @@
 								{{ $post->updated_at->diffForHumans() }}
 							</div>
 						</td>
+                        <td>
+                            <i class="fa fa-book" data-id="{{$post->id}}" onclick="feature_logs(this)" data-toggle="tooltip" title="Land Block Logs"></i>
+                        </td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -107,6 +111,7 @@
                         <th class="am-title">{{__('labels.arabic_title')}}</th>
                         <th class="am-title">{{__('labels.featured')}}</th>
                         <th class="am-date">{{__('labels.date')}}</th>
+                        <th class="am-date">{{__('labels.action')}}</th>
 					</tr>
 				</tfoot>
 			</table>

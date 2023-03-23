@@ -65,7 +65,7 @@ function Load_land_block_map(term_id) {
                         if (locale == 'ar') {
                             land_type = features[0].properties.name + ' أرض';
                         }
-                        //put values on click 
+                        //put values on click
                         $('#piece_no').text(features[0].properties.plot_num);
                         $('#price_piece').text(features[0].properties.price);
                         $('#type').text(land_type);
@@ -328,7 +328,7 @@ function Load_land_block_map(term_id) {
                 map.addControl(new mapboxgl.NavigationControl());
             }
             else if (response.status == 'error') {
-                $('#map').prepend('<img class="w-100" src=' + baseurl + 'assets/images/error.jpg />')
+                $('#map').prepend('<div class="d-flex justify-content-center"><img src=' + baseurl + 'assets/images/error.jpg /></div>')
             }
         }
     });

@@ -24,7 +24,6 @@ class LocationController extends Controller
    */
   public function index(Request $request)
   {
-
     $posts = Category::where('type', 'location')->with('preview')->withCount('address')->latest()->paginate(20);
     //return view('plugin::location.index',compact('posts'));
   }
@@ -36,7 +35,6 @@ class LocationController extends Controller
    */
   public function Countries(Request $request)
   {
-
     $posts = Category::where('type', 'countries')->with('preview')->withCount('address')->latest()->paginate(20);
     return view('plugin::location.country.index', compact('posts'));
   }
@@ -48,7 +46,6 @@ class LocationController extends Controller
    */
   public function CountriesCreate(Request $request)
   {
-
     return view('plugin::location.country.create');
   }
 
@@ -60,7 +57,6 @@ class LocationController extends Controller
    */
   public function States(Request $request)
   {
-
     if (!Auth()->user()->can('states.list')) {
       abort(401);
     }
@@ -217,8 +213,6 @@ class LocationController extends Controller
    */
   public function store(Request $request)
   {
-    //Store $request logs
-    $log_id = AdminLogs::create(['log_code' => 'L2', 'request' => serialize($request->all())]);
     $validatedData = $request->validate([
       'name' => 'required|max:100',
       'ar_name' => 'required|max:100',
@@ -236,7 +230,12 @@ class LocationController extends Controller
       $category->featured = $request->featured;
       $category->user_id = Auth::id();
       $category->save();
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'C3', 'cities_id'=> $category->id, 'request' => serialize($request->all())]);
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Cities created sucessfully!'), 'message' => 'Cities created sucessfully!']);
     }
+
     //store district
     elseif ($request->type == 'district') {
       $category = new District();
@@ -247,9 +246,12 @@ class LocationController extends Controller
       $category->featured = $request->featured;
       $category->user_id = Auth::id();
       $category->save();
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'D3', 'district_id'=> $category->id, 'request' => serialize($request->all())]);
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('District created sucessfully!'), 'message' => 'District created sucessfully!']);
     }
-    //store response
-    DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize($request->type.' created sucessfully!'), 'message' => $request->type . ' added successfully!']);
+
     return response()->json($request->type.' created sucessfully!');
   }
 
@@ -378,8 +380,7 @@ class LocationController extends Controller
    */
   public function update(Request $request, $id)
   {
-    //Store $request logs
-    $log_id = AdminLogs::create(['log_code' => 'L3', 'request' => serialize($request->all())]);
+
     $validatedData = $request->validate([
       'name' => 'required|max:100',
       'ar_name' => 'required|max:100',
@@ -398,6 +399,10 @@ class LocationController extends Controller
       $category->featured = $request->featured;
       $category->user_id = Auth::id();
       $category->save();
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'C3', 'cities_id'=> $id, 'request' => serialize($request->all())]);
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Cities updated sucessfully!'), 'message' => 'Cities updated!']);
     }
     //update district
     else {
@@ -409,10 +414,12 @@ class LocationController extends Controller
       $category->featured = $request->featured;
       $category->user_id = Auth::id();
       $category->save();
+        //Store $request logs
+        $log_id = AdminLogs::create(['log_code' => 'D3', 'district_id'=> $id, 'request' => serialize($request->all())]);
+        //store response
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('District updated sucessfully!'), 'message' => 'Cities and District updated!']);
     }
 
-    //store response
-    DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Location updated successfully!'), 'message' => 'Location updated']);
     return response()->json('Location updated successfully!');
   }
 
@@ -481,4 +488,18 @@ class LocationController extends Controller
 
     return response()->json('Post Removed');
   }
+
+    //Cities Logs
+    public function get_cities_logs($id)
+    {
+        $logs = AdminLogs::where('cities_id', $id)->get();
+        return success_response($logs, 'Admin logs get successfully!');
+    }
+
+    //Dictrict Logs
+    public function get_district_logs($id)
+    {
+        $logs = AdminLogs::where('district_id', $id)->get();
+        return success_response($logs, 'Admin logs get successfully!');
+    }
 }

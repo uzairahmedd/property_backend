@@ -59,6 +59,7 @@
                             <!-- <th class="am-title">{{ __('Last Activity') }}</th>
                             <th class="am-title">{{ __('labels.last_login_ip') }}</th> -->
                             <th>{{ __('labels.role') }}</th>
+                            <th>{{ __('labels.action') }}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -93,6 +94,9 @@
                            <td>
                         	@foreach($row->roles as $r) <span class="badge badge-primary">{{ $r->name }}</span> @endforeach
                         </td>
+                            <td>
+                                <i class="fa fa-book" data-id="{{$row->id}}" onclick="adminPermission_logs(this)" data-toggle="tooltip" title="Admin Logs"></i>
+                            </td>
 						</tr>
 						@endforeach
 					</tbody>
@@ -100,6 +104,7 @@
 			</table>
 		</div>
 	</div>
+</div>
 </div>
 @endsection
 @section('script')

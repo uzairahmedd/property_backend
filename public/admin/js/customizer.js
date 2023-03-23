@@ -98,7 +98,7 @@
 					)
 			}
 		})
-		
+
 	});
 
 	$('.display-view').on('click','a',function(){
@@ -127,14 +127,14 @@
 		$('.loader').fadeOut();
 	});
 
-})(jQuery);	
+})(jQuery);
 
 
 function arrow()
 {
 	$('.loading').fadeIn();
 	$(".sidebar-area-start").load(' .sidebar-area-start');
-	
+
 }
 
 
@@ -177,7 +177,7 @@ function loadFile(event,id,type,option,main_id,p_id=null) {
 				reader.readAsDataURL(event.target.files[0]);
 
 			}
-			
+
 		},
 		success: function(response) {
 
@@ -271,7 +271,7 @@ function section_multi_options1(id,type,option,main_id,p_id)
 		type: "GET",
 		dataType: "HTML",
 		success: function(response) {
-			console.log(response)
+			// console.log(response)
 		}
 	});
 }

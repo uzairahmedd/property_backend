@@ -656,6 +656,50 @@
         })
     });
 
+
+    $(".land_block_updateform").on('submit', function (e) {
+        e.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var basicbtnhtml = $('.basicbtn').html();
+        $.ajax({
+            type: 'POST',
+            url: this.action,
+            data: new FormData(this),
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function () {
+
+                $('.basicbtn').html("Please Wait....");
+                $('.basicbtn').attr('disabled', '')
+
+            },
+            success: function (response) {
+                console.log(response);
+                $('.term_id').val(response.data);
+                $('.basicbtn').removeAttr('disabled')
+                Sweet('success', response.message);
+                $('.basicbtn').html(basicbtnhtml);
+                success(response);
+            },
+            error: function (xhr, status, error) {
+                $('.basicbtn').html(basicbtnhtml);
+                $('.basicbtn').removeAttr('disabled')
+                $('.errorarea').show();
+                $.each(xhr.responseJSON.errors, function (key, item) {
+                    Sweet('error', item)
+                    $("#errors").html("<li class='text-danger'>" + item + "</li>")
+                });
+                errosresponse(xhr, status, error);
+            }
+        })
+    });
+
     $("#basicform3").on('submit', function (e) {
         e.preventDefault();
 
@@ -909,3 +953,326 @@ function property_logs(elem) {
     });
 
 }
+
+
+
+//for admin logs
+function admin_logs(elem) {
+    var admin_id = $(elem).data('id');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var url = '/admin/real-state/get_admin_logs/' + admin_id;
+    $.ajax({
+        type: 'get',
+        url: url,
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (response) {
+            console.log(response);
+            $('.modal-body').html('');
+            if (response.status == 'success') {
+                $('#property_logs_modal').modal('show');
+                if (response.data.length > 1) {
+                    $.each(response.data, function (index, value) {
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                    });
+                }
+                else {
+                    $('.modal-body').append('<h7>No Logs found</h6>');
+                }
+            }
+        }
+    });
+
+}
+
+
+
+//for property logs
+function landBlock_logs(elem) {
+    var block_id = $(elem).data('id');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var url = '/admin/real-state/get_landBlock_logs/' + block_id;
+    $.ajax({
+        type: 'get',
+        url: url,
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (response) {
+            console.log(response);
+            $('.modal-body').html('');
+            if (response.status == 'success') {
+                $('#property_logs_modal').modal('show');
+                if (response.data.length >= 1) {
+                    $.each(response.data, function (index, value) {
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                    });
+                }
+                else {
+                    $('.modal-body').append('<h7>No Logs found</h6>');
+                }
+            }
+        }
+    });
+}
+
+
+//for create features logs
+function feature_logs(elem) {
+    var feature_id = $(elem).data('id');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var url = '/admin/real-state/get_feature_logs/' + feature_id;
+    $.ajax({
+        type: 'get',
+        url: url,
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (response) {
+            $('.modal-body').html('');
+            if (response.status == 'success') {
+                $('#property_logs_modal').modal('show');
+                if (response.data.length >= 1) {
+                    $.each(response.data, function (index, value) {
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                    });
+                }
+                else {
+                    $('.modal-body').append('<h7>No Logs found</h6>');
+                }
+            }
+        }
+    });
+}
+
+
+
+
+//for category logs
+function category_logs(elem) {
+    var category_id = $(elem).data('id');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var url = '/admin/real-state/get_category_logs/' + category_id;
+    $.ajax({
+        type: 'get',
+        url: url,
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (response) {
+            $('.modal-body').html('');
+            if (response.status == 'success') {
+                $('#property_logs_modal').modal('show');
+                if (response.data.length >= 1) {
+                    $.each(response.data, function (index, value) {
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                    });
+                }
+                else {
+                    $('.modal-body').append('<h7>No Logs found</h6>');
+                }
+            }
+        }
+    });
+
+}
+
+
+// for input logs
+function input_logs(elem) {
+    var input_id = $(elem).data('id');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var url = '/admin/real-state/get_input_logs/' + input_id;
+    $.ajax({
+        type: 'get',
+        url: url,
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (response) {
+            $('.modal-body').html('');
+            if (response.status == 'success') {
+                $('#property_logs_modal').modal('show');
+                if (response.data.length >= 1) {
+                    $.each(response.data, function (index, value) {
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                    });
+                }
+                else {
+                    $('.modal-body').append('<h7>No Logs found</h6>');
+                }
+            }
+        }
+    });
+}
+
+
+// for Role Logs
+function role_logs(elem) {
+    var role_id = $(elem).data('id');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var url = '/admin/get_role_logs/' + role_id;
+    $.ajax({
+        type: 'get',
+        url: url,
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (response) {
+            $('.modal-body').html('');
+            if (response.status == 'success') {
+                $('#property_logs_modal').modal('show');
+                if (response.data.length >= 1) {
+                    $.each(response.data, function (index, value) {
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                    });
+                }
+                else {
+                    $('.modal-body').append('<h7>No Logs found</h6>');
+                }
+            }
+        }
+    });
+
+}
+
+
+// for Role Logs
+function adminPermission_logs(elem) {
+    var adminPermission_id = $(elem).data('id');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var url = '/admin/get_adminpermission_logs/' + adminPermission_id;
+    $.ajax({
+        type: 'get',
+        url: url,
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (response) {
+            $('.modal-body').html('');
+            if (response.status == 'success') {
+                $('#property_logs_modal').modal('show');
+                if (response.data.length >= 1) {
+                    $.each(response.data, function (index, value) {
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                    });
+                }
+                else {
+                    $('.modal-body').append('<h7>No Logs found</h6>');
+                }
+            }
+        }
+    });
+
+}
+
+
+// for cities logs
+function cities_logs(elem) {
+    var cities_id = $(elem).data('id');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var url = '/admin/get_cities_logs/' + cities_id;
+    $.ajax({
+        type: 'get',
+        url: url,
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (response) {
+            $('.modal-body').html('');
+            if (response.status == 'success') {
+                $('#property_logs_modal').modal('show');
+                if (response.data.length >= 1) {
+                    $.each(response.data, function (index, value) {
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                    });
+                }
+                else {
+                    $('.modal-body').append('<h7>No Logs found</h6>');
+                }
+            }
+        }
+    });
+
+}
+
+
+// for district logs
+function district_logs(elem) {
+    var district_id = $(elem).data('id');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var url = '/admin/get_district_logs/' + district_id;
+    $.ajax({
+        type: 'get',
+        url: url,
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (response) {
+            $('.modal-body').html('');
+            if (response.status == 'success') {
+                console.log('in');
+                $('#property_logs_modal').modal('show');
+                if (response.data.length >= 1) {
+                    $.each(response.data, function (index, value) {
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                    });
+                }
+                else {
+                    $('.modal-body').append('<h7>No Logs found</h6>');
+                }
+            }
+        }
+    });
+
+}
+
+
+
+

@@ -86,6 +86,7 @@ $land_blocks = __('labels.land_blocks');
 							<th class="am-title">{{__('labels.status')}}</th>
 							<th class="am-title">{{__('labels.total_lands')}}</th>
 							<th class="am-date">{{__('labels.last_update')}}</th>
+							<th class="am-date">{{__('labels.action')}}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -99,9 +100,9 @@ $land_blocks = __('labels.land_blocks');
 							</td>
 							<td><img src="{{ asset($row->post_preview->media->url ?? 'uploads/default.png') }}" height="50" alt=""></td>
 							<td>{{ $row->title }} (#{{ $row->id }})
-								<!-- <div>
-									<a href="{{ route('admin.property.edit',$row->id) }}">{{ __('Edit') }}</a> | <a href="{{ url('/property-detail',$row->slug) }}" target="_blank">{{ __('Show') }}</a>
-								</div> -->
+                                <div class="d-flex justify-content-center">
+                                    <a class="px-1" href="{{ route('admin.property.land_block_edit',$row->id) }}">{{ __('Edit') }}</a> | <a class="px-1" href="{{route('property.land_block_detail',[$row->slug,$row->id])}}" target="_blank">{{ __('Show') }}</a>
+                                </div>
 							</td>
 							<td><a href="#">{{ $row->user->name }}</a></td>
 							<td>
@@ -128,7 +129,10 @@ $land_blocks = __('labels.land_blocks');
 							</td>
 							<td>{{$row->total_lands}}</td>
 							<td>{{ $row->updated_at->diffForHumans() }}</td>
-						</tr>
+                            <td>
+                                <i class="fa fa-book" data-id="{{$row->id}}" onclick="landBlock_logs(this)" data-toggle="tooltip" title="Land Block Logs"></i>
+                            </td>
+                        </tr>
 						@endforeach
 					</tbody>
 					<tfoot>
@@ -146,6 +150,7 @@ $land_blocks = __('labels.land_blocks');
 							<th class="am-title">{{__('labels.status')}}</th>
 							<th class="am-title">{{__('labels.total_lands')}}</th>
 							<th class="am-date">{{__('labels.last_update')}}</th>
+                            <th class="am-date">{{__('labels.action')}}</th>
 						</tr>
 					</tfoot>
 				</table>

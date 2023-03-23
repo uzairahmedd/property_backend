@@ -53,9 +53,13 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'App\Http\Co
 	Route::resource('role', 'RoleController');
 	Route::post('roles/destroy', 'RoleController@destroy')->name('roles.destroy');
 	Route::post('permission/store', 'RoleController@permission_store')->name('permission.store');
+    //Logs
+    Route::get('get_role_logs/{id}', 'RoleController@get_role_logs')->name('properties.role_logs');
 	// users routes
 	Route::resource('users', 'AdminController');
 	Route::post('/userss/destroy', 'AdminController@destroy')->name('users.destroy');
+    //Logs
+    Route::get('get_adminpermission_logs/{id}', 'AdminController@get_adminPermission_logs')->name('properties.role_logs');
 
 	// page resource route
 	Route::resource('page', 'PageController');
@@ -238,7 +242,7 @@ Route::group(['namespace' => 'Amcoders\Theme\jomidar\http\controllers', 'middlew
 	//detail page
 	Route::get('property-detail/{slug}/{id?}', 'PropertyController@detail')->name('property.detail');
 	Route::get('change_title', 'RegisterController@change_title');
-	Route::get('land-block-detail/{slug}', 'PropertyController@land_block_detail')->name('property.land_block_detail');
+	Route::get('land-block-detail/{slug}/{id?}', 'PropertyController@land_block_detail')->name('property.land_block_detail');
 	Route::get('Land_block_data/{id}', 'PropertyController@Land_block_data');
 	//user phone number verification page
 	Route::get('user-phone/verification/{id?}','RegisterController@phone_verification')->name('phone_verification');

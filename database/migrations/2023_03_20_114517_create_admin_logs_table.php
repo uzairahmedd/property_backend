@@ -15,10 +15,18 @@ class CreateAdminLogsTable extends Migration
     {
         Schema::create('admin_logs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('terms_id')->nullable();
+            $table->unsignedBigInteger('cities_id')->nullable();
+            $table->unsignedBigInteger('district_id')->nullable();
+            $table->unsignedBigInteger('admin_id')->nullable();
+            $table->unsignedBigInteger('role_id')->nullable();
+            $table->unsignedBigInteger('feature_id')->nullable();
+            $table->unsignedBigInteger('input_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('log_code')->nullable();
-            $table->string('request')->nullable();
-            $table->string('response')->nullable();
+            $table->LongText('request')->nullable();
+            $table->LongText('response')->nullable();
             $table->string('message')->nullable();
             $table->timestamps();
         });

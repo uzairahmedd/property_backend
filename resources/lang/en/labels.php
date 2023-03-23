@@ -656,6 +656,7 @@ return [
     'meaurements' => 'Meaturements (SQM)',
     'total_area' => 'Total Area (SQM)',
     'add_land_block' => 'Add land block',
+    'edit_land_block'=>'Edit Land block',
     'select_your_city' => 'Select your City',
     'select_your_district' => 'Select your District',
     'comma_seperated' => 'Comma Separated Coordinates',
@@ -680,6 +681,6 @@ return [
     'rem_plot_form' => 'Remove Plot From',
     "Remember_Me" => "Remember Me",
     "action"=>'Action',
-    "Property_Logs"=>"Property Logs",
+    "Property_Logs"=>"Logs",
     "slug"=>'Enter Slug',
 ];

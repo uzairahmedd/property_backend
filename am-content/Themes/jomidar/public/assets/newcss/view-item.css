@@ -228,6 +228,11 @@
     box-shadow: none;
 }
 
+.error-map-img
+{
+    width: 70%;
+}
+
 /* COntact Modal ends here */
 
 /* Media Query */
@@ -252,6 +257,10 @@
     .carousel-control-next, .carousel-control-prev {
         display: none;
     }
+    .error-map-img
+    {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width:576px) {
@@ -270,4 +279,5 @@
     .otp-modal .form-control {
         max-width: 40px;
     }
+
 }

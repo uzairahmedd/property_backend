@@ -3,6 +3,7 @@
 namespace Amcoders\Plugin\Post\http\controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminLogs;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Categorymeta;
@@ -39,6 +40,8 @@ class CategoryController extends Controller
       abort(401);
     }
       $posts = Category::where('type', 'parent_category')->get();
+      //store response
+
     return view('plugin::category.new_create',compact('posts'));
     // return view('plugin::category.create');
   }
@@ -121,6 +124,9 @@ class CategoryController extends Controller
     $meta->content = $request->icon ?? '';
     $meta->save();
 
+      //Store $request logs
+      $log_id = AdminLogs::create(['log_code' => 'C3', 'category_id' => $post->id, 'request' => serialize($request->all())]);
+
     if ($request->child) {
       $childs = [];
       foreach ($request->child as $key => $row) {
@@ -132,6 +138,8 @@ class CategoryController extends Controller
 
       Categoryrelation::insert($childs);
     }
+
+    DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Category created successfully!'), 'message' => 'Category created']);
 
     return response()->json(['Category Created']);
   }
@@ -228,6 +236,9 @@ class CategoryController extends Controller
   public function update(Request $request, $id)
   {
 
+      //Store $request logs
+      $log_id = AdminLogs::create(['log_code' => 'C3', 'category_id'=> $id, 'request' => serialize($request->all())]);
+
     $validatedData = $request->validate([
       'name' => 'required|max:100',
       'ar_name' => 'required|max:100',
@@ -268,6 +279,7 @@ class CategoryController extends Controller
       Categoryrelation::where('parent_id', $id)->delete();
       Categoryrelation::insert($childs);
     }
+     DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Category updated successfully!'), 'message' => 'Category updated']);
     return response()->json(['Category Feild Updated']);
   }
 
@@ -293,4 +305,11 @@ class CategoryController extends Controller
 
     return response()->json('Category deleted successfully!');
   }
+
+    //Category Logs
+    public function get_category_logs($id)
+    {
+        $logs = AdminLogs::where('category_id', $id)->get();
+        return success_response($logs, 'Admin logs get successfully!');
+    }
 }

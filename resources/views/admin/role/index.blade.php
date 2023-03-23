@@ -53,6 +53,7 @@
 						</th> -->
 						<th width="10%">{{ __('labels.name') }}</th>
 						<th width="80%">{{ __('labels.permissions') }}</th>
+						<th width="">{{ __('labels.action') }}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -80,6 +81,9 @@
 							@endif
 							@endforeach
 						</td>
+                        <td>
+                            <i class="fa fa-book" data-id="{{$page->id}}" onclick="role_logs(this)" data-toggle="tooltip" title="Role Logs"></i>
+                        </td>
 					</tr>
 					@endforeach
 				</tbody>
