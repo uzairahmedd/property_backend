@@ -139,7 +139,7 @@ class CategoryController extends Controller
       Categoryrelation::insert($childs);
     }
 
-      \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Category created successfully!'), 'message' => 'Category created']);
+    DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Category created successfully!'), 'message' => 'Category created']);
 
     return response()->json(['Category Created']);
   }
@@ -279,7 +279,7 @@ class CategoryController extends Controller
       Categoryrelation::where('parent_id', $id)->delete();
       Categoryrelation::insert($childs);
     }
-      \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Category updated successfully!'), 'message' => 'Category updated']);
+     DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Category updated successfully!'), 'message' => 'Category updated']);
     return response()->json(['Category Feild Updated']);
   }
 

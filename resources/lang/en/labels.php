@@ -681,6 +681,6 @@ return [
     'rem_plot_form' => 'Remove Plot From',
     "Remember_Me" => "Remember Me",
     "action"=>'Action',
-    "Property_Logs"=>"Property Logs",
+    "Property_Logs"=>"Logs",
     "slug"=>'Enter Slug',
 ];

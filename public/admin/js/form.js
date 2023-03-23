@@ -1015,7 +1015,6 @@ function landBlock_logs(elem) {
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
-                    console.log('in');
                     $.each(response.data, function (index, value) {
                         $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
                     });
@@ -1050,7 +1049,6 @@ function feature_logs(elem) {
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
-                    console.log('in');
                     $.each(response.data, function (index, value) {
                         $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
                     });
@@ -1087,7 +1085,6 @@ function category_logs(elem) {
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
-                    console.log('in');
                     $.each(response.data, function (index, value) {
                         $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
                     });
@@ -1123,7 +1120,6 @@ function input_logs(elem) {
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
-                    console.log('in');
                     $.each(response.data, function (index, value) {
                         $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
                     });
@@ -1158,7 +1154,6 @@ function role_logs(elem) {
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
-                    console.log('in');
                     $.each(response.data, function (index, value) {
                         $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
                     });
@@ -1194,7 +1189,6 @@ function adminPermission_logs(elem) {
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
-                    console.log('in');
                     $.each(response.data, function (index, value) {
                         $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
                     });
@@ -1230,7 +1224,6 @@ function cities_logs(elem) {
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
-                    console.log('in');
                     $.each(response.data, function (index, value) {
                         $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
                     });
@@ -1264,9 +1257,9 @@ function district_logs(elem) {
         success: function (response) {
             $('.modal-body').html('');
             if (response.status == 'success') {
+                console.log('in');
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
-                    console.log('in');
                     $.each(response.data, function (index, value) {
                         $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
                     });

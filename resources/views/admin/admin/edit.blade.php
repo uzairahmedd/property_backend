@@ -38,7 +38,8 @@
 						$arr['type']= 'password';
 						$arr['placeholder']= __('labels.enter_password');
 						$arr['name']= 'password';
-						$arr['is_required'] = true;
+						$arr['value']='';
+						$arr['is_required'] = false;
                         echo  input($arr);
 
                         $arr['title']= __('labels.confirm_password');
@@ -46,7 +47,8 @@
 						$arr['type']= 'password';
 						$arr['placeholder']= __('labels.confirm_password');
 						$arr['name']= 'password_confirmation';
-						$arr['is_required'] = true;
+						$arr['value']='';
+						$arr['is_required'] = false;
 						echo  input($arr);
                         @endphp
                         <div class="form-group">

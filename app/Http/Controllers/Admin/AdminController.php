@@ -73,7 +73,7 @@ class AdminController extends Controller
         }
 
         //store response
-        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Admin Role created successfully!'), 'message' => 'Admin Role created!']);
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Admin Role created successfully!'), 'message' => 'Admin Role created!']);
         return response()->json(['User has been created !!']);
     }
 
@@ -140,7 +140,7 @@ class AdminController extends Controller
         }
 
         //store response
-        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Admin Role successfully!'), 'message' => 'Admin created!']);
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Admin Role successfully!'), 'message' => 'Admin created!']);
         return response()->json(['User has been updated !!']);
     }
 

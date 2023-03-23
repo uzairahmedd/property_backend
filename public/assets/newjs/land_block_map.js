@@ -328,7 +328,7 @@ function Load_land_block_map(term_id) {
                 map.addControl(new mapboxgl.NavigationControl());
             }
             else if (response.status == 'error') {
-                $('#map').prepend('<img src=' + baseurl + 'assets/images/error.jpg />')
+                $('#map').prepend('<div class="d-flex justify-content-center"><img src=' + baseurl + 'assets/images/error.jpg /></div>')
             }
         }
     });

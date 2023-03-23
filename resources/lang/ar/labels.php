@@ -691,7 +691,7 @@ return [
     'rem_plot_form' => 'إزالة نموذج الرسم',
     "Remember_Me" => "تذكرنى",
     "action" => 'فعل',
-    "Property_Logs" => "سجلات الملكية",
+    "Property_Logs" => "سجلات ",
     "slug"=>'أدخل سبيكة',
     'edit_land_block'=>'تحرير كتلة الأرض',
 

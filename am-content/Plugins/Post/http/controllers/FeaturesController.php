@@ -118,7 +118,7 @@ class FeaturesController extends Controller
         //Store $request logs
         $log_id = AdminLogs::create(['log_code' => 'F3', 'feature_id'=> $category->id, 'request' => serialize($request->all())]);
         //store response
-        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Features created successfully!'), 'message' => 'Features created!']);
+      DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Features created successfully!'), 'message' => 'Features created!']);
       return response()->json($request->type.' created');
 
     }
@@ -221,7 +221,7 @@ class FeaturesController extends Controller
        $category->featured=$request->featured;
       $category->save();
         //store response
-        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Features updated successfully!'), 'message' => 'Features updated!']);
+      DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Features updated successfully!'), 'message' => 'Features updated!']);
       return response()->json($category->type.' Updated');
     }
 

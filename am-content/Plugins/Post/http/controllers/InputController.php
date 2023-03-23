@@ -8,6 +8,7 @@ use Auth;
 use App\Category;
 use App\Categorymeta;
 use App\Models\Categoryrelation;
+use Illuminate\Support\Facades\DB;
 
 class InputController extends controller
 {
@@ -130,7 +131,7 @@ class InputController extends controller
             $meta->save();
         }
         //store response
-        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Input created successfully!'), 'message' => 'Input created!']);
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Input created successfully!'), 'message' => 'Input created!']);
         return response()->json(['Input Feild Created']);
     }
 
@@ -252,7 +253,7 @@ class InputController extends controller
         }
 
         //store response
-        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Input updated successfully!'), 'message' => 'Input updated!']);
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Input updated successfully!'), 'message' => 'Input updated!']);
 
         return response()->json(['Input Feild Updated']);
     }

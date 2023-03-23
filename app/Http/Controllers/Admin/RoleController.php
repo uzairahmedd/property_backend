@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
@@ -77,7 +78,7 @@ class RoleController extends Controller
         // }
 
         //store response
-        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Role created successfully!'), 'message' => 'Role created!']);
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Role created successfully!'), 'message' => 'Role created!']);
 
         return response()->json(['Role created successfully']);
     }
@@ -138,7 +139,7 @@ class RoleController extends Controller
             $role->syncPermissions($permissions);
         // }
         //store response
-        \Illuminate\Support\Facades\DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Role updated successfully!'), 'message' => 'Role updated!']);
+        DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Role updated successfully!'), 'message' => 'Role updated!']);
         return response()->json(['Role has been updated !']);
     }
 
