@@ -942,7 +942,7 @@ function property_logs(elem) {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length > 1) {
                     $.each(response.data, function (index, value) {
-                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p><label>Created Date:</label><p>' + value.created_at + '</p><label>Updated Date:</label><p>' + value.updated_at + '</p></div>');
                     });
                 }
                 else {
@@ -979,7 +979,7 @@ function admin_logs(elem) {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length > 1) {
                     $.each(response.data, function (index, value) {
-                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p><label>Created Date:</label><p>' + value.created_at + '</p><label>Updated Date:</label><p>' + value.updated_at + '</p></div>');
                     });
                 }
                 else {
@@ -1016,7 +1016,7 @@ function landBlock_logs(elem) {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
                     $.each(response.data, function (index, value) {
-                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p><label>Created Date:</label><p>' + value.created_at + '</p><label>Updated Date:</label><p>' + value.updated_at + '</p></div>');
                     });
                 }
                 else {
@@ -1050,7 +1050,7 @@ function feature_logs(elem) {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
                     $.each(response.data, function (index, value) {
-                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p><label>Created Date:</label><p>' + value.created_at + '</p><label>Updated Date:</label><p>' + value.updated_at + '</p></div>');
                     });
                 }
                 else {
@@ -1081,12 +1081,13 @@ function category_logs(elem) {
         cache: false,
         processData: false,
         success: function (response) {
+            console.log(response);
             $('.modal-body').html('');
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
                     $.each(response.data, function (index, value) {
-                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p><label>Created Date:</label><p>' + value.created_at + '</p><label>Updated Date:</label><p>' + value.updated_at + '</p></div>');
                     });
                 }
                 else {
@@ -1116,12 +1117,13 @@ function input_logs(elem) {
         cache: false,
         processData: false,
         success: function (response) {
+            console.log(response);
             $('.modal-body').html('');
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
                     $.each(response.data, function (index, value) {
-                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p><label>Created Date:</label><p>' + value.created_at + '</p><label>Updated Date:</label><p>' + value.updated_at + '</p></div>');
                     });
                 }
                 else {
@@ -1150,12 +1152,13 @@ function role_logs(elem) {
         cache: false,
         processData: false,
         success: function (response) {
+            console.log(response);
             $('.modal-body').html('');
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
                     $.each(response.data, function (index, value) {
-                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p><label>Created Date:</label><p>' + value.created_at + '</p><label>Updated Date:</label><p>' + value.updated_at + '</p></div>');
                     });
                 }
                 else {
@@ -1190,7 +1193,7 @@ function adminPermission_logs(elem) {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
                     $.each(response.data, function (index, value) {
-                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p><label>Created Date:</label><p>' + value.created_at + '</p><label>Updated Date:</label><p>' + value.updated_at + '</p></div>');
                     });
                 }
                 else {
@@ -1225,7 +1228,7 @@ function cities_logs(elem) {
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
                     $.each(response.data, function (index, value) {
-                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p><label>Created Date:</label><p>' + value.created_at + '</p><label>Updated Date:</label><p>' + value.updated_at + '</p></div>');
                     });
                 }
                 else {
@@ -1255,13 +1258,13 @@ function district_logs(elem) {
         cache: false,
         processData: false,
         success: function (response) {
+            console.log(response);
             $('.modal-body').html('');
             if (response.status == 'success') {
-                console.log('in');
                 $('#property_logs_modal').modal('show');
                 if (response.data.length >= 1) {
                     $.each(response.data, function (index, value) {
-                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p></div>');
+                        $('.modal-body').append('<div><h6>* ' + value.message + '</h3><label>Request:</label><p style="overflow-wrap: break-word !important;">' + value.request + '</p><label>Response:</label><p>' + value.response + '</p><label>Created Date:</label><p>' + value.created_at + '</p><label>Updated Date:</label><p>' + value.updated_at + '</p></div>');
                     });
                 }
                 else {
@@ -1270,7 +1273,6 @@ function district_logs(elem) {
             }
         }
     });
-
 }
 
 
