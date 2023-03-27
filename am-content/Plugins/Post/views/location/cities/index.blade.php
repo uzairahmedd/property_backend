@@ -1,9 +1,9 @@
 @extends('layouts.backend.app')
 
 @section('content')
-    @php
-    $city = __('labels.city');
-    @endphp
+@php
+$city = __('labels.city');
+@endphp
 @include('layouts.backend.partials.headersection',['title'=> $city])
 <div class="card">
 	<div class="card-body">
@@ -22,7 +22,7 @@
 		<div class="card-action-filter mt-3">
 			<form method="post" id="confirm_basicform" action="{{ route('admin.cities.destroy') }}">
 				@csrf
-				 <!-- @can('cities.delete')
+				<!-- @can('cities.delete')
 				<div class="float-left">
 					<div class="input-group">
 						<select class="form-control selectric" name="method">
@@ -92,9 +92,9 @@
 								{{ $post->updated_at->diffForHumans() }}
 							</div>
 						</td>
-                        <td>
-                            <i class="fa fa-book" data-id="{{$post->id}}" onclick="cities_logs(this)" data-toggle="tooltip" title="Cities Logs"></i>
-                        </td>
+						<td>
+							<i class="fa fa-book" data-id="{{$post->id}}" onclick="cities_logs(this)" data-toggle="tooltip" title="Cities Logs"></i>
+						</td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -108,11 +108,11 @@
 							</div>
 						</th> -->
 						<!-- <th class="am-title"><i class="far fa-image"></i></th> -->
-                        <th class="am-title">{{__('labels.title')}}</th>
-                        <th class="am-title">{{__('labels.arabic_title')}}</th>
-                        <th class="am-title">{{__('labels.featured')}}</th>
-                        <th class="am-date">{{__('labels.date')}}</th>
-                        <th class="am-date">{{__('labels.action')}}</th>
+						<th class="am-title">{{__('labels.title')}}</th>
+						<th class="am-title">{{__('labels.arabic_title')}}</th>
+						<th class="am-title">{{__('labels.featured')}}</th>
+						<th class="am-date">{{__('labels.date')}}</th>
+						<th class="am-date">{{__('labels.action')}}</th>
 					</tr>
 				</tfoot>
 			</table>

@@ -413,7 +413,10 @@ $(".step_3").on('click', function (e) {
                         $('#bedroom_features').html('<label>' + name + '</label>\n' +
                             '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
                             '                    <select id="bedroom_select" name="Bedroom" class="form-control"></select>');
-                        for (var i = 1; i <= 9; i++) {
+                        for (var i = 1; i <= 10; i++) {
+                            if(i == 10){
+                                i="9+";
+                            }
                             var selected = '';
                             if (value.post_category_option != null && value.post_category_option.value == i) {
                                 selected = 'selected';
@@ -427,7 +430,10 @@ $(".step_3").on('click', function (e) {
                         $('#bathroom_features').html('<label>' + name + '</label>\n' +
                             '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
                             '                    <select id="bathroom_select" name="Bathroom" class="form-control"></select>');
-                        for (var i = 0; i <= 9; i++) {
+                        for (var i = 0; i <= 10; i++) {
+                            if(i == 10){
+                                i="9+";
+                            }
                             var selected = '';
                             if (value.post_category_option != null && value.post_category_option.value == i) {
                                 selected = 'selected';
@@ -441,7 +447,10 @@ $(".step_3").on('click', function (e) {
                         $('#guest_room_features').html('<label>' + name + '</label>\n' +
                             '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
                             '                    <select id="guest_room_select" name="Guest-room" class="form-control"></select>');
-                        for (var i = 0; i <= 9; i++) {
+                        for (var i = 0; i <= 6; i++) {
+                            if(i == 6){
+                                i="5+";
+                            }
                             var selected = '';
                             if (value.post_category_option != null && value.post_category_option.value == i) {
                                 selected = 'selected';
@@ -455,7 +464,10 @@ $(".step_3").on('click', function (e) {
                         $('#living_room_features').html('<label>' + name + '</label>\n' +
                             '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
                             '                    <select id="living_room_select" name="Living-room" class="form-control"></select>');
-                        for (var i = 0; i <= 9; i++) {
+                        for (var i = 0; i <= 6; i++) {
+                            if(i == 6){
+                                i="5+";
+                            }
                             var selected = '';
                             if (value.post_category_option != null && value.post_category_option.value == i) {
                                 selected = 'selected';
@@ -469,7 +481,10 @@ $(".step_3").on('click', function (e) {
                         $('#parking_features').html('<label>' + name + '</label>\n' +
                             '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
                             '                    <select id="parking_room_select" name="Parking" class="form-control"></select>');
-                        for (var i = 0; i <= 9; i++) {
+                        for (var i = 0; i <= 6; i++) {
+                            if(i == 6){
+                                i="5+";
+                            }
                             var selected = '';
                             if (value.post_category_option != null && value.post_category_option.value == i) {
                                 selected = 'selected';
@@ -483,7 +498,10 @@ $(".step_3").on('click', function (e) {
                         $('#elevator_features').html('<label>' + name + '</label>\n' +
                             '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
                             '                    <select id="elevator_room_select" name="Elevator" class="form-control"></select>');
-                        for (var i = 0; i <= 9; i++) {
+                        for (var i = 0; i <= 6; i++) {
+                            if(i == 6){
+                                i="5+";
+                            }
                             var selected = '';
                             if (value.post_category_option != null && value.post_category_option.value == i) {
                                 selected = 'selected';
@@ -494,19 +512,23 @@ $(".step_3").on('click', function (e) {
                     }
 
                     if (value.name == 'Appartments') {
-                        $('#appartment_features').html('<label>' + name + '</label>\n' +
-                            '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
-                            '<input type="text" value="'+value.post_category_option.value+'" name="Appartments" class="form-control d-flex justify-content-start align-items-start w-100">\n');
-                    }
-                    var val = '';
-                    if (value.name == 'Openings') {
-                        if(value.post_category_option.value != null)
-                        {
-                           val =  value.post_category_option.value;
+                        var value_selected='';
+                        if(value.post_category_option){
+                            value_selected=value.post_category_option.value;
                         }
-                        $('#opening_features').html('<label>' + name + '</label>\n' +
+                        $('#appartment_features').html('<label>' + name + ' (Optional)</label>\n' +
                             '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
-                            '<input type="text" value="'+val+'" name="Openings" class="form-control d-flex justify-content-start align-items-start w-100">\n');
+                            '<input type="text" value="'+value_selected+'" name="Appartments" class="form-control d-flex justify-content-start align-items-start w-100">\n');
+                    }
+
+                    if (value.name == 'Openings') {
+                        var value_selected='';
+                        if(value.post_category_option){
+                            value_selected=value.post_category_option.value;
+                        }
+                        $('#opening_features').html('<label>' + name + ' (Optional)</label>\n' +
+                            '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
+                            '<input type="text" value="'+value_selected+'" name="Openings" class="form-control d-flex justify-content-start align-items-start w-100">\n');
                     }
 
                     // if (value.name == 'Openings') {
@@ -524,7 +546,7 @@ $(".step_3").on('click', function (e) {
                     // }
 
                     if (value.name == 'Office') {
-                        $('#office_features').html('<label>' + name + '</label>\n' +
+                        $('#office_features').html('<label>' + name + ' (Optional)</label>\n' +
                             '<input type="hidden" name="get_data['+value.name+']" value="'+value.id+'">'+
                             '                    <select id="office_select" name="Office" class="form-control"></select>');
                         for (var i = 0; i <= 9; i++) {

@@ -1,5 +1,8 @@
 (function ($) {
     "use strict";
+    function success(res) {
+        location.reload()
+    }
     //step 1 submit
     $("#step_one_form").on('submit', function (e) {
         e.preventDefault();
@@ -24,11 +27,12 @@
 
             },
             success: function (response) {
-                console.log(response);
                 $('.basicbtn').removeAttr('disabled')
-                Sweet('success', response);
                 $('.basicbtn').html(basicbtnhtml);
-                success(response);
+                if (response.status == 'success') {
+                    Sweet('success', response.message);
+                    success(response);
+                }
             },
             error: function (xhr, status, error) {
                 $('.basicbtn').html(basicbtnhtml);
@@ -73,11 +77,13 @@
 
             },
             success: function (response) {
-                console.log(response);
                 $('.basicbtn').removeAttr('disabled')
-                Sweet('success', response);
                 $('.basicbtn').html(basicbtnhtml);
-                success(response);
+                if (response.status == 'success') {
+                    Sweet('success', response.message);
+                    success(response);
+                }
+
 
                 if (response.status == 'error') {
                     Sweet('error', response.message);
@@ -121,7 +127,6 @@
     //
     //         },
     //         success: function (response) {
-    //             console.log(response);
     //             $('.basicbtn').removeAttr('disabled')
     //             Sweet('success', response);
     //             $('.basicbtn').html(basicbtnhtml);
@@ -170,9 +175,11 @@
             },
             success: function (response) {
                 $('.basicbtn').removeAttr('disabled')
-                Sweet('success', response);
                 $('.basicbtn').html(basicbtnhtml);
-                success(response);
+                if (response.status == 'success') {
+                    Sweet('success', response.message);
+                    success(response);
+                }
                 if (response.status == 'error') {
                     Sweet('error', response.message);
                 }
@@ -215,10 +222,12 @@
 
             },
             success: function (response) {
-                $('.basicbtn').removeAttr('disabled')
-                Sweet('success', response);
+                $('.basicbtn').removeAttr('disabled');
                 $('.basicbtn').html(basicbtnhtml);
-                success(response);
+                if (response.status == 'success') {
+                    Sweet('success', response.message);
+                    success(response);
+                }
                 if (response.status == 'error') {
                     Sweet('error', response.message);
                 }
@@ -261,10 +270,12 @@
 
             },
             success: function (response) {
-                $('.basicbtn').removeAttr('disabled')
-                Sweet('success', response);
+                $('.basicbtn').removeAttr('disabled');
                 $('.basicbtn').html(basicbtnhtml);
-                success(response);
+                if (response.status == 'success') {
+                    Sweet('success', response.message);
+                    success(response);
+                }
                 if (response.status == 'error') {
                     Sweet('error', response.message);
                 }
@@ -306,10 +317,12 @@
 
             },
             success: function (response) {
-                $('.basicbtn').removeAttr('disabled')
-                Sweet('success', response);
+                $('.basicbtn').removeAttr('disabled');
                 $('.basicbtn').html(basicbtnhtml);
-                success(response);
+                if (response.status == 'success') {
+                    Sweet('success', response.message);
+                    success(response);
+                }
                 if (response.status == 'error') {
                     Sweet('error', response.message);
                 }
@@ -680,7 +693,6 @@
 
             },
             success: function (response) {
-                console.log(response);
                 $('.term_id').val(response.data);
                 $('.basicbtn').removeAttr('disabled')
                 Sweet('success', response.message);
@@ -878,7 +890,6 @@ function get_property_data(elem) {
             $('#property_data_modal').modal('show');
 
             $.each(response, function (index, value) {
-                console.log();
                 $('#main_contend').append('<div class="row"><label><b>' + index + ': </b><span>' + value + '</span></label></div>');
             });
 
@@ -973,7 +984,6 @@ function admin_logs(elem) {
         cache: false,
         processData: false,
         success: function (response) {
-            console.log(response);
             $('.modal-body').html('');
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
@@ -1010,7 +1020,6 @@ function landBlock_logs(elem) {
         cache: false,
         processData: false,
         success: function (response) {
-            console.log(response);
             $('.modal-body').html('');
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
@@ -1081,7 +1090,6 @@ function category_logs(elem) {
         cache: false,
         processData: false,
         success: function (response) {
-            console.log(response);
             $('.modal-body').html('');
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
@@ -1117,7 +1125,6 @@ function input_logs(elem) {
         cache: false,
         processData: false,
         success: function (response) {
-            console.log(response);
             $('.modal-body').html('');
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
@@ -1152,7 +1159,6 @@ function role_logs(elem) {
         cache: false,
         processData: false,
         success: function (response) {
-            console.log(response);
             $('.modal-body').html('');
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');
@@ -1258,7 +1264,6 @@ function district_logs(elem) {
         cache: false,
         processData: false,
         success: function (response) {
-            console.log(response);
             $('.modal-body').html('');
             if (response.status == 'success') {
                 $('#property_logs_modal').modal('show');

@@ -193,7 +193,7 @@ class PropertyController extends controller
 
     public function parent_property()
     {
-        $data= Category::where('type', 'parent_category')->where('featured', 1)->get();
+        $data = Category::where('type', 'parent_category')->where('featured', 1)->get();
         return success_response($data, 'Property nature get successfully!');
     }
 
@@ -202,10 +202,11 @@ class PropertyController extends controller
         $data = [];
         $data['parent_category'] = Category::where('type', 'parent_category')->where('featured', 1)->get();
         $data['post_data'] = Terms::where('type', 'property')->where('is_land_block', 1)
-            ->where('terms.id',$id)
+            ->where('terms.id', $id)
             ->leftjoin('land_block_details', 'terms.id', '=', 'land_block_details.term_id')
             ->select(
-                'terms.*', 'land_block_details.*'
+                'terms.*',
+                'land_block_details.*'
             )->get();
         $data['blockcount'] = LandBlock::where('term_id', $id)->count();
         return success_response($data, 'Property nature get successfully!');
@@ -219,9 +220,8 @@ class PropertyController extends controller
      */
     public function block_store(Request $request)
     {
-//        dd($request->all());
         //Store $request logs
-        $log_id = AdminLogs::create(['log_code' => 'B3', 'request' => serialize($request->all('status', 'id','title','property_nature','plot_number','plot_price','planned_number','total_area','center_coordinate','bottom_left_coordinate','bottom_right_coordinate','top_right_coordinate','top_left_coordinate','left_measurement','right_measurement','top_measurement','bottom_measurement','property_nature','bottom_left_coordinate','bottom_right_coordinate','top_right_coordinate','top_left_coordinate'))]);
+        $log_id = AdminLogs::create(['log_code' => 'B3', 'request' => serialize($request->all('status', 'id', 'title', 'property_nature', 'plot_number', 'plot_price', 'planned_number', 'total_area', 'center_coordinate', 'bottom_left_coordinate', 'bottom_right_coordinate', 'top_right_coordinate', 'top_left_coordinate', 'left_measurement', 'right_measurement', 'top_measurement', 'bottom_measurement', 'property_nature', 'bottom_left_coordinate', 'bottom_right_coordinate', 'top_right_coordinate', 'top_left_coordinate'))]);
         $validatedData = $request->validate([
             'status' => 'required',
             'title' => 'required|max:100',
@@ -384,19 +384,14 @@ class PropertyController extends controller
         ]);
 
         //store & update title and slug
-//        $unique_id = generate_unique_id();
-//        $slug = Str::slug($request->title) . '-' . $unique_id;
+        $unique_id = generate_unique_id();
+        $slug = Str::slug($request->title) . '-' . $unique_id;
         $term = Terms::where('id', $term_id)->first();
-//        $term = new Terms;
-//        $term->user_id = Auth::id();
-//        $term->unique_id = $unique_id;
         $term->status = 3;
         $term->title = $request->title;
         $term->ar_title = $request->ar_title;
+        $term->slug = $slug;
         $term->save();
-//        $term->type = 'property';
-//        $term->is_land_block = 1;
-//        $term->slug = $slug;
 
         //update property district and location
         $district = PostDistrict::where('term_id', $term_id)->where('type', 'district')->first();
@@ -505,9 +500,7 @@ class PropertyController extends controller
             $im_output = str_replace(end($im_ex), $c_type, $im_output); // replace file extension
 
 
-        } else {
         }
-
 
         // output original image & compressed image
         $im_size = filesize($im_output);
@@ -550,7 +543,7 @@ class PropertyController extends controller
     {
         $plot_number_count = $data['id'];
         for ($count = 0; $count < count($plot_number_count); $count++) {
-            $details=LandBlock::where('id', $data['id'][$count])->first();
+            $details = LandBlock::where('id', $data['id'][$count])->first();
             $land_block = !empty($details) ? $details : new LandBlock;
             $land_block->term_id = $term_id;
             $land_block->parent_category = $data['property_nature'][$count];
@@ -954,7 +947,7 @@ class PropertyController extends controller
         $district = District::where('featured', 1)->get();
         //count for land block
         $blockcount = LandBlock::where('term_id', $id)->count();
-        return view('plugin::properties.land_block_edit', compact('info', 'status_category','cities','district','blockcount'));
+        return view('plugin::properties.land_block_edit', compact('info', 'status_category', 'cities', 'district', 'blockcount'));
     }
 
 
@@ -974,7 +967,7 @@ class PropertyController extends controller
     public function update(Request $request, $id)
     {
         //Store $request logs
-        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id'=> $id, 'request' => serialize($request->all())]);
+        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id' => $id, 'request' => serialize($request->all())]);
         //Step 1 Validation Property English and Arabic name, location longitude and latitude
         $validatedData = $request->validate([
             'status' => 'required',
@@ -987,7 +980,7 @@ class PropertyController extends controller
         //update title and slug
         $term = Terms::where('id', $id)->first();
         $unique_id = generate_unique_id();
-        $slug = \Illuminate\Support\Str::slug($request->title) . '-' . $unique_id;
+        $slug = Str::slug($request->title) . '-' . $unique_id;
         $term->slug = $slug;
         $term->title = $request->title;
         $term->ar_title = $request->ar_title;
@@ -1014,13 +1007,13 @@ class PropertyController extends controller
 
         //store response
         DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 1 updated successfully!'), 'message' => 'Step 1 updated']);
-        return response()->json(['Property Updated Successfully']);
+        return success_response('', 'Property Updated Successfully');
     }
 
     public function second_update_property(Request $request, $id)
     {
         //Store $request logs
-        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id'=> $id, 'request' => serialize($request->all())]);
+        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id' => $id, 'request' => serialize($request->all())]);
         $validatedData = $request->validate([
             'streets' => 'required',
             'price' => 'required',
@@ -1117,27 +1110,30 @@ class PropertyController extends controller
 
             $this->remove_input_page_data($term_id);
             $this->remove_feature_data($term_id);
-            return response()->json(['Property Updated Successfully']);
+            DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 2 updated successfully!'), 'message' => 'Step 2 updated']);
+            return success_response('', 'Property Updated Successfully');
         }
         if (!empty($check_category) && Str::contains($check_category->name, 'Farm')) {
             $this->remove_input_page_data($term_id);
             $this->remove_feature_data($term_id);
-            return response()->json(['Property Updated Successfully']);
+            DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 2 updated successfully!'), 'message' => 'Step 2 updated']);
+            return success_response('', 'Property Updated Successfully');
         }
         if (!empty($check_category) && Str::contains($check_category->name, 'Warehouse')) {
             $this->remove_input_page_data($term_id);
             $this->remove_feature_data($term_id);
-            return response()->json(['Property Updated Successfully']);
+            DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 2 updated successfully!'), 'message' => 'Step 2 updated']);
+            return success_response('', 'Property Updated Successfully');
         }
         //store response
         DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 2 updated successfully!'), 'message' => 'Step 2 updated']);
-        return response()->json(['Property Updated Successfully']);
+        return success_response('', 'Property Updated Successfully');
     }
 
     public function third_update_property(Request $request, $id)
     {
         //Store $request logs
-        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id'=> $id, 'request' => serialize($request->all())]);
+        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id' => $id, 'request' => serialize($request->all())]);
         //Validate property total floor
         if (array_key_exists('total_floors', $request->all()) && empty($request->total_floors)) {
             return error_response('', 'please provide total floors detail');
@@ -1194,13 +1190,13 @@ class PropertyController extends controller
         }
         //store response
         DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 3 updated successfully!'), 'message' => 'Step 3 updated']);
-        return response()->json(['Property Updated Successfully']);
+        return success_response('', 'Property Updated Successfully');
     }
 
     public function fourth_update_property(Request $request, $id)
     {
         //Store $request logs
-        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id'=> $id, 'request' => serialize($request->virtual_tour)]);
+        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id' => $id, 'request' => serialize($request->virtual_tour)]);
         //Validate Virtual Tour
         if (array_key_exists('virtual_tour', $request->all()) && empty($request->virtual_tour)) {
             return error_response('', 'please provide virtual tour link');
@@ -1232,13 +1228,13 @@ class PropertyController extends controller
         $this->upload_images($request, $term_id);
         //store response
         DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 4 updated successfully!'), 'message' => 'Step 4 updated']);
-        return response()->json(['Property Updated Successfully']);
+        return success_response('', 'Property Updated Successfully');
     }
 
     public function fifth_update_property(Request $request, $id)
     {
         //Store $request logs
-        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id'=> $id, 'request' => serialize($request->all())]);
+        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id' => $id, 'request' => serialize($request->all())]);
         //Validate features
         if (array_key_exists('features', $request->all()) && empty($request->features)) {
             return error_response('', 'please provide features');
@@ -1281,13 +1277,13 @@ class PropertyController extends controller
         }
         //store response
         DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 5 updated successfully!'), 'message' => 'Step 5 updated']);
-        return response()->json(['Property Updated Successfully']);
+        return success_response('', 'Property Updated Successfully');
     }
 
     public function sixth_update_property(Request $request, $id)
     {
         //Store $request logs
-        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id'=> $id, 'request' => serialize($request->all())]);
+        $log_id = AdminLogs::create(['log_code' => 'P3', 'terms_id' => $id, 'request' => serialize($request->all())]);
         //        validate the Deed number
         if (array_key_exists('instrument_number', $request->all()) && empty($request->instrument_number)) {
             return error_response('', 'please provide instrument number');
@@ -1320,7 +1316,7 @@ class PropertyController extends controller
         }
         //store response
         DB::table('admin_logs')->where('id', $log_id->id)->update(['user_id' => Auth::id(), 'response' => serialize('Step 6 updated successfully!'), 'message' => 'Step 6 updated']);
-        return response()->json(['Property Updated Successfully']);
+        return success_response('', 'Property Updated Successfully');
     }
 
     public function get_property_type(Request $request)
@@ -1336,20 +1332,20 @@ class PropertyController extends controller
         $property_type = null;
         $info = Terms::with('postcategory')->where('id', $id)->first();
         //if land,Warehouse and farm is property type
-        if (!empty($info->property_type) && \Illuminate\Support\Str::contains($info->property_type->category->name, 'land')) {
+        if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'land')) {
             $this->remove_input_page_data($this->term_id);
             $this->remove_feature_data($this->term_id);
-            return response()->json(['Property Updated Successfully']);
+            return success_response('', 'Property Updated Successfully');
         }
         if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'Farm')) {
             $this->remove_input_page_data($this->term_id);
             $this->remove_feature_data($this->term_id);
-            return response()->json(['Property Updated Successfully']);
+            return success_response('', 'Property Updated Successfully');
         }
         if (!empty($info->property_type) && Str::contains($info->property_type->category->name, 'Warehouse')) {
             $this->remove_input_page_data($this->term_id);
             $this->remove_feature_data($this->term_id);
-            return response()->json(['Property Updated Successfully']);
+            return success_response('', 'Property Updated Successfully');
         }
 
         foreach ($info->postcategory as $key => $value) {
@@ -1427,7 +1423,7 @@ class PropertyController extends controller
             }
         }
         //for update propery status
-         elseif (!empty($request->method)) {
+        elseif (!empty($request->method)) {
             if ($request->ids) {
                 if ($request->method == "trash") {
                     $method = 0;

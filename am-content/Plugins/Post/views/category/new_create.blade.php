@@ -117,47 +117,5 @@
   function success(res) {
     location.reload()
   }
-  // jQuery(document).ready(function() {
-  //   $('#total_floor').change(function() {
-
-  //     Swal.fire({
-  //       title: 'Do you want to make it require?',
-  //       html: '<form><input type="checkbox">If yes then click this checkbox</form>',
-  //       text: "You want to delete this!",
-  //       showCancelButton: true,
-  //       confirmButtonColor: '#094193',
-  //       cancelButtonColor: '#d33',
-  //       confirmButtonText: 'Yes, required!',
-  //       showLoaderOnConfirm: true,
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         if (result.value) {
-  //           Swal.fire({
-  //             icon: 'success',
-  //             text: 'Total floors is required',
-  //           });
-  //           console.log('1');
-  //           $('#reuiqred_text').text('(Required)');
-  //           $('#required_field').val('1');
-  //         } else {
-  //           Swal.fire({
-  //             icon: 'error',
-  //             text: "Total floors is not required"
-  //           });
-  //           console.log('ds');
-  //           $('#reuiqred_text').text('(not Required)');
-  //           $('#required_field').val('0');
-  //         }
-  //       } else {
-  //         console.log(`modal was dismissed by ${result.dismiss}`);
-  //         $('#reuiqred_text').text('(not Required)');
-  //         $('#required_field').val('0');
-  //       }
-  //     })
-
-
-  //   });
-
-  // });
 </script>
 @endsection
