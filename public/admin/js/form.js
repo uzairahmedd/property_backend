@@ -1241,7 +1241,7 @@ function cities_logs(elem) {
 }
 
 
-// for district logs
+//for district logs
 function district_logs(elem) {
     var district_id = $(elem).data('id');
     $.ajaxSetup({
