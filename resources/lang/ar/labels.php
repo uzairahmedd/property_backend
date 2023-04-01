@@ -690,9 +690,14 @@ return [
     'plot_basic_details' => 'تفاصيل الأرض الأساسية',
     'rem_plot_form' => 'إزالة نموذج الرسم',
     "Remember_Me" => "تذكرنى",
-    "action" => 'فعل',
     "Property_Logs" => "سجلات ",
     "slug"=>'أدخل سبيكة',
     'edit_land_block'=>'تحرير كتلة الأرض',
+
+    //    Admin Dashboard Dictionary
+    'sign_in_to_khiaratee'=>'تسجيل الدخول إلى خياراتي ',
+    'welcome_to' => 'مرحبا بكم في',
+    'khiaratee_dashboard' => 'لوحة القيادة خياراتي',
+    'website' => 'موقع إلكتروني',
 
 ];

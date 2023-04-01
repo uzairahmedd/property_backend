@@ -1,0 +1,35 @@
+.show-pass {
+    right: 0!important;
+    margin-right: -12px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.rtl {
+    direction: rtl;
+}
+
+.rtl #remember-me
+{
+    margin-left: 10px;
+}
+
+.rtl .show-pass {
+    left: 0!important;
+    margin-left: 20px;
+}

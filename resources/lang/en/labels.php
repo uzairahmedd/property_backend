@@ -680,7 +680,12 @@ return [
     'plot_basic_details' => 'Plot Basic details',
     'rem_plot_form' => 'Remove Plot From',
     "Remember_Me" => "Remember Me",
-    "action"=>'Action',
     "Property_Logs"=>"Logs",
     "slug"=>'Enter Slug',
+//    Admin Dashboard Dictionary
+        'sign_in_to_khiaratee'=>'Sign In to Khiaratee',
+    'welcome_to' => 'Welcome to',
+    'khiaratee_dashboard' => 'Khiaratee Dashboard',
+    'website' => 'Website',
+
 ];
