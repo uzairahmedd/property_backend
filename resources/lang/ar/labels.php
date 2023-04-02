@@ -699,5 +699,7 @@ return [
     'welcome_to' => 'مرحبا بكم في',
     'khiaratee_dashboard' => 'لوحة القيادة خياراتي',
     'website' => 'موقع إلكتروني',
+    'since_last_month' => 'منذ اخر شهر'
+
 
 ];

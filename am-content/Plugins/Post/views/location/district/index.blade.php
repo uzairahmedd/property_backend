@@ -8,10 +8,10 @@ $district = __('labels.district');
 <div class="card">
 	<div class="card-body">
 		<div class="row mb-30">
-			<div class="col-lg-6">
+			<div class="col-lg-6 d-flex">
 				<h4>{{__('labels.district')}}</h4>
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-6 d-flex justify-content-end">
 				@can('district.create')
 				<div class="add-new-btn">
 					<a href="{{ route('admin.district.create') }}" class="btn float-right btn-primary">{{__('labels.add_new')}}</a>

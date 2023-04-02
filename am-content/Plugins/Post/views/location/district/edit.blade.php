@@ -49,10 +49,10 @@
                         echo  input($arr);
 
 
-                      
+
                         @endphp
                         <div class="form-group states">
-                            <label for="title">{{ __('labels.select_city') }}</label>
+                            <label for="title" class="d-flex">{{ __('labels.select_city') }}</label>
                             <select class="form-control" name="p_id" id="state">
                                 <option disabled="" selected="">{{ __('labels.select_city') }}</option>
                                 @foreach($cities as $r)
@@ -68,7 +68,7 @@
         <div class="single-area">
             <div class="card sub">
                 <div class="card-body">
-                <h5>{{__('labels.is_featured')}}</h5>
+                <h5 class="d-flex">{{__('labels.is_featured')}}</h5>
                     <hr>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
                         <option  value="1" @if($info->featured==1) selected="" @endif>{{ __('labels.yes') }}</option>

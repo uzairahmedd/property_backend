@@ -1,24 +1,7 @@
-.show-pass {
-    right: 0!important;
-    margin-right: -12px !important;
+.ltr .show-pass {
+    right: 0;
+    margin-right: -12px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .rtl {
     direction: rtl;
@@ -30,6 +13,89 @@
 }
 
 .rtl .show-pass {
-    left: 0!important;
+    left: 0;
     margin-left: 20px;
 }
+
+.rtl .main-sidebar {
+    right: 0;
+    left: unset !important;
+}
+
+.rtl .main-content {
+    padding-right: 280px;
+    padding-left: 30px;
+}
+
+.rtl .main-sidebar:after {
+ right: 0;
+    left: unset !important;
+}
+
+.rtl body.sidebar-mini .main-content, .rtl body.sidebar-mini .main-footer {
+    padding-right: 90px;
+}
+
+.rtl .main-sidebar .sidebar-menu li ul.dropdown-menu li a {
+    padding-right: 65px;
+}
+
+.rtl .main-sidebar .sidebar-menu li a.has-dropdown:after {
+    left: 20px;
+    right: unset;
+}
+
+.rtl .menu-icons
+{
+    margin-left: auto;
+    margin-right: -20px !important;
+}
+
+.rtl .navbar {
+    right: 250px;
+    left: 5px;
+}
+
+.rtl .admin-lang
+{
+    direction: ltr;
+}
+
+
+.rtl .main-sidebar .sidebar-menu li ul.dropdown-menu li a
+{
+    padding-right: 65px;
+}
+
+.rtl .main-sidebar .sidebar-menu li a.has-dropdown:after
+{
+    left: 20px;
+    right: unset;
+}
+
+/*.rtl .navbar .navbar-expand-lg .main-navbar*/
+/*{*/
+/*    position: fixed;*/
+/*}*/
+
+.rtl .main-sidebar .sidebar-menu li a span
+{
+    display: flex;
+}
+
+.rtl .section .section-header .section-header-breadcrumb {
+    margin-right: auto;
+    margin-left: unset;
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -687,5 +687,6 @@ return [
     'welcome_to' => 'Welcome to',
     'khiaratee_dashboard' => 'Khiaratee Dashboard',
     'website' => 'Website',
+    'since_last_month' => 'Since last month'
 
 ];

@@ -7,12 +7,12 @@ $city = __('labels.city');
 @include('layouts.backend.partials.headersection',['title'=> $city])
 <div class="card">
 	<div class="card-body">
-		<div class="row mb-30">
-			<div class="col-lg-6">
+		<div class="row mb-30 d-flex">
+			<div class="col-lg-6 d-flex">
 				<h4>{{__('labels.city')}}</h4>
 			</div>
 			@can('cities.create')
-			<div class="col-lg-6">
+			<div class="col-lg-6 d-flex justify-content-end">
 				<div class="add-new-btn">
 					<a href="{{ route('admin.cities.create') }}" class="btn float-right btn-primary">{{__('labels.add_new')}}</a>
 				</div>

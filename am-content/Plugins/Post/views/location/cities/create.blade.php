@@ -11,7 +11,7 @@
     <div class="col-lg-9">
         <div class="card">
             <div class="card-body">
-                <h4>{{__('labels.add_new_city')}}</h4>
+                <h4 class="d-flex">{{__('labels.add_new_city')}}</h4>
                 <form method="post" action="{{ route('admin.location.store') }}" class="basicform">
                     @csrf
                     <div class="pt-20">
@@ -52,7 +52,7 @@
         <div class="single-area">
             <div class="card">
                 <div class="card-body">
-                    <h5>{{__('labels.publish')}}</h5>
+                    <h5 class="d-flex">{{__('labels.publish')}}</h5>
                     <hr>
                     <div class="btn-publish">
                         <button type="submit" class="btn btn-primary col-12 basicbtn"><i class="fa fa-save"></i> {{__('labels.save')}}</button>
@@ -63,7 +63,7 @@
         <div class="single-area">
             <div class="card sub">
                 <div class="card-body">
-                    <h5>{{__('labels.is_featured')}}</h5>
+                    <h5 class="d-flex">{{__('labels.is_featured')}}</h5>
                     <hr>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
                         <option value="1">{{__('labels.yes')}}</option>

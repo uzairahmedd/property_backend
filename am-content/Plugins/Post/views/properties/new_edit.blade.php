@@ -90,7 +90,7 @@
                                       action="{{ route('admin.property.update',$info->id)}}">
                                     @csrf
                                     <div class="form-group mt-3">
-                                        <label>{{__('labels.property')}}</label>
+                                        <label class="d-flex">{{__('labels.property')}}</label>
                                         <select class="form-control form-select-lg mb-3"
                                                 aria-label=".form-select-lg example" name="status">
                                             <option value='' disabled selected>{{__('labels.select_property_type')}}</option>
@@ -132,7 +132,7 @@
 
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="title">{{ __('labels.city') }}</label>
+                                            <label for="title" class="d-flex">{{ __('labels.city') }}</label>
                                             <select class="form-control selectric" id="city_val" name="city">
                                                 <option value="">{{ __('labels.select_city') }}</option>
                                                 @foreach($cities as $city)
@@ -141,7 +141,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="title">{{ __('labels.district') }}</label>
+                                            <label for="title" class="d-flex">{{ __('labels.district') }}</label>
                                             <input type="hidden" id="get_district_val" value="{{$info != '' ?  $info->district->district_id : old('district')}}" />
                                             <select id="district_val" name="district" class="form-control theme-border" autocomplete="off" placeholder="{{__('labels.please_select_district')}}">
                                             </select>
@@ -180,7 +180,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="title">{{__('labels.property_nature')}}</label>
+                                                <label for="title" class="d-flex">{{__('labels.property_nature')}}</label>
                                                 <select class="form-control" id="parent_category_change" name="parent_category" onchange="property_type_triger(this, event)">
                                                     <option value='' disabled selected>{{__('labels.property_nature')}}</option>
                                                     @foreach($parent_category as $row)
@@ -193,7 +193,7 @@
                                         </div>
                                         <div class="col-sm-6 property_types">
                                             <div class="form-group">
-                                                <label>{{__('labels.property_type')}}</label>
+                                                <label class="d-flex">{{__('labels.property_type')}}</label>
                                                 <select class="form-control form-select-lg mb-3"
                                                         id="property_type_select"
                                                         onchange="land_triger(this, event)"
@@ -214,7 +214,7 @@
                                     <div class="row">
                                         <div class="col-sm-6 land-size" id="top_land_size">
                                             <div class="form-group" id="land_size">
-                                                <label>{{__('labels.land_area')}}</label>
+                                                <label class="d-flex">{{__('labels.land_area')}}</label>
                                                 <input type="text" id="land_size_area"
                                                        value="{{ !empty($info->landarea) ? $info->landarea->content  : old("landarea")}}"
                                                        name="landarea" placeholder="{{__('labels.area_square_meter')}}"
@@ -223,7 +223,7 @@
                                         </div>
                                         <div class="col-sm-6" id="built_up_area">
                                             <div class="form-group">
-                                                <label for="title">{{__('labels.built_up_area')}}</label>
+                                                <label for="title" class="d-flex">{{__('labels.built_up_area')}}</label>
                                                 <input type="text" id="built_area"
                                                        value="{{ !empty($info->builtarea) ? $info->builtarea->content  : old("builtarea")}}"
                                                        name="builtarea" placeholder="{{__('labels.area_square_meter')}}"
@@ -235,7 +235,7 @@
                                     <div class="row built-up-year">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>{{__('labels.building_year')}}</label>
+                                                <label class="d-flex">{{__('labels.building_year')}}</label>
                                                 <div
                                                     class="d-flex justify-content-center align-items-center theme-gx-3 mb-4_5 ready-not-ready">
                                                     <div class="radio-container col-sm-6 radio-edit-two">
@@ -264,7 +264,7 @@
                                     <div class="row">
                                         <div class="col-sm-6 mt-4">
                                             <div class="form-group">
-                                                <label>{{__('labels.electricity_meter_is_there')}}</label>
+                                                <label class="d-flex">{{__('labels.electricity_meter_is_there')}}</label>
                                                 <select class="form-control form-select-lg mb-3"
                                                         aria-label=".form-select-lg example"
                                                         name="electricity_facility">
@@ -282,7 +282,7 @@
                                         </div>
                                         <div class="col-sm-6 mt-4">
                                             <div class="form-group">
-                                                <label>{{__('labels.water_meter_is_there')}}</label>
+                                                <label class="d-flex">{{__('labels.water_meter_is_there')}}</label>
                                                 <select class="form-control form-select-lg mb-3"
                                                         aria-label=".form-select-lg example" name="water_facility">
                                                     <option selected>{{__('labels.water_meter_is_there')}}</option>
@@ -301,7 +301,7 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>{{__('labels.no_street')}}</label>
+                                                <label class="d-flex">{{__('labels.no_street')}}</label>
                                                 <select class="form-control form-select-lg mb-3"
                                                         aria-label=".form-select-lg example"
                                                         onchange="dropdown_btn(this, event)" name="streets">
@@ -321,7 +321,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>{{__('labels.property_price')}}</label>
+                                                <label class="d-flex">{{__('labels.property_price')}}</label>
                                                 <input type="text" class="form-control"
                                                        value="{{ !empty($info->price) ? $info->price->price  : ""}}"
                                                        name="price" placeholder="{{__('labels.property_value')}}">
@@ -365,7 +365,7 @@
                                         @if(!empty($info->property_type) && $info->property_type->category->furnishing_section == '1')
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label for="furnishing">{{__('labels.property_furnishing')}}</label>
+                                                <label for="furnishing" class="d-flex">{{__('labels.property_furnishing')}}</label>
                                                 <select name="furnishing" id="furnishing" class="form-control">
                                                     <option
                                                         value="1" {{ !empty($info->property_condition) && $info->property_condition->content == 1 ? "selected"  : "" }}>
@@ -387,7 +387,7 @@
                                         @if(!empty($info->property_type) && $info->property_type->category->property_floor == '1')
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="property_floor">{{__('labels.property_floor')}}</label>
+                                                    <label for="property_floor" class="d-flex">{{__('labels.property_floor')}}</label>
                                                     <input type="text" name="property_floor"
                                                            value="{{ !empty( $info->property_floor) ? $info->property_floor->content  : old('property_floor') }}"
                                                            placeholder="{{__('labels.property_floor')}}"
@@ -401,7 +401,7 @@
                                         @if(!empty($info->property_type) && $info->property_type->category->total_floor == '1')
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="total_floors">{{__('labels.total_floors')}}</label>
+                                                    <label for="total_floors" class="d-flex">{{__('labels.total_floors')}}</label>
                                                     <input type="text" name="total_floors"
                                                            value="{{ !empty( $info->total_floors) ? $info->total_floors->content  : old('total_floors') }}"
                                                            placeholder="{{__('labels.total_floors')}}"
@@ -478,7 +478,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group pt-1">
-                                            <label>{{__('labels.video_link')}}</label>
+                                            <label class="d-flex">{{__('labels.video_link')}}</label>
                                             <input type="text"
                                                    value="{{ !empty( $info->virtual_tour) ? $info->virtual_tour->content  : ""}}"
                                                    name="virtual_tour"
@@ -507,13 +507,13 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>{{__('labels.land_length')}}</label>
+                                                <label class="d-flex">{{__('labels.land_length')}}</label>
                                                 <input type="text" name="length" class="form-control" id="land_length" value="{{!empty($info->length) ? $info->length->content : old('length')}}">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>{{__('labels.land_width')}}</label>
+                                                <label class="d-flex">{{__('labels.land_width')}}</label>
                                                 <input type="text" id="depth_field" name="depth"
                                                        value="{{ !empty($info->depth) ? $info->depth->content  : old('depth')}}"
                                                        class="form-control">
@@ -537,13 +537,13 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>{{__('labels.identification_no')}}</label>
+                                                <label class="d-flex">{{__('labels.identification_no')}}</label>
                                                 <input type="text" name="id_number" disabled  value="{{ isset($user_id->advertiser_id) ? $user_id->advertiser_id : old('id_number') }}" placeholder="1025151121" class="form-control payment theme-border">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>{{__('labels.instrument_no')}} {{__('labels.optional')}}</label>
+                                                <label class="d-flex">{{__('labels.instrument_no')}} {{__('labels.optional')}}</label>
                                                 <input type="text" name="instrument_number" value="{{ !empty( $instrument->instrument_number) ? $instrument->instrument_number->content  : old('instrument_number') }}" placeholder="{{__('labels.instrument_no')}}" class="form-control payment theme-border">
                                             </div>
                                         </div>
@@ -552,7 +552,7 @@
                                         <div class="document theme-gx-32 d-flex justify-content-end align-items-end">
                                             <div
                                                 class="col-12 mb-3 d-flex align-items-center justify-content-start terms-check">
-                                                <label class="form-check-label check-box-terms"
+                                                <label class="form-check-label check-box-terms d-flex"
                                                        for="inlineCheckbox1"> {{__("labels.is_there_mortage")}}</label>
                                                 <span class="theme-text-seondary-black font-16 ms-1"> </span>
                                                 <input class="form-check-input" name="rule[]" type="checkbox"
@@ -565,7 +565,7 @@
                                             class="document theme-gx-32 d-flex justify-content-start align-items-start">
                                             <div
                                                 class="col-12 mb-3 d-flex align-items-center justify-content-start terms-check">
-                                                <label class="form-check-label check-box-terms"
+                                                <label class="form-check-label d-flex check-box-terms"
                                                        for="inlineCheckbox2"> {{__("labels.right_and_obligations")}}</label>
                                                 <span class="theme-text-seondary-black font-16 ms-1"> </span>
                                                 <input class="form-check-input" name="rule[]" type="checkbox"
@@ -576,7 +576,7 @@
                                         <div class="document theme-gx-32 d-flex justify-content-end align-items-end">
                                             <div
                                                 class="col-12 mb-3 d-flex align-items-center justify-content-start terms-check">
-                                                <label class="form-check-label check-box-terms"
+                                                <label class="form-check-label d-flex check-box-terms"
                                                        for="inlineCheckbox3">{{__("labels.info_property_effects")}}</label>
                                                 <span class="theme-text-seondary-black font-16 ms-1"> </span>
                                                 <input class="form-check-input" name="rule[]" type="checkbox"
@@ -587,7 +587,7 @@
                                         <div class="document theme-gx-32 d-flex justify-content-end align-items-end">
                                             <div
                                                 class="col-12 mb-3 d-flex align-items-center justify-content-start terms-check">
-                                                <label class="form-check-label check-box-terms"
+                                                <label class="form-check-label d-flex check-box-terms"
                                                        for="inlineCheckbox4">{{__("labels.Property_disputes")}}</label>
                                                 <span class="theme-text-seondary-black font-16 ms-1"> </span>
                                                 <input class="form-check-input" name="rule[]" type="checkbox"
