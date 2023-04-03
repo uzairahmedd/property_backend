@@ -101,6 +101,17 @@
     margin-left: 15px;
 }
 
+.rtl .login-copy-right h3 {
+    direction: ltr;
+    margin-left: unset;
+}
+
+.rtl .copy-right h3 {
+    direction: ltr;
+    margin-right: 216px;
+    margin-left: unset;
+}
+
 
 
 

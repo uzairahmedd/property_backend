@@ -34,7 +34,7 @@
             @include('layouts/backend/partials/header')
             @include('layouts/backend/partials/sidebar')
             <!-- Main Content -->
-            <div class="main-content">
+            <div class="">
                 @yield('head')
 
                 @yield('content')
