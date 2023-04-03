@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.1.5/dist/index.css">
     @endpush
 
-   <div class="main-content">
+   <div class="s">
        {{--    All Listings--}}
        <div class="total_listing">
            <div class="listing_heading">
@@ -224,11 +224,7 @@
        </div>
    </div>
 
-    <div class="copy-right position-relative d-flex d-sm-block flex-column align-items-center">
-        <div class="">
-            <h3>{{__('labels.all_right_reserved')}}</h3>
-        </div>
-    </div>
+
 
 
     {{--<div class="row">--}}

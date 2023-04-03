@@ -4102,6 +4102,7 @@ span.lang-span
     text-align: center;
     color: #848484;
     background-color: #f4f6f9;
+    margin-bottom: 0;
     padding: 24px 0 16px 0;
 }
 
@@ -4111,5 +4112,13 @@ span.lang-span
     color: #848484;
     padding: 24px 0px 16px 0px;
     background-color: white;
+    margin-bottom: 0;
     margin-left: 216px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .copy-right h3 {
+        margin: 0;
+    }
 }

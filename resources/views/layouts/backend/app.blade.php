@@ -34,10 +34,15 @@
             @include('layouts/backend/partials/header')
             @include('layouts/backend/partials/sidebar')
             <!-- Main Content -->
-            <div class="">
+            <div class="main-content">
                 @yield('head')
 
                 @yield('content')
+            </div>
+            <div class="copy-right position-relative d-flex d-sm-block flex-column align-items-center">
+                <div class="">
+                    <h3>{{__('labels.all_right_reserved')}}</h3>
+                </div>
             </div>
         </div>
     </div>
