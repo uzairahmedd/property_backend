@@ -151,7 +151,7 @@
             tLengthChange : true,
             bLengthChange : false,
             bInfo:false,
-            paging:         true,
+            paging:         false,
 
         } );
     });

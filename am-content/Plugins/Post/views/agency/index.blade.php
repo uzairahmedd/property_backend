@@ -32,7 +32,7 @@
 				</div>
 			</div>
 			<div class="table-responsive custom-table">
-				<table class="table">
+				<table class="table" id="agency_datatable">
 					<thead>
 						<tr>
 							<th class="am-select">
@@ -110,7 +110,10 @@
 					</tr>
 				</tfoot>
 			</table>
-			{{ $agencies->links('vendor.pagination.bootstrap') }}
+
+        <div class="d-flex justify-content-center">
+            {{ $agencies->links('vendor.pagination.bootstrap') }}
+        </div>
 
 		</div>
 	</div>
@@ -134,6 +137,21 @@
 		document.execCommand("copy");
 		Sweet('success','Link copied to clipboard.');
 	}
+
+    $(document).ready(function() {
+        var table = $('#agency_datatable').DataTable( {
+            scrollX:        true,
+            scrollCollapse: true,
+            autoWidth:         true,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:         false,
+            // columnDefs: [
+            //     { "width": "140px", "targets": [1,2,3,4,5,6] },
+            // ]
+        } );
+    });
 
 </script>
 @endsection

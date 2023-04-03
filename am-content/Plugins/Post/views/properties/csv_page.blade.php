@@ -184,7 +184,9 @@
                 </table>
 
         </form>
-        {{ $posts->links('vendor.pagination.bootstrap') }}
+        <div class="d-flex justify-content-center">
+            {{ $posts->links('vendor.pagination.bootstrap') }}
+        </div>
     </div>
 </div>
 </div>
@@ -240,7 +242,7 @@
             tLengthChange : true,
             bLengthChange : false,
             bInfo:false,
-            paging:         true,
+            paging:         false,
             columnDefs: [
                 { "width": "130px", "targets": [3,4] },
                 { "width": "120px", "targets": [5,6,13,15,16,7,8,14] },

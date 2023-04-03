@@ -4104,20 +4104,29 @@ span.lang-span
     background-color: #f4f6f9;
     margin-bottom: 0;
     padding: 24px 0 16px 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .copy-right h3 {
     font-size: 16px;
     text-align: center;
     color: #848484;
-    padding: 24px 0px 16px 0px;
+    padding: 30px 0 30px 0;
+    margin-top: 20px;
     background-color: white;
     margin-bottom: 0;
-    margin-left: 216px;
+    margin-left: 140px;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
     .copy-right h3 {
         margin: 0;
     }
