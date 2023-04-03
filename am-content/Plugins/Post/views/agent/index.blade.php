@@ -120,9 +120,6 @@
 					</tr>
 				</tfoot>
 			</table>
-        <div class="d-flex justify-content-center">
-            {{ $posts->links('vendor.pagination.bootstrap') }}
-        </div>
 		</div>
 	</div>
 </div>
@@ -154,7 +151,7 @@
             tLengthChange : true,
             bLengthChange : false,
             bInfo:false,
-            paging:         false,
+            paging:         true,
 
         } );
     });

@@ -9,7 +9,7 @@ $land_blocks = __('labels.land_blocks');
 	<div class="card-body">
 		<div class="row mb-2">
 			<div class="col-lg-10">
-				<div class="">
+				<div class="d-flex">
 					<a href="{{ route('admin.property.land-block') }}" class="mr-2 btn btn-outline-primary @if($type=='all') active @endif">{{__('labels.total')}} ({{ $totals }})</a>
 
 					<a href="{{ route('admin.property.land-block-show',1) }}" class="mr-2 btn btn-outline-success @if($type==1) active @endif">{{__('labels.published')}} ({{ $actives }})</a>

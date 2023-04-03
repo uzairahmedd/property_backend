@@ -6,11 +6,11 @@
     @include('layouts.backend.partials.headersection',['title'=>$input_list])
     <div class="card">
         <div class="card-body">
-            <div class="row mb-2">
-                <div class="col-lg-8">
+            <div class="row mb-2 d-flex">
+                <div class="col-lg-8 d-flex">
                     <h4>{{__('labels.inputs')}}</h4>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 d-flex justify-content-end">
                     @can('input.create')
                         <div class="float-right ">
                             <a href="{{ route('admin.input.create') }}"

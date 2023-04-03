@@ -7,11 +7,11 @@
 @include('layouts.backend.partials.headersection',['title'=> $categories])
 <div class="card">
 	<div class="card-body">
-		<div class="row mb-30">
-			<div class="col-lg-6">
+		<div class="row mb-30 d-flex">
+			<div class="col-lg-6 d-flex">
 				<h4>{{__('labels.categories')}}</h4>
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-6 d-flex justify-content-end">
 			@can('category.create')
 				<div class="add-new-btn">
 					<a href="{{ route('admin.category.create') }}" class="btn float-right btn-primary">{{__('labels.add_new')}}</a>
