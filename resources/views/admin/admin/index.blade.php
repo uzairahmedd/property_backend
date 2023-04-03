@@ -3,11 +3,11 @@
 @section('content')
 <div class="card"  >
 	<div class="card-body">
-		<div class="row mb-30">
-			<div class="col-lg-6">
+		<div class="row mb-30 d-flex">
+			<div class="col-lg-6 d-flex">
 				<h4>{{ __('labels.admins') }}</h4>
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-6 d-flex justify-content-end">
                 @can('admin.create')
 				<div class="add-new-btn">
 					<a href="{{ route('admin.users.create') }}" class="btn btn-primary float-right">{{ __('labels.add_new') }}</a>
@@ -44,7 +44,7 @@
 				</div>
 			</div>
 			<div class="table-responsive custom-table">
-				<table class="table">
+				<table class="table" id="admin_datatable">
 					<thead>
 						<tr>
 							<th>
@@ -115,5 +115,19 @@
 	function success(res){
 		location.reload();
 	}
+
+    $(document).ready(function() {
+        var table = $('#admin_datatable').DataTable( {
+            scrollX:        false,
+            scrollCollapse: false,
+            autoWidth:         true,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:         false,
+            columnDefs: [
+            ]
+        } );
+    });
 </script>
 @endsection

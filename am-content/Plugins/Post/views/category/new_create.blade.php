@@ -26,9 +26,9 @@
             <label for="p_id">{{__('labels.parent_category')}}</label>
             <select multiple="" class="form-control select2" name="child[]">
               <option value="" disabled>{{__('labels.none')}}</option>
-                @foreach($posts as $row)
+              @foreach($posts as $row)
               <option value="{{$row->id}}">{{ Session::get('locale') == 'ar' ? $row->ar_name : $row->name}}</option>
-                @endforeach
+              @endforeach
               <!--65 in seeder-->
             </select>
           </div>

@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="row mb-2">
             <div class="col-lg-12">
-                <div class="">
+                <div class="d-flex">
                     <a href="{{ route('admin.property.csv_page') }}" class="mr-2 btn btn-outline-primary @if($type=='all') active @endif">{{__('labels.total')}} ({{ $totals }})</a>
                     <a href="{{ route('admin.property.csv_page_type',1) }}" class="mr-2 btn btn-outline-success @if($type==1) active @endif">{{__('labels.published')}} ({{ $actives }})</a>
                     <a href="{{ route('admin.property.csv_page_type',2) }}" class="mr-2 btn btn-outline-info @if($type==2) active @endif">{{__('labels.incomplete')}} ({{ $incomplete }})</a>
@@ -27,18 +27,16 @@
         @can('csv.export')
         <form method="post" action="{{ route('admin.properties.csv_download') }}">
             @csrf
-            <div class="row mb-2">
-                <div class="col-lg-6">
-                    <input type="text"  id="main_date" name="daterange" class="form-control" value="" placeholder="{{__('labels.please_select_date_range')}}" />
-                    <input type="hidden" name="from_date" id="from_date">
-                    <input type="hidden" name="to_date" id="to_date">
+                <div class="d-flex position-absolute export_csv">
+                    <div>
+                        <input type="text"  id="main_date" name="daterange" class="form-control" value="" placeholder="{{__('labels.please_select_date_range')}}" />
+                        <input type="hidden" name="from_date" id="from_date">
+                        <input type="hidden" name="to_date" id="to_date">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-success export_csv_btn btn-sm">{{__('labels.export_csv_file')}}</button>
+                    </div>
                 </div>
-              
-                <div class="col-lg-6">
-                    <button type="submit" class="btn btn-success btn-sm">{{__('labels.export_csv_file')}}</button>
-                </div>
-             
-            </div>
         </form>
         @endcan
         <!-- </div> -->
@@ -84,7 +82,7 @@
 				@endcan
 			</div> -->
             <div class="table-responsive custom-table">
-                <table class="table table-striped table-hover text-center table-borderless">
+                <table class="table table-striped table-hover text-center table-borderless" id="properties">
                     <thead>
                         <tr>
                             <th class="am-title">{{__('labels.id')}}</th>
@@ -186,7 +184,9 @@
                 </table>
 
         </form>
-        {{ $posts->links('vendor.pagination.bootstrap') }}
+        <div class="d-flex justify-content-center">
+            {{ $posts->links('vendor.pagination.bootstrap') }}
+        </div>
     </div>
 </div>
 </div>
@@ -232,6 +232,23 @@
             $('#to_date').val(end.format('YYYY-MM-DD'));
             $('#main_date').val(start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
         });
+    });
+
+    $(document).ready(function() {
+        var table = $('#properties').DataTable( {
+            scrollX:        true,
+            scrollCollapse: true,
+            autoWidth:         true,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:         false,
+            columnDefs: [
+                { "width": "130px", "targets": [3,4] },
+                { "width": "120px", "targets": [5,6,13,15,16,7,8,14] },
+                { "width": "100px", "targets": [13,1,2,10,11,12] },
+            ]
+        } );
     });
 </script>
 @endsection

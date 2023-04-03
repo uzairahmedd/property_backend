@@ -88,7 +88,28 @@
     margin-left: unset;
 }
 
+.rtl .input-group>.input-group-append>.btn
+{
+    border-radius: 3px;
+ border-top-right-radius: 0;
+ border-bottom-right-radius: 0;
+}
 
+.rtl .export_csv
+{
+    left: 0;
+    margin-left: 15px;
+}
+
+.rtl .login-copy-right h3 {
+    direction: ltr;
+}
+
+.rtl .copy-right h3 {
+    direction: ltr;
+    margin-right: 140px;
+    margin-left: unset;
+}
 
 
 

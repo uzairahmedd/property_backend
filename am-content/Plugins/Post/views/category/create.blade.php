@@ -33,24 +33,24 @@
               <input type="number" step="any" class="form-control item-menu" name="charge" id="text" placeholder="Enter charge" autocomplete="off" required="">
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    {{ publish(['class'=>'basicbtn']) }}
-    <div class="single-area">
-      <div class="card sub">
-        <div class="card-body">
-          <h5>{{ __('Is Featured ?') }}</h5>
-          <hr>
-          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
-            <option  value="1">{{ __('Yes') }}</option>
-            <option value="0" selected>{{ __('No') }}</option>
-          </select>
-        </div>
       </div>
     </div>
   </div>
-  <input type="hidden" name="type" value="category">
+  {{ publish(['class'=>'basicbtn']) }}
+  <div class="single-area">
+    <div class="card sub">
+      <div class="card-body">
+        <h5>{{ __('Is Featured ?') }}</h5>
+        <hr>
+        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
+          <option value="1">{{ __('Yes') }}</option>
+          <option value="0" selected>{{ __('No') }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<input type="hidden" name="type" value="category">
 </form>
 @endsection
 
@@ -59,9 +59,8 @@
 <script>
   "use strict";
   //success response will assign here
-  function success(res){
+  function success(res) {
     location.reload()
   }
 </script>
 @endsection
-

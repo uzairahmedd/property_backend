@@ -1,7 +1,7 @@
  <div class="main-sidebar">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand p-4">
-      <a href="{{ url('/') }}"><img src="{{asset('assets/images/logo.png')}}" alt=""></a>
+      <a href="{{ url('/admin/dashboard') }}"><img src="{{asset('assets/images/logo.png')}}" alt=""></a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
       <a href="#">{{ Str::limit(env('APP_NAME'), $limit = 1) }}</a>

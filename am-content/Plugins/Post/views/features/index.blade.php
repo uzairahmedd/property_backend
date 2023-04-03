@@ -1,16 +1,16 @@
 @extends('layouts.backend.app')
 @php
-    $features_list = __('labels.features_list');
+$features_list = __('labels.features_list');
 @endphp
 @section('content')
 @include('layouts.backend.partials.headersection',['title'=> $features_list])
 <div class="card">
 	<div class="card-body">
-		<div class="row mb-30">
-			<div class="col-lg-6">
+		<div class="row mb-30 d-flex">
+			<div class="col-lg-6 d-flex">
 				<h4>{{__('labels.features')}}</h4>
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-6 d-flex justify-content-end">
 				@can('feature.create')
 				<div class="add-new-btn">
 					<a href="{{ route('admin.feature.create') }}" class="btn float-right btn-primary">{{__('labels.add_new')}}</a>
@@ -19,6 +19,11 @@
 			</div>
 		</div>
 		<div class="card-action-filter mt-3">
+			<div class="float-right">
+				<div class="form-group">
+					<input type="text" id="data_search" class="form-control" placeholder="{{__('labels.enter_value')}}">
+				</div>
+			</div>
 			<form method="post" id="confirm_basicform" action="{{ route('admin.features.destroy') }}">
 				@csrf
 				<!-- @can('feature.delete')
@@ -34,14 +39,9 @@
 					</div>
 				</div>
 				@endcan -->
-				<div class="float-right">
-					<div class="form-group">
-						<input type="text" id="data_search" class="form-control" placeholder="{{__('labels.enter_value')}}">
-					</div>
-				</div>
 		</div>
 		<div class="table-responsive custom-table">
-			<table class="table text-left table-striped table-hover text-center table-borderless">
+			<table class="table text-left table-striped table-hover text-center table-borderless" id="features_datatable">
 				<thead>
 					<tr>
 						<!-- <th class="am-select">
@@ -55,7 +55,7 @@
 						<th class="am-title">{{__('labels.arabic_title')}}</th>
 						<th class="am-title">{{__('labels.featured')}}</th>
 						<th class="am-date">{{__('labels.date')}}</th>
-                        <th class="am-date">{{__('labels.action')}}</th>
+						<th class="am-date">{{__('labels.action')}}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -91,9 +91,9 @@
 								{{ $post->updated_at->diffForHumans() }}
 							</div>
 						</td>
-                        <td>
-                            <i class="fa fa-book" data-id="{{$post->id}}" onclick="feature_logs(this)" data-toggle="tooltip" title="Land Block Logs"></i>
-                        </td>
+						<td>
+							<i class="fa fa-book" data-id="{{$post->id}}" onclick="feature_logs(this)" data-toggle="tooltip" title="Land Block Logs"></i>
+						</td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -107,15 +107,17 @@
 							</div>
 						</th> -->
 						<!-- <th class="am-title"><i class="far fa-image"></i></th> -->
-                        <th class="am-title">{{__('labels.title')}}</th>
-                        <th class="am-title">{{__('labels.arabic_title')}}</th>
-                        <th class="am-title">{{__('labels.featured')}}</th>
-                        <th class="am-date">{{__('labels.date')}}</th>
-                        <th class="am-date">{{__('labels.action')}}</th>
+						<th class="am-title">{{__('labels.title')}}</th>
+						<th class="am-title">{{__('labels.arabic_title')}}</th>
+						<th class="am-title">{{__('labels.featured')}}</th>
+						<th class="am-date">{{__('labels.date')}}</th>
+						<th class="am-date">{{__('labels.action')}}</th>
 					</tr>
 				</tfoot>
 			</table>
-			{{ $posts->links('vendor.pagination.bootstrap') }}
+			<div class="d-flex justify-content-center">
+				{{ $posts->links('vendor.pagination.bootstrap') }}
+			</div>
 		</div>
 	</div>
 </div>
@@ -129,5 +131,21 @@
 	function success(res) {
 		location.reload();
 	}
+
+	$(document).ready(function() {
+		var table = $('#features_datatable').DataTable({
+			scrollX: true,
+			scrollCollapse: true,
+			autoWidth: false,
+			tLengthChange: true,
+			bLengthChange: false,
+			bInfo: false,
+			paging: false,
+			columnDefs: [{
+				"width": "140px",
+				"targets": [1, 2, 3, 4]
+			}, ]
+		});
+	});
 </script>
 @endsection

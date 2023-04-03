@@ -1,13 +1,13 @@
 @extends('layouts.backend.app')
 
 @section('style')
-    @php
-        $create_input = __('labels.create_input');
-        $icon_image = __('labels.icon_image');
-    @endphp
+@php
+$create_input = __('labels.create_input');
+$icon_image = __('labels.icon_image');
+@endphp
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/select2.min.css') }}">
 <style>
-    .select2 .select2-container .select2-container--default{
+    .select2 .select2-container .select2-container--default {
         width: none !important;
     }
 </style>

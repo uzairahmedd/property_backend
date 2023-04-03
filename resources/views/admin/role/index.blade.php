@@ -3,11 +3,11 @@
 @section('content')
 <div class="card">
 	<div class="card-body">
-		<div class="row mb-30">
-			<div class="col-lg-6">
+		<div class="row mb-30 d-flex">
+			<div class="col-lg-6 d-flex">
 				<h4>{{ __('labels.roles') }}</h4>
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-6 d-flex justify-content-end">
 				<div class="add-new-btn">
 					<a href="{{ route('admin.role.create') }}" class="btn btn-primary float-right">{{ __('labels.add_new') }}</a>
 				</div>
@@ -33,7 +33,7 @@
 							</div>
 						</div> -->
 					</div>
-					<div class="col-lg-6">
+					<div class="col-lg-6 d-flex justify-content-end">
 						<!-- Button trigger modal -->
 						<button style="float: right;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#permission_modal">
                             {{ __('labels.add_new_permission') }}
@@ -42,7 +42,7 @@
 				</div>
 		</div>
 		<div class="table-responsive custom-table">
-			<table class="table table-striped table-hover text-center table-borderless">
+			<table class="table table-striped table-hover text-center table-borderless" id="role_datatable">
 				<thead>
 					<tr>
 						<!-- <th class="am-select" width="10%">
@@ -136,5 +136,17 @@
 	function success(res) {
 		location.reload();
 	}
+
+    $(document).ready(function() {
+        var table = $('#role_datatable').DataTable( {
+            scrollX:        true,
+            scrollCollapse: true,
+            autoWidth:         false,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:         false,
+        } );
+    });
 </script>
 @endsection

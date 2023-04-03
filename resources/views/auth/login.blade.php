@@ -57,7 +57,7 @@
         </div>
         <!--end::Aside-->
         <!--begin::Body-->
-        <div class="d-flex flex-column flex-lg-row-fluid py-10">
+        <div class="d-flex flex-column flex-lg-row-fluid py-20">
             <!--begin::Content-->
             <div class="d-flex flex-center flex-column flex-column-fluid">
                 <!--begin::Wrapper-->
@@ -147,13 +147,10 @@
             </div>
             <!--end::Content-->
             <!--begin::Footer-->
-            <div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
-                <!--begin::Links-->
-                <div class="d-flex flex-center fw-bold fs-6">
-                    <a href="https://mychoice.sa/" class="text-muted text-hover-primary px-2"
-                       target="_blank">{{ __('labels.website') }}</a>
+            <div class="login-copy-right position-relative d-flex d-sm-block flex-column align-items-center">
+                <div class="">
+                    <h3>{{__('labels.all_right_reserved')}}</h3>
                 </div>
-                <!--end::Links-->
             </div>
             <!--end::Footer-->
         </div>
@@ -166,13 +163,13 @@
 <!--end::Main-->
 <!--begin::Javascript-->
 <!-- General JS Scripts -->
-<script src="{{ asset('admin/assets/js/jquery-3.5.1.min.js') }}"></script>
+<!-- <script src="{{ asset('admin/assets/js/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ asset('admin/assets/js/popper.min.js') }}"></script>
-<script src="{{ asset('admin/assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('admin/assets/js/bootstrap.min.js') }}"></script> -->
 
 <!-- Template JS File -->
-<script src="{{ asset('admin/assets/js/scripts.bundle.js') }}"></script>
-<script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
+<!-- <script src="{{ asset('admin/assets/js/scripts.bundle.js') }}"></script>
+<script src="{{ asset('admin/assets/js/scripts.js') }}"></script> -->
 <!--end::Javascript-->
 </body>
 <!--end::Body-->
