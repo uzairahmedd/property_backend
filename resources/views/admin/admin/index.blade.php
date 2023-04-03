@@ -44,7 +44,7 @@
 				</div>
 			</div>
 			<div class="table-responsive custom-table">
-				<table class="table">
+				<table class="table" id="admin_datatable">
 					<thead>
 						<tr>
 							<th>
@@ -115,5 +115,19 @@
 	function success(res){
 		location.reload();
 	}
+
+    $(document).ready(function() {
+        var table = $('#admin_datatable').DataTable( {
+            scrollX:        false,
+            scrollCollapse: false,
+            autoWidth:         true,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:         true,
+            columnDefs: [
+            ]
+        } );
+    });
 </script>
 @endsection

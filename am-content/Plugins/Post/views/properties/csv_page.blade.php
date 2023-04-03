@@ -27,18 +27,16 @@
         @can('csv.export')
         <form method="post" action="{{ route('admin.properties.csv_download') }}">
             @csrf
-            <div class="row mb-2">
-                <div class="col-lg-6">
-                    <input type="text"  id="main_date" name="daterange" class="form-control" value="" placeholder="{{__('labels.please_select_date_range')}}" />
-                    <input type="hidden" name="from_date" id="from_date">
-                    <input type="hidden" name="to_date" id="to_date">
+                <div class="d-flex position-absolute export_csv">
+                    <div>
+                        <input type="text"  id="main_date" name="daterange" class="form-control" value="" placeholder="{{__('labels.please_select_date_range')}}" />
+                        <input type="hidden" name="from_date" id="from_date">
+                        <input type="hidden" name="to_date" id="to_date">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-success export_csv_btn btn-sm">{{__('labels.export_csv_file')}}</button>
+                    </div>
                 </div>
-              
-                <div class="col-lg-6">
-                    <button type="submit" class="btn btn-success btn-sm">{{__('labels.export_csv_file')}}</button>
-                </div>
-             
-            </div>
         </form>
         @endcan
         <!-- </div> -->
@@ -84,7 +82,7 @@
 				@endcan
 			</div> -->
             <div class="table-responsive custom-table">
-                <table class="table table-striped table-hover text-center table-borderless">
+                <table class="table table-striped table-hover text-center table-borderless" id="properties">
                     <thead>
                         <tr>
                             <th class="am-title">{{__('labels.id')}}</th>
@@ -232,6 +230,23 @@
             $('#to_date').val(end.format('YYYY-MM-DD'));
             $('#main_date').val(start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
         });
+    });
+
+    $(document).ready(function() {
+        var table = $('#properties').DataTable( {
+            scrollX:        true,
+            scrollCollapse: true,
+            autoWidth:         true,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:         true,
+            columnDefs: [
+                { "width": "130px", "targets": [3,4] },
+                { "width": "120px", "targets": [5,6,13,15,16,7,8,14] },
+                { "width": "100px", "targets": [13,1,2,10,11,12] },
+            ]
+        } );
     });
 </script>
 @endsection

@@ -42,7 +42,7 @@ $district = __('labels.district');
 				</div>
 		</div>
 		<div class="table-responsive">
-			<table class="table table-striped table-hover text-center table-borderless">
+			<table class="table table-striped table-hover text-center table-borderless" id="districts_datatable">
 				<thead>
 					<tr>
 						<!-- <th class="am-select">
@@ -119,7 +119,9 @@ $district = __('labels.district');
 					</tr>
 				</tfoot>
 			</table>
-			{{ $posts->links('vendor.pagination.bootstrap') }}
+            <div class="d-flex justify-content-center">
+                {{ $posts->links('vendor.pagination.bootstrap') }}
+            </div>
 		</div>
 		</form>
 	</div>
@@ -154,5 +156,17 @@ $district = __('labels.district');
 	function success(res) {
 		location.reload();
 	}
+
+    $(document).ready(function() {
+        var table = $('#districts_datatable').DataTable( {
+            scrollX:        false,
+            scrollCollapse: false,
+            autoWidth:         true,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:     false,
+        } );
+    });
 </script>
 @endsection

@@ -38,7 +38,7 @@
 			</div>
 			@endcan -->
 			<div class="table-responsive custom-table">
-				<table class="table table-striped table-hover text-center table-borderless">
+				<table class="table table-striped table-hover text-center table-borderless" id="agent_datatable">
 					<thead>
 						<tr>
 							<!-- <th class="am-select">
@@ -120,7 +120,9 @@
 					</tr>
 				</tfoot>
 			</table>
-			{{ $agents->links('vendor.pagination.bootstrap') }}
+        <div class="d-flex justify-content-center">
+            {{ $posts->links('vendor.pagination.bootstrap') }}
+        </div>
 		</div>
 	</div>
 </div>
@@ -143,5 +145,18 @@
 		document.execCommand("copy");
 		Sweet('success','Link copied to clipboard.');
 	}
+
+    $(document).ready(function() {
+        var table = $('#agent_datatable').DataTable( {
+            scrollX:        true,
+            scrollCollapse: true,
+            autoWidth:         false,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:         false,
+
+        } );
+    });
 </script>
 @endsection

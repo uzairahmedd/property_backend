@@ -41,7 +41,7 @@
 				</div>
 		</div>
 		<div class="table-responsive custom-table">
-			<table class="table text-left table-striped table-hover text-center table-borderless">
+			<table class="table text-left table-striped table-hover text-center table-borderless" id="features_datatable">
 				<thead>
 					<tr>
 						<!-- <th class="am-select">
@@ -115,7 +115,9 @@
 					</tr>
 				</tfoot>
 			</table>
-			{{ $posts->links('vendor.pagination.bootstrap') }}
+            <div class="d-flex justify-content-center">
+                {{ $posts->links('vendor.pagination.bootstrap') }}
+            </div>
 		</div>
 	</div>
 </div>
@@ -129,5 +131,20 @@
 	function success(res) {
 		location.reload();
 	}
+
+    $(document).ready(function() {
+        var table = $('#features_datatable').DataTable( {
+            scrollX:        true,
+            scrollCollapse: true,
+            autoWidth:         false,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:         false,
+            columnDefs: [
+                { "width": "140px", "targets": [1,2,3,4] },
+            ]
+        } );
+    });
 </script>
 @endsection

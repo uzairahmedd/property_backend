@@ -45,7 +45,7 @@ $city = __('labels.city');
 
 		</div>
 		<div class="table-responsive">
-			<table class="table table-striped table-hover text-center table-borderless">
+			<table class="table table-striped table-hover text-center table-borderless" id="cities_datatable">
 				<thead>
 					<tr>
 						<!-- <th class="am-select">
@@ -116,7 +116,10 @@ $city = __('labels.city');
 					</tr>
 				</tfoot>
 			</table>
-			{{ $posts->links('vendor.pagination.bootstrap') }}
+            <div class="d-flex justify-content-center">
+                {{ $posts->links('vendor.pagination.bootstrap') }}
+            </div>
+
 		</div>
 		</form>
 	</div>
@@ -133,5 +136,20 @@ $city = __('labels.city');
 	function success(res) {
 		location.reload();
 	}
+
+    $(document).ready(function() {
+        var table = $('#cities_datatable').DataTable( {
+            scrollX:        false,
+            scrollCollapse: false,
+            autoWidth:         true,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:         false,
+            columnDefs: [
+
+            ]
+        } );
+    });
 </script>
 @endsection

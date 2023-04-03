@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/selectric.css') }}">
+        <link href="{{asset('admin/assets/css/datatables.bundle.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     @yield('style')
     <!-- Template CSS -->
@@ -61,7 +62,9 @@
     </div>
     @yield('extra')
     <!-- General JS Scripts -->
+
     <script src="{{ asset('admin/assets/js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{asset('admin/assets/js/datatables.bundle.js')}}"></script>
 
     <script src="{{ asset('admin/assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/bootstrap.min.js') }}"></script>

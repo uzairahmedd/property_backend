@@ -68,7 +68,7 @@ $properties_list = __('labels.properties_list');
 			</div>
 			@endcan
 			<div class="table-responsive custom-table">
-				<table class="table table-striped table-hover text-center table-borderless">
+				<table class="table table-striped table-hover text-center table-borderless" id="properties">
 					<thead>
 						<tr>
 							<th class="am-select">
@@ -153,7 +153,9 @@ $properties_list = __('labels.properties_list');
 				</table>
 
 		</form>
-		{{ $posts->links('vendor.pagination.bootstrap') }}
+        <div class="d-flex justify-content-center">
+            {{ $posts->links('vendor.pagination.bootstrap') }}
+        </div>
 	</div>
 </div>
 </div>
@@ -171,5 +173,20 @@ $properties_list = __('labels.properties_list');
 		});
 		location.reload();
 	}
+
+    $(document).ready(function() {
+        var table = $('#properties').DataTable( {
+            scrollX:        true,
+            scrollCollapse: true,
+            autoWidth:         true,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:         false,
+            columnDefs: [
+                { "width": "100px", "targets": [1,2,3,4,5,6,7] },
+            ]
+        } );
+    });
 </script>
 @endsection

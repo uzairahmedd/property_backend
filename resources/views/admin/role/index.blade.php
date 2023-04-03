@@ -42,7 +42,7 @@
 				</div>
 		</div>
 		<div class="table-responsive custom-table">
-			<table class="table table-striped table-hover text-center table-borderless">
+			<table class="table table-striped table-hover text-center table-borderless" id="role_datatable">
 				<thead>
 					<tr>
 						<!-- <th class="am-select" width="10%">
@@ -136,5 +136,17 @@
 	function success(res) {
 		location.reload();
 	}
+
+    $(document).ready(function() {
+        var table = $('#role_datatable').DataTable( {
+            scrollX:        true,
+            scrollCollapse: true,
+            autoWidth:         false,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:         true,
+        } );
+    });
 </script>
 @endsection

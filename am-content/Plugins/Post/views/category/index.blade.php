@@ -42,7 +42,7 @@
 				</div>
 		</div>
 		<div class="table-responsive custom-table">
-			<table class="table text-left table-striped table-hover text-center table-borderless">
+			<table class="table text-left table-striped table-hover text-center table-borderless" id="category_datatable">
 				<thead>
 					<tr>
 						<!-- <th class="am-select">
@@ -172,7 +172,10 @@
 					</tr>
 				</tfoot>
 			</table>
-			{{ $posts->links('vendor.pagination.bootstrap') }}
+
+            <div class="d-flex justify-content-center">
+                {{ $posts->links('vendor.pagination.bootstrap') }}
+            </div>
 
 		</div>
 	</div>
@@ -187,5 +190,20 @@
 	function success(res) {
 		location.reload();
 	}
+
+    $(document).ready(function() {
+        var table = $('#category_datatable').DataTable( {
+            scrollX:        true,
+            scrollCollapse: true,
+            autoWidth:         true,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:         false,
+            columnDefs: [
+                { "width": "150px", "targets": [2,3,4,5,6,7,8,9,10,11,12] },
+            ]
+        } );
+    });
 </script>
 @endsection

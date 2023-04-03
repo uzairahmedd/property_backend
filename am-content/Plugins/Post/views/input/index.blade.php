@@ -52,7 +52,7 @@
                     @endcan -->
                 </div>
                 <div class="table-responsive custom-table">
-                    <table class="table table-striped table-hover text-center table-borderless">
+                    <table class="table table-striped table-hover text-center table-borderless" id="input_datatable">
                         <thead>
                         <tr>
                             <!-- <th class="am-select">
@@ -126,7 +126,9 @@
                         </tbody>
                     </table>
             </form>
-            {{ $posts->links('vendor.pagination.bootstrap') }}
+            <div class="d-flex justify-content-center">
+                {{ $posts->links('vendor.pagination.bootstrap') }}
+            </div>
         </div>
     </div>
     </div>
@@ -143,5 +145,20 @@
                 $('#row' + ids).remove();
             });
         }
+
+        $(document).ready(function() {
+            var table = $('#input_datatable').DataTable( {
+                scrollX:        true,
+                scrollCollapse: true,
+                autoWidth:         true,
+                tLengthChange : true,
+                bLengthChange : false,
+                bInfo:false,
+                paging:         false,
+                columnDefs: [
+                    { "width": "140px", "targets": [1,2,3,4,5,6] },
+                ]
+            } );
+        });
     </script>
 @endsection

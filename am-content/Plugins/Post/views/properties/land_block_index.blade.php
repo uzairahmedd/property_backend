@@ -70,7 +70,7 @@ $land_blocks = __('labels.land_blocks');
 
 			</div>
 			<div class="table-responsive custom-table">
-				<table class="table table-striped table-hover text-center table-borderless">
+				<table class="table table-striped table-hover text-center table-borderless" id="landblock_datatable">
 					<thead>
 						<tr>
 							<th class="am-select">
@@ -156,7 +156,9 @@ $land_blocks = __('labels.land_blocks');
 				</table>
 
 		</form>
-		{{ $posts->links('vendor.pagination.bootstrap') }}
+        <div class="d-flex justify-content-center">
+            {{ $posts->links('vendor.pagination.bootstrap') }}
+        </div>
 	</div>
 </div>
 </div>
@@ -174,5 +176,22 @@ $land_blocks = __('labels.land_blocks');
 		});
 		location.reload();
 	}
+
+
+    $(document).ready(function() {
+        var table = $('#landblock_datatable').DataTable( {
+            scrollX:        true,
+            scrollCollapse: true,
+            autoWidth:         true,
+            tLengthChange : true,
+            bLengthChange : false,
+            bInfo:false,
+            paging:         false,
+            columnDefs: [
+                { "width": "180px", "targets": [2] },
+                { "width": "100px", "targets": [2,3,4,5,6,7] },
+            ]
+        } );
+    });
 </script>
 @endsection
