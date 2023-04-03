@@ -5,7 +5,7 @@ function RegisterAdminMenuBar()
 	if (Auth::User()->role_id != 2) {
 		if (Auth()->user()->can('dashboard')) {
 			$data[] = array(
-				'name' =>  __('labels.dashboard') ,
+				'name' =>  __('labels.dashboard'),
 				'active' => Request::is('admin/dashboard'),
 				'icon' => 'fas fa-tachometer-alt',
 				'url' => url('admin/dashboard')
@@ -31,8 +31,8 @@ function RegisterAdminMenuBar()
 		// 	);
 		// }
 
-$cities = __('labels.cities');
-$district = __('labels.district');
+		$cities = __('labels.cities');
+		$district = __('labels.district');
 		if (Amcoders\Plugin\Plugin::is_active('Post')) {
 
 			if (Auth()->user()->can('cities.list')) {
@@ -51,12 +51,12 @@ $district = __('labels.district');
 			}
 		}
 
-        $properties = __('labels.properties');
-        $download_csv = __('labels.download_csv');
+		$properties = __('labels.properties');
+		$download_csv = __('labels.download_csv');
 		$land_block = __('labels.land_blocks');
-        $features = __('labels.features');
-        $categories = __('labels.categories');
-        $input_options = __('labels.input_options');
+		$features = __('labels.features');
+		$categories = __('labels.categories');
+		$input_options = __('labels.input_options');
 
 		if (Amcoders\Plugin\Plugin::is_active('Post')) {
 			if (Auth()->user()->can('Properties.list')) {
@@ -144,7 +144,7 @@ $district = __('labels.district');
 
 		//    }
 		// }
-        $users = __('labels.users');
+		$users = __('labels.users');
 
 		if (Amcoders\Plugin\Plugin::is_active('Post')) {
 			// if (Auth()->user()->can('user.create')) {
@@ -226,8 +226,8 @@ $district = __('labels.district');
 
 
 
-        $roles = __('labels.roles');
-        $admin = __('labels.admins');
+		$roles = __('labels.roles');
+		$admin = __('labels.admins');
 
 		if (Auth()->user()->can('role.list')) {
 			$admins[$roles] = route('admin.role.index');

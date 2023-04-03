@@ -218,8 +218,8 @@ class LocationController extends Controller
       'ar_name' => 'required|max:100',
     ]);
 
-    if ($request->p_id) {
-      $pid = $request->p_id;
+    if ($request->city) {
+      $pid = $request->city;
     }
     //store city
     if ($request->type == 'City') {
@@ -238,6 +238,9 @@ class LocationController extends Controller
 
     //store district
     elseif ($request->type == 'district') {
+      $validatedData = $request->validate([
+        'city' => 'required',
+      ]);
       $category = new District();
       $category->name = $request->name;
       $category->ar_name = $request->ar_name;

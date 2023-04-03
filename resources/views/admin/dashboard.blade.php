@@ -27,10 +27,10 @@
                                </div>
                            </div>
                            <div class="mt-2 mb-0 text-sm">
-                                    <span class="badge badge-pill bg-soft-success text-success me-2">
+                                    <!-- <span class="badge badge-pill bg-soft-success text-success me-2">
                                         <i class="bi bi-arrow-up me-1"></i>13%
-                                    </span>
-                               <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span>
+                                    </span> -->
+                               <!-- <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span> -->
                            </div>
                        </div>
                    </div>
@@ -52,10 +52,10 @@
                                </div>
                            </div>
                            <div class="mt-2 mb-0 text-sm">
-                                    <span class="badge badge-pill bg-soft-success text-success me-2">
+                                    <!-- <span class="badge badge-pill bg-soft-success text-success me-2">
                                         <i class="bi bi-arrow-up me-1"></i>30%
-                                    </span>
-                               <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span>
+                                    </span> -->
+                               <!-- <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span> -->
                            </div>
                        </div>
                    </div>
@@ -77,10 +77,10 @@
                                </div>
                            </div>
                            <div class="mt-2 mb-0 text-sm">
-                                    <span class="badge badge-pill bg-soft-danger text-danger me-2">
+                                    <!-- <span class="badge badge-pill bg-soft-danger text-danger me-2">
                                         <i class="bi bi-arrow-down me-1"></i>-5%
-                                    </span>
-                               <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span>
+                                    </span> -->
+                               <!-- <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span> -->
                            </div>
                        </div>
                    </div>
@@ -102,10 +102,10 @@
                                </div>
                            </div>
                            <div class="mt-2 mb-0 text-sm">
-                                    <span class="badge badge-pill bg-soft-success text-success me-2">
+                                    <!-- <span class="badge badge-pill bg-soft-success text-success me-2">
                                         <i class="bi bi-arrow-up me-1"></i>10%
-                                    </span>
-                               <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span>
+                                    </span> -->
+                               <!-- <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span> -->
                            </div>
                        </div>
                    </div>
@@ -137,10 +137,10 @@
                                </div>
                            </div>
                            <div class="mt-2 mb-0 text-sm">
-                                    <span class="badge badge-pill bg-soft-success text-success me-2">
+                                    <!-- <span class="badge badge-pill bg-soft-success text-success me-2">
                                         <i class="bi bi-arrow-up me-1"></i>13%
-                                    </span>
-                               <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span>
+                                    </span> -->
+                               <!-- <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span> -->
                            </div>
                        </div>
                    </div>
@@ -162,10 +162,10 @@
                                </div>
                            </div>
                            <div class="mt-2 mb-0 text-sm">
-                                    <span class="badge badge-pill bg-soft-success text-success me-2">
+                                    <!-- <span class="badge badge-pill bg-soft-success text-success me-2">
                                         <i class="bi bi-arrow-up me-1"></i>30%
-                                    </span>
-                               <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span>
+                                    </span> -->
+                               <!-- <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span> -->
                            </div>
                        </div>
                    </div>
@@ -187,10 +187,10 @@
                                </div>
                            </div>
                            <div class="mt-2 mb-0 text-sm">
-                                    <span class="badge badge-pill bg-soft-danger text-danger me-2">
+                                    <!-- <span class="badge badge-pill bg-soft-danger text-danger me-2">
                                         <i class="bi bi-arrow-down me-1"></i>-5%
-                                    </span>
-                               <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span>
+                                    </span> -->
+                               <!-- <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span> -->
                            </div>
                        </div>
                    </div>
@@ -212,10 +212,10 @@
                                </div>
                            </div>
                            <div class="mt-2 mb-0 text-sm">
-                                    <span class="badge badge-pill bg-soft-success text-success me-2">
+                                    <!-- <span class="badge badge-pill bg-soft-success text-success me-2">
                                         <i class="bi bi-arrow-up me-1"></i>10%
-                                    </span>
-                               <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span>
+                                    </span> -->
+                               <!-- <span class="text-nowrap text-xs text-muted">{{ __('labels.since_last_month') }}</span> -->
                            </div>
                        </div>
                    </div>

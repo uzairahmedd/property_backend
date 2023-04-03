@@ -20,6 +20,11 @@ $district = __('labels.district');
 			</div>
 		</div>
 		<div class="card-action-filter mt-3">
+			<div class="float-right">
+				<div class="form-group">
+					<input type="text" id="data_search" class="form-control" placeholder="{{__('labels.enter_value')}}">
+				</div>
+			</div>
 			<form method="post" id="confirm_basicform" action="{{ route('admin.district.destroy') }}">
 				@csrf
 				<!-- @can('district.delete')
@@ -35,11 +40,6 @@ $district = __('labels.district');
 					</div>
 				</div>
 				@endcan -->
-				<div class="float-right">
-					<div class="form-group">
-						<input type="text" id="data_search" class="form-control" placeholder="{{__('labels.enter_value')}}">
-					</div>
-				</div>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-striped table-hover text-center table-borderless" id="districts_datatable">
@@ -119,9 +119,9 @@ $district = __('labels.district');
 					</tr>
 				</tfoot>
 			</table>
-            <div class="d-flex justify-content-center">
-                {{ $posts->links('vendor.pagination.bootstrap') }}
-            </div>
+			<div class="d-flex justify-content-center">
+				{{ $posts->links('vendor.pagination.bootstrap') }}
+			</div>
 		</div>
 		</form>
 	</div>
@@ -157,16 +157,16 @@ $district = __('labels.district');
 		location.reload();
 	}
 
-    $(document).ready(function() {
-        var table = $('#districts_datatable').DataTable( {
-            scrollX:        false,
-            scrollCollapse: false,
-            autoWidth:         true,
-            tLengthChange : true,
-            bLengthChange : false,
-            bInfo:false,
-            paging:     false,
-        } );
-    });
+	$(document).ready(function() {
+		var table = $('#districts_datatable').DataTable({
+			scrollX: false,
+			scrollCollapse: false,
+			autoWidth: true,
+			tLengthChange: true,
+			bLengthChange: false,
+			bInfo: false,
+			paging: false,
+		});
+	});
 </script>
 @endsection

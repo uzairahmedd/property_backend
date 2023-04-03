@@ -85,7 +85,7 @@
     <div class="single-area">
         <div class="card sub">
             <div class="card-body">
-            <h5>{{__('labels.is_featured')}}</h5>
+                <h5>{{__('labels.is_featured')}}</h5>
                 <hr>
                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="featured">
                     <option value="1" @if($info->featured==1) selected="" @endif>{{ __('labels.yes') }}</option>

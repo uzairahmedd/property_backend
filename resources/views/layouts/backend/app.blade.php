@@ -40,11 +40,11 @@
                 @yield('content')
             </div>
         </div>
-        <div class="copy-right position-relative d-flex d-sm-block flex-column align-items-center">
+        <!-- <div class="copy-right position-relative d-flex  flex-column align-items-center">
             <div class="">
                 <h3>{{__('labels.all_right_reserved')}}</h3>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="modal fade" id="property_logs_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
          aria-hidden="true">

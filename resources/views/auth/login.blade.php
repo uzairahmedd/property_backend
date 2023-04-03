@@ -163,13 +163,13 @@
 <!--end::Main-->
 <!--begin::Javascript-->
 <!-- General JS Scripts -->
-<script src="{{ asset('admin/assets/js/jquery-3.5.1.min.js') }}"></script>
+<!-- <script src="{{ asset('admin/assets/js/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ asset('admin/assets/js/popper.min.js') }}"></script>
-<script src="{{ asset('admin/assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('admin/assets/js/bootstrap.min.js') }}"></script> -->
 
 <!-- Template JS File -->
-<script src="{{ asset('admin/assets/js/scripts.bundle.js') }}"></script>
-<script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
+<!-- <script src="{{ asset('admin/assets/js/scripts.bundle.js') }}"></script>
+<script src="{{ asset('admin/assets/js/scripts.js') }}"></script> -->
 <!--end::Javascript-->
 </body>
 <!--end::Body-->

@@ -46,7 +46,7 @@
                         @endphp
                         <div class="form-group">
                             <label for="title">{{__('labels.select_city')}}</label>
-                            <select class="form-control" name="p_id" id="city">
+                            <select class="form-control" name="city" id="city">
                                 <option disabled="" selected="">{{__('labels.select_city')}}</option>
                                 @foreach(App\Models\City::get() as $row)
                                 <option value="{{ $row->id }}">{{  Session::get('locale') == 'ar' ? $row->ar_name : $row->name }}</option>

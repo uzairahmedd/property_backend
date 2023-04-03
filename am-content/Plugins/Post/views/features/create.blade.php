@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 
 @section('style')
-<link rel="stylesheet" href="{{ asset('admin/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('admin/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css') }}" />
 @endsection
 
 @section('content')
@@ -26,46 +26,46 @@
               <input type="text" class="form-control item-menu" name="ar_name" id="ar_text" placeholder="{{__('labels.enter_name_in_arabic')}}" autocomplete="off" required="">
             </div>
           </div>
-        </div>
       </div>
     </div>
-    <div class="col-lg-3">
-      <div class="single-area">
-        <div class="card">
-          <div class="card-body">
-            <h5>{{__('labels.publish')}}</h5>
-            <hr>
-            <div class="btn-publish">
-              <button type="submit" class="btn btn-primary col-12 basicbtn"><i class="fa fa-save"></i> {{__('labels.save')}}</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="single-area">
-        <div class="card">
-          <div class="card-body">
-            <h5>{{__('labels.is_featured')}}</h5>
-            <hr>
-            <select name="featured" class="form-control">
-              <option value="1">{{__('labels.yes')}}</option>
-              <option value="0" selected="">{{__('labels.no')}}</option>
-            </select>
+  </div>
+  <div class="col-lg-3">
+    <div class="single-area">
+      <div class="card">
+        <div class="card-body">
+          <h5>{{__('labels.publish')}}</h5>
+          <hr>
+          <div class="btn-publish">
+            <button type="submit" class="btn btn-primary col-12 basicbtn"><i class="fa fa-save"></i> {{__('labels.save')}}</button>
           </div>
         </div>
       </div>
     </div>
-    <input type="hidden" name="type" value="feature">
+    <div class="single-area">
+      <div class="card">
+        <div class="card-body">
+          <h5>{{__('labels.is_featured')}}</h5>
+          <hr>
+          <select name="featured" class="form-control">
+            <option value="1">{{__('labels.yes')}}</option>
+            <option value="0" selected="">{{__('labels.no')}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" name="type" value="feature">
   </form>
-@endsection
+  @endsection
 
-@section('script')
-<script  src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
-<script  src="{{ asset('admin/bootstrap-iconpicker/js/iconset/fontawesome5-3-1.min.js') }}"></script>
-<script  src="{{ asset('admin/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js') }}"></script>
-<script src="{{ asset('admin/js/form.js') }}"></script>
-<script>
+  @section('script')
+  <script src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('admin/bootstrap-iconpicker/js/iconset/fontawesome5-3-1.min.js') }}"></script>
+  <script src="{{ asset('admin/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js') }}"></script>
+  <script src="{{ asset('admin/js/form.js') }}"></script>
+  <script>
     "use strict";
-    (function ($) {
+    (function($) {
       $('#target').on('change', function(e) {
 
         $('#icon').val(e.icon)
@@ -73,9 +73,8 @@
 
     })(jQuery);
     //success response will assign here
-    function success(res){
-        $('.basicform').trigger('reset')
+    function success(res) {
+      $('.basicform').trigger('reset')
     }
-</script>
-@endsection
-
+  </script>
+  @endsection
