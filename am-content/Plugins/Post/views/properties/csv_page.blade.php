@@ -9,13 +9,13 @@
     <div class="card-body">
         <div class="row mb-2">
             <div class="col-lg-12">
-                <div class="d-flex">
-                    <a href="{{ route('admin.property.csv_page') }}" class="mr-2 btn btn-outline-primary @if($type=='all') active @endif">{{__('labels.total')}} ({{ $totals }})</a>
-                    <a href="{{ route('admin.property.csv_page_type',1) }}" class="mr-2 btn btn-outline-success @if($type==1) active @endif">{{__('labels.published')}} ({{ $actives }})</a>
-                    <a href="{{ route('admin.property.csv_page_type',2) }}" class="mr-2 btn btn-outline-info @if($type==2) active @endif">{{__('labels.incomplete')}} ({{ $incomplete }})</a>
-                    <a href="{{ route('admin.property.csv_page_type',3) }}" class="mr-2 btn btn-outline-warning @if($type==3) active @endif">{{__('labels.pending_for_approval')}} ({{ $pendings }})</a>
-                    <a href="{{ route('admin.property.csv_page_type',4) }}" class="mr-2 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{__('labels.rejected')}} ({{ $rejected }})</a>
-                    <a href="{{ route('admin.property.csv_page_type',0) }}" class="mr-2 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{__('labels.trash')}} ({{ $trash }})</a>
+                <div class="d-flex flex-wrap">
+                    <a href="{{ route('admin.property.csv_page') }}" class="mr-2 mb-2 btn btn-outline-primary @if($type=='all') active @endif">{{__('labels.total')}} ({{ $totals }})</a>
+                    <a href="{{ route('admin.property.csv_page_type',1) }}" class="mr-2 mb-2 btn btn-outline-success @if($type==1) active @endif">{{__('labels.published')}} ({{ $actives }})</a>
+                    <a href="{{ route('admin.property.csv_page_type',2) }}" class="mr-2 mb-2 btn btn-outline-info @if($type==2) active @endif">{{__('labels.incomplete')}} ({{ $incomplete }})</a>
+                    <a href="{{ route('admin.property.csv_page_type',3) }}" class="mr-2 mb-2 btn btn-outline-warning @if($type==3) active @endif">{{__('labels.pending_for_approval')}} ({{ $pendings }})</a>
+                    <a href="{{ route('admin.property.csv_page_type',4) }}" class="mr-2 mb-2 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{__('labels.rejected')}} ({{ $rejected }})</a>
+                    <a href="{{ route('admin.property.csv_page_type',0) }}" class="mr-2 mb-2 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{__('labels.trash')}} ({{ $trash }})</a>
                 </div>
             </div>
         </div>
@@ -27,21 +27,23 @@
         @can('csv.export')
         <form method="post" action="{{ route('admin.properties.csv_download') }}">
             @csrf
-                <div class="d-flex position-absolute export_csv">
-                    <div>
-                        <input type="text"  id="main_date" name="daterange" class="form-control" value="" placeholder="{{__('labels.please_select_date_range')}}" />
-                        <input type="hidden" name="from_date" id="from_date">
-                        <input type="hidden" name="to_date" id="to_date">
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-success export_csv_btn btn-sm">{{__('labels.export_csv_file')}}</button>
+                <div class="float-left export_csv mb-2">
+                    <div class="d-flex flex-wrap">
+                        <div>
+                            <input type="text"  id="main_date" name="daterange" class="form-control" value="" placeholder="{{__('labels.please_select_date_range')}}" />
+                            <input type="hidden" name="from_date" id="from_date">
+                            <input type="hidden" name="to_date" id="to_date">
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-success export_csv_btn btn-sm m-0">{{__('labels.export_csv_file')}}</button>
+                        </div>
                     </div>
                 </div>
         </form>
         @endcan
         <!-- </div> -->
         <br>
-        <div class="float-right">
+        <div class="float-right mb-2">
             <form>
                 <div class="input-group mb-2">
                     <input type="text" id="src" class="form-control h-100" placeholder="{{__('labels.search')}}" required="" name="src" autocomplete="off" value="{{ $request->src ?? '' }}">

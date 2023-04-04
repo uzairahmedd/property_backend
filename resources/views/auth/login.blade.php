@@ -42,7 +42,7 @@
                 <!--begin::Content-->
                 <div class="d-flex flex-row-fluid flex-column text-center p-10 justify-content-center">
                     <!--begin::Logo-->
-                    <a href="../../demo1/dist/index.html" class="py-9 mb-5">
+                    <a href="#" class="py-9 mb-5">
                         <img alt="Logo" src="{{asset('assets/images/logo.png')}}" class="h-60px"/>
                     </a>
                     <!--end::Logo-->
@@ -147,11 +147,11 @@
             </div>
             <!--end::Content-->
             <!--begin::Footer-->
-            <div class="login-copy-right position-relative d-flex d-sm-block flex-column align-items-center">
-                <div class="">
-                    <h3>{{__('labels.all_right_reserved')}}</h3>
-                </div>
-            </div>
+{{--            <div class="login-copy-right position-relative d-flex d-sm-block flex-column align-items-center">--}}
+{{--                <div class="">--}}
+{{--                    <h3>{{__('labels.all_right_reserved')}}</h3>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <!--end::Footer-->
         </div>
         <!--end::Body-->
