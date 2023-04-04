@@ -28,14 +28,14 @@
         <form method="post" action="{{ route('admin.properties.csv_download') }}">
             @csrf
                 <div class="float-left export_csv mb-2">
-                    <div class="d-flex">
+                    <div class="d-flex flex-wrap">
                         <div>
                             <input type="text"  id="main_date" name="daterange" class="form-control" value="" placeholder="{{__('labels.please_select_date_range')}}" />
                             <input type="hidden" name="from_date" id="from_date">
                             <input type="hidden" name="to_date" id="to_date">
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-success export_csv_btn btn-sm">{{__('labels.export_csv_file')}}</button>
+                            <button type="submit" class="btn btn-success export_csv_btn btn-sm m-0">{{__('labels.export_csv_file')}}</button>
                         </div>
                     </div>
                 </div>
