@@ -29,7 +29,7 @@
 <!--begin::Body-->
 <body id="kt_body" class="bg-body">
 <!--begin::Main-->
-<div class="overflow-hidden position-relative {{ session()->has('locale') && session()->get('locale') =='en' ? 'ltr' : 'rtl'}}" id="main-home" data-session="">
+<div class="position-relative {{ session()->has('locale') && session()->get('locale') =='en' ? 'ltr' : 'rtl'}}" id="main-home" data-session="">
 <!--begin::Root-->
 <div class="d-flex flex-column flex-root">
     <!--begin::Authentication - Sign-in -->
