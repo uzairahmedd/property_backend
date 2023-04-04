@@ -9,17 +9,17 @@ $properties_list = __('labels.properties_list');
 	<div class="card-body">
 		<div class="row mb-2">
 			<div class="col-lg-10">
-				<div class="d-flex">
-					<a href="{{ route('admin.property.index') }}" class="mr-2 btn btn-outline-primary @if($type=='all') active @endif">{{__('labels.total')}} ({{ $totals }})</a>
+				<div class="d-flex flex-wrap">
+					<a href="{{ route('admin.property.index') }}" class="mr-2 p-1 btn btn-outline-primary @if($type=='all') active @endif">{{__('labels.total')}} ({{ $totals }})</a>
 
-					<a href="{{ route('admin.property.show',1) }}" class="mr-2 btn btn-outline-success @if($type==1) active @endif">{{__('labels.published')}} ({{ $actives }})</a>
+					<a href="{{ route('admin.property.show',1) }}" class="mr-2 p-1 btn btn-outline-success @if($type==1) active @endif">{{__('labels.published')}} ({{ $actives }})</a>
 
-					<a href="{{ route('admin.property.show',2) }}" class="mr-2 btn btn-outline-info @if($type==2) active @endif">{{__('labels.incomplete')}} ({{ $incomplete }})</a>
-					<a href="{{ route('admin.property.show',3) }}" class="mr-2 btn btn-outline-warning @if($type==3) active @endif">{{__('labels.pending_for_approval')}} ({{ $pendings }})</a>
+					<a href="{{ route('admin.property.show',2) }}" class="mr-2 p-1 btn btn-outline-info @if($type==2) active @endif">{{__('labels.incomplete')}} ({{ $incomplete }})</a>
+					<a href="{{ route('admin.property.show',3) }}" class="mr-2 p-1 btn btn-outline-warning @if($type==3) active @endif">{{__('labels.pending_for_approval')}} ({{ $pendings }})</a>
 
-					<a href="{{ route('admin.property.show',4) }}" class="mr-2 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{__('labels.rejected')}} ({{ $rejected }})</a>
+					<a href="{{ route('admin.property.show',4) }}" class="mr-2 p-1 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{__('labels.rejected')}} ({{ $rejected }})</a>
 
-					<a href="{{ route('admin.property.show',0) }}" class="mr-2 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{__('labels.trash')}} ({{ $trash }})</a>
+					<a href="{{ route('admin.property.show',0) }}" class="mr-2 p-1 btn btn-outline-danger @if($type== 0 && $type != 'all') active @endif">{{__('labels.trash')}} ({{ $trash }})</a>
 				</div>
 			</div>
 			<!-- <div class="col-lg-2">

@@ -27,6 +27,10 @@
 </head>
 
 <body>
+    <script>
+        var locale = '<?php echo Session::get('locale'); ?>';
+</script>
+
 <div class="overflow-hidden position-relative {{ session()->has('locale') && session()->get('locale') =='en' ? 'ltr' : 'rtl'}}" id="main-home" data-session="">
     <div id="app">
         <div class="main-wrapper">

@@ -19,31 +19,31 @@
 
 .rtl .main-sidebar {
     right: 0;
-    left: unset !important;
+    left: unset;
 }
 
-.rtl .main-content {
-    padding-right: 280px;
-    padding-left: 30px;
-}
+/*.rtl .main-content {*/
+/*    padding-right: 280px;*/
+/*    !*padding-left: 30px;*!*/
+/*}*/
 
-.rtl .main-sidebar:after {
- right: 0;
-    left: unset !important;
-}
+/*.rtl .main-sidebar:after {*/
+/* right: 0;*/
+/*    left: unset !important;*/
+/*}*/
 
-.rtl body.sidebar-mini .main-content, .rtl body.sidebar-mini .main-footer {
-    padding-right: 90px;
-}
+/*.rtl body.sidebar-mini .main-content, .rtl body.sidebar-mini .main-footer {*/
+/*    padding-right: 90px;*/
+/*}*/
 
-.rtl .main-sidebar .sidebar-menu li ul.dropdown-menu li a {
-    padding-right: 65px;
-}
+/*.rtl .main-sidebar .sidebar-menu li ul.dropdown-menu li a {*/
+/*    padding-right: 65px;*/
+/*}*/
 
-.rtl .main-sidebar .sidebar-menu li a.has-dropdown:after {
-    left: 20px;
-    right: unset;
-}
+/*.rtl .main-sidebar .sidebar-menu li a.has-dropdown:after {*/
+/*    left: 20px;*/
+/*    right: unset;*/
+/*}*/
 
 .rtl .menu-icons
 {
@@ -101,16 +101,84 @@
     margin-left: 15px;
 }
 
-.rtl .login-copy-right h3 {
-    direction: ltr;
+.rtl  body.sidebar-mini .main-sidebar:after {
+    right: 0;
+    left: unset;
 }
 
-.rtl .copy-right h3 {
-    direction: ltr;
-    margin-right: 140px;
-    margin-left: unset;
+.rtl .main-content {
+    padding-right: 280px;
+    padding-left: 30px;
+    padding-top: 140px;
+    width: 100%;
+    position: relative;
 }
 
+/*.rtl .login-copy-right h3 {*/
+/*    direction: ltr;*/
+/*}*/
+
+/*.rtl .copy-right h3 {*/
+/*    direction: ltr;*/
+/*    margin-right: 140px;*/
+/*    margin-left: unset;*/
+/*}*/
+
+.rtl .sidebar-mini .main-content, .rtl .sidebar-mini .main-footer {
+    padding-right: 90px;
+    padding-left: unset;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    .rtl .menu-icons {
+        margin-left: auto;
+        margin-right: -40px !important;
+    }
+
+    .rtl .navbar {
+        right: 0;
+        left: 5px;
+    }
+
+    .rtl .main-content {
+        padding-right: 30px;
+        padding-left: 30px;
+        padding-top: 140px;
+        width: 100%;
+        position: relative;
+    }
+
+    .rtl .navbar .nav-link
+    {
+        margin-top: 0;
+    }
+
+    .rtl .navbar-expand-lg .navbar-nav .dropdown-menu-right {
+        left: 0;
+        right: auto;
+    }
+
+    /*.rtl .dropdown-menu-right*/
+    /*{*/
+    /*    padding-top: 25px;*/
+    /*}*/
+
+    .rtl .nav-link-user
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    #admin_lang
+    {
+        padding-right: 60px !important;
+    }
+}
 
 
 

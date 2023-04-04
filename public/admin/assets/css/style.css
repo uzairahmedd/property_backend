@@ -2508,23 +2508,23 @@ body.sidebar-mini .main-sidebar {
   overflow: initial !important;
   position: absolute;
   box-shadow: none; }
-  body.sidebar-mini .main-sidebar:after {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
-    content: ' ';
-    position: fixed;
-    background-color: #fff;
-    width: 65px;
-    height: 100%;
-    left: 0;
-    top: 0;
-    z-index: -1;
-    opacity: 0;
-    -webkit-animation-name: mini-sidebar;
-            animation-name: mini-sidebar;
-    -webkit-animation-duration: 1.5s;
-            animation-duration: 1.5s;
-    -webkit-animation-fill-mode: forwards;
-            animation-fill-mode: forwards; }
+  /*body.sidebar-mini .main-sidebar:after {*/
+  /*  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);*/
+  /*  content: ' ';*/
+  /*  position: fixed;*/
+  /*  background-color: #fff;*/
+  /*  width: 65px;*/
+  /*  height: 100%;*/
+  /*  left: 0;*/
+  /*  top: 0;*/
+  /*  z-index: -1;*/
+  /*  opacity: 0;*/
+  /*  -webkit-animation-name: mini-sidebar;*/
+  /*          animation-name: mini-sidebar;*/
+  /*  -webkit-animation-duration: 1.5s;*/
+  /*          animation-duration: 1.5s;*/
+  /*  -webkit-animation-fill-mode: forwards;*/
+  /*          animation-fill-mode: forwards; }*/
 
 @-webkit-keyframes mini-sidebar {
   from {
@@ -2611,6 +2611,9 @@ body.sidebar-mini .navbar {
 
 body.sidebar-mini .main-content, body.sidebar-mini .main-footer {
   padding-left: 90px; }
+
+body.sidebar-mini-rtl .main-content, body.sidebar-mini-rtl .main-footer {
+    padding-right: 90px; }
 
 body.layout-2 .navbar-bg {
   z-index: 889;
@@ -4110,6 +4113,25 @@ span.lang-span
     width: 100%;
 }
 
+.nav-link-user
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/*.rtl .main-sidebar {*/
+/*    right: 0;*/
+/*    left: unset;*/
+/*}*/
+
+
+#admin_lang {
+    margin-right: auto;
+}
+
 .copy-right h3 {
     font-size: 16px;
     text-align: center;
@@ -4125,9 +4147,19 @@ span.lang-span
     width: 100%;
 }
 
+@media screen and (max-width: 768px) {
+    #admin_lang {
+        padding-right: 78px !important;
+    }
+}
 
 @media screen and (max-width: 992px) {
     .copy-right h3 {
         margin: 0;
     }
 }
+
+
+
+
+

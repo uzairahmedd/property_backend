@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="row mb-2">
             <div class="col-lg-12">
-                <div class="d-flex">
+                <div class="d-flex flex-wrap">
                     <a href="{{ route('admin.property.csv_page') }}" class="mr-2 btn btn-outline-primary @if($type=='all') active @endif">{{__('labels.total')}} ({{ $totals }})</a>
                     <a href="{{ route('admin.property.csv_page_type',1) }}" class="mr-2 btn btn-outline-success @if($type==1) active @endif">{{__('labels.published')}} ({{ $actives }})</a>
                     <a href="{{ route('admin.property.csv_page_type',2) }}" class="mr-2 btn btn-outline-info @if($type==2) active @endif">{{__('labels.incomplete')}} ({{ $incomplete }})</a>
