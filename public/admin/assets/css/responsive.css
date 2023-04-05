@@ -107,7 +107,7 @@
 }
 
 .rtl .main-content {
-    /*padding-right: 280px;*/
+    padding-right: 280px;
     padding-left: 30px;
     padding-top: 140px;
     width: 100%;
