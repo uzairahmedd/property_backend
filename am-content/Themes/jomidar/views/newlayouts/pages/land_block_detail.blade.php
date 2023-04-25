@@ -46,13 +46,17 @@
                             </div>
                         </div>
                         <div class="sidebar-action d-flex justify-content-end align-items-end">
-                            <a href="#" class="btn sidebar-btn">
+                        @php
+                        $phone = ltrim($property->user->phone, '0');
+                        $phone = '966'.$phone;
+                        @endphp
+                            <a href="https://api.whatsapp.com/send?phone={{$phone}}" target="_blank" class="btn sidebar-btn">
                                 <img class="map-icon" src="{{asset('assets/images/whatsapp-icon.png')}}" alt="">
                                 <p style="vertical-align: inherit;" class="font-bold">{{__('labels.chat')}}</p>
                             </a>
                             <a href="#" class="btn sidebar-btn">
                                 <img class="map-icon" src="{{theme_asset('assets/images/phone_icon.png')}}" alt="">
-                                <p style="vertical-align: inherit;" class="font-bold" data-toggle="tolltip" title="{{$property->user->phone}}">{{__('labels.call_me')}}</p>
+                                <p style="vertical-align: inherit;" class="font-bold" data-toggle="tolltip" title="{{$phone}}">{{__('labels.call_me')}}</p>
                             </a>
                             @if (Auth::check())
                             @php
