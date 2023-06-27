@@ -1460,7 +1460,7 @@ class PropertyController extends controller
         $posts = Terms::where('type', 'property')->where('status', 1)->where('is_land_block', 0)
             ->where('user_id', Auth::id())
             ->with('landarea', 'post_new_city', 'post_preview', 'post_district', 'price', 'user', 'option_data', 'property_status_type')
-            ->latest()->paginate(20);
+            ->latest()->paginate(15);
         return response()->json($posts);
     }
 

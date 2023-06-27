@@ -53,7 +53,7 @@ function get_favorite_properties(url) {
             $('#user_favorite_to').html(response.to);
             $('#user_favorite_total').html(total);
             if (response.links.length > 3) {
-                user_render_pagination('.pagination', response.links);
+                favorite_render_pagination('.pagination', response.links);
             }
         }
     })
@@ -196,3 +196,62 @@ function user_favourite_property_check(id) {
         }
     });
 }
+
+
+
+/*-------------------------------------
+        Properties Pagination Render
+    -----------------------------------------*/
+    function favorite_render_pagination(target, data) {
+        $('.page-item').remove();
+        $.each(data, function (key, value) {
+            if (value.label === '&laquo; Previous') {
+                if (value.url === null) {
+                    var is_disabled = "disabled";
+                    var is_active = null;
+                }
+                else {
+                    var is_active = 'page-link-no' + key;
+                    var is_disabled = 'onClick="user_favorite_PaginationClicked(' + key + ')"';
+                }
+                var html = '<li  class="page-item"><a ' + is_disabled + ' class="page-link pagination-link ' + is_active + '" href="javascript:void(0)" data-url="' + value.url + '"><i class="fas fa-long-arrow-alt-left"></i></a></li>';
+            }
+            else if (value.label === 'Next &raquo;') {
+                if (value.url === null) {
+                    var is_disabled = "disabled";
+                    var is_active = null;
+                }
+                else {
+                    var is_active = 'page-link-no' + key;
+                    var is_disabled = 'onClick="user_favorite_PaginationClicked(' + key + ')"';
+                }
+                var html = '<li class="page-item"><a ' + is_disabled + '  class="page-link pagination-link ' + is_active + '" href="javascript:void(0)" data-url="' + value.url + '"><i class="fas fa-long-arrow-alt-right paginate-arrow"></i></a></li>';
+            }
+            else {
+                if (value.active == true) {
+                    var is_active = "active";
+                    var is_disabled = "disabled";
+                    var url = null;
+    
+                }
+                else {
+                    var is_active = 'page-link-no' + key;
+                    var is_disabled = 'onClick="user_favorite_PaginationClicked(' + key + ')"';
+                    var url = value.url;
+                }
+                var html = '<li class="page-item"><a class="page-link pagination-link ' + is_active + '" ' + is_disabled + ' href="javascript:void(0)" data-url="' + url + '">' + value.label + '</a></li>';
+            }
+            if (value.url !== null) {
+                $(target).append(html);
+            }
+        });
+    }
+    
+    /*-------------------------------------
+            Pagination Clicked Function
+        -----------------------------------------*/
+    function user_favorite_PaginationClicked(key) {
+        var url = $('.page-link-no' + key).data('url');
+        get_favorite_properties(url);
+    }
+    

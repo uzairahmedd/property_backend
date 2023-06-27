@@ -3,8 +3,8 @@
     -------------------------------*/
 var base_url = $('#base_url').val();
 var url = base_url + 'agent/get_user_properties';
-get_properties(url)
-function get_properties(url) {
+get_user_properties(url)
+function get_user_properties(url) {
     $.ajax({
         type: 'get',
         url: url,
@@ -212,7 +212,7 @@ function property_del(elem) {
 
                         Sweet(response.status, response.messages)
                         var url = base_url + 'agent/get_user_properties';
-                        get_properties(url)
+                        get_user_properties(url)
                     })
                     .fail(function () {
                         Sweet('error', 'Something went wrong!');
@@ -244,3 +244,61 @@ function Sweet(icon, title, time = 3000) {
         title: title,
     })
 }
+
+
+
+/*-------------------------------------
+        Properties Pagination Render
+    -----------------------------------------*/
+    function user_render_pagination(target, data) {
+        $('.page-item').remove();
+        $.each(data, function (key, value) {
+            if (value.label === '&laquo; Previous') {
+                if (value.url === null) {
+                    var is_disabled = "disabled";
+                    var is_active = null;
+                }
+                else {
+                    var is_active = 'page-link-no' + key;
+                    var is_disabled = 'onClick="user_PaginationClicked(' + key + ')"';
+                }
+                var html = '<li  class="page-item"><a ' + is_disabled + ' class="page-link pagination-link ' + is_active + '" href="javascript:void(0)" data-url="' + value.url + '"><i class="fas fa-long-arrow-alt-left"></i></a></li>';
+            }
+            else if (value.label === 'Next &raquo;') {
+                if (value.url === null) {
+                    var is_disabled = "disabled";
+                    var is_active = null;
+                }
+                else {
+                    var is_active = 'page-link-no' + key;
+                    var is_disabled = 'onClick="user_PaginationClicked(' + key + ')"';
+                }
+                var html = '<li class="page-item"><a ' + is_disabled + '  class="page-link pagination-link ' + is_active + '" href="javascript:void(0)" data-url="' + value.url + '"><i class="fas fa-long-arrow-alt-right paginate-arrow"></i></a></li>';
+            }
+            else {
+                if (value.active == true) {
+                    var is_active = "active";
+                    var is_disabled = "disabled";
+                    var url = null;
+    
+                }
+                else {
+                    var is_active = 'page-link-no' + key;
+                    var is_disabled = 'onClick="user_PaginationClicked(' + key + ')"';
+                    var url = value.url;
+                }
+                var html = '<li class="page-item"><a class="page-link pagination-link ' + is_active + '" ' + is_disabled + ' href="javascript:void(0)" data-url="' + url + '">' + value.label + '</a></li>';
+            }
+            if (value.url !== null) {
+                $(target).append(html);
+            }
+        });
+    }
+    
+    /*-------------------------------------
+            Pagination Clicked Function
+        -----------------------------------------*/
+    function user_PaginationClicked(key) {
+        var url = $('.page-link-no' + key).data('url');
+        get_user_properties(url);
+    }
